@@ -38,4 +38,17 @@ at `experiments/data/processed/eyepacs_norm_stats.json` (dataset-specific, thesi
 
 **4. `_eval_utils._train_fresh` bug does NOT block Exp-1** — Config A–D go through
 `Trainer.train_fold`, not the broken fresh-train path (that is an exp2/blending concern).
+
+**5. STANDING RULE — at experiment end, consolidate all results onto the traveling drive D:.**
+On this machine D: is the **external drive the project rides on**; C: is fast internal scratch
+that does NOT travel. Exp-1 results (`outputs/exp1/`: metrics + Config D checkpoints) already
+live on D: (project root is on D:), but the SSL/continual/gate artifacts, run logs, and the 512
+cache sit on **C:** and would be lost when the machine is reset. Copy them to D: at the end:
+`C:/ssl_out/save_results_to_D.ps1` (idempotent — robocopies `C:/ssl_out` → `outputs/ssl_run_artifacts/`
+and tars the 512 cache → `outputs/cache_512.tar` as ONE sequential write, safe on external D:).
+It fires automatically via `C:/ssl_out/watch_and_save_D.ps1` when `EXPD_DONE.txt` appears (not
+reboot-proof — re-run manually if the machine restarts). Marker: `outputs/RESULTS_SAVED.txt`.
+Caveat: Config D writes checkpoints per-epoch straight to D: (external) — flaky-USB risk like the
+SSL `train_state`; `--resume` mitigates.
+
 See [[continual-ssl-init-decision]], [[linear-probe-noise-fix]].

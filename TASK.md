@@ -53,6 +53,11 @@
 > Wiring overlays: `configs/exp1_continual_v4_0.yaml` (B/D → continual), `configs/exp1_sip.yaml` (SIP variant);
 > machine-merged run configs `configs/_run_exp1D*.yaml` are uncommitted (machine paths). Decision recorded in
 > `PROJECT_MEMORY/continual-ssl-init-decision.md`.
+> **▶ AT END — auto-save results to D:.** `outputs/exp1/` (metrics + Config D checkpoints) already lives on D:
+> (project root is on D:); the C:-resident SSL/continual/gate artifacts + 512 cache are consolidated to D: by
+> `C:/ssl_out/save_results_to_D.ps1`, fired automatically when `EXPD_DONE.txt` appears via the detached watcher
+> `C:/ssl_out/watch_and_save_D.ps1` (marker `outputs/RESULTS_SAVED.txt`; NOT reboot-proof — re-run manually
+> after a restart). Standing rule for all experiments: [[exp1-run-mechanics-512-cache]] §5.
 
 > ### ■■ RESULTS 2026-07-09 — SSL METHOD SWEEP COMPLETE: all 4 gates FAILED, in-family SSL exhausted
 >
