@@ -372,10 +372,11 @@ def _run_clahe_sweep(
     prep_cfg = config.get("preprocessing", {})
 
     # Load IDRiD
+    idrid_root = Path(config["paths"]["idrid"])
     idrid_ds_full = IDRiDDataset.from_directory(
-        root="/mnt/d/datasets/IDRiD/B. Disease Grading/1. Original Images/a. Training Set",
-        labels_csv="/mnt/d/datasets/IDRiD/B. Disease Grading/2. Groundtruths/"
-                   "a. IDRiD_Disease Grading_Training Labels.csv",
+        root=str(idrid_root / "B. Disease Grading" / "1. Original Images" / "a. Training Set"),
+        labels_csv=str(idrid_root / "B. Disease Grading" / "2. Groundtruths"
+                       / "a. IDRiD_Disease Grading_Training Labels.csv"),
         subset_indices=list(range(subset_size)) if subset_size else None,
     )
     print(f"  IDRiD: {len(idrid_ds_full)} images for CLAHE sweep")

@@ -251,6 +251,7 @@ def run(
     fold: int | None = None,
     resume: bool = False,
     _subset_size: int | None = None,
+    _configs_to_run: list[str] | None = None,
 ) -> None:
     """Run Experiment 4: Grad-CAM explainability analysis.
 

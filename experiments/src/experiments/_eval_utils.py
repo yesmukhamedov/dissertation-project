@@ -129,14 +129,16 @@ def _train_fresh(
 
     prep_cfg   = config["preprocessing"]
     pipeline = build_full_pipeline(prep_cfg, is_training=True)
-    aug         = FundusAugmentation(config["augmentation"])
+    # Stage-6 augmentation is already inside the is_training pipeline (mirrors exp1's
+    # working path), so the dataset takes augmentation=None. The prior code read a
+    # nonexistent top-level config["augmentation"] key (KeyError) and double-augmented.
     trainer     = Trainer(config, device="auto")
 
     train_ds = EyePACSDataset(
         image_paths=[all_paths[i] for i in train_idx],
         labels=[all_labels[i] for i in train_idx],
         patient_ids=[all_pids[i] for i in train_idx],
-        preprocessing=pipeline, augmentation=aug,
+        preprocessing=pipeline, augmentation=None,
     )
     val_ds = EyePACSDataset(
         image_paths=[all_paths[i] for i in val_idx],
