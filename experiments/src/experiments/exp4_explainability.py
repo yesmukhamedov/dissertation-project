@@ -307,6 +307,13 @@ def run(
         config, pipeline_baseline, all_paths, all_labels, all_pids,
         splits, output_dir, "baseline", resume,
     )
+    # Free GPU memory before the second (full-pipeline) training run: the
+    # baseline model is only needed again at Grad-CAM time and is moved back
+    # to `device` below. EfficientNet-B4 trains in fp32 (AMP disabled) at
+    # 512², so headroom on the shared GPU matters.
+    model_baseline = model_baseline.cpu()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     print(f"\n{'='*65}")
     print("Training Full-Pipeline model …")

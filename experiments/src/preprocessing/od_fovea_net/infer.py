@@ -180,6 +180,26 @@ def reset_cache() -> None:
     _CACHE.clear()
 
 
+def _in_dataloader_worker() -> bool:
+    """Return ``True`` when called inside a torch ``DataLoader`` worker process.
+
+    The live full pipeline runs Stage 0/1 detection inside ``Dataset.__getitem__``,
+    which executes in DataLoader worker processes when ``num_workers > 0``. With
+    ``io.device: "auto"`` each worker would resolve to CUDA and spin up its own
+    CUDA context, running U-Net inference concurrently with the training
+    process's forward/backward on the same GPU — observed as
+    ``cudaErrorUnknown`` during the first backward of full-pipeline training
+    (exp4). Workers must therefore fall back to CPU inference; the main process
+    (demo server, cache precompute, Grad-CAM) keeps the configured device.
+
+    Returns:
+        ``True`` iff the current process is a DataLoader worker.
+    """
+    import torch.utils.data  # local import: keep torch out of module import time
+
+    return torch.utils.data.get_worker_info() is not None
+
+
 def _heatmap_to_input(
     prob_c: np.ndarray,
     transform: FovTransform,
@@ -257,6 +277,11 @@ def detect_od_fovea(
     if image_rgb.ndim != 3 or image_rgb.shape[2] != 3:
         raise ValueError(f"expected RGB (H, W, 3), got shape {image_rgb.shape}")
     h_in, w_in = image_rgb.shape[:2]
+
+    # DataLoader workers must not create CUDA contexts (see
+    # :func:`_in_dataloader_worker`); an explicit ``device`` argument still wins.
+    if device is None and _in_dataloader_worker():
+        device = "cpu"
 
     det = _get_detector(config_path, weights_path, device)
     torch = det._torch
