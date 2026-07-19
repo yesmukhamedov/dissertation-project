@@ -45,7 +45,7 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 WEBAPP_DIR = HERE.parent
 
-IDRID_ROOT = Path(r"E:/datasets/IDRiD/A. Segmentation")
+IDRID_ROOT = Path(r"D:/datasets/IDRiD/A. Segmentation")
 RGB_DIRS = [
     IDRID_ROOT / "1. Original Images" / "a. Training Set",
     IDRID_ROOT / "1. Original Images" / "b. Testing Set",
@@ -56,12 +56,12 @@ MASK_ROOTS = [
 ]
 
 # Per-row label, mask folder name, file-name suffix used by IDRiD.
+# Optic Disc is an anatomical landmark, not a DR lesion, so it is omitted here.
 ROWS = [
     ("(a) Microaneurysms", "1. Microaneurysms", "MA"),
     ("(b) Haemorrhages",   "2. Haemorrhages",   "HE"),
     ("(c) Hard Exudates",  "3. Hard Exudates",  "EX"),
     ("(d) Soft Exudates",  "4. Soft Exudates",  "SE"),
-    ("(e) Optic Disc",     "5. Optic Disc",     "OD"),
 ]
 
 N_COLS = 4
@@ -154,10 +154,11 @@ def main() -> None:
     # widened) so the combined chevron label fits completely inside its axis and
     # never overlaps the rightmost image column.
     label_ratio = 1.6
+    n_rows = len(ROWS)
     fig, axes = plt.subplots(
-        nrows=5,
+        nrows=n_rows,
         ncols=N_COLS + 1,  # extra column for chevron labels
-        figsize=((N_COLS + label_ratio) * 2.8, 5 * 2.6),
+        figsize=((N_COLS + label_ratio) * 2.8, n_rows * 2.6),
         gridspec_kw={"width_ratios": [1] * N_COLS + [label_ratio],
                      "wspace": 0.06, "hspace": 0.12},
     )

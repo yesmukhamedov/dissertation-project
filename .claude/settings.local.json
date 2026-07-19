@@ -565,7 +565,8 @@
       "Bash(\"C:/mamba/envs/dr-classifier/python.exe\" -c \"import torch,timm; print\\('torch',torch.__version__,'cuda',torch.cuda.is_available\\(\\), torch.cuda.get_device_name\\(0\\) if torch.cuda.is_available\\(\\) else 'NO_GPU'\\)\")",
       "PowerShell(Write-Output \"PS_OK\"; $g = & \"C:/mamba/envs/dr-classifier/python.exe\" -c \"import torch;print\\(torch.cuda.mem_get_info\\(\\)[0]/1e9\\)\"; Write-Output \"free_VRAM_GB=$g\")",
       "Read(//d/datasets/EyePACS/**)",
-      "Read(//d/datasets/EyePACS/train/**)"
+      "Read(//d/datasets/EyePACS/train/**)",
+      "PowerShell(git stash show -p stash@{0} --include-untracked --stat; git diff stash@{0} HEAD --stat -- .claude/settings.local.json PROJECT_MEMORY.md TASK.md experiments/configs/_wsl_local.yaml experiments/scripts/run_ssl_probe.py EFFICIENTNET_B3_SSL_HANDOFF.md FABLE5_REVIEW.md ROADMAP.md experiments/configs/_win_local.yaml experiments/configs/ssl_retrain_eff_v1_1.yaml experiments/configs/ssl_retrain_v1_1.yaml PROJECT_MEMORY/ssl-wsl-launch-durability.md)"
     ]
   }
 }

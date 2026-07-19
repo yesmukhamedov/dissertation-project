@@ -3,9 +3,17 @@
 # dataset at the precomputed Stage 0-4 cache, and pins a VRAM-safe batch size
 # for the RTX 3060. Load LAST in the --config chain.
 paths:
-  eyepacs: "/mnt/e/datasets/EyePACS"
+  eyepacs: "/mnt/d/datasets/EyePACS"   # this machine mounts the external drive as D: (was /mnt/e on the prior box)
 
 ssl:
+  corpus:
+    # This box's EyePACS/ has the graded test-labels file (testLabels15.csv) MISSING —
+    # only sampleSubmission.csv (image,level=0 for all 53,576 test stems) is present.
+    # The SSL disjointness audit (INV-SSL-2) reads ONLY the `image` column, so the
+    # sample-submission stem list is a valid source for it. NOTE: the linear-probe GATE
+    # needs the REAL graded testLabels15.csv (true grades + Usage slice) — obtain it
+    # (Kaggle "retinopathy_solution.csv") before gating on this machine; revert this key then.
+    test_labels_csv: "sampleSubmission.csv"
   batch_size: 16
   num_workers: 4                                  # WSL capped at 12GB RAM; >6 spawn workers crash the VM (E_UNEXPECTED)
   cache_dir: "/home/yesmu/ssl_cache_256"          # WSL-native ext4: 9p mass-writes crash the VM (E_UNEXPECTED)

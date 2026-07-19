@@ -1,0 +1,61 @@
+fig1_per_class.png
+    5x4 grid: five rows (DR grades 0-4), four examples in each.
+    Source — IDRiD. Shows the within-class variability of the images.
+
+fig2_lesion_overlays.png
+    4x4 grid: four rows of DR pathological signs with teal contours
+    drawn from the IDRiD pixel-level segmentation groundtruth:
+    (a) microaneurysms, (b) haemorrhages, (c) hard exudates,
+    (d) soft exudates.
+
+fig3_dataset_contents.png
+    3x5 grid (15 images) with the DR grade captioned above each tile,
+    balanced across classes. Source — IDRiD. Illustrates the composition
+    of the training set.
+
+fig4_flowchart.png
+    Flowchart of the end-to-end inference pipeline: left+right eye input ->
+    preprocessing (flip -> OD-Fovea rotation -> crop -> mask -> flat-field ->
+    polar CLAHE -> normalize) -> EfficientNet-B3 (Config D) -> softmax over
+    5 classes (per eye) -> patient-level aggregation
+    (worst-eye rule) -> result (DR grade + referable + confidence)
+    -> Grad-CAM/attention -> ophthalmologist review (confirm/reject).
+
+fig5_architecture_artistic.png
+    Artistic diagram of the EfficientNet-B3 (Config D) architecture,
+    4-channel input (RGB + FOV mask, 512x512x4): Stem -> MBConv1-7 blocks
+    with resolutions and channel counts labelled -> head 1x1 Conv (1536) ->
+    GAP -> FC -> softmax (5 logits, DR 0-4).
+
+fig6_model_graph.png
+    Detailed graph of a single MBConv block with tensor shapes: expansion 1x1
+    convolution, depthwise 3x3, Squeeze-and-Excitation (pool -> fc1 -> SiLU ->
+    fc2 -> sigmoid -> channel scale), projection 1x1 convolution, stochastic
+    depth (drop-path) and residual add.
+
+fig7_pr_curves.png
+    Per-class Precision-Recall curves, comparison of baseline (Config C) and
+    the full pipeline (Config D), with AP reported for each class.
+    The pipeline raises AP across all DR grades.
+
+fig8_training_curves.png
+    Training curves by epoch: left — validation loss, right — weighted F1
+    on validation for Config A (ResNet+baseline), Config C (EffNet+baseline)
+    and Config D (EffNet+pipeline). The pipeline (Config D) converges faster
+    and to better values.
+
+fig9_confusion_matrix.png
+    Normalized (row-wise) confusion matrices for baseline (Config C) and
+    the pipeline (Config D). The pipeline raises the diagonal (correct
+    predictions) across all classes.
+
+fig10_webapp_screenshot_1.png
+    Screenshot of the demo web app (top): "Live Inference Demo" — uploading
+    left/right eye images, ready-made demo cases with Grad-CAM, the
+    run-inference button, the relabeling buffer.
+
+fig10_webapp_screenshot_2.png
+    Screenshot of the demo web app (bottom): model result (predicted
+    grade, class probabilities, referable, latency), per-eye prediction,
+    visualization (Grad-CAM + attention overlay), the
+    confirm/reject buttons and the relabeling buffer log.

@@ -2,11 +2,18 @@
 
 Generated figures (analogs of Omarov's figures). See `../TASK.md` for the full plan.
 
+**Dataset-illustration figures use IDRiD** (not EyePACS). The grade montage, the
+per-class grid, the dataset-contents grid and its distribution CSV are all rebuilt
+from the authoritative IDRiD "B. Disease Grading" set (`D:/datasets/IDRiD`, 516
+graded images) by `_make_idrid_figures.py`. `fig2_lesion_overlays.png` already
+uses IDRiD segmentation groundtruth.
+
 | File                                    | How it is produced                                  | Status |
 |-----------------------------------------|-----------------------------------------------------|--------|
-| `fig1_per_class.png`                    | `../scripts/fig1_grid_per_class.py`                 | TODO   |
-| `fig2_lesion_overlays.png`              | `../scripts/fig2_lesion_overlays.py`                | TODO   |
-| `fig3_dataset_contents.png`             | `../scripts/fig3_dataset_contents.py`               | TODO   |
+| `fig1_1_dr_grades_idrid.png`            | `_make_idrid_figures.py` (1×5 IDRiD grade montage)  | done (IDRiD) |
+| `fig1_per_class.png`                    | `_make_idrid_figures.py` (5×4 IDRiD grid)           | done (IDRiD) |
+| `fig2_lesion_overlays.png`              | `../scripts/fig2_lesion_overlays.py` (IDRiD masks)  | done (IDRiD) |
+| `fig3_dataset_contents.png`             | `_make_idrid_figures.py` (3×5 IDRiD grid + CSV)     | done (IDRiD) |
 | `fig4_flowchart.png`                    | draw.io / Excalidraw / Mermaid (manual)             | TODO   |
 | `fig5_architecture_artistic.png`        | NN-SVG / PlotNeuralNet (manual)                     | TODO   |
 | `fig6_model_graph.png`                  | `../scripts/fig6_model_graph.py` (torchviz/Netron)  | TODO   |

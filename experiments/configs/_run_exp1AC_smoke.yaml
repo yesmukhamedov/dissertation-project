@@ -1,0 +1,375 @@
+seed: 42
+deterministic: true
+subset:
+  enabled: true
+  fraction: 0.02
+  seed: 42
+paths:
+  eyepacs: D:/datasets/EyePACS
+  aptos: D:/datasets/APTOS 2019
+  idrid: D:/datasets/IDRiD
+  messidor2: D:/datasets/Messidor-2
+  rfmid: D:/datasets/RFMiD
+  ddr: D:/datasets/DDR
+  odir: D:/datasets/ODIR-5K
+  clinical: D:/datasets/clinical
+  output_dir: outputs/_smoke/exp1AC/
+preprocessing:
+  use_canonical_flip: true
+  use_od_fovea_rotation: true
+  od_blur_sigma: 15.0
+  od_percentile: 97.0
+  fovea_blur_sigma: 25.0
+  fovea_inner_factor: 1.5
+  fovea_outer_factor: 3.5
+  adaptive_rotation_sigma: true
+  fallback_rotation_sigma: 13.0
+  target_size: 512
+  flat_field_mode: adaptive
+  flat_field_sigma_factor: 0.07
+  flat_field_sigma: 45.0
+  flat_field_mask_only: true
+  clahe_mode: polar
+  clahe_tile_grid_size:
+  - 8
+  - 8
+  clahe_clip_factor: 2.0
+  clahe_global_threshold: 0.01
+  clahe_train_prob: 0.8
+  clahe_radial_rings: 8
+  clahe_radial_exponent: 1.5
+  clahe_fine_bins: 72
+  clahe_min_sector_area_frac: 0.01
+  rotation_sigma: 13.0
+  rotation_clip: 40.0
+  zoom_range:
+  - 0.9
+  - 1.1
+  stretch_range:
+  - 0.952381
+  - 1.05
+  shear_range:
+  - -2.0
+  - 2.0
+  shear_prob: 0.3
+  interp_weights:
+  - 0.6
+  - 0.3
+  - 0.1
+  border_mode: 4
+  color_jitter_brightness_range:
+  - 0.9
+  - 1.1
+  color_jitter_contrast_range:
+  - 0.9
+  - 1.1
+  color_jitter_saturation_range:
+  - 0.9
+  - 1.1
+  color_jitter_hue_range:
+  - -0.02
+  - 0.02
+  color_jitter_prob: 0.5
+  gaussian_noise_sigma_range:
+  - 2.0
+  - 6.0
+  gaussian_noise_prob: 0.15
+  jpeg_quality_range:
+  - 70
+  - 100
+  jpeg_prob: 0.2
+  use_color_jitter: true
+  use_gaussian_noise: true
+  use_jpeg_compression: true
+  use_shear: true
+  use_stretch: true
+  normalize_mode: dataset_specific
+  dataset_mean: null
+  dataset_std: null
+  imagenet_mean:
+  - 0.485
+  - 0.456
+  - 0.406
+  imagenet_std:
+  - 0.229
+  - 0.224
+  - 0.225
+cross_validation:
+  n_folds: 5
+  patient_level_split: true
+  stratified: true
+models:
+  resnet50:
+    pretrained: true
+    num_classes: 5
+    dropout: 0.4
+    mixed_precision: true
+  efficientnet_b3:
+    pretrained: true
+    num_classes: 5
+    dropout: 0.4
+    mixed_precision: false
+  efficientnet_b4:
+    pretrained: true
+    num_classes: 5
+    dropout: 0.4
+    mixed_precision: false
+training:
+  optimizer: adam
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  batch_size: 16
+  max_epochs: 1
+  mixed_precision: true
+  num_workers: 4
+  class_weights: inverse_frequency
+  loss_type: focal
+  focal_gamma: 2.0
+  early_stopping:
+    patience: 5
+    monitor: val_weighted_f1
+    mode: max
+  scheduler:
+    type: reduce_on_plateau
+    factor: 0.5
+    patience: 3
+    min_lr: 1.0e-06
+evaluation:
+  primary_metrics:
+  - weighted_f1
+  - roc_auc
+  - cohen_kappa
+  - accuracy
+  dominance_thresholds:
+    f1_delta: 0.05
+    auc_delta: 0.02
+    kappa_no_degradation: true
+  bootstrap_iterations: 1000
+  confidence_level: 0.95
+ssl:
+  method: byol
+  image_size: 256
+  in_channels: 4
+  cache_dir: C:/ssl_data/ssl_cache_256
+  epochs: 300
+  screening_epochs: 100
+  batch_size: 48
+  num_workers: 14
+  seed: 42
+  deterministic: true
+  grad_clip: 1.0
+  corpus:
+    eyepacs_test_dir: test
+    test_labels_csv: testLabels15.csv
+    train_labels_csv: trainLabels.csv
+    image_glob: '*.jpeg'
+    expected_count: 53576
+  optimizer:
+    name: lars
+    base_lr: 0.45
+    weight_decay: 1.0e-06
+    warmup_epochs: 10
+    schedule: cosine
+  byol:
+    proj_hidden: 4096
+    proj_out: 256
+    pred_hidden: 4096
+    ema_base: 0.996
+  mocov2:
+    queue_size: 8192
+    moco_dim: 128
+    temperature: 0.2
+    ema: 0.999
+  simsiam:
+    proj_hidden: 2048
+    proj_out: 2048
+    pred_hidden: 512
+  dino:
+    out_dim: 65536
+    n_local_crops: 6
+    student_temp: 0.1
+    teacher_temp: 0.07
+    center_momentum: 0.9
+  augment:
+    global_crop_scale:
+    - 0.2
+    - 1.0
+    local_crop_scale:
+    - 0.05
+    - 0.2
+    color_jitter:
+    - 0.4
+    - 0.4
+    - 0.2
+    - 0.1
+    color_jitter_prob: 0.8
+    grayscale_prob: 0.2
+    blur_prob_view1: 1.0
+    blur_prob_view2: 0.1
+    solarize_prob_view2: 0.2
+    hflip_prob: 0.5
+  backbones:
+  - resnet50
+  - efficientnet_b3
+  mixed_precision:
+    resnet50: true
+    efficientnet_b3: false
+  checkpoint:
+    out_dir: outputs/ssl
+    version: v1.0
+    save_every: 50
+    keep_last: 2
+    resume_every: 1
+  probe:
+    enabled: true
+    image_size: 256
+    epochs: 50
+    batch_size: 128
+    lr: 0.1
+    label_csv: testLabels15.csv
+    holdout_usage: Private
+    knn_k: 20
+    accept_vs_random_kappa_delta: 0.05
+    accept_vs_imagenet_kappa_margin: -0.03
+experiments:
+  exp1:
+    name: 'Experiment 1: Preprocessing Dominance (2x2 Factorial)'
+    hypothesis: H-1
+    dataset: eyepacs
+    configurations:
+      A:
+        preprocessing: baseline
+        model: resnet50
+        in_channels: 3
+        init:
+          source: imagenet
+      B:
+        preprocessing: full
+        model: resnet50
+        in_channels: 4
+        init:
+          source: ssl
+          ckpt: outputs/ssl/v1.0/ssl_byol_resnet50_4ch_256_ep300.pt
+      C:
+        preprocessing: baseline
+        model: efficientnet_b3
+        in_channels: 3
+        init:
+          source: imagenet
+      D:
+        preprocessing: full
+        model: efficientnet_b3
+        in_channels: 4
+        init:
+          source: ssl
+          ckpt: outputs/ssl/v1.0/ssl_byol_efficientnet_b3_4ch_256_ep300.pt
+  exp2:
+    name: 'Experiment 2: Component Ablation + Parameter Sweeps'
+    hypothesis: H-2
+    dataset: eyepacs
+    ablation_stages:
+    - name: baseline
+      stages:
+      - stretch_resize
+      - imagenet_norm
+      channels: 3
+    - name: +canonical_flip
+      stages:
+      - canonical_flip
+      - stretch_resize
+      - imagenet_norm
+      channels: 3
+    - name: +od_fovea_rotation
+      stages:
+      - canonical_flip
+      - od_fovea
+      - stretch_resize
+      - imagenet_norm
+      channels: 3
+    - name: +isotropic+mask
+      stages:
+      - canonical_flip
+      - od_fovea
+      - isotropic_resize
+      - fov_mask
+      - imagenet_norm
+      channels: 4
+    - name: +flat_field
+      stages:
+      - canonical_flip
+      - od_fovea
+      - isotropic_resize
+      - fov_mask
+      - flat_field
+      - imagenet_norm
+      channels: 4
+    - name: +clahe
+      stages:
+      - canonical_flip
+      - od_fovea
+      - isotropic_resize
+      - fov_mask
+      - flat_field
+      - clahe
+      - imagenet_norm
+      channels: 4
+    - name: full
+      stages: all
+      channels: 4
+    clahe_sweep:
+      dataset: eyepacs
+      clip_limits:
+      - 0.5
+      - 1.0
+      - 1.5
+      - 2.0
+      - 2.5
+      - 3.0
+      - 4.0
+    flat_field_sweep:
+      dataset: eyepacs
+      sigma_factors:
+      - 0.05
+      - 0.06
+      - 0.07
+      - 0.08
+      - 0.09
+      - 0.1
+  exp3:
+    name: 'Experiment 3: Cross-Dataset Transferability'
+    hypothesis: H-4
+    train_dataset: eyepacs
+    test_datasets:
+    - aptos
+    generalization_threshold: 0.85
+  exp4:
+    name: 'Experiment 4: Explainability (Grad-CAM)'
+    hypothesis: H-5
+    train_dataset: eyepacs
+    test_datasets:
+      quantitative: idrid
+      qualitative: clinical
+    model: efficientnet_b4
+    samples_per_class: 10
+  exp5:
+    name: 'Experiment 5: Clinical Degradation Resistance'
+    hypothesis: H-7
+    train_dataset: eyepacs
+    test_datasets:
+    - idrid
+    - messidor2
+    metric: delta_f1
+  exp6:
+    name: 'Experiment 6: Device Domain Shift'
+    hypothesis: H-6
+    train_dataset: eyepacs
+    test_datasets:
+    - ddr
+    - odir
+    - rfmid
+    dr_labels_only: true
+  exp7:
+    name: 'Experiment 7: Small Data Training'
+    train_dataset: idrid
+    test_dataset: clinical
+    cross_validation: 5
