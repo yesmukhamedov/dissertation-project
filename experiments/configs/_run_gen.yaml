@@ -9,8 +9,8 @@ paths:
   aptos: D:/datasets/APTOS 2019
   idrid: D:/datasets/IDRiD
   messidor2: D:/datasets/Messidor-2
-  rfmid: D:/datasets/RFMiD
-  ddr: D:/datasets/DDR
+  rfmid: D:/datasets/RFMiD/A. RFMiD_All_Classes_Dataset
+  ddr: D:/datasets/DDR/DDR_dataset/DDR-dataset
   odir: D:/datasets/ODIR-5K
   clinical: D:/datasets/clinical
   output_dir: outputs/

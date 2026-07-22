@@ -121,3 +121,40 @@ from PC2's copied `outputs/exp4/checkpoints/baseline/` (B4 ep0–3, `last_checkp
 logs `C:/ssl_out/exp4_resume.{out,err}.log`) → continues baseline from ep4, then `full_pipeline` fresh, then
 Grad-CAM. Resume verified: `trainer.train_fold` `load_latest` → `start_epoch = ckpt.epoch+1` (trainer.py:246-253).
 `done_exp4.txt` keeps the orchestrator off exp4; exp2 was stopped — both remaining pieces now run MANUALLY.
+**AUTO-CHAIN set up 2026-07-19:** detached watcher `C:/ssl_out/chain_exp2_after_exp4.ps1` (PID in
+`chain_exp2.pid`, log `chain_exp2.log`) polls exp4's PID, and once exp4 exits AND its `exp4_resume.err.log`
+shows no Traceback/CUDA error, it launches the exp2 remainder = `run_exp2_partA.py --folds 3 --partb
+--levels baseline,baseline_canonical_flip,baseline_flat_field` (3 light levels + Part B) on the freed GPU
+→ marker `CHAIN_EXP2_DONE.txt` (or `CHAIN_EXP2_ABORTED.txt` if exp4 crashed). It deliberately does NOT
+auto-do `full` fold2 (would redo fold0/1) or the final `ablation_summary.json` — those two are finished
+by hand after. NOT reboot-proof; machine must stay awake (it slept overnight once, freezing progress).
+exp4 resume VERIFIED live: `metrics_baseline.csv` advanced ep3→ep4→ep5 (continued, not restarted).
+
+**Update 2026-07-21 — exp4 PAUSED at operator request; exp2 remainder run FIRST (order swapped).** Operator
+chose to run the exp2 remainder before finishing exp4. exp4 state at pause: baseline model DONE (20 epochs,
+best ep17 val-wF1 0.754); **full_pipeline model paused cleanly at the epoch-3 boundary** —
+`outputs/exp4/checkpoints/full_pipeline/last_checkpoint.pt` = ep3 (10:52), `epoch_00..03.pt` + `best_model.pt`
+(ep2). Grad-CAM/IoU NOT run. full_pipeline pace was ~3.5 h/epoch (U-Net detector on CPU per the 92a881a fix).
+Switch mechanics (native-Win 5070 Ti box): killed the **chain watcher** (`chain_exp2_after_exp4.ps1`, was PID
+17124) FIRST so it couldn't race, then `taskkill /PID <exp4> /T /F` (GPU 15.8 GB → 1.15 GB), then launched
+the exp2 remainder DETACHED via new **`C:/ssl_out/launch_exp2_manual.ps1`** (mirror of the watcher's step-3
+cmd + a 25 s VRAM-release sleep): `run_exp2_partA.py --config configs/_run_exp2.yaml --subset-fraction 0.15
+--folds 3 --partb --levels baseline,baseline_canonical_flip,baseline_flat_field`. Logs
+`C:/ssl_out/exp2_remainder.{log,out.log}`; done marker `EXP2_REMAINDER_DONE.txt`. exp2 confirmed live
+(loading EyePACS index; CPU-bound so GPU ~0% in this phase — expected). **To resume exp4 later:**
+`run_experiment.py exp4 --config configs/_run_gen.yaml --resume` → baseline instant (already at max_epochs),
+full_pipeline continues from ep4 (watch for a resume-load VRAM spike, but 16 GB cleared it for baseline).
+**exp2 STILL MISSING after this remainder:** `full` fold2 completion + `ablation_summary.json` (both manual,
+see [[master-orchestrator-all-experiments]] 2026-07-19 note). exp2 done-so-far on D: `outputs/exp2`:
+baseline_clahe (3 folds ✅), baseline_augmentation (3 folds ✅), full (fold0 ✅, fold1 ✅, fold2 partial ep1).
+
+**Update 2026-07-21 (later) — BOTH experiments STOPPED at operator request; nothing training now.** After
+confirming exp4 and exp2 cannot run in parallel on the single 16 GB GPU (each needs ~15.8 GB at the mandatory
+batch 16; shrinking batch would invalidate exp2's ablation + exp4's baseline-vs-full comparison; both are also
+CPU-bound so no wall-clock win), the operator stopped everything. exp2 python tree (was PID 11348) killed;
+GPU freed to ~0.95 GB. **NOTHING is training as of this note.** State on D: unchanged from the pause snapshots:
+exp4 = baseline done + full_pipeline `last_checkpoint.pt` ep3; exp2 = baseline_clahe/baseline_augmentation
+(3 folds each) + full fold0/1 done, full fold2 partial, and the 3 light levels NOT started (their run had only
+just begun, no durable rows). Resume commands: exp4 → `run_experiment.py exp4 --config configs/_run_gen.yaml
+--resume`; exp2 remainder → `C:/ssl_out/launch_exp2_manual.ps1` (or the `run_exp2_partA.py … --levels
+baseline,baseline_canonical_flip,baseline_flat_field` cmd inside it).

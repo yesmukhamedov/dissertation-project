@@ -628,6 +628,11 @@ class DDRDataset(BaseFundusDataset):
         for line in lines:
             parts = line.split()
             filename, grade = parts[0], int(parts[1])
+            # DDR grade 5 = "ungradable" (image cannot be assessed) — not a DR
+            # severity level. The DR grading task is 5-class (0-4), so ungradable
+            # images carry no valid class label and are excluded from evaluation.
+            if not (0 <= grade <= 4):
+                continue
             img_path = images_dir / filename
             if not img_path.exists():
                 continue
