@@ -124,4 +124,6 @@ a checkpoint (random-init weights still give a valid softmax).
       safety limits, health provenance (incl. `requires_password`).
 - [x] Frontend wiring of the new endpoints (per-image widget, live Grad-CAM +
       rationale, provenance footer, password screen) — TASK-Demo Part D.
-- [ ] Bundle real checkpoint after Kaggle training (Part A).
+- [x] Bundle real checkpoint (Part A) — Experiment 1 Config D, fold 0
+      (`outputs/exp1/checkpoints/D_fold0/best_model.pt`), replacing the earlier
+      Kaggle/APTOS interim artifact.

@@ -7,15 +7,28 @@ Stack = **`demo/server/`** (FastAPI inference, CUDA) + **`demo/web/`** (React CR
 The uvicorn module is `server.app.main:app`, run **from `demo/`** (not repo root).
 
 **Checkpoint:** `demo/server/checkpoints/config_d_fold0.pt` (EfficientNet-B3 4-ch, ~129 MB,
-gitignored) + `eyepacs_norm_stats.json` (APTOS interim, n=3662 — NOT thesis-faithful; swap
-for the EyePACS/Colab checkpoint before defense).
+gitignored) + `eyepacs_norm_stats.json`. Both are the real **Experiment 1 Config D** artifacts,
+copied from `experiments/outputs/exp1/checkpoints/D_fold0/best_model.pt` and
+`experiments/data/processed/eyepacs_norm_stats.json` (EyePACS, n=5000). Fold 0 is the best of
+the five folds: val weighted-F1 0.795, ROC-AUC 0.885, κ 0.781 (run mean 0.7702 ± 0.0159).
+The earlier Kaggle/APTOS interim stand-in is kept alongside as `*.APTOS_TEST.*.bak` and can
+be deleted — an identical copy lives in `experiments/outputs/kaggle_config_d_v2/`.
+
+To re-point at a different fold, either overwrite `config_d_fold0.pt` or set
+`CHECKPOINT_PATH` (and `MODEL_CHECKPOINT_ID` for the `/api/health` provenance string).
 
 ## Local
 
+**One-shot:** `demo/start-demo.ps1` (or double-click `start-demo.bat`) launches both:
+backend in a WSL window + frontend in a CRA window, waits for health checks, opens the
+browser. Drive-letter agnostic (derives `/mnt/<letter>/` from its own location); skips
+a component if its port (8000/3000) is already listening. Manual commands below.
+
 **Backend** (WSL2 Ubuntu, conda `dr-classifier`; conda not on PATH; default WSL distro is
-docker-desktop, so pass `-d Ubuntu`):
+docker-desktop, so pass `-d Ubuntu`). The traveling drive mounts under a different letter per
+machine — adjust `/mnt/<letter>/` to wherever the project sits:
 ```
-wsl -d Ubuntu bash -lc "cd /mnt/e/dissertation-project/demo && \
+wsl -d Ubuntu bash -lc "cd /mnt/d/dissertation-project/demo && \
   ~/miniconda3/bin/conda run --no-capture-output -n dr-classifier \
   uvicorn server.app.main:app --host 127.0.0.1 --port 8000"
 ```

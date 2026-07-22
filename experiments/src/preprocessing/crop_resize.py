@@ -1,10 +1,11 @@
 """
 Stage 1: FOV Crop + Isotropic Resize + FOV Mask generation.
 
-Replaces Hough-circle FOV detection (``fov.py``) with PIL-based foreground
-detection from the spec.  Left/right edge pixels are sampled to estimate
-background intensity; any pixel brighter than background + 10 is foreground.
-The bounding box of the foreground mask is used as the crop region.
+Replaces Hough-circle FOV detection (``fov.py``) with connected-component
+foreground segmentation: the background level is estimated from the frame
+corners, the largest bright component is kept, and enclosed holes are filled.
+That one mask yields both the crop region (its bounding box) and the 4th input
+channel, so the two cannot drift apart.
 
 Isotropic scaling preserves the fundus circle geometry: the cropped region is
 scaled to fit within ``target_size`` while maintaining aspect ratio, then
@@ -14,8 +15,10 @@ camera surround AND on the zero padding.  The mask is segmented from the image,
 not taken as the non-padding rectangle, so the dark corners between the fundus
 circle and its bounding box are correctly excluded.
 
-Fallback: center-square crop when FOV detection fails (non-landscape image or
-bounding box too small).
+Images whose fundus already fills the frame (no dark surround) segment to an
+all-ones mask and are therefore passed through uncropped, rather than being
+centre-square cropped — that fallback cuts ~25% of the retina off a 4:3 frame
+and now triggers only if segmentation collapses outright.
 
 Input/output images are RGB uint8 NumPy arrays.
 """
@@ -68,6 +71,19 @@ class CropResizeTransform:
 def detect_fov_bbox(image: Image.Image) -> tuple[int, int, int, int] | None:
     """
     Detect the fundus FOV bounding box using PIL-based foreground detection.
+
+    .. deprecated::
+        Legacy heuristic, no longer used by :func:`crop_and_resize`, which now
+        derives the crop box from :func:`_fov_foreground_mask` so the box and
+        the 4th-channel mask come from one segmentation. Retained only because
+        it is part of the module's published API.
+
+        It estimates the background from the *maximum* of the leftmost and
+        rightmost ``w // 32`` columns, which silently fails on frames where the
+        fundus reaches the horizontal edges (APTOS, and any already-cropped
+        image): the edge columns are retina, so ``max_bg`` saturates, the
+        foreground test admits nothing, and the caller falls back to a
+        centre-square crop that discards ~25% of the retina.
 
     Samples the leftmost and rightmost ``w // 32`` columns to estimate the
     background level per channel, then finds the bounding box of all pixels
@@ -211,6 +227,35 @@ def _fov_foreground_mask(image_rgb: np.ndarray) -> np.ndarray:
     return fg
 
 
+def _bbox_from_mask(
+    mask: np.ndarray,
+    min_frac: float = 0.15,
+) -> tuple[int, int, int, int] | None:
+    """Tight bounding box of a binary FOV mask.
+
+    Args:
+        mask: ``(H, W)`` array, non-zero (>127) inside the FOV.
+        min_frac: Reject boxes narrower/shorter than this fraction of the
+            frame in either dimension — such a box means the segmentation
+            collapsed, and cropping to it would throw away retina.
+
+    Returns:
+        ``(left, upper, right, lower)``, or ``None`` if the mask is empty or
+        the box is implausibly small.
+    """
+    binary = np.asarray(mask) > 127
+    ys, xs = np.nonzero(binary)
+    if ys.size == 0:
+        return None
+
+    h, w = binary.shape[:2]
+    left, right = int(xs.min()), int(xs.max()) + 1
+    upper, lower = int(ys.min()), int(ys.max()) + 1
+    if (right - left) < min_frac * w or (lower - upper) < min_frac * h:
+        return None
+    return (left, upper, right, lower)
+
+
 def crop_and_resize(
     image: np.ndarray,
     target_size: int = 512,
@@ -226,21 +271,22 @@ def crop_and_resize(
     circle geometry. Returns a binary mask indicating real pixel data
     (1.0) vs padding (0.0).
 
-    FOV detection is attempted first; if it fails (non-landscape image or
-    bounding box too small) a center-square crop is used as fallback.
-
-    The FOV mask is obtained one of two ways:
+    The crop box and the FOV mask are derived from a **single** segmentation,
+    so the box can never disagree with the mask it is cropped against:
 
     - If *fov_mask* is supplied (the recommended path), it is assumed to already
       be in the **same geometry as** *image* (i.e. flipped + rotated by the
-      caller with ``BORDER_CONSTANT``). It is cropped + isotropically resized
-      with the identical bbox/scale/pad as the RGB. This excludes the reflected
-      ``BORDER_REFLECT`` corners the RGB rotation introduces.
-    - Otherwise the mask is segmented directly from the (already-transformed)
-      cropped RGB. This is correct only when no reflecting rotation preceded the
-      crop (e.g. unrotated images); on rotated RGB it would re-admit the
-      reflected "ears", so callers in the rotation pipeline should pass
-      *fov_mask*.
+      caller with ``BORDER_CONSTANT``). Deriving the box from it also keeps the
+      reflected ``BORDER_REFLECT`` corners the RGB rotation introduces from
+      inflating the box.
+    - Otherwise the mask is segmented from the full frame via
+      :func:`_fov_foreground_mask`, whose dark surround gives a clean background
+      estimate, and which falls back to an all-ones mask when the fundus fills
+      the frame (already-cropped images).
+
+    A centre-square crop is used only if that segmentation collapses entirely;
+    it discards real retina on wide frames, so it is a last resort rather than
+    the routine path for non-landscape images.
 
     Args:
         image: RGB uint8 NumPy array of shape (H, W, 3).
@@ -248,9 +294,9 @@ def crop_and_resize(
         return_transform: If ``True``, also return the
             :class:`CropResizeTransform` describing the crop/scale/pad so
             callers can project source-space points into the output canvas.
-        fov_mask: Optional pre-built FOV mask (``(H, W)`` uint8/float, same
-            geometry as *image*) to crop+resize alongside the RGB instead of
-            segmenting from the crop.
+        fov_mask: Optional pre-built FOV mask (``(H, W)``, either 0/255 uint8
+            or 0.0/1.0 float, same geometry as *image*) used for both the crop
+            box and the output mask instead of segmenting *image*.
 
     Returns:
         Tuple of:
@@ -264,10 +310,28 @@ def crop_and_resize(
     pil_img = Image.fromarray(image)
     w, h = pil_img.size  # PIL: (width, height)
 
-    bbox = detect_fov_bbox(pil_img)
+    # One segmentation drives both the crop box and the 4th-channel mask, so the
+    # two can never disagree. Either the caller's mask (already in this image's
+    # geometry, BORDER_CONSTANT-rotated so the RGB's reflected corners are
+    # excluded) or a fresh segmentation of the full frame — full frame, not the
+    # crop, so the dark surround is available for the background estimate.
+    if fov_mask is not None:
+        supplied = np.asarray(fov_mask)
+        # Accept both conventions the signature advertises: 0/255 uint8 and
+        # 0.0/1.0 float. Thresholding a float mask at 127 would empty it, and
+        # the box now derives from this mask, so the crop would silently
+        # degrade to the lossy centre-square fallback.
+        cutoff = 127 if supplied.max() > 1 else 0
+        source_mask = (supplied > cutoff).astype(np.uint8) * 255
+    else:
+        source_mask = _fov_foreground_mask(image)
+
+    bbox = _bbox_from_mask(source_mask)
 
     if bbox is None:
-        # Fallback: center-square crop
+        # Segmentation collapsed. Centre-square crop is the last resort; it is
+        # lossy by construction, so it must not be reachable merely because the
+        # fundus fills the frame (that case yields an all-ones mask above).
         left = max((w - h) // 2, 0)
         upper = 0
         right = min(w - (w - h) // 2, w)
@@ -297,12 +361,8 @@ def crop_and_resize(
     # so reflected corners are excluded), or — when none is given — segment it
     # from the cropped RGB. Never a plain non-padding rectangle, whose corners
     # would falsely mark background as valid data.
-    if fov_mask is not None:
-        left, upper, right, lower = bbox
-        mask_crop = np.asarray(fov_mask)[upper:lower, left:right]
-        fov_full = (mask_crop > 127).astype(np.uint8) * 255
-    else:
-        fov_full = _fov_foreground_mask(np.array(cropped, dtype=np.uint8))
+    left, upper, right, lower = bbox
+    fov_full = source_mask[upper:lower, left:right]
     fov_resized = cv2.resize(fov_full, (new_w, new_h), interpolation=cv2.INTER_NEAREST)
     mask = np.zeros((target_size, target_size), dtype=np.float32)
     mask[y_off : y_off + new_h, x_off : x_off + new_w] = (fov_resized > 127).astype(np.float32)

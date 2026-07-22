@@ -38,7 +38,7 @@ class Settings:
         self.model_name: str = os.getenv("MODEL_NAME", "efficientnet_b3")
         self.in_channels: int = int(os.getenv("IN_CHANNELS", "4"))
         self.num_classes: int = int(os.getenv("NUM_CLASSES", "5"))
-        self.checkpoint_id: str = os.getenv("MODEL_CHECKPOINT_ID", "config-d-fold0")
+        self.checkpoint_id: str = os.getenv("MODEL_CHECKPOINT_ID", "exp1-D-fold0-eyepacs")
         self.device: str = os.getenv("DEVICE", "auto")
         self.preset: str = os.getenv("PREPROCESSING_PRESET", "efficientnet")
 
