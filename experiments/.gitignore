@@ -11,7 +11,26 @@ data/processed/*
 !data/processed/.gitkeep
 experiments/checkpoints/*
 !experiments/checkpoints/.gitkeep
-outputs/
+# Experiment outputs: ignore heavy artifacts (weights, caches), keep lightweight
+# results — metrics, summaries, training logs, figures. See PROJECT_MEMORY.
+outputs/**
+!outputs/**/
+!outputs/**/*.csv
+!outputs/**/*.json
+!outputs/**/*.md
+!outputs/**/*.log
+!outputs/**/*.txt
+!outputs/**/*.err
+!outputs/**/*.out
+!outputs/**/*.npy
+!outputs/**/*.yaml
+!outputs/**/*.yml
+!outputs/**/*.png
+!outputs/**/*.ipynb
+# ...but never the nested Kaggle repo copies (duplicated source) inside outputs
+outputs/kaggle_config_d/repo/
+outputs/kaggle_config_d_v2/repo/
+
 *.egg-info/
 .eggs/
 dist/
@@ -20,4 +39,4 @@ build/
 Miniconda3*
 
 # Machine-merged run configs (generated from _win_local; contain machine-specific paths)
-configs/_run_exp1D*.yaml
+configs/_run_*.yaml

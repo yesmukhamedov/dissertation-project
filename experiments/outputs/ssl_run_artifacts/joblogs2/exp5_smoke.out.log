@@ -1,0 +1,35 @@
+Running exp5 | config: configs/_run_gen_smoke.yaml | resume: False
+
+=================================================================
+Exp5 — Loading full-pipeline model (EyePACS) …
+=================================================================
+  Loading exp1 checkpoint: outputs\exp1\checkpoints\D_fold0\best_model.pt
+  In-domain EyePACS F1 (full pipeline) = 0.7952
+
+=================================================================
+Exp5 — Loading baseline (3ch) model …
+=================================================================
+  Loading exp1 baseline checkpoint: outputs\exp1\checkpoints\C_fold0\best_model.pt
+  Baseline checkpoint: C_fold0 (efficientnet_b3)
+  In-domain EyePACS F1 (baseline) = 0.7819
+
+=================================================================
+Evaluating external dataset: idrid …
+=================================================================
+  idrid: 413 images
+
+=================================================================
+Evaluating external dataset: messidor2 …
+=================================================================
+  messidor2: 1744 images
+
+Results saved → outputs\exp5\clinical_degradation_results.json
+
+=================================================================
+Experiment 5 — Clinical Degradation Resistance (H-7) Summary
+=================================================================
+  EyePACS val F1 — full=0.7952  baseline=0.7819
+  idrid       : F1_full=0.5388 (Δ=0.2564)  F1_base=0.6154 (Δ=0.1665)  d=-0.0897 [CI -0.1600,-0.0166] ✗
+  messidor2   : F1_full=0.6920 (Δ=0.1032)  F1_base=0.6781 (Δ=0.1038)  d=0.0010 [CI -0.0271,0.0277] ✗
+
+  H-7: NOT SUPPORTED (2 dataset(s) evaluated)

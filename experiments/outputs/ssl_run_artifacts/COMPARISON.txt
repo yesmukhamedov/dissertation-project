@@ -1,0 +1,6 @@
+SSL METHOD SWEEP -- linear-probe gate. Reference: random kappa=0.00 AUC0.50 ; imagenet kappa=0.32 AUC0.71.
+Prior BYOL (all FAILED): v1.1 ep50 kappa_ssl=0.0000 AUC0.508 ; v1.2 ep50 kappa_ssl=0.0000 AUC0.524.
+MoCo-v2   ep50   :   kappa: SSL=0.1120 random=0.0000 imagenet=0.3198 -> passed=False
+MoCo-v2   ep100  :   kappa: SSL=0.1087 random=0.0000 imagenet=0.3026 -> passed=False
+DINO      ep50   :   kappa: SSL=0.0748 random=0.0000 imagenet=0.3198 -> passed=False
+DINO      ep100  :   kappa: SSL=0.0614 random=0.0000 imagenet=0.3026 -> passed=False

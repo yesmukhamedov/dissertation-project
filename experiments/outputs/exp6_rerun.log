@@ -1,0 +1,50 @@
+Running exp6 | config: configs/_run_gen_wsl.yaml | resume: False
+
+=================================================================
+Exp6 — Loading trained EfficientNet-B3 model …
+=================================================================
+  Loading exp1 checkpoint: outputs/exp1/checkpoints/D_fold0/best_model.pt
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Canon (EyePACS) in-domain F1 = 0.7952
+
+=================================================================
+Evaluating camera group: Kowa (IDRiD) …
+=================================================================
+  IDRiD: 413 images
+
+=================================================================
+Evaluating camera group: Mixed Canon+Topcon (DDR test split) …
+=================================================================
+  DDR test: 3759 images
+Corrupt JPEG data: 36 extraneous bytes before marker 0xd9
+Corrupt JPEG data: 36 extraneous bytes before marker 0xd9
+
+=================================================================
+Evaluating camera group: Mixed Canon+Zeiss (ODIR-5K) …
+=================================================================
+  ODIR-5K DR subset: 2270 images
+
+=================================================================
+Evaluating camera group: Topcon (Messidor-2) …
+=================================================================
+  Messidor-2: 1744 images
+
+=================================================================
+Evaluating camera group: Mixed Topcon+Kowa (RFMiD — binary) …
+=================================================================
+  RFMiD test: 640 images  (DR+=124  DR-=516)
+
+Results saved → outputs/exp6/device_shift_results.json
+
+=================================================================
+Experiment 6 — Device Domain Shift Summary
+=================================================================
+  In-domain Canon (EyePACS) F1: 0.7952
+  kowa_idrid          : F1=0.5097  G=0.641 ✗
+  mixed_ddr           : F1=0.6597  G=0.830 ✓
+  mixed_odir5k        : F1=0.4984  G=0.627 ✗
+  topcon_messidor2    : F1=0.6968  G=0.876 ✓
+  mixed_rfmid         : F1=0.4175  G=0.525 ✗
+
+  Cross-device F1 std=0.1051  AUC std=0.0554
+  H-6 supported: False

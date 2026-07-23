@@ -1,0 +1,69 @@
+{
+  "backbones": {
+    "resnet50": {
+      "backbone": "resnet50",
+      "ssl_checkpoint": "C:\\ssl_out\\v2.0\\ssl_mocov2_resnet50_4ch_256_ep50.pt",
+      "random": {
+        "linear": {
+          "weighted_f1": 0.0010250429939851994,
+          "roc_auc": 0.5,
+          "cohen_kappa_quadratic": 0.0,
+          "accuracy": 0.022896648699320364
+        },
+        "knn": {
+          "weighted_f1": 0.6241629848698533,
+          "roc_auc": NaN,
+          "cohen_kappa_quadratic": 0.000697406213962859,
+          "accuracy": 0.735575345676119
+        },
+        "feat_std": 0.00042975632823072374,
+        "n_train": 10906,
+        "n_test": 42670
+      },
+      "imagenet": {
+        "linear": {
+          "weighted_f1": 0.5724631555663026,
+          "roc_auc": 0.7112062667732079,
+          "cohen_kappa_quadratic": 0.31977090502243977,
+          "accuracy": 0.5477384579329739
+        },
+        "knn": {
+          "weighted_f1": 0.6280155781205616,
+          "roc_auc": NaN,
+          "cohen_kappa_quadratic": 0.033722907661205004,
+          "accuracy": 0.7367940004687134
+        },
+        "feat_std": 0.007422472350299358,
+        "n_train": 10906,
+        "n_test": 42670
+      },
+      "ssl": {
+        "linear": {
+          "weighted_f1": 0.6138506098082782,
+          "roc_auc": 0.5417799478863046,
+          "cohen_kappa_quadratic": 0.1119670577897891,
+          "accuracy": 0.6940473400515584
+        },
+        "knn": {
+          "weighted_f1": 0.62504085859116,
+          "roc_auc": NaN,
+          "cohen_kappa_quadratic": 0.00659075276173493,
+          "accuracy": 0.7345910475744083
+        },
+        "feat_std": 0.010608918033540249,
+        "n_train": 10906,
+        "n_test": 42670
+      },
+      "acceptance": {
+        "kappa_ssl": 0.1119670577897891,
+        "kappa_random": 0.0,
+        "kappa_imagenet": 0.31977090502243977,
+        "beats_random": true,
+        "competitive_with_imagenet": false,
+        "not_collapsed": true,
+        "passed": false
+      }
+    }
+  },
+  "all_passed": false
+}

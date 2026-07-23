@@ -1,0 +1,20 @@
+Running exp1 | config: configs/_run_exp1AC_smoke.yaml | resume: False
+Single-fold mode: fold 0
+Config filter: ['C']
+  Dataset normalize stats not found — full configs (B/D) will fall back to ImageNet (NOT thesis-faithful). Run scripts/compute_dataset_stats.py to fix.
+Loading EyePACS index from D:\datasets\EyePACS\trainLabels.csv …
+  Found 35126 images | 17563 patients
+  Subset mode: 2% → 702 images | 351 patients
+  Subset class distribution: {0: 520, 1: 45, 2: 109, 3: 15, 4: 13}
+  5-fold splits verified (no leakage)
+
+=================================================================
+  Config C | baseline preprocessing | efficientnet_b3 | in_channels=3
+=================================================================
+
+  [Config C | Fold 1/5]
+  Train: 560 images | Val: 142 images
+  Fold 0 | Epoch 000 | loss 0.1963 → 0.1976 | F1 0.4796 | AUC 0.6462 | κ 0.1391 | 25.3s
+  Best → F1=0.4796  AUC=0.6462  κ=0.1391  acc=0.4366
+
+Single-fold run complete (fold 0). Full summary emitted after all folds finish.

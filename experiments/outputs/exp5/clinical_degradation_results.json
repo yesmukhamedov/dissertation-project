@@ -1,0 +1,44 @@
+{
+  "hypothesis": "H-7",
+  "metric": "delta_f1 = F1_EyePACS_val - F1_external",
+  "in_domain": {
+    "eyepacs_f1_full": 0.7951705925321549,
+    "eyepacs_f1_baseline": 0.7818569315814374
+  },
+  "baseline_model": {
+    "arch": "efficientnet_b3",
+    "checkpoint": "C_fold0"
+  },
+  "external": {
+    "idrid": {
+      "n_images": 413,
+      "f1_full": 0.5387715453510575,
+      "f1_baseline": 0.61540504406581,
+      "delta_full": 0.2563990471810974,
+      "delta_baseline": 0.16645188751562745,
+      "degradation_diff": {
+        "mean": -0.089653,
+        "ci_lower": -0.160001,
+        "ci_upper": -0.016592,
+        "p_value_one_sided": 0.99,
+        "supported": false
+      }
+    },
+    "messidor2": {
+      "n_images": 1744,
+      "f1_full": 0.6919974120877664,
+      "f1_baseline": 0.6780764831484083,
+      "delta_full": 0.1031731804443885,
+      "delta_baseline": 0.10378044843302914,
+      "degradation_diff": {
+        "mean": 0.001003,
+        "ci_lower": -0.027117,
+        "ci_upper": 0.027669,
+        "p_value_one_sided": 0.482,
+        "supported": false
+      }
+    }
+  },
+  "h7_supported": false,
+  "n_datasets_evaluated": 2
+}

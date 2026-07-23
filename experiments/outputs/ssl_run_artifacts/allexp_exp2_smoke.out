@@ -1,0 +1,14 @@
+Running exp2 | config: configs/_run_exp2_smoke.yaml | resume: False
+Single-fold mode: fold 0
+Loading EyePACS index …
+  35126 images | 17563 patients
+  5-fold splits verified (no leakage)
+
+=================================================================
+PART A — Component Ablation
+=================================================================
+
+=================================================================
+  Ablation Level: baseline
+  Description: Stages 1+4 only: FOV crop+resize + ImageNet normalize
+=================================================================

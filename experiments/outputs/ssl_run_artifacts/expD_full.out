@@ -1,0 +1,105 @@
+Running exp1 | config: configs/_run_exp1D.yaml | resume: True
+Config filter: ['D']
+  Dataset normalize stats loaded from data\processed\eyepacs_norm_stats.json
+    mean=[0.5062, 0.505, 0.5043] std=[0.0903, 0.0742, 0.0577]
+Loading cache index from C:/ssl_data/cache_512 …
+  Found 35126 cached images | 17563 patients | 35126 meta rows
+  5-fold splits verified (no leakage)
+
+=================================================================
+  Config D | full preprocessing | efficientnet_b3 | in_channels=4
+=================================================================
+
+  [Config D | Fold 1/5]
+  Train: 28100 images | Val: 7026 images
+  Init: SSL (mocov2 / EyePACS/test) loaded from ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt; gate_passed=True
+  No checkpoint found for fold 0, starting fresh.
+  Fold 0 | Epoch 000 | loss 0.1390 → 0.1115 | F1 0.6429 | AUC 0.8561 | κ 0.6151 | 1340.8s
+  Fold 0 | Epoch 001 | loss 0.1076 → 0.1097 | F1 0.7356 | AUC 0.8682 | κ 0.7066 | 1176.7s
+  Fold 0 | Epoch 002 | loss 0.0962 → 0.1217 | F1 0.7183 | AUC 0.8820 | κ 0.7090 | 1147.2s
+  Fold 0 | Epoch 003 | loss 0.0869 → 0.1218 | F1 0.7952 | AUC 0.8851 | κ 0.7809 | 1153.7s
+  Fold 0 | Epoch 004 | loss 0.0796 → 0.1268 | F1 0.6689 | AUC 0.8715 | κ 0.6788 | 1175.9s
+  Fold 0 | Epoch 005 | loss 0.0731 → 0.1474 | F1 0.6701 | AUC 0.8723 | κ 0.6521 | 1216.4s
+  Fold 0 | Epoch 006 | loss 0.0673 → 0.1328 | F1 0.7848 | AUC 0.8825 | κ 0.7558 | 1133.2s
+  Fold 0 | Epoch 007 | loss 0.0631 → 0.1466 | F1 0.7635 | AUC 0.8739 | κ 0.7053 | 1152.3s
+  Fold 0 | Epoch 008 | loss 0.0466 → 0.1632 | F1 0.7280 | AUC 0.8621 | κ 0.7118 | 1177.9s
+  Early stopping at epoch 8 (patience=5)
+  Best → F1=0.7952  AUC=0.8851  κ=0.7809  acc=0.7918
+
+  [Config D | Fold 2/5]
+  Train: 28100 images | Val: 7026 images
+  Init: SSL (mocov2 / EyePACS/test) loaded from ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt; gate_passed=True
+  No checkpoint found for fold 1, starting fresh.
+  Fold 1 | Epoch 000 | loss 0.1381 → 0.1076 | F1 0.7379 | AUC 0.8571 | κ 0.6675 | 1177.3s
+  Fold 1 | Epoch 001 | loss 0.1095 → 0.1116 | F1 0.7677 | AUC 0.8790 | κ 0.7326 | 1184.9s
+  Fold 1 | Epoch 002 | loss 0.0960 → 0.1016 | F1 0.7423 | AUC 0.8678 | κ 0.6726 | 1141.1s
+  Fold 1 | Epoch 003 | loss 0.0887 → 0.1279 | F1 0.7411 | AUC 0.8839 | κ 0.7012 | 1165.9s
+  Fold 1 | Epoch 004 | loss 0.0812 → 0.1190 | F1 0.6890 | AUC 0.8484 | κ 0.6746 | 1138.7s
+  Fold 1 | Epoch 005 | loss 0.0740 → 0.1605 | F1 0.7379 | AUC 0.8846 | κ 0.7037 | 1146.9s
+  Fold 1 | Epoch 006 | loss 0.0543 → 0.1408 | F1 0.7324 | AUC 0.8811 | κ 0.7169 | 1184.6s
+  Early stopping at epoch 6 (patience=5)
+  Best → F1=0.7677  AUC=0.8790  κ=0.7326  acc=0.7475
+
+  [Config D | Fold 3/5]
+  Train: 28100 images | Val: 7026 images
+  Init: SSL (mocov2 / EyePACS/test) loaded from ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt; gate_passed=True
+  No checkpoint found for fold 2, starting fresh.
+  Fold 2 | Epoch 000 | loss 0.1396 → 0.1198 | F1 0.6757 | AUC 0.8498 | κ 0.6188 | 1190.3s
+  Fold 2 | Epoch 001 | loss 0.1095 → 0.1058 | F1 0.6084 | AUC 0.8674 | κ 0.6565 | 1169.4s
+  Fold 2 | Epoch 002 | loss 0.0956 → 0.1214 | F1 0.7281 | AUC 0.8735 | κ 0.6985 | 1232.0s
+  Fold 2 | Epoch 003 | loss 0.0867 → 0.1115 | F1 0.7021 | AUC 0.8678 | κ 0.6809 | 1282.1s
+  Fold 2 | Epoch 004 | loss 0.0764 → 0.1262 | F1 0.7286 | AUC 0.8742 | κ 0.6984 | 1155.5s
+  Fold 2 | Epoch 005 | loss 0.0737 → 0.1190 | F1 0.7698 | AUC 0.8765 | κ 0.7138 | 1202.6s
+  Fold 2 | Epoch 006 | loss 0.0662 → 0.1343 | F1 0.6580 | AUC 0.8738 | κ 0.6638 | 1187.8s
+  Fold 2 | Epoch 007 | loss 0.0630 → 0.1995 | F1 0.7511 | AUC 0.8723 | κ 0.6984 | 1171.9s
+  Fold 2 | Epoch 008 | loss 0.0621 → 0.1552 | F1 0.7234 | AUC 0.8708 | κ 0.7003 | 1167.1s
+  Fold 2 | Epoch 009 | loss 0.0564 → 0.1634 | F1 0.5676 | AUC 0.8698 | κ 0.5834 | 1176.2s
+  Fold 2 | Epoch 010 | loss 0.0407 → 0.1856 | F1 0.6717 | AUC 0.8724 | κ 0.6536 | 1140.8s
+  Early stopping at epoch 10 (patience=5)
+  Best → F1=0.7698  AUC=0.8765  κ=0.7138  acc=0.7531
+
+  [Config D | Fold 4/5]
+  Train: 28102 images | Val: 7024 images
+  Init: SSL (mocov2 / EyePACS/test) loaded from ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt; gate_passed=True
+  No checkpoint found for fold 3, starting fresh.
+  Fold 3 | Epoch 000 | loss 0.1393 → 0.1193 | F1 0.7733 | AUC 0.8636 | κ 0.7441 | 1223.4s
+  Fold 3 | Epoch 001 | loss 0.1095 → 0.1124 | F1 0.6649 | AUC 0.8786 | κ 0.6869 | 1175.9s
+  Fold 3 | Epoch 002 | loss 0.0968 → 0.1212 | F1 0.7713 | AUC 0.8840 | κ 0.7527 | 1200.1s
+  Fold 3 | Epoch 003 | loss 0.0873 → 0.1270 | F1 0.6843 | AUC 0.8771 | κ 0.6705 | 1201.2s
+  Fold 3 | Epoch 004 | loss 0.0786 → 0.1168 | F1 0.6487 | AUC 0.8719 | κ 0.6924 | 1154.7s
+  Fold 3 | Epoch 005 | loss 0.0613 → 0.1306 | F1 0.7389 | AUC 0.8797 | κ 0.7245 | 1197.4s
+  Early stopping at epoch 5 (patience=5)
+  Best → F1=0.7733  AUC=0.8636  κ=0.7441  acc=0.7675
+
+  [Config D | Fold 5/5]
+  Train: 28102 images | Val: 7024 images
+  Init: SSL (mocov2 / EyePACS/test) loaded from ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt; gate_passed=True
+  No checkpoint found for fold 4, starting fresh.
+  Fold 4 | Epoch 000 | loss 0.1402 → 0.1053 | F1 0.5760 | AUC 0.8398 | κ 0.5819 | 1237.5s
+  Fold 4 | Epoch 001 | loss 0.1097 → 0.1021 | F1 0.6913 | AUC 0.8801 | κ 0.6826 | 1135.8s
+  Fold 4 | Epoch 002 | loss 0.0966 → 0.1024 | F1 0.7253 | AUC 0.8662 | κ 0.7052 | 1175.5s
+  Fold 4 | Epoch 003 | loss 0.0872 → 0.1000 | F1 0.5289 | AUC 0.8604 | κ 0.6037 | 1168.2s
+  Fold 4 | Epoch 004 | loss 0.0796 → 0.1368 | F1 0.6695 | AUC 0.8744 | κ 0.6861 | 1196.8s
+  Fold 4 | Epoch 005 | loss 0.0725 → 0.1039 | F1 0.6967 | AUC 0.8723 | κ 0.7155 | 1185.5s
+  Fold 4 | Epoch 006 | loss 0.0657 → 0.1464 | F1 0.7110 | AUC 0.8743 | κ 0.7161 | 1167.8s
+  Fold 4 | Epoch 007 | loss 0.0477 → 0.1590 | F1 0.7453 | AUC 0.8876 | κ 0.7266 | 1196.2s
+  Fold 4 | Epoch 008 | loss 0.0411 → 0.1561 | F1 0.7347 | AUC 0.8782 | κ 0.7123 | 1196.2s
+  Fold 4 | Epoch 009 | loss 0.0388 → 0.1885 | F1 0.6785 | AUC 0.8671 | κ 0.6716 | 1208.2s
+  Fold 4 | Epoch 010 | loss 0.0353 → 0.1835 | F1 0.7127 | AUC 0.8737 | κ 0.7021 | 1157.3s
+  Fold 4 | Epoch 011 | loss 0.0326 → 0.1731 | F1 0.7329 | AUC 0.8699 | κ 0.7262 | 1132.3s
+  Fold 4 | Epoch 012 | loss 0.0249 → 0.2215 | F1 0.7444 | AUC 0.8600 | κ 0.7228 | 1167.7s
+  Early stopping at epoch 12 (patience=5)
+  Best → F1=0.7453  AUC=0.8876  κ=0.7266  acc=0.7053
+
+=================================================================
+Experiment 1 — Summary
+=================================================================
+  Config D (full + efficientnet_b3 in_channels=4):
+    weighted_f1: 0.7702 ± 0.0159
+    roc_auc: 0.8783 ± 0.0084
+    cohen_kappa_quadratic: 0.7396 ± 0.0228
+    accuracy: 0.7530 ± 0.0284
+
+  H-1: NOT SUPPORTED
+
+  Full summary saved to outputs\exp1\summary.json

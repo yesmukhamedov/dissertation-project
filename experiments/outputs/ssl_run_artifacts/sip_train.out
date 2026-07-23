@@ -1,0 +1,47 @@
+SIP pretraining | backbone=resnet50 | epochs=40 | batch=96 | device=cuda | AMP=True
+Configs: ['configs/default.yaml', 'configs/_win_local.yaml', 'configs/sip_pretrain.yaml']
+  Disjointness OK — SSL=53576 (26788 patients)
+  Split (patient-level): pretrain=45540 imgs / 22770 patients | holdout=8036 imgs / 4018 patients
+  ep1/40 | loss=0.1401 | lr=1.50e-04 | holdout_f1=0.6742 | holdout_kappa=0.5768
+  ep2/40 | loss=0.1165 | lr=3.00e-04 | holdout_f1=0.5537 | holdout_kappa=0.5174
+  ep3/40 | loss=0.0921 | lr=3.00e-04 | holdout_f1=0.6857 | holdout_kappa=0.6214
+  ep4/40 | loss=0.0708 | lr=2.99e-04 | holdout_f1=0.5795 | holdout_kappa=0.5555
+  ep5/40 | loss=0.0539 | lr=2.98e-04 | holdout_f1=0.4602 | holdout_kappa=0.5358
+  ep6/40 | loss=0.0397 | lr=2.95e-04 | holdout_f1=0.6896 | holdout_kappa=0.6386
+  ep7/40 | loss=0.0275 | lr=2.92e-04 | holdout_f1=0.4808 | holdout_kappa=0.5139
+  ep8/40 | loss=0.0177 | lr=2.87e-04 | holdout_f1=0.6468 | holdout_kappa=0.5241
+  ep9/40 | loss=0.0147 | lr=2.82e-04 | holdout_f1=0.7242 | holdout_kappa=0.6220
+  ep10/40 | loss=0.0131 | lr=2.76e-04 | holdout_f1=0.7115 | holdout_kappa=0.6528
+  ep11/40 | loss=0.0099 | lr=2.68e-04 | holdout_f1=0.7205 | holdout_kappa=0.6431
+  ep12/40 | loss=0.0081 | lr=2.60e-04 | holdout_f1=0.6806 | holdout_kappa=0.6404
+  ep13/40 | loss=0.0059 | lr=2.52e-04 | holdout_f1=0.6849 | holdout_kappa=0.6157
+  ep14/40 | loss=0.0056 | lr=2.42e-04 | holdout_f1=0.7510 | holdout_kappa=0.6766
+  ep15/40 | loss=0.0040 | lr=2.32e-04 | holdout_f1=0.6979 | holdout_kappa=0.6077
+  ep16/40 | loss=0.0065 | lr=2.21e-04 | holdout_f1=0.6323 | holdout_kappa=0.5683
+  ep17/40 | loss=0.0056 | lr=2.10e-04 | holdout_f1=0.7495 | holdout_kappa=0.6748
+  ep18/40 | loss=0.0035 | lr=1.99e-04 | holdout_f1=0.7304 | holdout_kappa=0.6413
+  ep19/40 | loss=0.0026 | lr=1.87e-04 | holdout_f1=0.6762 | holdout_kappa=0.6169
+  ep20/40 | loss=0.0015 | lr=1.75e-04 | holdout_f1=0.7329 | holdout_kappa=0.6680
+  ep21/40 | loss=0.0008 | lr=1.62e-04 | holdout_f1=0.7460 | holdout_kappa=0.6700
+  ep22/40 | loss=0.0005 | lr=1.50e-04 | holdout_f1=0.7579 | holdout_kappa=0.6835
+  ep23/40 | loss=0.0005 | lr=1.38e-04 | holdout_f1=0.7563 | holdout_kappa=0.6831
+  ep24/40 | loss=0.0007 | lr=1.25e-04 | holdout_f1=0.7585 | holdout_kappa=0.6866
+  ep25/40 | loss=0.0005 | lr=1.13e-04 | holdout_f1=0.7528 | holdout_kappa=0.6769
+  ep26/40 | loss=0.0005 | lr=1.01e-04 | holdout_f1=0.7585 | holdout_kappa=0.6881
+  ep27/40 | loss=0.0001 | lr=8.97e-05 | holdout_f1=0.7574 | holdout_kappa=0.6853
+  ep28/40 | loss=0.0001 | lr=7.86e-05 | holdout_f1=0.7618 | holdout_kappa=0.6910
+  ep29/40 | loss=0.0000 | lr=6.80e-05 | holdout_f1=0.7611 | holdout_kappa=0.6916
+  ep30/40 | loss=0.0000 | lr=5.79e-05 | holdout_f1=0.7612 | holdout_kappa=0.6865
+  ep31/40 | loss=0.0000 | lr=4.84e-05 | holdout_f1=0.7612 | holdout_kappa=0.6923
+  ep32/40 | loss=0.0000 | lr=3.96e-05 | holdout_f1=0.7610 | holdout_kappa=0.6892
+  ep33/40 | loss=0.0000 | lr=3.16e-05 | holdout_f1=0.7603 | holdout_kappa=0.6912
+  ep34/40 | loss=0.0000 | lr=2.44e-05 | holdout_f1=0.7621 | holdout_kappa=0.6917
+  ep35/40 | loss=0.0000 | lr=1.81e-05 | holdout_f1=0.7625 | holdout_kappa=0.6961
+  ep36/40 | loss=0.0000 | lr=1.26e-05 | holdout_f1=0.7627 | holdout_kappa=0.6933
+  ep37/40 | loss=0.0000 | lr=8.13e-06 | holdout_f1=0.7650 | holdout_kappa=0.6963
+  ep38/40 | loss=0.0000 | lr=4.59e-06 | holdout_f1=0.7644 | holdout_kappa=0.6952
+  ep39/40 | loss=0.0000 | lr=2.05e-06 | holdout_f1=0.7654 | holdout_kappa=0.6972
+  ep40/40 | loss=0.0000 | lr=5.12e-07 | holdout_f1=0.7620 | holdout_kappa=0.6929
+
+Done. Best holdout F1=0.7654 at epoch 39. Dir: C:\ssl_out\sip\v1.0
+Next: --gate --ckpt C:\ssl_out\sip\v1.0/ (see BEST_resnet50.txt) to run the acceptance gate.

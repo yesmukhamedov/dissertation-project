@@ -1,0 +1,7 @@
+Loading EyePACS index from D:\datasets\EyePACS\trainLabels.csv ...
+  35126 images | 17563 patients
+  Subset 15%: 5268 images | 2634 patients
+  Class distribution: {0: 3897, 1: 348, 2: 778, 3: 138, 4: 107}
+  Running folds [0, 1, 2] of 5
+
+PART A - Component Ablation (driver, feasibility-bounded)

@@ -1,0 +1,7 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+D:\dissertation-project\experiments\src\experiments\exp6_device_shift.py:285: UserWarning: DDR evaluation failed: [Errno 2] No such file or directory: 'D:\\datasets\\DDR\\DR_grading\\test.txt'
+  warnings.warn(f"DDR evaluation failed: {e}", UserWarning)
+D:\dissertation-project\experiments\src\experiments\exp6_device_shift.py:314: UserWarning: ODIR-5K evaluation failed: `Import openpyxl` failed.  Use pip or conda to install the openpyxl package.
+  warnings.warn(f"ODIR-5K evaluation failed: {e}", UserWarning)
+D:\dissertation-project\experiments\src\experiments\exp6_device_shift.py:345: UserWarning: RFMiD evaluation failed: [Errno 2] No such file or directory: 'D:\\datasets\\RFMiD\\2. Groundtruths\\c. RFMiD_Testing_Labels.csv'
+  warnings.warn(f"RFMiD evaluation failed: {e}", UserWarning)

@@ -1,0 +1,158 @@
+{
+  "experiment": "exp7",
+  "purpose": "small-data trainability (IDRiD \u2192 Clinical)",
+  "train_dataset": "idrid",
+  "test_dataset": "clinical",
+  "model": "efficientnet_b3",
+  "n_idrid": 516,
+  "n_folds": 5,
+  "arms": {
+    "baseline": {
+      "in_channels": 3,
+      "per_fold": [
+        {
+          "fold": 0,
+          "idrid_val_f1": 0.5865679391031503,
+          "clinical": {
+            "weighted_f1": 0.2452807641903768,
+            "roc_auc": 0.7104166666666668,
+            "cohen_kappa_quadratic": 0.4444444444444444,
+            "accuracy": 0.26666666666666666
+          }
+        },
+        {
+          "fold": 1,
+          "idrid_val_f1": 0.6561594202898551,
+          "clinical": {
+            "weighted_f1": 0.2465291571173924,
+            "roc_auc": 0.7170138888888887,
+            "cohen_kappa_quadratic": 0.4521739130434783,
+            "accuracy": 0.26666666666666666
+          }
+        },
+        {
+          "fold": 2,
+          "idrid_val_f1": 0.6454930515895678,
+          "clinical": {
+            "weighted_f1": 0.17666666666666667,
+            "roc_auc": 0.6947916666666667,
+            "cohen_kappa_quadratic": 0.5106382978723405,
+            "accuracy": 0.26666666666666666
+          }
+        },
+        {
+          "fold": 3,
+          "idrid_val_f1": 0.6257268427489832,
+          "clinical": {
+            "weighted_f1": 0.19962962962962963,
+            "roc_auc": 0.6930555555555556,
+            "cohen_kappa_quadratic": 0.46099290780141844,
+            "accuracy": 0.26666666666666666
+          }
+        },
+        {
+          "fold": 4,
+          "idrid_val_f1": 0.6560622684083052,
+          "clinical": {
+            "weighted_f1": 0.20859649122807017,
+            "roc_auc": 0.7270833333333333,
+            "cohen_kappa_quadratic": 0.5606694560669456,
+            "accuracy": 0.2833333333333333
+          }
+        }
+      ],
+      "clinical_summary": {
+        "weighted_f1": "0.2153 \u00b1 0.0270",
+        "roc_auc": "0.7085 \u00b1 0.0130",
+        "cohen_kappa_quadratic": "0.4858 \u00b1 0.0440",
+        "accuracy": "0.2700 \u00b1 0.0067"
+      },
+      "clinical_mean": {
+        "weighted_f1": 0.21534054176642714,
+        "roc_auc": 0.7084722222222222,
+        "cohen_kappa_quadratic": 0.48578380384572545,
+        "accuracy": 0.27
+      },
+      "clinical_mean_f1_bootstrap_ci": {
+        "mean": 0.216308,
+        "ci_lower": 0.141783,
+        "ci_upper": 0.302227,
+        "std": 0.041889
+      }
+    },
+    "full": {
+      "in_channels": 4,
+      "per_fold": [
+        {
+          "fold": 0,
+          "idrid_val_f1": 0.6470580052858534,
+          "clinical": {
+            "weighted_f1": 0.34885916601101497,
+            "roc_auc": 0.7913194444444445,
+            "cohen_kappa_quadratic": 0.5990783410138248,
+            "accuracy": 0.35
+          }
+        },
+        {
+          "fold": 1,
+          "idrid_val_f1": 0.7172956370009707,
+          "clinical": {
+            "weighted_f1": 0.25219780219780225,
+            "roc_auc": 0.7475694444444445,
+            "cohen_kappa_quadratic": 0.5520361990950227,
+            "accuracy": 0.3
+          }
+        },
+        {
+          "fold": 2,
+          "idrid_val_f1": 0.7145023299518868,
+          "clinical": {
+            "weighted_f1": 0.22932330827067668,
+            "roc_auc": 0.7142361111111112,
+            "cohen_kappa_quadratic": 0.5560538116591929,
+            "accuracy": 0.25
+          }
+        },
+        {
+          "fold": 3,
+          "idrid_val_f1": 0.6129567732440455,
+          "clinical": {
+            "weighted_f1": 0.354925669327292,
+            "roc_auc": 0.7368055555555555,
+            "cohen_kappa_quadratic": 0.6232558139534884,
+            "accuracy": 0.35
+          }
+        },
+        {
+          "fold": 4,
+          "idrid_val_f1": 0.7236820683597649,
+          "clinical": {
+            "weighted_f1": 0.34070660522273427,
+            "roc_auc": 0.7576388888888889,
+            "cohen_kappa_quadratic": 0.6694915254237288,
+            "accuracy": 0.38333333333333336
+          }
+        }
+      ],
+      "clinical_summary": {
+        "weighted_f1": "0.3052 \u00b1 0.0533",
+        "roc_auc": "0.7495 \u00b1 0.0254",
+        "cohen_kappa_quadratic": "0.6000 \u00b1 0.0438",
+        "accuracy": "0.3267 \u00b1 0.0467"
+      },
+      "clinical_mean": {
+        "weighted_f1": 0.30520251020590405,
+        "roc_auc": 0.7495138888888888,
+        "cohen_kappa_quadratic": 0.5999831382290515,
+        "accuracy": 0.32666666666666666
+      },
+      "clinical_mean_f1_bootstrap_ci": {
+        "mean": 0.302763,
+        "ci_lower": 0.213597,
+        "ci_upper": 0.403428,
+        "std": 0.048133
+      }
+    }
+  },
+  "full_minus_baseline_weighted_f1": 0.089862
+}

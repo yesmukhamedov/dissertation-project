@@ -1,0 +1,4 @@
+﻿RESULTS SAVED TO D: 2026-07-17 17:04:01Z
+SSL / continual / gate artifacts + logs: outputs/ssl_run_artifacts/
+Config D metrics + checkpoints: outputs/exp1/ (already on D:)
+512 Stage 0-4 cache: outputs/cache_512.tar (rebuildable intermediate, kept for travel)

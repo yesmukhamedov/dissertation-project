@@ -1,0 +1,39 @@
+Building probe slices (Usage-based) …
+  probe-train=10906 | probe-test=42670 | dataset=CachedEyePACSProbeDataset
+  feature cache (resumable): C:\ssl_out\v1.1\probe_features
+
+Probing resnet50 | ckpt=C:\ssl_out\v1.1\ssl_byol_resnet50_4ch_256_ep50.pt
+  [resnet50] evaluating init: random
+    [resnet50/random/train] batch 50/86 (6400 imgs, 92.8 img/s, eta 0.8 min)
+    [resnet50/random/train] cached features -> resnet50_random_train.pt
+    [resnet50/random/test] batch 50/334 (6400 imgs, 76.4 img/s, eta 7.9 min)
+    [resnet50/random/test] batch 100/334 (12800 imgs, 118.7 img/s, eta 4.2 min)
+    [resnet50/random/test] batch 150/334 (19200 imgs, 151.5 img/s, eta 2.6 min)
+    [resnet50/random/test] batch 200/334 (25600 imgs, 167.9 img/s, eta 1.7 min)
+    [resnet50/random/test] batch 250/334 (32000 imgs, 183.3 img/s, eta 1.0 min)
+    [resnet50/random/test] batch 300/334 (38400 imgs, 189.5 img/s, eta 0.4 min)
+    [resnet50/random/test] cached features -> resnet50_random_test.pt
+  [resnet50] evaluating init: imagenet
+    [resnet50/imagenet/train] batch 50/86 (6400 imgs, 244.3 img/s, eta 0.3 min)
+    [resnet50/imagenet/train] cached features -> resnet50_imagenet_train.pt
+    [resnet50/imagenet/test] batch 50/334 (6400 imgs, 243.8 img/s, eta 2.5 min)
+    [resnet50/imagenet/test] batch 100/334 (12800 imgs, 247.5 img/s, eta 2.0 min)
+    [resnet50/imagenet/test] batch 150/334 (19200 imgs, 264.9 img/s, eta 1.5 min)
+    [resnet50/imagenet/test] batch 200/334 (25600 imgs, 260.7 img/s, eta 1.1 min)
+    [resnet50/imagenet/test] batch 250/334 (32000 imgs, 269.8 img/s, eta 0.7 min)
+    [resnet50/imagenet/test] batch 300/334 (38400 imgs, 266.6 img/s, eta 0.3 min)
+    [resnet50/imagenet/test] cached features -> resnet50_imagenet_test.pt
+  [resnet50] evaluating init: ssl
+    [resnet50/ssl/train] batch 50/86 (6400 imgs, 255.2 img/s, eta 0.3 min)
+    [resnet50/ssl/train] cached features -> resnet50_ssl_train.pt
+    [resnet50/ssl/test] batch 50/334 (6400 imgs, 249.5 img/s, eta 2.4 min)
+    [resnet50/ssl/test] batch 100/334 (12800 imgs, 250.8 img/s, eta 2.0 min)
+    [resnet50/ssl/test] batch 150/334 (19200 imgs, 269.2 img/s, eta 1.5 min)
+    [resnet50/ssl/test] batch 200/334 (25600 imgs, 264.2 img/s, eta 1.1 min)
+    [resnet50/ssl/test] batch 250/334 (32000 imgs, 272.8 img/s, eta 0.7 min)
+    [resnet50/ssl/test] batch 300/334 (38400 imgs, 268.6 img/s, eta 0.3 min)
+    [resnet50/ssl/test] cached features -> resnet50_ssl_test.pt
+  kappa: SSL=0.0000 random=0.0000 imagenet=0.3198 -> passed=False
+
+Gate report: C:\ssl_out\v1.1\gate_report.json
+All backbones passed: False

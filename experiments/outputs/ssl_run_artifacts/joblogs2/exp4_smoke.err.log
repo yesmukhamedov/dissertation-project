@@ -1,0 +1,31 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Traceback (most recent call last):
+  File "D:\dissertation-project\experiments\run_experiment.py", line 138, in <module>
+    main()
+  File "D:\dissertation-project\experiments\run_experiment.py", line 134, in main
+    _dispatch(args.experiment, exp_config, fold=args.fold, resume=args.resume, configs_filter=configs_filter)
+  File "D:\dissertation-project\experiments\run_experiment.py", line 76, in _dispatch
+    mod.run(config, fold=fold, resume=resume, _configs_to_run=configs_filter)
+  File "D:\dissertation-project\experiments\src\experiments\exp4_explainability.py", line 314, in run
+    model_full = _train_model(
+                 ^^^^^^^^^^^^^
+  File "D:\dissertation-project\experiments\src\experiments\exp4_explainability.py", line 165, in _train_model
+    trainer.train_fold(
+  File "D:\dissertation-project\experiments\src\training\trainer.py", line 258, in train_fold
+    train_metrics = self.train_one_epoch(
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\dissertation-project\experiments\src\training\trainer.py", line 105, in train_one_epoch
+    scaler.scale(loss).backward()
+  File "C:\mamba\envs\dr-classifier\Lib\site-packages\torch\_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "C:\mamba\envs\dr-classifier\Lib\site-packages\torch\autograd\__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "C:\mamba\envs\dr-classifier\Lib\site-packages\torch\autograd\graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

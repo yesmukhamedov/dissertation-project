@@ -1,0 +1,7 @@
+﻿2026-07-13 09:10:14Z  taring cache -> C: (local SSD)
+2026-07-13 09:10:31Z  tar-to-C exit=0 size_GB=9.09
+2026-07-13 09:10:31Z  local tar entries=35129
+2026-07-13 09:10:31Z  copying tar -> D: (single sequential write)
+2026-07-13 09:19:31Z  D: tar size_GB=9.09
+2026-07-13 09:19:42Z  D: tar entries=35129 | local=35129 | match=True
+2026-07-13 09:19:42Z  CACHE SAVED TO D: OK (verified)

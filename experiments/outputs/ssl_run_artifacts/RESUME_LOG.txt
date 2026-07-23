@@ -1,0 +1,11 @@
+2026-07-09T15:25:22.6851361+05:00  resumed DINO pid=12940
+2026-07-09T17:47:44.4612376+05:00  stopping DINO pid=12940 for gating
+2026-07-09T17:48:09.4918002+05:00  GATE start ep50 ckpt=C:/ssl_out/v2.0/ssl_mocov2_resnet50_4ch_256_ep50.pt
+2026-07-09T18:00:24.9859959+05:00  GATE done ep50 ->   kappa: SSL=0.1120 random=0.0000 imagenet=0.3198 -> passed=False
+2026-07-09T18:00:25.0629975+05:00  GATE start ep100 ckpt=C:/ssl_out/v2.0/ssl_mocov2_resnet50_4ch_256_ep100.pt
+2026-07-09T18:05:24.1127031+05:00  GATE done ep100 ->   kappa: SSL=0.1087 random=0.0000 imagenet=0.3026 -> passed=False
+2026-07-09T18:05:24.1161104+05:00  GATE start ep50 ckpt=C:/ssl_out/v3.0/ssl_dino_resnet50_4ch_256_ep50.pt
+2026-07-09T18:17:39.9254456+05:00  GATE done ep50 ->   kappa: SSL=0.0748 random=0.0000 imagenet=0.3198 -> passed=False
+2026-07-09T18:17:39.9874023+05:00  GATE start ep100 ckpt=C:/ssl_out/v3.0/ssl_dino_resnet50_4ch_256_ep100.pt
+2026-07-09T18:22:38.7354783+05:00  GATE done ep100 ->   kappa: SSL=0.0614 random=0.0000 imagenet=0.3026 -> passed=False
+2026-07-09T18:23:21.1342498+05:00  COMPLETE

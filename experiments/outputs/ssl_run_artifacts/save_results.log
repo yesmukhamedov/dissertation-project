@@ -1,0 +1,52 @@
+﻿2026-07-11 10:49:09Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-11 11:03:35Z  C:/ssl_out copied
+2026-07-11 11:03:35Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-11 11:03:35Z  taring 512 cache -> D:/â€¦/outputs/cache_512.tar (large, sequential)
+2026-07-11 11:21:55Z  cache tar exit=1
+2026-07-11 11:21:55Z  DONE - results consolidated on D:
+2026-07-13 09:37:50Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-13 09:37:50Z  C:/ssl_out copied
+2026-07-13 09:37:50Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-13 09:37:50Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-13 09:37:50Z  DONE - results consolidated on D:
+2026-07-16 07:45:21Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-16 07:45:21Z  C:/ssl_out copied
+2026-07-16 07:45:21Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-16 07:45:21Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-16 07:45:21Z  DONE - results consolidated on D:
+2026-07-16 16:06:38Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-16 16:06:38Z  C:/ssl_out copied
+2026-07-16 16:06:38Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-16 16:06:38Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-16 16:06:38Z  DONE - results consolidated on D:
+2026-07-16 16:06:57Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-16 16:06:57Z  C:/ssl_out copied
+2026-07-16 16:06:57Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-16 16:06:57Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-16 16:06:57Z  DONE - results consolidated on D:
+2026-07-16 16:14:15Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-16 16:14:15Z  C:/ssl_out copied
+2026-07-16 16:14:15Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-16 16:14:15Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-16 16:14:15Z  DONE - results consolidated on D:
+2026-07-16 21:40:18Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-16 21:40:18Z  C:/ssl_out copied
+2026-07-16 21:40:18Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-16 21:40:18Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-16 21:40:18Z  DONE - results consolidated on D:
+2026-07-17 08:54:40Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-17 08:54:40Z  C:/ssl_out copied
+2026-07-17 08:54:40Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-17 08:54:40Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-17 08:54:40Z  DONE - results consolidated on D:
+2026-07-17 12:54:48Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-17 12:54:48Z  C:/ssl_out copied
+2026-07-17 12:54:48Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-17 12:54:48Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-17 12:54:48Z  DONE - results consolidated on D:
+2026-07-17 13:38:03Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts
+2026-07-17 13:38:04Z  C:/ssl_out copied
+2026-07-17 13:38:04Z  outputs/exp1/metrics.csv present on D: (Config D results)
+2026-07-17 13:38:04Z  512 cache already on D: (9.09 GB) â€” skip
+2026-07-17 13:38:04Z  DONE - results consolidated on D:
+2026-07-17 17:04:01Z  copying C:/ssl_out -> D:/â€¦/outputs/ssl_run_artifacts

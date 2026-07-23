@@ -1,0 +1,7 @@
+Running exp3 | config: configs/_run_gen_smoke.yaml | resume: False
+Single-fold mode: fold 0
+
+=================================================================
+Exp3 — Loading full-pipeline model (EyePACS) …
+=================================================================
+  No exp1 checkpoint found — training fresh EfficientNet-B3 on EyePACS …

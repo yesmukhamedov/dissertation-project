@@ -1,0 +1,27 @@
+Running exp3 | config: configs/_run_gen_smoke.yaml | resume: False
+
+=================================================================
+Exp3 — Loading full-pipeline model (EyePACS) …
+=================================================================
+  No exp1 checkpoint found — training fresh EfficientNet-B3 on EyePACS …
+  Fold 0 | Epoch 000 | loss 0.1465 → 0.1224 | F1 0.6300 | AUC 0.8441 | κ 0.5764 | 8046.6s
+  In-domain EyePACS F1 (full pipeline) = 0.6300
+
+=================================================================
+Evaluating full-pipeline model on APTOS 2019 (zero-shot) …
+=================================================================
+  APTOS 2019: 3662 images
+
+=================================================================
+Exp3 — Loading baseline (3ch) model for transfer comparison …
+=================================================================
+  No baseline checkpoint (C_fold0 / A_fold0) found — skipping baseline comparison.
+
+Results saved → outputs\_smoke\gen\exp3\transferability_results.json
+
+=================================================================
+Experiment 3 — Cross-Dataset Transferability (H-4) Summary
+=================================================================
+  Full pipeline : F1_EyePACS=0.6300  F1_APTOS=0.4618  G=0.733 (threshold 0.85)
+
+  H-4: NOT SUPPORTED (G_full 0.733 < 0.85)

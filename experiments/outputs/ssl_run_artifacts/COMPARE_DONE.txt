@@ -1,0 +1,11 @@
+﻿HEAD-TO-HEAD COMPLETE 2026-07-10 08:01:38Z
+
+Same seed-42 patient-level holdout of the 53k for all three inits.
+SIP report      : C:/ssl_out/sip/v1.0/gate_report_SIP_resnet50.json  (json sip field = SIP arm)
+CONTINUAL report: C:/ssl_out/sip/v1.0/gate_report_CONTINUAL_resnet50.json  (json sip field = continual arm)
+Both reports also carry random + imagenet kappa on the identical holdout -> compare directly.
+
+Decision: pick the higher holdout kappa IF it beats imagenet-0.03; else use ImageNet in the pipeline arm.
+CAVEAT: continual trained label-free on the FULL 53k, so it SAW the holdout images (no labels);
+        SIP trained only on the pretrain slice (holdout unseen). Continual kappa is mildly optimistic;
+        if continual wins only narrowly, re-run it restricted to the pretrain slice before concluding.

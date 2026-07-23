@@ -14,6 +14,11 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+*.bak
+
+# Machine-specific scratch: cross-drive sync bookkeeping and D:-drive recovery staging
+.sync_manifests/
+.preserved_from_D/
 
 # Secrets — never commit
 kaggle.json

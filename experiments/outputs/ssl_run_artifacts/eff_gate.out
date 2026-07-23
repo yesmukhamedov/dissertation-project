@@ -1,0 +1,20 @@
+SIP gate | backbone=efficientnet_b3 | probe_train=12000 | holdout=8036 | device=cuda
+  [efficientnet_b3] random
+    [efficientnet_b3/random/train] batch 50/94 (6400 imgs, 78.2 img/s, eta 1.2 min)
+    [efficientnet_b3/random/train] cached features -> efficientnet_b3_random_train.pt
+    [efficientnet_b3/random/test] batch 50/63 (6400 imgs, 79.0 img/s, eta 0.4 min)
+    [efficientnet_b3/random/test] cached features -> efficientnet_b3_random_test.pt
+  [efficientnet_b3] imagenet
+    [efficientnet_b3/imagenet/train] batch 50/94 (6400 imgs, 78.2 img/s, eta 1.2 min)
+    [efficientnet_b3/imagenet/train] cached features -> efficientnet_b3_imagenet_train.pt
+    [efficientnet_b3/imagenet/test] batch 50/63 (6400 imgs, 78.7 img/s, eta 0.4 min)
+    [efficientnet_b3/imagenet/test] cached features -> efficientnet_b3_imagenet_test.pt
+  [efficientnet_b3] sip (ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt)
+    [efficientnet_b3/sip/train] batch 50/94 (6400 imgs, 77.7 img/s, eta 1.2 min)
+    [efficientnet_b3/sip/train] cached features -> efficientnet_b3_sip_train.pt
+    [efficientnet_b3/sip/test] batch 50/63 (6400 imgs, 78.7 img/s, eta 0.4 min)
+    [efficientnet_b3/sip/test] cached features -> efficientnet_b3_sip_test.pt
+
+  kappa: SIP=0.4354 random=0.0000 imagenet=0.4453 -> passed=True
+  gate PASSED — flipped meta.gate_passed=True on ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt
+  Report: C:\ssl_out\sip\v1.0\gate_report_efficientnet_b3.json

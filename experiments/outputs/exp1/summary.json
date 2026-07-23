@@ -1,0 +1,50 @@
+{
+  "configurations": {
+    "A": {
+      "weighted_f1": "0.7769 ± 0.0181",
+      "roc_auc": "0.8429 ± 0.0097",
+      "cohen_kappa_quadratic": "0.6992 ± 0.0032",
+      "accuracy": "0.7835 ± 0.0341"
+    },
+    "B": {
+      "weighted_f1": "0.7810 ± 0.0232",
+      "roc_auc": "0.8801 ± 0.0123",
+      "cohen_kappa_quadratic": "0.7523 ± 0.0270",
+      "accuracy": "0.7706 ± 0.0399"
+    },
+    "C": {
+      "weighted_f1": "0.7754 ± 0.0070",
+      "roc_auc": "0.8337 ± 0.0192",
+      "cohen_kappa_quadratic": "0.7074 ± 0.0206",
+      "accuracy": "0.7789 ± 0.0157"
+    },
+    "D": {
+      "weighted_f1": "0.7702 ± 0.0159",
+      "roc_auc": "0.8783 ± 0.0084",
+      "cohen_kappa_quadratic": "0.7396 ± 0.0228",
+      "accuracy": "0.7530 ± 0.0284"
+    }
+  },
+  "dominance_tests": {
+    "B_vs_A": {
+      "f1_delta_pp": 0.41,
+      "auc_delta": 0.0372,
+      "kappa_delta": 0.0531,
+      "f1_criterion_met": false,
+      "auc_criterion_met": true,
+      "kappa_criterion_met": true,
+      "overall_dominant": false
+    },
+    "D_vs_C": {
+      "f1_delta_pp": -0.51,
+      "auc_delta": 0.0446,
+      "kappa_delta": 0.0322,
+      "f1_criterion_met": false,
+      "auc_criterion_met": true,
+      "kappa_criterion_met": true,
+      "overall_dominant": false
+    }
+  },
+  "h1_supported": false,
+  "_source": "compute_exp1_summary.py (from per-fold best_model.pt metrics)"
+}

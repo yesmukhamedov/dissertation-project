@@ -1,0 +1,16 @@
+Running exp1 | config: configs/_run_exp1B.yaml | resume: True
+Config filter: ['B']
+  Dataset normalize stats loaded from data\processed\eyepacs_norm_stats.json
+    mean=[0.5062, 0.505, 0.5043] std=[0.0903, 0.0742, 0.0577]
+Loading cache index from C:/ssl_data/cache_512 …
+  Found 35126 cached images | 17563 patients | 35126 meta rows
+  5-fold splits verified (no leakage)
+
+=================================================================
+  Config B | full preprocessing | resnet50 | in_channels=4
+=================================================================
+
+  [Config B | Fold 1/5]
+  Train: 28100 images | Val: 7026 images
+  Init: SSL (mocov2 / EyePACS/test) loaded from ssl_mocov2_resnet50_4ch_256_ep50.pt; gate_passed=True
+  No checkpoint found for fold 0, starting fresh.

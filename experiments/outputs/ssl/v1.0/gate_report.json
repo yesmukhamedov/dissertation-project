@@ -1,0 +1,69 @@
+{
+  "backbones": {
+    "resnet50": {
+      "backbone": "resnet50",
+      "ssl_checkpoint": "outputs\\ssl\\v1.0\\ssl_byol_resnet50_4ch_256_ep300.pt",
+      "random": {
+        "linear": {
+          "weighted_f1": 0.6240073383102959,
+          "roc_auc": 0.5,
+          "cohen_kappa_quadratic": 0.0,
+          "accuracy": 0.7359503163815327
+        },
+        "knn": {
+          "weighted_f1": 0.6241309809737096,
+          "roc_auc": NaN,
+          "cohen_kappa_quadratic": 0.0006650833601890005,
+          "accuracy": 0.7355987813452074
+        },
+        "feat_std": 0.0004297716950532049,
+        "n_train": 10906,
+        "n_test": 42670
+      },
+      "imagenet": {
+        "linear": {
+          "weighted_f1": 0.5791251822432941,
+          "roc_auc": 0.7147111813671618,
+          "cohen_kappa_quadratic": 0.30253646327349204,
+          "accuracy": 0.578322006093274
+        },
+        "knn": {
+          "weighted_f1": 0.6280155781205616,
+          "roc_auc": NaN,
+          "cohen_kappa_quadratic": 0.033722907661205004,
+          "accuracy": 0.7367940004687134
+        },
+        "feat_std": 0.007422473281621933,
+        "n_train": 10906,
+        "n_test": 42670
+      },
+      "ssl": {
+        "linear": {
+          "weighted_f1": 0.624727307398231,
+          "roc_auc": 0.5139996551292109,
+          "cohen_kappa_quadratic": 0.002524620675331879,
+          "accuracy": 0.733044293414577
+        },
+        "knn": {
+          "weighted_f1": 0.6247074795775202,
+          "roc_auc": NaN,
+          "cohen_kappa_quadratic": 0.004432680199264238,
+          "accuracy": 0.7352706819779705
+        },
+        "feat_std": 0.0035841669887304306,
+        "n_train": 10906,
+        "n_test": 42670
+      },
+      "acceptance": {
+        "kappa_ssl": 0.002524620675331879,
+        "kappa_random": 0.0,
+        "kappa_imagenet": 0.30253646327349204,
+        "beats_random": false,
+        "competitive_with_imagenet": false,
+        "not_collapsed": true,
+        "passed": false
+      }
+    }
+  },
+  "all_passed": false
+}

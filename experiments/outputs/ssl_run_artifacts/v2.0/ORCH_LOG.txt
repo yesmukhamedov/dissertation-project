@@ -1,0 +1,7 @@
+2026-07-08T19:19:54.3508197+05:00  PHASE A start; MoCo pid=12976; waiting for ep100
+2026-07-09T04:13:20.8854616+05:00  stopping MoCo pid=12976 for gating
+2026-07-09T04:13:45.9016436+05:00  GATE start tag=ep50 ckpt=C:/ssl_out/v2.0/ssl_mocov2_resnet50_4ch_256_ep50.pt
+2026-07-09T04:13:49.4841028+05:00  GATE done tag=ep50 -> 
+2026-07-09T04:13:49.4880991+05:00  GATE start tag=ep100 ckpt=C:/ssl_out/v2.0/ssl_mocov2_resnet50_4ch_256_ep100.pt
+2026-07-09T04:13:52.9995288+05:00  GATE done tag=ep100 -> 
+2026-07-09T04:13:57.2642508+05:00  PHASE A done

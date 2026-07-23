@@ -1,0 +1,38 @@
+Running exp1 | config: configs/_run_exp1AC.yaml | resume: True
+Single-fold mode: fold 4
+Config filter: ['C']
+  Dataset normalize stats loaded from data\processed\eyepacs_norm_stats.json
+    mean=[0.5062, 0.505, 0.5043] std=[0.0903, 0.0742, 0.0577]
+Loading EyePACS index from D:\datasets\EyePACS\trainLabels.csv …
+  Found 35126 images | 17563 patients
+  5-fold splits verified (no leakage)
+
+=================================================================
+  Config C | baseline preprocessing | efficientnet_b3 | in_channels=3
+=================================================================
+
+  [Config C | Fold 5/5]
+  Train: 28102 images | Val: 7024 images
+  No checkpoint found for fold 4, starting fresh.
+  Fold 4 | Epoch 000 | loss 0.1403 → 0.1098 | F1 0.6835 | AUC 0.8467 | κ 0.6564 | 426.4s
+  Fold 4 | Epoch 001 | loss 0.0953 → 0.1153 | F1 0.7214 | AUC 0.8724 | κ 0.7070 | 402.1s
+  Fold 4 | Epoch 002 | loss 0.0609 → 0.1478 | F1 0.7102 | AUC 0.8649 | κ 0.6637 | 400.4s
+  Fold 4 | Epoch 003 | loss 0.0392 → 0.1798 | F1 0.7180 | AUC 0.8522 | κ 0.6907 | 399.4s
+  Fold 4 | Epoch 004 | loss 0.0276 → 0.2002 | F1 0.7027 | AUC 0.8490 | κ 0.6561 | 399.4s
+  Fold 4 | Epoch 005 | loss 0.0241 → 0.2185 | F1 0.7472 | AUC 0.8467 | κ 0.6725 | 400.7s
+  Fold 4 | Epoch 006 | loss 0.0242 → 0.2428 | F1 0.6928 | AUC 0.8469 | κ 0.6517 | 400.0s
+  Fold 4 | Epoch 007 | loss 0.0229 → 0.2621 | F1 0.6936 | AUC 0.8305 | κ 0.6503 | 399.9s
+  Fold 4 | Epoch 008 | loss 0.0236 → 0.2207 | F1 0.7385 | AUC 0.8427 | κ 0.6785 | 401.2s
+  Fold 4 | Epoch 009 | loss 0.0225 → 0.2278 | F1 0.7171 | AUC 0.8352 | κ 0.6443 | 400.0s
+  Fold 4 | Epoch 010 | loss 0.0086 → 0.2727 | F1 0.7784 | AUC 0.8441 | κ 0.7251 | 400.7s
+  Fold 4 | Epoch 011 | loss 0.0054 → 0.3196 | F1 0.7511 | AUC 0.8174 | κ 0.6973 | 400.9s
+  Fold 4 | Epoch 012 | loss 0.0060 → 0.3333 | F1 0.7844 | AUC 0.8304 | κ 0.7301 | 400.5s
+  Fold 4 | Epoch 013 | loss 0.0062 → 0.3173 | F1 0.7698 | AUC 0.8226 | κ 0.6981 | 400.2s
+  Fold 4 | Epoch 014 | loss 0.0072 → 0.3128 | F1 0.7582 | AUC 0.8169 | κ 0.7051 | 401.8s
+  Fold 4 | Epoch 015 | loss 0.0066 → 0.3113 | F1 0.7502 | AUC 0.8067 | κ 0.6822 | 400.8s
+  Fold 4 | Epoch 016 | loss 0.0077 → 0.3518 | F1 0.7646 | AUC 0.7961 | κ 0.6764 | 399.7s
+  Fold 4 | Epoch 017 | loss 0.0028 → 0.3352 | F1 0.7774 | AUC 0.8134 | κ 0.7232 | 400.8s
+  Early stopping at epoch 17 (patience=5)
+  Best → F1=0.7844  AUC=0.8304  κ=0.7301  acc=0.7961
+
+Single-fold run complete (fold 4). Full summary emitted after all folds finish.

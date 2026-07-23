@@ -1,0 +1,44 @@
+Running exp6 | config: configs/_run_gen_smoke.yaml | resume: False
+
+=================================================================
+Exp6 — Loading trained EfficientNet-B3 model …
+=================================================================
+  Loading exp1 checkpoint: outputs\exp1\checkpoints\D_fold0\best_model.pt
+  Canon (EyePACS) in-domain F1 = 0.7952
+
+=================================================================
+Evaluating camera group: Kowa (IDRiD) …
+=================================================================
+  IDRiD: 413 images
+
+=================================================================
+Evaluating camera group: Mixed Canon+Topcon (DDR test split) …
+=================================================================
+
+=================================================================
+Evaluating camera group: Mixed Canon+Zeiss (ODIR-5K) …
+=================================================================
+
+=================================================================
+Evaluating camera group: Topcon (Messidor-2) …
+=================================================================
+  Messidor-2: 1744 images
+
+=================================================================
+Evaluating camera group: Mixed Topcon+Kowa (RFMiD — binary) …
+=================================================================
+
+Results saved → outputs\exp6\device_shift_results.json
+
+=================================================================
+Experiment 6 — Device Domain Shift Summary
+=================================================================
+  In-domain Canon (EyePACS) F1: 0.7952
+  kowa_idrid          : F1=0.5388  G=0.678 ✗
+  mixed_ddr: failed
+  mixed_odir5k: failed
+  topcon_messidor2    : F1=0.6920  G=0.870 ✓
+  mixed_rfmid: failed
+
+  Cross-device F1 std=0.0766  AUC std=0.0085
+  H-6 supported: False

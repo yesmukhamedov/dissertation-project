@@ -1,0 +1,9 @@
+﻿2026-07-10 18:43:25Z  Stage 1: precompute 512 cache (CPU detector, 14 workers) ...
+2026-07-10 19:38:27Z  precompute exit=0
+2026-07-10 19:38:27Z  cache rows (incl header) = 35127
+2026-07-10 19:38:27Z  Stage 2: smoke Config D ...
+2026-07-10 19:41:42Z  smoke exit=0
+2026-07-10 19:41:42Z  smoke OK
+2026-07-10 19:41:42Z  Stage 3: full Config D (5 folds) ...
+2026-07-11 10:48:06Z  full Config D exit=0
+2026-07-11 10:48:06Z  DONE

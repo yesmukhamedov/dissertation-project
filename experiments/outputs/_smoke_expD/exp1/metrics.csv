@@ -1,0 +1,2 @@
+epoch,fold,config,train_loss,val_loss,weighted_f1,roc_auc,kappa,accuracy
+0,0,D,0.188184,0.184478,0.548699,0.686815,0.261516,0.549296

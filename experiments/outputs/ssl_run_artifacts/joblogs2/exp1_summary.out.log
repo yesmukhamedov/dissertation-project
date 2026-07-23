@@ -1,0 +1,34 @@
+Config A:
+  [A] fold 0: F1=0.7871 (epoch 18)
+  [A] fold 1: F1=0.7901 (epoch 12)
+  [A] fold 2: F1=0.7859 (epoch 15)
+  [A] fold 3: F1=0.7801 (epoch 13)
+  [A] fold 4: F1=0.7412 (epoch 1)
+Config B:
+  [B] fold 0: F1=0.7403 (epoch 13)
+  [B] fold 1: F1=0.8006 (epoch 9)
+  [B] fold 2: F1=0.7842 (epoch 1)
+  [B] fold 3: F1=0.8053 (epoch 9)
+  [B] fold 4: F1=0.7747 (epoch 7)
+Config C:
+  [C] fold 0: F1=0.7819 (epoch 12)
+  [C] fold 1: F1=0.7720 (epoch 2)
+  [C] fold 2: F1=0.7652 (epoch 6)
+  [C] fold 3: F1=0.7735 (epoch 13)
+  [C] fold 4: F1=0.7844 (epoch 12)
+Config D:
+  [D] fold 0: F1=0.7952 (epoch 3)
+  [D] fold 1: F1=0.7677 (epoch 1)
+  [D] fold 2: F1=0.7698 (epoch 5)
+  [D] fold 3: F1=0.7733 (epoch 0)
+  [D] fold 4: F1=0.7453 (epoch 7)
+
+=== Exp-1 Summary ===
+  A (baseline + resnet50 3ch): {'weighted_f1': '0.7769 ± 0.0181', 'roc_auc': '0.8429 ± 0.0097', 'cohen_kappa_quadratic': '0.6992 ± 0.0032', 'accuracy': '0.7835 ± 0.0341'}
+  B (full + resnet50 4ch): {'weighted_f1': '0.7810 ± 0.0232', 'roc_auc': '0.8801 ± 0.0123', 'cohen_kappa_quadratic': '0.7523 ± 0.0270', 'accuracy': '0.7706 ± 0.0399'}
+  C (baseline + efficientnet_b3 3ch): {'weighted_f1': '0.7754 ± 0.0070', 'roc_auc': '0.8337 ± 0.0192', 'cohen_kappa_quadratic': '0.7074 ± 0.0206', 'accuracy': '0.7789 ± 0.0157'}
+  D (full + efficientnet_b3 4ch): {'weighted_f1': '0.7702 ± 0.0159', 'roc_auc': '0.8783 ± 0.0084', 'cohen_kappa_quadratic': '0.7396 ± 0.0228', 'accuracy': '0.7530 ± 0.0284'}
+  B_vs_A: dF1=0.41pp dAUC=0.0372 dK=0.0531 dominant=False
+  D_vs_C: dF1=-0.51pp dAUC=0.0446 dK=0.0322 dominant=False
+  H-1 supported: False
+Wrote outputs\exp1\summary.json

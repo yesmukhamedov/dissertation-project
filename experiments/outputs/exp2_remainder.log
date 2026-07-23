@@ -1,0 +1,93 @@
+Loading EyePACS index from /mnt/e/datasets/EyePACS/trainLabels.csv ...
+  35126 images | 17563 patients
+  Subset 15%: 5268 images | 2634 patients
+  Class distribution: {0: 3897, 1: 348, 2: 778, 3: 138, 4: 107}
+  Running folds [0, 1, 2] of 5
+
+PART A - Component Ablation (driver, feasibility-bounded)
+
+=================================================================
+  Ablation Level: baseline
+  Description: Stages 1+4 only: FOV crop+resize + ImageNet normalize
+=================================================================
+  Quality — CNR=20.430  Entropy=5.502  SSIM=0.682
+
+  [Level baseline | Fold 1/5]
+  Fold 0 | Epoch 000 | loss 0.1904 → 0.1258 | F1 0.5406 | AUC 0.7915 | κ 0.4022 | 825.7s
+  Fold 0 | Epoch 001 | loss 0.1168 → 0.1228 | F1 0.5171 | AUC 0.7901 | κ 0.4489 | 840.2s
+  Fold 0 | Epoch 002 | loss 0.0876 → 0.1244 | F1 0.5742 | AUC 0.7970 | κ 0.5290 | 846.5s
+  Fold 0 | Epoch 003 | loss 0.0720 → 0.1484 | F1 0.6549 | AUC 0.8050 | κ 0.5849 | 845.0s
+  Fold 0 | Epoch 004 | loss 0.0421 → 0.1817 | F1 0.7263 | AUC 0.8178 | κ 0.6453 | 845.5s
+  Fold 0 | Epoch 005 | loss 0.0321 → 0.2123 | F1 0.6749 | AUC 0.8084 | κ 0.5638 | 841.6s
+  Fold 0 | Epoch 006 | loss 0.0279 → 0.2789 | F1 0.6262 | AUC 0.7926 | κ 0.5030 | 843.8s
+  Fold 0 | Epoch 007 | loss 0.0194 → 0.2240 | F1 0.7088 | AUC 0.8085 | κ 0.6547 | 840.9s
+  Fold 0 | Epoch 008 | loss 0.0151 → 0.2777 | F1 0.7274 | AUC 0.8014 | κ 0.6087 | 845.7s
+  Fold 0 | Epoch 009 | loss 0.0098 → 0.2681 | F1 0.6740 | AUC 0.8027 | κ 0.5609 | 851.0s
+  Fold 0 | Epoch 010 | loss 0.0117 → 0.2767 | F1 0.6973 | AUC 0.8022 | κ 0.5825 | 843.3s
+  Fold 0 | Epoch 011 | loss 0.0104 → 0.2929 | F1 0.7292 | AUC 0.8138 | κ 0.6055 | 848.1s
+  Fold 0 | Epoch 012 | loss 0.0089 → 0.3133 | F1 0.6968 | AUC 0.7918 | κ 0.5833 | 849.6s
+  Fold 0 | Epoch 013 | loss 0.0134 → 0.3468 | F1 0.7451 | AUC 0.8229 | κ 0.6426 | 851.3s
+  Fold 0 | Epoch 014 | loss 0.0091 → 0.3301 | F1 0.7334 | AUC 0.8041 | κ 0.6417 | 851.4s
+  Fold 0 | Epoch 015 | loss 0.0101 → 0.3971 | F1 0.7449 | AUC 0.7797 | κ 0.6712 | 846.9s
+  Fold 0 | Epoch 016 | loss 0.0110 → 0.4009 | F1 0.7473 | AUC 0.8005 | κ 0.6496 | 856.3s
+  Fold 0 | Epoch 017 | loss 0.0109 → 0.3850 | F1 0.7612 | AUC 0.8161 | κ 0.6766 | 850.0s
+  Fold 0 | Epoch 018 | loss 0.0109 → 0.3397 | F1 0.7535 | AUC 0.8151 | κ 0.6607 | 848.4s
+  Fold 0 | Epoch 019 | loss 0.0080 → 0.4918 | F1 0.7076 | AUC 0.7499 | κ 0.5148 | 847.3s
+  Best F1=0.7612
+
+  [Level baseline | Fold 2/5]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Fold 1 | Epoch 000 | loss 0.1846 → 0.1261 | F1 0.4166 | AUC 0.7976 | κ 0.4063 | 860.6s
+  Fold 1 | Epoch 001 | loss 0.1218 → 0.1240 | F1 0.6464 | AUC 0.8219 | κ 0.5207 | 870.0s
+  Fold 1 | Epoch 002 | loss 0.0805 → 0.1691 | F1 0.6198 | AUC 0.8155 | κ 0.5993 | 867.4s
+  Fold 1 | Epoch 003 | loss 0.0573 → 0.1934 | F1 0.5749 | AUC 0.8177 | κ 0.5614 | 851.8s
+  Fold 1 | Epoch 004 | loss 0.0392 → 0.2151 | F1 0.6503 | AUC 0.8266 | κ 0.5836 | 846.3s
+  Fold 1 | Epoch 005 | loss 0.0280 → 0.2004 | F1 0.6641 | AUC 0.8207 | κ 0.6226 | 847.9s
+  Fold 1 | Epoch 006 | loss 0.0189 → 0.1917 | F1 0.6336 | AUC 0.8088 | κ 0.6233 | 841.6s
+  Fold 1 | Epoch 007 | loss 0.0158 → 0.2444 | F1 0.7058 | AUC 0.8249 | κ 0.6072 | 847.6s
+  Fold 1 | Epoch 008 | loss 0.0137 → 0.2151 | F1 0.7418 | AUC 0.8367 | κ 0.7106 | 847.2s
+  Fold 1 | Epoch 009 | loss 0.0095 → 0.2584 | F1 0.7361 | AUC 0.8316 | κ 0.6953 | 847.1s
+  Fold 1 | Epoch 010 | loss 0.0088 → 0.2977 | F1 0.7195 | AUC 0.8187 | κ 0.6498 | 843.5s
+  Fold 1 | Epoch 011 | loss 0.0086 → 0.3368 | F1 0.7369 | AUC 0.8172 | κ 0.6509 | 843.5s
+  Fold 1 | Epoch 012 | loss 0.0116 → 0.3262 | F1 0.7330 | AUC 0.8254 | κ 0.6570 | 839.6s
+  Fold 1 | Epoch 013 | loss 0.0047 → 0.2714 | F1 0.7234 | AUC 0.8221 | κ 0.6631 | 845.5s
+  Early stopping at epoch 13 (patience=5)
+  Best F1=0.7418
+
+  [Level baseline | Fold 3/5]
+  Fold 2 | Epoch 000 | loss 0.1811 → 0.1701 | F1 0.5041 | AUC 0.7667 | κ 0.4395 | 850.1s
+  Fold 2 | Epoch 001 | loss 0.1198 → 0.1188 | F1 0.6093 | AUC 0.8127 | κ 0.5145 | 852.1s
+  Fold 2 | Epoch 002 | loss 0.0867 → 0.1139 | F1 0.5422 | AUC 0.8278 | κ 0.5362 | 846.0s
+  Fold 2 | Epoch 003 | loss 0.0489 → 0.1478 | F1 0.7168 | AUC 0.8268 | κ 0.6727 | 855.4s
+  Fold 2 | Epoch 004 | loss 0.0368 → 0.1701 | F1 0.7307 | AUC 0.8481 | κ 0.6823 | 847.2s
+  Fold 2 | Epoch 005 | loss 0.0250 → 0.1640 | F1 0.7020 | AUC 0.8353 | κ 0.6361 | 845.2s
+  Fold 2 | Epoch 006 | loss 0.0219 → 0.2420 | F1 0.7663 | AUC 0.8371 | κ 0.7012 | 850.1s
+  Fold 2 | Epoch 007 | loss 0.0134 → 0.3073 | F1 0.7567 | AUC 0.8240 | κ 0.6725 | 847.6s
+  Fold 2 | Epoch 008 | loss 0.0143 → 0.2810 | F1 0.7285 | AUC 0.8271 | κ 0.6657 | 847.7s
+  Fold 2 | Epoch 009 | loss 0.0100 → 0.3118 | F1 0.7802 | AUC 0.8397 | κ 0.7238 | 849.8s
+  Fold 2 | Epoch 010 | loss 0.0137 → 0.3030 | F1 0.7364 | AUC 0.8108 | κ 0.6486 | 847.8s
+  Fold 2 | Epoch 011 | loss 0.0134 → 0.3087 | F1 0.7597 | AUC 0.8297 | κ 0.6892 | 847.1s
+  Fold 2 | Epoch 012 | loss 0.0074 → 0.2972 | F1 0.7756 | AUC 0.8417 | κ 0.6895 | 848.3s
+  Fold 2 | Epoch 013 | loss 0.0068 → 0.3219 | F1 0.7320 | AUC 0.8031 | κ 0.6401 | 845.9s
+  Fold 2 | Epoch 014 | loss 0.0040 → 0.3274 | F1 0.7638 | AUC 0.8209 | κ 0.6996 | 848.5s
+  Early stopping at epoch 14 (patience=5)
+  Best F1=0.7802
+
+=================================================================
+  Ablation Level: baseline_canonical_flip
+  Description: Stages 0+1+4
+=================================================================
+  Quality — CNR=20.430  Entropy=5.502  SSIM=0.682
+
+  [Level baseline_canonical_flip | Fold 1/5]
+  Fold 0 | Epoch 000 | loss 0.1865 → 0.1267 | F1 0.6688 | AUC 0.7906 | κ 0.5036 | 854.4s
+  Fold 0 | Epoch 001 | loss 0.1153 → 0.1232 | F1 0.6714 | AUC 0.8093 | κ 0.5522 | 855.4s
+  Fold 0 | Epoch 002 | loss 0.0791 → 0.1358 | F1 0.5370 | AUC 0.8122 | κ 0.5257 | 849.2s
+  Fold 0 | Epoch 003 | loss 0.0571 → 0.1657 | F1 0.4234 | AUC 0.8066 | κ 0.4930 | 850.3s
+  Fold 0 | Epoch 004 | loss 0.0377 → 0.2189 | F1 0.6782 | AUC 0.7976 | κ 0.5323 | 850.6s
+  Fold 0 | Epoch 005 | loss 0.0264 → 0.3020 | F1 0.6863 | AUC 0.7917 | κ 0.5466 | 854.4s
+  Fold 0 | Epoch 006 | loss 0.0197 → 0.2628 | F1 0.6192 | AUC 0.7928 | κ 0.4997 | 849.8s
+  Fold 0 | Epoch 007 | loss 0.0151 → 0.3038 | F1 0.7256 | AUC 0.8073 | κ 0.5834 | 854.4s
+  Fold 0 | Epoch 008 | loss 0.0142 → 0.2928 | F1 0.7406 | AUC 0.8214 | κ 0.6219 | 852.4s
+  Fold 0 | Epoch 009 | loss 0.0121 → 0.3293 | F1 0.7301 | AUC 0.8172 | κ 0.6175 | 864.9s
+  Fold 0 | Epoch 010 | loss 0.0110 → 0.3285 | F1 0.7617 | AUC 0.8177 | κ 0.6582 | 903.3s

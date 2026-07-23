@@ -1,0 +1,8 @@
+﻿EFF DONE 2026-07-10 16:33:30Z
+Report: 
+C:/ssl_out/sip/v1.0
+/gate_report_CONTINUAL_efficientnet_b3.json
+Config D checkpoint: 
+D:/dissertation-project/experiments/outputs/ssl/v4.0
+/ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt
+Check the report acceptance.passed before running Exp-1 Config D.

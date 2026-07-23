@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "D:\dissertation-project\experiments\run_experiment.py", line 138, in <module>
+    main()
+  File "D:\dissertation-project\experiments\run_experiment.py", line 134, in main
+    _dispatch(args.experiment, exp_config, fold=args.fold, resume=args.resume, configs_filter=configs_filter)
+  File "D:\dissertation-project\experiments\run_experiment.py", line 76, in _dispatch
+    mod.run(config, fold=fold, resume=resume, _configs_to_run=configs_filter)
+  File "D:\dissertation-project\experiments\src\experiments\exp3_transferability.py", line 79, in run
+    model, eyepacs_f1 = load_or_train_model(
+                        ^^^^^^^^^^^^^^^^^^^^
+  File "D:\dissertation-project\experiments\src\experiments\_eval_utils.py", line 91, in load_or_train_model
+    return _train_fresh(config, model_name, model_cfg, output_dir, subset_size, resume)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\dissertation-project\experiments\src\experiments\_eval_utils.py", line 132, in _train_fresh
+    aug         = FundusAugmentation(config["augmentation"])
+                                     ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'augmentation'

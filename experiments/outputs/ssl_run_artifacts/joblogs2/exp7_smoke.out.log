@@ -1,0 +1,64 @@
+Running exp7 | config: configs/_run_gen_smoke.yaml | resume: False
+  IDRiD normalize stats loaded from data\processed\idrid_norm_stats.json
+    mean=[0.5093, 0.5054, 0.5032] std=[0.0728, 0.0476, 0.0249]
+  IDRiD pool: 516 images | 516 unique stems
+
+#################################################################
+#  Arm: baseline preprocessing (efficientnet_b3)
+#################################################################
+
+  [baseline | Fold 1] train=412  val=104
+  Fold 0 | Epoch 000 | loss 0.5978 → 0.5441 | F1 0.3224 | AUC 0.7403 | κ 0.3741 | 20.7s
+    IDRiD val F1=0.3224  →  Clinical F1=0.2642
+
+  [baseline | Fold 2] train=413  val=103
+  Fold 1 | Epoch 000 | loss 0.6112 → 0.5348 | F1 0.4822 | AUC 0.8089 | κ 0.6811 | 20.6s
+    IDRiD val F1=0.4822  →  Clinical F1=0.0716
+
+  [baseline | Fold 3] train=413  val=103
+  Fold 2 | Epoch 000 | loss 0.6129 → 0.5454 | F1 0.4057 | AUC 0.7804 | κ 0.6073 | 20.7s
+    IDRiD val F1=0.4057  →  Clinical F1=0.2754
+
+  [baseline | Fold 4] train=413  val=103
+  Fold 3 | Epoch 000 | loss 0.5970 → 0.5170 | F1 0.4783 | AUC 0.8340 | κ 0.6263 | 20.5s
+    IDRiD val F1=0.4783  →  Clinical F1=0.1702
+
+  [baseline | Fold 5] train=413  val=103
+  Fold 4 | Epoch 000 | loss 0.6070 → 0.5629 | F1 0.4490 | AUC 0.7307 | κ 0.5332 | 20.8s
+    IDRiD val F1=0.4490  →  Clinical F1=0.1795
+
+#################################################################
+#  Arm: full preprocessing (efficientnet_b3)
+#################################################################
+
+  [full | Fold 1] train=412  val=104
+  Fold 0 | Epoch 000 | loss 0.6161 → 0.5640 | F1 0.4189 | AUC 0.7395 | κ 0.5286 | 177.6s
+    IDRiD val F1=0.4189  →  Clinical F1=0.2749
+
+  [full | Fold 2] train=413  val=103
+  Fold 1 | Epoch 000 | loss 0.6026 → 0.5581 | F1 0.4805 | AUC 0.7632 | κ 0.5822 | 176.8s
+    IDRiD val F1=0.4805  →  Clinical F1=0.2175
+
+  [full | Fold 3] train=413  val=103
+  Fold 2 | Epoch 000 | loss 0.6060 → 0.5246 | F1 0.5145 | AUC 0.8238 | κ 0.7421 | 173.9s
+    IDRiD val F1=0.5145  →  Clinical F1=0.1994
+
+  [full | Fold 4] train=413  val=103
+  Fold 3 | Epoch 000 | loss 0.6277 → 0.5563 | F1 0.4524 | AUC 0.7756 | κ 0.5826 | 177.5s
+    IDRiD val F1=0.4524  →  Clinical F1=0.2327
+
+  [full | Fold 5] train=413  val=103
+  Fold 4 | Epoch 000 | loss 0.6034 → 0.5580 | F1 0.3372 | AUC 0.7296 | κ 0.4390 | 177.3s
+    IDRiD val F1=0.3372  →  Clinical F1=0.2032
+
+Results saved → outputs\exp7\small_data_results.json
+
+=================================================================
+Experiment 7 — Small Data Training (IDRiD → Clinical) Summary
+=================================================================
+  baseline : Clinical weighted_f1=0.1922 ± 0.0739  roc_auc=0.6210 ± 0.0369  cohen_kappa_quadratic=0.2930 ± 0.1030  accuracy=0.2333 ± 0.0422
+             weighted_f1 mean=0.1926 [95% CI 0.1418, 0.2487]
+  full     : Clinical weighted_f1=0.2256 ± 0.0273  roc_auc=0.6737 ± 0.0265  cohen_kappa_quadratic=0.3724 ± 0.0573  accuracy=0.2600 ± 0.0226
+             weighted_f1 mean=0.2243 [95% CI 0.1520, 0.3005]
+
+  Δ(full − baseline) Clinical weighted_f1 = +0.0334

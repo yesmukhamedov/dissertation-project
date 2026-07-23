@@ -1,0 +1,3 @@
+ssl_sip_resnet50_4ch_256_ep39.pt
+epoch=39
+holdout_f1=0.7654

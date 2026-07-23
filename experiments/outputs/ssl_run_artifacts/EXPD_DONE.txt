@@ -1,0 +1,6 @@
+﻿EXPD DONE 2026-07-11 10:48:06Z
+Config D (EfficientNet-B3 + full pipeline + continual init) complete, 5-fold CV.
+Metrics: 
+D:/dissertation-project/experiments
+/outputs/exp1/metrics.csv
+Next: run Config C (ImageNet baseline, same backbone) to compare, then A/B.

@@ -1,0 +1,117 @@
+Running exp4 | config: configs/_run_exp4_wsl.yaml | resume: True
+Loading EyePACS index …
+  35126 images | 17563 patients
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  No checkpoint found for fold 0, starting fresh.
+  Fold 0 | Epoch 000 | loss 0.1543 → 0.1235 | F1 0.5092 | AUC 0.8094 | κ 0.5074 | 11210.9s
+  Fold 0 | Epoch 001 | loss 0.1048 → 0.1316 | F1 0.6100 | AUC 0.8363 | κ 0.5578 | 11333.1s
+  Fold 0 | Epoch 002 | loss 0.0759 → 0.1754 | F1 0.6576 | AUC 0.8370 | κ 0.5966 | 11350.9s
+  Fold 0 | Epoch 003 | loss 0.0537 → 0.2038 | F1 0.6547 | AUC 0.8382 | κ 0.5676 | 11463.8s
+Running exp4 | config: configs/_run_exp4_wsl.yaml | resume: True
+Loading EyePACS index …
+  35126 images | 17563 patients
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Resumed fold 0 from epoch 4
+Traceback (most recent call last):
+  File "/mnt/d/dissertation-project/experiments/run_experiment.py", line 138, in <module>
+    main()
+  File "/mnt/d/dissertation-project/experiments/run_experiment.py", line 134, in main
+    _dispatch(args.experiment, exp_config, fold=args.fold, resume=args.resume, configs_filter=configs_filter)
+  File "/mnt/d/dissertation-project/experiments/run_experiment.py", line 76, in _dispatch
+    mod.run(config, fold=fold, resume=resume, _configs_to_run=configs_filter)
+  File "/mnt/d/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 306, in run
+    model_baseline = _train_model(
+  File "/mnt/d/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 165, in _train_model
+    trainer.train_fold(
+  File "/mnt/d/dissertation-project/experiments/src/training/trainer.py", line 261, in train_fold
+    val_metrics, _, _, _ = self.evaluate(model, val_loader, criterion)
+  File "/mnt/d/dissertation-project/experiments/src/training/trainer.py", line 146, in evaluate
+    for images, labels in dataloader:
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 701, in __next__
+    data = self._next_data()
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1445, in _next_data
+    return self._process_data(data)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1491, in _process_data
+    data.reraise()
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/_utils.py", line 715, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in pin memory thread for device 0.
+Original Traceback (most recent call last):
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 41, in do_one_step
+    data = pin_memory(data, device)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 98, in pin_memory
+    clone[i] = pin_memory(item, device)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 64, in pin_memory
+    return data.pin_memory(device)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+Running exp4 | config: configs/_run_exp4_wsl.yaml | resume: True
+Loading EyePACS index …
+  35126 images | 17563 patients
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+  Resumed fold 0 from epoch 4
+Traceback (most recent call last):
+  File "/mnt/d/dissertation-project/experiments/run_experiment.py", line 138, in <module>
+    main()
+  File "/mnt/d/dissertation-project/experiments/run_experiment.py", line 134, in main
+    _dispatch(args.experiment, exp_config, fold=args.fold, resume=args.resume, configs_filter=configs_filter)
+  File "/mnt/d/dissertation-project/experiments/run_experiment.py", line 76, in _dispatch
+    mod.run(config, fold=fold, resume=resume, _configs_to_run=configs_filter)
+  File "/mnt/d/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 306, in run
+    model_baseline = _train_model(
+  File "/mnt/d/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 165, in _train_model
+    trainer.train_fold(
+  File "/mnt/d/dissertation-project/experiments/src/training/trainer.py", line 258, in train_fold
+    train_metrics = self.train_one_epoch(
+  File "/mnt/d/dissertation-project/experiments/src/training/trainer.py", line 102, in train_one_epoch
+    logits = model(images)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/efficientnet.py", line 348, in forward
+    x = self.forward_features(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/efficientnet.py", line 326, in forward_features
+    x = self.blocks(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/_efficientnet_blocks.py", line 336, in forward
+    x = self.bn3(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/layers/norm_act.py", line 136, in forward
+    x = F.batch_norm(
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/functional.py", line 2812, in batch_norm
+    return torch.batch_norm(
+RuntimeError: CUDA driver error: out of memory

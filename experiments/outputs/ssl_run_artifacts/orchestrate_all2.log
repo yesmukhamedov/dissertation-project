@@ -1,0 +1,103 @@
+﻿2026-07-14 13:42:08Z  ================ orchestrate_all2 START ================
+2026-07-14 13:42:08Z  free VRAM at start: 14605 MiB
+2026-07-14 13:42:08Z  START [exp1_c4_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1AC_smoke.yaml --configs C --fold 0
+2026-07-14 13:44:08Z  OK [exp1_c4_smoke]
+2026-07-14 13:44:08Z  START [exp1_c4_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1AC.yaml --configs C --fold 4 --resume
+2026-07-14 15:46:15Z  OK [exp1_c4_full]
+2026-07-14 15:46:15Z  DONE marker: exp1_c4
+2026-07-14 15:46:15Z  START [exp1_a_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1AC_smoke.yaml --configs A --fold 0
+2026-07-14 15:47:34Z  OK [exp1_a_smoke]
+2026-07-14 15:47:34Z  START [exp1_a_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1AC.yaml --configs A --resume
+2026-07-14 20:52:20Z  ================ orchestrate_all2 START ================
+2026-07-14 20:52:20Z  free VRAM at start: 15440 MiB
+2026-07-14 20:52:20Z  SKIP exp1_c4 (done)
+2026-07-14 20:52:20Z  START [exp1_a_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1AC_smoke.yaml --configs A --fold 0
+2026-07-14 20:53:39Z  OK [exp1_a_smoke]
+2026-07-14 20:53:39Z  START [exp1_a_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1AC.yaml --configs A --resume
+2026-07-15 01:14:10Z  OK [exp1_a_full]
+2026-07-15 01:14:10Z  DONE marker: exp1_a
+2026-07-15 01:14:10Z  START [exp1_b_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1B_smoke.yaml --configs B --fold 0
+2026-07-15 01:15:20Z  OK [exp1_b_smoke]
+2026-07-15 01:15:20Z  START [exp1_b_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1B.yaml --configs B --resume
+2026-07-15 08:54:35Z  ================ orchestrate_all2 START ================
+2026-07-15 08:54:35Z  free VRAM at start: 15157 MiB
+2026-07-15 08:54:35Z  SKIP exp1_c4 (done)
+2026-07-15 08:54:35Z  SKIP exp1_a (done)
+2026-07-15 08:54:35Z  START [exp1_b_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1B_smoke.yaml --configs B --fold 0
+2026-07-15 08:55:56Z  OK [exp1_b_smoke]
+2026-07-15 08:55:56Z  START [exp1_b_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp1 --config configs/_run_exp1B.yaml --configs B --resume
+2026-07-16 07:45:05Z  OK [exp1_b_full]
+2026-07-16 07:45:05Z  DONE marker: exp1_b
+2026-07-16 07:45:05Z  START [exp1_summary]: C:/mamba/envs/dr-classifier/python.exe C:/ssl_out/compute_exp1_summary.py
+2026-07-16 07:45:20Z  OK [exp1_summary]
+2026-07-16 07:45:20Z  DONE marker: exp1_summary
+2026-07-16 07:45:20Z  save_results_to_D (after-exp1) ...
+2026-07-16 07:45:21Z  save_results_to_D (after-exp1) done
+2026-07-16 07:45:21Z  START [exp2_smoke]: C:/mamba/envs/dr-classifier/python.exe C:/ssl_out/run_exp2_partA.py --config configs/_run_exp2.yaml --subset-fraction 0.02 --folds 1 --levels baseline --max-epochs 1 --output-subdir _smoke
+2026-07-16 07:51:17Z  OK [exp2_smoke]
+2026-07-16 07:51:17Z  START [exp2_full]: C:/mamba/envs/dr-classifier/python.exe C:/ssl_out/run_exp2_partA.py --config configs/_run_exp2.yaml --subset-fraction 0.15 --folds 3 --partb
+2026-07-16 16:14:14Z  ================ orchestrate_all2 START ================
+2026-07-16 16:14:15Z  free VRAM at start: 15165 MiB
+2026-07-16 16:14:15Z  SKIP exp1_c4 (done)
+2026-07-16 16:14:15Z  SKIP exp1_a (done)
+2026-07-16 16:14:15Z  SKIP exp1_b (done)
+2026-07-16 16:14:15Z  SKIP exp1_summary (done)
+2026-07-16 16:14:15Z  save_results_to_D (after-exp1) ...
+2026-07-16 16:14:15Z  save_results_to_D (after-exp1) done
+2026-07-16 16:14:15Z  START [exp3_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp3 --config configs/_run_gen_smoke.yaml
+2026-07-16 18:38:29Z  OK [exp3_smoke]
+2026-07-16 18:38:29Z  START [exp4_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp4 --config configs/_run_gen_smoke.yaml
+2026-07-16 18:38:34Z  ABORT: [exp4_smoke] exit=1 (see C:/ssl_out/joblogs2/exp4_smoke.err.log)
+2026-07-16 21:40:18Z  ================ orchestrate_all2 START ================
+2026-07-16 21:40:18Z  free VRAM at start: 15248 MiB
+2026-07-16 21:40:18Z  SKIP exp1_c4 (done)
+2026-07-16 21:40:18Z  SKIP exp1_a (done)
+2026-07-16 21:40:18Z  SKIP exp1_b (done)
+2026-07-16 21:40:18Z  SKIP exp1_summary (done)
+2026-07-16 21:40:18Z  save_results_to_D (after-exp1) ...
+2026-07-16 21:40:18Z  save_results_to_D (after-exp1) done
+2026-07-16 21:40:18Z  SKIP exp3_smoke (already ok)
+2026-07-16 21:40:18Z  START [exp4_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp4 --config configs/_run_gen_smoke.yaml
+2026-07-16 23:46:33Z  ABORT: [exp4_smoke] exit=1 (see C:/ssl_out/joblogs2/exp4_smoke.err.log)
+2026-07-17 08:54:40Z  ================ orchestrate_all2 START ================
+2026-07-17 08:54:40Z  free VRAM at start: 15411 MiB
+2026-07-17 08:54:40Z  SKIP exp1_c4 (done)
+2026-07-17 08:54:40Z  SKIP exp1_a (done)
+2026-07-17 08:54:40Z  SKIP exp1_b (done)
+2026-07-17 08:54:40Z  SKIP exp1_summary (done)
+2026-07-17 08:54:40Z  save_results_to_D (after-exp1) ...
+2026-07-17 08:54:40Z  save_results_to_D (after-exp1) done
+2026-07-17 08:54:40Z  SKIP exp3_smoke (already ok)
+2026-07-17 08:54:40Z  START [exp5_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp5 --config configs/_run_gen_smoke.yaml
+2026-07-17 11:10:35Z  ABORT: [exp5_smoke] exit=1 (see C:/ssl_out/joblogs2/exp5_smoke.err.log)
+2026-07-17 12:54:47Z  ================ orchestrate_all2 START ================
+2026-07-17 12:54:47Z  free VRAM at start: 15411 MiB
+2026-07-17 12:54:47Z  SKIP exp1_c4 (done)
+2026-07-17 12:54:47Z  SKIP exp1_a (done)
+2026-07-17 12:54:47Z  SKIP exp1_b (done)
+2026-07-17 12:54:47Z  SKIP exp1_summary (done)
+2026-07-17 12:54:47Z  save_results_to_D (after-exp1) ...
+2026-07-17 12:54:48Z  save_results_to_D (after-exp1) done
+2026-07-17 12:54:48Z  SKIP exp3_smoke (already ok)
+2026-07-17 12:54:48Z  START [exp5_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp5 --config configs/_run_gen_smoke.yaml
+2026-07-17 13:01:34Z  OK [exp5_smoke]
+2026-07-17 13:01:34Z  START [exp6_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp6 --config configs/_run_gen_smoke.yaml
+2026-07-17 13:07:27Z  OK [exp6_smoke]
+2026-07-17 13:07:27Z  START [exp7_smoke]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp7 --config configs/_run_gen_smoke.yaml
+2026-07-17 13:25:41Z  OK [exp7_smoke]
+2026-07-17 13:25:41Z  WAVE A: PARALLEL x3 (free VRAM 15718 MiB)
+2026-07-17 13:25:41Z  START [exp3_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp3 --config configs/_run_gen.yaml
+2026-07-17 13:25:41Z  START [exp5_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp5 --config configs/_run_gen.yaml
+2026-07-17 13:25:41Z  START [exp6_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp6 --config configs/_run_gen.yaml
+2026-07-17 13:38:03Z  OK [exp3_full]
+2026-07-17 13:38:03Z  OK [exp5_full]
+2026-07-17 13:38:03Z  OK [exp6_full]
+2026-07-17 13:38:03Z  DONE marker: exp3
+2026-07-17 13:38:03Z  DONE marker: exp5
+2026-07-17 13:38:03Z  DONE marker: exp6
+2026-07-17 13:38:03Z  save_results_to_D (after-waveA) ...
+2026-07-17 13:38:04Z  save_results_to_D (after-waveA) done
+2026-07-17 13:38:04Z  START [exp7_full]: C:/mamba/envs/dr-classifier/python.exe run_experiment.py exp7 --config configs/_run_gen.yaml
+2026-07-17 17:04:01Z  OK [exp7_full]
+2026-07-17 17:04:01Z  DONE marker: exp7
+2026-07-17 17:04:01Z  save_results_to_D (after-waveB) ...

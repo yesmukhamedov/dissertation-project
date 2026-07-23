@@ -1,0 +1,20 @@
+SIP gate | backbone=resnet50 | probe_train=12000 | holdout=8036 | device=cuda
+  [resnet50] random
+    [resnet50/random/train] batch 50/94 (6400 imgs, 78.5 img/s, eta 1.2 min)
+    [resnet50/random/train] cached features -> resnet50_random_train.pt
+    [resnet50/random/test] batch 50/63 (6400 imgs, 78.5 img/s, eta 0.4 min)
+    [resnet50/random/test] cached features -> resnet50_random_test.pt
+  [resnet50] imagenet
+    [resnet50/imagenet/train] batch 50/94 (6400 imgs, 78.1 img/s, eta 1.2 min)
+    [resnet50/imagenet/train] cached features -> resnet50_imagenet_train.pt
+    [resnet50/imagenet/test] batch 50/63 (6400 imgs, 78.2 img/s, eta 0.4 min)
+    [resnet50/imagenet/test] cached features -> resnet50_imagenet_test.pt
+  [resnet50] sip (ssl_sip_resnet50_4ch_256_ep39.pt)
+    [resnet50/sip/train] batch 50/94 (6400 imgs, 78.1 img/s, eta 1.2 min)
+    [resnet50/sip/train] cached features -> resnet50_sip_train.pt
+    [resnet50/sip/test] batch 50/63 (6400 imgs, 78.5 img/s, eta 0.4 min)
+    [resnet50/sip/test] cached features -> resnet50_sip_test.pt
+
+  kappa: SIP=0.6579 random=0.0000 imagenet=0.3881 -> passed=True
+  gate PASSED — flipped meta.gate_passed=True on ssl_sip_resnet50_4ch_256_ep39.pt
+  Report: C:\ssl_out\sip\v1.0\gate_report_resnet50.json

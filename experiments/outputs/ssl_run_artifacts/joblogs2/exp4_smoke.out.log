@@ -1,0 +1,12 @@
+Running exp4 | config: configs/_run_gen_smoke.yaml | resume: False
+Loading EyePACS index …
+  35126 images | 17563 patients
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+  Fold 0 | Epoch 000 | loss 0.1542 → 0.1232 | F1 0.5099 | AUC 0.8106 | κ 0.5118 | 7303.4s
+
+=================================================================
+Training Full-Pipeline model …
+=================================================================

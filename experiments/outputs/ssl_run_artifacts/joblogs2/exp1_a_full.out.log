@@ -1,0 +1,91 @@
+Running exp1 | config: configs/_run_exp1AC.yaml | resume: True
+Config filter: ['A']
+  Dataset normalize stats loaded from data\processed\eyepacs_norm_stats.json
+    mean=[0.5062, 0.505, 0.5043] std=[0.0903, 0.0742, 0.0577]
+Loading EyePACS index from D:\datasets\EyePACS\trainLabels.csv …
+  Found 35126 images | 17563 patients
+  5-fold splits verified (no leakage)
+
+=================================================================
+  Config A | baseline preprocessing | resnet50 | in_channels=3
+=================================================================
+
+  [Config A | Fold 1/5]
+  Train: 28100 images | Val: 7026 images
+  Resumed fold 0 from epoch 12
+  Fold 0 | Epoch 012 | loss 0.0076 → 0.3166 | F1 0.7818 | AUC 0.8355 | κ 0.7021 | 410.7s
+  Fold 0 | Epoch 013 | loss 0.0060 → 0.2865 | F1 0.7610 | AUC 0.8300 | κ 0.6778 | 396.1s
+  Fold 0 | Epoch 014 | loss 0.0051 → 0.3072 | F1 0.7649 | AUC 0.8322 | κ 0.6761 | 395.6s
+  Fold 0 | Epoch 015 | loss 0.0048 → 0.3364 | F1 0.7758 | AUC 0.8347 | κ 0.6821 | 395.6s
+  Fold 0 | Epoch 016 | loss 0.0045 → 0.3215 | F1 0.7661 | AUC 0.8266 | κ 0.6677 | 396.0s
+  Fold 0 | Epoch 017 | loss 0.0022 → 0.3164 | F1 0.7837 | AUC 0.8318 | κ 0.7030 | 396.2s
+  Fold 0 | Epoch 018 | loss 0.0013 → 0.3404 | F1 0.7871 | AUC 0.8297 | κ 0.7020 | 397.8s
+  Fold 0 | Epoch 019 | loss 0.0014 → 0.3287 | F1 0.7853 | AUC 0.8313 | κ 0.6947 | 396.1s
+  Best → F1=0.7871  AUC=0.8297  κ=0.7020  acc=0.8039
+
+  [Config A | Fold 2/5]
+  Train: 28100 images | Val: 7026 images
+  Resumed fold 1 from epoch 12
+  Fold 1 | Epoch 012 | loss 0.0083 → 0.2804 | F1 0.7901 | AUC 0.8456 | κ 0.7013 | 409.4s
+  Fold 1 | Epoch 013 | loss 0.0066 → 0.2758 | F1 0.7773 | AUC 0.8378 | κ 0.6965 | 396.0s
+  Fold 1 | Epoch 014 | loss 0.0053 → 0.3137 | F1 0.7747 | AUC 0.8328 | κ 0.6836 | 396.8s
+  Fold 1 | Epoch 015 | loss 0.0058 → 0.2947 | F1 0.7727 | AUC 0.8349 | κ 0.6839 | 398.1s
+  Fold 1 | Epoch 016 | loss 0.0051 → 0.2887 | F1 0.7779 | AUC 0.8399 | κ 0.6913 | 397.0s
+  Fold 1 | Epoch 017 | loss 0.0026 → 0.2748 | F1 0.7873 | AUC 0.8451 | κ 0.7000 | 396.8s
+  Early stopping at epoch 17 (patience=5)
+  Best → F1=0.7901  AUC=0.8456  κ=0.7013  acc=0.8017
+
+  [Config A | Fold 3/5]
+  Train: 28100 images | Val: 7026 images
+  Resumed fold 2 from epoch 10
+  Fold 2 | Epoch 010 | loss 0.0118 → 0.2667 | F1 0.7583 | AUC 0.8441 | κ 0.6864 | 410.3s
+  Fold 2 | Epoch 011 | loss 0.0080 → 0.2929 | F1 0.7766 | AUC 0.8463 | κ 0.7063 | 397.8s
+  Fold 2 | Epoch 012 | loss 0.0071 → 0.2949 | F1 0.7638 | AUC 0.8379 | κ 0.6863 | 397.2s
+  Fold 2 | Epoch 013 | loss 0.0029 → 0.3196 | F1 0.7811 | AUC 0.8456 | κ 0.7005 | 399.3s
+  Fold 2 | Epoch 014 | loss 0.0018 → 0.3183 | F1 0.7753 | AUC 0.8365 | κ 0.6979 | 397.7s
+  Fold 2 | Epoch 015 | loss 0.0020 → 0.3514 | F1 0.7859 | AUC 0.8423 | κ 0.7019 | 398.3s
+  Fold 2 | Epoch 016 | loss 0.0015 → 0.3338 | F1 0.7739 | AUC 0.8456 | κ 0.6912 | 398.1s
+  Fold 2 | Epoch 017 | loss 0.0014 → 0.3298 | F1 0.7815 | AUC 0.8378 | κ 0.7075 | 398.2s
+  Fold 2 | Epoch 018 | loss 0.0017 → 0.3566 | F1 0.7846 | AUC 0.8388 | κ 0.7010 | 399.1s
+  Fold 2 | Epoch 019 | loss 0.0015 → 0.3360 | F1 0.7797 | AUC 0.8418 | κ 0.6865 | 397.7s
+  Best → F1=0.7859  AUC=0.8423  κ=0.7019  acc=0.8042
+
+  [Config A | Fold 4/5]
+  Train: 28102 images | Val: 7024 images
+  Resumed fold 3 from epoch 10
+  Fold 3 | Epoch 010 | loss 0.0136 → 0.2859 | F1 0.7688 | AUC 0.8344 | κ 0.6946 | 410.8s
+  Fold 3 | Epoch 011 | loss 0.0097 → 0.3047 | F1 0.7599 | AUC 0.8311 | κ 0.6691 | 397.2s
+  Fold 3 | Epoch 012 | loss 0.0075 → 0.3498 | F1 0.7698 | AUC 0.8294 | κ 0.6803 | 397.7s
+  Fold 3 | Epoch 013 | loss 0.0067 → 0.3288 | F1 0.7801 | AUC 0.8376 | κ 0.6958 | 398.2s
+  Fold 3 | Epoch 014 | loss 0.0061 → 0.3375 | F1 0.7691 | AUC 0.8240 | κ 0.6940 | 399.8s
+  Fold 3 | Epoch 015 | loss 0.0060 → 0.3540 | F1 0.7067 | AUC 0.8237 | κ 0.6163 | 396.7s
+  Fold 3 | Epoch 016 | loss 0.0060 → 0.2866 | F1 0.7609 | AUC 0.8289 | κ 0.6883 | 397.7s
+  Fold 3 | Epoch 017 | loss 0.0059 → 0.2892 | F1 0.7756 | AUC 0.8404 | κ 0.6972 | 397.4s
+  Fold 3 | Epoch 018 | loss 0.0029 → 0.3176 | F1 0.7800 | AUC 0.8413 | κ 0.6927 | 399.2s
+  Early stopping at epoch 18 (patience=5)
+  Best → F1=0.7801  AUC=0.8376  κ=0.6958  acc=0.7920
+
+  [Config A | Fold 5/5]
+  Train: 28102 images | Val: 7024 images
+  Resumed fold 4 from epoch 1
+  Fold 4 | Epoch 001 | loss 0.1319 → 0.1219 | F1 0.7412 | AUC 0.8592 | κ 0.6949 | 409.7s
+  Fold 4 | Epoch 002 | loss 0.1167 → 0.1169 | F1 0.7096 | AUC 0.8568 | κ 0.6567 | 398.4s
+  Fold 4 | Epoch 003 | loss 0.1037 → 0.1389 | F1 0.7124 | AUC 0.8296 | κ 0.6530 | 396.5s
+  Fold 4 | Epoch 004 | loss 0.0921 → 0.1411 | F1 0.6960 | AUC 0.8685 | κ 0.6621 | 396.5s
+  Fold 4 | Epoch 005 | loss 0.0776 → 0.1412 | F1 0.7217 | AUC 0.8494 | κ 0.6328 | 397.2s
+  Fold 4 | Epoch 006 | loss 0.0441 → 0.1739 | F1 0.7067 | AUC 0.8502 | κ 0.6665 | 397.0s
+  Early stopping at epoch 6 (patience=5)
+  Best → F1=0.7412  AUC=0.8592  κ=0.6949  acc=0.7158
+
+=================================================================
+Experiment 1 — Summary
+=================================================================
+  Config A (baseline + resnet50 in_channels=3):
+    weighted_f1: 0.7769 ± 0.0181
+    roc_auc: 0.8429 ± 0.0097
+    cohen_kappa_quadratic: 0.6992 ± 0.0032
+    accuracy: 0.7835 ± 0.0341
+
+  H-1: NOT SUPPORTED
+
+  Full summary saved to outputs\exp1\summary.json
