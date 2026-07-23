@@ -38,14 +38,34 @@ def compute_primary_metrics(
     )
 
     if y_prob is not None:
-        try:
-            metrics["roc_auc"] = float(
-                roc_auc_score(y_true, y_prob, multi_class="ovr", average="macro")
-            )
-        except ValueError:
-            metrics["roc_auc"] = float("nan")
+        y_prob_arr = np.asarray(y_prob)
+        y_true_arr = np.asarray(y_true)
+        # Macro one-vs-rest ROC-AUC restricted to classes actually present in
+        # y_true. A class absent from y_true (e.g. external device sets that
+        # lack DR grades 1/3, such as ODIR-5K) has no positive samples, so its
+        # one-vs-rest AUC is undefined; sklearn's multi_class="ovr" then raises
+        # and the whole score collapses to NaN. Averaging over only the present-
+        # and-separable classes keeps the metric well-defined and, when all
+        # classes are present, reproduces the standard macro-OvR AUC exactly.
+        per_class_auc: list[float] = []
+        for c in labels:
+            pos = y_true_arr == c
+            if pos.any() and (~pos).any():
+                try:
+                    per_class_auc.append(
+                        float(roc_auc_score(pos.astype(int), y_prob_arr[:, c]))
+                    )
+                except ValueError:
+                    pass
+        metrics["roc_auc"] = (
+            float(np.mean(per_class_auc)) if per_class_auc else float("nan")
+        )
+        # Number of classes the AUC was averaged over (< num_classes signals an
+        # external set with incomplete DR-grade coverage — report as a caveat).
+        metrics["roc_auc_classes_used"] = len(per_class_auc)
     else:
         metrics["roc_auc"] = float("nan")
+        metrics["roc_auc_classes_used"] = 0
 
     metrics["cohen_kappa_quadratic"] = float(
         cohen_kappa_score(y_true, y_pred, weights="quadratic", labels=labels)
