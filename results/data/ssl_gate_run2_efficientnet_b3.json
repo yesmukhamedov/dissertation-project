@@ -1,0 +1,65 @@
+{
+  "backbone": "efficientnet_b3",
+  "sip_checkpoint": "C:\\ssl_out\\v4.0\\ssl_mocov2_efficientnet_b3_4ch_256_ep50.pt",
+  "holdout": "patient_level",
+  "random": {
+    "linear": {
+      "weighted_f1": 0.6260711772566703,
+      "roc_auc": 0.5509886501417176,
+      "cohen_kappa_quadratic": 0.014910147864524492,
+      "accuracy": 0.7314584370333499
+    },
+    "knn": {
+      "weighted_f1": 0.6253152408175086,
+      "roc_auc": NaN,
+      "cohen_kappa_quadratic": 0.0034181458754478644,
+      "accuracy": 0.7356893977103036
+    },
+    "feat_std": 0.012221463024616241,
+    "n_train": 12000,
+    "n_test": 8036
+  },
+  "imagenet": {
+    "linear": {
+      "weighted_f1": 0.6850957209182056,
+      "roc_auc": 0.7091655144743084,
+      "cohen_kappa_quadratic": 0.43521129172183914,
+      "accuracy": 0.7175211548033847
+    },
+    "knn": {
+      "weighted_f1": 0.628708622126958,
+      "roc_auc": NaN,
+      "cohen_kappa_quadratic": 0.0411970675915041,
+      "accuracy": 0.7361871577899453
+    },
+    "feat_std": 0.012700510211288929,
+    "n_train": 12000,
+    "n_test": 8036
+  },
+  "sip": {
+    "linear": {
+      "weighted_f1": 0.6846289993125911,
+      "roc_auc": 0.7165772212022257,
+      "cohen_kappa_quadratic": 0.4309716529403591,
+      "accuracy": 0.7094325535092085
+    },
+    "knn": {
+      "weighted_f1": 0.649672760504316,
+      "roc_auc": NaN,
+      "cohen_kappa_quadratic": 0.16740258334952196,
+      "accuracy": 0.7415380786460926
+    },
+    "feat_std": 0.02210136316716671,
+    "n_train": 12000,
+    "n_test": 8036
+  },
+  "acceptance": {
+    "kappa_ssl": 0.4309716529403591,
+    "kappa_random": 0.014910147864524492,
+    "kappa_imagenet": 0.43521129172183914,
+    "beats_random": true,
+    "competitive_with_imagenet": true,
+    "not_collapsed": true,
+    "passed": true
+  }
+}

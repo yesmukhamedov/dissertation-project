@@ -1,0 +1,25 @@
+{
+  "full": {
+    "metrics": {
+      "weighted_f1": "0.7618 ± 0.0000",
+      "roc_auc": "0.8110 ± 0.0000",
+      "cohen_kappa_quadratic": "0.6785 ± 0.0000",
+      "accuracy": "0.7761 ± 0.0000"
+    },
+    "quality": {
+      "mean_cnr": 21.775356176805207,
+      "mean_entropy": 5.725712943077087,
+      "mean_ssim": 0.5993881361507976
+    }
+  },
+  "_meta": {
+    "driver": "run_exp2_partA.py",
+    "subset_fraction": 0.15,
+    "folds_run": [
+      2
+    ],
+    "n_images": 5268,
+    "part_b_clahe_sweep": "not run (pass --partb)",
+    "partial_fold_run": true
+  }
+}

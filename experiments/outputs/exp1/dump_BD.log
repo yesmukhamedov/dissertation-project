@@ -1,0 +1,72 @@
+Device: cuda
+Resume: existing outputs/exp1/predictions.npz has configs ['A', 'C'] — will skip them.
+  B fold0: n=7026 wF1=0.7461 labels={0: 5176, 1: 497, 2: 1031, 3: 181, 4: 141}
+  [saved] B fold0 -> outputs/exp1/predictions.npz
+  B fold1: n=7026 wF1=0.7990 labels={0: 5166, 1: 467, 2: 1084, 3: 166, 4: 143}
+  [saved] B fold1 -> outputs/exp1/predictions.npz
+  B fold2: n=7026 wF1=0.7849 labels={0: 5157, 1: 489, 2: 1068, 3: 177, 4: 135}
+  [saved] B fold2 -> outputs/exp1/predictions.npz
+  B fold3: n=7024 wF1=0.8054 labels={0: 5161, 1: 495, 2: 1050, 3: 173, 4: 145}
+  [saved] B fold3 -> outputs/exp1/predictions.npz
+  B fold4: n=7024 wF1=0.7649 labels={0: 5150, 1: 495, 2: 1059, 3: 176, 4: 144}
+  [saved] B fold4 -> outputs/exp1/predictions.npz
+  [ERROR] config D failed: cuDNN error: CUDNN_STATUS_BAD_PARAM_STREAM_MISMATCH
+Traceback (most recent call last):
+  File "/mnt/e/dissertation-project/experiments/scripts/dump_exp1_predictions.py", line 210, in main
+    y_true, y_pred, y_prob, metrics = infer_dataset(model, val_ds, config, device)
+  File "/mnt/e/dissertation-project/experiments/src/experiments/_eval_utils.py", line 250, in infer_dataset
+    metrics, all_preds, all_probs, all_labels = trainer.evaluate(
+  File "/mnt/e/dissertation-project/experiments/src/training/trainer.py", line 150, in evaluate
+    logits = model(images)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/efficientnet.py", line 348, in forward
+    x = self.forward_features(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/efficientnet.py", line 326, in forward_features
+    x = self.blocks(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/_efficientnet_blocks.py", line 336, in forward
+    x = self.bn3(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/layers/norm_act.py", line 136, in forward
+    x = F.batch_norm(
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/functional.py", line 2812, in batch_norm
+    return torch.batch_norm(
+RuntimeError: cuDNN error: CUDNN_STATUS_BAD_PARAM_STREAM_MISMATCH
+
+Done. Configs with data in outputs/exp1/predictions.npz: ['A', 'B', 'C']
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Device: cuda
+Resume: existing outputs/exp1/predictions.npz has configs ['A', 'B', 'C'] — will skip them.
+  D fold0: n=7026 wF1=0.8009 labels={0: 5176, 1: 497, 2: 1031, 3: 181, 4: 141}
+  [saved] D fold0 -> outputs/exp1/predictions.npz
+  D fold1: n=7026 wF1=0.7796 labels={0: 5166, 1: 467, 2: 1084, 3: 166, 4: 143}
+  [saved] D fold1 -> outputs/exp1/predictions.npz
+  D fold2: n=7026 wF1=0.7685 labels={0: 5157, 1: 489, 2: 1068, 3: 177, 4: 135}
+  [saved] D fold2 -> outputs/exp1/predictions.npz
+  D fold3: n=7024 wF1=0.7766 labels={0: 5161, 1: 495, 2: 1050, 3: 173, 4: 145}
+  [saved] D fold3 -> outputs/exp1/predictions.npz
+  D fold4: n=7024 wF1=0.7542 labels={0: 5150, 1: 495, 2: 1059, 3: 176, 4: 144}
+  [saved] D fold4 -> outputs/exp1/predictions.npz
+
+Done. Configs with data in outputs/exp1/predictions.npz: ['A', 'B', 'C', 'D']

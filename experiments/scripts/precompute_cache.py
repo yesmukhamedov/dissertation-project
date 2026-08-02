@@ -60,22 +60,37 @@ _OUT_DIR: pathlib.Path | None = None
 _PNG_COMPRESSION = 6
 
 
-def _init_worker(preset: str, out_dir: str, png_compression: int) -> None:
+def _init_worker(
+    preset: str, out_dir: str, png_compression: int, config_path: str | None = None
+) -> None:
     """Pool initializer: build one inference pipeline per worker.
 
     Args:
         preset: ``PreprocessingConfig`` preset name (must match the training
-            config — Config D uses ``"efficientnet"``).
+            config — Config D uses ``"efficientnet"``). Ignored when
+            *config_path* is given.
         out_dir: Cache output directory.
         png_compression: cv2 PNG compression level (0–9).
+        config_path: If set, build the pipeline from this YAML's ``preprocessing``
+            section — EXACTLY as ``exp4_explainability._build_pipeline(full=True,
+            is_training=False)`` does — so the cache is bit-identical to that
+            experiment's live full pipeline. Otherwise use *preset*.
     """
     global _PIPELINE, _OUT_DIR, _PNG_COMPRESSION
     from src.preprocessing.config import PreprocessingConfig
     from src.preprocessing.pipeline import PreprocessingPipeline
 
-    _PIPELINE = PreprocessingPipeline.create_for_inference(
-        PreprocessingConfig.from_preset(preset)
-    )
+    if config_path:
+        import yaml
+        with open(config_path) as fh:
+            _cfg = yaml.safe_load(fh)
+        _PIPELINE = PreprocessingPipeline(
+            PreprocessingConfig.from_dict(_cfg["preprocessing"]), is_training=False
+        )
+    else:
+        _PIPELINE = PreprocessingPipeline.create_for_inference(
+            PreprocessingConfig.from_preset(preset)
+        )
     _OUT_DIR = pathlib.Path(out_dir)
     _PNG_COMPRESSION = png_compression
 
@@ -121,6 +136,7 @@ def _discover(
     images_root: pathlib.Path,
     labels_csv: pathlib.Path,
     limit: int,
+    eye_side_mode: str = "auto",
 ) -> list[tuple[str, str, str]]:
     """Build ``(name, image_path, eye_side)`` tasks from the labels CSV.
 
@@ -131,6 +147,10 @@ def _discover(
         images_root: Directory of ``<name>.jpeg`` images.
         labels_csv: ``trainLabels.csv`` with an ``image`` column.
         limit: Max images (0 = all) — for quick tests.
+        eye_side_mode: ``"auto"`` derives left/right from the filename (exp1
+            semantics). ``"unknown"`` forces ``"unknown"`` for every image, which
+            makes Stage-0 canonical flip a no-op — required to mirror exp4, which
+            never passes eye_side to its dataset.
 
     Returns:
         List of ``(name, image_path, eye_side)`` tuples.
@@ -144,7 +164,10 @@ def _discover(
             path = images_root / f"{name}.jpeg"
             if not path.exists():
                 continue
-            side = "left" if "_left" in name else "right" if "_right" in name else "unknown"
+            if eye_side_mode == "unknown":
+                side = "unknown"
+            else:
+                side = "left" if "_left" in name else "right" if "_right" in name else "unknown"
             tasks.append((name, str(path), side))
             if limit and len(tasks) >= limit:
                 break
@@ -176,7 +199,19 @@ def _parse_args() -> argparse.Namespace:
                         help="Cache output directory (PNGs + cache_meta.csv).")
     parser.add_argument("--preset", default="efficientnet",
                         help="PreprocessingConfig preset; must match training "
-                             "(Config D = 'efficientnet'). Default: efficientnet.")
+                             "(Config D = 'efficientnet'). Default: efficientnet. "
+                             "Ignored when --config is given.")
+    parser.add_argument("--config", default=None, type=pathlib.Path,
+                        help="If set, build the pipeline from this YAML's "
+                             "'preprocessing' section (exactly as exp4's "
+                             "_build_pipeline(full=True, is_training=False)), "
+                             "instead of --preset — for a cache bit-identical to "
+                             "that experiment's live full pipeline.")
+    parser.add_argument("--eye-side", default="auto", choices=["auto", "unknown"],
+                        help="'auto' (default) derives left/right from the "
+                             "filename (exp1 semantics). 'unknown' forces "
+                             "eye_side='unknown' for every image — required to "
+                             "mirror exp4 (Stage-0 flip becomes a no-op).")
     parser.add_argument("--num-workers", default=max(1, os.cpu_count() or 1), type=int,
                         help="Parallel worker processes (default: all CPU cores).")
     parser.add_argument("--png-compression", default=_PNG_COMPRESSION, type=int,
@@ -198,10 +233,14 @@ def main() -> None:
     print(f"Images root : {args.images_root}")
     print(f"Labels CSV  : {args.labels_csv}")
     print(f"Output dir  : {out_dir}")
-    print(f"Preset      : {args.preset}  |  workers: {args.num_workers}")
+    if args.config:
+        print(f"Pipeline    : from config {args.config} (preprocessing, is_training=False)")
+    else:
+        print(f"Preset      : {args.preset}")
+    print(f"Eye-side    : {args.eye_side}  |  workers: {args.num_workers}")
     print()
 
-    tasks = _discover(args.images_root, args.labels_csv, args.limit)
+    tasks = _discover(args.images_root, args.labels_csv, args.limit, args.eye_side)
     print(f"Discovered {len(tasks)} image(s).")
     if not tasks:
         print("ERROR: No images found. Check --images-root/--labels-csv.", file=sys.stderr)
@@ -229,7 +268,8 @@ def main() -> None:
             with ctx.Pool(
                 processes=max(1, args.num_workers),
                 initializer=_init_worker,
-                initargs=(args.preset, str(out_dir), args.png_compression),
+                initargs=(args.preset, str(out_dir), args.png_compression,
+                          str(args.config) if args.config else None),
             ) as pool:
                 for i, (name, status, rot, fx, fy) in enumerate(
                     pool.imap_unordered(_process_one, todo, chunksize=8), start=1

@@ -1,0 +1,18 @@
+Device: cuda
+  A fold0: n=7026 wF1=0.7870 labels={0: 5176, 1: 497, 2: 1031, 3: 181, 4: 141}
+  A fold1: n=7026 wF1=0.7904 labels={0: 5166, 1: 467, 2: 1084, 3: 166, 4: 143}
+  A fold2: n=7026 wF1=0.7861 labels={0: 5157, 1: 489, 2: 1068, 3: 177, 4: 135}
+  A fold3: n=7024 wF1=0.7802 labels={0: 5161, 1: 495, 2: 1050, 3: 173, 4: 145}
+  A fold4: n=7024 wF1=0.7412 labels={0: 5150, 1: 495, 2: 1059, 3: 176, 4: 144}
+  [saved] A done → outputs/exp1/predictions.npz (1 config(s))
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  C fold0: n=7026 wF1=0.7819 labels={0: 5176, 1: 497, 2: 1031, 3: 181, 4: 141}
+  C fold1: n=7026 wF1=0.7720 labels={0: 5166, 1: 467, 2: 1084, 3: 166, 4: 143}
+  C fold2: n=7026 wF1=0.7652 labels={0: 5157, 1: 489, 2: 1068, 3: 177, 4: 135}
+  C fold3: n=7024 wF1=0.7735 labels={0: 5161, 1: 495, 2: 1050, 3: 173, 4: 145}
+  C fold4: n=7024 wF1=0.7844 labels={0: 5150, 1: 495, 2: 1059, 3: 176, 4: 144}
+  [saved] C done → outputs/exp1/predictions.npz (2 config(s))
+Device: cuda
+Resume: existing outputs/exp1/predictions.npz has configs ['A', 'C'] — will skip them.
+Device: cuda
+Resume: existing outputs/exp1/predictions.npz has configs ['A', 'C'] — will skip them.

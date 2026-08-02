@@ -1,0 +1,53 @@
+Loading EyePACS index from /mnt/e/datasets/EyePACS/trainLabels.csv ...
+  35126 images | 17563 patients
+  Subset 15%: 5268 images | 2634 patients
+  Class distribution: {0: 3897, 1: 348, 2: 778, 3: 138, 4: 107}
+  Running folds [2] of 5
+
+PART A - Component Ablation (driver, feasibility-bounded)
+
+=================================================================
+  Ablation Level: full
+  Description: All stages 0+1+2+3+4+5+6+7
+=================================================================
+  Quality — CNR=21.775  Entropy=5.726  SSIM=0.599
+
+  [Level full | Fold 3/5]
+  Fold 2 | Epoch 000 | loss 0.1873 → 0.1279 | F1 0.3909 | AUC 0.7877 | κ 0.3474 | 3705.3s
+  Fold 2 | Epoch 001 | loss 0.1233 → 0.1276 | F1 0.6197 | AUC 0.8003 | κ 0.5438 | 3696.3s
+  Fold 2 | Epoch 002 | loss 0.1002 → 0.1356 | F1 0.5764 | AUC 0.8172 | κ 0.5517 | 3690.0s
+  Fold 2 | Epoch 003 | loss 0.0655 → 0.1532 | F1 0.5679 | AUC 0.8149 | κ 0.5606 | 3683.5s
+  Fold 2 | Epoch 004 | loss 0.0518 → 0.1874 | F1 0.5825 | AUC 0.8231 | κ 0.5641 | 3685.6s
+  Fold 2 | Epoch 005 | loss 0.0329 → 0.2264 | F1 0.6549 | AUC 0.7967 | κ 0.5686 | 3706.6s
+  Fold 2 | Epoch 006 | loss 0.0263 → 0.2556 | F1 0.6676 | AUC 0.8063 | κ 0.5918 | 3703.6s
+  Fold 2 | Epoch 007 | loss 0.0187 → 0.3196 | F1 0.6855 | AUC 0.8035 | κ 0.5987 | 3694.8s
+  Fold 2 | Epoch 008 | loss 0.0153 → 0.2933 | F1 0.7405 | AUC 0.8047 | κ 0.6667 | 3692.2s
+  Fold 2 | Epoch 009 | loss 0.0138 → 0.3199 | F1 0.7262 | AUC 0.8135 | κ 0.6305 | 3689.3s
+  Fold 2 | Epoch 010 | loss 0.0128 → 0.3298 | F1 0.7454 | AUC 0.8190 | κ 0.6495 | 3698.8s
+  Fold 2 | Epoch 011 | loss 0.0128 → 0.2747 | F1 0.7249 | AUC 0.8153 | κ 0.6891 | 3726.2s
+  Fold 2 | Epoch 012 | loss 0.0076 → 0.3835 | F1 0.7266 | AUC 0.8039 | κ 0.6412 | 3684.1s
+  Fold 2 | Epoch 013 | loss 0.0104 → 0.4089 | F1 0.7618 | AUC 0.8110 | κ 0.6785 | 3745.2s
+  Fold 2 | Epoch 014 | loss 0.0081 → 0.3738 | F1 0.7316 | AUC 0.8059 | κ 0.6389 | 3699.3s
+  Fold 2 | Epoch 015 | loss 0.0086 → 0.4384 | F1 0.7274 | AUC 0.7897 | κ 0.6339 | 3724.2s
+  Fold 2 | Epoch 016 | loss 0.0105 → 0.4590 | F1 0.7506 | AUC 0.7860 | κ 0.6378 | 3739.6s
+  Fold 2 | Epoch 017 | loss 0.0111 → 0.3906 | F1 0.7475 | AUC 0.8040 | κ 0.6493 | 3739.9s
+  Fold 2 | Epoch 018 | loss 0.0069 → 0.3443 | F1 0.7507 | AUC 0.8212 | κ 0.6463 | 3800.9s
+  Early stopping at epoch 18 (patience=5)
+  Best F1=0.7618
+
+Ablation summary saved to outputs/exp2/ablation_partial_folds2.json
+  full                      : F1=0.7618 ± 0.0000
+EXITCODE 0
+Recomputing quality for ['baseline_clahe', 'baseline_augmentation'] ...
+  quality[baseline_clahe]: CNR=9.128
+  quality[baseline_augmentation]: CNR=20.430
+
+Rebuilt from outputs/exp2/metrics.csv:
+  baseline                  : F1=0.7611 ± 0.0157  folds=[0, 1, 2]
+  baseline_canonical_flip   : F1=0.7701 ± 0.0062  folds=[0, 1, 2]
+  baseline_flat_field       : F1=0.7603 ± 0.0235  folds=[0, 1, 2]
+  baseline_clahe            : F1=0.7532 ± 0.0280  folds=[0, 1, 2]
+  baseline_augmentation     : F1=0.7435 ± 0.0324  folds=[0, 1, 2]
+  full                      : F1=0.7463 ± 0.0111  folds=[0, 1, 2]
+
+Wrote outputs/exp2/ablation_summary.json

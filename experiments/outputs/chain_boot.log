@@ -1,0 +1,6 @@
+[2026-07-23 15:54:41] boot-resume: triggered
+[2026-07-23 15:54:41] boot-resume: exp2 remainder already running
+[2026-07-23 15:54:41] boot-resume: watcher already running
+[2026-07-23 15:54:41] boot-resume: done
+[2026-07-24 23:33:24] boot-resume(exp4): triggered
+[2026-07-24 23:33:24] boot-resume(exp4): exp4 already running -> nothing to do

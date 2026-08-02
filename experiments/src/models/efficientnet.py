@@ -14,6 +14,7 @@ def create_efficientnet(
     dropout: float = 0.4,
     freeze_base: bool = False,
     in_channels: int = 4,
+    grad_checkpointing: bool = False,
 ) -> nn.Module:
     """Build an EfficientNet variant with a custom 5-class head and configurable input channels.
 
@@ -31,6 +32,12 @@ def create_efficientnet(
         dropout: Dropout probability before the linear layer. Default: 0.4.
         freeze_base: If True, freeze all params except classifier. Default: False.
         in_channels: Number of input channels. Default: 4 (RGB + mask).
+        grad_checkpointing: If True, enable activation checkpointing on the
+            backbone (timm ``set_grad_checkpointing``). This trades ~20–30 %
+            training throughput for a large activation-memory saving, letting the
+            4-channel B4 fit in 12 GB VRAM at batch 16 / 512². Numerically
+            identical to normal training; only affects the training forward pass
+            (bypassed in eval, so Grad-CAM is unaffected). Default: False.
 
     Returns:
         EfficientNet nn.Module ready for fine-tuning.
@@ -45,6 +52,9 @@ def create_efficientnet(
 
     model = timm.create_model(f"efficientnet_{variant}", pretrained=pretrained)
     feat_dim: int = model.classifier.in_features
+
+    if grad_checkpointing and hasattr(model, "set_grad_checkpointing"):
+        model.set_grad_checkpointing(True)
 
     # Adapt first conv for 4-channel input
     if in_channels != 3:

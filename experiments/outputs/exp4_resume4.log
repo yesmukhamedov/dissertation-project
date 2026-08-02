@@ -1,0 +1,62 @@
+Running exp4 | config: configs/_run_gen_wsl.yaml | resume: True
+Loading EyePACS index …
+  35126 images | 17563 patients
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Resumed fold 0 from epoch 20
+
+=================================================================
+Training Full-Pipeline model …
+=================================================================
+  Resumed fold 0 from epoch 4
+Traceback (most recent call last):
+  File "/mnt/e/dissertation-project/experiments/run_experiment.py", line 138, in <module>
+    main()
+  File "/mnt/e/dissertation-project/experiments/run_experiment.py", line 134, in main
+    _dispatch(args.experiment, exp_config, fold=args.fold, resume=args.resume, configs_filter=configs_filter)
+  File "/mnt/e/dissertation-project/experiments/run_experiment.py", line 76, in _dispatch
+    mod.run(config, fold=fold, resume=resume, _configs_to_run=configs_filter)
+  File "/mnt/e/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 321, in run
+    model_full = _train_model(
+  File "/mnt/e/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 165, in _train_model
+    trainer.train_fold(
+  File "/mnt/e/dissertation-project/experiments/src/training/trainer.py", line 258, in train_fold
+    train_metrics = self.train_one_epoch(
+  File "/mnt/e/dissertation-project/experiments/src/training/trainer.py", line 102, in train_one_epoch
+    logits = model(images)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/efficientnet.py", line 348, in forward
+    x = self.forward_features(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/efficientnet.py", line 326, in forward_features
+    x = self.blocks(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/_efficientnet_blocks.py", line 334, in forward
+    x = self.se(x)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/timm/models/_efficientnet_blocks.py", line 83, in forward
+    return x * self.gate(x_se)
+RuntimeError: CUDA driver error: out of memory

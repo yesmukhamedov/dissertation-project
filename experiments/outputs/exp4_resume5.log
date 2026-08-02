@@ -1,0 +1,16 @@
+Running exp4 | config: configs/_run_gen_wsl.yaml | resume: True
+Loading EyePACS index …
+  35126 images | 17563 patients
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+  Resumed fold 0 from epoch 20
+
+=================================================================
+Training Full-Pipeline model …
+=================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Resumed fold 0 from epoch 4
+  Fold 0 | Epoch 004 | loss 0.0682 → 0.1352 | F1 0.5605 | AUC 0.8527 | κ 0.5730 | 21251.2s
+  Fold 0 | Epoch 005 | loss 0.0432 → 0.1774 | F1 0.6422 | AUC 0.8442 | κ 0.5880 | 21282.0s

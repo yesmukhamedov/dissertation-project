@@ -34,11 +34,19 @@ new: exact-match **35/40 → 37/40**, within-1 grade 39/40 both, old-vs-new
 agreement 37/40, and all three disagreements moved *toward* ground truth. See
 [[demo-stack]], [[exp1-run-mechanics-512-cache]].
 
-**Still to regenerate (not done):** anything whose pixels came from the old crop —
-the 512² Stage 0–4 cache, and Exp 3 (EyePACS→APTOS, H-4) whose numbers were
-produced while APTOS was losing ~21% of the retina, so its G-ratio should be
-re-derived rather than trusted. Exp 5/6/7 touch IDRiD (≤3% max) and datasets at
-0%, so impact there is small but non-zero.
+**Exp 3 RE-DERIVED 2026-07-28 — the verdict is unchanged.** The concern was well founded (on APTOS
+the old `detect_fov_bbox` returned `None` on 5 of 6 sampled frames → the centre-square fallback cut
+480×480 out of 640×480, full arm only), but re-running exp3 on the fixed code moved nothing:
+**G_full 0.7617 → 0.7619**, APTOS wF1 0.60567 → 0.60584, AUC 0.7978 → 0.8000, while the baseline arm
+reproduced bit-for-bit (0.7207529797486972 — eval determinism confirmed). So `h4_supported=false`
+stands on its own and exp3's numbers can be trusted. Side finding worth citing: losing ~25% of the
+frame periphery barely moves transfer metrics → the model leans on central/global frame statistics
+rather than peripheral lesions (converges with the H-5 refutation, see [[results-knowledge-base]]).
+Runner `experiments/outputs/run_exp3_postfix.sh` (setsid-detached, 42 min); pre-fix JSON kept as
+`outputs/exp3/transferability_results_prefix_20260717.json`.
+
+**Still to regenerate (not done):** the 512² Stage 0–4 cache. Exp 5/6/7 touch IDRiD (≤3% max) and
+datasets at 0%, so impact there is small but non-zero (exp6 was already recomputed post-fix).
 
 **Three FOV detectors still coexist** — `crop_resize.py` (fixed),
 `od_fovea_net/geometry.py::detect_fov_bbox` (independent, already robust: median

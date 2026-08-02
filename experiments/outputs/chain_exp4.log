@@ -1,1 +1,6 @@
 [2026-07-23 08:48:08] chain watcher started (PID 7742); waiting for exp2 (run_exp2_partA) to finish
+[2026-07-23 15:45:45] chain watcher started (PID 10364); waiting for exp2 (run_exp2_partA) to finish
+[2026-07-24 21:05:55] exp2 process ended; waiting 40s for exp2 chain to finalize marker + VRAM release
+[2026-07-24 21:06:35] exp2 did NOT finish cleanly (CHAIN_EXP2_FAILED/ABORTED present) -> resuming exp4 anyway (independent experiment)
+[2026-07-24 21:15:12] exp4 finished (exit 1)
+[2026-07-24 21:15:12] chain watcher exiting

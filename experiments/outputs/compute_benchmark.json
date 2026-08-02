@@ -1,0 +1,129 @@
+{
+  "_meta": {
+    "timestamp": "2026-07-28 18:50:31",
+    "device_name": "NVIDIA GeForce RTX 3060",
+    "torch_version": "2.5.1+cu121",
+    "cuda_version": "12.1",
+    "image_size": 512,
+    "iters": 50,
+    "warmup": 10
+  },
+  "results": [
+    {
+      "config": "A",
+      "model": "resnet50",
+      "in_channels": 3,
+      "params_total": 23518277,
+      "params_trainable": 23518277,
+      "flops": 42706423808.0,
+      "latency": [
+        {
+          "batch_size": 1,
+          "latency_ms_mean": 10.465,
+          "latency_ms_median": 10.363,
+          "latency_ms_std": 0.295,
+          "latency_ms_per_image": 10.465,
+          "throughput_img_s": 95.55
+        },
+        {
+          "batch_size": 16,
+          "latency_ms_mean": 131.619,
+          "latency_ms_median": 131.562,
+          "latency_ms_std": 0.738,
+          "latency_ms_per_image": 8.226,
+          "throughput_img_s": 121.56
+        }
+      ],
+      "vram_inference_mib": 978.1,
+      "vram_train_step_mib": 3724.4,
+      "mixed_precision_as_trained": true
+    },
+    {
+      "config": "B",
+      "model": "resnet50",
+      "in_channels": 4,
+      "params_total": 23521413,
+      "params_trainable": 23521413,
+      "flops": 43117465600.0,
+      "latency": [
+        {
+          "batch_size": 1,
+          "latency_ms_mean": 10.549,
+          "latency_ms_median": 10.433,
+          "latency_ms_std": 0.296,
+          "latency_ms_per_image": 10.549,
+          "throughput_img_s": 94.79
+        },
+        {
+          "batch_size": 16,
+          "latency_ms_mean": 132.778,
+          "latency_ms_median": 132.841,
+          "latency_ms_std": 0.628,
+          "latency_ms_per_image": 8.299,
+          "throughput_img_s": 120.5
+        }
+      ],
+      "vram_inference_mib": 1002.2,
+      "vram_train_step_mib": 3747.5,
+      "mixed_precision_as_trained": true
+    },
+    {
+      "config": "C",
+      "model": "efficientnet_b3",
+      "in_channels": 3,
+      "params_total": 10703917,
+      "params_trainable": 10703917,
+      "flops": 10027572352.0,
+      "latency": [
+        {
+          "batch_size": 1,
+          "latency_ms_mean": 12.8,
+          "latency_ms_median": 9.251,
+          "latency_ms_std": 4.803,
+          "latency_ms_per_image": 12.8,
+          "throughput_img_s": 78.12
+        },
+        {
+          "batch_size": 16,
+          "latency_ms_mean": 120.459,
+          "latency_ms_median": 120.447,
+          "latency_ms_std": 0.751,
+          "latency_ms_per_image": 7.529,
+          "throughput_img_s": 132.83
+        }
+      ],
+      "vram_inference_mib": 1515.0,
+      "vram_train_step_mib": 13726.1,
+      "mixed_precision_as_trained": false
+    },
+    {
+      "config": "D",
+      "model": "efficientnet_b3",
+      "in_channels": 4,
+      "params_total": 10704277,
+      "params_trainable": 10704277,
+      "flops": 10074758272.0,
+      "latency": [
+        {
+          "batch_size": 1,
+          "latency_ms_mean": 14.461,
+          "latency_ms_median": 12.524,
+          "latency_ms_std": 5.521,
+          "latency_ms_per_image": 14.461,
+          "throughput_img_s": 69.15
+        },
+        {
+          "batch_size": 16,
+          "latency_ms_mean": 120.962,
+          "latency_ms_median": 120.929,
+          "latency_ms_std": 0.614,
+          "latency_ms_per_image": 7.56,
+          "throughput_img_s": 132.27
+        }
+      ],
+      "vram_inference_mib": 1531.0,
+      "vram_train_step_mib": 13742.1,
+      "mixed_precision_as_trained": false
+    }
+  ]
+}

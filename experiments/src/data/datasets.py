@@ -1,5 +1,6 @@
 """Fundus image dataset classes for DR classification."""
 
+import time
 from pathlib import Path
 from typing import Callable
 
@@ -15,6 +16,50 @@ from torch.utils.data import Dataset
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from src.preprocessing.pipeline import PreprocessingPipeline
+
+
+def _robust_imread(
+    path: str | Path,
+    flags: int = cv2.IMREAD_COLOR,
+    *,
+    retries: int = 5,
+    backoff: float = 0.05,
+) -> "np.ndarray | None":
+    """Read an image tolerantly of transient I/O failures on network/9p mounts.
+
+    ``cv2.imread`` can intermittently return ``None`` for a perfectly valid file
+    when the underlying filesystem (WSL drvfs/9p over an external drive) drops a
+    concurrent read under heavy DataLoader-worker contention. This retries a few
+    times and, between tries, falls back to reading the raw bytes and decoding
+    them in-memory (a different code path that often succeeds when ``imread``'s
+    own file-open fails), before finally giving up.
+
+    Args:
+        path: Filesystem path to the image.
+        flags: OpenCV read flags (e.g. ``cv2.IMREAD_COLOR``, ``IMREAD_UNCHANGED``).
+        retries: Number of attempts before returning ``None``.
+        backoff: Base seconds slept between attempts (grows linearly per attempt).
+
+    Returns:
+        The decoded image as a numpy array, or ``None`` if every attempt failed.
+    """
+    p = str(path)
+    img = None
+    for attempt in range(retries):
+        img = cv2.imread(p, flags)
+        if img is not None:
+            return img
+        try:
+            with open(p, "rb") as fh:
+                buf = fh.read()
+            if buf:
+                img = cv2.imdecode(np.frombuffer(buf, np.uint8), flags)
+                if img is not None:
+                    return img
+        except OSError:
+            pass
+        time.sleep(backoff * (attempt + 1))
+    return img
 
 
 class BaseFundusDataset(Dataset):
@@ -87,7 +132,7 @@ class BaseFundusDataset(Dataset):
             :class:`~src.preprocessing.pipeline.PreprocessingPipeline` is used,
             otherwise scaled to [0, 1].
         """
-        image = cv2.imread(str(self.image_paths[idx]))
+        image = _robust_imread(self.image_paths[idx])
         if image is None:
             raise FileNotFoundError(f"Could not load image: {self.image_paths[idx]}")
 
@@ -174,7 +219,7 @@ class EyePACSDataset(BaseFundusDataset):
             Tuple of (image_tensor, label) where image_tensor is float32
             CHW and values are ImageNet-normalised or in [0, 1].
         """
-        image = cv2.imread(str(self.image_paths[idx]))
+        image = _robust_imread(self.image_paths[idx])
         if image is None:
             raise FileNotFoundError(f"Could not load image: {self.image_paths[idx]}")
 
@@ -335,7 +380,7 @@ class CachedEyePACSDataset(EyePACSDataset):
             normalised exactly as the live pipeline would produce.
         """
         path = self.image_paths[idx]
-        bgra = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
+        bgra = _robust_imread(path, cv2.IMREAD_UNCHANGED)
         if bgra is None:
             raise FileNotFoundError(f"Could not load cached image: {path}")
         if bgra.ndim != 3 or bgra.shape[2] != 4:

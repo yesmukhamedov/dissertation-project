@@ -6,3 +6,5 @@
 [2026-07-22 17:15:57] chain watcher started (PID 643); waiting for exp6 to finish
 [2026-07-22 18:39:28] exp6 process ended; releasing VRAM before verification
 [2026-07-22 18:39:53] exp6 completed cleanly -> launching exp2 remainder (baseline, canonical_flip, flat_field + Part B)
+[2026-07-24 21:05:53] exp2 remainder finished (exit 1)
+[2026-07-24 21:05:53] chain watcher exiting

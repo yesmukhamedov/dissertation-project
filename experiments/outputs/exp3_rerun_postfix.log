@@ -1,0 +1,48 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running exp3 | config: configs/_run_gen_wsl.yaml | resume: False
+
+=================================================================
+Exp3 — Loading full-pipeline model (EyePACS) …
+=================================================================
+  Loading exp1 checkpoint: outputs/exp1/checkpoints/D_fold0/best_model.pt
+  In-domain EyePACS F1 (full pipeline) = 0.7952
+
+=================================================================
+Evaluating full-pipeline model on APTOS 2019 (zero-shot) …
+=================================================================
+  APTOS 2019: 3662 images
+START 2026-07-28T22:45:11+05:00 pid=373
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Running exp3 | config: configs/_run_gen_wsl.yaml | resume: False
+
+=================================================================
+Exp3 — Loading full-pipeline model (EyePACS) …
+=================================================================
+  Loading exp1 checkpoint: outputs/exp1/checkpoints/D_fold0/best_model.pt
+  In-domain EyePACS F1 (full pipeline) = 0.7952
+
+=================================================================
+Evaluating full-pipeline model on APTOS 2019 (zero-shot) …
+=================================================================
+  APTOS 2019: 3662 images
+
+=================================================================
+Exp3 — Loading baseline (3ch) model for transfer comparison …
+=================================================================
+  Loading exp1 baseline checkpoint: outputs/exp1/checkpoints/C_fold0/best_model.pt
+  Baseline checkpoint: C_fold0 (efficientnet_b3)
+  In-domain EyePACS F1 (baseline) = 0.7819
+
+Evaluating baseline model on APTOS 2019 (zero-shot) …
+  APTOS 2019: 3662 images
+
+Results saved → outputs/exp3/transferability_results.json
+
+=================================================================
+Experiment 3 — Cross-Dataset Transferability (H-4) Summary
+=================================================================
+  Full pipeline : F1_EyePACS=0.7952  F1_APTOS=0.6058  G=0.762 (threshold 0.85)
+  Baseline      : F1_EyePACS=0.7819  F1_APTOS=0.7208  G=0.922
+
+  H-4: NOT SUPPORTED (G_full 0.762 < 0.85)
+EXIT=0 2026-07-28T23:26:55+05:00

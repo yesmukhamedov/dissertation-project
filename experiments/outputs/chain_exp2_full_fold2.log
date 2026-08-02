@@ -1,0 +1,8 @@
+[2026-07-27 21:41:11] chain watcher started (PID 7892); waiting for exp1 prediction dump to finish
+[2026-07-27 21:41:11] dump ended; settling 30s before claiming CPU/VRAM
+[2026-07-27 21:41:50] backed up aborted checkpoints -> full_fold2_aborted_2epochs_20260727_2141
+[2026-07-27 21:41:50] launching exp2 level=full fold=2 (subset 0.15, EffNet-B3, live 8-stage pipeline)
+[2026-07-28 17:23:37] exp2 full/fold2 finished (exit 0)
+[2026-07-28 17:23:37] rebuilding ablation_summary.json from metrics.csv (all 6 levels)
+[2026-07-28 17:31:51] summary rebuild finished (exit 0)
+[2026-07-28 17:31:51] chain watcher exiting

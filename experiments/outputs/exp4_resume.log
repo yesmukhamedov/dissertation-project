@@ -1,0 +1,52 @@
+Running exp4 | config: configs/_run_gen_wsl.yaml | resume: True
+Loading EyePACS index …
+  35126 images | 17563 patients
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Resumed fold 0 from epoch 20
+
+=================================================================
+Training Full-Pipeline model …
+=================================================================
+  Resumed fold 0 from epoch 4
+Traceback (most recent call last):
+  File "/mnt/e/dissertation-project/experiments/run_experiment.py", line 138, in <module>
+    main()
+  File "/mnt/e/dissertation-project/experiments/run_experiment.py", line 134, in main
+    _dispatch(args.experiment, exp_config, fold=args.fold, resume=args.resume, configs_filter=configs_filter)
+  File "/mnt/e/dissertation-project/experiments/run_experiment.py", line 76, in _dispatch
+    mod.run(config, fold=fold, resume=resume, _configs_to_run=configs_filter)
+  File "/mnt/e/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 321, in run
+    model_full = _train_model(
+  File "/mnt/e/dissertation-project/experiments/src/experiments/exp4_explainability.py", line 165, in _train_model
+    trainer.train_fold(
+  File "/mnt/e/dissertation-project/experiments/src/training/trainer.py", line 258, in train_fold
+    train_metrics = self.train_one_epoch(
+  File "/mnt/e/dissertation-project/experiments/src/training/trainer.py", line 95, in train_one_epoch
+    for images, labels in dataloader:
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 701, in __next__
+    data = self._next_data()
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1465, in _next_data
+    return self._process_data(data)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1491, in _process_data
+    data.reraise()
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/_utils.py", line 715, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in pin memory thread for device 0.
+Original Traceback (most recent call last):
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 41, in do_one_step
+    data = pin_memory(data, device)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 98, in pin_memory
+    clone[i] = pin_memory(item, device)
+  File "/home/yesmu/miniconda3/envs/dr-classifier/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 64, in pin_memory
+    return data.pin_memory(device)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+EXITCODE 1

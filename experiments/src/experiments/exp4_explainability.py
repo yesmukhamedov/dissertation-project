@@ -29,7 +29,12 @@ import pandas as pd
 import torch
 from torch.utils.data import DataLoader
 
-from src.data.datasets import EyePACSDataset, IDRiDDataset
+from src.data.datasets import (
+    CachedEyePACSDataset,
+    EyePACSDataset,
+    IDRiDDataset,
+    load_cache_meta,
+)
 from src.data.splits import PatientLevelKFold
 from src.explainability.gradcam import GradCAMGenerator
 from src.explainability.iou import (
@@ -95,6 +100,8 @@ def _train_model(
     output_dir: Path,
     config_name: str,
     resume: bool,
+    cache_dir: str | None = None,
+    cache_meta: dict | None = None,
 ) -> torch.nn.Module:
     """Train EfficientNet-B4 on EyePACS fold 0 with the given pipeline.
 
@@ -120,23 +127,51 @@ def _train_model(
     trainer.mixed_precision = model_cfg.get("mixed_precision", False)
 
     train_idx, val_idx = splits[0]
-    # Augmentation (Stage 6) is integrated into the training PreprocessingPipeline;
-    # EyePACSDataset routes images through the pipeline directly, so no separate
-    # augmentation callable is passed here (matches exp1's convention).
-    train_ds = EyePACSDataset(
-        image_paths=[all_paths[i] for i in train_idx],
-        labels=[all_labels[i] for i in train_idx],
-        patient_ids=[all_pids[i] for i in train_idx],
-        preprocessing=pipeline,
-        augmentation=None,
-    )
-    val_ds = EyePACSDataset(
-        image_paths=[all_paths[i] for i in val_idx],
-        labels=[all_labels[i] for i in val_idx],
-        patient_ids=[all_pids[i] for i in val_idx],
-        preprocessing=pipeline,
-        augmentation=None,
-    )
+    # Throughput fix (2026-07-25): the full pipeline is CPU-bound (~5.9 h/epoch)
+    # because it runs Stages 0–4 (incl. the U-Net OD/fovea detector) live per
+    # image. When a Stage 0–4 cache is configured, the full_pipeline model reads
+    # cached PNGs and runs only the stochastic Stages 5–7 (like exp1's B/D). The
+    # cache MUST be built to mirror exp4 exactly (eye_side="unknown", this exact
+    # preprocessing config) — see scripts/precompute_cache.py --config/--eye-side.
+    # baseline is resize-only (no cacheable Stage 0–4), so it stays on raw images.
+    use_cache = cache_dir is not None and config_name != "baseline"
+    if use_cache:
+        tr_cache = [str(Path(cache_dir) / f"{Path(all_paths[i]).stem}.png") for i in train_idx]
+        va_cache = [str(Path(cache_dir) / f"{Path(all_paths[i]).stem}.png") for i in val_idx]
+        train_ds = CachedEyePACSDataset(
+            image_paths=tr_cache,
+            labels=[all_labels[i] for i in train_idx],
+            patient_ids=[all_pids[i] for i in train_idx],
+            preprocessing=pipeline,
+            cache_meta=cache_meta,
+            eye_sides=["unknown"] * len(tr_cache),
+        )
+        val_ds = CachedEyePACSDataset(
+            image_paths=va_cache,
+            labels=[all_labels[i] for i in val_idx],
+            patient_ids=[all_pids[i] for i in val_idx],
+            preprocessing=pipeline,
+            cache_meta=cache_meta,
+            eye_sides=["unknown"] * len(va_cache),
+        )
+    else:
+        # Augmentation (Stage 6) is integrated into the training PreprocessingPipeline;
+        # EyePACSDataset routes images through the pipeline directly, so no separate
+        # augmentation callable is passed here (matches exp1's convention).
+        train_ds = EyePACSDataset(
+            image_paths=[all_paths[i] for i in train_idx],
+            labels=[all_labels[i] for i in train_idx],
+            patient_ids=[all_pids[i] for i in train_idx],
+            preprocessing=pipeline,
+            augmentation=None,
+        )
+        val_ds = EyePACSDataset(
+            image_paths=[all_paths[i] for i in val_idx],
+            labels=[all_labels[i] for i in val_idx],
+            patient_ids=[all_pids[i] for i in val_idx],
+            preprocessing=pipeline,
+            augmentation=None,
+        )
     train_loader = DataLoader(
         train_ds, batch_size=trainer.batch_size, shuffle=True,
         num_workers=trainer.num_workers,
@@ -153,6 +188,9 @@ def _train_model(
     ckpt_mgr = CheckpointManager(ckpt_dir, max_keep=5)
     # Pass only constructor-recognised keys (model_cfg also carries
     # mixed_precision, which create_efficientnet does not accept).
+    # The 4-channel full-pipeline B4 does not fit 12 GB at batch 16/512²; enable
+    # activation checkpointing for it (numerically identical, ~20–30 % slower).
+    # The 3-channel baseline already fits, so it trains without checkpointing.
     model = create_efficientnet(
         variant="b4",
         num_classes=model_cfg.get("num_classes", 5),
@@ -160,6 +198,7 @@ def _train_model(
         dropout=model_cfg.get("dropout", 0.4),
         freeze_base=model_cfg.get("freeze_base", False),
         in_channels=in_channels,
+        grad_checkpointing=(config_name != "baseline"),
     )
 
     trainer.train_fold(
@@ -205,13 +244,21 @@ def _sample_idrid_indices(
         indices = by_class[cls]
         if not indices:
             continue
-        # Prefer indices that have masks
         has_masks = [i for i in indices if dataset.get_lesion_masks(i) is not None]
         no_masks  = [i for i in indices if dataset.get_lesion_masks(i) is None]
-        pool = has_masks + no_masks  # prioritise mask-having images
-        n = min(n_per_class, len(pool))
-        chosen = rng.choice(len(pool), size=n, replace=False)
-        selected.extend([pool[j] for j in chosen])
+        # Mask-having images are taken FIRST and in full (up to the quota): the
+        # ALO/IoU statistics can only be computed on them, and IDRiD's grading
+        # set has just 54 of them. Sampling uniformly from has_masks + no_masks
+        # (the pre-2026-07-28 behaviour) discarded that priority and left n=5
+        # usable images out of 50 analysed.
+        n = min(n_per_class, len(has_masks) + len(no_masks))
+        take_masked = min(n, len(has_masks))
+        selected.extend(has_masks[:take_masked])
+        remaining = n - take_masked
+        if remaining > 0 and no_masks:
+            chosen = rng.choice(len(no_masks), size=min(remaining, len(no_masks)),
+                                replace=False)
+            selected.extend([no_masks[j] for j in chosen])
 
     return sorted(selected)
 
@@ -299,6 +346,21 @@ def run(
     pipeline_baseline = _build_pipeline(config, full=False, is_training=False)
     pipeline_full     = _build_pipeline(config, full=True, is_training=False)
 
+    # ── Optional Stage 0–4 cache for the full_pipeline model (throughput) ─────
+    # Distinct key from paths.cache_dir (which is the 256² SSL cache). Build it
+    # with scripts/precompute_cache.py --config <this yaml> --eye-side unknown so
+    # it is bit-identical to the live full pipeline (see _train_model).
+    cache_dir = config.get("paths", {}).get("eyepacs_cache_512")
+    cache_meta = None
+    if cache_dir and (Path(cache_dir) / "cache_meta.csv").exists():
+        cache_meta = load_cache_meta(cache_dir)
+        print(f"  Stage 0–4 cache for full_pipeline: {cache_dir} "
+              f"({len(cache_meta)} meta rows) — baseline stays on raw images")
+    elif cache_dir:
+        print(f"  eyepacs_cache_512={cache_dir} set but cache_meta.csv missing "
+              "— falling back to the LIVE full pipeline")
+        cache_dir = None
+
     # ── Train or load both models ─────────────────────────────────────────────
     print(f"\n{'='*65}")
     print("Training Baseline model (resize only) …")
@@ -306,6 +368,7 @@ def run(
     model_baseline = _train_model(
         config, pipeline_baseline, all_paths, all_labels, all_pids,
         splits, output_dir, "baseline", resume,
+        cache_dir=cache_dir, cache_meta=cache_meta,
     )
     # Free GPU memory before the second (full-pipeline) training run: the
     # baseline model is only needed again at Grad-CAM time and is moved back
@@ -321,6 +384,7 @@ def run(
     model_full = _train_model(
         config, pipeline_full, all_paths, all_labels, all_pids,
         splits, output_dir, "full_pipeline", resume,
+        cache_dir=cache_dir, cache_meta=cache_meta,
     )
 
     model_baseline = model_baseline.to(device).eval()

@@ -1,0 +1,104 @@
+Running exp4 | config: configs/_run_gen_wsl.yaml | resume: True
+Loading EyePACS index …
+  35126 images | 17563 patients
+  Stage 0–4 cache for full_pipeline: /mnt/e/datasets/EyePACS/cache_512_exp4 (35126 meta rows) — baseline stays on raw images
+
+=================================================================
+Training Baseline model (resize only) …
+=================================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Resumed fold 0 from epoch 20
+
+=================================================================
+Training Full-Pipeline model …
+=================================================================
+  Resumed fold 0 from epoch 6
+  Fold 0 | Epoch 006 | loss 0.0241 → 0.2149 | F1 0.6507 | AUC 0.8319 | κ 0.6073 | 1893.1s
+  Fold 0 | Epoch 007 | loss 0.0231 → 0.2482 | F1 0.6882 | AUC 0.8424 | κ 0.6269 | 1862.4s
+  Fold 0 | Epoch 008 | loss 0.0322 → 0.2240 | F1 0.6717 | AUC 0.8410 | κ 0.6024 | 1845.6s
+  Fold 0 | Epoch 009 | loss 0.0237 → 0.2383 | F1 0.7185 | AUC 0.8434 | κ 0.6249 | 1870.4s
+  Fold 0 | Epoch 010 | loss 0.0226 → 0.2288 | F1 0.7097 | AUC 0.8440 | κ 0.6444 | 1869.8s
+  Fold 0 | Epoch 011 | loss 0.0244 → 0.3294 | F1 0.7472 | AUC 0.8356 | κ 0.6529 | 1865.0s
+  Fold 0 | Epoch 012 | loss 0.0239 → 0.2753 | F1 0.7434 | AUC 0.8518 | κ 0.6599 | 1858.3s
+  Fold 0 | Epoch 013 | loss 0.0215 → 0.2732 | F1 0.7379 | AUC 0.8453 | κ 0.6904 | 1846.6s
+  Fold 0 | Epoch 014 | loss 0.0203 → 0.3667 | F1 0.7720 | AUC 0.8441 | κ 0.6971 | 1874.3s
+  Fold 0 | Epoch 015 | loss 0.0230 → 0.2511 | F1 0.7510 | AUC 0.8468 | κ 0.6768 | 1846.1s
+  Fold 0 | Epoch 016 | loss 0.0207 → 0.3490 | F1 0.7461 | AUC 0.8367 | κ 0.6399 | 1858.7s
+  Fold 0 | Epoch 017 | loss 0.0197 → 0.2860 | F1 0.7211 | AUC 0.8442 | κ 0.5988 | 1850.1s
+  Fold 0 | Epoch 018 | loss 0.0213 → 0.3019 | F1 0.7502 | AUC 0.8405 | κ 0.6444 | 1862.7s
+  Fold 0 | Epoch 019 | loss 0.0080 → 0.3891 | F1 0.7766 | AUC 0.8542 | κ 0.7075 | 1871.5s
+
+IDRiD: 413 images | 54 with lesion masks
+Sampled 50 IDRiD images for Grad-CAM analysis
+  [IDRiD_017] grade=4 | 4 lesion types | attn_overlap=0.000
+  [IDRiD_024] grade=4 | 3 lesion types | attn_overlap=0.241
+  [IDRiD_031] grade=4 | 4 lesion types | attn_overlap=0.996
+  [IDRiD_034] grade=3 | 3 lesion types | attn_overlap=0.000
+  [IDRiD_042] grade=2 | 3 lesion types | attn_overlap=0.000
+  [IDRiD_060] grade=2 | no masks | attn_overlap=0.000
+  [IDRiD_062] grade=4 | no masks | attn_overlap=0.995
+  [IDRiD_083] grade=2 | no masks | attn_overlap=0.995
+  [IDRiD_086] grade=4 | no masks | attn_overlap=0.998
+  [IDRiD_095] grade=3 | no masks | attn_overlap=0.996
+  [IDRiD_099] grade=3 | no masks | attn_overlap=0.995
+  [IDRiD_104] grade=4 | no masks | attn_overlap=0.994
+  [IDRiD_105] grade=1 | no masks | attn_overlap=0.000
+  [IDRiD_106] grade=2 | no masks | attn_overlap=0.000
+  [IDRiD_112] grade=3 | no masks | attn_overlap=0.998
+  [IDRiD_119] grade=4 | no masks | attn_overlap=0.995
+  [IDRiD_128] grade=2 | no masks | attn_overlap=0.998
+  [IDRiD_148] grade=0 | no masks | attn_overlap=0.000
+  [IDRiD_149] grade=0 | no masks | attn_overlap=0.000
+  [IDRiD_163] grade=0 | no masks | attn_overlap=0.031
+  [IDRiD_198] grade=1 | no masks | attn_overlap=0.000
+  [IDRiD_209] grade=0 | no masks | attn_overlap=0.090
+  [IDRiD_210] grade=0 | no masks | attn_overlap=0.056
+  [IDRiD_216] grade=2 | no masks | attn_overlap=0.000
+  [IDRiD_239] grade=4 | no masks | attn_overlap=0.994
+  [IDRiD_255] grade=0 | no masks | attn_overlap=0.000
+  [IDRiD_256] grade=1 | no masks | attn_overlap=0.000
+  [IDRiD_260] grade=2 | no masks | attn_overlap=0.218
+  [IDRiD_265] grade=1 | no masks | attn_overlap=0.181
+  [IDRiD_275] grade=0 | no masks | attn_overlap=0.272
+  [IDRiD_282] grade=2 | no masks | attn_overlap=0.000
+  [IDRiD_285] grade=4 | no masks | attn_overlap=0.000
+  [IDRiD_289] grade=4 | no masks | attn_overlap=0.998
+  [IDRiD_290] grade=1 | no masks | attn_overlap=0.035
+  [IDRiD_295] grade=0 | no masks | attn_overlap=0.001
+  [IDRiD_301] grade=1 | no masks | attn_overlap=0.000
+  [IDRiD_302] grade=1 | no masks | attn_overlap=0.000
+  [IDRiD_314] grade=3 | no masks | attn_overlap=0.996
+  [IDRiD_324] grade=3 | no masks | attn_overlap=0.992
+  [IDRiD_329] grade=3 | no masks | attn_overlap=0.000
+  [IDRiD_345] grade=0 | no masks | attn_overlap=0.000
+  [IDRiD_363] grade=2 | no masks | attn_overlap=0.021
+  [IDRiD_364] grade=3 | no masks | attn_overlap=0.998
+  [IDRiD_372] grade=3 | no masks | attn_overlap=0.000
+  [IDRiD_376] grade=3 | no masks | attn_overlap=0.998
+  [IDRiD_379] grade=1 | no masks | attn_overlap=0.000
+  [IDRiD_396] grade=0 | no masks | attn_overlap=0.021
+  [IDRiD_403] grade=1 | no masks | attn_overlap=0.000
+  [IDRiD_407] grade=2 | no masks | attn_overlap=0.027
+  [IDRiD_408] grade=1 | no masks | attn_overlap=0.000
+
+Results saved → outputs/exp4/iou_results.json
+
+=================================================================
+Experiment 4 — Grad-CAM Summary
+=================================================================
+  Images analysed: 50 (5 with lesion masks)
+
+  IoU per lesion type (baseline → preprocessed):
+    microaneurysms      : 0.0007 → 0.0013  ↑
+    haemorrhages        : 0.0038 → 0.0062  ↑
+    hard_exudates       : 0.0000 → 0.0098  ↑
+    soft_exudates       : 0.0000 → 0.0000  ↓
+
+  ALO per lesion type (baseline → preprocessed):
+    microaneurysms      : 0.0248 → 0.0283  ↑
+    haemorrhages        : 0.0062 → 0.0070  ↑
+    hard_exudates       : 0.0000 → 0.0225  ↑
+    soft_exudates       : 0.0000 → 0.0000  ↓
+
+  H-5 (IoU) supported: True  (3/4 lesion types improved)
+  H-5 (ALO) supported: True  (3/4 lesion types improved)

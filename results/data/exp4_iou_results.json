@@ -1,0 +1,633 @@
+{
+  "per_image": [
+    {
+      "image": "IDRiD_017",
+      "dr_grade": 4,
+      "has_lesion_masks": true,
+      "baseline_iou": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0,
+        "soft_exudates": 0.0
+      },
+      "preprocessed_iou": {
+        "microaneurysms": 0.0066235609525311465,
+        "haemorrhages": 0.031030779425542124,
+        "hard_exudates": 0.04889876742776318,
+        "soft_exudates": 0.0
+      },
+      "baseline_alo": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0,
+        "soft_exudates": 0.0
+      },
+      "preprocessed_alo": {
+        "microaneurysms": 0.1414141414141414,
+        "haemorrhages": 0.034789291661329574,
+        "hard_exudates": 0.11266294227188083,
+        "soft_exudates": 0.0
+      },
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_024",
+      "dr_grade": 4,
+      "has_lesion_masks": true,
+      "baseline_iou": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "preprocessed_iou": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "baseline_alo": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "preprocessed_alo": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "attention_overlap": 0.2410845859121721
+    },
+    {
+      "image": "IDRiD_031",
+      "dr_grade": 4,
+      "has_lesion_masks": true,
+      "baseline_iou": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0,
+        "soft_exudates": 0.0
+      },
+      "preprocessed_iou": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0,
+        "soft_exudates": 0.0
+      },
+      "baseline_alo": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0,
+        "soft_exudates": 0.0
+      },
+      "preprocessed_alo": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0,
+        "soft_exudates": 0.0
+      },
+      "attention_overlap": 0.9964497041420118
+    },
+    {
+      "image": "IDRiD_034",
+      "dr_grade": 3,
+      "has_lesion_masks": true,
+      "baseline_iou": {
+        "microaneurysms": 0.0006556302245533519,
+        "haemorrhages": 0.019240052410178607,
+        "hard_exudates": 0.0
+      },
+      "preprocessed_iou": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "baseline_alo": {
+        "microaneurysms": 0.015037593984962405,
+        "haemorrhages": 0.031204563247958842,
+        "hard_exudates": 0.0
+      },
+      "preprocessed_alo": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_042",
+      "dr_grade": 2,
+      "has_lesion_masks": true,
+      "baseline_iou": {
+        "microaneurysms": 0.0029791459781529296,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "preprocessed_iou": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "baseline_alo": {
+        "microaneurysms": 0.10909090909090909,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "preprocessed_alo": {
+        "microaneurysms": 0.0,
+        "haemorrhages": 0.0,
+        "hard_exudates": 0.0
+      },
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_060",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_062",
+      "dr_grade": 4,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.995260663507109
+    },
+    {
+      "image": "IDRiD_083",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.995260663507109
+    },
+    {
+      "image": "IDRiD_086",
+      "dr_grade": 4,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9976275207591934
+    },
+    {
+      "image": "IDRiD_095",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9964454976303317
+    },
+    {
+      "image": "IDRiD_099",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.995260663507109
+    },
+    {
+      "image": "IDRiD_104",
+      "dr_grade": 4,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9940898345153665
+    },
+    {
+      "image": "IDRiD_105",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_106",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_112",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9976303317535545
+    },
+    {
+      "image": "IDRiD_119",
+      "dr_grade": 4,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.995260663507109
+    },
+    {
+      "image": "IDRiD_128",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9976190476190476
+    },
+    {
+      "image": "IDRiD_148",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_149",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_163",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.031167169362946716
+    },
+    {
+      "image": "IDRiD_198",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_209",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.08966612907108297
+    },
+    {
+      "image": "IDRiD_210",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.05596179043915635
+    },
+    {
+      "image": "IDRiD_216",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_239",
+      "dr_grade": 4,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9940898345153665
+    },
+    {
+      "image": "IDRiD_255",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_256",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_260",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.21816501039981512
+    },
+    {
+      "image": "IDRiD_265",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.18076227569898456
+    },
+    {
+      "image": "IDRiD_275",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.2716994259871282
+    },
+    {
+      "image": "IDRiD_282",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_285",
+      "dr_grade": 4,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_289",
+      "dr_grade": 4,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9976275207591934
+    },
+    {
+      "image": "IDRiD_290",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.03489368040814807
+    },
+    {
+      "image": "IDRiD_295",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0012084843938825686
+    },
+    {
+      "image": "IDRiD_301",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_302",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_314",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.99644128113879
+    },
+    {
+      "image": "IDRiD_324",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9917355371900827
+    },
+    {
+      "image": "IDRiD_329",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_345",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_363",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.020516366989396035
+    },
+    {
+      "image": "IDRiD_364",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9976275207591934
+    },
+    {
+      "image": "IDRiD_372",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_376",
+      "dr_grade": 3,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.9976275207591934
+    },
+    {
+      "image": "IDRiD_379",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_396",
+      "dr_grade": 0,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.020515103774231113
+    },
+    {
+      "image": "IDRiD_403",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    },
+    {
+      "image": "IDRiD_407",
+      "dr_grade": 2,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0272461581974168
+    },
+    {
+      "image": "IDRiD_408",
+      "dr_grade": 1,
+      "has_lesion_masks": false,
+      "baseline_iou": {},
+      "preprocessed_iou": {},
+      "baseline_alo": {},
+      "preprocessed_alo": {},
+      "attention_overlap": 0.0
+    }
+  ],
+  "summary": {
+    "n_images_analysed": 50,
+    "n_images_with_masks": 5,
+    "mean_iou_baseline": {
+      "microaneurysms": 0.0007269552405412563,
+      "haemorrhages": 0.0038480104820357215,
+      "hard_exudates": 0.0,
+      "soft_exudates": 0.0
+    },
+    "mean_iou_preprocessed": {
+      "microaneurysms": 0.0013247121905062293,
+      "haemorrhages": 0.006206155885108425,
+      "hard_exudates": 0.009779753485552637,
+      "soft_exudates": 0.0
+    },
+    "mean_alo_baseline": {
+      "microaneurysms": 0.0248257006151743,
+      "haemorrhages": 0.006240912649591769,
+      "hard_exudates": 0.0,
+      "soft_exudates": 0.0
+    },
+    "mean_alo_preprocessed": {
+      "microaneurysms": 0.02828282828282828,
+      "haemorrhages": 0.006957858332265915,
+      "hard_exudates": 0.022532588454376164,
+      "soft_exudates": 0.0
+    },
+    "h5_supported": true,
+    "h5_alo_supported": true,
+    "lesion_types_improved_iou": [
+      "microaneurysms",
+      "haemorrhages",
+      "hard_exudates"
+    ],
+    "lesion_types_improved_alo": [
+      "microaneurysms",
+      "haemorrhages",
+      "hard_exudates"
+    ],
+    "nc14_note": "Grad-CAM activation does NOT constitute clinical localization of pathology (INVARIANTS NC-14).  These metrics are interpretability evidence only."
+  }
+}
