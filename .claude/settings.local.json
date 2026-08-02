@@ -615,7 +615,11 @@
       "Bash(PYTHONIOENCODING=utf-8 grep -n \"PC-7\\\\|H-5\" ../results/tables/TAB-5.2_claim_strength.md)",
       "Bash(PYTHONIOENCODING=utf-8 sed -n '1,20p' ../results/data/MANIFEST.md)",
       "PowerShell(git fetch *)",
-      "PowerShell(Get-ChildItem -Recurse -File 'D:\\\\dissertation-project\\\\_archive-results' | ForEach-Object { $_.FullName.Replace\\('D:\\\\dissertation-project\\\\_archive-results\\\\',''\\) } | Sort-Object)"
+      "PowerShell(Get-ChildItem -Recurse -File 'D:\\\\dissertation-project\\\\_archive-results' | ForEach-Object { $_.FullName.Replace\\('D:\\\\dissertation-project\\\\_archive-results\\\\',''\\) } | Sort-Object)",
+      "PowerShell(git push *)",
+      "PowerShell(git status -sb; \"---\"; git log --oneline -3)",
+      "PowerShell(git diff --stat .claude/settings.local.json; \"--- diff ---\"; git diff .claude/settings.local.json)",
+      "PowerShell(git status --short; \"--- diffstat ---\"; git diff --stat)"
     ]
   }
 }
