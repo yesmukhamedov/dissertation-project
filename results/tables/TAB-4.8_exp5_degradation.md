@@ -1,57 +1,58 @@
 # TAB-4.8 — Experiment 5: Clinical Degradation Resistance (H-7)
 
-Внешние клинические наборы, zero-shot с EyePACS. EfficientNet-B3.
-Метрика деградации: `Δ_drop = wF1_in-domain − wF1_external` (меньше = устойчивее).
-In-domain: C = 0.7538, D = 0.8193. Источник: прогон **2026-08-02** (`VALUES.md` §7).
+External clinical sets, zero-shot from EyePACS. EfficientNet-B3.
+Degradation metric: `Δ_drop = wF1_in-domain − wF1_external` (smaller = more resistant).
+In-domain: C = 0.7538, D = 0.8193. Source: the **2026-08-02** run (`VALUES.md` §7).
 
-## Абсолютная производительность на внешних наборах (§7.1)
+## Absolute performance on the external sets (§7.1)
 
-| Набор | n | wF1 (C) | wF1 (D) | Δ (D − C) | 95% CI (Δ) | p (1-стор.) |
+| Set | n | wF1 (C) | wF1 (D) | Δ (D − C) | 95% CI (Δ) | p (1-sided) |
 |-------|--:|--------:|--------:|----------:|------------|------------:|
 | IDRiD | 413 | 0.5920 | **0.6620** | +0.0700 | [+0.0463, +0.0937] | **0.0021** |
 | Messidor-2 | 1 744 | 0.6270 | **0.6780** | +0.0510 | [+0.0284, +0.0736] | **0.0138** |
 
-## Величина деградации относительно in-domain (§7.3)
+## Size of the degradation relative to in-domain (§7.3)
 
-| Набор | Δ_drop (C) | Δ_drop (D) | Δ_drop(D) − Δ_drop(C) | Δ_full < Δ_base? |
+| Set | Δ_drop (C) | Δ_drop (D) | Δ_drop(D) − Δ_drop(C) | Δ_full < Δ_base? |
 |-------|-----------:|-----------:|----------------------:|:----------------:|
-| IDRiD | 0.1618 | **0.1573** | −0.0045 | ✓ (незначительно) |
+| IDRiD | 0.1618 | **0.1573** | −0.0045 | ✓ (negligibly) |
 | Messidor-2 | **0.1268** | 0.1413 | +0.0145 | ✗ |
 
-## Verdict: `h7_supported` — ЧАСТИЧНО (1 / 2 наборов), при однозначном выигрыше по абсолюту
+## Verdict: `h7_supported` — PARTIAL (1 of 2 sets), with an unambiguous win in absolute terms
 
-Здесь нужно строго разделить две формулировки, потому что они дают **разные** ответы:
+Two formulations must be strictly separated here, because they give **different** answers:
 
-**(а) Гипотеза как записана — «Δ_full < Δ_base» — подтверждена только на IDRiD, и с ничтожным
-запасом.** На IDRiD конвейер теряет 0.1573 против 0.1618 у baseline (разница −0.0045 — на порядок
-меньше ширины CI по абсолютным метрикам). На Messidor-2 знак **обратный**: конвейер теряет
-БОЛЬШЕ (0.1413 против 0.1268). По строгому критерию: **1 из 2**, и на IDRiD различие в пределах
-шума. Заявлять «конвейер устойчивее к клинической деградации» **нельзя**.
+**(a) The hypothesis as written — "Δ_full < Δ_base" — is confirmed only on IDRiD, and by a negligible
+margin.** On IDRiD the pipeline loses 0.1573 against baseline's 0.1618 (a difference of −0.0045 — an
+order of magnitude smaller than the width of the CIs on the absolute metrics). On Messidor-2 the sign
+is **reversed**: the pipeline loses MORE (0.1413 against 0.1268). By the strict criterion: **1 of 2**,
+and on IDRiD the difference is within noise. It is **not permissible** to claim that "the pipeline is
+more resistant to clinical degradation".
 
-**(б) Практически значимое утверждение — «конвейер лучше работает на внешних клинических
-наборах» — подтверждено на обоих наборах и статистически.** wF1 выше на +0.0700 (p = 0.0021) и
-+0.0510 (p = 0.0138), оба CI исключают ноль.
+**(b) The practically meaningful claim — "the pipeline performs better on external clinical sets" —
+is confirmed on both sets and statistically.** wF1 is higher by +0.0700 (p = 0.0021) and +0.0510
+(p = 0.0138), and both CIs exclude zero.
 
-Причина расхождения формальная: Δ_drop измеряется от **своего** in-domain-уровня, а у конвейера
-он выше на 6.55пп. Арка с более высоким стартом обязана потерять больше в абсолютных единицах,
-чтобы прийти к тому же внешнему уровню. Относительная деградация это подтверждает: на Messidor-2
-C теряет 16.8% своего in-domain-уровня, D — 17.2%, то есть **пропорционально арки деградируют
-одинаково**, а конвейер просто стартует выше и финиширует выше.
+The reason for the discrepancy is formal: Δ_drop is measured from each arm's **own** in-domain level,
+and the pipeline's is 6.55 pp higher. An arm with a higher starting point is bound to lose more in
+absolute units to arrive at the same external level. Relative degradation confirms this: on
+Messidor-2 C loses 16.8% of its in-domain level and D loses 17.2%, i.e. **proportionally the arms
+degrade identically**, and the pipeline simply starts higher and finishes higher.
 
-**Формулировка для текста:** «интегрированная конфигурация не снижает *относительную* величину
-падения при переносе на внешние клинические наборы, но даёт статистически значимо более высокую
-абсолютную производительность на обоих (Δ wF1 +0.070 и +0.051)». Гипотезу H-7 в её исходной
-записи следует доложить как **подтверждённую частично**, с явным указанием, что метрика Δ_drop
-систематически штрафует более сильную арку.
+**Formulation for the text:** "the integrated configuration does not reduce the *relative* size of
+the drop on transfer to external clinical sets, but delivers statistically significantly higher
+absolute performance on both (Δ wF1 +0.070 and +0.051)". Hypothesis H-7 in its original wording
+should be reported as **partially confirmed**, with an explicit note that the Δ_drop metric
+systematically penalizes the stronger arm.
 
-## Оговорки
+## Caveats
 
-- Оценка на чекпойнтах **fold 0**, межфолдовой дисперсии нет.
-- Δ_drop как метрика устойчивости плохо определена при неравных in-domain-уровнях (см. выше);
-  относительная деградация (Δ_drop / in-domain) — более честная величина и приведена в тексте
-  выше, но в исходных данных прогона отдельно не зафиксирована.
-- Те же два набора участвуют в exp6 как группы камер (`TAB-4.9_exp6_device.md`) — числа там те же.
+- Evaluation uses **fold 0** checkpoints; there is no between-fold variance.
+- Δ_drop as a resistance metric is poorly defined when the in-domain levels are unequal (see above);
+  relative degradation (Δ_drop / in-domain) is the fairer quantity and is given in the text above,
+  but it is not separately recorded in the run's source data.
+- The same two sets appear in exp6 as camera groups (`TAB-4.9_exp6_device.md`) — the numbers there are the same.
 
-Дистанции доменов для этих наборов — `H-3_domain_distance.md` (IDRiD Δd +0.0830, Messidor-2 +0.0630:
-наименьшее сокращение дистанции — на наборе с наименьшим приростом wF1).
-Карточка гипотезы — `hypotheses/H-7.md`.
+Domain distances for these sets — `H-3_domain_distance.md` (IDRiD Δd +0.0830, Messidor-2 +0.0630:
+the smallest reduction in distance falls on the set with the smallest wF1 gain).
+Hypothesis card — `hypotheses/H-7.md`.

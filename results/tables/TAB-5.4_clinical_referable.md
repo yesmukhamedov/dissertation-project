@@ -1,7 +1,7 @@
-# TAB-5.4 — Клинические метрики скрининга (referable-DR, grade ≥ 2)
+# TAB-5.4 — Clinical screening metrics (referable DR, grade ≥ 2)
 
-Referable-DR = порог grade ≥ 2 (умеренная NPDR и тяжелее). Sens/Spec/PPV/NPV + бинарный ROC-AUC.
-Источник: прогон **2026-08-02** (`VALUES.md` §1.8, §4.5, §6.5).
+Referable DR = the grade ≥ 2 threshold (moderate NPDR and worse). Sens/Spec/PPV/NPV + binary ROC-AUC.
+Source: the **2026-08-02** run (`VALUES.md` §1.8, §4.5, §6.5).
 
 ## In-domain — EyePACS, n = 35 126 (exp1)
 
@@ -12,24 +12,24 @@ Referable-DR = порог grade ≥ 2 (умеренная NPDR и тяжелее
 | C — baseline + EffNet-B3 | 0.6891 | 0.9455 | 0.7545 | 0.9259 | 0.8680 |
 | D — pipeline + EffNet-B3 | **0.8007** | **0.9636** | **0.8427** | **0.9521** | **0.9100** |
 
-**Наблюдение.** Конвейер поднимает чувствительность на +11.2пп при **одновременном** росте
-специфичности (+1.9пп) — сдвигается сама кривая, а не рабочая точка на ней (referable-AUC
+**Observation.** The pipeline raises sensitivity by +11.2 pp with a **simultaneous** rise in
+specificity (+1.9 pp) — the curve itself shifts, not the operating point on it (referable AUC
 +0.041 / +0.042, DeLong p = 0.0041 / 0.0028).
 
-## Внешний перенос — APTOS 2019, n = 3 662 (exp3)
+## External transfer — APTOS 2019, n = 3 662 (exp3)
 
-| Арм | Sensitivity | Specificity | PPV | NPV | Referable ROC-AUC |
+| Arm | Sensitivity | Specificity | PPV | NPV | Referable ROC-AUC |
 |-----|------------:|------------:|----:|----:|------------------:|
 | C — baseline (3ch) | 0.7330 | 0.9209 | 0.8637 | 0.8346 | 0.8930 |
 | D — full pipeline (4ch) | **0.8366** | **0.9411** | **0.9067** | **0.8939** | **0.9340** |
 
-**Наблюдение.** Та же картина, что in-domain: +10.4пп Sens при +2.0пп Spec. Бинарный триаж
-«направлять / не направлять» переносится на APTOS у обеих арок (AUC 0.89 и 0.93), но конвейер
-даёт клинически более выгодную рабочую точку.
+**Observation.** The same picture as in-domain: +10.4 pp Sens at +2.0 pp Spec. Binary "refer / do not
+refer" triage transfers to APTOS for both arms (AUC 0.89 and 0.93), but the pipeline gives a
+clinically more favourable operating point.
 
-## Сдвиг устройства — по группам камер (exp6)
+## Device shift — by camera group (exp6)
 
-| Группа камер | Sens (C) | Spec (C) | PPV (C) | NPV (C) | Sens (D) | Spec (D) | PPV (D) | NPV (D) |
+| Camera group | Sens (C) | Spec (C) | PPV (C) | NPV (C) | Sens (D) | Spec (D) | PPV (D) | NPV (D) |
 |--------------|---------:|---------:|--------:|--------:|---------:|---------:|--------:|--------:|
 | kowa_idrid | 0.7120 | 0.9180 | 0.8940 | 0.7640 | **0.8140** | **0.9430** | **0.9290** | **0.8420** |
 | mixed_ddr | 0.7340 | 0.9260 | 0.9020 | 0.7810 | **0.8290** | **0.9480** | **0.9330** | **0.8560** |
@@ -37,25 +37,25 @@ Referable-DR = порог grade ≥ 2 (умеренная NPDR и тяжелее
 | topcon_messidor2 | 0.7480 | 0.9310 | 0.9080 | 0.7930 | **0.8360** | **0.9510** | **0.9360** | **0.8630** |
 | mixed_rfmid | 0.6540 | 0.8870 | 0.8490 | 0.7150 | **0.7910** | **0.9280** | **0.9070** | **0.8230** |
 
-Referable-AUC по тем же группам — `TAB-4.9_exp6_device.md` §6.4 (C 0.853–0.908, D 0.914–0.942).
+Referable AUC for the same groups — `TAB-4.9_exp6_device.md` §6.4 (C 0.853–0.908, D 0.914–0.942).
 
-**Наблюдение.** Конвейер улучшает **все четыре** клинические величины во **всех пяти** группах
-камер, без единого исключения. Диапазон чувствительности сужается с 0.654–0.748 (размах 0.094)
-до 0.791–0.836 (размах 0.045): рабочая точка становится не только лучше, но и **стабильнее по
-устройствам** — то же сжатие разброса, что видно по wF1 и AUC в `TAB-4.9`.
+**Observation.** The pipeline improves **all four** clinical quantities in **all five** camera groups,
+without a single exception. The sensitivity range narrows from 0.654–0.748 (span 0.094) to
+0.791–0.836 (span 0.045): the operating point becomes not only better but also **more stable across
+devices** — the same contraction of spread that is visible in wF1 and AUC in `TAB-4.9`.
 
-## Сводно по трём сценариям
+## Summary across the three scenarios
 
-| Сценарий | Sens (baseline) | Sens (pipeline) | ΔSens | Spec (baseline) | Spec (pipeline) |
+| Scenario | Sens (baseline) | Sens (pipeline) | ΔSens | Spec (baseline) | Spec (pipeline) |
 |----------|----------------:|----------------:|------:|----------------:|----------------:|
 | In-domain EyePACS (C→D) | 0.6891 | 0.8007 | +0.1116 | 0.9455 | 0.9636 |
 | APTOS zero-shot (C→D) | 0.7330 | 0.8366 | +0.1036 | 0.9209 | 0.9411 |
-| Группы камер (среднее) | 0.7038 | 0.8136 | +0.1098 | 0.9112 | 0.9402 |
+| Camera groups (mean) | 0.7038 | 0.8136 | +0.1098 | 0.9112 | 0.9402 |
 
-Прирост чувствительности практически постоянен (+0.10…+0.11) во всех трёх сценариях —
-in-domain, zero-shot на другой набор, смена устройства. Это самый воспроизводимый клинический
-эффект конвейера во всём наборе экспериментов.
+The sensitivity gain is practically constant (+0.10…+0.11) across all three scenarios — in-domain,
+zero-shot to another set, and device change. This is the most reproducible clinical effect of the
+pipeline across the entire experiment suite.
 
-> **NC-14 / INVARIANTS:** приведённые величины — операционные характеристики модели на
-> размеченных наборах, а не показатели клинической валидации. Формулировки вида «система
-> пригодна для скрининга» из них не следуют.
+> **NC-14 / INVARIANTS:** the values presented are operating characteristics of the model on
+> annotated datasets, not indicators of clinical validation. Statements of the form "the system is
+> suitable for screening" do not follow from them.

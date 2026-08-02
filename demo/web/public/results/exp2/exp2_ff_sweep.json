@@ -1,18 +1,36 @@
 {
   "experiment": "Experiment 2 — Flat-field sigma factor sweep",
-  "hypothesis": "H-2 (component characterization)",
+  "hypothesis": "H-2 (component characterization, part C)",
+  "run": "2026-08-02",
+  "source_of_truth": "results/tables/exp2_flatfield_sigma_sweep.md",
   "architecture": "EfficientNet-B3",
   "dataset": "EyePACS",
   "stages_active": "Stages 0-4 (canonical flip, rotation, isotropic resize, FOV mask, flat-field)",
   "sweep_range": "0.05D to 0.10D (D = FOV diameter in pixels)",
+  "evaluated_on": "train folds (used to select sigma*); held-out confirmation reported separately",
   "results": [
-    { "sigma_factor": 0.05, "weighted_f1": 0.754, "cnr": 3.5 },
-    { "sigma_factor": 0.06, "weighted_f1": 0.756, "cnr": 3.6 },
-    { "sigma_factor": 0.07, "weighted_f1": 0.758, "cnr": 3.8 },
-    { "sigma_factor": 0.08, "weighted_f1": 0.757, "cnr": 3.7 },
-    { "sigma_factor": 0.09, "weighted_f1": 0.755, "cnr": 3.6 },
-    { "sigma_factor": 0.10, "weighted_f1": 0.752, "cnr": 3.4 }
+    { "sigma_factor": 0.05, "weighted_f1": 0.7680, "cnr": 3.20 },
+    { "sigma_factor": 0.06, "weighted_f1": 0.7870, "cnr": 3.50 },
+    { "sigma_factor": 0.07, "weighted_f1": 0.8090, "cnr": 3.90 },
+    { "sigma_factor": 0.08, "weighted_f1": 0.7950, "cnr": 3.60 },
+    { "sigma_factor": 0.09, "weighted_f1": 0.7760, "cnr": 3.40 },
+    { "sigma_factor": 0.10, "weighted_f1": 0.7570, "cnr": 3.10 }
   ],
   "optimal_sigma": 0.07,
-  "robustness_note": "F1 varies by only 0.002-0.004 within +/-0.02D of optimum"
+  "range_R": 0.0520,
+  "profile": "strictly unimodal with an interior maximum and symmetric fall-off on both sides",
+  "held_out": {
+    "flat_field_off_weighted_f1": 0.7510,
+    "flat_field_optimal_weighted_f1": 0.8080,
+    "delta_weighted_f1": 0.0570,
+    "delta_95ci": [0.0381, 0.0759]
+  },
+  "notes": [
+    "New in the 2026-08-02 run: this sweep had not been executed before, leaving the second half of PC-2 open.",
+    "sigma* = 0.07 coincides with the value already fixed in the Stage 4 specification, so the sweep confirms the existing setting rather than changing it.",
+    "The sweep range R = 0.052 is comparable to the entire pipeline effect (+0.0655), so sigma genuinely requires tuning.",
+    "Within this single stage CNR and weighted F1 move together (both peak at sigma = 0.07). Across different stages they do not — see the per-level image-quality table.",
+    "CNR here uses a different normalization from the per-level ablation table (20-29 range); absolute values are not comparable between the two.",
+    "One evaluation per grid point, no per-fold std."
+  ]
 }

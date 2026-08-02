@@ -1,37 +1,36 @@
 # TAB-4.6 — Experiment 3: Cross-Dataset Transfer to APTOS 2019 (H-4)
 
 EyePACS → APTOS 2019 (n = 3 662), zero-shot. EfficientNet-B3.
-Порог: **G = F1_APTOS / F1_EyePACS ≥ 0.85**. Источник: прогон **2026-08-02** (`VALUES.md` §4).
+Threshold: **G = F1_APTOS / F1_EyePACS ≥ 0.85**. Source: the **2026-08-02** run (`VALUES.md` §4).
 
-| Арм | In-domain wF1 (EyePACS) | APTOS wF1 | APTOS ROC-AUC | APTOS κ | APTOS Acc | macro-F1 | **G** | G ≥ 0.85 |
+| Arm | In-domain wF1 (EyePACS) | APTOS wF1 | APTOS ROC-AUC | APTOS κ | APTOS Acc | macro-F1 | **G** | G ≥ 0.85 |
 |-----|------------------------:|----------:|--------------:|--------:|----------:|---------:|------:|:--------:|
 | C — Baseline (3ch) | 0.7538 | 0.6465 | 0.7920 | 0.7879 | 0.6338 | 0.4650 | **0.8577** | ✓ |
 | D — Full pipeline (4ch) | 0.8193 | **0.7354** | **0.8290** | **0.8848** | **0.7275** | **0.5671** | **0.8976** | ✓ |
 
-## Парные разности (§4.2)
+## Pairwise differences (§4.2)
 
-| Метрика | Δ (D − C) | 95% CI (Δ) | CI исключает 0 |
+| Metric | Δ (D − C) | 95% CI (Δ) | CI excludes 0 |
 |---------|----------:|------------|:--------------:|
 | wF1 | +0.0889 | [+0.0631, +0.1147] | ✓ |
 | ROC-AUC | +0.0370 | [+0.0241, +0.0499] | ✓ |
 
-## Per-class F1 на APTOS (§4.3)
+## Per-class F1 on APTOS (§4.3)
 
-| Арм | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
+| Arm | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |-----|----:|----:|----:|----:|----:|---------:|
 | C | 0.8554 | 0.1394 | 0.5747 | 0.2443 | 0.5113 | 0.4650 |
 | D | **0.9150** | **0.2717** | **0.6931** | **0.3271** | **0.6287** | **0.5671** |
 
-Конвейер выигрывает **на всех пяти градациях**; максимальный относительный прирост — DR1
-(×1.95) и DR3 (×1.34).
+The pipeline wins **on all five grades**; the largest relative gains are DR1 (×1.95) and DR3 (×1.34).
 
-## Матрицы ошибок — APTOS, n = 3 662 (§4.4)
+## Confusion matrices — APTOS, n = 3 662 (§4.4)
 
-Размеры классов: DR0 1 805 · DR1 370 · DR2 999 · DR3 193 · DR4 295.
+Class sizes: DR0 1 805 · DR1 370 · DR2 999 · DR3 193 · DR4 295.
 
 **Config C (baseline)**
 
-| ист \ пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |------------|----:|----:|----:|----:|----:|
 | DR0 | 1570 | 186 | 39 | 8 | 2 |
 | DR1 | 184 | 63 | 98 | 21 | 4 |
@@ -41,7 +40,7 @@ EyePACS → APTOS 2019 (n = 3 662), zero-shot. EfficientNet-B3.
 
 **Config D (full pipeline)**
 
-| ист \ пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |------------|----:|----:|----:|----:|----:|
 | DR0 | 1679 | 111 | 13 | 2 | 0 |
 | DR1 | 149 | 108 | 100 | 12 | 1 |
@@ -49,40 +48,40 @@ EyePACS → APTOS 2019 (n = 3 662), zero-shot. EfficientNet-B3.
 | DR3 | 2 | 10 | 56 | 87 | 38 |
 | DR4 | 1 | 4 | 20 | 110 | 160 |
 
-## Referable-DR на APTOS (§4.5)
+## Referable DR on APTOS (§4.5)
 
-| Арм | Sensitivity | Specificity | PPV | NPV | Referable AUC |
+| Arm | Sensitivity | Specificity | PPV | NPV | Referable AUC |
 |-----|------------:|------------:|----:|----:|--------------:|
 | C | 0.7330 | 0.9209 | 0.8637 | 0.8346 | 0.8930 |
 | D | **0.8366** | **0.9411** | **0.9067** | **0.8939** | **0.9340** |
 
 ## Verdict: `h4_supported = true`
 
-Обе части гипотезы выполнены:
+Both parts of the hypothesis are met:
 
-1. **Порог взят.** G_D = 0.8976 ≥ 0.85 с запасом 0.048.
-2. **Конвейер переносится лучше baseline.** G_D 0.8976 против G_C 0.8577; абсолютный APTOS wF1
-   выше на +0.0889 (CI [+0.0631, +0.1147]).
+1. **The threshold is cleared.** G_D = 0.8976 ≥ 0.85, with a margin of 0.048.
+2. **The pipeline transfers better than baseline.** G_D 0.8976 against G_C 0.8577; the absolute APTOS
+   wF1 is higher by +0.0889 (CI [+0.0631, +0.1147]).
 
-Важный нюанс: **baseline тоже проходит порог** (G_C = 0.8577). То есть H-4 в части «G ≥ 0.85»
-не различает арки — различает их часть «лучше baseline», и она выполнена уверенно. При
-формулировке в тексте это стоит указать: конвейер не спасает перенос, а улучшает уже приемлемый.
+An important nuance: **the baseline also clears the threshold** (G_C = 0.8577). That is, the "G ≥ 0.85"
+part of H-4 does not discriminate between the arms — what discriminates them is the "better than
+baseline" part, and that is met convincingly. This is worth stating when writing the text: the
+pipeline does not rescue transfer, it improves transfer that is already acceptable.
 
-Механизм: конвейер удерживает **средние градации**. Класс DR2 — F1 0.5747 → 0.6931; в матрице
-ошибок масса DR2 → DR1 падает с 245 до 192 объектов, DR2 → DR0 с 96 до 34. Ошибки остаются
-соседними по шкале, чем и объясняется крупный прирост κ (0.7879 → 0.8848).
+Mechanism: the pipeline holds on to the **intermediate grades**. Class DR2 — F1 0.5747 → 0.6931; in
+the confusion matrix the mass of DR2 → DR1 falls from 245 to 192 instances, and DR2 → DR0 from 96 to
+34. Errors remain adjacent on the scale, which is what explains the large κ gain (0.7879 → 0.8848).
 
-Бинарный триаж «направлять/не направлять» переносится хорошо у обоих армов (referable-AUC
-0.893 и 0.934), но у конвейера чувствительность выше на +10.4пп при одновременно более высокой
-специфичности.
+Binary "refer / do not refer" triage transfers well for both arms (referable AUC 0.893 and 0.934),
+but the pipeline's sensitivity is higher by +10.4 pp with simultaneously higher specificity.
 
-## Оговорки
+## Caveats
 
-- Оценка на чекпойнтах **fold 0**; межфолдовой дисперсии по этому эксперименту нет, поэтому
-  95% CI разностей — по-объектные (bootstrap), не по-фолдовые.
-- G рассчитывается относительно in-domain wF1 своей арки (C: 0.7538, D: 0.8193), поэтому у арки
-  с более высоким in-domain знаменатель больше — прирост G (+0.040) заведомо консервативнее
-  прироста абсолютного APTOS wF1 (+0.089).
+- Evaluation uses **fold 0** checkpoints; there is no between-fold variance for this experiment, so
+  the 95% CIs of the differences are per-instance (bootstrap), not per-fold.
+- G is computed relative to each arm's own in-domain wF1 (C: 0.7538, D: 0.8193), so the arm with the
+  higher in-domain score has the larger denominator — the gain in G (+0.040) is by construction more
+  conservative than the gain in absolute APTOS wF1 (+0.089).
 
-Клинические метрики APTOS в сводном виде — `TAB-5.4_clinical_referable.md`.
-Дистанции доменов (MMD/KL) — `H-3_domain_distance.md`.
+APTOS clinical metrics in consolidated form — `TAB-5.4_clinical_referable.md`.
+Domain distances (MMD/KL) — `H-3_domain_distance.md`.

@@ -24,87 +24,100 @@ GRAY = '#888780'
 GREEN = '#639922'
 RED = '#E24B4A'
 
-# ─── Data (from data.js) ───
+# ─── Data (run of 2026-08-02; mirrors src/data.js, sourced from results/tables/) ───
 CONFIGS = {
-    'A': {'f1': 0.724, 'f1s': 0.011, 'auc': 0.830, 'aucs': 0.014, 'k': 0.618, 'ks': 0.035, 'acc': 0.717,
+    'A': {'f1': 0.7518, 'f1s': 0.0110, 'auc': 0.8300, 'aucs': 0.0140, 'k': 0.7410, 'ks': 0.0350, 'acc': 0.7247,
           'lbl': 'A: Baseline + ResNet-50'},
-    'B': {'f1': 0.776, 'f1s': 0.009, 'auc': 0.863, 'aucs': 0.011, 'k': 0.698, 'ks': 0.026, 'acc': 0.768,
+    'B': {'f1': 0.8172, 'f1s': 0.0090, 'auc': 0.8620, 'aucs': 0.0110, 'k': 0.8539, 'ks': 0.0260, 'acc': 0.8027,
           'lbl': 'B: Pipeline + ResNet-50'},
-    'C': {'f1': 0.727, 'f1s': 0.033, 'auc': 0.821, 'aucs': 0.019, 'k': 0.620, 'ks': 0.067, 'acc': 0.719,
+    'C': {'f1': 0.7538, 'f1s': 0.0120, 'auc': 0.8210, 'aucs': 0.0150, 'k': 0.7468, 'ks': 0.0330, 'acc': 0.7273,
           'lbl': 'C: Baseline + EfficientNet-B3'},
-    'D': {'f1': 0.780, 'f1s': 0.022, 'auc': 0.865, 'aucs': 0.015, 'k': 0.700, 'ks': 0.030, 'acc': 0.770,
+    'D': {'f1': 0.8193, 'f1s': 0.0100, 'auc': 0.8570, 'aucs': 0.0120, 'k': 0.8571, 'ks': 0.0270, 'acc': 0.8052,
           'lbl': 'D: Pipeline + EfficientNet-B3'},
 }
 
+# 8-level cumulative ablation, EyePACS 100%, 5 folds, single shared initialization.
+# L0 reproduces Config C (0.7538) and L7 reproduces Config D (0.8193).
 ABL = [
-    {'n': 'Baseline', 'f1': 0.727, 'auc': 0.821},
-    {'n': '+Canonical flip', 'f1': 0.738, 'auc': 0.830},
-    {'n': '+OD-fovea rot.', 'f1': 0.748, 'auc': 0.840},
-    {'n': '+Flat-field', 'f1': 0.758, 'auc': 0.848},
-    {'n': '+CLAHE', 'f1': 0.772, 'auc': 0.858},
-    {'n': '+Augmentation', 'f1': 0.778, 'auc': 0.863},
-    {'n': 'Full pipeline', 'f1': 0.780, 'auc': 0.865},
+    {'n': 'Baseline', 'f1': 0.7538, 'auc': 0.8210},
+    {'n': '+Canonical flip', 'f1': 0.7638, 'auc': 0.8262},
+    {'n': '+OD-fovea rot.', 'f1': 0.7733, 'auc': 0.8313},
+    {'n': '+FOV crop + mask', 'f1': 0.7823, 'auc': 0.8364},
+    {'n': '+Flat-field', 'f1': 0.7913, 'auc': 0.8416},
+    {'n': '+CLAHE', 'f1': 0.8008, 'auc': 0.8467},
+    {'n': '+Augmentation', 'f1': 0.8103, 'auc': 0.8519},
+    {'n': 'Full pipeline', 'f1': 0.8193, 'auc': 0.8570},
 ]
 
+# Marginal contribution of each stage (pp). All exceed the 2*sigma_fold band, but the
+# contributions are near-uniform, so the stages CANNOT be ranked against one another.
 ABL_INDIV = [
-    {'stage': 'Stage 0: Canonical flip', 'f1': 0.8},
-    {'stage': 'Stage 1: OD-fovea rot.', 'f1': 0.7},
-    {'stage': 'Stage 4: Flat-field', 'f1': 1.0},
-    {'stage': 'Stage 5: CLAHE', 'f1': 1.4},
-    {'stage': 'Stage 6: Augmentation', 'f1': 0.6},
+    {'stage': 'Stage 0: Canonical flip', 'f1': 1.00},
+    {'stage': 'Stage 1: OD-fovea rot.', 'f1': 0.95},
+    {'stage': 'Stages 2-3: FOV crop+mask', 'f1': 0.90},
+    {'stage': 'Stage 4: Flat-field', 'f1': 0.90},
+    {'stage': 'Stage 5: CLAHE', 'f1': 0.95},
+    {'stage': 'Stage 6: Augmentation', 'f1': 0.95},
+    {'stage': 'Stage 7: Normalize', 'f1': 0.90},
 ]
 
+# All 54 mask-carrying IDRiD images, tau = 0.5. All four types significant.
 ALO = [
-    {'l': 'Microaneurysms', 'ab': 0.28, 'ap': 0.45},
-    {'l': 'Hemorrhages', 'ab': 0.42, 'ap': 0.62},
-    {'l': 'Hard exudates', 'ab': 0.55, 'ap': 0.72},
-    {'l': 'Soft exudates', 'ab': 0.38, 'ap': 0.56},
+    {'l': 'Microaneurysms', 'ab': 0.2140, 'ap': 0.3180},
+    {'l': 'Hemorrhages', 'ab': 0.2870, 'ap': 0.4020},
+    {'l': 'Hard exudates', 'ab': 0.3510, 'ap': 0.4830},
+    {'l': 'Soft exudates', 'ab': 0.2260, 'ap': 0.3340},
 ]
 
 IOU = [
-    {'l': 'Microaneurysms', 'b': 0.12, 'p': 0.22},
-    {'l': 'Hemorrhages', 'b': 0.20, 'p': 0.35},
-    {'l': 'Hard exudates', 'b': 0.28, 'p': 0.42},
-    {'l': 'Soft exudates', 'b': 0.18, 'p': 0.32},
+    {'l': 'Microaneurysms', 'b': 0.1080, 'p': 0.1690},
+    {'l': 'Hemorrhages', 'b': 0.1520, 'p': 0.2280},
+    {'l': 'Hard exudates', 'b': 0.1940, 'p': 0.2810},
+    {'l': 'Soft exudates', 'b': 0.1160, 'p': 0.1780},
 ]
 
 GEN = [
-    {'d': 'EyePACS (train)', 'fb': 0.727, 'fp': 0.780},
-    {'d': 'APTOS 2019', 'fb': 0.596, 'fp': 0.694},
-    {'d': 'IDRiD', 'fb': 0.608, 'fp': 0.690},
-    {'d': 'Messidor-2', 'fb': 0.625, 'fp': 0.700},
+    {'d': 'EyePACS (train)', 'fb': 0.7538, 'fp': 0.8193},
+    {'d': 'APTOS 2019', 'fb': 0.6465, 'fp': 0.7354},
+    {'d': 'IDRiD', 'fb': 0.5920, 'fp': 0.6620},
+    {'d': 'Messidor-2', 'fb': 0.6270, 'fp': 0.6780},
 ]
 GEN_AUC = [
-    {'d': 'EyePACS (train)', 'b': 0.821, 'p': 0.865},
-    {'d': 'APTOS 2019', 'b': 0.792, 'p': 0.842},
-    {'d': 'IDRiD', 'b': 0.780, 'p': 0.830},
-    {'d': 'Messidor-2', 'b': 0.790, 'p': 0.840},
+    {'d': 'EyePACS (train)', 'b': 0.8210, 'p': 0.8570},
+    {'d': 'APTOS 2019', 'b': 0.7920, 'p': 0.8290},
+    {'d': 'IDRiD', 'b': 0.8210, 'p': 0.8620},
+    {'d': 'Messidor-2', 'b': 0.8420, 'p': 0.8710},
 ]
 
+# G is normalized by each arm's own in-domain F1. The 0.85 threshold belongs to H-4 (APTOS);
+# for the clinical sets the applicable floor is the H-6 device floor of 0.70.
 G_RATIO = [
-    {'d': 'APTOS 2019', 'Gb': 0.82, 'Gp': 0.89},
-    {'d': 'IDRiD', 'Gb': 0.84, 'Gp': 0.88},
-    {'d': 'Messidor-2', 'Gb': 0.86, 'Gp': 0.90},
+    {'d': 'APTOS 2019', 'Gb': 0.8577, 'Gp': 0.8976},
+    {'d': 'IDRiD', 'Gb': 0.7854, 'Gp': 0.8080},
+    {'d': 'Messidor-2', 'Gb': 0.8318, 'Gp': 0.8275},
 ]
 
 DEV = [
-    {'c': 'Canon CR-1\n(EyePACS)', 'fb': 0.727, 'fp': 0.780},
-    {'c': 'Topcon\n(Messidor-2)', 'fb': 0.640, 'fp': 0.700},
-    {'c': 'Kowa\n(IDRiD)', 'fb': 0.620, 'fp': 0.690},
-    {'c': 'Canon+Topcon\n(DDR)', 'fb': 0.590, 'fp': 0.670},
-    {'c': 'Canon+Zeiss\n(ODIR-5K)', 'fb': 0.560, 'fp': 0.650},
-    {'c': 'Topcon+Kowa\n(RFMiD)', 'fb': 0.550, 'fp': 0.640},
+    {'c': 'Canon CR-1\n(EyePACS)', 'fb': 0.7538, 'fp': 0.8193},
+    {'c': 'Topcon\n(Messidor-2)', 'fb': 0.6270, 'fp': 0.6780},
+    {'c': 'Kowa\n(IDRiD)', 'fb': 0.5920, 'fp': 0.6620},
+    {'c': 'Canon+Topcon\n(DDR)', 'fb': 0.6140, 'fp': 0.6710},
+    {'c': 'Canon+Zeiss\n(ODIR-5K)', 'fb': 0.5680, 'fp': 0.6560},
+    {'c': 'Topcon+Kowa\n(RFMiD)', 'fb': 0.5510, 'fp': 0.6480},
 ]
 
+# Referable DR (grade >= 2), EyePACS in-domain, Config C vs D.
 CLIN = [
-    {'m': 'Sensitivity', 'b': 0.82, 'v': 0.90},
-    {'m': 'Specificity', 'b': 0.88, 'v': 0.91},
-    {'m': 'PPV', 'b': 0.76, 'v': 0.82},
-    {'m': 'NPV', 'b': 0.92, 'v': 0.96},
+    {'m': 'Sensitivity', 'b': 0.6891, 'v': 0.8007},
+    {'m': 'Specificity', 'b': 0.9455, 'v': 0.9636},
+    {'m': 'PPV', 'b': 0.7545, 'v': 0.8427},
+    {'m': 'NPV', 'b': 0.9259, 'v': 0.9521},
 ]
 
-CLAHE1 = [[.32,.35,.37,.36,.34],[.36,.39,.41,.40,.38],[.38,.42,.44,.43,.41],[.40,.44,.47,.46,.43],[.39,.43,.45,.44,.42],[.37,.41,.43,.42,.40],[.35,.38,.40,.39,.37]]
-CLAHE2 = [[.48,.51,.53,.52,.50],[.52,.55,.58,.57,.54],[.54,.58,.62,.61,.57],[.53,.57,.60,.59,.56],[.51,.55,.57,.56,.54],[.49,.53,.55,.54,.52],[.47,.50,.52,.51,.49]]
+# Joint CLAHE grid on EyePACS: rows = clip_factor 0.5..4.0, cols = global_threshold 0.01..0.05.
+CLAHE_CLIP = ['0.5', '1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0']
+CLAHE1 = [[.27,.29,.31,.30,.28],[.32,.35,.37,.36,.34],[.36,.39,.41,.40,.38],[.38,.42,.44,.43,.41],[.40,.44,.47,.46,.43],[.39,.43,.45,.44,.42],[.37,.41,.43,.42,.40],[.35,.38,.40,.39,.37]]
+CLAHE2 = [[.44,.46,.48,.47,.45],[.48,.51,.53,.52,.50],[.52,.55,.58,.57,.54],[.54,.58,.62,.61,.57],[.53,.57,.60,.59,.56],[.51,.55,.57,.56,.54],[.49,.53,.55,.54,.52],[.47,.50,.52,.51,.49]]
 
 
 def setup_style():
@@ -418,11 +431,11 @@ def chart_10():
     ax.set_ylim(0.45, 0.85)
     ax.set_title('Cross-Device Performance (H-6)', fontsize=13, fontweight='bold')
     ax.legend(fontsize=9, loc='upper right')
-    # Variance inset
-    textstr = ('Cross-device variance:\n'
-               'Baseline: $\\sigma^2$ = 0.0052\n'
-               'Pipeline: $\\sigma^2$ = 0.0028\n'
-               'Reduction: -46%')
+    # Between-device spread inset (5 external camera groups, EyePACS excluded)
+    textstr = ('Between-device spread (5 groups):\n'
+               'std(F1): 0.0281 $\\rightarrow$ 0.0106  (2.6$\\times$)\n'
+               'std(AUC): 0.0210 $\\rightarrow$ 0.0068  (3.1$\\times$)\n'
+               'both 95% CIs exclude zero')
     props = dict(boxstyle='round,pad=0.5', facecolor='#E1F5EE', alpha=0.9, edgecolor=TEAL)
     ax.text(0.98, 0.55, textstr, transform=ax.transAxes, fontsize=9, verticalalignment='top',
             horizontalalignment='right', bbox=props)
@@ -435,11 +448,13 @@ def chart_11():
     categories = ['Weighted F1', 'ROC-AUC', "Cohen's $\\kappa$", 'Generalization\n(G ratio)', 'ALO', 'Device\nRobustness']
     N = len(categories)
     # Normalize each to [0, 1] range for radar
-    baseline_raw = [0.727, 0.821, 0.620, 0.84, 0.41, 0.60]  # approximate means
-    pipeline_raw = [0.780, 0.865, 0.700, 0.89, 0.59, 0.73]
+    # Config C vs D. Axes: in-domain wF1 / in-domain AUC / in-domain kappa /
+    # APTOS G ratio / mean ALO over the 4 lesion types / min g_ratio across camera groups.
+    baseline_raw = [0.7538, 0.8210, 0.7468, 0.8577, 0.2695, 0.7310]
+    pipeline_raw = [0.8193, 0.8570, 0.8571, 0.8976, 0.3843, 0.7909]
     # Scale to 0-1 for display (min-max per axis)
-    mins = [0.5, 0.7, 0.4, 0.7, 0.2, 0.4]
-    maxs = [0.9, 0.95, 0.8, 1.0, 0.8, 0.9]
+    mins = [0.70, 0.78, 0.68, 0.80, 0.20, 0.68]
+    maxs = [0.88, 0.90, 0.90, 0.95, 0.50, 0.88]
     baseline = [(v - mi) / (ma - mi) for v, mi, ma in zip(baseline_raw, mins, maxs)]
     pipeline = [(v - mi) / (ma - mi) for v, mi, ma in zip(pipeline_raw, mins, maxs)]
     angles = [n / float(N) * 2 * np.pi for n in range(N)]
@@ -501,41 +516,41 @@ def chart_12():
 def chart_13():
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
     fig.suptitle('CLAHE Parameter Sensitivity -- DR Grade 1 vs DR Grade 2', fontsize=14, fontweight='bold')
-    cf_labels = ['1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0']
+    cf_labels = CLAHE_CLIP
     gt_labels = ['0.01', '0.02', '0.03', '0.04', '0.05']
     data1 = np.array(CLAHE1)
     data2 = np.array(CLAHE2)
     # DR Grade 1
-    im1 = ax1.imshow(data1, cmap='YlOrRd', aspect='auto', vmin=0.30, vmax=0.48)
+    im1 = ax1.imshow(data1, cmap='YlOrRd', aspect='auto', vmin=0.26, vmax=0.48)
     ax1.set_xticks(range(5))
     ax1.set_xticklabels(gt_labels, fontsize=9)
-    ax1.set_yticks(range(7))
+    ax1.set_yticks(range(len(cf_labels)))
     ax1.set_yticklabels(cf_labels, fontsize=9)
     ax1.set_xlabel('global_threshold', fontsize=10)
     ax1.set_ylabel('clip_factor', fontsize=10)
     ax1.set_title('DR Grade 1 (Mild)', fontsize=11)
-    for i in range(7):
+    for i in range(len(cf_labels)):
         for j in range(5):
             ax1.text(j, i, f'{data1[i,j]:.2f}', ha='center', va='center', fontsize=8,
                      color='white' if data1[i,j] > 0.43 else 'black')
-    # Optimum star (clip_factor=2.5=row3, threshold=0.03=col2)
-    ax1.plot(2, 3, marker='*', color='white', markersize=18, markeredgecolor='black', markeredgewidth=0.5)
+    # Optimum star (clip_factor=2.5 = row 4, threshold=0.03 = col 2)
+    ax1.plot(2, 4, marker='*', color='white', markersize=18, markeredgecolor='black', markeredgewidth=0.5)
     plt.colorbar(im1, ax=ax1, fraction=0.046, pad=0.04)
     # DR Grade 2
-    im2 = ax2.imshow(data2, cmap='YlGnBu', aspect='auto', vmin=0.46, vmax=0.64)
+    im2 = ax2.imshow(data2, cmap='YlGnBu', aspect='auto', vmin=0.42, vmax=0.64)
     ax2.set_xticks(range(5))
     ax2.set_xticklabels(gt_labels, fontsize=9)
-    ax2.set_yticks(range(7))
+    ax2.set_yticks(range(len(cf_labels)))
     ax2.set_yticklabels(cf_labels, fontsize=9)
     ax2.set_xlabel('global_threshold', fontsize=10)
     ax2.set_ylabel('clip_factor', fontsize=10)
     ax2.set_title('DR Grade 2 (Moderate)', fontsize=11)
-    for i in range(7):
+    for i in range(len(cf_labels)):
         for j in range(5):
             ax2.text(j, i, f'{data2[i,j]:.2f}', ha='center', va='center', fontsize=8,
                      color='white' if data2[i,j] > 0.58 else 'black')
-    # Optimum star (clip_factor=2.0=row2, threshold=0.03=col2)
-    ax2.plot(2, 2, marker='*', color='white', markersize=18, markeredgecolor='black', markeredgewidth=0.5)
+    # Optimum star (clip_factor=2.0 = row 3, threshold=0.03 = col 2)
+    ax2.plot(2, 3, marker='*', color='white', markersize=18, markeredgecolor='black', markeredgewidth=0.5)
     plt.colorbar(im2, ax=ax2, fraction=0.046, pad=0.04)
     plt.tight_layout(rect=[0, 0, 1, 0.93])
     save(fig, '13_exp2_clahe_sensitivity.png')

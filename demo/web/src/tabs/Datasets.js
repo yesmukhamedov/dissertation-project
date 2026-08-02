@@ -508,12 +508,12 @@ function DataFlowDiagram() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <span style={boxStyle('purple')}>Messidor-2</span>
             <span style={arrowStyle}>→</span>
-            <span style={expStyle('purple')}>Exp 5 (H-4): G=0.90 ≥ 0.85 ✓</span>
+            <span style={expStyle('purple')}>Exp 5: F1 0.678 · G=0.83 ≥ 0.70 ✓</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <span style={boxStyle('teal')}>IDRiD</span>
             <span style={arrowStyle}>→</span>
-            <span style={expStyle('teal')}>Exp 5 (H-4): G=0.88 ≥ 0.85 ✓</span>
+            <span style={expStyle('teal')}>Exp 5: F1 0.662 · G=0.81 ≥ 0.70 ✓</span>
           </div>
         </div>
 

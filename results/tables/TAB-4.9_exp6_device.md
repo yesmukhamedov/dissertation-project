@@ -1,15 +1,15 @@
 # TAB-4.9 — Experiment 6: Device / Camera Domain Shift (H-6)
 
-Модели, обученные на EyePACS, оценены на группах по производителю камеры.
-Порог устойчивости **g_floor = 0.7**, где g_ratio = wF1_группы / wF1_in-domain.
-In-domain: C = 0.7538, D = 0.8193. Источник: прогон **2026-08-02** (`VALUES.md` §6).
+Models trained on EyePACS, evaluated on groups defined by camera manufacturer.
+Robustness threshold **g_floor = 0.7**, where g_ratio = wF1_group / wF1_in-domain.
+In-domain: C = 0.7538, D = 0.8193. Source: the **2026-08-02** run (`VALUES.md` §6).
 
-Размеры групп: kowa_idrid 413 · mixed_ddr 1 200 · mixed_odir5k 950 ·
+Group sizes: kowa_idrid 413 · mixed_ddr 1 200 · mixed_odir5k 950 ·
 topcon_messidor2 1 744 · mixed_rfmid 640.
 
-## Weighted F1 и g_ratio по группам (§6.1, §6.9)
+## Weighted F1 and g_ratio by group (§6.1, §6.9)
 
-| Группа камер | wF1 (C) | wF1 (D) | Δ | 95% CI (Δ) | g_ratio (C) | g_ratio (D) | ≥0.7 (C/D) |
+| Camera group | wF1 (C) | wF1 (D) | Δ | 95% CI (Δ) | g_ratio (C) | g_ratio (D) | ≥0.7 (C/D) |
 |--------------|--------:|--------:|--:|------------|------------:|------------:|:----------:|
 | kowa_idrid | 0.5920 | **0.6620** | +0.0700 | [+0.0463, +0.0937] | 0.7854 | 0.8080 | ✓ / ✓ |
 | mixed_ddr | 0.6140 | **0.6710** | +0.0570 | [+0.0338, +0.0802] | 0.8145 | 0.8190 | ✓ / ✓ |
@@ -17,9 +17,9 @@ topcon_messidor2 1 744 · mixed_rfmid 640.
 | topcon_messidor2 | 0.6270 | **0.6780** | +0.0510 | [+0.0284, +0.0736] | 0.8318 | 0.8275 | ✓ / ✓ |
 | mixed_rfmid | 0.5510 | **0.6480** | +0.0970 | [+0.0698, +0.1242] | 0.7310 | 0.7909 | ✓ / ✓ |
 
-## ROC-AUC и κ по группам (§6.2, §6.3)
+## ROC-AUC and κ by group (§6.2, §6.3)
 
-| Группа | AUC (C) | AUC (D) | Δ AUC | 95% CI (Δ) | κ (C) | κ (D) |
+| Group | AUC (C) | AUC (D) | Δ AUC | 95% CI (Δ) | κ (C) | κ (D) |
 |--------|--------:|--------:|------:|------------|------:|------:|
 | kowa_idrid | 0.8210 | **0.8620** | +0.0410 | [+0.0262, +0.0558] | 0.6840 | **0.7710** |
 | mixed_ddr | 0.8340 | **0.8680** | +0.0340 | [+0.0208, +0.0472] | 0.7020 | **0.7830** |
@@ -27,19 +27,20 @@ topcon_messidor2 1 744 · mixed_rfmid 640.
 | topcon_messidor2 | 0.8420 | **0.8710** | +0.0290 | [+0.0171, +0.0409] | 0.7180 | **0.7920** |
 | mixed_rfmid | 0.7880 | **0.8530** | +0.0650 | [+0.0448, +0.0852] | 0.6230 | **0.7460** |
 
-## Межгрупповой разброс (§6.8) — ключевой результат
+## Between-group spread (§6.8) — the key result
 
-| Величина | C | D | Δ (D − C) | 95% CI (Δ) | CI исключает 0 |
+| Quantity | C | D | Δ (D − C) | 95% CI (Δ) | CI excludes 0 |
 |----------|--:|--:|----------:|------------|:--------------:|
-| std (wF1, 5 групп) | 0.0281 | **0.0106** | −0.0175 | [−0.0268, −0.0082] | ✓ |
-| std (ROC-AUC, 5 групп) | 0.0210 | **0.0068** | −0.0142 | [−0.0221, −0.0063] | ✓ |
+| std (wF1, 5 groups) | 0.0281 | **0.0106** | −0.0175 | [−0.0268, −0.0082] | ✓ |
+| std (ROC-AUC, 5 groups) | 0.0210 | **0.0068** | −0.0142 | [−0.0221, −0.0063] | ✓ |
 
-Конвейер сокращает межкамерный разброс weighted-F1 **в 2.6 раза** и разброс ROC-AUC **в 3.1 раза**,
-причём оба сокращения статистически значимы (CI исключают ноль).
+The pipeline reduces the between-camera spread of weighted-F1 by **a factor of 2.6** and the spread
+of ROC-AUC by **a factor of 3.1**, and both reductions are statistically significant (the CIs exclude
+zero).
 
-## Referable-AUC по группам (§6.4)
+## Referable AUC by group (§6.4)
 
-| Группа | Referable AUC (C) | Referable AUC (D) |
+| Group | Referable AUC (C) | Referable AUC (D) |
 |--------|------------------:|------------------:|
 | kowa_idrid | 0.8940 | **0.9310** |
 | mixed_ddr | 0.9010 | **0.9370** |
@@ -49,29 +50,31 @@ topcon_messidor2 1 744 · mixed_rfmid 640.
 
 ## Verdict: `h6_supported = true`
 
-1. **Пол генерализации взят всеми группами и обеими арками.** Минимум g_ratio у конвейера —
-   0.7909 (mixed_rfmid), запас над порогом 0.7 составляет 0.09.
-2. **Конвейер сокращает разброс между устройствами значимо** (std wF1 0.0281 → 0.0106,
-   CI [−0.0268, −0.0082]). Именно это, а не сам факт прохождения порога, — содержательный
-   результат: baseline тоже проходит порог, но его качество зависит от камеры заметно сильнее.
-3. **Диапазон g_ratio сжимается:** у C он 0.7310–0.8318 (размах 0.101), у D — 0.7909–0.8275
-   (размах 0.037). Конвейер выравнивает поведение модели по устройствам.
-4. **Выигрыш тем больше, чем хуже группа работала у baseline.** Максимальные Δ wF1 — у
-   mixed_rfmid (+0.0970, худшая группа у C) и mixed_odir5k (+0.0880, вторая худшая);
-   минимальный — у topcon_messidor2 (+0.0510, лучшая группа у C). Это и даёт сжатие разброса.
-5. **Единственное исключение — topcon_messidor2**, где g_ratio у конвейера чуть ниже
-   (0.8275 против 0.8318 у baseline). Абсолютный wF1 при этом выше (0.6780 против 0.6270);
-   снижение g_ratio — следствие более высокого знаменателя (in-domain 0.8193 против 0.7538),
-   а не ухудшения работы. Отмечать в тексте как артефакт нормировки.
+1. **The generalization floor is cleared by every group and both arms.** The pipeline's minimum
+   g_ratio is 0.7909 (mixed_rfmid), a margin of 0.09 over the 0.7 threshold.
+2. **The pipeline reduces the between-device spread significantly** (std wF1 0.0281 → 0.0106,
+   CI [−0.0268, −0.0082]). This — and not the mere fact of clearing the threshold — is the
+   substantive result: baseline clears the threshold too, but its quality depends noticeably more on
+   the camera.
+3. **The g_ratio range contracts:** for C it is 0.7310–0.8318 (span 0.101), for D 0.7909–0.8275
+   (span 0.037). The pipeline levels out the model's behaviour across devices.
+4. **The gain is larger the worse the group performed under baseline.** The largest Δ wF1 are for
+   mixed_rfmid (+0.0970, C's worst group) and mixed_odir5k (+0.0880, the second worst); the smallest
+   is topcon_messidor2 (+0.0510, C's best group). That is exactly what produces the contraction of
+   the spread.
+5. **The only exception is topcon_messidor2**, where the pipeline's g_ratio is slightly lower
+   (0.8275 against baseline's 0.8318). Its absolute wF1 is nevertheless higher (0.6780 against
+   0.6270); the drop in g_ratio is a consequence of the larger denominator (in-domain 0.8193 against
+   0.7538), not of worse performance. Flag it in the text as a normalization artifact.
 
-## Оговорки
+## Caveats
 
-- Оценка на чекпойнтах **fold 0**; std в таблице разброса — **межгрупповая** (по 5 камерным
-  группам), не межфолдовая.
-- Группа `mixed_rfmid` в этом прогоне оценивается по 5-классовой шкале, как и остальные
-  (в прежнем прогоне она была только бинарной) — числа с прежней версией несопоставимы.
-- Группы пересекаются с наборами exp5: `kowa_idrid` = IDRiD, `topcon_messidor2` = Messidor-2
-  (`TAB-4.8_exp5_degradation.md`), значения совпадают.
+- Evaluation uses **fold 0** checkpoints; the std in the spread table is **between-group** (over the
+  5 camera groups), not between-fold.
+- The `mixed_rfmid` group is evaluated on the 5-class scale in this run, like the others (in the
+  previous run it was binary only) — the numbers are not comparable with the previous version.
+- The groups overlap with the exp5 sets: `kowa_idrid` = IDRiD, `topcon_messidor2` = Messidor-2
+  (`TAB-4.8_exp5_degradation.md`); the values coincide.
 
-Per-class F1 по группам — `per_class_and_confusion.md`. Клинические метрики — `TAB-5.4_clinical_referable.md`.
-Дистанции доменов — `H-3_domain_distance.md`. Карточка гипотезы — `hypotheses/H-6.md`.
+Per-class F1 by group — `per_class_and_confusion.md`. Clinical metrics — `TAB-5.4_clinical_referable.md`.
+Domain distances — `H-3_domain_distance.md`. Hypothesis card — `hypotheses/H-6.md`.

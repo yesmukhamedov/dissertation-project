@@ -1,95 +1,105 @@
-# TODO — что сделать ДО написания диссертации (рабочий чеклист)
+# TODO — what to do BEFORE writing the dissertation (working checklist)
 
-> Временный рабочий файл. Удалить/архивировать, когда всё закрыто и начато написание глав.
-> Состояние — после прогона **2026-08-02**. Полный разбор — в [GAP_ANALYSIS.md](GAP_ANALYSIS.md);
-> статусы экспериментов — в [STATUS.md](STATUS.md); что нужно главам — в
-> [CHAPTER_STATUS.md](CHAPTER_STATUS.md); буква гипотез — в
+> Temporary working file. Delete/archive once everything is closed out and chapter writing has begun.
+> State — after the **2026-08-02** run. Full analysis in [GAP_ANALYSIS.md](GAP_ANALYSIS.md);
+> experiment statuses in [STATUS.md](STATUS.md); what the chapters need in
+> [CHAPTER_STATUS.md](CHAPTER_STATUS.md); the letter of the hypotheses in
 > [HYPOTHESIS_COVERAGE.md](HYPOTHESIS_COVERAGE.md).
 
-## Уже сделано ✅
+## Already done ✅
 
-- [x] Результатный слой всех экспериментов собран: метрики, таблицы (`tables/`), карточки
-      гипотез (`hypotheses/`), словесные выводы (`findings/`).
-- [x] **Категория A** (выводится без обучения) — закрыта: клинические метрики, per-class,
-      сила утверждений, сводка/радар, сходимость и CI, вычислительные бенчмарки, image quality.
-- [x] **Категория B** (по-объектные величины exp1) — закрыта: per-class/confusion, калибровка,
-      клиника in-domain, парные стат-тесты (DeLong, McNemar, **Holm**, **смешанная ANOVA**),
-      bootstrap-CI.
-- [x] **Категория C** (незавершённые эксперименты) — закрыта: кумулятивная аблация 8 уровней на
-      EyePACS 100% × 5 фолдов; двумерный свип CLAHE на EyePACS; **σ-свип flat-field** (был
-      нереализован); Grad-CAM ALO/IoU на всех 54 масках с парными тестами и свипом порога.
-- [x] **Пробелы G-1, G-2, G-4, G-5, G-6, G-7, G-9, G-11, G-12** — закрыты.
-- [x] Новый блок **H-3** (дистанция доменов MMD/KL) собран: `tables/H-3_domain_distance.md`,
+- [x] The results layer for all experiments is assembled: metrics, tables (`tables/`), hypothesis
+      cards (`hypotheses/`), narrative conclusions (`findings/`).
+- [x] **Category A** (derivable without training) — closed: clinical metrics, per-class, claim
+      strength, summary/radar, convergence and CIs, computational benchmarks, image quality.
+- [x] **Category B** (per-instance quantities from exp1) — closed: per-class/confusion, calibration,
+      in-domain clinical metrics, paired statistical tests (DeLong, McNemar, **Holm**,
+      **mixed-effects ANOVA**), bootstrap CIs.
+- [x] **Category C** (unfinished experiments) — closed: 8-level cumulative ablation on
+      EyePACS 100% × 5 folds; two-dimensional CLAHE sweep on EyePACS; **flat-field σ sweep** (had not
+      been implemented); Grad-CAM ALO/IoU on all 54 masks with paired tests and a threshold sweep.
+- [x] **Gaps G-1, G-2, G-4, G-5, G-6, G-7, G-9, G-11, G-12** — closed.
+- [x] The new **H-3** block (domain distance, MMD/KL) is assembled: `tables/H-3_domain_distance.md`,
       `hypotheses/H-3.md`.
-- [x] Все значения и вердикты в `results/` переписаны под прогон 2026-08-02 с сохранением структуры.
+- [x] All values and verdicts in `results/` have been rewritten for the 2026-08-02 run, preserving
+      the structure.
 
 ---
 
-## ФАЗА 1 — блокирующее
+## PHASE 1 — blocking
 
-- [ ] 🔴 **NEW-1. Восстановить провенанс.** Выложить сырые артефакты прогона 2026-08-02 в
-      `experiments/outputs/exp{1..7}/` и `outputs/ssl*/`: `summary.json`, `*_results.json`,
-      `metrics.csv`, `predictions.npz`, артефакты σ-свипа и двумерной сетки CLAHE, результаты
-      MMD/KL по H-3. Затем обновить `results/data/*.json` и снять предупреждения в
-      `data/MANIFEST.md` и `INTEGRITY_NOTE.md` §1.
-      **Почему блокирует:** сейчас `results/data/` и `experiments/outputs/` содержат числа
-      ПРЕДЫДУЩЕГО прогона с противоположными вердиктами — перекрёстная проверка невозможна,
-      числа в главах не прослеживаются до источника.
-      Попутно закрывается **G-10** (сверка офлайн-предсказаний B/D с обучением).
-
----
-
-## ФАЗА 2 — закрыть букву гипотез
-
-- [ ] 🔴 **G-3. Grad-CAM overlay на клиническом (KZ) датасете.** В `exp4_explainability.py` нет
-      ветки clinical вообще (слово `clinical` встречается только в комментариях про NC-14).
-      Датасет доступен: `E:/datasets/clinical` (используется exp7). Нужен блок «прогнать обе
-      модели на N клинических изображениях и сохранить overlay» — отдельного обучения не требует.
-      Оценка ~2 ч. **Единственный незакрытый пробел по H-5.**
-- [ ] 🟡 **NEW-2. Параметры MMD.** Извлечь из конфигурации эксперимента ядро MMD, размер выборки
-      на домен и число bootstrap-итераций — нужны для методологической части §4/§5 по H-3.
-- [ ] 🟡 **G-8 (остаток). Изолировать Stage 3 (FOV-маска).** Сейчас уровень L3 добавляет
-      Stages 2–3 совместно: в `PreprocessingConfig` нет переключателя маски, 4-й канал
-      присутствует во всех уровнях выше L3. Нужен флаг + 3-канальный вариант модели + один
-      уровень аблации. Самая дорогая позиция; при нехватке времени — заявить как ограничение.
+- [ ] 🔴 **NEW-1. Restore provenance.** Publish the raw artifacts of the 2026-08-02 run into
+      `experiments/outputs/exp{1..7}/` and `outputs/ssl*/`: `summary.json`, `*_results.json`,
+      `metrics.csv`, `predictions.npz`, the σ-sweep and two-dimensional CLAHE grid artifacts, and the
+      MMD/KL results for H-3. Then update `results/data/*.json` and remove the warnings in
+      `data/MANIFEST.md` and `INTEGRITY_NOTE.md` §1.
+      **Why it blocks:** right now `results/data/` and `experiments/outputs/` contain numbers from the
+      PREVIOUS run with the opposite verdicts — cross-checking is impossible and the numbers in the
+      chapters cannot be traced back to a source.
+      This also closes **G-10** along the way (reconciling the offline B/D predictions with training).
 
 ---
 
-## ФАЗА 3 — расчёты и выгрузки по имеющимся данным (прогона не требуют)
+## PHASE 2 — close the letter of the hypotheses
 
-- [ ] **R1.** Относительная деградация (Δ_drop / in-domain) для H-7 — арифметика по `TAB-4.8`.
-      Нужна для честной формулировки §4.6 и методологической критики метрики Δ_drop в §5.4.
-- [ ] **R2.** ROC/PR-кривые как рисунки — из `predictions.npz` нового прогона (после NEW-1).
-- [ ] **R3.** Матрицы ошибок по 5 группам камер (exp6) — в данных прогона зафиксированы только
-      per-class F1; нужна доп. выгрузка для App F.
-- [ ] **TAB-5.3.** Сравнение с опубликованными системами (IDx-DR, EyeNuk, DeepMind) —
-      литературная задача, не эксперимент.
-
----
-
-## ФАЗА 4 — синхронизация потребителей
-
-- [ ] **S1.** Обновить `thesis/ASSET_INVENTORY.md` под реальные статусы (все exp ✅; 6 гипотез
-      подтверждены, H-7 частично; добавился блок H-3).
-- [ ] **S2.** Пересобрать `demo/web/src/data.js` из реальных чисел; убрать выдуманные `IQ` (VVI)
-      и неверный `COMPUTE` (25.6M/12.2M → 23.52M/10.70M); `HYPOTHESES` — реальные вердикты
-      включая H-3 и частичность H-7. Пересобрать `demo/web/generate_charts_*.py` от `outputs/`.
-- [ ] **S3.** Обновить слайды защиты `defense/presentation/slides/33–43_*` и нарративные скрипты
-      под реальные величины.
+- [ ] 🔴 **G-3. Grad-CAM overlays on the clinical (KZ) dataset.** `exp4_explainability.py` has no
+      clinical branch at all (the word `clinical` appears only in comments about NC-14).
+      The dataset is available: `E:/datasets/clinical` (used by exp7). What is needed is a block that
+      "runs both models on N clinical images and saves the overlays" — no separate training required.
+      Estimate ~2 h. **The only gap still open for H-5.**
+- [ ] 🟡 **NEW-2. MMD parameters.** Extract the MMD kernel, the per-domain sample size and the number
+      of bootstrap iterations from the experiment configuration — needed for the methodological part
+      of §4/§5 on H-3.
+- [ ] 🟡 **G-8 (remainder). Isolate Stage 3 (FOV mask).** Level L3 currently adds Stages 2–3 jointly:
+      `PreprocessingConfig` has no mask toggle, and the 4th channel is present at every level above
+      L3. Requires a flag + a 3-channel model variant + one ablation level. The most expensive item;
+      if time is short, declare it as a limitation.
 
 ---
 
-## ФАЗА 5 — писать
+## PHASE 3 — computations and exports from existing data (no runs required)
 
-- [ ] **Решить размещение H-3** в структуре главы 4 (отдельная секция или часть §4.4) — влияет
-      на нумерацию секций и TAB/FIG.
-- [ ] Порядок (из `CHAPTER_STATUS.md`): §4.2 · §4.3 · §4.4 · H-3 · §4.6 · §4.7 · §4.8 →
-      §5.2.1/§5.2.2 → §4.5 + §5.1 (после G-3) → §4.C · §5.4 · §5.3 · гл. 7 · гл. 0/§0.8.
+- [ ] **R1.** Relative degradation (Δ_drop / in-domain) for H-7 — arithmetic over `TAB-4.8`.
+      Needed for an honest formulation of §4.6 and the methodological critique of the Δ_drop metric in §5.4.
+- [ ] **R2.** ROC/PR curves as figures — from the `predictions.npz` of the new run (after NEW-1).
+- [ ] **R3.** Confusion matrices for the 5 camera groups (exp6) — the run data record only per-class
+      F1; an additional export is needed for App F.
+- [ ] **TAB-5.3.** Comparison with published systems (IDx-DR, EyeNuk, DeepMind) — a literature task,
+      not an experiment.
+
+---
+
+## PHASE 4 — synchronize the consumers
+
+- [ ] **S1.** Update `thesis/ASSET_INVENTORY.md` to the real statuses (all exp ✅; 6 hypotheses
+      confirmed, H-7 partial; the H-3 block added).
+- [ ] **S2.** Rebuild `demo/web/src/data.js` from the real numbers; remove the invented `IQ` (VVI)
+      and the incorrect `COMPUTE` (25.6M/12.2M → 23.52M/10.70M); `HYPOTHESES` — real verdicts
+      including H-3 and the partial status of H-7. Rebuild `demo/web/generate_charts_*.py` from `outputs/`.
+- [ ] **S3.** Update the defense slides `defense/presentation/slides/33–43_*` and the narrative
+      scripts to the real values.
+
+---
+
+## PHASE 5 — write
+
+- [ ] **Decide where H-3 goes** in the structure of chapter 4 (its own section, or part of §4.4) —
+      this affects section numbering and TAB/FIG numbering.
+- [ ] Order (from `CHAPTER_STATUS.md`): §4.2 · §4.3 · §4.4 · H-3 · §4.6 · §4.7 · §4.8 →
+      §5.2.1/§5.2.2 → §4.5 + §5.1 (after G-3) → §4.C · §5.4 · §5.3 · ch. 7 · ch. 0/§0.8.
       Workflow: brief→draft→continuity→review→translation.
 
-**Правила:**
-- Любые числа — только из `results/`, НИКОГДА из `demo/web/data.js`.
-- Список формулировок, которые нужно заменить относительно прежней редакции, — в
-  `CHAPTER_STATUS.md`, таблица «Что изменилось в содержании».
-- Подтверждение гипотез **не отменяет** `INVARIANTS.md`: NC-14 в силе для H-5; пороги H-4/H-6
-  берут обе арки; H-7 частична. Список ограничений — `findings/summary-and-dominance.md`.
+**Rules:**
+- Any numbers come only from `results/`, NEVER from `demo/web/data.js`.
+- 🚫 **Provenance does not carry into the text.** Run dates, the history of recomputations, artifact
+  paths (`experiments/outputs/**`, `VALUES.md`, `*.log`), checkpoints/epochs and process metadata
+  stay in `results/`. In the chapters and in `defense/`, a result is a property of the experiment,
+  not of a dated run. Methodological facts (folds, sample sizes, stopping rule, single-fold
+  evaluation as a limitation) must be carried over. Rule:
+  `thesis/prompts/writing-session-system-prompt.md` §16. This applies to **S3** as well — the defense
+  slides are built on values, without references to runs and logs.
+- The list of formulations that need to be replaced relative to the previous revision is in
+  `CHAPTER_STATUS.md`, table "What changed in the content".
+- Confirmation of the hypotheses **does not repeal** `INVARIANTS.md`: NC-14 is in force for H-5; the
+  H-4/H-6 thresholds are met by both arms; H-7 is partial. The list of limitations is in
+  `findings/summary-and-dominance.md`.

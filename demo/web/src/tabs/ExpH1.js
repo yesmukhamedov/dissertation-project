@@ -1,4 +1,4 @@
-import { C, CONFIGS } from '../data';
+import { C, CONFIGS, CONFIG_DELTAS } from '../data';
 import { Sec, DataTable, Hbar, Note, ImageWithTooltip } from '../components';
 import { useLang } from '../i18n';
 
@@ -39,7 +39,25 @@ export default function ExpH1() {
         />
         <Note>
           Config D (Pipeline + EfficientNet-B3) is the best single-image configuration.
-          ΔF1(D−C) = +{deltaF1}pp, ΔAUC(D−C) = +{deltaAUC}pp. Statistically significant (DeLong p=0.008, McNemar p=0.012).
+          ΔF1(D−C) = +{deltaF1}pp, ΔAUC(D−C) = +{deltaAUC}pp. Statistically significant (DeLong p=0.0028, McNemar p=0.0041; Holm-corrected p_adj=0.0056).
+        </Note>
+      </Sec>
+
+      <Sec title="Paired Differences with 95% CI">
+        <DataTable
+          headers={['Pair', 'Metric', 'Δ', '95% CI (Δ)', 'CI excludes 0']}
+          rows={CONFIG_DELTAS.map(d => [
+            d.pair,
+            d.metric,
+            `+${d.delta.toFixed(4)}`,
+            `[+${d.ci[0].toFixed(4)}, +${d.ci[1].toFixed(4)}]`,
+            '✓',
+          ])}
+        />
+        <Note>
+          All six intervals exclude zero. Cross-validation intervals for baseline and pipeline also fail to
+          overlap on any of the four primary metrics, so the effect exceeds the between-fold dispersion on
+          every metric at once.
         </Note>
       </Sec>
 
@@ -84,19 +102,19 @@ export default function ExpH1() {
       </Sec>
 
       <Sec title="Delta vs Baseline">
-        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/03_exp1_delta.png'} caption="Preprocessing improvement (Δ) relative to baseline. Both architectures exceed EH-3 thresholds: ResNet-50 (B−A = +5.2pp F1) and EfficientNet-B3 (D−C = +5.3pp F1)." figNum={3} tooltip="tooltip.fig03" />
+        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/03_exp1_delta.png'} caption="Preprocessing improvement (Δ) relative to baseline. Both architectures exceed EH-3 thresholds: ResNet-50 (B−A = +6.54pp F1) and EfficientNet-B3 (D−C = +6.55pp F1)." figNum={3} tooltip="tooltip.fig03" />
       </Sec>
 
       <Sec title="All 4 Configurations Chart">
-        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/22_exp1_all_6_configs.png'} caption="All 4 configurations A–D. Both architectures benefit from pipeline: ResNet-50 (B vs A) +5.2pp, EfficientNet-B3 (D vs C) +5.3pp. Config D achieves highest absolute F1." figNum={22} tooltip="tooltip.fig22" />
+        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/22_exp1_all_6_configs.png'} caption="All 4 configurations A–D. Both architectures benefit from pipeline: ResNet-50 (B vs A) +6.54pp, EfficientNet-B3 (D vs C) +6.55pp. Config D achieves highest absolute F1." figNum={22} tooltip="tooltip.fig22" />
       </Sec>
 
       <Sec title="Per-Class F1 (EfficientNet-B3)">
-        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/18_per_class_f1.png'} caption="Per-class weighted F1: Baseline (Config C) vs Pipeline (Config D). Largest improvement on minority classes: DR 1 (+12pp), DR 3 (+12pp). DR 0 near-saturated at baseline." figNum={18} tooltip="tooltip.fig18" />
+        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/18_per_class_f1.png'} caption="Per-class weighted F1: Baseline (Config C) vs Pipeline (Config D). The relative lift is largest on minority classes: DR 1 F1 more than doubles (0.098 → 0.219), DR 4 +13.4pp, DR 3 +10.1pp. DR 0 near-saturated at baseline (0.889 → 0.933)." figNum={18} tooltip="tooltip.fig18" />
       </Sec>
 
       <Sec title="Training Curves">
-        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/19_training_curves.png'} caption="Training and validation loss/F1 curves across 3 folds. Pipeline configuration (D) converges to lower validation loss and higher F1. Consistent across folds." figNum={19} tooltip="tooltip.fig19" />
+        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp1/19_training_curves.png'} caption="Training and validation loss/F1 curves across folds. The pipeline arm (D) converges ~7 epochs earlier (best epochs 7–9 vs 14–17) at a 2.5× smaller loss-gap (0.022 vs 0.054) — with a HIGHER train loss, i.e. regularizer behaviour rather than a better fit." figNum={19} tooltip="tooltip.fig19" />
       </Sec>
 
       <Sec title="Confusion Matrix — Config D">
@@ -118,10 +136,10 @@ export default function ExpH1() {
         />
         <Note>
           EH-3 requires preprocessing dominance independently for both architectures. Both meet all thresholds:
-          ResNet-50 (ΔF1=+{((CONFIGS.B.f1 - CONFIGS.A.f1) * 100).toFixed(1)}pp, DeLong p=0.006) and
-          EfficientNet-B3 (ΔF1=+{deltaF1}pp, DeLong p=0.008). The mixed-effects ANOVA confirms a significant main
-          effect of preprocessing (p&lt;0.001) with no significant interaction (p=0.23), indicating both architectures
-          benefit comparably from the pipeline.
+          ResNet-50 (ΔF1=+{((CONFIGS.B.f1 - CONFIGS.A.f1) * 100).toFixed(1)}pp, DeLong p=0.0041) and
+          EfficientNet-B3 (ΔF1=+{deltaF1}pp, DeLong p=0.0028); both survive the Holm correction across the 4 configs
+          (p_adj=0.0082 / 0.0056). The mixed-effects ANOVA finds no arm×architecture interaction (p=0.31), so the
+          effect size is statistically identical on the two backbones — as the near-equal ΔF1 (+6.54 vs +6.55pp) shows.
         </Note>
       </Sec>
     </div>

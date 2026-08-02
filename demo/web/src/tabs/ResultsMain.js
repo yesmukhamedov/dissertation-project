@@ -49,7 +49,7 @@ export default function ResultsMain() {
       <Sec title="EH-3 Dominance Check">
         <ImageWithTooltip
           src={process.env.PUBLIC_URL + '/results/general/12_eh3_dominance.png'}
-          caption="EH-3 preprocessing dominance: ΔF1 (pipeline − baseline) per architecture. Both architectures exceed the 5pp threshold: EfficientNet-B3 (D−C = +5.3pp) and ResNet-50 (B−A = +5.2pp). H-1 confirmed for both."
+          caption="EH-3 preprocessing dominance: ΔF1 (pipeline − baseline) per architecture. Both architectures exceed the 5pp threshold: EfficientNet-B3 (D−C = +6.55pp) and ResNet-50 (B−A = +6.54pp). H-1 confirmed for both."
           figNum={12}
           tooltip="tooltip.fig12"
         />

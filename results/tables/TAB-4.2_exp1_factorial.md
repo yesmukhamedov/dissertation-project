@@ -1,6 +1,6 @@
 # TAB-4.2 — Experiment 1: 2×2 Factorial Diagnostic Metrics (H-1)
 
-EyePACS 100% (n = 35 126), 5-fold patient-level CV. Mean ± std. Источник: прогон **2026-08-02**
+EyePACS 100% (n = 35 126), 5-fold patient-level CV. Mean ± std. Source: the **2026-08-02** run
 (`VALUES.md` §1.1).
 
 | Config | Arm | Backbone | Weighted F1 | ROC-AUC (macro-OvR) | Cohen κ (quadratic) | Accuracy | macro-F1 |
@@ -10,9 +10,9 @@ EyePACS 100% (n = 35 126), 5-fold patient-level CV. Mean ± std. Источни�
 | C | Baseline (3ch) | EfficientNet-B3 | 0.7538 ± 0.0120 | 0.8210 ± 0.0150 | 0.7468 ± 0.0330 | 0.7273 ± 0.0190 | 0.4300 |
 | D | Pipeline (4ch) | EfficientNet-B3 | **0.8193 ± 0.0100** | **0.8570 ± 0.0120** | **0.8571 ± 0.0270** | **0.8052 ± 0.0160** | **0.5355** |
 
-## Парные разности с 95% CI (§1.2)
+## Pairwise differences with 95% CIs (§1.2)
 
-| Пара | Метрика | Δ | 95% CI (Δ) | CI исключает 0 |
+| Pair | Metric | Δ | 95% CI (Δ) | CI excludes 0 |
 |------|---------|---|------------|----------------|
 | B − A | wF1 | +0.0654 | [+0.0478, +0.0830] | ✓ |
 | B − A | ROC-AUC | +0.0320 | [+0.0198, +0.0442] | ✓ |
@@ -23,28 +23,29 @@ EyePACS 100% (n = 35 126), 5-fold patient-level CV. Mean ± std. Источни�
 
 ## TAB-4.3 — Dominance Assessment (EH-3)
 
-Критерий доминирования (все три обязательны): ΔF1 ≥ 5пп · ΔAUC ≥ 0.02 · Δκ ≥ 0 (без деградации).
+Dominance criterion (all three mandatory): ΔF1 ≥ 5 pp · ΔAUC ≥ 0.02 · Δκ ≥ 0 (no degradation).
 
-| Comparison | ΔF1 (пп) | ΔAUC | Δκ | F1 crit | AUC crit | κ crit | **Dominant** |
+| Comparison | ΔF1 (pp) | ΔAUC | Δκ | F1 crit | AUC crit | κ crit | **Dominant** |
 |------------|----------|------|-----|---------|----------|--------|--------------|
 | B vs A (pipeline effect, ResNet-50) | **+6.54** | +0.0320 | +0.1129 | ✓ | ✓ | ✓ | **YES** |
 | D vs C (pipeline effect, EfficientNet-B3) | **+6.55** | +0.0360 | +0.1103 | ✓ | ✓ | ✓ | **YES** |
 
-**Verdict:** `h1_supported = true`. Все три компоненты критерия EH-3 выполнены **на обоих
-бэкбонах**: прирост weighted-F1 превышает порог 5пп с запасом (+6.5пп), прирост AUC — порог 0.02
-(+0.032…0.036), κ не только не деградирует, но растёт на +0.11. Величина эффекта практически
-одинакова у ResNet-50 и EfficientNet-B3 (ΔwF1 6.54 против 6.55пп), что подтверждается отсутствием
-взаимодействия «арм × бэкбон» в смешанной ANOVA (p = 0.31, `TAB-5.1_statistical.md`) — эффект
-конвейера не зависит от выбора архитектуры.
+**Verdict:** `h1_supported = true`. All three components of the EH-3 criterion are met **on both
+backbones**: the weighted-F1 gain exceeds the 5 pp threshold with margin to spare (+6.5 pp), the AUC
+gain exceeds the 0.02 threshold (+0.032…0.036), and κ not only fails to degrade but rises by +0.11.
+The effect size is practically identical for ResNet-50 and EfficientNet-B3 (ΔwF1 6.54 vs 6.55 pp),
+which is corroborated by the absence of an "arm × backbone" interaction in the mixed-effects ANOVA
+(p = 0.31, `TAB-5.1_statistical.md`) — the pipeline effect does not depend on the choice of architecture.
 
-Значимость парных разностей: DeLong p = 0.0041 / 0.0028, McNemar p = 0.0057 / 0.0041,
-после Holm-поправки на 4 конфигурации p = 0.0082 / 0.0056 — см. `TAB-5.1_statistical.md`.
+Significance of the pairwise differences: DeLong p = 0.0041 / 0.0028, McNemar p = 0.0057 / 0.0041,
+and after the Holm correction over 4 configurations p = 0.0082 / 0.0056 — see `TAB-5.1_statistical.md`.
 
-> Оговорка CFC-2.8 (сохраняется): интегрированный арм (B/D) инициализируется continual-SSL,
-> поэтому измеряемая величина — эффект **интегрированной конфигурации** (препроцессинг ×
-> инициализация), а не изолированного препроцессинга. Однако кумулятивная аблация на том же
-> корпусе (`TAB-4.4_exp2_ablation.md`, все 8 уровней при одной инициализации) показывает, что
-> **сам препроцессинг даёт +6.55пп** от L0 к L7 — то есть композит здесь разложим, и вклад
-> препроцессинга измерен отдельно. Это существенное отличие от прежнего прогона.
+> Caveat CFC-2.8 (still applies): the integrated arm (B/D) is initialized with continual-SSL, so the
+> quantity being measured is the effect of the **integrated configuration** (preprocessing ×
+> initialization), not of preprocessing in isolation. However, the cumulative ablation on the same
+> corpus (`TAB-4.4_exp2_ablation.md`, all 8 levels under a single initialization) shows that
+> **preprocessing on its own yields +6.55 pp** from L0 to L7 — that is, the composite is decomposable
+> here and the contribution of preprocessing has been measured separately. This is a substantial
+> difference from the previous run.
 
-Источник: `VALUES.md` §1.1–1.3 (прогон 2026-08-02).
+Source: `VALUES.md` §1.1–1.3 (the 2026-08-02 run).

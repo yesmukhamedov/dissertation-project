@@ -1,4 +1,4 @@
-import { C, SMALL_DATA } from '../data';
+import { C, SMALL_DATA, SMALL_DATA_DELTAS } from '../data';
 import { Card, Sec, DataTable, Paired, Note, ImageWithTooltip } from '../components';
 
 export default function ExpH7() {
@@ -43,11 +43,27 @@ export default function ExpH7() {
             sub={`Baseline ${baseline.clinical_auc.toFixed(3)}`}
           />
         </div>
+        <DataTable
+          headers={['Metric (paired, D − C)', 'Δ', '95% CI (Δ)', 'CI excludes 0']}
+          rows={SMALL_DATA_DELTAS.map(d => [
+            d.metric,
+            `+${d.delta.toFixed(4)}`,
+            `[+${d.ci[0].toFixed(4)}, +${d.ci[1].toFixed(4)}]`,
+            '✓',
+          ])}
+        />
         <Note>
-          Pipeline (4ch) yields larger gains in the small-data regime (Δ +6.7pp on IDRiD CV, +9.3pp on Clinical test)
-          than in the full-data regime (Exp 1: Δ +5.3pp on EyePACS). This indicates preprocessing acts as a strong
-          inductive prior when training data is scarce — feature normalization compensates for limited statistical
-          coverage.
+          The pipeline (4ch) gains +7.90pp weighted F1, +12.20pp κ and +5.10pp AUC on the clinical hold-out, and is
+          ahead on the internal IDRiD CV in <strong>all five folds</strong>. The experiment is <strong>preregistered</strong>,
+          so the metric was not chosen after the fact.
+          <br /><br />
+          <strong>Read the paired CIs, not the unpaired ones.</strong> At n = 60 the per-arm bootstrap intervals
+          overlap (C [0.4402, 0.5898], D [0.5238, 0.6642]); significance comes from the paired test, where both arms
+          are scored on the very same 60 images.
+          <br /><br />
+          Note also that the gain here (+7.90pp) is comparable to the full-EyePACS gain (Exp 1: +6.55pp). The pipeline
+          advantage is therefore <em>not</em> specific to the small-data regime and does not wash out as data grows —
+          which is a weaker but more honest claim than "preprocessing matters most when data is scarce".
         </Note>
       </Sec>
 
@@ -63,13 +79,14 @@ export default function ExpH7() {
           l2="Pipeline (4ch)"
         />
         <DataTable
-          headers={['Condition', 'IDRiD F1', 'IDRiD std', 'Clinical F1', 'Clinical AUC']}
+          headers={['Condition', 'IDRiD F1', 'IDRiD std', 'Clinical F1', 'Clinical κ', 'Clinical AUC']}
           rows={SMALL_DATA.map(d => [
             d.condition,
-            d.idrid_f1.toFixed(3),
-            `±${d.idrid_std.toFixed(3)}`,
-            d.clinical_f1.toFixed(3),
-            d.clinical_auc.toFixed(3),
+            d.idrid_f1.toFixed(4),
+            `±${d.idrid_std.toFixed(4)}`,
+            `${d.clinical_f1.toFixed(4)} ± ${d.clinical_f1_std.toFixed(4)}`,
+            d.clinical_k.toFixed(4),
+            d.clinical_auc.toFixed(4),
           ])}
           highlightRow={(_, i) => i === 1}
         />
@@ -89,6 +106,7 @@ export default function ExpH7() {
             ['Cross-validation', '5-fold patient-level stratified on IDRiD'],
             ['Test protocol', 'Clinical held out — never seen during training or validation'],
             ['Bootstrap resamples (CI)', '1,000'],
+            ['Preregistered', 'Yes — metrics and criteria fixed before the run'],
           ]}
         />
         <Note>

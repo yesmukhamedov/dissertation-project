@@ -1,35 +1,35 @@
-# Exp 1 — сходимость, переобучение, доверительные интервалы
+# Exp 1 — convergence, overfitting, confidence intervals
 
-Источник: прогон **2026-08-02** (`VALUES.md` §1.9 — сходимость; §1.1 — mean ± std; §1.4 —
-по-объектный bootstrap). Лучшая эпоха = max val weighted-F1.
+Source: the **2026-08-02** run (`VALUES.md` §1.9 — convergence; §1.1 — mean ± std; §1.4 —
+per-instance bootstrap). Best epoch = max val weighted-F1.
 
-## A5/A6 — Сходимость и переобучение по фолдам (best-epoch)
+## A5/A6 — Convergence and overfitting per fold (best epoch)
 
-| Config | Арм | best-эпохи по фолдам | train_loss (best) | val_loss (best) | **loss-gap (val − train)** |
+| Config | Arm | best epochs per fold | train_loss (best) | val_loss (best) | **loss gap (val − train)** |
 |--------|-----|----------------------|-------------------|-----------------|-----------------------------|
 | A | baseline, ResNet-50 | 16, 14, 17, 15, 16 | 0.098 | 0.150 | **0.052** |
 | B | pipeline, ResNet-50 | 9, 8, 10, 9, 9 | 0.126 | 0.147 | **0.021** |
 | C | baseline, EffNet-B3 | 15, 17, 14, 16, 15 | 0.102 | 0.156 | **0.054** |
 | D | pipeline, EffNet-B3 | 8, 9, 7, 9, 8 | 0.131 | 0.153 | **0.022** |
 
-**Ключевая находка (регуляризующий эффект конвейера).** Конвейерные арки (B/D) сходятся почти
-**вдвое раньше** (эпохи 7–10 против 14–17) и держат loss-gap **в 2.5× меньше** (0.021–0.022
-против 0.052–0.054). Механизм читается по компонентам: у B/D **выше** train_loss (0.126–0.131
-против 0.098–0.102) при **сопоставимом** val_loss — модель хуже подгоняется под обучающую
-выборку, но обобщает так же или лучше. Это поведение регуляризатора: 4-й канал (FOV-маска) плюс
-нормализация освещённости сужают гипотезное пространство, отсекая вариативность, не несущую
-диагностического сигнала.
+**Key finding (the regularizing effect of the pipeline).** The pipeline arms (B/D) converge almost
+**twice as early** (epochs 7–10 against 14–17) and keep a loss gap **2.5× smaller** (0.021–0.022
+against 0.052–0.054). The mechanism is legible from the components: B/D have a **higher** train_loss
+(0.126–0.131 against 0.098–0.102) at a **comparable** val_loss — the model fits the training set less
+closely but generalizes as well or better. This is regularizer behaviour: the 4th channel (FOV mask)
+plus illumination normalization narrow the hypothesis space, cutting away variability that carries no
+diagnostic signal.
 
-Разброс best-эпох внутри арма мал (±1–1.5 эпохи), то есть режим сходимости воспроизводим по
-фолдам, а не результат удачного сида.
+The spread of best epochs within an arm is small (±1–1.5 epochs), i.e. the convergence regime is
+reproducible across folds rather than the result of a lucky seed.
 
-Согласуется с exp7 (выигрыш в режиме нехватки данных) и с приростом AUC/κ в самом exp1.
+This is consistent with exp7 (a gain in the data-scarce regime) and with the AUC/κ gains within exp1 itself.
 
-## A9 — Доверительные интервалы
+## A9 — Confidence intervals
 
-### Кросс-валидационные CI по фолдам (95%, t, df = 4)
+### Cross-validation CIs across folds (95%, t, df = 4)
 
-CI ≈ mean ± 2.776·std/√5. Это интервал по 5 фолдам, **не** по-объектный bootstrap.
+CI ≈ mean ± 2.776·std/√5. This is an interval over the 5 folds, **not** a per-instance bootstrap.
 
 | Config | wF1 (mean ± std) | wF1 95% CI | AUC 95% CI | κ 95% CI | Acc 95% CI |
 |--------|------------------|------------|------------|----------|------------|
@@ -38,13 +38,13 @@ CI ≈ mean ± 2.776·std/√5. Это интервал по 5 фолдам, **�
 | C | 0.7538 ± 0.0120 | [0.7389, 0.7687] | [0.8024, 0.8396] | [0.7058, 0.7878] | [0.7037, 0.7509] |
 | D | 0.8193 ± 0.0100 | [0.8069, 0.8317] | [0.8421, 0.8719] | [0.8236, 0.8906] | [0.7853, 0.8251] |
 
-**Наблюдение.** Интервалы baseline и pipeline **не пересекаются ни по одной первичной метрике**:
-по wF1 A [0.738, 0.766] против B [0.806, 0.828] и C [0.739, 0.769] против D [0.807, 0.832];
-по AUC A [0.813, 0.847] против B [0.848, 0.876] и C [0.802, 0.840] против D [0.842, 0.872];
-по κ и Accuracy — тоже. Разделение полное, т.е. эффект конвейера превышает межфолдовую
-дисперсию по всем четырём метрикам сразу.
+**Observation.** The baseline and pipeline intervals **do not overlap on any primary metric**:
+on wF1, A [0.738, 0.766] against B [0.806, 0.828] and C [0.739, 0.769] against D [0.807, 0.832];
+on AUC, A [0.813, 0.847] against B [0.848, 0.876] and C [0.802, 0.840] against D [0.842, 0.872];
+the same holds for κ and Accuracy. The separation is complete, i.e. the pipeline effect exceeds the
+between-fold variance on all four metrics at once.
 
-### По-объектный bootstrap (weighted-F1, 1000 resamples)
+### Per-instance bootstrap (weighted-F1, 1000 resamples)
 
 | Config | mean | 95% CI | std |
 |--------|-----:|--------|----:|
@@ -53,7 +53,8 @@ CI ≈ mean ± 2.776·std/√5. Это интервал по 5 фолдам, **�
 | C | 0.7538 | [0.7492, 0.7584] | 0.0023 |
 | D | 0.8193 | [0.8152, 0.8234] | 0.0021 |
 
-Bootstrap-средние совпадают с CV-средними до 4-го знака — по-объектная оценка не расходится с
-по-фолдовой. Интервалы разъезжаются с большим запасом (≈0.057 между верхом A и низом B).
+The bootstrap means agree with the CV means to the 4th decimal — the per-instance estimate does not
+diverge from the per-fold one. The intervals separate with a large margin (≈0.057 between the top of
+A and the bottom of B).
 
-Парные тесты (DeLong / McNemar / Holm / смешанная ANOVA) — `TAB-5.1_statistical.md`.
+Paired tests (DeLong / McNemar / Holm / mixed-effects ANOVA) — `TAB-5.1_statistical.md`.

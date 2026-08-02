@@ -1,4 +1,4 @@
-import { C, CONFIGS, HYPOTHESES } from '../data';
+import { C, CONFIGS, HYPOTHESES, EXTRA_RESULTS } from '../data';
 import { Card, Sec, DataTable, ImageWithTooltip } from '../components';
 import { useLang } from '../i18n';
 
@@ -24,10 +24,10 @@ export default function Overview() {
 
       <Sec title={t('overview.bestConfig')}>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
-          <Card label="Weighted F1" value="0.780" delta={`+${deltaF1}pp vs Config C`} color="blue" sub="EH-3: ≥5pp ✓" />
-          <Card label="ROC-AUC" value="0.865" delta={`+${deltaAUC}pp vs Config C`} color="teal" sub="EH-3: ≥2pp ✓" />
-          <Card label="Cohen's κ" value="0.700" delta="+8.0pp vs Config C" color="purple" sub="No degradation ✓" />
-          <Card label="Accuracy" value="0.770" delta="+5.1pp vs Config C" color="amber" />
+          <Card label="Weighted F1" value={D.f1.toFixed(4)} delta={`+${deltaF1}pp vs Config C`} color="blue" sub="EH-3: ≥5pp ✓" />
+          <Card label="ROC-AUC" value={D.auc.toFixed(4)} delta={`+${deltaAUC}pp vs Config C`} color="teal" sub="EH-3: ≥2pp ✓" />
+          <Card label="Cohen's κ" value={D.k.toFixed(4)} delta={`+${((D.k - CONFIGS.C.k) * 100).toFixed(2)}pp vs Config C`} color="purple" sub="No degradation ✓" />
+          <Card label="Accuracy" value={D.acc.toFixed(4)} delta={`+${((D.acc - CONFIGS.C.acc) * 100).toFixed(2)}pp vs Config C`} color="amber" />
         </div>
       </Sec>
 
@@ -43,14 +43,18 @@ export default function Overview() {
       <Sec title={t('overview.hypothesisStatus')}>
         <DataTable
           headers={['Hypothesis', 'Name', 'Experiment', 'Status', 'Key Finding']}
-          rows={HYPOTHESES.map(h => [
+          rows={[...HYPOTHESES, ...EXTRA_RESULTS].map(h => [
             <span key={h.id} style={{ fontWeight: 700, color: C.purple }}>{h.id}</span>,
             h.name,
             h.exp,
-            <span key={h.id + 's'} style={{ color: C.teal, fontWeight: 600 }}>{h.status}</span>,
+            <span key={h.id + 's'} style={{ color: h.status.startsWith('◐') ? C.amberT : C.teal, fontWeight: 600 }}>{h.status}</span>,
             h.detail,
           ])}
         />
+        <div style={{ fontSize: 11, color: 'var(--color-text-secondary,#666)', lineHeight: 1.6, marginTop: 8 }}>
+          6 of 7 hypotheses are confirmed in full; H-7 is partial (1 of 2 datasets on the criterion as written).
+          None are refuted. E-7 and A-1 sit outside the formal H-1…H-7 set.
+        </div>
       </Sec>
 
       <Sec title="Object & Subject of Research">
@@ -92,10 +96,19 @@ export default function Overview() {
         note="The 8-stage preprocessing pipeline (canonical orientation, FOV normalization, flat-field correction, dual-constraint CLAHE, augmentation) is an integral part of the diagnostic model — not ancillary data preparation. Preprocessing is the primary driver of classification improvement for 5-class DR grading. The pipeline preserves diagnostic features while normalizing cross-device variability."
       >
         <div style={{ padding: '12px 14px', background: C.tealBg, borderRadius: 8, fontSize: 12, color: C.tealT, lineHeight: 1.7 }}>
-          <strong>Finding:</strong> Preprocessing produces statistically significant improvement for both architectures:
-          EfficientNet-B3 (+5.3pp F1, DeLong p=0.008) and ResNet-50 (+5.2pp F1, DeLong p=0.006).
-          The mixed-effects ANOVA confirms a significant main effect of preprocessing (p&lt;0.001) with no significant interaction (p=0.23).
-          Cross-device variance is reduced by 46%, and generalization ratios G=0.88–0.90 exceed the H-4 threshold of 0.85 on all external datasets.
+          <strong>Finding:</strong> Preprocessing produces a statistically significant improvement on both architectures:
+          EfficientNet-B3 (+6.55pp F1, DeLong p=0.0028) and ResNet-50 (+6.54pp F1, DeLong p=0.0041); both survive the
+          Holm correction across the 4 configs (p_adj = 0.0056 / 0.0082). The mixed-effects ANOVA finds no
+          arm×architecture interaction (p=0.31), so the effect size is statistically the same on either backbone.
+          The gain is decomposable: an 8-level cumulative ablation under a <em>single</em> initialization reproduces
+          the whole +6.55pp, which separates the preprocessing contribution from the SSL-init contribution.
+          Between-device F1 spread narrows 2.6×, transfer to APTOS reaches G = 0.8976 (threshold 0.85), and Grad-CAM
+          attention aligns significantly better with annotated lesions on all 4 lesion types.
+          <br /><br />
+          <strong>Where the evidence stops:</strong> H-7 is only partially confirmed — the pipeline is significantly
+          better on both external clinical sets in absolute terms, but it does not reduce the <em>proportional</em>
+          degradation under domain shift. The H-4 and H-6 thresholds are also cleared by the baseline, so those
+          criteria alone do not separate the arms.
         </div>
       </Sec>
 
@@ -103,9 +116,9 @@ export default function Overview() {
         <DataTable
           headers={['Criterion', 'ResNet-50 (B−A)', 'EfficientNet-B3 (D−C)', 'Threshold']}
           rows={[
-            ['ΔF1', `+${((CONFIGS.B.f1 - CONFIGS.A.f1) * 100).toFixed(1)}pp ✓`, `+${((CONFIGS.D.f1 - CONFIGS.C.f1) * 100).toFixed(1)}pp ✓`, '≥ 5pp'],
-            ['ΔAUC', `+${((CONFIGS.B.auc - CONFIGS.A.auc) * 100).toFixed(1)}pp ✓`, `+${((CONFIGS.D.auc - CONFIGS.C.auc) * 100).toFixed(1)}pp ✓`, '≥ 2pp'],
-            ['Δκ', `+${((CONFIGS.B.k - CONFIGS.A.k) * 100).toFixed(1)}pp ✓`, `+${((CONFIGS.D.k - CONFIGS.C.k) * 100).toFixed(1)}pp ✓`, '> 0'],
+            ['ΔF1', `+${((CONFIGS.B.f1 - CONFIGS.A.f1) * 100).toFixed(2)}pp ✓`, `+${((CONFIGS.D.f1 - CONFIGS.C.f1) * 100).toFixed(2)}pp ✓`, '≥ 5pp'],
+            ['ΔAUC', `+${((CONFIGS.B.auc - CONFIGS.A.auc) * 100).toFixed(2)}pp ✓`, `+${((CONFIGS.D.auc - CONFIGS.C.auc) * 100).toFixed(2)}pp ✓`, '≥ 2pp'],
+            ['Δκ', `+${((CONFIGS.B.k - CONFIGS.A.k) * 100).toFixed(2)}pp ✓`, `+${((CONFIGS.D.k - CONFIGS.C.k) * 100).toFixed(2)}pp ✓`, '> 0'],
           ]}
           highlightRow={(row, i) => i === 0}
         />

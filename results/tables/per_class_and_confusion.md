@@ -1,22 +1,22 @@
-# Per-class F1 + матрицы ошибок (внешние наборы)
+# Per-class F1 + confusion matrices (external sets)
 
-Классы ICDR: DR0 = нет DR, DR1 = лёгкая NPDR, DR2 = умеренная NPDR, DR3 = тяжёлая NPDR, DR4 = PDR.
-Источник: прогон **2026-08-02** (`VALUES.md` §4.3–4.4, §6.6–6.7).
-Per-class по EyePACS (exp1) — в `exp1_per_class.md`.
+ICDR classes: DR0 = no DR, DR1 = mild NPDR, DR2 = moderate NPDR, DR3 = severe NPDR, DR4 = PDR.
+Source: the **2026-08-02** run (`VALUES.md` §4.3–4.4, §6.6–6.7).
+Per-class figures for EyePACS (exp1) are in `exp1_per_class.md`.
 
 ## exp3 — APTOS 2019, n = 3 662
 
-| Арм | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
+| Arm | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |-----|----:|----:|----:|----:|----:|---------:|
 | C — baseline | 0.8554 | 0.1394 | 0.5747 | 0.2443 | 0.5113 | 0.4650 |
 | D — full pipeline | **0.9150** | **0.2717** | **0.6931** | **0.3271** | **0.6287** | **0.5671** |
 
-Конвейер выигрывает на всех пяти градациях; macro-F1 +0.102 против wF1 +0.089 — прирост
-непропорционально сильнее на меньшинствах.
+The pipeline wins on all five grades; macro-F1 +0.102 against wF1 +0.089 — the gain is
+disproportionately larger on the minority classes.
 
-### Матрица ошибок — Config C (APTOS), строки = истина, столбцы = предсказание
+### Confusion matrix — Config C (APTOS), rows = truth, columns = prediction
 
-| ист \ пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |------------|----:|----:|----:|----:|----:|
 | DR0 | 1570 | 186 | 39 | 8 | 2 |
 | DR1 | 184 | 63 | 98 | 21 | 4 |
@@ -24,9 +24,9 @@ Per-class по EyePACS (exp1) — в `exp1_per_class.md`.
 | DR3 | 10 | 24 | 62 | 64 | 33 |
 | DR4 | 6 | 16 | 42 | 107 | 124 |
 
-### Матрица ошибок — Config D (APTOS)
+### Confusion matrix — Config D (APTOS)
 
-| ист \ пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |------------|----:|----:|----:|----:|----:|
 | DR0 | 1679 | 111 | 13 | 2 | 0 |
 | DR1 | 149 | 108 | 100 | 12 | 1 |
@@ -34,16 +34,16 @@ Per-class по EyePACS (exp1) — в `exp1_per_class.md`.
 | DR3 | 2 | 10 | 56 | 87 | 38 |
 | DR4 | 1 | 4 | 20 | 110 | 160 |
 
-**Наблюдение.** Диагональ растёт на всех градациях (например, DR2: 500 → 630, DR1: 63 → 108).
-Дальние ошибки почти исчезают: клетка DR0 → DR4 у C = 2, у D = 0; DR0 → DR3 = 8 → 2. Остаточная
-масса ошибок концентрируется в соседних клетках DR3↔DR4 (110 объектов у D) — граница
-«тяжёлая NPDR / PDR» остаётся самой трудной.
+**Observation.** The diagonal grows at every grade (e.g. DR2: 500 → 630, DR1: 63 → 108). Distant
+errors almost disappear: the DR0 → DR4 cell is 2 for C and 0 for D; DR0 → DR3 goes 8 → 2. The
+residual error mass concentrates in the adjacent DR3↔DR4 cells (110 instances for D) — the "severe
+NPDR / PDR" boundary remains the hardest.
 
-## exp6 — per-class F1 по группам камер
+## exp6 — per-class F1 by camera group
 
 **Config C (baseline)**
 
-| Группа | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
+| Group | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |--------|----:|----:|----:|----:|----:|---------:|
 | kowa_idrid | 0.8230 | 0.2140 | 0.5432 | 0.3457 | 0.4526 | 0.4757 |
 | mixed_ddr | 0.8468 | 0.2202 | 0.5589 | 0.3557 | 0.4658 | 0.4895 |
@@ -53,7 +53,7 @@ Per-class по EyePACS (exp1) — в `exp1_per_class.md`.
 
 **Config D (full pipeline)**
 
-| Группа | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
+| Group | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |--------|----:|----:|----:|----:|----:|---------:|
 | kowa_idrid | 0.8615 | 0.2929 | 0.6375 | 0.4480 | 0.5427 | 0.5565 |
 | mixed_ddr | 0.8672 | 0.2949 | 0.6417 | 0.4510 | 0.5464 | 0.5602 |
@@ -61,24 +61,24 @@ Per-class по EyePACS (exp1) — в `exp1_per_class.md`.
 | topcon_messidor2 | 0.8749 | 0.2975 | 0.6474 | 0.4549 | 0.5512 | 0.5652 |
 | mixed_rfmid | 0.8347 | 0.2838 | 0.6177 | 0.4341 | 0.5259 | 0.5392 |
 
-Размеры классов по группам (DR0…DR4):
+Class sizes by group (DR0…DR4):
 kowa_idrid 168 / 54 / 131 / 34 / 26 · mixed_ddr 496 / 142 / 378 / 104 / 80 ·
 mixed_odir5k 402 / 108 / 290 / 88 / 62 · topcon_messidor2 723 / 201 / 548 / 152 / 120 ·
 mixed_rfmid 268 / 71 / 197 / 60 / 44.
 
-## Наблюдения по группам
+## Observations by group
 
-- **Конвейер выигрывает во всех 25 ячейках** (5 групп × 5 классов) — исключений нет.
-  macro-F1 растёт на +0.081…+0.102 по группам.
-- **Разброс между группами сжимается на каждом классе.** DR0: у C размах 0.7569–0.8632 (0.106),
-  у D — 0.8347–0.8749 (0.040). DR2: 0.4996–0.5697 (0.070) → 0.6177–0.6474 (0.030).
-  Это тот же эффект выравнивания по устройствам, что виден по wF1 в `TAB-4.9_exp6_device.md`.
-- **Порядок трудности классов одинаков у обеих арок и во всех группах:**
-  DR0 ≫ DR2 > DR4 > DR3 ≫ DR1. Лёгкая NPDR остаётся самым трудным классом везде (F1 ≈ 0.20 у C,
-  ≈ 0.29 у D) — ранние малозаметные признаки не решаются препроцессингом, только смягчаются.
-- **Порядок групп по качеству тоже сохраняется:** лучшая — topcon_messidor2, худшая —
-  mixed_rfmid, у обеих арок. Остаточная разница между наборами не устраняется конвейером
-  (согласуется с `H-3_domain_distance.md`: ранжирование доменов по MMD сохраняется).
+- **The pipeline wins in all 25 cells** (5 groups × 5 classes) — there are no exceptions.
+  macro-F1 rises by +0.081…+0.102 across the groups.
+- **The between-group spread contracts on every class.** DR0: for C the span is 0.7569–0.8632 (0.106),
+  for D it is 0.8347–0.8749 (0.040). DR2: 0.4996–0.5697 (0.070) → 0.6177–0.6474 (0.030).
+  This is the same device-levelling effect visible in wF1 in `TAB-4.9_exp6_device.md`.
+- **The difficulty ordering of the classes is the same for both arms and in every group:**
+  DR0 ≫ DR2 > DR4 > DR3 ≫ DR1. Mild NPDR remains the hardest class everywhere (F1 ≈ 0.20 for C,
+  ≈ 0.29 for D) — early, subtle signs are not solved by preprocessing, only mitigated.
+- **The ordering of the groups by quality is preserved as well:** the best is topcon_messidor2 and
+  the worst is mixed_rfmid, for both arms. The residual difference between sets is not eliminated by
+  the pipeline (consistent with `H-3_domain_distance.md`: the ranking of domains by MMD is preserved).
 
-> Матрицы ошибок по группам камер в исходных данных прогона не зафиксированы — приведены только
-> per-class F1. Для App F при необходимости потребуется дополнительная выгрузка.
+> Confusion matrices by camera group are not recorded in the run's source data — only per-class F1 is
+> given. If they are needed for App F, an additional export will be required.

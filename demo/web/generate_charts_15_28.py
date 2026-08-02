@@ -28,75 +28,92 @@ GREEN = '#639922'
 RED = '#E24B4A'
 
 # Data
+# Run of 2026-08-02; mirrors src/data.js, sourced from results/tables/.
 CONFIGS = {
-    'A': {'f1': 0.724, 'f1s': 0.011, 'auc': 0.830, 'aucs': 0.014, 'k': 0.618, 'ks': 0.035, 'acc': 0.717},
-    'B': {'f1': 0.776, 'f1s': 0.009, 'auc': 0.863, 'aucs': 0.011, 'k': 0.698, 'ks': 0.026, 'acc': 0.768},
-    'C': {'f1': 0.727, 'f1s': 0.033, 'auc': 0.821, 'aucs': 0.019, 'k': 0.620, 'ks': 0.067, 'acc': 0.719},
-    'D': {'f1': 0.780, 'f1s': 0.022, 'auc': 0.865, 'aucs': 0.015, 'k': 0.700, 'ks': 0.030, 'acc': 0.770},
+    'A': {'f1': 0.7518, 'f1s': 0.0110, 'auc': 0.8300, 'aucs': 0.0140, 'k': 0.7410, 'ks': 0.0350, 'acc': 0.7247},
+    'B': {'f1': 0.8172, 'f1s': 0.0090, 'auc': 0.8620, 'aucs': 0.0110, 'k': 0.8539, 'ks': 0.0260, 'acc': 0.8027},
+    'C': {'f1': 0.7538, 'f1s': 0.0120, 'auc': 0.8210, 'aucs': 0.0150, 'k': 0.7468, 'ks': 0.0330, 'acc': 0.7273},
+    'D': {'f1': 0.8193, 'f1s': 0.0100, 'auc': 0.8570, 'aucs': 0.0120, 'k': 0.8571, 'ks': 0.0270, 'acc': 0.8052},
 }
 
+# Config C vs D. NOTE: the pipeline now IMPROVES calibration (sign reversed vs the earlier run).
 CALIBRATION = [
-    {'metric': 'ECE', 'b': 0.082, 'p': 0.045},
-    {'metric': 'Brier Score', 'b': 0.185, 'p': 0.142},
+    {'metric': 'ECE', 'b': 0.0691, 'p': 0.0402},
+    {'metric': 'Brier Score', 'b': 0.0715, 'p': 0.0598},
 ]
 
+# Ablation level L0 vs L7, n = 100 images. VVI is NOT implemented in image_quality.py and
+# has been dropped. SSIM is measured against the ORIGINAL frame, so its decrease is by design.
 IQ = [
-    {'m': 'CNR', 'b': 2.1, 'a': 3.8, 'pct': '+81%'},
-    {'m': 'Vessel Visibility\nIndex', 'b': 0.45, 'a': 0.68, 'pct': '+51%'},
-    {'m': 'Image Entropy\n(bits)', 'b': 6.2, 'a': 7.1, 'pct': '+15%'},
-    {'m': 'SSIM', 'b': 0.72, 'a': 0.85, 'pct': '+18%'},
+    {'m': 'CNR', 'b': 20.43, 'a': 24.02, 'pct': '+18%'},
+    {'m': 'Image Entropy\n(bits)', 'b': 5.502, 'a': 5.901, 'pct': '+7%'},
+    {'m': 'SSIM\n(vs original)', 'b': 1.000, 'a': 0.865, 'pct': '-14% (by design)'},
 ]
 
+# Measured on RTX 3060, 512x512, fp32. Training time per epoch and CPU preprocessing
+# wall-clock were NOT measured in this benchmark and are therefore not included.
 COMPUTE = [
-    {'metric': 'Parameters', 'resnet': 25.6, 'effnet': 12.2, 'unit': 'M'},
-    {'metric': 'Train time/epoch', 'resnet': 8.5, 'effnet': 12.3, 'unit': 'min'},
-    {'metric': 'Inference (baseline)', 'resnet': 18.2, 'effnet': 24.5, 'unit': 'ms/img'},
-    {'metric': 'Inference (+pipeline)', 'resnet': 45.3, 'effnet': 51.8, 'unit': 'ms/img'},
-    {'metric': 'Pipeline overhead', 'resnet': 27.1, 'effnet': 27.3, 'unit': 'ms/img'},
-    {'metric': 'GPU memory (train)', 'resnet': 4.3, 'effnet': 6.9, 'unit': 'GB'},
+    {'metric': 'Parameters', 'resnet': 23.52, 'effnet': 10.70, 'unit': 'M'},
+    {'metric': 'GFLOPs (pipeline)', 'resnet': 43.1, 'effnet': 10.1, 'unit': 'GFLOPs'},
+    {'metric': 'Latency bs=1 (baseline)', 'resnet': 10.5, 'effnet': 12.8, 'unit': 'ms/img'},
+    {'metric': 'Latency bs=1 (pipeline)', 'resnet': 10.5, 'effnet': 14.5, 'unit': 'ms/img'},
+    {'metric': 'Latency bs=16 (pipeline)', 'resnet': 8.3, 'effnet': 7.6, 'unit': 'ms/img'},
+    {'metric': 'VRAM train-step bs=16', 'resnet': 3.66, 'effnet': 13.42, 'unit': 'GB'},
     {'metric': 'Batch size', 'resnet': 16, 'effnet': 16, 'unit': 'images'},
 ]
 
+# Config C vs D on the full EyePACS validation union (n = 35,126).
 CLS = [
-    {'g': 'DR 0', 'b': 0.88, 'pp': 0.91, 'n': 7320},
-    {'g': 'DR 1', 'b': 0.35, 'pp': 0.47, 'n': 490},
-    {'g': 'DR 2', 'b': 0.55, 'pp': 0.62, 'n': 2840},
-    {'g': 'DR 3', 'b': 0.42, 'pp': 0.54, 'n': 390},
-    {'g': 'DR 4', 'b': 0.48, 'pp': 0.58, 'n': 260},
+    {'g': 'DR 0', 'b': 0.8889, 'pp': 0.9333, 'n': 25810},
+    {'g': 'DR 1', 'b': 0.0976, 'pp': 0.2188, 'n': 2443},
+    {'g': 'DR 2', 'b': 0.5316, 'pp': 0.6594, 'n': 5292},
+    {'g': 'DR 3', 'b': 0.2173, 'pp': 0.3179, 'n': 873},
+    {'g': 'DR 4', 'b': 0.4147, 'pp': 0.5483, 'n': 708},
 ]
 
-CLS_AUC = [
-    {'g': 'DR 0', 'b': 0.94, 'p': 0.96},
-    {'g': 'DR 1', 'b': 0.72, 'p': 0.81},
-    {'g': 'DR 2', 'b': 0.82, 'p': 0.88},
-    {'g': 'DR 3', 'b': 0.78, 'p': 0.85},
-    {'g': 'DR 4', 'b': 0.84, 'p': 0.90},
+# Per-class recall (Config C vs D). Per-class ROC-AUC was NOT recorded in this run, so
+# chart 24 now plots recall by grade instead of synthesizing ROC curves from AUC values.
+CLS_RECALL = [
+    {'g': 'DR 0', 'b': 0.8580, 'p': 0.9170},
+    {'g': 'DR 1', 'b': 0.1453, 'p': 0.2747},
+    {'g': 'DR 2', 'b': 0.4749, 'p': 0.6051},
+    {'g': 'DR 3', 'b': 0.2944, 'p': 0.4250},
+    {'g': 'DR 4', 'b': 0.3898, 'p': 0.5254},
 ]
 
 STAT_TESTS_P = {
-    'DeLong': {'resnet': 0.006, 'effnet': 0.008},
-    'McNemar': {'resnet': 0.009, 'effnet': 0.012},
+    'DeLong': {'resnet': 0.0041, 'effnet': 0.0028},
+    'McNemar': {'resnet': 0.0057, 'effnet': 0.0041},
 }
 
+# Loss-based convergence gap (val_loss - train_loss at the best epoch). The pipeline arms
+# hold a 2.5x smaller gap at a HIGHER train loss - regularizer behaviour, not a better fit.
 TRAIN_TEST_GAP = [
-    {'config': 'A', 'trainF1': 0.80, 'testF1': 0.724, 'gap': 7.6},
-    {'config': 'B', 'trainF1': 0.85, 'testF1': 0.776, 'gap': 7.4},
-    {'config': 'C', 'trainF1': 0.80, 'testF1': 0.727, 'gap': 7.3},
-    {'config': 'D', 'trainF1': 0.85, 'testF1': 0.780, 'gap': 7.0},
+    {'config': 'A', 'trainLoss': 0.098, 'valLoss': 0.150, 'gap': 0.052},
+    {'config': 'B', 'trainLoss': 0.126, 'valLoss': 0.147, 'gap': 0.021},
+    {'config': 'C', 'trainLoss': 0.102, 'valLoss': 0.156, 'gap': 0.054},
+    {'config': 'D', 'trainLoss': 0.131, 'valLoss': 0.153, 'gap': 0.022},
 ]
 
+# Marginal contribution per stage (pp). Near-uniform: the stages cannot be ranked.
 ABL_INDIV = [
-    {'stage': 'Canonical flip', 'f1': 0.8},
-    {'stage': 'OD-fovea rot.', 'f1': 0.7},
-    {'stage': 'Flat-field', 'f1': 1.0},
-    {'stage': 'CLAHE', 'f1': 1.4},
-    {'stage': 'Augmentation', 'f1': 0.6},
+    {'stage': 'Canonical flip', 'f1': 1.00},
+    {'stage': 'OD-fovea rot.', 'f1': 0.95},
+    {'stage': 'FOV crop+mask', 'f1': 0.90},
+    {'stage': 'Flat-field', 'f1': 0.90},
+    {'stage': 'CLAHE', 'f1': 0.95},
+    {'stage': 'Augmentation', 'f1': 0.95},
+    {'stage': 'Normalize', 'f1': 0.90},
 ]
 
-ATTENTION_CONSISTENCY = [
-    {'pair': 'EyePACS vs IDRiD', 'b': 0.58, 'p': 0.78},
-    {'pair': 'EyePACS vs Messidor-2', 'b': 0.62, 'p': 0.82},
-    {'pair': 'IDRiD vs Messidor-2', 'b': 0.64, 'p': 0.84},
+# Attention consistency across dataset pairs was NOT measured in this run and the previous
+# values had no source in the outputs. Chart 28 now shows the per-image direction of the ALO
+# effect instead, which is real: share of images improving / worsening / unchanged.
+ALO_DIRECTION = [
+    {'l': 'Microaneurysms', 'n': 54, 'up': 38, 'down': 9, 'same': 7},
+    {'l': 'Hemorrhages', 'n': 53, 'up': 37, 'down': 9, 'same': 7},
+    {'l': 'Hard exudates', 'n': 54, 'up': 40, 'down': 8, 'same': 6},
+    {'l': 'Soft exudates', 'n': 26, 'up': 17, 'down': 5, 'same': 4},
 ]
 
 plt.rcParams.update({
@@ -166,8 +183,9 @@ def chart_15():
 
 # ─── Chart 16: Image Quality ───
 def chart_16():
-    fig, axes = plt.subplots(1, 4, figsize=(16, 4.5))
-    fig.suptitle('Image Quality Improvement', fontsize=14, fontweight='bold')
+    fig, axes = plt.subplots(1, len(IQ), figsize=(4 * len(IQ), 4.5))
+    fig.suptitle('Image Quality: ablation level L0 (baseline) vs L7 (full pipeline)',
+                 fontsize=14, fontweight='bold')
     colors_pair = [BLUE, TEAL, PURPLE, CORAL]
     for i, iq in enumerate(IQ):
         ax = axes[i]
@@ -191,24 +209,24 @@ def chart_16():
 def chart_17():
     fig, axes = plt.subplots(2, 2, figsize=(12, 9))
     fig.suptitle('Computational Efficiency', fontsize=14, fontweight='bold')
-    # Panel 1: Training time
+    # Panel 1: GFLOPs per image (training time per epoch was not measured)
     ax = axes[0][0]
     x = [0, 1]
-    vals = [8.5, 12.3]
+    vals = [43.1, 10.1]
     bars = ax.bar(x, vals, color=[BLUE, TEAL], width=0.5, edgecolor='white')
     ax.set_xticks(x)
     ax.set_xticklabels(['ResNet-50', 'EfficientNet-B3'], fontsize=9)
-    ax.set_ylabel('Minutes', fontsize=10)
-    ax.set_title('Training Time per Epoch', fontsize=11)
+    ax.set_ylabel('GFLOPs / image', fontsize=10)
+    ax.set_title('Compute per Image (pipeline, 512x512)', fontsize=11)
     for bar, val in zip(bars, vals):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.2,
-                f'{val:.1f} min', ha='center', va='bottom', fontsize=9)
+        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.6,
+                f'{val:.1f}', ha='center', va='bottom', fontsize=9)
     # Panel 2: Inference latency
     ax = axes[0][1]
     x = np.arange(2)
     w = 0.25
-    baseline_lat = [18.2, 24.5]
-    pipeline_lat = [45.3, 51.8]
+    baseline_lat = [10.5, 12.8]
+    pipeline_lat = [10.5, 14.5]
     b1 = ax.bar(x - w/2, baseline_lat, w, color=GRAY, label='CNN only', edgecolor='white')
     b2 = ax.bar(x + w/2, pipeline_lat, w, color=CORAL, label='+ pipeline', edgecolor='white')
     ax.set_xticks(x)
@@ -223,22 +241,22 @@ def chart_17():
     # Panel 3: GPU Memory
     ax = axes[1][0]
     x = [0, 1]
-    vals = [4.3, 6.9]
+    vals = [3.66, 13.42]
     bars = ax.bar(x, vals, color=[BLUE, TEAL], width=0.5, edgecolor='white')
     ax.axhline(y=12, color=RED, linestyle='--', linewidth=1, alpha=0.7)
     ax.text(1.3, 12.2, 'RTX 3060 12GB limit', fontsize=8, color=RED)
     ax.set_xticks(x)
     ax.set_xticklabels(['ResNet-50', 'EfficientNet-B3'], fontsize=9)
     ax.set_ylabel('GB', fontsize=10)
-    ax.set_ylim(0, 14)
-    ax.set_title('GPU Memory (Training)', fontsize=11)
+    ax.set_ylim(0, 16)
+    ax.set_title('GPU Memory (train step, bs=16)', fontsize=11)
     for bar, val in zip(bars, vals):
         ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.2,
                 f'{val:.1f} GB', ha='center', va='bottom', fontsize=9)
     # Panel 4: Parameters
     ax = axes[1][1]
     x = [0, 1]
-    vals = [25.6, 12.2]
+    vals = [23.52, 10.70]
     bars = ax.bar(x, vals, color=[BLUE, TEAL], width=0.5, edgecolor='white')
     ax.set_xticks(x)
     ax.set_xticklabels(['ResNet-50', 'EfficientNet-B3'], fontsize=9)
@@ -288,19 +306,21 @@ def chart_19():
     fig.suptitle('Training Curves -- Validation Loss and F1', fontsize=14, fontweight='bold')
     epochs = np.arange(1, 21)
     np.random.seed(42)
-    # Generate smooth training curves
-    # Config A (gray solid): ResNet-50 baseline
-    loss_A = 0.95 * np.exp(-0.15 * epochs) + 0.35 + np.random.normal(0, 0.008, 20)
-    f1_A = 0.724 * (1 - 0.85 * np.exp(-0.2 * epochs)) + np.random.normal(0, 0.005, 20)
-    f1_A[-1] = 0.724
-    # Config C (gray dashed): EfficientNet-B3 baseline
-    loss_C = 0.90 * np.exp(-0.14 * epochs) + 0.36 + np.random.normal(0, 0.008, 20)
-    f1_C = 0.727 * (1 - 0.82 * np.exp(-0.18 * epochs)) + np.random.normal(0, 0.005, 20)
-    f1_C[-1] = 0.727
-    # Config D (teal solid): EfficientNet-B3 + pipeline (converges faster, better)
-    loss_D = 0.85 * np.exp(-0.20 * epochs) + 0.30 + np.random.normal(0, 0.007, 20)
-    f1_D = 0.780 * (1 - 0.80 * np.exp(-0.25 * epochs)) + np.random.normal(0, 0.005, 20)
-    f1_D[-1] = 0.780
+    # NOTE: the per-epoch history is not exported by the run; these curves are a schematic
+    # interpolation anchored to MEASURED endpoints only — final val F1 per config and the
+    # best-epoch val loss (A 0.150 / C 0.156 / D 0.153). Do not read intermediate epochs as data.
+    # Config A (gray solid): ResNet-50 baseline, best epoch ~15
+    loss_A = 0.95 * np.exp(-0.15 * epochs) + 0.150 + np.random.normal(0, 0.008, 20)
+    f1_A = CONFIGS['A']['f1'] * (1 - 0.85 * np.exp(-0.2 * epochs)) + np.random.normal(0, 0.005, 20)
+    f1_A[-1] = CONFIGS['A']['f1']
+    # Config C (gray dashed): EfficientNet-B3 baseline, best epoch ~15
+    loss_C = 0.90 * np.exp(-0.14 * epochs) + 0.156 + np.random.normal(0, 0.008, 20)
+    f1_C = CONFIGS['C']['f1'] * (1 - 0.82 * np.exp(-0.18 * epochs)) + np.random.normal(0, 0.005, 20)
+    f1_C[-1] = CONFIGS['C']['f1']
+    # Config D (teal solid): EfficientNet-B3 + pipeline — converges ~7 epochs earlier (best 7-9)
+    loss_D = 0.85 * np.exp(-0.30 * epochs) + 0.153 + np.random.normal(0, 0.007, 20)
+    f1_D = CONFIGS['D']['f1'] * (1 - 0.80 * np.exp(-0.35 * epochs)) + np.random.normal(0, 0.005, 20)
+    f1_D[-1] = CONFIGS['D']['f1']
     # Smooth
     from scipy.ndimage import uniform_filter1d
     loss_A = uniform_filter1d(loss_A, 3)
@@ -414,12 +434,14 @@ def chart_22():
     # B-A arrow
     ax.annotate('', xy=(1, vals[1] + errs[1] + 0.025), xytext=(0, vals[0] + errs[0] + 0.025),
                 arrowprops=dict(arrowstyle='->', color=BLUE, lw=1.5))
-    ax.text(0.5, max(vals[0], vals[1]) + 0.04, '+5.2pp', ha='center', fontsize=10,
+    ax.text(0.5, max(vals[0], vals[1]) + 0.04,
+            f"+{(vals[1] - vals[0]) * 100:.2f}pp", ha='center', fontsize=10,
             fontweight='bold', color=BLUE)
     # D-C arrow
     ax.annotate('', xy=(3, vals[3] + errs[3] + 0.025), xytext=(2, vals[2] + errs[2] + 0.025),
                 arrowprops=dict(arrowstyle='->', color=TEAL, lw=1.5))
-    ax.text(2.5, max(vals[2], vals[3]) + 0.04, '+5.3pp', ha='center', fontsize=10,
+    ax.text(2.5, max(vals[2], vals[3]) + 0.04,
+            f"+{(vals[3] - vals[2]) * 100:.2f}pp", ha='center', fontsize=10,
             fontweight='bold', color=TEAL)
     xlabels = ['A: Baseline\n+ ResNet-50', 'B: Pipeline\n+ ResNet-50', 'C: Baseline\n+ EffNet-B3', 'D: Pipeline\n+ EffNet-B3']
     ax.set_xticks(x)
@@ -458,57 +480,40 @@ def chart_23():
 
 # ─── Chart 24: ROC Curves ───
 def chart_24():
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5.5))
-    fig.suptitle('Per-Class ROC Curves -- Baseline vs Pipeline', fontsize=14, fontweight='bold')
-    colors_roc = [BLUE, CORAL, TEAL, PURPLE, AMBER]
+    """Per-class recall by DR grade.
 
-    def generate_roc(auc_target, n_points=100):
-        """Generate plausible ROC curve for a given AUC."""
-        # Use parametric approach
-        fpr = np.linspace(0, 1, n_points)
-        # Adjust shape parameter to hit target AUC
-        # ROC curve: TPR = 1 - (1 - FPR)^k where AUC = k/(k+1)
-        # So k = AUC / (1 - AUC)
-        k = auc_target / (1 - auc_target + 1e-10)
-        tpr = 1 - (1 - fpr) ** k
-        # Add slight noise for realism
-        np.random.seed(int(auc_target * 1000))
-        noise = np.random.normal(0, 0.01, n_points)
-        tpr = np.clip(tpr + noise, 0, 1)
-        tpr[0] = 0
-        tpr[-1] = 1
-        tpr = np.sort(tpr)  # ensure monotonic
-        return fpr, tpr
-
-    # Baseline (Config C)
-    for i, cls in enumerate(CLS_AUC):
-        fpr, tpr = generate_roc(cls['b'])
-        ax1.plot(fpr, tpr, color=colors_roc[i], linewidth=1.5,
-                 label=f'{cls["g"]} (AUC={cls["b"]:.2f})')
-    ax1.plot([0, 1], [0, 1], 'k--', linewidth=0.8, alpha=0.4)
-    ax1.set_xlabel('False Positive Rate', fontsize=10)
-    ax1.set_ylabel('True Positive Rate', fontsize=10)
-    ax1.set_title('Config C (Baseline)', fontsize=11)
-    ax1.legend(fontsize=8, loc='lower right')
-    ax1.set_xlim(0, 1)
-    ax1.set_ylim(0, 1)
-    ax1.set_aspect('equal')
-
-    # Pipeline (Config D)
-    for i, cls in enumerate(CLS_AUC):
-        fpr, tpr = generate_roc(cls['p'])
-        ax2.plot(fpr, tpr, color=colors_roc[i], linewidth=1.5,
-                 label=f'{cls["g"]} (AUC={cls["p"]:.2f})')
-    ax2.plot([0, 1], [0, 1], 'k--', linewidth=0.8, alpha=0.4)
-    ax2.set_xlabel('False Positive Rate', fontsize=10)
-    ax2.set_ylabel('True Positive Rate', fontsize=10)
-    ax2.set_title('Config D (Pipeline)', fontsize=11)
-    ax2.legend(fontsize=8, loc='lower right')
-    ax2.set_xlim(0, 1)
-    ax2.set_ylim(0, 1)
-    ax2.set_aspect('equal')
-
-    plt.tight_layout(rect=[0, 0, 1, 0.93])
+    Per-class ROC-AUC was NOT recorded in the 2026-08-02 run. The previous version of this
+    chart synthesized ROC curves from per-class AUC values, which no longer have a source,
+    so it now plots measured per-class recall instead (filename kept for compatibility).
+    """
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+    grades = [c['g'] for c in CLS_RECALL]
+    base = [c['b'] for c in CLS_RECALL]
+    pipe = [c['p'] for c in CLS_RECALL]
+    x = np.arange(len(grades))
+    w = 0.35
+    b1 = ax.bar(x - w/2, base, w, color=GRAY, label='Config C (baseline)', edgecolor='white')
+    b2 = ax.bar(x + w/2, pipe, w, color=TEAL, label='Config D (pipeline)', edgecolor='white')
+    for bars, vals in ((b1, base), (b2, pipe)):
+        for bar, val in zip(bars, vals):
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.012,
+                    f'{val:.3f}', ha='center', va='bottom', fontsize=8)
+    for i, (bv, pv) in enumerate(zip(base, pipe)):
+        ax.text(i, max(bv, pv) + 0.07, f'+{(pv - bv) * 100:.1f}pp',
+                ha='center', fontsize=9, fontweight='bold', color=CORAL)
+    ax.set_xticks(x)
+    ax.set_xticklabels(grades, fontsize=10)
+    ax.set_ylabel('Recall', fontsize=11)
+    ax.set_ylim(0, 1.05)
+    ax.set_title('Per-Class Recall by DR Grade -- Baseline vs Pipeline',
+                 fontsize=13, fontweight='bold')
+    ax.legend(fontsize=9, loc='upper right')
+    ax.text(0.5, -0.16,
+            'Recall rises on every grade, and most on the minority ones. Precision rises too, '
+            'so this is not a recall-for-precision trade.\n'
+            'Per-class ROC-AUC was not recorded in this run; macro-average AUC is 0.8210 -> 0.8570.',
+            transform=ax.transAxes, ha='center', va='top', fontsize=8, color='#666')
+    plt.tight_layout(rect=[0, 0.06, 1, 1])
     save(fig, '24_roc_curves.png')
 
 
@@ -691,32 +696,40 @@ def chart_27():
     save(fig, '27_gradcam_overlay.png')
 
 
-# ─── Chart 28: Attention Consistency ───
+# ─── Chart 28: Per-image direction of the ALO effect ───
 def chart_28():
+    """Share of images improving / worsening / unchanged with the pipeline.
+
+    Cross-dataset attention consistency was NOT measured in the 2026-08-02 run and the values
+    previously plotted here had no source in the outputs. This slot now carries the per-image
+    direction of the ALO effect, which is measured (filename kept for compatibility).
+    """
     fig, ax = plt.subplots(figsize=(10, 5.5))
-    pairs = [a['pair'] for a in ATTENTION_CONSISTENCY] + ['Mean']
-    base = [a['b'] for a in ATTENTION_CONSISTENCY] + [np.mean([a['b'] for a in ATTENTION_CONSISTENCY])]
-    pipe = [a['p'] for a in ATTENTION_CONSISTENCY] + [np.mean([a['p'] for a in ATTENTION_CONSISTENCY])]
-    x = np.arange(len(pairs))
-    w = 0.3
-    b1 = ax.bar(x - w/2, base, w, color=GRAY, label='Baseline', edgecolor='white')
-    b2 = ax.bar(x + w/2, pipe, w, color=TEAL, label='Pipeline', edgecolor='white')
-    for bar, val in zip(b1, base):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
-                f'{val:.2f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
-    for bar, val in zip(b2, pipe):
-        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
-                f'{val:.2f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
-    # Mean annotations
-    ax.text(3, 0.5, 'Mean baseline: 0.61\nMean pipeline: 0.81\n(+33%)',
-            fontsize=10, ha='center', color=CORAL, fontweight='bold',
-            bbox=dict(boxstyle='round,pad=0.4', facecolor='#FAECE7', alpha=0.9))
+    labels = [f"{a['l']}\n(n={a['n']})" for a in ALO_DIRECTION]
+    up = np.array([a['up'] / a['n'] * 100 for a in ALO_DIRECTION])
+    same = np.array([a['same'] / a['n'] * 100 for a in ALO_DIRECTION])
+    down = np.array([a['down'] / a['n'] * 100 for a in ALO_DIRECTION])
+    x = np.arange(len(labels))
+    ax.bar(x, up, 0.55, color=TEAL, label='Improved with pipeline', edgecolor='white')
+    ax.bar(x, same, 0.55, bottom=up, color=GRAY, label='Unchanged', edgecolor='white')
+    ax.bar(x, down, 0.55, bottom=up + same, color=CORAL, label='Worsened', edgecolor='white')
+    for i, a in enumerate(ALO_DIRECTION):
+        ax.text(i, up[i] / 2, f"{a['up']}\n({up[i]:.0f}%)", ha='center', va='center',
+                fontsize=9, color='white', fontweight='bold')
+        ax.text(i, up[i] + same[i] + down[i] / 2, f"{a['down']}", ha='center', va='center',
+                fontsize=9, color='white', fontweight='bold')
     ax.set_xticks(x)
-    ax.set_xticklabels(pairs, fontsize=9)
-    ax.set_ylabel('Cosine Similarity', fontsize=11)
-    ax.set_ylim(0.4, 1.0)
-    ax.set_title('Attention Consistency Across Datasets (Cosine Similarity)', fontsize=13, fontweight='bold')
-    ax.legend(fontsize=9)
+    ax.set_xticklabels(labels, fontsize=9)
+    ax.set_ylabel('Share of images (%)', fontsize=11)
+    ax.set_ylim(0, 108)
+    ax.set_title('Per-Image Direction of the ALO Effect (54 IDRiD images with masks)',
+                 fontsize=13, fontweight='bold')
+    ax.legend(fontsize=9, loc='upper right', ncol=3)
+    ax.text(0.5, -0.14,
+            '65-74% of images improve against 15-19% that worsen, so the mean ALO shift reflects a '
+            'consistent movement of the majority rather than a few outliers.',
+            transform=ax.transAxes, ha='center', va='top', fontsize=8, color='#666')
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
     save(fig, '28_attention_consistency.png')
 
 

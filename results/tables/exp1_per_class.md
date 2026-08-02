@@ -1,13 +1,13 @@
-# exp1 per-class metrics + матрицы ошибок
+# exp1 per-class metrics + confusion matrices
 
-Per-class F1/precision/recall и матрицы ошибок на объединённых val-фолдах, n = 35 126.
-Источник: прогон **2026-08-02** (`VALUES.md` §1.6–1.7).
+Per-class F1/precision/recall and confusion matrices on the pooled val folds, n = 35 126.
+Source: the **2026-08-02** run (`VALUES.md` §1.6–1.7).
 
-Размеры классов: DR0 25 810 · DR1 2 443 · DR2 5 292 · DR3 873 · DR4 708.
+Class sizes: DR0 25 810 · DR1 2 443 · DR2 5 292 · DR3 873 · DR4 708.
 
 ## Config A (baseline + ResNet-50)
 
-| Класс | F1 | Precision | Recall |
+| Class | F1 | Precision | Recall |
 |---|---|---|---|
 | DR0 | 0.8872 | 0.9219 | 0.8551 |
 | DR1 | 0.0999 | 0.0750 | 0.1498 |
@@ -15,9 +15,9 @@ Per-class F1/precision/recall и матрицы ошибок на объедин
 | DR3 | 0.2193 | 0.1728 | 0.3001 |
 | DR4 | 0.4078 | 0.4326 | 0.3856 |
 
-macro-F1 = 0.4281. Матрица ошибок:
+macro-F1 = 0.4281. Confusion matrix:
 
-| ист\пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true\pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---|---|---|---|---|
 | DR0 | 22069 | 2973 | 615 | 127 | 26 |
 | DR1 | 1257 | 366 | 656 | 136 | 28 |
@@ -27,7 +27,7 @@ macro-F1 = 0.4281. Матрица ошибок:
 
 ## Config B (pipeline + ResNet-50)
 
-| Класс | F1 | Precision | Recall |
+| Class | F1 | Precision | Recall |
 |---|---|---|---|
 | DR0 | 0.9320 | 0.9497 | 0.9150 |
 | DR1 | 0.2141 | 0.1774 | 0.2702 |
@@ -35,9 +35,9 @@ macro-F1 = 0.4281. Матрица ошибок:
 | DR3 | 0.3180 | 0.2529 | 0.4284 |
 | DR4 | 0.5424 | 0.5670 | 0.5198 |
 
-macro-F1 = 0.5322. Матрица ошибок:
+macro-F1 = 0.5322. Confusion matrix:
 
-| ист\пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true\pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---|---|---|---|---|
 | DR0 | 23617 | 1906 | 250 | 33 | 4 |
 | DR1 | 1019 | 660 | 666 | 87 | 11 |
@@ -47,7 +47,7 @@ macro-F1 = 0.5322. Матрица ошибок:
 
 ## Config C (baseline + EffNet-B3)
 
-| Класс | F1 | Precision | Recall |
+| Class | F1 | Precision | Recall |
 |---|---|---|---|
 | DR0 | 0.8889 | 0.9222 | 0.8580 |
 | DR1 | 0.0976 | 0.0734 | 0.1453 |
@@ -55,9 +55,9 @@ macro-F1 = 0.5322. Матрица ошибок:
 | DR3 | 0.2173 | 0.1723 | 0.2944 |
 | DR4 | 0.4147 | 0.4430 | 0.3898 |
 
-macro-F1 = 0.4300. Матрица ошибок:
+macro-F1 = 0.4300. Confusion matrix:
 
-| ист\пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true\pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---|---|---|---|---|
 | DR0 | 22145 | 2939 | 586 | 117 | 23 |
 | DR1 | 1273 | 355 | 658 | 131 | 26 |
@@ -67,7 +67,7 @@ macro-F1 = 0.4300. Матрица ошибок:
 
 ## Config D (pipeline + EffNet-B3)
 
-| Класс | F1 | Precision | Recall |
+| Class | F1 | Precision | Recall |
 |---|---|---|---|
 | DR0 | 0.9333 | 0.9503 | 0.9170 |
 | DR1 | 0.2188 | 0.1818 | 0.2747 |
@@ -75,9 +75,9 @@ macro-F1 = 0.4300. Матрица ошибок:
 | DR3 | 0.3179 | 0.2539 | 0.4250 |
 | DR4 | 0.5483 | 0.5732 | 0.5254 |
 
-macro-F1 = 0.5355. Матрица ошибок:
+macro-F1 = 0.5355. Confusion matrix:
 
-| ист\пред | DR0 | DR1 | DR2 | DR3 | DR4 |
+| true\pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---|---|---|---|---|
 | DR0 | 23667 | 1872 | 237 | 30 | 4 |
 | DR1 | 1016 | 671 | 661 | 84 | 11 |
@@ -85,16 +85,16 @@ macro-F1 = 0.5355. Матрица ошибок:
 | DR3 | 10 | 52 | 267 | 371 | 173 |
 | DR4 | 2 | 10 | 53 | 271 | 372 |
 
-## Наблюдения
+## Observations
 
-- **Прирост идёт по всем пяти классам, а не только по мажорному.** macro-F1: A 0.4281 → B 0.5322
-  (+0.104), C 0.4300 → D 0.5355 (+0.106). Это больше, чем прирост weighted-F1 (+0.065), то есть
-  конвейер выигрывает **непропорционально сильно на меньшинствах**.
-- **DR1 (лёгкая NPDR) — самый трудный класс, и именно там относительный выигрыш максимален:**
-  F1 0.0999 → 0.2141 (×2.1) и 0.0976 → 0.2188 (×2.2). Абсолютный уровень остаётся низким
-  (≈0.21) — ранние малозаметные признаки по-прежнему главный источник ошибки.
-- **Диагональ матрицы растёт на всех градациях**, а масса ошибок «DR0 → DR1» падает с ≈2 950 до
-  ≈1 890 объектов: конвейер убирает основную долю ложных срабатываний на здоровых снимках.
-- **Ошибки остаются соседними по шкале.** Дальние ошибки (|Δgrade| ≥ 2) в конвейерных арках
-  редки: например, у B клетка DR0→DR4 = 4 против 26 у A. Это и объясняет крупный прирост
-  quadratic-κ (+0.11), который штрафует именно дальние ошибки.
+- **The gain occurs across all five classes, not only the majority one.** macro-F1: A 0.4281 → B 0.5322
+  (+0.104), C 0.4300 → D 0.5355 (+0.106). That exceeds the weighted-F1 gain (+0.065), i.e. the
+  pipeline gains **disproportionately on the minority classes**.
+- **DR1 (mild NPDR) is the hardest class, and that is precisely where the relative gain is largest:**
+  F1 0.0999 → 0.2141 (×2.1) and 0.0976 → 0.2188 (×2.2). The absolute level remains low
+  (≈0.21) — early, subtle signs are still the main source of error.
+- **The diagonal of the matrix grows at every grade**, while the mass of "DR0 → DR1" errors falls from
+  ≈2 950 to ≈1 890 instances: the pipeline removes the bulk of the false positives on healthy images.
+- **Errors remain adjacent on the scale.** Distant errors (|Δgrade| ≥ 2) are rare in the pipeline
+  arms: for example, in B the DR0→DR4 cell is 4 against 26 in A. This is what explains the large gain
+  in quadratic κ (+0.11), which penalizes precisely the distant errors.

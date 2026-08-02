@@ -1,86 +1,86 @@
-# Exp 7 (E-7) + SSL (A1) — вердикты
+# Exp 7 (E-7) + SSL (A1) — verdicts
 
-## Exp 7 / E-7 — Small-Data Trainability (IDRiD → Clinical) — ПОЗИТИВ, ЗНАЧИМЫЙ
+## Exp 7 / E-7 — Small-Data Trainability (IDRiD → Clinical) — POSITIVE, SIGNIFICANT
 
-Не привязан к формальной гипотезе H-1…H-7 (сравнение обучаемости арок baseline vs full на малых
-данных). **Предзарегистрирован** (`preregistered = true`) — критерии и метрики зафиксированы до
-прогона.
+Not tied to any of the formal hypotheses H-1…H-7 (it compares the trainability of the baseline vs
+full arms on small data). **Preregistered** (`preregistered = true`) — the criteria and metrics were
+fixed before the run.
 
-**Исход (прогон 2026-08-02).** Клинический hold-out, n = 60:
+**Outcome (2026-08-02 run).** Clinical hold-out, n = 60:
 
-| Метрика | C (baseline) | D (full) | Δ (D − C) | 95% CI (Δ) |
+| Metric | C (baseline) | D (full) | Δ (D − C) | 95% CI (Δ) |
 |---------|-------------:|---------:|----------:|------------|
 | Weighted F1 | 0.5150 ± 0.0450 | 0.5940 ± 0.0400 | +0.0790 | [+0.0412, +0.1168] |
 | Cohen κ | 0.4860 ± 0.0440 | 0.6080 ± 0.0438 | +0.1220 | [+0.0631, +0.1809] |
 | ROC-AUC | 0.7420 ± 0.0380 | 0.7930 ± 0.0320 | +0.0510 | [+0.0248, +0.0772] |
 | Accuracy | 0.5270 ± 0.0410 | 0.6010 ± 0.0370 | — | — |
 
-Внутренняя CV на IDRiD (n = 516, 5 фолдов): C 0.5850 ± 0.0380 против D 0.6520 ± 0.0310 —
-конвейер выше **во всех пяти фолдах**.
+Internal CV on IDRiD (n = 516, 5 folds): C 0.5850 ± 0.0380 against D 0.6520 ± 0.0310 — the pipeline
+is higher **in all five folds**.
 
-> ⚠️ Непарные bootstrap-интервалы по аркам **перекрываются** (C [0.4402, 0.5898],
-> D [0.5238, 0.6642]) — при n = 60 они широки. Значимость даёт **парный** тест разности, где обе
-> арки оцениваются на одних и тех же 60 снимках. В текст переносить парные CI.
+> ⚠️ The unpaired per-arm bootstrap intervals **overlap** (C [0.4402, 0.5898],
+> D [0.5238, 0.6642]) — at n = 60 they are wide. Significance comes from the **paired** test of the
+> difference, where both arms are evaluated on the same 60 images. Carry the paired CIs into the text.
 
-**Значение для тезиса.** Целевой сценарий работы — обучение на малой клинической выборке и
-применение в другой клинике. Результат обосновывает практический вклад «препроцессинг как
-эффективный априор при нехватке данных». Важное уточнение относительно прежней трактовки: прирост
-здесь (+0.079) **сопоставим** с приростом на полном EyePACS (+0.0655, [[H-1]]), то есть выигрыш
-конвейера **не является специфичным для малых данных** и не исчезает при росте выборки. Прежняя
-формулировка «единственный чистый позитив работы, препроцессинг ценен именно при малых данных»
-устарела — теперь это один из согласованных результатов, а не исключение.
+**Significance for the thesis.** The target operating scenario is training on a small clinical sample
+and deployment at a different clinic. The result substantiates the practical contribution
+"preprocessing as an effective prior under data scarcity". An important refinement relative to the
+earlier interpretation: the gain here (+0.079) is **comparable** to the gain on full EyePACS
+(+0.0655, [[H-1]]), i.e. the pipeline's advantage **is not specific to small data** and does not
+vanish as the sample grows. The former formulation "the work's only clean positive; preprocessing is
+valuable precisely on small data" is obsolete — this is now one of several consistent results, not an
+exception.
 
-Прирост κ (+0.122) вдвое больше прироста wF1 — та же картина, что во всех экспериментах:
-конвейер прежде всего убирает дальние ошибки градации.
+The κ gain (+0.122) is twice the wF1 gain — the same picture as in every experiment: the pipeline
+primarily removes distant grading errors.
 
 ---
 
 ## SSL / A1 — In-Domain Self-Supervised Pretraining
 
-### Этап 1 — from-scratch: провален классическими методами, **пройден SIP**
+### Stage 1 — from scratch: failed by the classical methods, **passed by SIP**
 
-| Метод (from-scratch, 4ch) | эпохи | κ | passed |
+| Method (from scratch, 4ch) | epochs | κ | passed |
 |---------------------------|------:|--:|--------|
-| BYOL (primary по governance) | 50 | 0.0000 | ✗ (коллапс) |
+| BYOL (primary per governance) | 50 | 0.0000 | ✗ (collapse) |
 | MoCo-v2 | 50 / 100 | 0.1120 / 0.1090 | ✗ |
 | DINO | 50 / 100 | 0.0750 / 0.0610 | ✗ |
 | **SIP** | 100 | **0.6580** | **✓** |
 
-Отрицательный результат по BYOL/MoCo-v2/DINO **сохраняется и остаётся содержательным**:
-увеличение бюджета с 50 до 100 эпох их не спасает (MoCo 0.112 → 0.109, DINO 0.075 → 0.061).
-Новое относительно прежнего прогона — **SIP гейт проходит** (κ 0.6580 ≈ уровень continual-SSL),
-то есть from-scratch in-domain-инициализация в принципе достижима в рамках бюджета проекта.
-Фактически в Config B/D используется **continual-SSL**; SIP остаётся построенной, но не выбранной
-альтернативой.
+The negative result for BYOL/MoCo-v2/DINO **stands and remains substantive**: increasing the budget
+from 50 to 100 epochs does not save them (MoCo 0.112 → 0.109, DINO 0.075 → 0.061). What is new
+relative to the previous run is that **SIP passes the gate** (κ 0.6580 ≈ the continual-SSL level),
+i.e. from-scratch in-domain initialization is in principle achievable within the project's budget.
+In practice Config B/D use **continual-SSL**; SIP remains a constructed but unselected alternative.
 
-### Этап 2 — continual-SSL: гейт пройден обоими бэкбонами, выигрыш у обоих
+### Stage 2 — continual-SSL: the gate is passed by both backbones, both gain
 
-| Бэкбон | ImageNet κ | Continual κ | Δκ (прогон 1) | Δκ (прогон 2) |
+| Backbone | ImageNet κ | Continual κ | Δκ (run 1) | Δκ (run 2) |
 |--------|-----------:|------------:|--------------:|--------------:|
 | ResNet-50 | 0.3400 | 0.6590 | **+0.3190** | +0.2840 |
 | EfficientNet-B3 | 0.4450 | 0.6820 | **+0.2370** | +0.2230 |
 
-Оба `passed = true` (beats_random ✓, competitive_with_imagenet ✓, not_collapsed ✓). Коллапса нет:
-feat_std 0.008 (random) → 0.056–0.057 (continual), kNN 0.31 → 0.69–0.70.
+Both `passed = true` (beats_random ✓, competitive_with_imagenet ✓, not_collapsed ✓). There is no
+collapse: feat_std 0.008 (random) → 0.056–0.057 (continual), kNN 0.31 → 0.69–0.70.
 
-**Смена картины.** В прежнем прогоне EfficientNet-B3 не получал от continual-SSL никакого
-выигрыша (κ 0.435 против 0.445 у ImageNet), и это выносилось как честная асимметрия
-«ретина-осведомлённая инициализация только у ResNet-50». По данным 2026-08-02 **асимметрии нет** —
-оба бэкбона получают сопоставимый прирост. Формулировки, опиравшиеся на прежнюю асимметрию,
-подлежат замене.
+**A change of picture.** In the previous run EfficientNet-B3 gained nothing from continual-SSL
+(κ 0.435 against ImageNet's 0.445), and this was reported as an honest asymmetry — "retina-aware
+initialization only for ResNet-50". Per the 2026-08-02 data **there is no asymmetry** — both backbones
+receive a comparable gain. Formulations that relied on the previous asymmetry must be replaced.
 
-### CFC-2.8 — статус изменился
+### CFC-2.8 — the status has changed
 
-Конфаунд «препроцессинг × инициализация» в Config B/D формально сохраняется, но **разложим**:
-кумулятивная аблация при **единой инициализации на всех восьми уровнях** даёт ΔwF1 = +0.0655 от L0
-к L7 — ровно величина D-vs-C в exp1, причём L0 = Config C и L7 = Config D численно совпадают
-([[H-2]], `tables/TAB-4.4_exp2_ablation.md`). То есть вклад препроцессинга измерен независимо от
-вклада инициализации. В §4.2 CFC-2.8 идёт как указание на особенность дизайна, а **не** как
-ограничение на вывод «выигрыш даёт препроцессинг».
+The "preprocessing × initialization" confound in Config B/D formally remains, but it is
+**decomposable**: the cumulative ablation under **a single initialization at all eight levels** yields
+ΔwF1 = +0.0655 from L0 to L7 — exactly the D-vs-C magnitude in exp1, with L0 = Config C and
+L7 = Config D coinciding numerically ([[H-2]], `tables/TAB-4.4_exp2_ablation.md`). That is, the
+contribution of preprocessing has been measured independently of the contribution of initialization.
+In §4.2, CFC-2.8 goes in as a note about a feature of the design and **not** as a limitation on the
+conclusion that "the gain comes from preprocessing".
 
-**Значение для тезиса (Premise 4).** Двухэтапный SSL-нарратив сохраняется, но его мораль
-меняется: (1) классические контрастивные методы from-scratch на фундус-корпусе этого масштаба не
-конкурентны ImageNet; (2) специализированный SIP и continual-SSL — конкурентны и дают крупный
-in-domain выигрыш на обоих бэкбонах. Связь: [[continual-ssl-init-decision]], [[H-1]], [[H-2]].
+**Significance for the thesis (Premise 4).** The two-stage SSL narrative is preserved, but its moral
+changes: (1) classical contrastive methods trained from scratch on a fundus corpus of this scale are
+not competitive with ImageNet; (2) the specialized SIP and continual-SSL are competitive and deliver
+a large in-domain gain on both backbones. Links: [[continual-ssl-init-decision]], [[H-1]], [[H-2]].
 
-Таблица: `tables/SSL_continual_gate.md`, `tables/TAB-4.10_exp7_smalldata.md`.
+Tables: `tables/SSL_continual_gate.md`, `tables/TAB-4.10_exp7_smalldata.md`.

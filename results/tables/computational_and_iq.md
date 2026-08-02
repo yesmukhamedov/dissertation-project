@@ -1,61 +1,63 @@
-# Вычислительные бенчмарки (A7) + качество изображения (A8)
+# Computational benchmarks (A7) + image quality (A8)
 
-## A7 — Параметры, FLOPs, latency, VRAM
+## A7 — Parameters, FLOPs, latency, VRAM
 
-Измерено на RTX 3060 12 ГБ, вход 512×512, fp32-инференс.
-Источник: прогон **2026-08-02** (`VALUES.md` §A7.1); значения совпадают с замером 2026-07-28
-(`experiments/outputs/compute_benchmark.{json,md}`, скрипт `scripts/benchmark_compute.py`) —
-**этот блок прогоном не изменился**.
+Measured on an RTX 3060 12 GB, input 512×512, fp32 inference.
+Source: the **2026-08-02** run (`VALUES.md` §A7.1); the values match the 2026-07-28 measurement
+(`experiments/outputs/compute_benchmark.{json,md}`, script `scripts/benchmark_compute.py`) —
+**this block was not changed by the run**.
 
-| Config | Модель | Ch | Params | GFLOPs/изобр. | Latency bs=1 (мс) | bs=16 (мс/изобр.) | Throughput bs=16 (изобр./с) | VRAM инференс bs=16 (МиБ) | VRAM train-step bs=16 (МиБ) |
+| Config | Model | Ch | Params | GFLOPs/img | Latency bs=1 (ms) | bs=16 (ms/img) | Throughput bs=16 (img/s) | VRAM inference bs=16 (MiB) | VRAM train-step bs=16 (MiB) |
 |---|---|---|---|---|---|---|---|---|---|
 | A | ResNet-50 | 3 | 23.52M | 42.7 | 10.5 | 8.2 | 121.6 | 978 | 3724 |
 | B | ResNet-50 | 4 | 23.52M | 43.1 | 10.5 | 8.3 | 120.5 | 1002 | 3748 |
 | C | EfficientNet-B3 | 3 | 10.70M | 10.0 | 12.8 | 7.5 | 132.8 | 1515 | 13726 |
 | D | EfficientNet-B3 | 4 | 10.70M | 10.1 | 14.5 | 7.6 | 132.3 | 1531 | 13742 |
 
-Условия замера: torch 2.5.1+cu121, 50 итераций после 10 прогревочных; train-step = fwd + bwd +
-optimizer.step при том же mixed-precision, с каким конфигурация обучалась (AMP включён для
-ResNet-50, выключен для EfficientNet). Оптимизатор AdamW (по памяти идентичен протокольному Adam).
+Measurement conditions: torch 2.5.1+cu121, 50 iterations after 10 warm-up ones; train-step = fwd +
+bwd + optimizer.step under the same mixed-precision setting the configuration was trained with (AMP
+enabled for ResNet-50, disabled for EfficientNet). Optimizer AdamW (memory-identical to the
+protocol's Adam).
 
-### Наблюдения (для §5.3.2 / FIG-5.2)
+### Observations (for §5.3.2 / FIG-5.2)
 
-- **Цена 4-го канала близка к нулю:** +0.4 GFLOPs (+0.9%), +24 МиБ VRAM, +~3k параметров в стем
-  (округляется до тех же 23.52M / 10.70M), latency в пределах шума. Вместе с приростом
-  +6.55пп wF1 (`TAB-4.2_exp1_factorial.md`) это даёт количественную формулировку центрального
-  тезиса: **конвейер — дешёвый априор**. Вся его вычислительная стоимость лежит в CPU-препроцессинге,
-  а не в сети.
-- **FLOPs ≠ latency.** EfficientNet-B3 в **4.3× дешевле по FLOPs** (10 против 43 GFLOPs) и в 2.2×
-  легче по параметрам, но по времени быстрее лишь на ~9% при bs=16 и **медленнее** при bs=1
-  (12.8–14.5 против 10.5 мс): depthwise-свёртки плохо утилизируют тензорные ядра. Аргумент про
-  performance-complexity trade-off нужно давать по замеренному времени, а не по FLOPs.
-- **VRAM обучения — узкое место у EfficientNet:** 13.7 ГиБ против 3.7 ГиБ у ResNet-50 (fp32 без
-  AMP + большие карты активаций при 512²). Это выше физических 12 ГиБ RTX 3060 — замер прошёл за
-  счёт «шаринга» в системную память (WSL2/WDDM). **Вывод для текста:** ограничение batch_size = 16
-  продиктовано активациями fp32 при 512², а не размером модели (10.7M параметров).
-- ⚠️ Демо (`data.js` `COMPUTE`) показывает **25.6M / 12.2M** — не совпадает с реальными
-  **23.52M / 10.70M**. Демо-числа не использовать.
+- **The cost of the 4th channel is close to zero:** +0.4 GFLOPs (+0.9%), +24 MiB VRAM, +~3k
+  parameters in the stem (which rounds to the same 23.52M / 10.70M), and latency within noise.
+  Together with the +6.55 pp wF1 gain (`TAB-4.2_exp1_factorial.md`) this gives a quantitative
+  formulation of the central thesis: **the pipeline is a cheap prior**. Its entire computational cost
+  lies in CPU preprocessing, not in the network.
+- **FLOPs ≠ latency.** EfficientNet-B3 is **4.3× cheaper in FLOPs** (10 against 43 GFLOPs) and 2.2×
+  lighter in parameters, yet in wall-clock time it is only ~9% faster at bs=16 and **slower** at bs=1
+  (12.8–14.5 against 10.5 ms): depthwise convolutions utilize tensor cores poorly. The
+  performance–complexity trade-off argument must be made from measured time, not from FLOPs.
+- **Training VRAM is the bottleneck for EfficientNet:** 13.7 GiB against 3.7 GiB for ResNet-50 (fp32
+  without AMP + large activation maps at 512²). That exceeds the RTX 3060's physical 12 GiB — the
+  measurement went through only thanks to "sharing" into system memory (WSL2/WDDM). **Conclusion for
+  the text:** the batch_size = 16 limit is dictated by fp32 activations at 512², not by model size
+  (10.7M parameters).
+- ⚠️ The demo (`data.js` `COMPUTE`) shows **25.6M / 12.2M** — this does not match the real
+  **23.52M / 10.70M**. Do not use the demo numbers.
 
-## A8 — Метрики качества изображения (CNR / Entropy / SSIM)
+## A8 — Image-quality metrics (CNR / Entropy / SSIM)
 
-**Закрыто через exp2.** Реальные значения по всем 8 уровням кумулятивной аблации, посчитанные на
-float-выходах конвейера (не на display-PNG), выборка n = 100 →
-**`TAB-4.5_exp2_image_quality.md`**. Второй независимый срез — CNR внутри σ-свипа flat-field
-(`exp2_flatfield_sigma_sweep.md`).
+**Closed via exp2.** Real values across all 8 levels of the cumulative ablation, computed on the
+float outputs of the pipeline (not on display PNGs), sample n = 100 →
+**`TAB-4.5_exp2_image_quality.md`**. A second independent slice is the CNR within the flat-field σ
+sweep (`exp2_flatfield_sigma_sweep.md`).
 
-Сводка находок:
+Summary of findings:
 
-| Находка | Где |
+| Finding | Where |
 |---|---|
-| Flat-field — единственная стадия, заметно поднимающая CNR (20.38 → 28.60) | `TAB-4.5` |
-| CLAHE снижает CNR (28.60 → 24.15), но даёт максимум энтропии (5.884) | `TAB-4.5` |
-| Геометрические стадии 0–3 не меняют CNR/Entropy, но дают +2.85пп wF1 | `TAB-4.5` |
-| Внутри стадии flat-field CNR и wF1 сонаправлены (максимум обоих при σ = 0.07) | `exp2_flatfield_sigma_sweep` |
-| Между стадиями соответствия IQ ↔ wF1 нет | `TAB-4.5` |
+| Flat-field is the only stage that noticeably raises CNR (20.38 → 28.60) | `TAB-4.5` |
+| CLAHE lowers CNR (28.60 → 24.15) but produces peak entropy (5.884) | `TAB-4.5` |
+| Geometric stages 0–3 leave CNR/Entropy unchanged yet deliver +2.85 pp wF1 | `TAB-4.5` |
+| Within the flat-field stage, CNR and wF1 move together (both peak at σ = 0.07) | `exp2_flatfield_sigma_sweep` |
+| Across stages there is no IQ ↔ wF1 correspondence | `TAB-4.5` |
 
-**Итоговая формулировка:** IQ-метрики фиксируют фотометрическую часть механизма конвейера, но не
-исчерпывают его — прирост от геометрической канонизации и аугментации им не виден. Как предиктор
-классификационного выигрыша CNR/Entropy/SSIM недостаточны.
+**Final formulation:** the IQ metrics capture the photometric part of the pipeline's mechanism but do
+not exhaust it — the gain from geometric canonicalization and augmentation is invisible to them. As
+predictors of the classification gain, CNR/Entropy/SSIM are insufficient.
 
-**Остаточный пробел:** **VVI не реализован** в `src/utils/image_quality.py`. Величина `VVI` в
-демо-`data.js` не имеет источника в коде — не использовать.
+**Residual gap:** **VVI is not implemented** in `src/utils/image_quality.py`. The `VVI` value in the
+demo `data.js` has no source in the code — do not use it.

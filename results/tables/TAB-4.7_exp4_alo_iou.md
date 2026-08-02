@@ -1,85 +1,86 @@
 # TAB-4.7 — Experiment 4: Attention–Lesion Overlap (ALO, primary) + IoU (secondary) (H-5)
 
-Grad-CAM против пиксельных масок поражений IDRiD. Бэкбон EfficientNet-B3, baseline (Config C, 3ch)
-против full pipeline (Config D, 4ch). **ALO = area(GradCAM ∩ lesion)/area(lesion)** — первичная
-метрика; **IoU** — вторичная. Бинаризация теплокарты порогом τ = 0.5 (канонический).
-Анализ по **всем 54** изображениям IDRiD, у которых есть маски поражений.
-Источник: прогон **2026-08-02** (`VALUES.md` §5).
+Grad-CAM against the IDRiD pixel-level lesion masks. Backbone EfficientNet-B3, baseline (Config C, 3ch)
+against full pipeline (Config D, 4ch). **ALO = area(GradCAM ∩ lesion)/area(lesion)** is the primary
+metric; **IoU** is secondary. The heatmap is binarized at the threshold τ = 0.5 (the canonical one).
+The analysis covers **all 54** IDRiD images that have lesion masks.
+Source: the **2026-08-02** run (`VALUES.md` §5).
 
-## ALO (первичная) — парное сравнение, τ = 0.5
+## ALO (primary) — paired comparison, τ = 0.5
 
-| Тип поражения | n | ALO (C) | ALO (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-стор.) |
+| Lesion type | n | ALO (C) | ALO (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-sided) |
 |---|--:|---:|---:|---:|---|---:|
 | Microaneurysms (MA) | 54 | 0.2140 | **0.3180** | +0.1040 | [+0.0412, +0.1668] | **0.0031** |
 | Haemorrhages (HE) | 53 | 0.2870 | **0.4020** | +0.1150 | [+0.0523, +0.1777] | **0.0018** |
 | Hard exudates (EX) | 54 | 0.3510 | **0.4830** | +0.1320 | [+0.0684, +0.1956] | **0.0007** |
 | Soft exudates (SE) | 26 | 0.2260 | **0.3340** | +0.1080 | [+0.0296, +0.1864] | **0.0142** |
 
-## IoU (вторичная)
+## IoU (secondary)
 
-| Тип поражения | n | IoU (C) | IoU (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-стор.) |
+| Lesion type | n | IoU (C) | IoU (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-sided) |
 |---|--:|---:|---:|---:|---|---:|
 | Microaneurysms | 54 | 0.1080 | **0.1690** | +0.0610 | [+0.0241, +0.0979] | **0.0048** |
 | Haemorrhages | 53 | 0.1520 | **0.2280** | +0.0760 | [+0.0318, +0.1202] | **0.0032** |
 | Hard exudates | 54 | 0.1940 | **0.2810** | +0.0870 | [+0.0401, +0.1339] | **0.0011** |
 | Soft exudates | 26 | 0.1160 | **0.1780** | +0.0620 | [+0.0154, +0.1086] | **0.0187** |
 
-## Направление эффекта по отдельным изображениям (§5.3)
+## Direction of the effect on individual images (§5.3)
 
-| Тип | n | ↑ (лучше с конвейером) | ↓ (хуже) | = (без изменений) | доля ↑ |
+| Type | n | ↑ (better with the pipeline) | ↓ (worse) | = (unchanged) | share ↑ |
 |---|--:|--:|--:|--:|---:|
 | MA | 54 | 38 | 9 | 7 | 70% |
 | HE | 53 | 37 | 9 | 7 | 70% |
 | EX | 54 | 40 | 8 | 6 | 74% |
 | SE | 26 | 17 | 5 | 4 | 65% |
 
-Эффект не держится на отдельных наблюдениях: улучшение наблюдается у 65–74% изображений при
-15–19% ухудшений. Средние сдвиги — результат согласованного смещения большинства, а не выбросов.
+The effect does not rest on individual observations: improvement is seen on 65–74% of images against
+15–19% of deteriorations. The mean shifts are the result of a coherent movement of the majority, not
+of outliers.
 
-## Эффект пола (§5.4)
+## Floor effect (§5.4)
 
-| Величина | Значение |
+| Quantity | Value |
 |----------|---------:|
-| f₀ — доля изображений с ALO = 0 в **обеих** арках (τ = 0.5) | 6 / 54 = **0.1111** |
+| f₀ — share of images with ALO = 0 in **both** arms (τ = 0.5) | 6 / 54 = **0.1111** |
 
-Только 11% изображений находятся на полу метрики. Измерение ведётся в рабочем диапазоне ALO/IoU,
-а не у границы чувствительности.
+Only 11% of images sit at the floor of the metric. Measurement takes place in the working range of
+ALO/IoU, not at the edge of sensitivity.
 
-## Устойчивость к порогу бинаризации (§5.5)
+## Robustness to the binarization threshold (§5.5)
 
-| τ | Типов с Δ > 0 | Значимо (p < 0.05) |
+| τ | Types with Δ > 0 | Significant (p < 0.05) |
 |---|--------------:|-------------------:|
 | 0.2 | 4 / 4 | 4 / 4 |
 | 0.3 | 4 / 4 | 4 / 4 |
-| **0.5** (канонический) | **4 / 4** | **4 / 4** |
+| **0.5** (canonical) | **4 / 4** | **4 / 4** |
 | 0.7 | 4 / 4 | 3 / 4 |
 
-Направление сохраняется при всех четырёх порогах; значимость теряется только у одного типа при
-самом строгом τ = 0.7 (наименьшая площадь активации). Результат порогом не объясняется.
+The direction holds at all four thresholds; significance is lost for only one type at the strictest
+τ = 0.7 (the smallest activation area). The result is not explained by the threshold.
 
 ## Verdict: `h5_alo_supported = true`
 
-Формулировка H-5 требует, чтобы ALO у препроцессированной модели был **значимо** выше. Выполнено:
+The wording of H-5 requires ALO for the preprocessed model to be **significantly** higher. This is met:
 
-- направленный критерий — **4/4** типов поражений (требуется ≥3/4);
-- статистический — **4/4** типов значимы (p от 0.0007 до 0.0142), все 95% CI исключают ноль;
-- вторичная метрика IoU даёт тот же результат по всем четырём типам (p 0.0011–0.0187);
-- результат устойчив к порогу бинаризации (4/4 направленно при τ = 0.2…0.7).
+- the directional criterion — **4/4** lesion types (≥3/4 required);
+- the statistical one — **4/4** types significant (p from 0.0007 to 0.0142), all 95% CIs excluding zero;
+- the secondary metric IoU gives the same result on all four types (p 0.0011–0.0187);
+- the result is robust to the binarization threshold (4/4 directionally at τ = 0.2…0.7).
 
-Относительная величина эффекта: ALO растёт на 37–49% (например, EX 0.3510 → 0.4830), IoU —
-на 45–56%. Наибольший абсолютный прирост у hard exudates (+0.1320), наименьшая значимость — у
-soft exudates (p = 0.0142), где выборка втрое меньше (n = 26).
+Relative effect size: ALO rises by 37–49% (e.g. EX 0.3510 → 0.4830) and IoU by 45–56%. The largest
+absolute gain is for hard exudates (+0.1320); the weakest significance is for soft exudates
+(p = 0.0142), where the sample is three times smaller (n = 26).
 
-## Обязательные оговорки
+## Mandatory caveats
 
-1. **INVARIANTS NC-14 остаётся в силе:** Grad-CAM активация **не является** клинической
-   локализацией патологии. Корректная формулировка — «внимание модели лучше выровнено с
-   размеченными поражениями», а не «модель находит поражения».
-2. Одна модель на арку (**fold 0**), кросс-валидации по этому анализу нет.
-3. Маски доступны только для сегментационного подмножества IDRiD (54 изображения); SE размечены
-   лишь на 26 из них.
-4. Классификация тех же арок — `exp4_classification.md`.
-5. **Клинические (KZ) качественные overlay по-прежнему не сделаны** — формулировка H-5 их
-   требует; см. пробел G-3 в `HYPOTHESIS_COVERAGE.md`.
+1. **INVARIANTS NC-14 remains in force:** Grad-CAM activation **is not** clinical localization of
+   pathology. The correct formulation is "the model's attention is better aligned with the annotated
+   lesions", not "the model finds the lesions".
+2. One model per arm (**fold 0**); there is no cross-validation for this analysis.
+3. Masks are available only for the IDRiD segmentation subset (54 images); SE is annotated on only 26
+   of them.
+4. Classification of the same arms — `exp4_classification.md`.
+5. **The clinical (KZ) qualitative overlays are still not produced** — the wording of H-5 requires
+   them; see gap G-3 in `HYPOTHESIS_COVERAGE.md`.
 
-Карточка гипотезы — `hypotheses/H-5.md`. Выводы — `findings/exp4.md`.
+Hypothesis card — `hypotheses/H-5.md`. Conclusions — `findings/exp4.md`.

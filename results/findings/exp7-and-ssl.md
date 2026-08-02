@@ -1,69 +1,72 @@
-# Выводы — Experiment 7 / E-7 (малодатное обучение) + SSL / A1 → §4.8 / §3.3.2
+# Conclusions — Experiment 7 / E-7 (small-data training) + SSL / A1 → §4.8 / §3.3.2
 
-## Exp 7 / E-7 — IDRiD → Clinical (малые данные) → §4.8
+## Exp 7 / E-7 — IDRiD → Clinical (small data) → §4.8
 
-**Что делали.** Обучение на малом наборе IDRiD (n = 516, 5-fold CV), тест на казахстанском
-клиническом hold-out (n = 60); сравнение арок baseline (3ch) и full (4ch), EfficientNet-B3.
-Эксперимент **предзарегистрирован** (`preregistered = true`). Источник: прогон **2026-08-02**.
+**What was done.** Training on the small IDRiD set (n = 516, 5-fold CV), tested on the Kazakhstani
+clinical hold-out (n = 60); a comparison of the baseline (3ch) and full (4ch) arms, EfficientNet-B3.
+The experiment is **preregistered** (`preregistered = true`). Source: the **2026-08-02** run.
 
-**Что выяснили.**
+**What was found.**
 
-1. **Конвейер значимо превосходит baseline на клиническом hold-out.** wF1 0.5150 → 0.5940
+1. **The pipeline significantly outperforms baseline on the clinical hold-out.** wF1 0.5150 → 0.5940
    (Δ +0.0790, CI [+0.0412, +0.1168]); κ 0.4860 → 0.6080 (Δ +0.1220, CI [+0.0631, +0.1809]);
-   AUC 0.7420 → 0.7930 (Δ +0.0510, CI [+0.0248, +0.0772]). Все три CI исключают ноль.
-2. **Стабильность по фолдам.** На внутренней CV по IDRiD конвейер выше baseline **во всех пяти
-   фолдах** (0.6520 ± 0.0310 против 0.5850 ± 0.0380), минимальный запас 0.058. Преимущество не
-   зависит от разбиения.
-3. **Прирост κ вдвое больше прироста wF1** (+0.122 против +0.079) — та же картина, что во всех
-   остальных экспериментах: конвейер прежде всего убирает дальние ошибки градации.
-4. ⚠️ **Непарные bootstrap-интервалы перекрываются** (C [0.4402, 0.5898], D [0.5238, 0.6642]) —
-   при n = 60 они широки. Значимость даёт **парный** тест разности, где обе арки оцениваются на
-   одних и тех же 60 снимках. В текст переносить парные CI; непарные — только с этой оговоркой.
+   AUC 0.7420 → 0.7930 (Δ +0.0510, CI [+0.0248, +0.0772]). All three CIs exclude zero.
+2. **Stability across folds.** On the internal IDRiD CV the pipeline is above baseline **in all five
+   folds** (0.6520 ± 0.0310 against 0.5850 ± 0.0380), with a minimum margin of 0.058. The advantage
+   does not depend on the split.
+3. **The κ gain is twice the wF1 gain** (+0.122 against +0.079) — the same picture as in every other
+   experiment: the pipeline primarily removes distant grading errors.
+4. ⚠️ **The unpaired bootstrap intervals overlap** (C [0.4402, 0.5898], D [0.5238, 0.6642]) — at
+   n = 60 they are wide. Significance comes from the **paired** test of the difference, where both
+   arms are evaluated on the same 60 images. Carry the paired CIs into the text; cite the unpaired
+   ones only with this caveat.
 
-**Значение (изменилось относительно прежней редакции).** Это целевой сценарий работы — обучение
-на малой клинической выборке и применение в другой клинике, — и результат обосновывает
-практический вклад «препроцессинг как эффективный априор». Но прежняя формулировка «единственный
-чистый позитив работы; препроцессинг ценен **именно** при малых данных» **устарела**: прирост
-здесь (+0.079) сопоставим с приростом на полном EyePACS (+0.0655), то есть выигрыш конвейера
-**не специфичен для малых данных** и не исчезает при росте выборки. Теперь exp7 — один из
-согласованных результатов, а не исключение из ряда отрицательных.
+**Significance (changed relative to the previous revision).** This is the target operating scenario —
+training on a small clinical sample and deployment at a different clinic — and the result
+substantiates the practical contribution "preprocessing as an effective prior". But the former
+formulation "the work's only clean positive; preprocessing is valuable **precisely** on small data"
+is **obsolete**: the gain here (+0.079) is comparable to the gain on full EyePACS (+0.0655), i.e. the
+pipeline's advantage **is not specific to small data** and does not vanish as the sample grows. exp7
+is now one of several consistent results, not an exception in a series of negatives.
 
-**Оговорки.** Абсолютный уровень (wF1 ≈ 0.52–0.59) ниже in-domain EyePACS — ожидаемо для обучения
-на 516 изображениях с тестом в другой клинике; содержательна разница армов. Hold-out мал (n = 60).
-± в сводной таблице — разброс по 5 фолдам обучения, не по-объектная неопределённость на hold-out.
+**Caveats.** The absolute level (wF1 ≈ 0.52–0.59) is below in-domain EyePACS — as expected for
+training on 516 images with testing at a different clinic; what is meaningful is the difference
+between arms. The hold-out is small (n = 60). The ± in the summary table is the spread across the
+5 training folds, not per-instance uncertainty on the hold-out.
 
 ---
 
 ## SSL / A1 — in-domain self-supervised pretraining → §3.3.2 / §4.2 caveat
 
-**Что выяснили.**
+**What was found.**
 
-1. **Классические контрастивные методы from-scratch по-прежнему проваливают probe-гейт.**
-   BYOL коллапсирует (κ = 0.0000), MoCo-v2 κ = 0.112, DINO κ = 0.075 — все существенно ниже
-   ImageNet (κ 0.34–0.45). Увеличение бюджета с 50 до 100 эпох **не помогает**: MoCo 0.112 → 0.109,
-   DINO 0.075 → 0.061. Робастный отрицательный результат, содержательный сам по себе.
-2. **Новое: SIP (100 эпох) гейт проходит** — κ = 0.6580, практически на уровне continual-SSL
-   (0.6590). То есть from-scratch in-domain-инициализация в принципе достижима в рамках бюджета
-   проекта; проваливаются конкретные методы, а не подход. SIP построена, но **не выбрана** —
-   Config B/D инициализируются continual-SSL.
-3. **Continual-SSL даёт крупный выигрыш на обоих бэкбонах.** ResNet-50: κ 0.3400 → 0.6590
-   (Δ +0.3190; второй прогон +0.2840). EfficientNet-B3: κ 0.4450 → 0.6820 (Δ +0.2370; второй
-   прогон +0.2230). Оба `passed = true`. Коллапса нет (feat_std 0.008 → 0.056, kNN 0.31 → 0.70).
-4. ⚠️ **Асимметрия по бэкбонам исчезла.** В прежнем прогоне EfficientNet-B3 не получал от
-   continual-SSL выигрыша (κ 0.435 против 0.445 у ImageNet), и это выносилось как честная
-   оговорка. Теперь оба бэкбона получают сопоставимый прирост — формулировки, опиравшиеся на
-   прежнюю асимметрию, подлежат замене.
+1. **Classical contrastive methods trained from scratch still fail the probe gate.**
+   BYOL collapses (κ = 0.0000), MoCo-v2 κ = 0.112, DINO κ = 0.075 — all substantially below ImageNet
+   (κ 0.34–0.45). Increasing the budget from 50 to 100 epochs **does not help**: MoCo 0.112 → 0.109,
+   DINO 0.075 → 0.061. A robust negative result, substantive in its own right.
+2. **New: SIP (100 epochs) passes the gate** — κ = 0.6580, practically at the continual-SSL level
+   (0.6590). That is, from-scratch in-domain initialization is in principle achievable within the
+   project's budget; what fails is particular methods, not the approach. SIP was built but **not
+   selected** — Config B/D are initialized with continual-SSL.
+3. **Continual-SSL delivers a large gain on both backbones.** ResNet-50: κ 0.3400 → 0.6590
+   (Δ +0.3190; second run +0.2840). EfficientNet-B3: κ 0.4450 → 0.6820 (Δ +0.2370; second run
+   +0.2230). Both `passed = true`. There is no collapse (feat_std 0.008 → 0.056, kNN 0.31 → 0.70).
+4. ⚠️ **The between-backbone asymmetry has disappeared.** In the previous run EfficientNet-B3 gained
+   nothing from continual-SSL (κ 0.435 against ImageNet's 0.445), and this was reported as an honest
+   caveat. Now both backbones receive a comparable gain — formulations that relied on the previous
+   asymmetry must be replaced.
 
-**Значение для тезиса (Premise 4).** Двухэтапный SSL-нарратив сохраняется, но его мораль меняется:
-не «in-domain SSL не работает, пришлось откатиться на fallback», а «классические контрастивные
-методы на фундус-корпусе этого масштаба не конкурентны ImageNet, тогда как специализированный SIP
-и continual-SSL конкурентны и дают крупный in-domain выигрыш на обоих бэкбонах».
+**Significance for the thesis (Premise 4).** The two-stage SSL narrative is preserved, but its moral
+changes: not "in-domain SSL does not work and we had to fall back", but "classical contrastive
+methods on a fundus corpus of this scale are not competitive with ImageNet, whereas the specialized
+SIP and continual-SSL are competitive and deliver a large in-domain gain on both backbones".
 
-**CFC-2.8 — статус изменился.** Конфаунд «препроцессинг × инициализация» в Config B/D формально
-сохраняется, но **разложим**: кумулятивная аблация exp2 при единой инициализации на всех восьми
-уровнях даёт ΔwF1 = +0.0655 от L0 к L7 — ровно величина D-vs-C в exp1, причём L0 и L7 численно
-совпадают с Config C и D. Вклад препроцессинга измерен независимо от вклада инициализации.
-В §4.2 CFC-2.8 идёт как указание на особенность дизайна, а **не** как ограничение на вывод.
+**CFC-2.8 — the status has changed.** The "preprocessing × initialization" confound in Config B/D
+formally remains, but it is **decomposable**: the exp2 cumulative ablation under a single
+initialization at all eight levels yields ΔwF1 = +0.0655 from L0 to L7 — exactly the D-vs-C magnitude
+in exp1, with L0 and L7 numerically coinciding with Config C and D. The contribution of preprocessing
+has been measured independently of the contribution of initialization. In §4.2, CFC-2.8 goes in as a
+note about a feature of the design and **not** as a limitation on the conclusion.
 
-Карточка: `hypotheses/exp7-and-SSL.md`. Таблицы: `tables/TAB-4.10_exp7_smalldata.md`,
+Card: `hypotheses/exp7-and-SSL.md`. Tables: `tables/TAB-4.10_exp7_smalldata.md`,
 `tables/SSL_continual_gate.md`.

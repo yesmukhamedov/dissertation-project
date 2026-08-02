@@ -1,152 +1,152 @@
-# HYPOTHESIS_COVERAGE — покрытие требований HYPOTHESIS.md реальными данными
+# HYPOTHESIS_COVERAGE — coverage of the HYPOTHESIS.md requirements by the real data
 
-Сверка **буквального текста** `thesis/governance/HYPOTHESIS.md` (v6.2.0) с тем, что даёт прогон
-**2026-08-02**. Цель — список того, что ещё нужно прогнать в `experiments/`, чтобы `results/`
-закрывал гипотезы по формулировкам, а не «по смыслу».
+A reconciliation of the **literal text** of `thesis/governance/HYPOTHESIS.md` (v6.2.0) with what the
+**2026-08-02** run delivers. The aim is a list of what still has to be run in `experiments/` so that
+`results/` closes the hypotheses as worded, not merely "in spirit".
 
-Обновлено 2026-08-02. Дополняет `GAP_ANALYSIS.md` (тот сверяет потребности глав/демо/защиты;
-этот — требования гипотез).
+Updated 2026-08-02. Complements `GAP_ANALYSIS.md` (which reconciles the needs of the
+chapters/demo/defense; this one covers the requirements of the hypotheses).
 
-> `thesis/` — read-only. Правки текста гипотез не предлагаются; здесь только то, что решается
-> прогоном экспериментов или кодом в `experiments/`.
+> `thesis/` is read-only. No edits to the text of the hypotheses are proposed here; this file covers
+> only what can be resolved by running experiments or by code in `experiments/`.
 
 ---
 
-## Сводка: состояние пробелов после прогона 2026-08-02
+## Summary: state of the gaps after the 2026-08-02 run
 
-| # | Гипотеза | Пробел | Статус |
+| # | Hypothesis | Gap | Status |
 |---|----------|--------|--------|
-| ~~G-1~~ | H-5 | Оценка на 5 масках вместо 54 | ✅ закрыт 2026-07-28; прогон 2026-08-02 подтверждает на n = 54 |
-| ~~G-2~~ | H-5 | Нет парного теста значимости | ✅ закрыт — Wilcoxon + bootstrap-CI + свип порога; **4/4 типов значимы** |
-| **G-3** | H-5 | Нет качественных Grad-CAM overlay на **клиническом (KZ) датасете** — в `exp4_explainability.py` нет ветки clinical | 🔴 **ОТКРЫТ** — единственный по H-5 · код + прогон, ~2 ч |
-| ~~G-4~~ | H-4 | exp3 считан до фикса Stage-2 | ✅ закрыт; прогон 2026-08-02 выполнен на исправленном коде |
-| ~~G-5~~ | H-2 | σ-свип flat-field не реализован | ✅ **ЗАКРЫТ ПРОГОНОМ** — 6 точек 0.05–0.10·D, σ\* = 0.07, held-out +0.0570 |
-| ~~G-6~~ | H-2 | Свип только по `clahe_clip_factor`, нужны комбинации с `global_threshold` | ✅ **ЗАКРЫТ ПРОГОНОМ** — двумерная сетка 7 × 5, θ\* = (2.5, 0.03) |
-| ~~G-7~~ | H-2 | Свип выполнен на IDRiD, гипотеза говорит «on EyePACS» | ✅ **ЗАКРЫТ ПРОГОНОМ** — свипы и аблация на EyePACS 100% |
-| **G-8** | H-2 | Не изолированы Stage 1 и Stage 3 | 🟡 **ЧАСТИЧНО** — Stage 1 изолирован (уровень L2); **Stage 3 (FOV-маска) — нет**: L3 добавляет Stages 2–3 совместно. Нужен флаг + 3-канальный вариант модели |
-| ~~G-9~~ | H-1 | `C`/fold3 оборван на ep13 | ✅ **ЗАКРЫТ ПРОГОНОМ** — best-эпохи C по фолдам 15, 17, 14, 16, 15, аномалий нет |
-| **G-10** | H-1 | Офлайн-предсказания B/D не воспроизводили обучение (кэш vs живой конвейер) | 🟡 **ТРЕБУЕТ ПРОВЕРКИ** — в новом прогоне per-class/confusion согласованы с summary-метриками, но подтвердить это можно только по сырым артефактам, которых пока нет |
-| ~~G-11~~ | H-1 | Значимость только по referable-AUC, нет теста по wF1 | ✅ **ЗАКРЫТ ПРОГОНОМ** — McNemar по доле верных + Holm-поправка + по-объектный bootstrap-CI по wF1 для всех 4 конфигов |
-| ~~G-12~~ | H-7 | exp5 дофиксовый | ✅ **ЗАКРЫТ ПРОГОНОМ** — весь набор экспериментов пересчитан |
-| **NEW-1** | все | **Сырые артефакты прогона 2026-08-02 отсутствуют в `experiments/outputs/`**; `results/data/*.json` содержат числа предыдущего прогона | 🔴 **ОТКРЫТ** — блокирует перенос чисел в главы |
-| **NEW-2** | H-3 | Ядро MMD, размер выборки на домен, число bootstrap-итераций не зафиксированы в данных прогона | 🟡 нужно извлечь из конфигурации эксперимента перед написанием §4.4/§5 |
+| ~~G-1~~ | H-5 | Evaluation on 5 masks instead of 54 | ✅ closed 2026-07-28; the 2026-08-02 run confirms it on n = 54 |
+| ~~G-2~~ | H-5 | No paired significance test | ✅ closed — Wilcoxon + bootstrap CIs + threshold sweep; **4/4 types significant** |
+| **G-3** | H-5 | No qualitative Grad-CAM overlays on the **clinical (KZ) dataset** — `exp4_explainability.py` has no clinical branch | 🔴 **OPEN** — the only one left for H-5 · code + run, ~2 h |
+| ~~G-4~~ | H-4 | exp3 was computed before the Stage-2 fix | ✅ closed; the 2026-08-02 run was executed on the corrected code |
+| ~~G-5~~ | H-2 | Flat-field σ sweep not implemented | ✅ **CLOSED BY THE RUN** — 6 points 0.05–0.10·D, σ\* = 0.07, held-out +0.0570 |
+| ~~G-6~~ | H-2 | Sweep only over `clahe_clip_factor`; combinations with `global_threshold` needed | ✅ **CLOSED BY THE RUN** — 7 × 5 two-dimensional grid, θ\* = (2.5, 0.03) |
+| ~~G-7~~ | H-2 | Sweep performed on IDRiD, the hypothesis says "on EyePACS" | ✅ **CLOSED BY THE RUN** — sweeps and ablation on EyePACS 100% |
+| **G-8** | H-2 | Stage 1 and Stage 3 not isolated | 🟡 **PARTIAL** — Stage 1 is isolated (level L2); **Stage 3 (FOV mask) is not**: L3 adds Stages 2–3 jointly. Requires a flag + a 3-channel model variant |
+| ~~G-9~~ | H-1 | `C`/fold3 truncated at ep13 | ✅ **CLOSED BY THE RUN** — best epochs of C per fold are 15, 17, 14, 16, 15; no anomalies |
+| **G-10** | H-1 | Offline B/D predictions did not reproduce training (cache vs live pipeline) | 🟡 **NEEDS VERIFICATION** — in the new run the per-class/confusion figures agree with the summary metrics, but this can only be confirmed against the raw artifacts, which are not yet available |
+| ~~G-11~~ | H-1 | Significance only on referable AUC, no test on wF1 | ✅ **CLOSED BY THE RUN** — McNemar on the fraction correct + Holm correction + per-instance bootstrap CIs on wF1 for all 4 configs |
+| ~~G-12~~ | H-7 | exp5 predated the fix | ✅ **CLOSED BY THE RUN** — the whole experiment suite was recomputed |
+| **NEW-1** | all | **The raw artifacts of the 2026-08-02 run are absent from `experiments/outputs/`**; `results/data/*.json` contain numbers from the previous run | 🔴 **OPEN** — blocks carrying numbers into the chapters |
+| **NEW-2** | H-3 | The MMD kernel, per-domain sample size and number of bootstrap iterations are not recorded in the run data | 🟡 must be extracted from the experiment configuration before writing §4.4/§5 |
 
-**Итого открыто: G-3, G-8 (остаток), NEW-1, NEW-2**; на проверке — G-10.
+**Open in total: G-3, G-8 (remainder), NEW-1, NEW-2**; under verification — G-10.
 
 ---
 
 ## H-1 — Integrated Pipeline Dominance (exp1)
 
-**Требует:** accuracy, precision, recall, F1 (macro **и** weighted), ROC-AUC, κ(quadratic);
-«statistically significantly higher»; критерий доминирования ΔwF1 ≥ 5пп ∧ ΔAUC ≥ 0.02 ∧ без
-деградации κ; интегрированная арка инициализируется офтальмологическим SSL, допущенным
-linear-probe гейтом.
+**Requires:** accuracy, precision, recall, F1 (macro **and** weighted), ROC-AUC, κ(quadratic);
+"statistically significantly higher"; the dominance criterion ΔwF1 ≥ 5 pp ∧ ΔAUC ≥ 0.02 ∧ no
+degradation in κ; the integrated arm to be initialized with ophthalmological SSL that has passed the
+linear-probe gate.
 
-**Есть:** все 4 первичные метрики × A–D × 5 фолдов; macro-F1, per-class precision/recall, матрицы
-ошибок, ECE/Brier, клинические метрики; DeLong + McNemar + **Holm-поправка** + смешанная ANOVA;
-по-объектные bootstrap-CI; probe-гейт continual-SSL пройден обоими бэкбонами.
-**Вердикт `h1_supported = true`** — все три компоненты EH-3 выполнены на обоих бэкбонах.
+**Available:** all 4 primary metrics × A–D × 5 folds; macro-F1, per-class precision/recall, confusion
+matrices, ECE/Brier, clinical metrics; DeLong + McNemar + **Holm correction** + mixed-effects ANOVA;
+per-instance bootstrap CIs; the continual-SSL probe gate passed on both backbones.
+**Verdict `h1_supported = true`** — all three components of EH-3 are met on both backbones.
 
-**Закрыто:** G-9 (сходимость всех фолдов нормальная), G-11 (значимость показана не только по
-referable-AUC, но и по доле верных предсказаний, с поправкой на множественность).
+**Closed:** G-9 (convergence normal in all folds), G-11 (significance shown not only on referable AUC
+but also on the fraction of correct predictions, with correction for multiplicity).
 
-**Открыто / изменилось:**
-- **G-10** — требует проверки по сырым артефактам, когда они появятся (NEW-1).
-- **Отклонение протокола — статус смягчился.** Гипотеза называет BYOL from-scratch на
-  4-канальном тензоре; BYOL по-прежнему коллапсирует, но **SIP from-scratch гейт проходит**
-  (κ 0.658). Фактически используется continual-SSL. В текст — как оговорка о выборе метода,
-  а не как признание провала from-scratch-подхода.
-- **CFC-2.8 — форма изменилась.** Композит «препроцессинг × инициализация» теперь **разложим**:
-  аблация exp2 при единой инициализации даёт тот же +0.0655, и её концы численно совпадают с
-  Config C и D. H-1 больше не опирается на нераздельный композит.
+**Open / changed:**
+- **G-10** — requires verification against the raw artifacts once they are available (NEW-1).
+- **Protocol deviation — the status has softened.** The hypothesis names BYOL from scratch on a
+  4-channel tensor; BYOL still collapses, but **SIP from scratch passes the gate** (κ 0.658). In
+  practice continual-SSL is used. This goes into the text as a caveat about the choice of method,
+  not as an admission that the from-scratch approach failed.
+- **CFC-2.8 — its form has changed.** The composite "preprocessing × initialization" is now
+  **decomposable**: under a single initialization the exp2 ablation yields the same +0.0655, and its
+  endpoints numerically coincide with Config C and D. H-1 no longer rests on an indivisible composite.
 
 ## H-2 — CLAHE/σ Sensitivity + Component Ablation (exp2)
 
-**Требует:** (а) варьирование **clip_factor и global_threshold** «across controlled values … on
-EyePACS», per-class F1 для DR1 и DR2 с ≥1 локальным оптимумом; (б) свип σ flat-field 0.05–0.10·D;
-(в) компонентную аблацию.
+**Requires:** (a) varying **clip_factor and global_threshold** "across controlled values … on
+EyePACS", per-class F1 for DR1 and DR2 with ≥1 local optimum; (b) a flat-field σ sweep over 0.05–0.10·D;
+(c) a component ablation.
 
-**Есть:** (а) двумерная сетка 7 × 5 на EyePACS + отдельные сетки F1(DR1) и F1(DR2), внутренние
-оптимумы θ\* = (2.5, 0.03), θ̂(DR1) = (2.5, 0.03), θ̂(DR2) = (2.0, 0.03), held-out +0.0602;
-(б) σ-свип 6 точек, унимодальный максимум σ\* = 0.07, held-out +0.0570; (в) кумулятивная аблация
-8 уровней на EyePACS 100% × 5 фолдов, все 7 переходов значимы.
+**Available:** (a) a 7 × 5 two-dimensional grid on EyePACS plus separate F1(DR1) and F1(DR2) grids,
+interior optima θ\* = (2.5, 0.03), θ̂(DR1) = (2.5, 0.03), θ̂(DR2) = (2.0, 0.03), held-out +0.0602;
+(b) a 6-point σ sweep with a unimodal maximum at σ\* = 0.07, held-out +0.0570; (c) an 8-level
+cumulative ablation on EyePACS 100% × 5 folds, all 7 transitions significant.
 
-**Закрыто прогоном: G-5, G-6, G-7.** Все три требования буквы гипотезы выполнены.
+**Closed by the run: G-5, G-6, G-7.** All three requirements in the letter of the hypothesis are met.
 
-**Открыто:**
-- **G-8 (остаток).** Stage 1 (OD-fovea rotation) изолирован уровнем L2 ✓. **Stage 3 (FOV-маска)
-  не изолирована**: уровень L3 добавляет Stages 2–3 совместно, поскольку в `PreprocessingConfig`
-  нет переключателя маски — 4-й канал присутствует во всех уровнях выше L3. *Решение:* флаг +
-  3-канальный вариант модели, +1 уровень аблации. Самая дорогая оставшаяся позиция.
-- Расхождение held-out F1(DR1) с сеточным значением в θ\* (0.2088 против 0.4700) —
-  требует объяснения при написании §4.3.2; в текст брать held-out.
+**Open:**
+- **G-8 (remainder).** Stage 1 (OD-fovea rotation) is isolated by level L2 ✓. **Stage 3 (FOV mask) is
+  not isolated**: level L3 adds Stages 2–3 jointly, because `PreprocessingConfig` has no mask toggle —
+  the 4th channel is present at every level above L3. *Fix:* a flag + a 3-channel model variant,
+  +1 ablation level. The most expensive remaining item.
+- The discrepancy between the held-out F1(DR1) and the grid value at θ\* (0.2088 vs 0.4700) —
+  needs an explanation when writing §4.3.2; use the held-out value in the text.
 
-## H-3 — Domain Distance (MMD / KL) — новый блок
+## H-3 — Domain Distance (MMD / KL) — new block
 
-**Требует:** сокращение дистанции между исходным и целевыми доменами.
+**Requires:** a reduction in the distance between the source and target domains.
 
-**Есть:** MMD по признакам предпоследнего слоя и KL по канальным гистограммам для 6 доменов;
-Δd > 0 во всех 6 случаях, все 95% CI исключают ноль; KL −35…−37%. `h3_supported = true`.
+**Available:** MMD over penultimate-layer features and KL over per-channel histograms for 6 domains;
+Δd > 0 in all 6 cases, all 95% CIs exclude zero; KL −35…−37%. `h3_supported = true`.
 
-**Открыто — NEW-2.** Ядро MMD, размер выборки на домен и число bootstrap-итераций в данных
-прогона не зафиксированы. Для §4/§5 их нужно извлечь из конфигурации эксперимента.
-Отдельная методологическая оговорка: MMD считается в собственном пространстве признаков каждой
-арки, что требует явного упоминания.
+**Open — NEW-2.** The MMD kernel, the per-domain sample size and the number of bootstrap iterations
+are not recorded in the run data. For §4/§5 they must be extracted from the experiment configuration.
+A separate methodological caveat: MMD is computed in each arm's own feature space, which must be
+stated explicitly.
 
 ## H-4 — Cross-Dataset Transferability (exp3)
 
-**Требует:** G = F1_APTOS / F1_EyePACS ≥ 0.85 для моделей с полным конвейером.
+**Requires:** G = F1_APTOS / F1_EyePACS ≥ 0.85 for models with the full pipeline.
 
-**Есть:** G_D = 0.8976 ≥ 0.85 ✓, G_C = 0.8577; Δ wF1 +0.0889 (CI исключает 0); per-class,
-матрицы ошибок, referable-метрики. `h4_supported = true`. **G-4 закрыт.**
+**Available:** G_D = 0.8976 ≥ 0.85 ✓, G_C = 0.8577; Δ wF1 +0.0889 (CI excludes 0); per-class,
+confusion matrices, referable metrics. `h4_supported = true`. **G-4 closed.**
 
-**Оговорка (не решается дёшево):** exp3/5/6 считаны с чекпойнтов **fold0**, межфолдовой
-дисперсии нет.
+**Caveat (not cheaply resolvable):** exp3/5/6 were computed from **fold0** checkpoints, so there is
+no between-fold variance.
 
 ## H-5 — Explainability (exp4)
 
-**Требует:** ALO как **первичная** метрика, IoU как вторичная; ALO_preproc **significantly**
-higher; дополнительно — **качественные Grad-CAM overlay на казахстанском клиническом датасете**.
+**Requires:** ALO as the **primary** metric, IoU as secondary; ALO_preproc **significantly** higher;
+in addition — **qualitative Grad-CAM overlays on the Kazakhstani clinical dataset**.
 
-**Есть:** ALO/IoU по всем 54 изображениям IDRiD с масками; **4/4 типов значимы** (p 0.0007–0.0142),
-IoU то же; свип порога τ = 0.2…0.7; эффект пола мал (f₀ = 6/54); классификация арок.
-`h5_alo_supported = true`. **G-1, G-2 закрыты.**
+**Available:** ALO/IoU over all 54 IDRiD images with masks; **4/4 types significant** (p 0.0007–0.0142),
+the same for IoU; a threshold sweep τ = 0.2…0.7; a small floor effect (f₀ = 6/54); arm classification.
+`h5_alo_supported = true`. **G-1, G-2 closed.**
 
-**Открыто:**
-- **G-3.** Клинической ветки в `exp4_explainability.py` нет: слово `clinical` встречается только
-  в комментариях про NC-14. Датасет доступен (`E:/datasets/clinical`, используется exp7). Нужен
-  блок «прогнать обе модели на N клинических изображениях и сохранить overlay» — качественная
-  часть H-5, отдельного обучения не требует. **Единственный незакрытый пробел по этой гипотезе.**
+**Open:**
+- **G-3.** There is no clinical branch in `exp4_explainability.py`: the word `clinical` appears only
+  in comments about NC-14. The dataset is available (`E:/datasets/clinical`, used by exp7). What is
+  needed is a block that "runs both models on N clinical images and saves the overlays" — the
+  qualitative part of H-5; no separate training required. **The only gap still open for this hypothesis.**
 
-## H-6 — Device Robustness (exp6) — пробелов нет
+## H-6 — Device Robustness (exp6) — no gaps
 
-5 групп камер, межгрупповая дисперсия, g_ratio; все 5 групп выше пола у обеих арок; std wF1
-сокращается в 2.6× (CI исключает 0). `h6_supported = true`. Оговорка: чекпойнты fold0.
-Изменение протокола: `mixed_rfmid` теперь оценивается по 5-классовой шкале (ранее только бинарно).
+5 camera groups, between-group variance, g_ratio; all 5 groups above the floor for both arms; std wF1
+shrinks by a factor of 2.6 (CI excludes 0). `h6_supported = true`. Caveat: fold0 checkpoints.
+Protocol change: `mixed_rfmid` is now evaluated on the 5-class scale (previously binary only).
 
 ## H-7 — Clinical Degradation Resistance (exp5)
 
-**Есть:** Δ по IDRiD и Messidor-2, 95% CI, p, Δ_drop обеих арок. **G-12 закрыт.**
+**Available:** Δ for IDRiD and Messidor-2, 95% CIs, p, Δ_drop for both arms. **G-12 closed.**
 
-**Результат — частичный (1/2), и это не пробел данных, а свойство критерия.** Δ_drop измеряется
-от собственного in-domain-уровня и систематически штрафует более сильную арку. Дополнительный
-прогон это не изменит. *Что можно сделать:* зафиксировать относительную деградацию
-(Δ_drop / in-domain) как дополнительную величину — это расчёт по имеющимся числам, не прогон.
+**The result is partial (1/2), and this is not a data gap but a property of the criterion.** Δ_drop
+is measured from each arm's own in-domain level and systematically penalizes the stronger arm. An
+additional run will not change this. *What can be done:* record relative degradation
+(Δ_drop / in-domain) as a supplementary quantity — that is a computation over existing numbers, not a run.
 
 ---
 
-## Рекомендованный порядок работ
+## Recommended order of work
 
-**Приоритет 1 — блокирует написание глав:**
-**NEW-1** (выложить сырые артефакты прогона в `experiments/outputs/`, обновить `results/data/`).
-Без этого числа в главах не будут прослеживаемы до источника.
+**Priority 1 — blocks chapter writing:**
+**NEW-1** (publish the raw run artifacts into `experiments/outputs/`, update `results/data/`).
+Without it, the numbers in the chapters will not be traceable to a source.
 
-**Приоритет 2 — дёшево, закрывает букву гипотез:**
-**G-3** (клинические overlay, ~2 ч, код + прогон) → **NEW-2** (извлечь параметры MMD из конфига).
+**Priority 2 — cheap, closes the letter of the hypotheses:**
+**G-3** (clinical overlays, ~2 h, code + run) → **NEW-2** (extract the MMD parameters from the config).
 
-**Приоритет 3 — дорогое обучение:**
-**G-8 остаток** (флаг FOV-маски + 3-канальный вариант модели + уровень аблации).
+**Priority 3 — expensive training:**
+**G-8 remainder** (FOV-mask flag + 3-channel model variant + ablation level).
 
-**G-10** проверяется попутно при закрытии NEW-1.
+**G-10** gets verified along the way while closing NEW-1.
 
-После каждого шага — отмечать здесь и в `TODO_BEFORE_WRITING.md`.
+After each step — mark it here and in `TODO_BEFORE_WRITING.md`.

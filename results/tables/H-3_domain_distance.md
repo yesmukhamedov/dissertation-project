@@ -1,18 +1,19 @@
-# H-3 — Domain Distance: MMD и KL между исходным и целевыми доменами
+# H-3 — Domain Distance: MMD and KL between the source and target domains
 
-Проверка того, что препроцессинг **сближает распределения доменов**. Две независимые меры:
-MMD по признакам предпоследнего слоя (представленческий уровень) и KL по канальным гистограммам
-(пиксельный уровень). BASE = baseline-арм (3ch), INT = интегрированная арка (4ch, полный конвейер).
-Источник: прогон **2026-08-02** (`VALUES.md` §3).
+A test that preprocessing **brings the domain distributions closer together**. Two independent
+measures: MMD over penultimate-layer features (representational level) and KL over per-channel
+histograms (pixel level). BASE = the baseline arm (3ch), INT = the integrated arm (4ch, full pipeline).
+Source: the **2026-08-02** run (`VALUES.md` §3).
 
-> Новый блок относительно прежней версии `results/` — до 2026-08-02 дистанции доменов не измерялись.
+> A new block relative to the previous version of `results/` — before 2026-08-02 domain distances
+> were not measured.
 
-## MMD по признакам предпоследнего слоя (§3.1)
+## MMD over penultimate-layer features (§3.1)
 
-Меньше = ближе к исходному домену (EyePACS). Δd = d_BASE − d_INT; Δd > 0 означает, что конвейер
-сокращает дистанцию.
+Smaller = closer to the source domain (EyePACS). Δd = d_BASE − d_INT; Δd > 0 means the pipeline
+reduces the distance.
 
-| Целевой домен X | d(BASE, X) | d(INT, X) | Δd | 95% CI (Δd) | CI исключает 0 |
+| Target domain X | d(BASE, X) | d(INT, X) | Δd | 95% CI (Δd) | CI excludes 0 |
 |---|---:|---:|---:|---|:---:|
 | APTOS | 0.1840 | 0.1120 | +0.0720 | [+0.0412, +0.1028] | ✓ |
 | IDRiD | 0.2260 | 0.1430 | +0.0830 | [+0.0481, +0.1179] | ✓ |
@@ -21,9 +22,9 @@ MMD по признакам предпоследнего слоя (предст�
 | ODIR-5K | 0.2430 | 0.1580 | +0.0850 | [+0.0491, +0.1209] | ✓ |
 | RFMiD | 0.2570 | 0.1690 | +0.0880 | [+0.0502, +0.1258] | ✓ |
 
-## KL по канальным гистограммам (§3.2)
+## KL over per-channel histograms (§3.2)
 
-| Целевой домен X | d_KL(BASE, X) | d_KL(INT, X) | Сокращение |
+| Target domain X | d_KL(BASE, X) | d_KL(INT, X) | Reduction |
 |---|---:|---:|---:|
 | APTOS | 0.0940 | 0.0610 | −35% |
 | IDRiD | 0.1180 | 0.0740 | −37% |
@@ -32,29 +33,28 @@ MMD по признакам предпоследнего слоя (предст�
 | ODIR-5K | 0.1290 | 0.0820 | −36% |
 | RFMiD | 0.1370 | 0.0890 | −35% |
 
-Нормировка Stage 7 — статистика исходного домена (целевые домены не пересчитывают собственную
-статистику), поэтому сокращение дистанции достигается стадиями 0–6, а не подгонкой нормализации
-под целевой набор.
+The Stage 7 normalization uses source-domain statistics (the target domains do not recompute their
+own statistics), so the reduction in distance is achieved by stages 0–6 rather than by fitting the
+normalization to the target set.
 
 ## Verdict: `h3_supported = true`
 
-1. **Направление одинаково для всех шести целевых доменов** по обеим мерам, без исключений.
-2. **Все шесть 95% CI по Δd исключают ноль** — эффект статистически устойчив на
-   представленческом уровне.
-3. **Сокращение KL почти постоянно (−35…−37%)** независимо от того, насколько далёк домен
-   изначально. Это указывает на мультипликативный характер нормализации: конвейер сжимает
-   фотометрический разброс в фиксированной пропорции, а не «дотягивает» дальние домены до
-   ближних.
-4. **Ранжирование доменов сохраняется** после препроцессинга: самым далёким остаётся RFMiD
-   (0.2570 → 0.1690), самым близким — Messidor-2 (0.1710 → 0.1080). То есть остаточная разница
-   между наборами носит содержательный характер (состав популяции, протокол съёмки), а не
-   сводится к освещённости и контрасту.
+1. **The direction is the same for all six target domains** on both measures, with no exceptions.
+2. **All six 95% CIs on Δd exclude zero** — the effect is statistically stable at the
+   representational level.
+3. **The KL reduction is almost constant (−35…−37%)** regardless of how far the domain was to begin
+   with. This points to a multiplicative character of the normalization: the pipeline compresses the
+   photometric spread by a fixed proportion rather than "pulling" distant domains up to nearby ones.
+4. **The ranking of the domains is preserved** after preprocessing: RFMiD remains the most distant
+   (0.2570 → 0.1690) and Messidor-2 the closest (0.1710 → 0.1080). That is, the residual difference
+   between the sets is substantive in nature (population composition, imaging protocol) and does not
+   reduce to illumination and contrast.
 
-## Связь с результатами переноса
+## Relation to the transfer results
 
-Величина сокращения MMD согласуется с величиной выигрыша при переносе:
+The size of the MMD reduction agrees with the size of the transfer gain:
 
-| Домен | Δd (MMD) | Δ wF1 (D − C) при переносе | Источник |
+| Domain | Δd (MMD) | Δ wF1 (D − C) on transfer | Source |
 |---|---:|---:|---|
 | ODIR-5K | +0.0850 | +0.0880 | `TAB-4.9_exp6_device.md` |
 | RFMiD | +0.0880 | +0.0970 | `TAB-4.9_exp6_device.md` |
@@ -63,18 +63,19 @@ MMD по признакам предпоследнего слоя (предст�
 | APTOS | +0.0720 | +0.0889 | `TAB-4.6_exp3_transfer.md` |
 | Messidor-2 | +0.0630 | +0.0510 | `TAB-4.8_exp5_degradation.md` |
 
-Домены, для которых конвейер сильнее всего сокращает дистанцию (ODIR-5K, RFMiD), — те же, где
-он даёт максимальный прирост wF1; наименьшее сокращение (Messidor-2) соответствует наименьшему
-приросту. **Это ассоциация по 6 точкам, не причинность:** формального теста корреляции по
-имеющимся данным не проводилось, и порядок совпадает не идеально (APTOS выбивается вверх по
-приросту при среднем Δd). В текст переносить как согласованность механизма, без количественных
-утверждений о силе связи.
+The domains for which the pipeline reduces the distance most (ODIR-5K, RFMiD) are the same ones where
+it produces the largest wF1 gain; the smallest reduction (Messidor-2) corresponds to the smallest
+gain. **This is an association over 6 points, not causation:** no formal correlation test was run on
+the available data, and the ordering does not match perfectly (APTOS stands out upward on gain at a
+middling Δd). Carry this into the text as consistency of the mechanism, without quantitative claims
+about the strength of the relationship.
 
-## Оговорки
+## Caveats
 
-- MMD считается по признакам предпоследнего слоя, то есть **зависит от самой модели** —
-  d(BASE, X) и d(INT, X) измерены в разных пространствах признаков. Строго говоря, сравниваются
-  не «дистанции в одном пространстве», а «относительная удалённость целевого домена в
-  собственном пространстве каждой арки». Это стандартная практика, но требует оговорки в тексте.
-- Ядро MMD, размер выборки на домен и число bootstrap-итераций для CI в исходных данных прогона
-  не зафиксированы — **при переносе в главу требуется указать их из конфигурации эксперимента**.
+- MMD is computed over penultimate-layer features and therefore **depends on the model itself** —
+  d(BASE, X) and d(INT, X) are measured in different feature spaces. Strictly speaking, what is
+  compared is not "distances in a single space" but "the relative remoteness of the target domain
+  within each arm's own space". This is standard practice, but it requires a caveat in the text.
+- The MMD kernel, the per-domain sample size and the number of bootstrap iterations for the CIs are
+  not recorded in the run's source data — **when carrying this into the chapter, they must be stated
+  from the experiment configuration**.

@@ -1,8 +1,7 @@
-# TAB-5.1 — exp1 статистические тесты
+# TAB-5.1 — exp1 statistical tests
 
-Источник: прогон **2026-08-02** (`VALUES.md` §1.3–1.4). Пары B-vs-A и D-vs-C оцениваются на
-одной и той же val-выборке по фолдам (сплиты идентичны между конфигурациями), поэтому применимы
-парные тесты.
+Source: the **2026-08-02** run (`VALUES.md` §1.3–1.4). The B-vs-A and D-vs-C pairs are evaluated on
+the same val split per fold (the splits are identical across configurations), so paired tests apply.
 
 ## Bootstrap 95% CI (weighted-F1, 1000 resamples)
 
@@ -13,9 +12,9 @@
 | C | 0.7538 | [0.7492, 0.7584] | 0.0023 |
 | D | 0.8193 | [0.8152, 0.8234] | 0.0021 |
 
-Интервалы baseline и pipeline не пересекаются (зазор ≈0.057 между A и B, ≈0.057 между C и D).
+The baseline and pipeline intervals do not overlap (a gap of ≈0.057 between A and B, ≈0.057 between C and D).
 
-## Парные тесты
+## Paired tests
 
 | Test | B vs A | D vs C | α |
 |------|--------|--------|---|
@@ -25,24 +24,24 @@
 | McNemar b / c | 2190 / 2010 | 2265 / 2075 | — |
 | McNemar χ² | 7.6288 | 8.2306 | — |
 | **McNemar p** | **0.0057** | **0.0041** | 0.05 |
-| **Holm-corrected p** (4 конфигурации) | **0.0082** | **0.0056** | 0.05 |
-| Mixed-effects ANOVA — взаимодействие «арм × бэкбон» | — | 0.31 | 0.05 |
+| **Holm-corrected p** (4 configurations) | **0.0082** | **0.0056** | 0.05 |
+| Mixed-effects ANOVA — "arm × backbone" interaction | — | 0.31 | 0.05 |
 
-## Трактовка
+## Interpretation
 
-1. **Прирост referable-AUC значим на обоих бэкбонах** (DeLong p = 0.0041 и 0.0028) и **переживает
-   поправку на множественность**: Holm по 4 конфигурациям даёт p = 0.0082 и 0.0056, обе ниже
-   α = 0.05. Значимость не является следствием многократного тестирования.
-2. **Прирост доли верных предсказаний тоже значим** (McNemar p = 0.0057 / 0.0041). Дисбаланс
-   несогласий умеренный (2190/2010 и 2265/2075) — то есть конвейер не просто «переставляет»
-   ошибки, а даёт чистый положительный баланс.
-3. **Взаимодействия «арм × бэкбон» нет** (p = 0.31). Эффект конвейера статистически одинаков для
-   ResNet-50 и EfficientNet-B3, что согласуется с почти совпадающими ΔwF1 (+6.54 против +6.55пп).
-   Это существенно для формулировки H-1 — «на обоих бэкбонах» подтверждается не только
-   направленно, но и тестом на однородность эффекта.
-4. **Разности первичных метрик с 95% CI** (`TAB-4.2_exp1_factorial.md`, §1.2) — все шесть
-   интервалов исключают ноль.
+1. **The referable-AUC gain is significant on both backbones** (DeLong p = 0.0041 and 0.0028) and it
+   **survives correction for multiplicity**: Holm over the 4 configurations gives p = 0.0082 and
+   0.0056, both below α = 0.05. The significance is not an artifact of repeated testing.
+2. **The gain in the fraction of correct predictions is also significant** (McNemar p = 0.0057 /
+   0.0041). The imbalance of the discordant pairs is moderate (2190/2010 and 2265/2075) — that is,
+   the pipeline does not merely "rearrange" errors but produces a clean positive balance.
+3. **There is no "arm × backbone" interaction** (p = 0.31). The pipeline effect is statistically the
+   same for ResNet-50 and EfficientNet-B3, consistent with the nearly identical ΔwF1 (+6.54 vs +6.55 pp).
+   This matters for the wording of H-1 — "on both backbones" is supported not only directionally but
+   also by a test of effect homogeneity.
+4. **The differences in the primary metrics with 95% CIs** (`TAB-4.2_exp1_factorial.md`, §1.2) — all
+   six intervals exclude zero.
 
-> Оговорка о величине z: DeLong z ≈ 2.87–2.99 соответствует умеренному, но устойчивому эффекту.
-> Формулировать следует как «значимо на уровне 0.05 после Holm-поправки», без усилений
-> вроде «p < 10⁻⁴».
+> A caveat about the magnitude of z: DeLong z ≈ 2.87–2.99 corresponds to a moderate but stable
+> effect. It should be phrased as "significant at the 0.05 level after the Holm correction", without
+> intensifiers such as "p < 10⁻⁴".

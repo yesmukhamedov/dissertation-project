@@ -1,60 +1,62 @@
-# TAB-5.2 — Классификация силы первичных утверждений (PC-0…PC-10)
+# TAB-5.2 — Strength classification of the primary claims (PC-0…PC-10)
 
-По результатам прогона **2026-08-02**. Определения — `thesis/governance/ARGUMENT_MAP.md`. Уровни:
-**STRONG** (подтверждено как заявлено) · **MODERATE** (частично / держится более слабая версия) ·
-**CONDITIONAL** (держится при оговорках) · **REFUTED** (опровергнуто как заявлено) ·
-**NOT-YET-TESTED** (эксперимент не завершён) · **DESIGN/THEORETICAL** (не эмпирическое).
+Based on the results of the **2026-08-02** run. Definitions — `thesis/governance/ARGUMENT_MAP.md`. Levels:
+**STRONG** (confirmed as stated) · **MODERATE** (partially / a weaker version holds) ·
+**CONDITIONAL** (holds under caveats) · **REFUTED** (refuted as stated) ·
+**NOT-YET-TESTED** (experiment not completed) · **DESIGN/THEORETICAL** (non-empirical).
 
-| PC | Суть (кратко) | Эксп. | Порог/критерий | Реальный итог | **Сила** |
+| PC | Substance (brief) | Exp. | Threshold/criterion | Actual outcome | **Strength** |
 |----|---------------|-------|----------------|---------------|----------|
-| PC-0 | Парадигма P2 (препроцессинг как формализуемый компонент модели) | — | дискурсивно | Аргументируется в §1.4/§1.5; эмпирика согласуется в пределах протестированных условий | **DESIGN/THEORETICAL** |
-| PC-1 | Доминирование интегрированного конвейера (оба бэкбона) | exp1 | EH-3: ΔF1 ≥ 5пп ∧ ΔAUC ≥ 0.02 ∧ κ↛ | Все три критерия выполнены на обоих бэкбонах: ΔF1 +6.54/+6.55пп, ΔAUC +0.032/+0.036, Δκ +0.113/+0.110; DeLong p 0.0041/0.0028, Holm p 0.0082/0.0056; взаимодействия «арм × бэкбон» нет (p = 0.31) | **STRONG** |
-| PC-2 | CLAHE и σ flat-field: параметрическая чувствительность с локальным оптимумом | exp2 | ≥1 локальный оптимум в диапазоне | Обе части закрыты: двумерная сетка CLAHE (clip × threshold) на EyePACS → внутренний максимум θ\* = (2.5, 0.03); σ-свип → унимодальный максимум σ\* = 0.07, R = 0.052; held-out подтверждает (+0.0602 и +0.0570, CI исключают 0) | **STRONG** |
-| PC-4 | Термо-оптическая модель лазер-ткань | — | мат. вывод + симуляция | Теоретический вклад; «не клинически валидирован» (по замыслу) | **DESIGN/THEORETICAL** |
-| PC-5 | Модульная архитектура ИС скрининга | — | спецификация + UML | Design-спека; не прототипирована (по замыслу); UML недостаёт | **DESIGN/THEORETICAL** |
-| PC-6 | Перенос на APTOS, G ≥ 0.85 | exp3 | G ≥ 0.85, full > baseline | G_D = 0.8976 ≥ 0.85 ✓, G_C = 0.8577; APTOS wF1 +0.0889 (CI [+0.063, +0.115]); выигрыш на всех 5 классах | **STRONG** (с оговоркой: baseline тоже проходит порог) |
-| PC-7 | Grad-CAM ALO/IoU выше у препроцессированной модели | exp4 | ALO_preproc > ALO_base, значимо | 4/4 типов поражений направленно и **статистически** (p 0.0007–0.0142), IoU то же (p 0.0011–0.0187); устойчиво к порогу τ = 0.2…0.7; эффект пола мал (f₀ = 6/54) | **STRONG** (в границах NC-14) |
-| PC-8 | Ранжированная иерархия вклада стадий (аблация) | exp2 | инкрем. ΔF1 по уровням | Все 7 переходов значимы (\|Δⱼ\| = 0.0090–0.0100 против 2σ_fold = 0.0052–0.0060), монотонность держится в каждом фолде; **но вклады практически равны** — упорядочить стадии между собой нельзя (разброс Δⱼ = 0.0010 < σ_fold) | **MODERATE** (вклады идентифицированы и значимы; ранжирование не разрешимо) |
-| PC-9 | Устойчивость к смене камеры | exp6 | дисперсия в допуске, g ≥ 0.7 | 5/5 групп выше пола у обеих арок (min g_D = 0.7909); межгрупповой std wF1 0.0281 → 0.0106 (−2.6×, CI [−0.027, −0.008]), std AUC −3.1× | **STRONG** |
-| PC-10 | Меньшая деградация у препроцессированной модели | exp5 | Δ_drop_full < Δ_drop_base | IDRiD ✓ но с ничтожным запасом (0.1573 против 0.1618); Messidor-2 ✗ (0.1413 против 0.1268). Абсолютный внешний wF1 при этом значимо выше на обоих (+0.070 p = 0.0021; +0.051 p = 0.0138) | **MODERATE** (как записано — 1/2; практическая версия «выше на внешних наборах» — STRONG) |
+| PC-0 | Paradigm P2 (preprocessing as a formalizable model component) | — | discursive | Argued in §1.4/§1.5; the empirical evidence is consistent within the conditions tested | **DESIGN/THEORETICAL** |
+| PC-1 | Dominance of the integrated pipeline (both backbones) | exp1 | EH-3: ΔF1 ≥ 5 pp ∧ ΔAUC ≥ 0.02 ∧ κ↛ | All three criteria met on both backbones: ΔF1 +6.54/+6.55 pp, ΔAUC +0.032/+0.036, Δκ +0.113/+0.110; DeLong p 0.0041/0.0028, Holm p 0.0082/0.0056; no "arm × backbone" interaction (p = 0.31) | **STRONG** |
+| PC-2 | CLAHE and flat-field σ: parametric sensitivity with a local optimum | exp2 | ≥1 local optimum in range | Both parts closed: two-dimensional CLAHE grid (clip × threshold) on EyePACS → interior maximum θ\* = (2.5, 0.03); σ sweep → unimodal maximum σ\* = 0.07, R = 0.052; held-out confirms (+0.0602 and +0.0570, CIs exclude 0) | **STRONG** |
+| PC-4 | Thermo-optical laser–tissue model | — | mathematical derivation + simulation | A theoretical contribution; "not clinically validated" (by design) | **DESIGN/THEORETICAL** |
+| PC-5 | Modular architecture of the screening information system | — | specification + UML | A design spec; not prototyped (by design); the UML is missing | **DESIGN/THEORETICAL** |
+| PC-6 | Transfer to APTOS, G ≥ 0.85 | exp3 | G ≥ 0.85, full > baseline | G_D = 0.8976 ≥ 0.85 ✓, G_C = 0.8577; APTOS wF1 +0.0889 (CI [+0.063, +0.115]); wins on all 5 classes | **STRONG** (with the caveat that baseline also clears the threshold) |
+| PC-7 | Grad-CAM ALO/IoU higher for the preprocessed model | exp4 | ALO_preproc > ALO_base, significantly | 4/4 lesion types directionally and **statistically** (p 0.0007–0.0142), IoU likewise (p 0.0011–0.0187); robust to the threshold τ = 0.2…0.7; small floor effect (f₀ = 6/54) | **STRONG** (within the bounds of NC-14) |
+| PC-8 | Ranked hierarchy of stage contributions (ablation) | exp2 | incremental ΔF1 across levels | All 7 transitions significant (\|Δⱼ\| = 0.0090–0.0100 against 2σ_fold = 0.0052–0.0060), monotonicity holds in every fold; **but the contributions are practically equal** — the stages cannot be ordered relative to one another (spread of Δⱼ = 0.0010 < σ_fold) | **MODERATE** (contributions identified and significant; ranking not resolvable) |
+| PC-9 | Robustness to a change of camera | exp6 | variance within tolerance, g ≥ 0.7 | 5/5 groups above the floor for both arms (min g_D = 0.7909); between-group std wF1 0.0281 → 0.0106 (−2.6×, CI [−0.027, −0.008]), std AUC −3.1× | **STRONG** |
+| PC-10 | Smaller degradation for the preprocessed model | exp5 | Δ_drop_full < Δ_drop_base | IDRiD ✓ but by a negligible margin (0.1573 against 0.1618); Messidor-2 ✗ (0.1413 against 0.1268). Absolute external wF1 is nevertheless significantly higher on both (+0.070 p = 0.0021; +0.051 p = 0.0138) | **MODERATE** (as written — 1/2; the practical version "higher on external sets" — STRONG) |
 
-## Дополнительные эмпирические результаты (вне формальных PC)
+## Additional empirical results (outside the formal PCs)
 
-| Наблюдение | Эксп. | Итог | Сила |
+| Observation | Exp. | Outcome | Strength |
 |------------|-------|------|------|
-| Сокращение дистанции доменов препроцессингом (MMD, KL) | H-3 | 6/6 доменов, все CI по Δd исключают 0; KL −35…−37% | **STRONG** |
-| Выигрыш на малых клинических данных | exp7 / E-7 | +0.079 wF1, +0.122 κ, +0.051 AUC, все CI исключают 0; preregistered | **STRONG** |
-| Конвейер как регуляризатор | exp1 | loss-gap 0.052 → 0.021 (ResNet) и 0.054 → 0.022 (EffNet); сходимость на 6–7 эпох раньше | **MODERATE** |
-| Улучшение калибровки | exp1 | ECE 0.0712 → 0.0418 и 0.0691 → 0.0402; Brier ниже на обоих | **MODERATE** |
-| Рост клинической чувствительности при неснижающейся специфичности | exp1/3/6 | ΔSens +0.10…+0.11 во всех трёх сценариях, ΔSpec > 0 везде | **STRONG** |
-| Continual-SSL даёт in-domain выигрыш на обоих бэкбонах | A1 | Δκ +0.319 / +0.237 (прогон 2: +0.284 / +0.223) | **MODERATE** |
-| From-scratch BYOL / MoCo-v2 / DINO не проходят probe-гейт | A1 | κ ≤ 0.112 против ImageNet 0.32–0.45; рост эпох не помогает | **STRONG** (отрицательный результат) |
+| Reduction of domain distance by preprocessing (MMD, KL) | H-3 | 6/6 domains, all Δd CIs exclude 0; KL −35…−37% | **STRONG** |
+| Gain on small clinical data | exp7 / E-7 | +0.079 wF1, +0.122 κ, +0.051 AUC, all CIs exclude 0; preregistered | **STRONG** |
+| The pipeline as a regularizer | exp1 | loss gap 0.052 → 0.021 (ResNet) and 0.054 → 0.022 (EffNet); convergence 6–7 epochs earlier | **MODERATE** |
+| Improvement in calibration | exp1 | ECE 0.0712 → 0.0418 and 0.0691 → 0.0402; Brier lower on both | **MODERATE** |
+| Rise in clinical sensitivity with no drop in specificity | exp1/3/6 | ΔSens +0.10…+0.11 in all three scenarios, ΔSpec > 0 everywhere | **STRONG** |
+| Continual-SSL gives an in-domain gain on both backbones | A1 | Δκ +0.319 / +0.237 (run 2: +0.284 / +0.223) | **MODERATE** |
+| From-scratch BYOL / MoCo-v2 / DINO fail the probe gate | A1 | κ ≤ 0.112 against ImageNet's 0.32–0.45; more epochs do not help | **STRONG** (negative result) |
 
-## Сводка
+## Summary
 
-- **STRONG:** PC-1 (доминирование), PC-2 (параметрическая чувствительность), PC-6 (перенос на
-  APTOS), PC-7 (выровненность внимания), PC-9 (устойчивость к камере) — **5 из 7** эмпирических
-  первичных утверждений подтверждены как заявлены.
-- **MODERATE:** PC-8 (вклады стадий значимы, но иерархия не разрешима), PC-10 (буква критерия
-  выполнена на 1 из 2 наборов при значимом преимуществе по абсолюту).
-- **REFUTED:** нет.
-- **DESIGN/THEORETICAL (не затронуты эмпирикой):** PC-0, PC-4, PC-5.
+- **STRONG:** PC-1 (dominance), PC-2 (parametric sensitivity), PC-6 (transfer to APTOS), PC-7
+  (attention alignment), PC-9 (camera robustness) — **5 of 7** empirical primary claims are confirmed
+  as stated.
+- **MODERATE:** PC-8 (stage contributions significant, but the hierarchy is not resolvable), PC-10
+  (the letter of the criterion met on 1 of 2 sets, with a significant advantage in absolute terms).
+- **REFUTED:** none.
+- **DESIGN/THEORETICAL (untouched by the empirics):** PC-0, PC-4, PC-5.
 
-## Что требует аккуратности при переносе в §5.2.2 / §5.4
+## What requires care when carrying this into §5.2.2 / §5.4
 
-1. **PC-10 нельзя докладывать как подтверждённый.** Метрика Δ_drop систематически штрафует арку
-   с более высоким in-domain-уровнем; относительная деградация у арок практически одинакова
-   (16.8% против 17.2% на Messidor-2). Честная формулировка — в `TAB-4.8_exp5_degradation.md`.
-2. **PC-8 — не «иерархия установлена», а «вклады установлены».** Все стадии значимы, но
-   упорядочить их между собой данные не позволяют. Формулировка «ведущая стадия — …» неверна.
-3. **PC-6 — порог берут обе арки.** Гипотеза различает их только частью «лучше baseline».
-4. **PC-7 остаётся в границах NC-14:** Grad-CAM активация не есть клиническая локализация
-   патологии. Корректно — «внимание лучше выровнено с размеченными поражениями».
-5. **Клинические (KZ) Grad-CAM overlay, которых требует формулировка H-5, по-прежнему не
-   сделаны** (пробел G-3) — качественная часть PC-7 не закрыта.
-6. **Оговорка CFC-2.8 меняет форму, но не снимается.** Композит «препроцессинг × инициализация»
-   теперь разложим (кумулятивная аблация при единой инициализации даёт тот же +0.0655), однако
-   B/D по-прежнему инициализируются continual-SSL, и это следует указывать.
+1. **PC-10 must not be reported as confirmed.** The Δ_drop metric systematically penalizes the arm
+   with the higher in-domain level; relative degradation is practically identical for the two arms
+   (16.8% against 17.2% on Messidor-2). The honest formulation is in `TAB-4.8_exp5_degradation.md`.
+2. **PC-8 is not "the hierarchy is established" but "the contributions are established".** All stages
+   are significant, but the data do not allow ordering them relative to one another. The phrasing
+   "the leading stage is …" is incorrect.
+3. **PC-6 — both arms clear the threshold.** The hypothesis discriminates between them only through
+   the "better than baseline" part.
+4. **PC-7 stays within the bounds of NC-14:** Grad-CAM activation is not clinical localization of
+   pathology. The correct phrasing is "attention is better aligned with the annotated lesions".
+5. **The clinical (KZ) Grad-CAM overlays required by the wording of H-5 are still not produced**
+   (gap G-3) — the qualitative part of PC-7 is not closed.
+6. **The CFC-2.8 caveat changes form but is not lifted.** The "preprocessing × initialization"
+   composite is now decomposable (the cumulative ablation under a single initialization yields the
+   same +0.0655), but B/D are still initialized with continual-SSL, and this must be stated.
 
-> Основа для §5.2.2 (Final Claim Strength) и §5.4 (Limitations). Связь: `hypotheses/*.md`,
+> The basis for §5.2.2 (Final Claim Strength) and §5.4 (Limitations). Links: `hypotheses/*.md`,
 > `findings/*.md`, `findings/summary-and-dominance.md`.

@@ -1,55 +1,59 @@
-# Выводы — Experiment 3 (трансфер EyePACS→APTOS, H-4) → §4.4
+# Conclusions — Experiment 3 (transfer EyePACS→APTOS, H-4) → §4.4
 
-**Что делали.** Zero-shot перенос модели, обученной на EyePACS, на APTOS 2019 (n = 3 662).
-Метрика — генерализационное ратио G = F1_APTOS / F1_EyePACS. Порог H-4: G ≥ 0.85 и full > baseline.
-Источник: прогон **2026-08-02**.
+**What was done.** Zero-shot transfer of a model trained on EyePACS to APTOS 2019 (n = 3 662).
+The metric is the generalization ratio G = F1_APTOS / F1_EyePACS. H-4 threshold: G ≥ 0.85 and
+full > baseline. Source: the **2026-08-02** run.
 
-## Что выяснили
+## What was found
 
-**1. Гипотеза подтверждена по обеим частям.** G_D = **0.8976** (порог взят с запасом 0.048),
-G_C = 0.8577; абсолютный APTOS wF1 выше на **+0.0889** (CI [+0.0631, +0.1147]), AUC — на +0.0370
-(CI [+0.0241, +0.0499]). `h4_supported = true`.
+**1. The hypothesis is confirmed on both parts.** G_D = **0.8976** (the threshold cleared with a
+margin of 0.048), G_C = 0.8577; the absolute APTOS wF1 is higher by **+0.0889** (CI [+0.0631,
++0.1147]) and AUC by +0.0370 (CI [+0.0241, +0.0499]). `h4_supported = true`.
 
-**2. Важная оговорка: порог берут обе арки.** baseline тоже проходит G ≥ 0.85 (0.8577). Значит
-критерий «G ≥ 0.85» сам по себе арки **не различает** — различает их вторая часть, «лучше
-baseline», и она выполнена уверенно. Формулировать следует как «конвейер не спасает перенос, а
-улучшает уже приемлемый», без утверждения, что baseline переносится плохо.
+**2. An important caveat: both arms clear the threshold.** Baseline also passes G ≥ 0.85 (0.8577).
+So the "G ≥ 0.85" criterion on its own **does not discriminate** between the arms — what discriminates
+them is the second part, "better than baseline", and that is met convincingly. It should be phrased
+as "the pipeline does not rescue transfer, it improves transfer that is already acceptable", without
+claiming that baseline transfers poorly.
 
-**3. Механизм: удерживаются средние градации.** Именно там обычно происходит обвал при переносе.
-F1(DR2) 0.5747 → 0.6931, F1(DR1) 0.1394 → 0.2717. В матрице ошибок масса DR2 → DR1 падает с 245
-до 192 объектов, DR2 → DR0 — с 96 до 34. Выигрыш есть на **всех пяти** градациях; macro-F1 растёт
-сильнее weighted-F1 (+0.102 против +0.089) — тот же паттерн «выигрыш на меньшинствах», что в exp1.
+**3. Mechanism: the intermediate grades are held.** That is exactly where transfer usually collapses.
+F1(DR2) 0.5747 → 0.6931, F1(DR1) 0.1394 → 0.2717. In the confusion matrix the mass of DR2 → DR1 falls
+from 245 to 192 instances and DR2 → DR0 from 96 to 34. There is a gain on **all five** grades;
+macro-F1 rises more than weighted-F1 (+0.102 against +0.089) — the same "gain on the minority classes"
+pattern as in exp1.
 
-**4. Ошибки остаются соседними по шкале.** Клетка DR0 → DR4 у baseline = 2, у конвейера = 0;
-DR0 → DR3 = 8 → 2. Остаточная масса ошибок концентрируется на границе DR3↔DR4 (110 объектов) —
-«тяжёлая NPDR против PDR» остаётся самой трудной границей и на APTOS. Это объясняет крупный
-прирост κ (0.7879 → 0.8848), который штрафует именно дальние ошибки.
+**4. Errors remain adjacent on the scale.** The DR0 → DR4 cell is 2 for baseline and 0 for the
+pipeline; DR0 → DR3 goes 8 → 2. The residual error mass concentrates on the DR3↔DR4 boundary
+(110 instances) — "severe NPDR vs PDR" remains the hardest boundary on APTOS too. This explains the
+large κ gain (0.7879 → 0.8848), since κ penalizes precisely the distant errors.
 
-**5. Клинически — тот же прирост, что in-domain.** Referable-DR: Sens 0.7330 → 0.8366 (+10.4пп)
-**при одновременно растущей** Spec (0.9209 → 0.9411), referable-AUC 0.8930 → 0.9340. Прирост
-чувствительности (+0.10) совпадает с in-domain (+0.11) и с группами камер (+0.11) — самый
-воспроизводимый клинический эффект конвейера во всём наборе экспериментов.
+**5. Clinically — the same gain as in-domain.** Referable DR: Sens 0.7330 → 0.8366 (+10.4 pp) **with
+specificity rising at the same time** (0.9209 → 0.9411), referable AUC 0.8930 → 0.9340. The
+sensitivity gain (+0.10) matches in-domain (+0.11) and the camera groups (+0.11) — the most
+reproducible clinical effect of the pipeline across the entire experiment suite.
 
-**6. Согласуется с измеренным сокращением дистанции домена.** MMD EyePACS↔APTOS падает с 0.1840
-до 0.1120 (Δd +0.0720, CI исключает ноль), KL — с 0.0940 до 0.0610 (−35%). См. `findings/`
-раздел по H-3 в `summary-and-dominance.md` и `tables/H-3_domain_distance.md`. Механизм переноса
-не постулируется, а измерен независимо.
+**6. Consistent with the measured reduction in domain distance.** The EyePACS↔APTOS MMD falls from
+0.1840 to 0.1120 (Δd +0.0720, CI excludes zero) and KL from 0.0940 to 0.0610 (−35%). See the H-3
+section in `findings/summary-and-dominance.md` and `tables/H-3_domain_distance.md`. The transfer
+mechanism is not postulated but measured independently.
 
-## Для тезиса
+## For the thesis
 
-Доложить как подтверждённую гипотезу с двумя явными оговорками: (а) порог G ≥ 0.85 берут обе арки,
-различие даёт сравнение с baseline; (б) оценка на чекпойнтах fold 0. Содержательная формулировка:
-«препроцессинг, откалиброванный на исходном домене, **не мешает** zero-shot мультиклассовому
-переносу и улучшает его на всех градациях, причём улучшение согласуется с измеренным сокращением
-дистанции доменов». Это прямо снимает прежнее ограничение, которое формулировалось в §5.4 по
-результатам предыдущего прогона.
+Report as a confirmed hypothesis with two explicit caveats: (a) the G ≥ 0.85 threshold is cleared by
+both arms, and what discriminates them is the comparison with baseline; (b) evaluation uses fold-0
+checkpoints. Substantive formulation: "preprocessing calibrated on the source domain **does not
+impede** zero-shot multi-class transfer and improves it on every grade, with the improvement
+consistent with the measured reduction in domain distance". This directly removes the former
+limitation that was stated in §5.4 on the basis of the previous run.
 
-## Оговорки
+## Caveats
 
-- Оценка на чекпойнтах **fold 0**; межфолдовой дисперсии нет, 95% CI — по-объектные (bootstrap).
-- G нормируется на in-domain wF1 **своей** арки (C: 0.7538, D: 0.8193). У арки с более высоким
-  in-domain знаменатель больше, поэтому прирост G (+0.040) заведомо консервативнее прироста
-  абсолютного APTOS wF1 (+0.089) — указать, чтобы скромный ΔG не читался как слабость эффекта.
+- Evaluation uses **fold 0** checkpoints; there is no between-fold variance, and the 95% CIs are
+  per-instance (bootstrap).
+- G is normalized by each arm's **own** in-domain wF1 (C: 0.7538, D: 0.8193). The arm with the higher
+  in-domain score has the larger denominator, so the gain in G (+0.040) is by construction more
+  conservative than the gain in absolute APTOS wF1 (+0.089) — state this so that the modest ΔG is not
+  read as a weak effect.
 
-Таблица: `tables/TAB-4.6_exp3_transfer.md`. Per-class и матрицы: `tables/per_class_and_confusion.md`.
-Клинические метрики: `tables/TAB-5.4_clinical_referable.md`. Карточка: `hypotheses/H-4.md`.
+Table: `tables/TAB-4.6_exp3_transfer.md`. Per-class and matrices: `tables/per_class_and_confusion.md`.
+Clinical metrics: `tables/TAB-5.4_clinical_referable.md`. Card: `hypotheses/H-4.md`.

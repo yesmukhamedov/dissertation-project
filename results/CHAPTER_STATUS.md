@@ -1,98 +1,99 @@
-# CHAPTER_STATUS — статус глав диссертации и что каждой нужно
+# CHAPTER_STATUS — status of the dissertation chapters and what each one needs
 
-Источник: `thesis/PLAN.md`, `thesis/outline/TABLE_OF_CONTENTS_EN.md`, README глав,
-`thesis/ASSET_INVENTORY.md`. Workflow одной секции:
-`briefs/ → drafts/ → continuity/ → reviews/ → translations/` (квинтет).
-Состояние данных — прогон **2026-08-02**.
+Source: `thesis/PLAN.md`, `thesis/outline/TABLE_OF_CONTENTS_EN.md`, the chapter READMEs,
+`thesis/ASSET_INVENTORY.md`. Workflow for a single section:
+`briefs/ → drafts/ → continuity/ → reviews/ → translations/` (the quintet).
+State of the data — the **2026-08-02** run.
 
-## Что уже написано и одобрено (Phase 1)
+## What has already been written and approved (Phase 1)
 
-| Глава | Секции | Статус |
+| Chapter | Sections | Status |
 |-------|--------|--------|
 | Ch 1 Problem Domain | 11/11 | ✅ APPROVED |
 | Ch 2 Theoretical Foundations | 14/14 (+§2.C) | ✅ APPROVED |
 | Ch 3 Methodology | 13/13 | ✅ APPROVED |
 | Ch 6 System Architecture | 9/9 | ✅ APPROVED |
-| §4.1 Datasets & Configuration | 4.1.1–4.1.3 | ✅ APPROVED (без метрик — фиксирует субстрат данных) |
+| §4.1 Datasets & Configuration | 4.1.1–4.1.3 | ✅ APPROVED (no metrics — it fixes the data substrate) |
 | App A (preprocessing code), App D (certificates) | — | ✅ APPROVED |
 
-Одобренные главы **не содержат экспериментальных метрик** (написаны до прогонов) → сменой
-прогона не затронуты.
+The approved chapters **contain no experimental metrics** (they were written before the runs) → they
+are unaffected by the change of run.
 
-## Что НЕ написано — Phase 2
+## What has NOT been written — Phase 2
 
-Файлов-заготовок нет; секции ещё не созданы. Держатся в `thesis/PLAN.md` как `⛔ blocked-by <ID>`.
+There are no placeholder files; the sections have not been created yet. They are held in
+`thesis/PLAN.md` as `⛔ blocked-by <ID>`.
 
-### Глава 4 «Эксперименты» — §4.2–§4.8 + §4.C
+### Chapter 4 "Experiments" — §4.2–§4.8 + §4.C
 
-| Секция | Что содержит | Нужные ассеты | Данные готовы? |
+| Section | Contents | Required assets | Data ready? |
 |--------|--------------|---------------|----------------|
-| §4.2 Exp 1 (H-1): 2×2 факторный A–D | §4.2.1 дизайн · §4.2.2 динамика обучения · §4.2.3 сравнение метрик | TAB-4.2, TAB-4.3, FIG-4.4–4.8 | ✅ полный слой: `tables/TAB-4.2`, `TAB-4.3`, `exp1_per_class`, `exp1_clinical_indomain`, `exp1_convergence_ci`, `TAB-5.1`, `findings/exp1` |
-| §4.3 Exp 2 (H-2): аблация + свипы | §4.3.1 аблация · §4.3.2 CLAHE · §4.3.3 flat-field σ | TAB-4.4, TAB-4.5, FIG-4.9, FIG-4.10 | ✅ **все три части закрыты** (σ-свип прогнан): `TAB-4.4`, `TAB-4.5`, `exp2_clahe_sweep`, `exp2_flatfield_sigma_sweep` |
-| §4.4 Exp 3 (H-4): трансфер на APTOS | §4.4.1 zero-shot · §4.4.2 baseline vs pipeline | TAB-4.6, FIG-4.11 | ✅ `TAB-4.6`, `per_class_and_confusion`, `findings/exp3` |
-| §4.5 Exp 4 (H-5): Grad-CAM | §4.5.1 протокол · §4.5.2 ALO/IoU · §4.5.3 консистентность | TAB-4.7, FIG-4.12–4.14 | 🟡 количественная часть ✅ (`TAB-4.7`, `exp4_classification`); **клинические (KZ) overlay НЕ сделаны — G-3** |
-| §4.6 Exp 5 (H-7): клиническая деградация | — | TAB-4.8, FIG-4.15 | ✅ `TAB-4.8`, `findings/exp5`; ⚠️ требует аккуратной формулировки (частичное подтверждение) |
-| §4.7 Exp 6 (H-6): сдвиг устройства | — | TAB-4.9, App F | ✅ `TAB-4.9`, `per_class_and_confusion`; ⚠️ матрицы ошибок по группам отсутствуют (R3) |
-| §4.8 Exp 7: малодатное обучение | — | TAB-4.10, FIG-4.16 | ✅ `TAB-4.10`, `findings/exp7-and-ssl` |
-| **§4.x H-3: дистанция доменов** ⭐ | новый блок — MMD/KL по 6 доменам | новая таблица + рисунок | ✅ данные есть (`tables/H-3_domain_distance.md`, `hypotheses/H-3.md`); **место в структуре главы не определено** — решить, отдельная секция или часть §4.4 |
-| §4.C Выводы к главе 4 | синтез §4.2–§4.8 | все выше | ✅ `findings/summary-and-dominance.md` |
+| §4.2 Exp 1 (H-1): 2×2 factorial A–D | §4.2.1 design · §4.2.2 training dynamics · §4.2.3 metric comparison | TAB-4.2, TAB-4.3, FIG-4.4–4.8 | ✅ full layer: `tables/TAB-4.2`, `TAB-4.3`, `exp1_per_class`, `exp1_clinical_indomain`, `exp1_convergence_ci`, `TAB-5.1`, `findings/exp1` |
+| §4.3 Exp 2 (H-2): ablation + sweeps | §4.3.1 ablation · §4.3.2 CLAHE · §4.3.3 flat-field σ | TAB-4.4, TAB-4.5, FIG-4.9, FIG-4.10 | ✅ **all three parts closed** (the σ sweep has been run): `TAB-4.4`, `TAB-4.5`, `exp2_clahe_sweep`, `exp2_flatfield_sigma_sweep` |
+| §4.4 Exp 3 (H-4): transfer to APTOS | §4.4.1 zero-shot · §4.4.2 baseline vs pipeline | TAB-4.6, FIG-4.11 | ✅ `TAB-4.6`, `per_class_and_confusion`, `findings/exp3` |
+| §4.5 Exp 4 (H-5): Grad-CAM | §4.5.1 protocol · §4.5.2 ALO/IoU · §4.5.3 consistency | TAB-4.7, FIG-4.12–4.14 | 🟡 quantitative part ✅ (`TAB-4.7`, `exp4_classification`); **clinical (KZ) overlays NOT produced — G-3** |
+| §4.6 Exp 5 (H-7): clinical degradation | — | TAB-4.8, FIG-4.15 | ✅ `TAB-4.8`, `findings/exp5`; ⚠️ requires careful wording (partial confirmation) |
+| §4.7 Exp 6 (H-6): device shift | — | TAB-4.9, App F | ✅ `TAB-4.9`, `per_class_and_confusion`; ⚠️ per-group confusion matrices are missing (R3) |
+| §4.8 Exp 7: small-data training | — | TAB-4.10, FIG-4.16 | ✅ `TAB-4.10`, `findings/exp7-and-ssl` |
+| **§4.x H-3: domain distance** ⭐ | new block — MMD/KL over 6 domains | new table + figure | ✅ the data exist (`tables/H-3_domain_distance.md`, `hypotheses/H-3.md`); **its place in the chapter structure is undecided** — decide whether it is its own section or part of §4.4 |
+| §4.C Conclusions to chapter 4 | synthesis of §4.2–§4.8 | all of the above | ✅ `findings/summary-and-dominance.md` |
 
-**Итог по гл. 4: вся глава разблокирована.** Единственное содержательное ограничение — §4.5
-может быть написана только в количественной части (клинические overlay требует G-3).
+**Bottom line for ch. 4: the entire chapter is unblocked.** The only substantive limitation is that
+§4.5 can be written only in its quantitative part (the clinical overlays require G-3).
 
-⚠️ **Организационный вопрос, требующий решения:** H-3 — новая гипотеза с результатами, которой
-нет в текущей структуре главы 4. Нужно решить, куда её поместить (отдельная секция §4.x перед
-§4.4, либо подсекция §4.4 как механистическое обоснование переноса). От этого зависит нумерация
-последующих секций и TAB/FIG.
+⚠️ **Organizational question requiring a decision:** H-3 is a new hypothesis with results that is
+absent from the current structure of chapter 4. A decision is needed on where to place it (its own
+section §4.x before §4.4, or a subsection of §4.4 as the mechanistic justification of transfer). The
+numbering of the subsequent sections and of TAB/FIG depends on this.
 
-### Глава 5 «Валидация»
+### Chapter 5 "Validation"
 
-| Секция | Что содержит | Нужное | Готово? |
+| Section | Contents | Required | Ready? |
 |--------|--------------|--------|---------|
-| §5.1 Explainability Results | результаты Grad-CAM | FIG-5.1, TAB-4.7, FIG-4.12 | 🟡 количественно ✅; overlays IDRiD есть; KZ — G-3 |
-| §5.2.1 Bootstrap CI + смешанные эффекты | статистика на exp1 | TAB-5.1 | ✅ `TAB-5.1` (DeLong, McNemar, Holm, ANOVA, bootstrap) |
-| §5.2.2 Final Claim Strength | классификация силы утверждений | TAB-5.2, FIG-5.3 | ✅ `TAB-5.2`, данные радара в `findings/summary-and-dominance` |
-| §5.3 Сравнение с опубликованными | IDx-DR, EyeNuk, DeepMind + сложность | TAB-5.3, TAB-5.4, FIG-5.2 | 🟡 `TAB-5.4` ✅, `computational_and_iq` ✅; **TAB-5.3 (литература) — не собрана** |
-| §5.4 Limitations | границы применимости | итог H-1…H-7 | ✅ `findings/summary-and-dominance.md`, раздел «Что осталось честно ограниченным» |
+| §5.1 Explainability Results | Grad-CAM results | FIG-5.1, TAB-4.7, FIG-4.12 | 🟡 quantitatively ✅; the IDRiD overlays exist; KZ — G-3 |
+| §5.2.1 Bootstrap CIs + mixed effects | statistics on exp1 | TAB-5.1 | ✅ `TAB-5.1` (DeLong, McNemar, Holm, ANOVA, bootstrap) |
+| §5.2.2 Final Claim Strength | classification of claim strength | TAB-5.2, FIG-5.3 | ✅ `TAB-5.2`, radar data in `findings/summary-and-dominance` |
+| §5.3 Comparison with published systems | IDx-DR, EyeNuk, DeepMind + complexity | TAB-5.3, TAB-5.4, FIG-5.2 | 🟡 `TAB-5.4` ✅, `computational_and_iq` ✅; **TAB-5.3 (literature) — not assembled** |
+| §5.4 Limitations | limits of applicability | outcome of H-1…H-7 | ✅ `findings/summary-and-dominance.md`, section "What remains honestly limited" |
 
-### Глава 7 «Заключение»
+### Chapter 7 "Conclusion"
 
-Синтез исходов гипотез + вклад + будущая работа. **Разблокирована** — все вердикты есть.
-Зависит от §0.8 «Положения, выносимые на защиту».
+A synthesis of the hypothesis outcomes + contributions + future work. **Unblocked** — all verdicts
+are in place. Depends on §0.8 "Statements submitted for defense".
 
-### Введение (гл. 0) и приложения B/C/E/F
+### Introduction (ch. 0) and appendices B/C/E/F
 
-Ch 0 (особенно §0.8) — на итоговых вердиктах, разблокировано. App B (confusion/curves) — данные
-есть, ROC/PR-кривые требуют `predictions.npz` нового прогона (R2). App E (Grad-CAM галерея) —
-IDRiD overlays есть, KZ нет (G-3). App F (device-таблицы) — данные есть, матрицы ошибок по
-группам отсутствуют (R3). App C (UML) — asset-задача, не эксперимент-gated.
+Ch 0 (especially §0.8) rests on the final verdicts and is unblocked. App B (confusion/curves) — the
+data exist, the ROC/PR curves require the new run's `predictions.npz` (R2). App E (Grad-CAM gallery) —
+the IDRiD overlays exist, KZ ones do not (G-3). App F (device tables) — the data exist, the per-group
+confusion matrices are missing (R3). App C (UML) — an asset task, not experiment-gated.
 
-## Что изменилось в содержании относительно прежней редакции
+## What changed in the content relative to the previous revision
 
-Формулировки, которые нужно **заменить** при написании (они опирались на прежний прогон):
+Formulations that must be **replaced** when writing (they rested on the previous run):
 
-| Прежнее утверждение | Текущее состояние |
+| Previous claim | Current state |
 |---|---|
-| «Строгий критерий доминирования H-1 не выполнен, F1-прирост в пределах шума» | EH-3 выполнен на обоих бэкбонах, ΔF1 +6.5пп |
-| «Конвейер ухудшает калибровку, нужна перекалибровка перед развёртыванием» | Калибровка **улучшается** (ECE ~1.7× ниже) |
-| «Препроцессинг сам по себе классификацию не улучшает; эффект exp1 — нераздельный композит с SSL-init» | Аблация при единой инициализации даёт весь прирост (+0.0655); композит разложен |
-| «Baseline переносится на APTOS лучше конвейера» | Конвейер лучше: G 0.8976 против 0.8577 |
-| «Внимание не выравнивается по поражениям; PC-7 REFUTED» | 4/4 типов значимо, PC-7 STRONG (в границах NC-14) |
-| «3 из 5 групп камер ниже пола генерализации; нужна device-специфичная перекалибровка порогов» | 5/5 групп выше пола; разброс сокращается в 2.6× |
-| «EfficientNet-B3 не получает выигрыша от continual-SSL (асимметрия)» | Оба бэкбона получают сопоставимый прирост |
-| «exp7 — единственный чистый позитив работы» | Один из согласованных результатов; прирост сопоставим с EyePACS |
-| «Ни одна гипотеза не подтверждена» | 6 из 7 подтверждены, H-7 частично |
+| "The strict H-1 dominance criterion is not met; the F1 gain is within noise" | EH-3 is met on both backbones, ΔF1 +6.5 pp |
+| "The pipeline degrades calibration; recalibration is needed before deployment" | Calibration **improves** (ECE ~1.7× lower) |
+| "Preprocessing on its own does not improve classification; the exp1 effect is an indivisible composite with the SSL init" | The ablation under a single initialization yields the whole gain (+0.0655); the composite has been decomposed |
+| "The baseline transfers to APTOS better than the pipeline" | The pipeline is better: G 0.8976 vs 0.8577 |
+| "Attention does not align with lesions; PC-7 REFUTED" | 4/4 types significant, PC-7 STRONG (within the bounds of NC-14) |
+| "3 of 5 camera groups fall below the generalization floor; device-specific threshold recalibration is required" | 5/5 groups are above the floor; the spread shrinks by a factor of 2.6 |
+| "EfficientNet-B3 gains nothing from continual-SSL (asymmetry)" | Both backbones gain comparably |
+| "exp7 is the work's only clean positive" | One of several consistent results; the gain is comparable to EyePACS |
+| "Not a single hypothesis is confirmed" | 6 of 7 are confirmed, H-7 partially |
 
-## Порядок написания (рекомендация)
+## Writing order (recommendation)
 
-1. **Решить размещение H-3** в структуре главы 4 — это влияет на нумерацию всего остального.
-2. **Сейчас:** §4.2 (H-1), §4.3 (H-2), §4.4 (H-4), §4.6 (H-7), §4.7 (H-6), §4.8 (exp7), H-3.
-3. **§5.2.1 / §5.2.2** — данные готовы.
-4. **§4.5 + §5.1** — количественная часть; финализировать после G-3.
-5. **В конце:** §4.C, §5.4, §5.3 (нужна TAB-5.3 по литературе), гл. 7, гл. 0/§0.8.
+1. **Decide where H-3 goes** in the structure of chapter 4 — this affects the numbering of everything else.
+2. **Now:** §4.2 (H-1), §4.3 (H-2), §4.4 (H-4), §4.6 (H-7), §4.7 (H-6), §4.8 (exp7), H-3.
+3. **§5.2.1 / §5.2.2** — the data are ready.
+4. **§4.5 + §5.1** — the quantitative part; finalize after G-3.
+5. **At the end:** §4.C, §5.4, §5.3 (needs TAB-5.3 from the literature), ch. 7, ch. 0/§0.8.
 
-⚠️ **Framing-мандат (README гл. 4/5):** configs A/C = paradigm P1 (baseline), B/D = paradigm P2
-(integrated); **запрещено** называть A/C «Gulshan» и писать «We outperform Gulshan».
+⚠️ **Framing mandate (README of ch. 4/5):** configs A/C = paradigm P1 (baseline), B/D = paradigm P2
+(integrated); it is **forbidden** to call A/C "Gulshan" or to write "We outperform Gulshan".
 
-⚠️ **Провенанс:** до закрытия NEW-1 (`GAP_ANALYSIS.md`) числа в главах не будут прослеживаемы
-до `experiments/outputs/`. Писать можно, но перед защитой это нужно закрыть.
+⚠️ **Provenance:** until NEW-1 (`GAP_ANALYSIS.md`) is closed, the numbers in the chapters will not be
+traceable to `experiments/outputs/`. Writing can proceed, but this must be closed before the defense.

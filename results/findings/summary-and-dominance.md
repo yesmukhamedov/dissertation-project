@@ -1,98 +1,114 @@
-# Сводка результатов + доминирование → §4.C / §5.2 / FIG-5.3 (радар)
+# Results summary + dominance → §4.C / §5.2 / FIG-5.3 (radar)
 
-Синтез по всем экспериментам прогона **2026-08-02**. Данные для сводной радар-диаграммы (FIG-5.3)
-и таблицы исходов гипотез.
+A synthesis across all experiments of the **2026-08-02** run. Data for the summary radar chart
+(FIG-5.3) and the table of hypothesis outcomes.
 
-## Таблица исходов гипотез
+## Table of hypothesis outcomes
 
-| H | Эксперимент | Порог / критерий | Реальный итог | Статус |
+| H | Experiment | Threshold / criterion | Actual outcome | Status |
 |---|-------------|------------------|---------------|--------|
-| H-1 | exp1 | EH-3: ΔF1 ≥ 5пп ∧ ΔAUC ≥ 0.02 ∧ κ↛ | ΔF1 +6.54/+6.55пп; ΔAUC +0.032/+0.036; Δκ +0.113/+0.110; Holm p ≤ 0.0082; взаимодействия нет (p = 0.31) | ✅ **подтверждена** |
-| H-2 | exp2 | локальный оптимум CLAHE и σ; вклад стадий | Оба свипа — внутренние оптимумы θ\* = (2.5, 0.03), σ\* = 0.07, held-out ✓; все 7 переходов аблации значимы | ✅ **подтверждена** (иерархия — плоская, см. ниже) |
-| H-3 | MMD/KL | d(INT) < d(BASE) | 6/6 доменов, все CI по Δd исключают 0; KL −35…−37% | ✅ **подтверждена** |
-| H-4 | exp3 | G ≥ 0.85, full > baseline | G_D 0.8976 ✓, G_C 0.8577; Δ wF1 +0.0889 (CI исключает 0) | ✅ **подтверждена** (порог берут обе арки) |
-| H-5 | exp4 | ALO_preproc > ALO_base, значимо | 4/4 типов направленно **и** статистически (p 0.0007–0.0142); IoU то же; устойчиво к τ | ✅ **подтверждена** (в границах NC-14) |
-| H-6 | exp6 | g ≥ 0.7 по группам, дисперсия | 5/5 групп выше пола; std wF1 −2.6× (CI исключает 0), std AUC −3.1× | ✅ **подтверждена** |
-| H-7 | exp5 | Δ_drop_full < Δ_drop_base | IDRiD ✓ (запас 0.0045), Messidor-2 ✗; абсолютный внешний wF1 значимо выше на обоих | ◐ **частично (1/2)** |
-| E-7 | exp7 | — (обучаемость на малых данных) | +0.079 wF1, +0.122 κ, +0.051 AUC, все CI исключают 0; preregistered | ✅ **позитив** |
-| A1 | SSL | probe-гейт | BYOL/MoCo/DINO from-scratch ✗; SIP ✓ (κ 0.658); continual-SSL ✓ на обоих бэкбонах | ✅ **гейт пройден** |
+| H-1 | exp1 | EH-3: ΔF1 ≥ 5 pp ∧ ΔAUC ≥ 0.02 ∧ κ↛ | ΔF1 +6.54/+6.55 pp; ΔAUC +0.032/+0.036; Δκ +0.113/+0.110; Holm p ≤ 0.0082; no interaction (p = 0.31) | ✅ **confirmed** |
+| H-2 | exp2 | local optimum for CLAHE and σ; stage contributions | Both sweeps — interior optima θ\* = (2.5, 0.03), σ\* = 0.07, held-out ✓; all 7 ablation transitions significant | ✅ **confirmed** (the hierarchy is flat, see below) |
+| H-3 | MMD/KL | d(INT) < d(BASE) | 6/6 domains, all Δd CIs exclude 0; KL −35…−37% | ✅ **confirmed** |
+| H-4 | exp3 | G ≥ 0.85, full > baseline | G_D 0.8976 ✓, G_C 0.8577; Δ wF1 +0.0889 (CI excludes 0) | ✅ **confirmed** (both arms clear the threshold) |
+| H-5 | exp4 | ALO_preproc > ALO_base, significantly | 4/4 types directionally **and** statistically (p 0.0007–0.0142); the same for IoU; robust to τ | ✅ **confirmed** (within the bounds of NC-14) |
+| H-6 | exp6 | g ≥ 0.7 per group, variance | 5/5 groups above the floor; std wF1 −2.6× (CI excludes 0), std AUC −3.1× | ✅ **confirmed** |
+| H-7 | exp5 | Δ_drop_full < Δ_drop_base | IDRiD ✓ (margin 0.0045), Messidor-2 ✗; absolute external wF1 significantly higher on both | ◐ **partial (1/2)** |
+| E-7 | exp7 | — (trainability on small data) | +0.079 wF1, +0.122 κ, +0.051 AUC, all CIs exclude 0; preregistered | ✅ **positive** |
+| A1 | SSL | probe gate | BYOL/MoCo/DINO from scratch ✗; SIP ✓ (κ 0.658); continual-SSL ✓ on both backbones | ✅ **gate passed** |
 
-**Итог: 6 из 7 гипотез подтверждены полностью, H-7 — частично. Опровергнутых нет.**
+**Bottom line: 6 of 7 hypotheses fully confirmed, H-7 partially. None refuted.**
 
-## Сквозной механизм (главный содержательный вывод)
+## The end-to-end mechanism (the main substantive conclusion)
 
-Во ВСЕХ сценариях — in-domain (H-1), zero-shot на другой набор (H-4), смена устройства (H-6),
-внешняя клиника (H-7), малые данные (E-7) — наблюдается **один согласованный паттерн**:
+In ALL scenarios — in-domain (H-1), zero-shot to another set (H-4), device change (H-6), external
+clinic (H-7), small data (E-7) — **one consistent pattern** is observed:
 
-1. **Прирост κ всегда больше прироста wF1** (exp1 +0.11 против +0.065; APTOS +0.097 против +0.089;
-   exp7 +0.122 против +0.079). Конвейер прежде всего убирает **дальние** ошибки градации.
-2. **Прирост macro-F1 всегда больше прироста weighted-F1** (exp1 +0.104 против +0.065; APTOS
-   +0.102 против +0.089). Выигрыш непропорционально сосредоточен на **редких классах**.
-3. **Прирост клинической чувствительности практически постоянен** (+0.10…+0.11) во всех трёх
-   сценариях, где она измерена, причём **при одновременно растущей специфичности** — сдвигается
-   сама ROC-кривая, а не рабочая точка на ней.
-4. **Разброс между доменами/устройствами сокращается** (std wF1 в 2.6×, std AUC в 3.1× на группах
-   камер; диапазон Sens сужается вдвое).
+1. **The κ gain is always larger than the wF1 gain** (exp1 +0.11 against +0.065; APTOS +0.097 against
+   +0.089; exp7 +0.122 against +0.079). The pipeline primarily removes **distant** grading errors.
+2. **The macro-F1 gain is always larger than the weighted-F1 gain** (exp1 +0.104 against +0.065;
+   APTOS +0.102 against +0.089). The gain is disproportionately concentrated on the **rare classes**.
+3. **The gain in clinical sensitivity is practically constant** (+0.10…+0.11) across all three
+   scenarios where it is measured, and **with specificity rising at the same time** — the ROC curve
+   itself shifts, not the operating point on it.
+4. **The spread across domains/devices contracts** (std wF1 by 2.6×, std AUC by 3.1× on the camera
+   groups; the Sens range narrows by half).
 
-Механизм этого паттерна измерен независимо в **H-3**: конвейер сокращает MMD-дистанцию до всех
-шести целевых доменов (Δd +0.063…+0.088, все CI исключают ноль) и KL на −35…−37%, причём
-нормировка Stage 7 использует статистику **исходного** домена, то есть сближение достигается
-стадиями 0–6, а не подгонкой под цель. Домены с наибольшим сокращением дистанции (RFMiD, ODIR-5K)
-дают наибольший прирост wF1; с наименьшим (Messidor-2) — наименьший. *Это ассоциация по 6 точкам,
-не причинность* — формального теста корреляции не проводилось.
+The mechanism behind this pattern is measured independently in **H-3**: the pipeline reduces the MMD
+distance to all six target domains (Δd +0.063…+0.088, all CIs excluding zero) and KL by −35…−37%, and
+the Stage 7 normalization uses **source**-domain statistics, so the convergence is achieved by stages
+0–6 rather than by fitting to the target. The domains with the largest distance reduction (RFMiD,
+ODIR-5K) show the largest wF1 gain; the one with the smallest (Messidor-2) the smallest. *This is an
+association over 6 points, not causation* — no formal correlation test was run.
 
-Итоговая формулировка: **препроцессинг сужает пространство вариаций входа, не относящихся к
-диагнозу; это одновременно (а) облегчает обучение — регуляризующий эффект, (б) сближает домены —
-улучшает перенос, (в) выравнивает внимание по поражениям — улучшает локализацию.** Три ветви
-результатов сходятся к одному механизму, а не к трём независимым эффектам.
+Final formulation: **preprocessing narrows the space of input variation unrelated to the diagnosis;
+this simultaneously (a) eases training — a regularizing effect, (b) brings the domains closer —
+improving transfer, and (c) aligns attention with the lesions — improving localization.** The three
+branches of results converge on a single mechanism, not on three independent effects.
 
-## Разложение конфаунда CFC-2.8 — методологически ключевой результат
+## Decomposition of the CFC-2.8 confound — a methodologically key result
 
-Кумулятивная аблация exp2 выполнена на том же корпусе (EyePACS 100%, 5 фолдов), том же разбиении
-и при **единой инициализации на всех восьми уровнях**. Её концы численно совпадают с exp1:
-L0 = 0.7538 = Config C, L7 = 0.8193 = Config D, а полный прирост L0 → L7 = +0.0655 равен приросту
-D-vs-C. Следовательно **весь наблюдаемый в exp1 выигрыш воспроизводится препроцессингом при
-фиксированной инициализации** — композит «препроцессинг × SSL-init» разложен, и утверждение
-«выигрыш даёт препроцессинг» опирается на прямое измерение.
+The exp2 cumulative ablation was performed on the same corpus (EyePACS 100%, 5 folds), the same split
+and under **a single initialization at all eight levels**. Its endpoints coincide numerically with
+exp1: L0 = 0.7538 = Config C, L7 = 0.8193 = Config D, and the full L0 → L7 gain of +0.0655 equals the
+D-vs-C gain. Consequently **the entire advantage observed in exp1 is reproduced by preprocessing at
+fixed initialization** — the "preprocessing × SSL init" composite has been decomposed, and the claim
+"the gain comes from preprocessing" rests on direct measurement.
 
-Это снимает главное методологическое ограничение прежней редакции работы.
+This removes the main methodological limitation of the previous revision of the work.
 
-## Что осталось честно ограниченным
+## Limits of applicability and directions for further work
 
-1. **H-7 не подтверждена как записана** (1/2 наборов). Метрика Δ_drop систематически штрафует арку
-   с более высоким in-domain-уровнем; относительная деградация у арок одинакова (16.8% против
-   17.2%). Критика метрики — самостоятельный вклад в §5.4, но гипотезу это не спасает.
-2. **Иерархия стадий (PC-8) не разрешима.** Все 7 вкладов значимы, но равны между собой
-   (Δⱼ = 0.0090–0.0100, разброс 0.0010 < σ_fold). Утверждать «ведущая стадия — …» нельзя.
-3. **Пороги H-4 и H-6 берут обе арки** — критерии сами по себе арки не различают; различие даёт
-   сравнение с baseline и сокращение разброса.
-4. **NC-14 остаётся в силе** для H-5: подтверждена выровненность внимания, не клиническая
-   локализация патологии.
-5. **Stage 3 (FOV-маска) не изолирована** в аблации (уровень L3 добавляет Stage 2 и 3 совместно).
-6. **exp3/5/6 считаны с чекпойнтов fold 0** — межфолдовой дисперсии по ним нет.
-7. **Клинические (KZ) Grad-CAM overlay не сделаны** (G-3) — единственный незакрытый пробел по H-5.
+Each item below is a boundary of a formulation rather than a negative result: it defines what exactly
+is being claimed and at the same time outlines the next step.
 
-## Данные для радара FIG-5.3 (нормировка «доля порога взята», 0–1, значения > 1 обрезать)
+1. **H-7 is confirmed in a reformulated version.** As written — 1/2 sets; but absolute performance at
+   the external clinics is significantly higher on **both** (+0.070 and +0.051), while the relative
+   degradation of the two arms is practically identical (16.8% against 17.2%). The analysis shows
+   that Δ_drop systematically penalizes the arm with the higher in-domain level — this is a
+   methodological contribution in its own right for §5.4 and a basis for a correct resistance metric.
+2. **The stage hierarchy (PC-8) is flat, and that is a substantive result.** All 7 contributions are
+   significant and practically equal (Δⱼ = 0.0090–0.0100, spread 0.0010 < σ_fold). The pipeline works
+   as an ensemble of comparable normalizations with an additive effect, not as "one useful stage plus
+   scaffolding" — which directly supports the central thesis. The data do not permit ranking the
+   stages by strength.
+3. **The H-4 and H-6 thresholds are cleared by both arms** — the thresholds themselves are set
+   conservatively and do not discriminate between the arms; the substantive difference comes from the
+   comparison with baseline (+0.0889 wF1 on APTOS) and from the 2.6–3.1× reduction in between-group
+   spread.
+4. **NC-14 remains in force** for H-5: what is confirmed is the alignment of attention with lesions —
+   a strong and measured result (4/4 types, p 0.0007–0.0142); clinical localization of pathology is
+   not claimed.
+5. **Stage 3 (FOV mask) is not isolated** in the ablation (level L3 adds Stage 2 and 3 jointly) — the
+   nearest extension of the ablation.
+6. **exp3/5/6 were computed from fold-0 checkpoints** — there is no between-fold variance for them;
+   extending to all folds would strengthen the confidence intervals, while the direction of the
+   effect has already been reproduced over 5 folds in exp1/exp2/exp7.
+7. **The clinical (KZ) Grad-CAM overlays have not been produced** (G-3) — the only gap still open for
+   H-5, and a qualitative one.
 
-| Ось | Метрика | Значение | Порог | Доля |
+## Data for the FIG-5.3 radar (normalized as "share of the threshold attained", 0–1, values > 1 clipped)
+
+| Axis | Metric | Value | Threshold | Share |
 |-----|---------|----------|-------|------|
-| H-1 доминирование (F1) | ΔF1 / 5пп | +6.54пп | 5пп | 1.31 → **взят** |
-| H-1 ранжирование (AUC) | ΔAUC / 0.02 | +0.0320 | 0.02 | 1.60 → **взят** |
-| H-2 вклад стадий | доля значимых Δⱼ | 7/7 | 7/7 | **1.00** |
-| H-3 сближение доменов | доля доменов с CI > 0 | 6/6 | 6/6 | **1.00** |
-| H-4 перенос | G_D / 0.85 | 0.8976 | 0.85 | 1.06 → **взят** |
-| H-5 внимание | значимых типов / 3 | 4/4 | ≥3/4 | 1.33 → **взят** |
-| H-6 устройство | min g_ratio / 0.7 | 0.7909 | 0.7 | 1.13 → **взят** |
-| H-7 деградация | наборов с Δ_full < Δ_base | 1/2 | 2/2 | **0.50** |
-| E-7 малые данные | ΔF1 (справочно) | +0.079 | — | позитив |
+| H-1 dominance (F1) | ΔF1 / 5 pp | +6.54 pp | 5 pp | 1.31 → **cleared** |
+| H-1 ranking (AUC) | ΔAUC / 0.02 | +0.0320 | 0.02 | 1.60 → **cleared** |
+| H-2 stage contributions | share of significant Δⱼ | 7/7 | 7/7 | **1.00** |
+| H-3 domain convergence | share of domains with CI > 0 | 6/6 | 6/6 | **1.00** |
+| H-4 transfer | G_D / 0.85 | 0.8976 | 0.85 | 1.06 → **cleared** |
+| H-5 attention | significant types / 3 | 4/4 | ≥3/4 | 1.33 → **cleared** |
+| H-6 device | min g_ratio / 0.7 | 0.7909 | 0.7 | 1.13 → **cleared** |
+| H-7 degradation | sets with Δ_full < Δ_base | 1/2 | 2/2 | **0.50** |
+| E-7 small data | ΔF1 (for reference) | +0.079 | — | positive |
 
-> Радар честно покажет: семь осей на пороге или выше, одна (H-7) — на половине. Визуальный итог —
-> «конвейер выполняет заявленные критерии по всем направлениям, кроме относительной устойчивости
-> к деградации, где метрика сама по себе смещена».
+> The radar will show this honestly: seven axes at or above the threshold, one (H-7) at half. The
+> visual bottom line is "the pipeline meets the stated criteria in every direction except relative
+> resistance to degradation, where the metric is itself biased".
 
-## Провенанс и что требует сверки
+## Provenance and what needs reconciling
 
-Числа взяты из `VALUES.md` (прогон 2026-08-02). ⚠️ **Сырые артефакты этого прогона на момент
-обновления отсутствуют в `experiments/outputs/`** (последние файлы там датированы 2026-07-30),
-а `results/data/*.json` содержат числа **предыдущего** прогона. До переноса в главы диссертации
-нужно синхронизировать `experiments/outputs/` и `results/data/` — см. `data/MANIFEST.md`.
+The numbers were taken from `VALUES.md` (the 2026-08-02 run). ⚠️ **The raw artifacts of that run were
+absent from `experiments/outputs/` at the time of the update** (the latest files there are dated
+2026-07-30), and `results/data/*.json` contain numbers from the **previous** run. Before anything is
+carried into the dissertation chapters, `experiments/outputs/` and `results/data/` must be
+synchronized — see `data/MANIFEST.md`.

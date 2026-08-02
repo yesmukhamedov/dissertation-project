@@ -1,4 +1,4 @@
-import { C, CLS, CLS_AUC } from '../data';
+import { C, CONFIGS, CLS, CLS_PR } from '../data';
 import { Card, Sec, DataTable, Paired, Note, ImageWithTooltip } from '../components';
 import { useLang } from '../i18n';
 
@@ -17,15 +17,16 @@ export default function ResultsBestConfig() {
 
       <Sec title="Key Metrics">
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <Card label="Weighted F1" value="0.780" delta="+5.3pp vs Config C" color="blue" sub="EH-3 ≥ 5pp ✓" />
-          <Card label="ROC-AUC" value="0.865" delta="+4.4pp vs Config C" color="teal" sub="EH-3 ≥ 2pp ✓" />
-          <Card label="Cohen's κ" value="0.700" delta="+8.0pp vs Config C" color="purple" sub="No degradation ✓" />
-          <Card label="Accuracy" value="0.770" delta="+5.1pp vs Config C" color="amber" />
+          <Card label="Weighted F1" value={CONFIGS.D.f1.toFixed(4)} delta="+6.55pp vs Config C" color="blue" sub="EH-3 ≥ 5pp ✓" />
+          <Card label="ROC-AUC" value={CONFIGS.D.auc.toFixed(4)} delta="+3.60pp vs Config C" color="teal" sub="EH-3 ≥ 2pp ✓" />
+          <Card label="Cohen's κ" value={CONFIGS.D.k.toFixed(4)} delta="+11.03pp vs Config C" color="purple" sub="No degradation ✓" />
+          <Card label="Accuracy" value={CONFIGS.D.acc.toFixed(4)} delta="+7.79pp vs Config C" color="amber" />
         </div>
         <Note>
-          Config D achieves +5.3pp weighted F1 and +4.4pp AUC over baseline (Config C, same architecture).
-          Statistical significance: DeLong p=0.008, McNemar p=0.012, Bootstrap 95% CI for ΔF1: [+2.8pp, +7.8pp].
-          Holm-corrected p_adj=0.024.
+          Config D achieves +6.55pp weighted F1 and +3.60pp AUC over the baseline (Config C, same architecture).
+          Statistical significance: DeLong p=0.0028, McNemar p=0.0041, bootstrap 95% CI for ΔF1 [+4.66pp, +8.44pp],
+          Holm-corrected p_adj=0.0056. macro-F1 rises further than weighted F1 (0.4300 → 0.5355, +10.55pp), i.e. the
+          gain is concentrated on the minority grades.
         </Note>
       </Sec>
 
@@ -38,34 +39,42 @@ export default function ResultsBestConfig() {
           l2="Pipeline (D)"
         />
         <DataTable
-          headers={['DR Grade', 'N (samples)', 'Baseline F1', 'Pipeline F1', 'ΔF1']}
+          headers={['DR Grade', 'N (samples)', 'Baseline F1', 'Pipeline F1', 'ΔF1', 'Relative']}
           rows={CLS.map(d => [
-            d.g, d.n.toLocaleString(), d.b.toFixed(3), d.pp.toFixed(3),
-            `+${((d.pp - d.b) * 100).toFixed(1)}pp`,
+            d.g, d.n.toLocaleString(), d.b.toFixed(4), d.pp.toFixed(4),
+            `+${((d.pp - d.b) * 100).toFixed(2)}pp`,
+            `+${((d.pp - d.b) / d.b * 100).toFixed(0)}%`,
           ])}
           highlightRow={(row, i) => i === 1}
         />
         <Note>
-          DR 1 (Mild NPDR) is the hardest class: subtle microaneurysms + severe class imbalance (n≈490 / 14,050).
-          Preprocessing provides the largest relative lift on minority classes: +12pp for DR 1, +12pp for DR 3.
-          DR 0 (No DR) is near-saturated at baseline (0.88) with modest additional gain (+3pp).
+          DR 1 (mild NPDR) is by far the hardest class — subtle microaneurysms plus severe imbalance (n = 2,443 of 35,126).
+          The pipeline more than doubles its F1 (0.0976 → 0.2188, +124% relative), but the absolute level stays low
+          (≈0.22): preprocessing mitigates the early-signs problem, it does not solve it.
+          The largest absolute gains are DR 4 (+13.36pp) and DR 2 (+12.78pp). DR 0 is near-saturated at baseline
+          (0.8889) and still gains +4.44pp.
         </Note>
       </Sec>
 
       <Sec title={t('results.perClassAUC')}>
         <DataTable
-          headers={['DR Grade', 'Baseline AUC', 'Pipeline AUC', 'ΔAUC']}
-          rows={CLS_AUC.map(d => [
-            d.g, d.baseline.toFixed(3), d.pipeline.toFixed(3),
-            `+${((d.pipeline - d.baseline) * 100).toFixed(1)}pp`,
+          headers={['DR Grade', 'Precision (C)', 'Recall (C)', 'Precision (D)', 'Recall (D)', 'ΔRecall']}
+          rows={CLS_PR.map(d => [
+            d.g, d.precB.toFixed(4), d.recB.toFixed(4), d.precP.toFixed(4), d.recP.toFixed(4),
+            `+${((d.recP - d.recB) * 100).toFixed(2)}pp`,
           ])}
         />
+        <Note>
+          Per-class ROC-AUC was not recorded in this run — precision/recall are shown instead. Recall rises on every
+          grade, and most on the minority ones (DR 3 +13.06pp, DR 1 +12.94pp, DR 4 +13.56pp), while precision rises
+          too — so the gain is not a recall-for-precision trade.
+        </Note>
       </Sec>
 
       <Sec title="Confusion Matrix">
         <ImageWithTooltip
           src={process.env.PUBLIC_URL + '/results/exp1/20_confusion_matrix.png'}
-          caption="Confusion matrix for Config D. Strong diagonal dominance. Primary confusions: DR 1↔DR 0 (mild NPDR vs no DR), DR 2↔DR 3 (adjacent grades). These are clinically expected: adjacent-grade boundaries are ambiguous even for expert graders."
+          caption="Confusion matrix for Config D (n = 35,126). Strong diagonal dominance. Remaining confusions are adjacent on the severity scale — DR 0↔DR 1 (1,872 + 1,016 images) and DR 2↔DR 3. Distant errors are almost gone: DR 0→DR 4 falls from 23 images in Config C to 4 in Config D, which is what drives the +11.03pp gain in quadratic κ."
           figNum={20}
           tooltip="tooltip.fig20"
         />

@@ -1,69 +1,72 @@
-# Выводы — Experiment 1 (2×2 факторный, H-1) → §4.2
+# Conclusions — Experiment 1 (2×2 factorial, H-1) → §4.2
 
-**Что делали.** Полный 2×2 факторный дизайн на EyePACS (100%, n = 35 126, 5-fold patient-level CV):
-{baseline 3ch / полный конвейер 4ch} × {ResNet-50 / EfficientNet-B3} = конфигурации A, B, C, D.
-Проверка EH-3-доминирования конвейера над baseline. Источник чисел: прогон **2026-08-02**.
+**What was done.** A full 2×2 factorial design on EyePACS (100%, n = 35 126, 5-fold patient-level CV):
+{baseline 3ch / full pipeline 4ch} × {ResNet-50 / EfficientNet-B3} = configurations A, B, C, D.
+A test of EH-3 dominance of the pipeline over baseline. Source of the numbers: the **2026-08-02** run.
 
-## Что выяснили
+## What was found
 
-**1. Конвейер доминирует по строгому критерию, на обоих бэкбонах.** Все три компоненты EH-3
-выполнены с запасом: ΔwF1 +6.54пп (B−A) и +6.55пп (D−C) при пороге 5пп; ΔAUC +0.032 и +0.036 при
-пороге 0.02; Δκ +0.113 и +0.110 при требовании «не деградирует». `h1_supported = true`.
+**1. The pipeline dominates under the strict criterion, on both backbones.** All three components of
+EH-3 are met with margin: ΔwF1 +6.54 pp (B−A) and +6.55 pp (D−C) against a 5 pp threshold; ΔAUC +0.032
+and +0.036 against a 0.02 threshold; Δκ +0.113 and +0.110 against a requirement of merely "does not
+degrade". `h1_supported = true`.
 
-**2. Эффект значим и не зависит от архитектуры.** DeLong по referable-AUC: p = 0.0041 и 0.0028;
-McNemar: p = 0.0057 и 0.0041; после Holm-поправки на 4 конфигурации — 0.0082 и 0.0056, обе ниже
-α = 0.05. Смешанная ANOVA не находит взаимодействия «арм × бэкбон» (p = 0.31) — величина эффекта
-у ResNet-50 и EfficientNet-B3 статистически одна и та же, что подтверждается и численно
-(6.54 против 6.55пп). Кросс-валидационные интервалы baseline и pipeline **не пересекаются ни по
-одной из четырёх первичных метрик**.
+**2. The effect is significant and architecture-independent.** DeLong on referable AUC: p = 0.0041
+and 0.0028; McNemar: p = 0.0057 and 0.0041; after the Holm correction over 4 configurations — 0.0082
+and 0.0056, both below α = 0.05. The mixed-effects ANOVA finds no "arm × backbone" interaction
+(p = 0.31) — the effect size for ResNet-50 and EfficientNet-B3 is statistically the same, which is
+also confirmed numerically (6.54 vs 6.55 pp). The cross-validation intervals of baseline and pipeline
+**do not overlap on any of the four primary metrics**.
 
-**3. Выигрыш сосредоточен на меньшинствах.** macro-F1 растёт сильнее weighted-F1: +0.104 против
-+0.065 (A→B) и +0.106 против +0.066 (C→D). F1 класса DR1 (лёгкая NPDR) удваивается:
-0.0999 → 0.2141 и 0.0976 → 0.2188. Абсолютный уровень DR1 остаётся низким (≈0.21) — ранние
-малозаметные признаки остаются главным источником ошибки, конвейер их смягчает, но не решает.
+**3. The gain is concentrated on the minority classes.** macro-F1 rises more than weighted-F1: +0.104
+against +0.065 (A→B) and +0.106 against +0.066 (C→D). The F1 of class DR1 (mild NPDR) doubles:
+0.0999 → 0.2141 and 0.0976 → 0.2188. The absolute DR1 level remains low (≈0.21) — early, subtle signs
+remain the main source of error; the pipeline mitigates them but does not solve them.
 
-**4. Ошибки становятся «ближними».** В матрицах ошибок дальние клетки почти пустеют: DR0 → DR4
-падает с 26 до 4 объектов (A→B), DR0 → DR3 с 127 до 33. Основная масса ложных срабатываний на
-здоровых снимках (DR0 → DR1) сокращается с ≈2 950 до ≈1 890. Именно это даёт крупный прирост
-quadratic-κ, который штрафует далёкие ошибки сильнее близких.
+**4. Errors become "near" ones.** In the confusion matrices the distant cells almost empty out:
+DR0 → DR4 falls from 26 to 4 instances (A→B) and DR0 → DR3 from 127 to 33. The bulk of false
+positives on healthy images (DR0 → DR1) shrinks from ≈2 950 to ≈1 890. This is precisely what
+produces the large quadratic-κ gain, since κ penalizes distant errors more heavily than near ones.
 
-**5. Клинически: выше чувствительность при более высокой специфичности.** Referable-DR (grade ≥ 2):
-Sens 0.6865 → 0.7982 и 0.6891 → 0.8007 (+11.2пп), Spec одновременно 0.944 → 0.963 и 0.946 → 0.964.
-Это сдвиг самой ROC-кривой (referable-AUC +0.041 / +0.042), а не перемещение рабочей точки по ней.
-PPV +9пп, NPV +2.6пп — сокращаются и пропуски, и ложные направления.
+**5. Clinically: higher sensitivity at higher specificity.** Referable DR (grade ≥ 2):
+Sens 0.6865 → 0.7982 and 0.6891 → 0.8007 (+11.2 pp), with Spec rising at the same time 0.944 → 0.963
+and 0.946 → 0.964. This is a shift of the ROC curve itself (referable AUC +0.041 / +0.042), not a
+movement of the operating point along it. PPV +9 pp, NPV +2.6 pp — both missed cases and false
+referrals decrease.
 
-**6. Калибровка улучшается.** ECE 0.0712 → 0.0418 и 0.0691 → 0.0402 (примерно в 1.7×), Brier ниже
-на обоих бэкбонах. ⚠️ **Смена знака относительно прежнего прогона**, где калибровка была
-единственным систематическим минусом конвейера (ECE ~3× хуже) и выносилась в §5.4 как обязательная
-оговорка. Формулировки, опиравшиеся на «конвейер ухудшает калибровку», подлежат замене.
+**6. Calibration improves.** ECE 0.0712 → 0.0418 and 0.0691 → 0.0402 (roughly 1.7×), with Brier lower
+on both backbones. ⚠️ **A sign change relative to the previous run**, where calibration was the
+pipeline's only systematic drawback (ECE ~3× worse) and was carried into §5.4 as a mandatory caveat.
+Formulations that relied on "the pipeline degrades calibration" must be replaced.
 
-**7. Конвейер работает как регуляризатор.** Конвейерные арки сходятся на 6–7 эпох раньше
-(best-эпохи 7–10 против 14–17) при loss-gap в 2.5× меньше (0.021–0.022 против 0.052–0.054).
-Механизм читается по компонентам: у B/D **выше** train_loss (0.126–0.131 против 0.098–0.102) при
-сопоставимом val_loss — модель хуже подгоняется под обучающую выборку, но обобщает не хуже.
-Разброс best-эпох внутри арма мал (±1–1.5), режим воспроизводим по фолдам.
+**7. The pipeline acts as a regularizer.** The pipeline arms converge 6–7 epochs earlier (best epochs
+7–10 against 14–17) with a loss gap 2.5× smaller (0.021–0.022 against 0.052–0.054). The mechanism is
+legible from the components: B/D have a **higher** train_loss (0.126–0.131 against 0.098–0.102) at a
+comparable val_loss — the model fits the training set less closely but generalizes no worse. The
+spread of best epochs within an arm is small (±1–1.5), so the regime is reproducible across folds.
 
-## Ограничение (обязательно в текст) — CFC-2.8 в изменённой форме
+## Limitation (mandatory in the text) — CFC-2.8 in modified form
 
-Арм B/D инициализируется continual-SSL, поэтому Config B/D формально измеряют композит
-«препроцессинг × инициализация». **Но композит теперь разложим:** кумулятивная аблация exp2 на том
-же корпусе, том же разбиении и при **единой инициализации на всех восьми уровнях** даёт
-ΔwF1 = +0.0655 от L0 к L7, причём L0 = 0.7538 численно совпадает с Config C, а L7 = 0.8193 — с
-Config D (`tables/TAB-4.4_exp2_ablation.md`). То есть весь прирост D-vs-C воспроизводится
-препроцессингом при фиксированной инициализации, и вклад препроцессинга измерен отдельно.
+The B/D arm is initialized with continual-SSL, so Config B/D formally measure the composite
+"preprocessing × initialization". **But the composite is now decomposable:** the exp2 cumulative
+ablation on the same corpus, the same split and under **a single initialization at all eight levels**
+yields ΔwF1 = +0.0655 from L0 to L7, with L0 = 0.7538 numerically coinciding with Config C and
+L7 = 0.8193 with Config D (`tables/TAB-4.4_exp2_ablation.md`). That is, the entire D-vs-C gain is
+reproduced by preprocessing at fixed initialization, and the contribution of preprocessing has been
+measured separately.
 
-В текст CFC-2.8 идёт как указание на особенность дизайна с немедленной ссылкой на exp2, а **не**
-как ограничение на вывод. Это существенное изменение относительно прежней редакции, где H-1
-считался неспособным изолировать препроцессинг.
+CFC-2.8 goes into the text as a note about a feature of the design, with an immediate reference to
+exp2, and **not** as a limitation on the conclusion. This is a substantial change relative to the
+previous revision, where H-1 was considered incapable of isolating preprocessing.
 
-## Формулировка вклада
+## Formulation of the contribution
 
-«Интегрированная конфигурация с 8-стадийным конвейером доминирует над baseline по всем трём
-компонентам критерия EH-3 на обоих бэкбонах (ΔwF1 +6.5пп, ΔAUC +0.032…0.036, Δκ +0.11); эффект
-значим после поправки на множественность (Holm p ≤ 0.0082), не зависит от выбора архитектуры
-(взаимодействие p = 0.31) и воспроизводится покомпонентно кумулятивной аблацией при фиксированной
-инициализации.»
+"The integrated configuration with the 8-stage pipeline dominates baseline on all three components of
+the EH-3 criterion on both backbones (ΔwF1 +6.5 pp, ΔAUC +0.032…0.036, Δκ +0.11); the effect is
+significant after correction for multiplicity (Holm p ≤ 0.0082), does not depend on the choice of
+architecture (interaction p = 0.31) and is reproduced component by component by the cumulative
+ablation at fixed initialization."
 
-Таблицы: `tables/TAB-4.2_exp1_factorial.md`, `TAB-4.3_exp1_calibration.md`, `exp1_per_class.md`,
+Tables: `tables/TAB-4.2_exp1_factorial.md`, `TAB-4.3_exp1_calibration.md`, `exp1_per_class.md`,
 `exp1_clinical_indomain.md`, `exp1_convergence_ci.md`, `TAB-5.1_statistical.md`.
-Карточка: `hypotheses/H-1.md`.
+Card: `hypotheses/H-1.md`.

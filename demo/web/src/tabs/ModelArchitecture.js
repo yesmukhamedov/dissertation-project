@@ -31,9 +31,9 @@ export default function ModelArchitecture() {
         <DataTable
           headers={['Arm', 'Backbone', 'Parameters', 'Pretrain source', 'Input', 'Used in']}
           rows={[
-            ['Baseline', 'ResNet-50', '25.6M', 'ImageNet (torchvision)', '3 ch, 512×512', 'Exp 1 (Config A)'],
-            ['Baseline', 'EfficientNet-B3', '12.2M', 'ImageNet (timm)', '3 ch, 512×512', 'Exp 1 (Config C), Exp 4 (Grad-CAM/ALO)'],
-            ['Pipeline (proposed)', 'ResNet-50 / EfficientNet-B3', '25.6M / 12.2M', 'Ophthalmology-specific SSL (in-house fundus pretrain)', '4 ch, 512×512 (RGB + FOV mask)', 'Exp 1 (Config B / D)'],
+            ['Baseline', 'ResNet-50', '23.52M', 'ImageNet (torchvision)', '3 ch, 512×512', 'Exp 1 (Config A)'],
+            ['Baseline', 'EfficientNet-B3', '10.70M', 'ImageNet (timm)', '3 ch, 512×512', 'Exp 1 (Config C), Exp 4 (Grad-CAM/ALO)'],
+            ['Pipeline (proposed)', 'ResNet-50 / EfficientNet-B3', '23.52M / 10.70M', 'Ophthalmology-specific SSL (in-house fundus pretrain)', '4 ch, 512×512 (RGB + FOV mask)', 'Exp 1 (Config B / D)'],
           ]}
         />
         <Note>

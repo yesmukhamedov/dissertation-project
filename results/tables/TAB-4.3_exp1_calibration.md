@@ -1,24 +1,25 @@
-# TAB-4.3 — exp1 калибровка (ECE, Brier)
+# TAB-4.3 — exp1 calibration (ECE, Brier)
 
-Источник: прогон **2026-08-02** (`VALUES.md` §1.5). n = 35 126, объединённые val-фолды.
+Source: the **2026-08-02** run (`VALUES.md` §1.5). n = 35 126, pooled val folds.
 
-| Config | Арм | ECE | Brier |
+| Config | Arm | ECE | Brier |
 |---|---|---|---|
 | A | baseline + ResNet-50 | 0.0712 | 0.0724 |
 | B | pipeline + ResNet-50 | **0.0418** | **0.0611** |
 | C | baseline + EffNet-B3 | 0.0691 | 0.0715 |
 | D | pipeline + EffNet-B3 | **0.0402** | **0.0598** |
 
-**Наблюдение.** Конвейерные арки калиброваны **лучше** baseline на обоих бэкбонах: ECE падает
-примерно в 1.7× (0.0712 → 0.0418 и 0.0691 → 0.0402), Brier — на 0.011–0.012. То есть
-интегрированная конфигурация улучшает не только ранжирование (AUC) и согласие (κ), но и
-надёжность самих вероятностей.
+**Observation.** The pipeline arms are **better** calibrated than baseline on both backbones: ECE
+falls by roughly a factor of 1.7 (0.0712 → 0.0418 and 0.0691 → 0.0402), and Brier by 0.011–0.012.
+That is, the integrated configuration improves not only ranking (AUC) and agreement (κ) but also the
+reliability of the probabilities themselves.
 
-> **Смена знака относительно прежнего прогона.** В прогоне до 2026-07-28 калибровка была
-> единственным систематическим минусом конвейера (ECE B/D 0.19–0.21 против 0.06–0.07 у A/C,
-> ~3× хуже), и это выносилось в §5.4 как обязательная оговорка «перед развёртыванием нужна
-> перекалибровка». По данным прогона 2026-08-02 этот минус **исчез и обратился в плюс**.
-> Формулировки в главах 4/5, опиравшиеся на «конвейер ухудшает калибровку», подлежат замене.
+> **Sign change relative to the previous run.** In the run prior to 2026-07-28, calibration was the
+> pipeline's only systematic drawback (ECE for B/D 0.19–0.21 against 0.06–0.07 for A/C, ~3× worse),
+> and this was carried into §5.4 as a mandatory caveat that "recalibration is required before
+> deployment". Per the 2026-08-02 run this drawback has **disappeared and turned into an advantage**.
+> Formulations in chapters 4/5 that relied on "the pipeline degrades calibration" must be replaced.
 
-Согласованность с рабочей точкой: улучшенная калибровка сопровождается ростом referable-Sens при
-неснижающейся Spec (`exp1_clinical_indomain.md`) — сдвига порога в сторону гиперчувствительности нет.
+Consistency with the operating point: the improved calibration is accompanied by a rise in referable
+Sens with no drop in Spec (`exp1_clinical_indomain.md`) — there is no shift of the threshold toward
+hypersensitivity.

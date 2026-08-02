@@ -13,15 +13,25 @@ export default function ValComputational() {
         />
         <ImageWithTooltip
           src={process.env.PUBLIC_URL + '/results/general/17_computational.png'}
-          caption="Computational cost comparison: training time, inference latency, and GPU memory for ResNet-50 and EfficientNet-B3. Pipeline adds ~27ms preprocessing overhead per image — acceptable for screening throughput."
+          caption="Computational cost comparison: FLOPs, inference latency and GPU memory for ResNet-50 and EfficientNet-B3, measured on an RTX 3060 at 512×512, fp32. The 4th channel costs +0.4 GFLOPs (+0.9%) and +24 MiB."
           figNum={17}
           tooltip="tooltip.fig17"
         />
         <Note>
-          EfficientNet-B3 has fewer parameters (12.2M vs 25.6M) but longer training time per epoch (12.3 vs 8.5 min)
-          due to compound scaling operations. Pipeline preprocessing adds a fixed ~27ms overhead regardless of backbone,
-          bringing total inference to 45–52ms/image — within acceptable range for non-real-time screening workflows
-          (target: ≤100ms/image at 512×512 resolution).
+          <strong>The 4th channel is essentially free.</strong> Going from the 3-channel baseline to the 4-channel
+          pipeline costs +0.4 GFLOPs (+0.9%), +24 MiB of VRAM and about +3k parameters (rounding to the same
+          23.52M / 10.70M) — against a +6.55pp weighted-F1 gain. This is the quantitative form of the "cheap prior"
+          claim: the pipeline's cost lives in CPU preprocessing, not in the network.
+          <br /><br />
+          <strong>FLOPs ≠ latency.</strong> EfficientNet-B3 is 4.3× cheaper in FLOPs (10 vs 43) and 2.2× lighter in
+          parameters, yet only ~9% faster at bs=16 and actually <em>slower</em> at bs=1 (12.8–14.5 vs 10.5 ms):
+          depthwise convolutions use tensor cores poorly. Any performance-complexity argument must be made on
+          measured time, not on FLOPs.
+          <br /><br />
+          <strong>Training VRAM is the real bottleneck, and it is EfficientNet's.</strong> 13.7 GiB vs 3.7 GiB for
+          ResNet-50 (fp32 without AMP, large 512² activation maps) — above the RTX 3060's physical 12 GiB, so the
+          measurement only completed via WSL2/WDDM host-memory sharing. The batch_size = 16 limit is driven by fp32
+          activations at 512², not by model size.
         </Note>
       </Sec>
 
@@ -33,7 +43,7 @@ export default function ValComputational() {
             { label: 'Framework', value: 'PyTorch 2.5, CUDA 12.x' },
             { label: 'Python', value: '3.10, Conda environment' },
             { label: 'Input resolution', value: '512×512 RGB' },
-            { label: 'Mixed precision', value: 'Disabled (stability requirement for EfficientNet)' },
+            { label: 'Mixed precision', value: 'Enabled for ResNet-50; disabled for EfficientNet (fp16 overflow)' },
           ].map((item, i) => (
             <div key={i} style={{ display: 'flex', gap: 10, padding: '6px 12px', background: 'var(--color-background-secondary,#f7f7f5)', borderRadius: 5 }}>
               <div style={{ minWidth: 140, fontWeight: 600, fontSize: 11 }}>{item.label}</div>
@@ -43,12 +53,14 @@ export default function ValComputational() {
         </div>
       </Sec>
 
-      <Sec title="Preprocessing Pipeline Throughput">
+      <Sec title="Network Throughput">
         <Note>
-          Pipeline processes one 3888×2592 fundus image in ~27ms (RTX 3060, batch mode).
-          Sequential stages: canonical flip (1ms), OD-fovea detection/rotation (12ms), FOV crop + resize (5ms),
-          flat-field Gaussian filter (4ms), CLAHE (3ms), normalization (2ms).
-          The OD-fovea rotation step (Stage 1) dominates preprocessing time due to optic disc detection.
+          Measured with the standard <code>torch.utils.flop_counter</code>, 50 iterations after 10 warm-up runs;
+          the train step is fwd + bwd + optimizer.step under the same mixed-precision setting each configuration was
+          trained with. At bs=16 the pipeline arms reach 120.5 img/s (ResNet-50) and 132.3 img/s (EfficientNet-B3).
+          <br /><br />
+          <strong>Not measured:</strong> the wall-clock cost of the CPU preprocessing stages themselves, and
+          training time per epoch. Those figures are not part of this benchmark and are therefore not quoted here.
         </Note>
       </Sec>
     </div>

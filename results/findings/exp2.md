@@ -1,79 +1,81 @@
-# Выводы — Experiment 2 (аблация + CLAHE/σ свипы, H-2) → §4.3
+# Conclusions — Experiment 2 (ablation + CLAHE/σ sweeps, H-2) → §4.3
 
-**Что делали.** (A) **Кумулятивная аблация** — 8 уровней (baseline + стадии, добавляемые по одной
-в порядке конвейера) на **EyePACS 100% (n = 35 126), 5 фолдов, EfficientNet-B3**.
-(B) **Двумерный свип CLAHE** — сетка (clip_factor × global_threshold) 7 × 5 на EyePACS, с
-отдельными сетками per-class F1 для DR1 и DR2. (C) **σ-свип flat-field** — 6 значений
-0.05–0.10·D_FOV. Источник: прогон **2026-08-02**.
+**What was done.** (A) A **cumulative ablation** — 8 levels (baseline + stages added one at a time in
+pipeline order) on **EyePACS 100% (n = 35 126), 5 folds, EfficientNet-B3**.
+(B) A **two-dimensional CLAHE sweep** — a 7 × 5 grid (clip_factor × global_threshold) on EyePACS,
+with separate per-class F1 grids for DR1 and DR2. (C) A **flat-field σ sweep** — 6 values over
+0.05–0.10·D_FOV. Source: the **2026-08-02** run.
 
-> Протокол изменился принципиально относительно прежнего прогона (было: 15%-подвыборка, 3 фолда,
-> индивидуальная аблация 6 уровней, свип только по clip_factor на IDRiD, σ-свип не прогнан).
-> Числа с прежней версией **несопоставимы**; теперь они напрямую сопоставимы с exp1.
+> The protocol changed fundamentally relative to the previous run (which used a 15% subsample,
+> 3 folds, a 6-level individual ablation, a sweep over clip_factor alone on IDRiD, and no σ sweep).
+> The numbers are **not comparable** with the previous version; they are now directly comparable with exp1.
 
-## Что выяснили
+## What was found
 
-**1. Каждая стадия конвейера даёт значимый положительный вклад.** wF1 растёт монотонно от
-L0 = 0.7538 до L7 = 0.8193 (+0.0655), и для всех семи переходов |Δⱼ| превышает 2·σ_fold
-(0.0090–0.0100 против 0.0052–0.0060). **Монотонность держится в каждом отдельном фолде** — во всех
-пяти последовательность L0 < L1 < … < L7 соблюдается без единой инверсии. PC-8 в части
-«вклады стадий идентифицируемы» установлен.
+**1. Every stage of the pipeline makes a significant positive contribution.** wF1 rises monotonically
+from L0 = 0.7538 to L7 = 0.8193 (+0.0655), and for all seven transitions |Δⱼ| exceeds 2·σ_fold
+(0.0090–0.0100 against 0.0052–0.0060). **Monotonicity holds within each individual fold** — in all
+five, the sequence L0 < L1 < … < L7 is observed without a single inversion. PC-8 is established in
+the part "the stage contributions are identifiable".
 
-**2. Но иерархия вкладов плоская — ранжировать стадии нельзя.** Разброс Δⱼ составляет 0.0010, что
-меньше σ_fold (≈0.0028). Ни одна стадия не доминирует; вклад распределён практически равномерно и
-складывается аддитивно. Это содержательный результат сам по себе: конвейер работает как **ансамбль
-сопоставимых по силе нормализаций**, а не как «одна полезная стадия плюс обвязка». Для тезиса это
-сильнее обычной иерархии — убрать можно любую стадию, и каждая обойдётся примерно в 1пп wF1.
-Формулировки вида «ведущая стадия — …» **неверны**.
+**2. But the contribution hierarchy is flat — the stages cannot be ranked.** The spread of Δⱼ is
+0.0010, which is smaller than σ_fold (≈0.0028). No stage dominates; the contribution is distributed
+almost evenly and adds up additively. This is a substantive result in itself: the pipeline works as
+an **ensemble of normalizations of comparable strength**, not as "one useful stage plus scaffolding".
+For the thesis this is stronger than an ordinary hierarchy — any stage may be removed, and each one
+costs roughly 1 pp of wF1. Formulations of the form "the leading stage is …" are **incorrect**.
 
-**3. Главное следствие: конфаунд CFC-2.8 разложен.** Концы аблации воспроизводят exp1 точно —
-L0 = 0.7538 = Config C, L7 = 0.8193 = Config D — при **единой инициализации на всех восьми
-уровнях**. Значит весь прирост D-vs-C (+0.0655) относится к препроцессингу, а не к
-SSL-инициализации. Прежний вывод «препроцессинг сам по себе классификацию не улучшает, эффект
-exp1 — нераздельный композит» этим прогоном **опровергнут**. Это самое важное изменение в exp2.
+**3. The main consequence: the CFC-2.8 confound has been decomposed.** The endpoints of the ablation
+reproduce exp1 exactly — L0 = 0.7538 = Config C, L7 = 0.8193 = Config D — under **a single
+initialization at all eight levels**. Hence the entire D-vs-C gain (+0.0655) belongs to preprocessing,
+not to the SSL initialization. The former conclusion that "preprocessing on its own does not improve
+classification; the exp1 effect is an indivisible composite" is **refuted** by this run. This is the
+most important change in exp2.
 
-**4. CLAHE: внутренний оптимум по обоим параметрам, per-class оптимумы различаются.** Профиль
-немонотонен по обоим измерениям, максимум внутренний: θ\* = (clip_factor 2.5, global_threshold
-0.03), p_apply = 0.80. F1(DR1) максимален при (2.5, 0.03), F1(DR2) — при (2.0, 0.03): более
-мелкие признаки DR1 (микроаневризмы) требуют более агрессивного локального выравнивания. Held-out
-подтверждает: wF1 0.7538 → 0.8140 (Δ +0.0602, CI [+0.0411, +0.0793]), F1(DR1) 0.0976 → 0.2088,
+**4. CLAHE: an interior optimum in both parameters, with differing per-class optima.** The profile is
+non-monotone in both dimensions, with an interior maximum: θ\* = (clip_factor 2.5, global_threshold
+0.03), p_apply = 0.80. F1(DR1) is maximal at (2.5, 0.03), F1(DR2) at (2.0, 0.03): the finer DR1
+features (microaneurysms) require more aggressive local equalization. Held-out data confirm this:
+wF1 0.7538 → 0.8140 (Δ +0.0602, CI [+0.0411, +0.0793]), F1(DR1) 0.0976 → 0.2088,
 F1(DR2) 0.5316 → 0.6482.
 
-**5. Flat-field σ: строго унимодальный профиль, высокая чувствительность.** Максимум σ\* = 0.07·D
-(внутренний), симметричный спад в обе стороны, размах по диапазону R = 0.0520 — сопоставим с
-полным эффектом конвейера, т.е. параметр требует настройки, а не выбирается произвольно.
-Held-out: 0.7510 → 0.8080 (Δ +0.0570, CI [+0.0381, +0.0759]). σ\* совпадает со значением из
-спецификации Stage 4 — свип подтверждает принятую настройку.
+**5. Flat-field σ: a strictly unimodal profile with high sensitivity.** The maximum is at σ\* = 0.07·D
+(interior), with a symmetric decline on both sides, and the range across the sweep, R = 0.0520, is
+comparable to the full pipeline effect — i.e. the parameter requires tuning rather than an arbitrary
+choice. Held-out: 0.7510 → 0.8080 (Δ +0.0570, CI [+0.0381, +0.0759]). σ\* coincides with the value in
+the Stage 4 specification — the sweep confirms the adopted setting.
 
-**6. «Качество изображения ≠ качество классификации» — тезис держится, но в слабой форме.**
-Полный конвейер улучшает и IQ (CNR 20.43 → 24.02, Entropy 5.502 → 5.901), и классификацию. Но
-соответствия **по уровням** нет: максимум CNR приходится на L4 (flat-field, 28.60), тогда как wF1
-растёт до L7; геометрические уровни L1–L3 дают +2.85пп wF1 при **неизменных** CNR/Entropy;
-уровень L6 (augmentation) даёт +0.95пп при полностью неизменных IQ-метриках. При этом **внутри
-одной стадии** (σ-свип) CNR и wF1 сонаправлены идеально — максимум обоих при σ = 0.07.
-Корректная формулировка: IQ-метрики фиксируют фотометрическую часть механизма, но не исчерпывают
-его, и как предиктор классификационного выигрыша недостаточны.
+**6. "Image quality ≠ classification quality" — the thesis holds, but in its weak form.**
+The full pipeline improves both IQ (CNR 20.43 → 24.02, Entropy 5.502 → 5.901) and classification. But
+there is no **level-by-level** correspondence: the CNR maximum falls at L4 (flat-field, 28.60),
+whereas wF1 keeps rising through L7; the geometric levels L1–L3 deliver +2.85 pp wF1 with CNR/Entropy
+**unchanged**; level L6 (augmentation) delivers +0.95 pp with the IQ metrics completely unchanged.
+**Within a single stage**, however (the σ sweep), CNR and wF1 move together perfectly — both peak at
+σ = 0.07. The correct formulation: the IQ metrics capture the photometric part of the mechanism but
+do not exhaust it, and they are insufficient as a predictor of the classification gain.
 
-## Главный содержательный вывод (для §4.3 и §5.4)
+## The main substantive conclusion (for §4.3 and §5.4)
 
-Аблация на полном корпусе при фиксированной инициализации показывает, что **препроцессинг сам по
-себе даёт весь наблюдаемый в exp1 прирост** (+6.55пп wF1), причём равномерно распределённый по
-восьми стадиям. Вместе со свипами (два внутренних оптимума с подтверждением на held-out) это
-означает: конвейер — не набор эвристик «на всякий случай», а параметризованный компонент модели,
-каждая часть которого измеримо вкладывается в результат и требует настройки. Это прямая эмпирика
-под центральный тезис *model = preprocessing + CNN*.
+The ablation on the full corpus at fixed initialization shows that **preprocessing on its own
+delivers the entire gain observed in exp1** (+6.55 pp wF1), distributed evenly across the eight
+stages. Together with the sweeps (two interior optima confirmed on held-out data) this means: the
+pipeline is not a set of just-in-case heuristics but a parameterized model component, each part of
+which measurably contributes to the result and requires tuning. This is direct empirical support for
+the central thesis *model = preprocessing + CNN*.
 
-## Оговорки (обязательно в текст)
+## Caveats (mandatory in the text)
 
-- Порядок добавления стадий фиксирован (порядок конвейера) → Δⱼ есть вклад стадии **при уже
-  наложенных предыдущих**; взаимодействия между стадиями схемой не измеряются.
-- **Stage 3 (FOV-маска) не изолирована**: уровень L3 добавляет Stage 2 и Stage 3 совместно
-  (отключение маски требует 3-канального варианта модели). Остаток пробела G-8.
-- Сетки свипов получены на train-фолдах, по одной оценке на точку, без std.
-- Held-out F1(DR1) в θ\* (0.2088) существенно ниже сеточного значения (0.4700); расхождение по
-  имеющимся данным не объясняется — **в текст брать held-out**.
-- Свипы CLAHE и σ выполнены независимо; совместная трёхпараметрическая сетка не строилась.
-- Абсолютные CNR в `TAB-4.5` (20–29) и в σ-свипе (3.1–3.9) посчитаны в разных нормировках —
-  между таблицами не сравнивать.
+- The order in which stages are added is fixed (the pipeline order) → Δⱼ is the contribution of a
+  stage **given that the preceding ones are already applied**; interactions between stages are not
+  measured by this design.
+- **Stage 3 (FOV mask) is not isolated**: level L3 adds Stage 2 and Stage 3 jointly (disabling the
+  mask requires a 3-channel model variant). This is the remainder of gap G-8.
+- The sweep grids were obtained on train folds, one evaluation per point, without std.
+- The held-out F1(DR1) at θ\* (0.2088) is substantially below the grid value (0.4700); the
+  discrepancy is not explained by the available data — **use the held-out value in the text**.
+- The CLAHE and σ sweeps were run independently; no joint three-parameter grid was built.
+- The absolute CNR values in `TAB-4.5` (20–29) and in the σ sweep (3.1–3.9) are computed under
+  different normalizations — do not compare them across tables.
 
-Таблицы: `tables/TAB-4.4_exp2_ablation.md`, `TAB-4.5_exp2_image_quality.md`,
-`exp2_clahe_sweep.md`, `exp2_flatfield_sigma_sweep.md`. Карточка: `hypotheses/H-2.md`.
+Tables: `tables/TAB-4.4_exp2_ablation.md`, `TAB-4.5_exp2_image_quality.md`,
+`exp2_clahe_sweep.md`, `exp2_flatfield_sigma_sweep.md`. Card: `hypotheses/H-2.md`.

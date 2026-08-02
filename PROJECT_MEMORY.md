@@ -23,7 +23,7 @@ Format: one file per fact in `PROJECT_MEMORY/`, with YAML frontmatter (`name`, `
 - [Front-matter deliverables](PROJECT_MEMORY/front-matter-deliverables.md) — TITLE PAGE + NORMATIVE REFERENCES → DESIGNATIONS & ABBREVIATIONS → DEFINITIONS, EN/KZ GOST docx+pdf in `defense/docs/`; **verified & aligned to real IITU samples** (`D:/dissertation_council/Образцы документов/авторы`): house order, exact shared normative-refs list, sample title-page format; built by `build_title.py` + `build_frontmatter.py`
 
 ## Experiments / Config-D
-- [Results knowledge base](PROJECT_MEMORY/results-knowledge-base.md) — `results/` (2026-07-24): переносимая база знаний по экспериментам (реальные метрики, вердикты, таблицы, выводы). Точка входа `results/README.md`. **H-1/H-4/H-6/H-7 НЕ подтверждены**; exp7 — главный позитив; демо/защита противоречат реальным данным
+- [Results knowledge base](PROJECT_MEMORY/results-knowledge-base.md) — `results/`: переносимая база знаний по экспериментам (метрики, вердикты, таблицы, выводы). Точка входа `results/README.md`. Актуально = прогон **2026-08-02**: **6/7 гипотез подтверждены**, H-7 частично, CFC-2.8 разложен. ⚠️ сырых артефактов прогона нет в `outputs/`; расхождение с прогоном 2026-07-28 требует объяснения; демо/защита на старых числах
 - [Config-D pretraining axis](PROJECT_MEMORY/config-d-pretraining.md) — v6.0.0 drops RETFound for ophthalmology SSL; shipped demo Config-D = retired ImageNet artifact (divergence)
 - [Continual-SSL init decision](PROJECT_MEMORY/continual-ssl-init-decision.md) — 2026-07-10: integrated arm B/D = ImageNet→continual-SSL ep50 for both backbones; from-scratch SSL failed; ResNet continual +0.25 over ImageNet but **EffNet continual ≈ ImageNet (no benefit — thesis caveat)**; probe noise fixed (deterministic)
 - [Linear-probe noise fix](PROJECT_MEMORY/linear-probe-noise-fix.md) — the SSL gate was ~±0.1 κ noisy (EffNet); fixed `src/ssl/probe.py` to deterministic; earlier gate κ (SSL sweep, SIP-ResNet 0.658) are noisy estimates; SIP-ResNet needs re-gate
@@ -43,5 +43,6 @@ Format: one file per fact in `PROJECT_MEMORY/`, with YAML frontmatter (`name`, `
 - [EyePACS local dataset](PROJECT_MEMORY/eyepacs-local-dataset.md) — `E:\datasets\EyePACS` is the FULL 88,702-img set (train 35,126 + test 53,576), not partial; test labels added 2026-06-26 (`testLabels15.csv`, verified 1:1); 66.6 GB redundant split-zips still on disk
 
 ## Cross-cutting
+- [No process history in deliverables](PROJECT_MEMORY/no-process-history-in-deliverables.md) — даты прогонов, история пересчётов, пути к артефактам/логам, чекпойнты и процессные метаданные НЕ идут в диссертацию и `defense/`; правило §16 системного промпта + скруббер `strip_process_metadata` в `md2gost.py`
 - [Strip version markers](PROJECT_MEMORY/strip-version-markers.md) — V5 IS a version marker; remove V5/V4/V3 outside thesis/; defense/experiments/demo/server done, council export now auto-scrubbed in md2gost.py (2026-06-12), root TODO
 - [Demo stack](PROJECT_MEMORY/demo-stack.md) — local launch = `demo/start-demo.ps1`/`.bat` (one-shot, default); manual WSL/npm commands + Cloudflare tunnels for the real model; human copy `demo/RUNBOOK.md`

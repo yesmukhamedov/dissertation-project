@@ -1,61 +1,61 @@
-# Выводы — Experiment 5 (клиническая деградация, H-7) → §4.6
+# Conclusions — Experiment 5 (clinical degradation, H-7) → §4.6
 
-**Что делали.** Оценка устойчивости к деградации на внешних клинических наборах IDRiD (n = 413) и
-Messidor-2 (n = 1 744), zero-shot с EyePACS. Метрика падения:
-Δ_drop = wF1_in-domain − wF1_external (меньше = устойчивее). Гипотеза H-7: full деградирует
-меньше baseline. Источник: прогон **2026-08-02**.
+**What was done.** An assessment of resistance to degradation on the external clinical sets IDRiD
+(n = 413) and Messidor-2 (n = 1 744), zero-shot from EyePACS. The drop metric:
+Δ_drop = wF1_in-domain − wF1_external (smaller = more resistant). Hypothesis H-7: full degrades less
+than baseline. Source: the **2026-08-02** run.
 
-## Что выяснили
+## What was found
 
-**1. Абсолютная производительность на внешних наборах — значимо выше у конвейера на обоих.**
+**1. Absolute performance on the external sets is significantly higher for the pipeline on both.**
 IDRiD: 0.5920 → 0.6620 (Δ +0.0700, CI [+0.0463, +0.0937], p = 0.0021).
 Messidor-2: 0.6270 → 0.6780 (Δ +0.0510, CI [+0.0284, +0.0736], p = 0.0138).
 
-**2. Но гипотеза как записана выполнена только на одном наборе из двух, и в пределах шума.**
-Δ_drop: IDRiD 0.1618 → 0.1573 (−0.0045, ✓ но запас ничтожен); Messidor-2 0.1268 → 0.1413
-(+0.0145, ✗ — знак обратный). `h7_supported` — **частично, 1/2**.
+**2. But the hypothesis as written is met on only one set of two, and within noise.**
+Δ_drop: IDRiD 0.1618 → 0.1573 (−0.0045, ✓ but the margin is negligible); Messidor-2 0.1268 → 0.1413
+(+0.0145, ✗ — the sign is reversed). `h7_supported` — **partial, 1/2**.
 
-**3. Причина расхождения — свойство самой метрики.** Δ_drop измеряется от **собственного**
-in-domain-уровня арки, а у конвейера он выше на 6.55пп (0.8193 против 0.7538). Арка с более
-высоким стартом обязана потерять больше в абсолютных единицах, чтобы прийти к тому же внешнему
-уровню. **Δ_drop систематически штрафует более сильную арку.** Относительная деградация это
-подтверждает: на Messidor-2 baseline теряет 16.8% своего уровня, конвейер — 17.2%, то есть
-пропорционально арки деградируют практически одинаково.
+**3. The reason for the discrepancy is a property of the metric itself.** Δ_drop is measured from each
+arm's **own** in-domain level, and the pipeline's is 6.55 pp higher (0.8193 against 0.7538). An arm
+with a higher starting point is bound to lose more in absolute units to arrive at the same external
+level. **Δ_drop systematically penalizes the stronger arm.** Relative degradation confirms this: on
+Messidor-2 baseline loses 16.8% of its level and the pipeline 17.2%, i.e. proportionally the arms
+degrade practically identically.
 
-**4. Согласуется с механизмом H-3.** Наименьшее сокращение MMD-дистанции из всех шести доменов —
-как раз у Messidor-2 (Δd +0.0630); там же наименьший прирост wF1 (+0.051) и единственный случай,
-где Δ_drop у конвейера хуже. Ранжирование по сокращению дистанции согласуется с ранжированием по
-величине выигрыша.
+**4. Consistent with the H-3 mechanism.** The smallest MMD-distance reduction among all six domains
+is precisely for Messidor-2 (Δd +0.0630); the same set has the smallest wF1 gain (+0.051) and is the
+only case where the pipeline's Δ_drop is worse. The ranking by distance reduction agrees with the
+ranking by size of gain.
 
-## Честная трактовка (ключевое)
+## Honest interpretation (the key point)
 
-Конвейер **не делает модель устойчивее к смене клинического домена** — он делает её **лучше во
-всех точках**, включая внешние наборы. Это более слабое утверждение, чем H-7, но подтверждённое и
-практически полезное: при развёртывании в новой клинике ожидаемое качество выше, хотя
-относительное падение относительно in-domain остаётся тем же.
+The pipeline **does not make the model more resistant to a change of clinical domain** — it makes it
+**better at every point**, including the external sets. This is a weaker claim than H-7, but a
+confirmed and practically useful one: on deployment at a new clinic the expected quality is higher,
+even though the relative drop from in-domain stays the same.
 
-**Формулировка для §4.6:** «интегрированная конфигурация не снижает относительную величину падения
-при переносе на внешние клинические наборы, но даёт статистически значимо более высокую абсолютную
-производительность на обоих (+0.070, p = 0.0021 и +0.051, p = 0.0138)».
+**Formulation for §4.6:** "the integrated configuration does not reduce the relative size of the drop
+on transfer to external clinical sets, but delivers statistically significantly higher absolute
+performance on both (+0.070, p = 0.0021 and +0.051, p = 0.0138)".
 
-**Методологическое наблюдение как самостоятельный вклад в §5.4:** Δ_drop не является нейтральной
-мерой устойчивости при неравных базовых уровнях. Корректнее сравнивать относительную деградацию
-(Δ_drop / in-domain) либо абсолютное внешнее качество. Это стоит вынести отдельно — критика
-метрики, широко используемой в литературе по domain shift.
+**A methodological observation as a contribution in its own right for §5.4:** Δ_drop is not a neutral
+measure of resistance when the baseline levels are unequal. It is more correct to compare relative
+degradation (Δ_drop / in-domain) or absolute external quality. This is worth setting out separately —
+a critique of a metric widely used in the domain-shift literature.
 
-## Контраст (важно для нарратива)
+## Contrast (important for the narrative)
 
-Противопоставить exp7: там, где модель **обучается** на целевом клиническом домене
-(IDRiD → Clinical), конвейер даёт +0.079 wF1 при n = 60. То есть конвейер помогает и при
-обучении в домене, и при zero-shot переносе — но в первом случае он повышает качество, а во
-втором **не меняет пропорцию** падения.
+Contrast this with exp7: where the model **is trained** on the target clinical domain
+(IDRiD → Clinical), the pipeline delivers +0.079 wF1 at n = 60. That is, the pipeline helps both when
+training in-domain and under zero-shot transfer — but in the first case it raises quality, while in
+the second it **does not change the proportion** of the drop.
 
-## Оговорки
+## Caveats
 
-- Оценка на чекпойнтах **fold 0**, межфолдовой дисперсии нет.
-- Относительная деградация посчитана здесь из приведённых величин; в данных прогона отдельно
-  не зафиксирована.
-- Те же два набора участвуют в exp6 как группы камер (`kowa_idrid`, `topcon_messidor2`) —
-  числа совпадают.
+- Evaluation uses **fold 0** checkpoints; there is no between-fold variance.
+- Relative degradation was computed here from the values given; it is not separately recorded in the
+  run data.
+- The same two sets appear in exp6 as camera groups (`kowa_idrid`, `topcon_messidor2`) — the numbers
+  coincide.
 
-Таблица: `tables/TAB-4.8_exp5_degradation.md`. Карточка: `hypotheses/H-7.md`.
+Table: `tables/TAB-4.8_exp5_degradation.md`. Card: `hypotheses/H-7.md`.

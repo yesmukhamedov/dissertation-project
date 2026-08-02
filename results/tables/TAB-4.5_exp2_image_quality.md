@@ -1,10 +1,10 @@
 # TAB-4.5 — Experiment 2: Image-Quality Metrics per Ablation Level
 
-Метрики качества изображения по восьми уровням кумулятивной аблации, выборка n = 100 изображений.
-SSIM считается относительно исходного (необработанного) кадра. Источник: прогон **2026-08-02**
-(`VALUES.md` §2d.3); wF1 — из `TAB-4.4_exp2_ablation.md`.
+Image-quality metrics across the eight levels of the cumulative ablation, sample n = 100 images.
+SSIM is computed against the original (unprocessed) frame. Source: the **2026-08-02** run
+(`VALUES.md` §2d.3); wF1 comes from `TAB-4.4_exp2_ablation.md`.
 
-| Level | Стадии | mean CNR | mean Entropy (бит) | mean SSIM | wF1 (TAB-4.4) |
+| Level | Stages | mean CNR | mean Entropy (bits) | mean SSIM | wF1 (TAB-4.4) |
 |-------|--------|---------:|-------------------:|----------:|--------------:|
 | L0 | baseline | 20.43 | 5.502 | 1.000 | 0.7538 |
 | L1 | + Stage 0 | 20.43 | 5.502 | 0.998 | 0.7638 |
@@ -15,44 +15,44 @@ SSIM считается относительно исходного (необр�
 | L6 | + Stage 6 (augmentation) | 24.15 | 5.884 | 0.871 | 0.8103 |
 | L7 | + Stage 7 (normalize) | 24.02 | **5.901** | **0.865** | **0.8193** |
 
-## Наблюдения
+## Observations
 
-- **Геометрические стадии (0–3) интенсивности не меняют.** CNR 20.43 → 20.38 и Entropy
-  5.502 → 5.514 — в пределах округления; падает только SSIM (1.000 → 0.964), что отражает
-  геометрическое преобразование кадра (флип, поворот, кроп), а не изменение фотометрии.
-  При этом wF1 на этих уровнях растёт на +2.85пп — **прирост идёт от геометрической
-  канонизации, которую метрики качества изображения не видят вообще**.
-- **Flat-field — единственная стадия, заметно поднимающая CNR** (20.38 → 28.60, +40%):
-  выравнивание освещённости прямо улучшает контраст-к-шуму.
-- **CLAHE снижает CNR (28.60 → 24.15), но даёт максимальный скачок энтропии** (5.596 → 5.884):
-  локальное выравнивание гистограммы поднимает детальность ценой части глобального контраста
-  «поражение против фона», на котором построен CNR.
-- **Augmentation (Stage 6) не меняет ни одну из трёх метрик** (CNR/Entropy идентичны L5) —
-  ожидаемо: Stage 6 активен только на train, а качество меряется на валидационной конфигурации
-  конвейера. Тем не менее wF1 на этом уровне растёт на +0.0095. Ещё один случай, когда прирост
-  классификации не имеет отражения в IQ-метриках.
-- **SSIM монотонно падает** (1.000 → 0.865) — конвейер последовательно уходит от исходного
-  изображения, и это сопровождается монотонным ростом wF1.
+- **The geometric stages (0–3) do not change intensities.** CNR 20.43 → 20.38 and Entropy
+  5.502 → 5.514 — within rounding; only SSIM falls (1.000 → 0.964), which reflects the geometric
+  transformation of the frame (flip, rotation, crop) rather than any change in photometry.
+  Meanwhile wF1 at these levels rises by +2.85 pp — **the gain comes from geometric canonicalization,
+  which the image-quality metrics do not see at all**.
+- **Flat-field is the only stage that noticeably raises CNR** (20.38 → 28.60, +40%): equalizing
+  illumination directly improves contrast-to-noise.
+- **CLAHE lowers CNR (28.60 → 24.15) but produces the largest jump in entropy** (5.596 → 5.884):
+  local histogram equalization raises detail at the cost of part of the global "lesion against
+  background" contrast on which CNR is built.
+- **Augmentation (Stage 6) changes none of the three metrics** (CNR/Entropy are identical to L5) —
+  as expected: Stage 6 is active only at train time, while quality is measured on the validation
+  configuration of the pipeline. Nonetheless wF1 at this level rises by +0.0095. Another case where a
+  classification gain has no reflection in the IQ metrics.
+- **SSIM falls monotonically** (1.000 → 0.865) — the pipeline moves progressively further from the
+  original image, and this is accompanied by a monotone rise in wF1.
 
-## Ключевой вывод: связь IQ ↔ классификация частичная, а не прямая
+## Key conclusion: the IQ ↔ classification link is partial, not direct
 
-Полный конвейер одновременно улучшает и качество изображения (CNR +18% к baseline, Entropy
-+0.40 бит), и классификацию (+6.55пп wF1). Но **соответствия по уровням нет**:
+The full pipeline improves both image quality (CNR +18% over baseline, Entropy +0.40 bits) and
+classification (+6.55 pp wF1) at the same time. But **there is no level-by-level correspondence**:
 
-- максимум CNR приходится на L4, тогда как wF1 продолжает расти до L7;
-- L1–L3 дают +2.85пп wF1 при неизменных CNR/Entropy;
-- L6 даёт +0.95пп при полностью неизменных IQ-метриках.
+- the CNR maximum falls at L4, whereas wF1 keeps rising through L7;
+- L1–L3 deliver +2.85 pp wF1 with CNR/Entropy unchanged;
+- L6 delivers +0.95 pp with the IQ metrics completely unchanged.
 
-Корректная формулировка для §4.3.3/§5.4: **метрики качества изображения фиксируют часть
-механизма конвейера (фотометрическую нормализацию), но не исчерпывают его** — геометрическая
-канонизация и стохастическая аугментация дают вклад, невидимый для CNR/Entropy/SSIM. Тезис
-«лучше для глаза ≠ лучше для CNN» остаётся верным в слабой форме: IQ-метрики не являются
-достаточным предиктором классификационного выигрыша.
+The correct formulation for §4.3.3/§5.4: **image-quality metrics capture part of the pipeline's
+mechanism (photometric normalization) but do not exhaust it** — geometric canonicalization and
+stochastic augmentation contribute in ways invisible to CNR/Entropy/SSIM. The thesis "better for the
+eye ≠ better for the CNN" remains true in its weak form: IQ metrics are not a sufficient predictor of
+the classification gain.
 
-## Пробелы
+## Gaps
 
-1. **VVI не реализован** в `src/utils/image_quality.py` (величина `VVI` в демо-`data.js` не имеет
-   источника в коде и не используется).
-2. Метрики измерены на валидационной конфигурации конвейера → вклад Stage 6 по ним не виден
-   в принципе.
-3. n = 100 изображений, без std.
+1. **VVI is not implemented** in `src/utils/image_quality.py` (the `VVI` value in the demo `data.js`
+   has no source in the code and is not used).
+2. The metrics were measured on the validation configuration of the pipeline → the contribution of
+   Stage 6 is invisible to them in principle.
+3. n = 100 images, no std.

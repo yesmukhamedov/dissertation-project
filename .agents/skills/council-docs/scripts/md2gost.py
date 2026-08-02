@@ -76,6 +76,74 @@ def strip_version_markers(text: str) -> str:
     return text
 
 
+# --- Process-metadata scrubbing -----------------------------------------------
+# Working source .md under thesis/ carries assembly/provenance banners as leading
+# blockquotes ("> **Intermediate EN assembly — 2026-06-17.** …", "> **STAGE-G
+# (final pass) — …**"), and experiment prose drafted from results/ can carry run
+# dates ("прогон 2026-08-02"), artifact paths, and log references. None of that is
+# dissertation content: it is internal process history, and it must not appear in
+# the council deliverables rendered into defense/docs/. The source keeps it; this
+# converter drops it on the way out — same contract as strip_version_markers.
+
+# A blockquote line that is an assembly/provenance/status banner rather than a
+# quotation. Matched on the banner vocabulary, so genuine block quotations in the
+# text (which do not open with these markers) are left alone.
+_PROC_BANNER = re.compile(
+    r"^[ \t]*>.*\b(?:assembly|assembled|STAGE-[A-Z]|provenance|провенанс|"
+    r"intermediate|промежуточн\w*|прогон\w*|NOT the final|черновик|"
+    r"working draft|draft header|обновлено под)\b",
+    re.IGNORECASE,
+)
+# Inline run-date reference, e.g. "(прогон 2026-08-02)", "прогон 02.08.2026",
+# "run of 2026-08-02". Consumes the preceding space and an enclosing paren pair.
+_RUN_DATE = re.compile(
+    r"[ \t]*\(?(?:прогон\w*|run(?:\s+of)?)[ \t]*(?:от[ \t]*)?"
+    r"\d{2,4}[-.]\d{2}[-.]\d{2,4}\)?",
+    re.IGNORECASE,
+)
+# Bare artifact/log path reference, e.g. "experiments/outputs/exp1/summary.json",
+# "VALUES.md", "predictions.npz", "*.log". Image extensions are deliberately
+# excluded: figure markers legitimately point into experiments/outputs/ and are
+# resolved by _FIG below, so stripping those paths would break figure rendering.
+# The path body is built from dot/slash-separated segments so it can never end on
+# a separator — otherwise a trailing sentence period would be swallowed with it.
+_ARTIFACT_REF = re.compile(
+    r"[ \t]*\(?(?:`?(?:experiments/)?outputs?(?:[/.][\w*-]+)+"
+    r"(?<!\.png)(?<!\.jpg)(?<!\.jpeg)(?<!\.svg)(?<!\.gif)(?<!\.pdf)`?"
+    r"|`?VALUES\.md`?|`?[\w-]+\.(?:log|npz|ckpt|pt)`?)\)?",
+    re.IGNORECASE,
+)
+# A line carrying a figure marker is left untouched by artifact scrubbing.
+_FIG_LINE = re.compile(r"\[FIG-[\w.]+:", re.IGNORECASE)
+
+
+def strip_process_metadata(text: str) -> str:
+    """Remove internal process history from text bound for defense/docs/.
+
+    Drops assembly/provenance banner blockquotes wholesale, then removes inline
+    run-date and raw-artifact references. Dissertation deliverables state results,
+    not the run history that produced them; that history stays in results/ and
+    PROJECT_MEMORY/ where it is needed for traceability.
+
+    Args:
+        text: Source Markdown that may legitimately carry process metadata
+            (it lives under thesis/).
+
+    Returns:
+        The text with banner lines dropped and inline run/artifact references
+        removed.
+    """
+    out = []
+    for ln in text.splitlines():
+        if _PROC_BANNER.match(ln):
+            continue
+        ln = _RUN_DATE.sub("", ln)
+        if not _FIG_LINE.search(ln):  # figure markers keep their outputs/ paths
+            ln = _ARTIFACT_REF.sub("", ln)
+        out.append(ln)
+    return "\n".join(out)
+
+
 def _set_cell_font(run, *, bold=False, italic=False) -> None:
     run.font.name = FONT_NAME
     run.font.size = Pt(FONT_SIZE)
@@ -691,12 +759,15 @@ def convert(
     docx_path: Path,
     *,
     strip_versions: bool = True,
+    strip_process: bool = True,
     lang: str | None = None,
     base_dir: Path | None = None,
 ) -> None:
     text = md_path.read_text(encoding="utf-8")
     if strip_versions:
         text = strip_version_markers(text)
+    if strip_process:
+        text = strip_process_metadata(text)
     if lang is None:
         lang = "kz" if "_KZ_" in md_path.name else "en"
     if base_dir is None:  # repo root: walk up until a dir containing defense/
