@@ -4,18 +4,18 @@
 Grad-CAM maps compared against the IDRiD pixel-level lesion masks over **all 54** images that have
 masks. The primary metric is ALO (the share of a lesion covered by attention), the secondary is IoU.
 A paired test (Wilcoxon, 1-sided), bootstrap CIs of the difference, and a sweep of the heatmap
-binarization threshold. Source: the **2026-08-02** run.
+binarization threshold. Source: the **2026-08-03** run.
 
 ## What was found
 
 **1. H-5 is confirmed on both parts of the criterion.** ALO is higher for the preprocessed model on
 **4 of 4** lesion types (≥3/4 required), and on **all four** the difference is statistically
-significant: MA p = 0.0031, HE p = 0.0018, EX p = 0.0007, SE p = 0.0142; all 95% CIs exclude zero.
-The secondary metric IoU gives the same result on all four types (p = 0.0011…0.0187).
+significant: MA p = 0.0029, HE p = 0.0017, EX p = 0.0007, SE p = 0.0147; all 95% CIs exclude zero.
+The secondary metric IoU gives the same result on all four types (p = 0.0010…0.0195).
 `h5_alo_supported = true`.
 
-**2. The effect size is substantive, not marginal.** ALO rises by 37–49% relative to baseline (e.g.
-hard exudates 0.3510 → 0.4830) and IoU by 45–56%. The absolute ALO levels (0.21–0.48) lie in the
+**2. The effect size is substantive, not marginal.** ALO rises by 36–50% relative to baseline (e.g.
+hard exudates 0.3528 → 0.4784) and IoU by 48–55%. The absolute ALO levels (0.22–0.48) lie in the
 working range of the metric.
 
 **3. The floor effect has been eliminated.** ALO = 0 in both arms is observed for only **6 of 54**
@@ -24,7 +24,7 @@ the edge of the metric's sensitivity — the former caveat that "ALO/IoU are uni
 of the floor" is withdrawn.
 
 **4. The result rests on individual observations, not on outliers.** Per image, improvement is seen
-on 65–74% (MA 38↑/9↓/7=, HE 37/9/7, EX 40/8/6, SE 17/5/4) and deterioration on 15–19%. The mean
+on 65–76% (MA 38↑/7↓/9=, HE 36/8/9, EX 41/5/8, SE 17/4/5) and deterioration on only 9–15%. The mean
 shifts reflect a coherent movement of the majority of images.
 
 **5. It is not explained by the threshold.** The directional criterion is met at **all**
@@ -50,7 +50,7 @@ with respect to the threshold. The pipeline's advantage therefore runs **both** 
 
 Grad-CAM activation **is not** clinical localization of pathology. The correct formulation is: "the
 attention of the model with preprocessing is significantly better aligned with the annotated lesions
-(4/4 types, p ≤ 0.0142; the same for IoU)", and **not** "the model finds the lesions" or "the model
+(4/4 types, p ≤ 0.0147; the same for IoU)", and **not** "the model finds the lesions" or "the model
 is clinically interpretable". Confirmation of H-5 does not weaken NC-14 — it measures alignment, not
 diagnostic localization. This distinction must be present in the text of §4.5 and §5.1.
 

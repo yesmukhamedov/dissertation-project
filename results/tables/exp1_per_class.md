@@ -1,7 +1,7 @@
 # exp1 per-class metrics + confusion matrices
 
 Per-class F1/precision/recall and confusion matrices on the pooled val folds, n = 35 126.
-Source: the **2026-08-02** run (`VALUES.md` §1.6–1.7).
+Source: the **2026-08-03** run (`VALUES.md` §1.6–1.7).
 
 Class sizes: DR0 25 810 · DR1 2 443 · DR2 5 292 · DR3 873 · DR4 708.
 

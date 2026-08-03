@@ -1,7 +1,7 @@
 # TOOLING — tooling for tables/figures/statistics
 
 What to reuse when assembling the dissertation's results material, and where the gaps are.
-State — after the **2026-08-02** run.
+State — after the **2026-08-03** run.
 
 ## Reuse as is
 
@@ -33,7 +33,7 @@ State — after the **2026-08-02** run.
 
 ## Gaps (to build/fix)
 
-1. 🔴 **The 2026-08-02 run artifacts have not been published** into `experiments/outputs/` — every
+1. 🔴 **The 2026-08-03 run artifacts have not been published** into `experiments/outputs/` — every
    script below reads from there and will currently return numbers from the **previous** run. Close
    this first (item NEW-1 in `GAP_ANALYSIS.md`), otherwise any cross-check is misleading.
 2. **An outputs→figures bridge** — there is no script that reads

@@ -1,6 +1,6 @@
 # TAB-4.2 — Experiment 1: 2×2 Factorial Diagnostic Metrics (H-1)
 
-EyePACS 100% (n = 35 126), 5-fold patient-level CV. Mean ± std. Source: the **2026-08-02** run
+EyePACS 100% (n = 35 126), 5-fold patient-level CV. Mean ± std. Source: the **2026-08-03** run
 (`VALUES.md` §1.1).
 
 | Config | Arm | Backbone | Weighted F1 | ROC-AUC (macro-OvR) | Cohen κ (quadratic) | Accuracy | macro-F1 |
@@ -14,12 +14,12 @@ EyePACS 100% (n = 35 126), 5-fold patient-level CV. Mean ± std. Source: the **2
 
 | Pair | Metric | Δ | 95% CI (Δ) | CI excludes 0 |
 |------|---------|---|------------|----------------|
-| B − A | wF1 | +0.0654 | [+0.0478, +0.0830] | ✓ |
-| B − A | ROC-AUC | +0.0320 | [+0.0198, +0.0442] | ✓ |
-| B − A | κ | +0.1129 | [+0.0812, +0.1446] | ✓ |
-| D − C | wF1 | +0.0655 | [+0.0466, +0.0844] | ✓ |
-| D − C | ROC-AUC | +0.0360 | [+0.0231, +0.0489] | ✓ |
-| D − C | κ | +0.1103 | [+0.0791, +0.1415] | ✓ |
+| B − A | wF1 | +0.0654 | [+0.0521, +0.0873] | ✓ |
+| B − A | ROC-AUC | +0.0320 | [+0.0175, +0.0419] | ✓ |
+| B − A | κ | +0.1129 | [+0.0780, +0.1414] | ✓ |
+| D − C | wF1 | +0.0655 | [+0.0423, +0.0801] | ✓ |
+| D − C | ROC-AUC | +0.0360 | [+0.0204, +0.0462] | ✓ |
+| D − C | κ | +0.1103 | [+0.0829, +0.1453] | ✓ |
 
 ## TAB-4.3 — Dominance Assessment (EH-3)
 
@@ -48,4 +48,4 @@ and after the Holm correction over 4 configurations p = 0.0082 / 0.0056 — see 
 > here and the contribution of preprocessing has been measured separately. This is a substantial
 > difference from the previous run.
 
-Source: `VALUES.md` §1.1–1.3 (the 2026-08-02 run).
+Source: `VALUES.md` §1.1–1.3 (the 2026-08-03 run).

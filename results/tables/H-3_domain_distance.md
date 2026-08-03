@@ -3,10 +3,10 @@
 A test that preprocessing **brings the domain distributions closer together**. Two independent
 measures: MMD over penultimate-layer features (representational level) and KL over per-channel
 histograms (pixel level). BASE = the baseline arm (3ch), INT = the integrated arm (4ch, full pipeline).
-Source: the **2026-08-02** run (`VALUES.md` §3).
+Source: the **2026-08-03** run (`VALUES.md` §3).
 
-> A new block relative to the previous version of `results/` — before 2026-08-02 domain distances
-> were not measured.
+> A block introduced in the 2026-08-02 run — before it, domain distances were not measured. The
+> values below are from the 2026-08-03 re-run.
 
 ## MMD over penultimate-layer features (§3.1)
 
@@ -15,23 +15,23 @@ reduces the distance.
 
 | Target domain X | d(BASE, X) | d(INT, X) | Δd | 95% CI (Δd) | CI excludes 0 |
 |---|---:|---:|---:|---|:---:|
-| APTOS | 0.1840 | 0.1120 | +0.0720 | [+0.0412, +0.1028] | ✓ |
-| IDRiD | 0.2260 | 0.1430 | +0.0830 | [+0.0481, +0.1179] | ✓ |
-| Messidor-2 | 0.1710 | 0.1080 | +0.0630 | [+0.0352, +0.0908] | ✓ |
-| DDR | 0.2090 | 0.1310 | +0.0780 | [+0.0443, +0.1117] | ✓ |
-| ODIR-5K | 0.2430 | 0.1580 | +0.0850 | [+0.0491, +0.1209] | ✓ |
-| RFMiD | 0.2570 | 0.1690 | +0.0880 | [+0.0502, +0.1258] | ✓ |
+| APTOS | 0.1886 | 0.1139 | +0.0747 | [+0.0375, +0.0991] | ✓ |
+| IDRiD | 0.2272 | 0.1456 | +0.0816 | [+0.0403, +0.1101] | ✓ |
+| Messidor-2 | 0.1717 | 0.1131 | +0.0586 | [+0.0367, +0.0923] | ✓ |
+| DDR | 0.2070 | 0.1322 | +0.0748 | [+0.0497, +0.1171] | ✓ |
+| ODIR-5K | 0.2474 | 0.1537 | +0.0937 | [+0.0536, +0.1254] | ✓ |
+| RFMiD | 0.2563 | 0.1699 | +0.0864 | [+0.0387, +0.1143] | ✓ |
 
 ## KL over per-channel histograms (§3.2)
 
 | Target domain X | d_KL(BASE, X) | d_KL(INT, X) | Reduction |
 |---|---:|---:|---:|
-| APTOS | 0.0940 | 0.0610 | −35% |
-| IDRiD | 0.1180 | 0.0740 | −37% |
-| Messidor-2 | 0.0870 | 0.0560 | −36% |
-| DDR | 0.1060 | 0.0680 | −36% |
-| ODIR-5K | 0.1290 | 0.0820 | −36% |
-| RFMiD | 0.1370 | 0.0890 | −35% |
+| APTOS | 0.0916 | 0.0611 | −33% |
+| IDRiD | 0.1162 | 0.0753 | −35% |
+| Messidor-2 | 0.0852 | 0.0554 | −35% |
+| DDR | 0.1055 | 0.0656 | −38% |
+| ODIR-5K | 0.1273 | 0.0829 | −35% |
+| RFMiD | 0.1330 | 0.0899 | −32% |
 
 The Stage 7 normalization uses source-domain statistics (the target domains do not recompute their
 own statistics), so the reduction in distance is achieved by stages 0–6 rather than by fitting the
@@ -42,11 +42,12 @@ normalization to the target set.
 1. **The direction is the same for all six target domains** on both measures, with no exceptions.
 2. **All six 95% CIs on Δd exclude zero** — the effect is statistically stable at the
    representational level.
-3. **The KL reduction is almost constant (−35…−37%)** regardless of how far the domain was to begin
+3. **The KL reduction lies in a narrow band (−32…−38%)** regardless of how far the domain was to begin
    with. This points to a multiplicative character of the normalization: the pipeline compresses the
-   photometric spread by a fixed proportion rather than "pulling" distant domains up to nearby ones.
+   photometric spread by a roughly fixed proportion rather than "pulling" distant domains up to
+   nearby ones.
 4. **The ranking of the domains is preserved** after preprocessing: RFMiD remains the most distant
-   (0.2570 → 0.1690) and Messidor-2 the closest (0.1710 → 0.1080). That is, the residual difference
+   (0.2563 → 0.1699) and Messidor-2 the closest (0.1717 → 0.1131). That is, the residual difference
    between the sets is substantive in nature (population composition, imaging protocol) and does not
    reduce to illumination and contrast.
 
@@ -56,12 +57,12 @@ The size of the MMD reduction agrees with the size of the transfer gain:
 
 | Domain | Δd (MMD) | Δ wF1 (D − C) on transfer | Source |
 |---|---:|---:|---|
-| ODIR-5K | +0.0850 | +0.0880 | `TAB-4.9_exp6_device.md` |
-| RFMiD | +0.0880 | +0.0970 | `TAB-4.9_exp6_device.md` |
-| IDRiD | +0.0830 | +0.0700 | `TAB-4.8_exp5_degradation.md` |
-| DDR | +0.0780 | +0.0570 | `TAB-4.9_exp6_device.md` |
-| APTOS | +0.0720 | +0.0889 | `TAB-4.6_exp3_transfer.md` |
-| Messidor-2 | +0.0630 | +0.0510 | `TAB-4.8_exp5_degradation.md` |
+| ODIR-5K | +0.0937 | +0.0836 | `TAB-4.9_exp6_device.md` |
+| RFMiD | +0.0864 | +0.0898 | `TAB-4.9_exp6_device.md` |
+| IDRiD | +0.0816 | +0.0700 | `TAB-4.8_exp5_degradation.md` |
+| DDR | +0.0748 | +0.0582 | `TAB-4.9_exp6_device.md` |
+| APTOS | +0.0747 | +0.0887 | `TAB-4.6_exp3_transfer.md` |
+| Messidor-2 | +0.0586 | +0.0560 | `TAB-4.8_exp5_degradation.md` |
 
 The domains for which the pipeline reduces the distance most (ODIR-5K, RFMiD) are the same ones where
 it produces the largest wF1 gain; the smallest reduction (Messidor-2) corresponds to the smallest

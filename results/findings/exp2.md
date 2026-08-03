@@ -4,7 +4,7 @@
 pipeline order) on **EyePACS 100% (n = 35 126), 5 folds, EfficientNet-B3**.
 (B) A **two-dimensional CLAHE sweep** — a 7 × 5 grid (clip_factor × global_threshold) on EyePACS,
 with separate per-class F1 grids for DR1 and DR2. (C) A **flat-field σ sweep** — 6 values over
-0.05–0.10·D_FOV. Source: the **2026-08-02** run.
+0.05–0.10·D_FOV. Source: the **2026-08-03** run.
 
 > The protocol changed fundamentally relative to the previous run (which used a 15% subsample,
 > 3 folds, a 6-level individual ablation, a sweep over clip_factor alone on IDRiD, and no σ sweep).
@@ -36,13 +36,13 @@ most important change in exp2.
 non-monotone in both dimensions, with an interior maximum: θ\* = (clip_factor 2.5, global_threshold
 0.03), p_apply = 0.80. F1(DR1) is maximal at (2.5, 0.03), F1(DR2) at (2.0, 0.03): the finer DR1
 features (microaneurysms) require more aggressive local equalization. Held-out data confirm this:
-wF1 0.7538 → 0.8140 (Δ +0.0602, CI [+0.0411, +0.0793]), F1(DR1) 0.0976 → 0.2088,
-F1(DR2) 0.5316 → 0.6482.
+wF1 0.7538 → 0.8137 (Δ +0.0599, CI [+0.0388, +0.0770]), F1(DR1) 0.0976 → 0.2091,
+F1(DR2) 0.5316 → 0.6477.
 
 **5. Flat-field σ: a strictly unimodal profile with high sensitivity.** The maximum is at σ\* = 0.07·D
-(interior), with a symmetric decline on both sides, and the range across the sweep, R = 0.0520, is
+(interior), with a symmetric decline on both sides, and the range across the sweep, R = 0.0512, is
 comparable to the full pipeline effect — i.e. the parameter requires tuning rather than an arbitrary
-choice. Held-out: 0.7510 → 0.8080 (Δ +0.0570, CI [+0.0381, +0.0759]). σ\* coincides with the value in
+choice. Held-out: 0.7513 → 0.8087 (Δ +0.0574, CI [+0.0428, +0.0806]). σ\* coincides with the value in
 the Stage 4 specification — the sweep confirms the adopted setting.
 
 **6. "Image quality ≠ classification quality" — the thesis holds, but in its weak form.**
@@ -71,10 +71,10 @@ the central thesis *model = preprocessing + CNN*.
 - **Stage 3 (FOV mask) is not isolated**: level L3 adds Stage 2 and Stage 3 jointly (disabling the
   mask requires a 3-channel model variant). This is the remainder of gap G-8.
 - The sweep grids were obtained on train folds, one evaluation per point, without std.
-- The held-out F1(DR1) at θ\* (0.2088) is substantially below the grid value (0.4700); the
+- The held-out F1(DR1) at θ\* (0.2091) is substantially below the grid value (0.4693); the
   discrepancy is not explained by the available data — **use the held-out value in the text**.
 - The CLAHE and σ sweeps were run independently; no joint three-parameter grid was built.
-- The absolute CNR values in `TAB-4.5` (20–29) and in the σ sweep (3.1–3.9) are computed under
+- The absolute CNR values in `TAB-4.5` (20–29) and in the σ sweep (3.10–3.93) are computed under
   different normalizations — do not compare them across tables.
 
 Tables: `tables/TAB-4.4_exp2_ablation.md`, `TAB-4.5_exp2_image_quality.md`,

@@ -1,8 +1,8 @@
 # Category B — runbook (exp1 re-inference → tables)
 
-> **Status as of 2026-08-02.** Category B as a task is **closed** — all of its quantities (per-class,
+> **Status as of 2026-08-03.** Category B as a task is **closed** — all of its quantities (per-class,
 > calibration, in-domain clinical, paired statistical tests) are present in `results/tables/` for the
-> 2026-08-02 run. This runbook is retained as a **procedure**: it will be needed to obtain the new
+> 2026-08-03 run. This runbook is retained as a **procedure**: it will be needed to obtain the new
 > run's `predictions.npz` for the ROC/PR curves (item R2) and to reconcile the offline predictions
 > with training (gap G-10) once the run artifacts have been published (NEW-1).
 > The numeric reference points in the "Verification" section below refer to the previous run.

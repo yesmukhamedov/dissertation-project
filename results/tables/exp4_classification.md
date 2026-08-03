@@ -2,7 +2,7 @@
 
 The trained arms on which the H-5 Grad-CAM analysis is built: baseline (3ch) against full pipeline
 (4ch), EfficientNet-**B4**, a single fold. Best epoch by weighted-F1.
-Source: the **2026-08-02** run (`VALUES.md` §5.6).
+Source: the **2026-08-03** run (`VALUES.md` §5.6).
 
 | Arm | best epoch | Weighted F1 | ROC-AUC | κ (quad) | Accuracy |
 |-----|-----------:|------------:|--------:|---------:|---------:|

@@ -1,7 +1,7 @@
 # exp1 in-domain clinical metrics (referable ≥ 2)
 
 Referable DR = grade ≥ 2 (moderate NPDR and worse). EyePACS-val, n = 35 126.
-Source: the **2026-08-02** run (`VALUES.md` §1.8).
+Source: the **2026-08-03** run (`VALUES.md` §1.8).
 
 | Config | Sensitivity | Specificity | PPV | NPV | Referable AUC |
 |---|---|---|---|---|---|

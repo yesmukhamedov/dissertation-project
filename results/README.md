@@ -1,14 +1,26 @@
 # `results/` — portable knowledge base for the dissertation experiments
 
-> ▶ **Updated for the 2026-08-02 run.** All values and verdicts in this folder have been replaced
-> with the results of the latest run (`VALUES.md`). **The bottom line has flipped relative to the
-> previous revision: 6 of 7 hypotheses are fully confirmed** (H-1, H-2, H-3, H-4, H-5, H-6), H-7 is
-> partial (1 of 2 sets), and none are refuted. In addition: exp7 (small data) — significant positive,
-> the SSL gate passed with both backbones, and a new **H-3** block appeared (domain distance, MMD/KL).
-> The key methodological change: **confound CFC-2.8 has been decomposed** — the cumulative exp2
+> ▶ **Updated for the 2026-08-03 run.** All values and verdicts in this folder have been replaced
+> with the results of the latest run (`VALUES.md`). **The verdicts are unchanged from the previous
+> (2026-08-02) revision: 6 of 7 hypotheses are fully confirmed** (H-1, H-2, H-3, H-4, H-5, H-6), H-7
+> is partial (1 of 2 sets), and none are refuted. exp7 (small data) — significant positive; the SSL
+> gate passed with both backbones; **H-3** (domain distance, MMD/KL) confirmed on 6/6. The key
+> methodological result stands: **confound CFC-2.8 has been decomposed** — the cumulative exp2
 > ablation on full EyePACS under a single initialization reproduces the entire exp1 gain (+0.0655),
 > i.e. the contribution of preprocessing has been measured separately from the contribution of the
 > SSL initialization.
+>
+> Substantive shifts introduced by this run (the exp1/exp2-ablation headline numbers are unchanged;
+> what moved are the transfer, explainability, device and small-data figures):
+> - **H-6**: the previous run's g_ratio inversion at `topcon_messidor2` has gone — g_ratio now rises
+>   in **all five** camera groups; the spread reduction is smaller than before (std wF1 −2.0× rather
+>   than −2.6×, std AUC −3.3×).
+> - **E-7**: on the internal IDRiD CV the pipeline is now higher in **4 of 5** folds, not all five
+>   (fold 2: 0.6352 against 0.6466).
+> - **H-7**: in *relative* terms the arms now degrade the same or slightly in the pipeline's favour
+>   (16.7% vs 16.5% on Messidor-2), where before they were identical.
+> - **per-class by group**: the between-group spread contracts on four of five classes — **DR0 is now
+>   the exception**.
 >
 > ⚠️ **Provenance needs syncing.** The numbers were taken from `VALUES.md`. The raw run artifacts
 > (`summary.json`, `*_results.json`, `metrics.csv`, `predictions.npz`) were **absent from
@@ -20,11 +32,11 @@
 > the system Python `C:\Python312` is CPU-only — call WSL for GPU work.
 
 > 🚫 **The provenance of this folder is internal. It does not carry over into the dissertation or
-> into `defense/`.** Run dates ("the 2026-08-02 run"), the history of recomputations ("the previous
+> into `defense/`.** Run dates ("the 2026-08-03 run"), the history of recomputations ("the previous
 > run gave the opposite verdict"), artifact paths (`experiments/outputs/**`, `VALUES.md`,
 > `summary.json`, `*.log`) and checkpoint identifiers are needed here for traceability — and only
 > here. When prose is carried from `findings/` into the chapters, the result is stated as a property
-> of the experiment, not of a dated run: "Experiment 1 yielded ΔwF1 +6.55 pp", not "the 2026-08-02
+> of the experiment, not of a dated run: "Experiment 1 yielded ΔwF1 +6.55 pp", not "the 2026-08-03
 > run yielded…". Methodological facts (number of folds, sample sizes, stopping rule, single-fold
 > evaluation as a limitation) must be carried over. Rule:
 > `thesis/prompts/writing-session-system-prompt.md` §16; on output it is duplicated by the scrubber
@@ -41,7 +53,7 @@ Fundus Image Enhancement and CNN Classification". Central thesis: **model = prep
 
 ## How to continue in a new chat (read in this order)
 
-1. **[STATUS.md](STATUS.md)** — status of all experiments + metrics and verdicts of the 2026-08-02 run.
+1. **[STATUS.md](STATUS.md)** — status of all experiments + metrics and verdicts of the 2026-08-03 run.
 2. **[INTEGRITY_NOTE.md](INTEGRITY_NOTE.md)** — ⚠️ discrepancy between demo/defense and the real data,
    plus the state of provenance. Mandatory reading before touching any numbers/figures.
 3. **[CHAPTER_STATUS.md](CHAPTER_STATUS.md)** — what has been written in the dissertation, what is
@@ -58,7 +70,7 @@ Fundus Image Enhancement and CNN Classification". Central thesis: **model = prep
 10. **[data/](data/)** — canonical result files (+ [MANIFEST](data/MANIFEST.md)).
     ⚠️ **contain numbers from the previous run** — require re-synchronization.
 
-## Strategy (after the 2026-08-02 run)
+## Strategy (after the 2026-08-03 run)
 
 - **The work rests on confirmed hypotheses.** 6 of 7 are confirmed, the pipeline effect is stable
   across all scenarios (in-domain, zero-shot, device change, external clinic, small data), remains
@@ -80,10 +92,10 @@ Fundus Image Enhancement and CNN Classification". Central thesis: **model = prep
 
 ## Boundaries of this session
 
-Done: all values and verdicts in `STATUS`, `tables/`, `hypotheses/`, `findings/` and the top-level
-documents have been rewritten for the 2026-08-02 run, preserving the previous structure. Two new
-files were added: `hypotheses/H-3.md` + `tables/H-3_domain_distance.md` (domain distance) and
-`tables/exp2_flatfield_sigma_sweep.md` (σ sweep, not previously run).
+Done: all numeric values in `STATUS`, `tables/`, `hypotheses/`, `findings/` and the top-level
+documents have been re-synchronized with `VALUES.md` for the 2026-08-03 run; the structure and the
+file set are unchanged from the previous revision. Prose that depended on values that moved
+(H-6 inversion, E-7 fold 2, H-7 relative degradation, DR0 spread) was rewritten to match.
 **Not done:** synchronizing `data/*.json` and `experiments/outputs/` with the raw run artifacts
 (they are not on disk).
 
@@ -91,7 +103,7 @@ files were added: `hypotheses/H-3.md` + `tables/H-3_domain_distance.md` (domain 
 
 ➡️ **[TODO_BEFORE_WRITING.md](TODO_BEFORE_WRITING.md)** — the canonical list. In brief:
 
-- [ ] **Synchronize provenance** — publish the raw artifacts of the 2026-08-02 run into
+- [ ] **Synchronize provenance** — publish the raw artifacts of the 2026-08-03 run into
       `experiments/outputs/` and update `results/data/*.json`. Blocks carrying numbers into the chapters.
 - [ ] **G-3** — qualitative Grad-CAM overlays on the clinical (KZ) dataset; the only gap still open
       with respect to the wording of H-5 (`exp4_explainability.py` has no clinical branch).
@@ -103,8 +115,8 @@ files were added: `hypotheses/H-3.md` + `tables/H-3_domain_distance.md` (domain 
 
 ## Provenance
 
-Revision of **2026-08-02**: values and verdicts carried over from `VALUES.md` (run of 02.08.2026).
-The previous revision (2026-07-24…28) was assembled directly from `experiments/outputs/` and
-contained the opposite verdicts — it has been fully replaced. The source of truth for metrics remains
-`experiments/outputs/`; until the new run's artifacts appear there, `VALUES.md` is the sole carrier
-of these numbers.
+Revision of **2026-08-03**: values carried over from `VALUES.md` (run of 03.08.2026), replacing the
+2026-08-02 revision (run of 02.08.2026); the verdicts are the same, the figures differ. The revision
+before that (2026-07-24…28) was assembled directly from `experiments/outputs/` and contained the
+opposite verdicts. The source of truth for metrics remains `experiments/outputs/`; until the new
+run's artifacts appear there, `VALUES.md` is the sole carrier of these numbers.

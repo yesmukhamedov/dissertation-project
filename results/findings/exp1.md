@@ -2,7 +2,7 @@
 
 **What was done.** A full 2×2 factorial design on EyePACS (100%, n = 35 126, 5-fold patient-level CV):
 {baseline 3ch / full pipeline 4ch} × {ResNet-50 / EfficientNet-B3} = configurations A, B, C, D.
-A test of EH-3 dominance of the pipeline over baseline. Source of the numbers: the **2026-08-02** run.
+A test of EH-3 dominance of the pipeline over baseline. Source of the numbers: the **2026-08-03** run.
 
 ## What was found
 

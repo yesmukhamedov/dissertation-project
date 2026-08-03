@@ -3,7 +3,7 @@
 ## A7 — Parameters, FLOPs, latency, VRAM
 
 Measured on an RTX 3060 12 GB, input 512×512, fp32 inference.
-Source: the **2026-08-02** run (`VALUES.md` §A7.1); the values match the 2026-07-28 measurement
+Source: the **2026-08-03** run (`VALUES.md` §A7.1); the values match the 2026-07-28 measurement
 (`experiments/outputs/compute_benchmark.{json,md}`, script `scripts/benchmark_compute.py`) —
 **this block was not changed by the run**.
 

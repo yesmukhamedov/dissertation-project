@@ -1,18 +1,18 @@
 # TAB-5.1 — exp1 statistical tests
 
-Source: the **2026-08-02** run (`VALUES.md` §1.3–1.4). The B-vs-A and D-vs-C pairs are evaluated on
+Source: the **2026-08-03** run (`VALUES.md` §1.3–1.4). The B-vs-A and D-vs-C pairs are evaluated on
 the same val split per fold (the splits are identical across configurations), so paired tests apply.
 
 ## Bootstrap 95% CI (weighted-F1, 1000 resamples)
 
 | Config | wF1 mean | 95% CI | std |
 |---|---|---|---|
-| A | 0.7518 | [0.7473, 0.7563] | 0.0023 |
-| B | 0.8172 | [0.8130, 0.8214] | 0.0021 |
-| C | 0.7538 | [0.7492, 0.7584] | 0.0023 |
-| D | 0.8193 | [0.8152, 0.8234] | 0.0021 |
+| A | 0.7518 | [0.7467, 0.7557] | 0.0023 |
+| B | 0.8172 | [0.8138, 0.8222] | 0.0021 |
+| C | 0.7538 | [0.7504, 0.7596] | 0.0023 |
+| D | 0.8193 | [0.8143, 0.8225] | 0.0021 |
 
-The baseline and pipeline intervals do not overlap (a gap of ≈0.057 between A and B, ≈0.057 between C and D).
+The baseline and pipeline intervals do not overlap (a gap of ≈0.058 between A and B, ≈0.055 between C and D).
 
 ## Paired tests
 

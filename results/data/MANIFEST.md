@@ -2,7 +2,7 @@
 
 > 🔴 **WARNING: the files in this folder belong to the PREVIOUS run (snapshot of 2026-07-24…28).**
 > The tables and verdicts in `results/tables/`, `results/hypotheses/`, `results/findings/` and
-> `results/STATUS.md` have been updated for the **2026-08-02** run (source — `VALUES.md`), while the
+> `results/STATUS.md` have been updated for the **2026-08-03** run (source — `VALUES.md`), while the
 > raw artifacts of that run have not yet been published into the repository — neither here nor into
 > `experiments/outputs/` (the latest files there date from 2026-07-30).
 >
@@ -14,7 +14,7 @@ The source of truth is always `experiments/outputs/`; this folder is a snapshot 
 
 ## What needs to be done to restore provenance
 
-1. Publish the raw artifacts of the 2026-08-02 run into `experiments/outputs/exp{1..7}/` and
+1. Publish the raw artifacts of the 2026-08-03 run into `experiments/outputs/exp{1..7}/` and
    `outputs/ssl*/` (`summary.json`, `*_results.json`, `metrics.csv`, `predictions.npz`, the σ-sweep
    and two-dimensional CLAHE grid artifacts, the MMD/KL results for H-3).
 2. Update the copies in this folder and rewrite the table below.
@@ -38,7 +38,7 @@ The source of truth is always `experiments/outputs/`; this folder is a snapshot 
 | `ssl_gate_continual_{resnet50,efficientnet_b3}.json` | `outputs/ssl_run_artifacts/sip/v1.0/gate_report_CONTINUAL_*.json` | SSL-continual | linear-probe gate for the B/D init | ⚠️ stale (in the new run EffNet-B3 does gain; previously it did not) |
 | `ssl_gate_run2_{resnet50,efficientnet_b3}.json` | `outputs/ssl_run_artifacts/sip/v1.0/gate_report_*.json` | SSL-continual | second run of the probe gate | ⚠️ stale |
 
-## What the snapshot does not contain at all (new in the 2026-08-02 run)
+## What the snapshot does not contain at all (new in the 2026-08-03 run)
 
 - **H-3** — MMD over penultimate-layer features and KL over per-channel histograms for 6 domains
   (`tables/H-3_domain_distance.md`). There is no source file.

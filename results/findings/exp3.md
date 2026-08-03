@@ -2,38 +2,38 @@
 
 **What was done.** Zero-shot transfer of a model trained on EyePACS to APTOS 2019 (n = 3 662).
 The metric is the generalization ratio G = F1_APTOS / F1_EyePACS. H-4 threshold: G ≥ 0.85 and
-full > baseline. Source: the **2026-08-02** run.
+full > baseline. Source: the **2026-08-03** run.
 
 ## What was found
 
-**1. The hypothesis is confirmed on both parts.** G_D = **0.8976** (the threshold cleared with a
-margin of 0.048), G_C = 0.8577; the absolute APTOS wF1 is higher by **+0.0889** (CI [+0.0631,
-+0.1147]) and AUC by +0.0370 (CI [+0.0241, +0.0499]). `h4_supported = true`.
+**1. The hypothesis is confirmed on both parts.** G_D = **0.8966** (the threshold cleared with a
+margin of 0.047), G_C = 0.8569; the absolute APTOS wF1 is higher by **+0.0887** (CI [+0.0572,
++0.1088]) and AUC by +0.0368 (CI [+0.0211, +0.0469]). `h4_supported = true`.
 
-**2. An important caveat: both arms clear the threshold.** Baseline also passes G ≥ 0.85 (0.8577).
+**2. An important caveat: both arms clear the threshold.** Baseline also passes G ≥ 0.85 (0.8569).
 So the "G ≥ 0.85" criterion on its own **does not discriminate** between the arms — what discriminates
 them is the second part, "better than baseline", and that is met convincingly. It should be phrased
 as "the pipeline does not rescue transfer, it improves transfer that is already acceptable", without
 claiming that baseline transfers poorly.
 
 **3. Mechanism: the intermediate grades are held.** That is exactly where transfer usually collapses.
-F1(DR2) 0.5747 → 0.6931, F1(DR1) 0.1394 → 0.2717. In the confusion matrix the mass of DR2 → DR1 falls
-from 245 to 192 instances and DR2 → DR0 from 96 to 34. There is a gain on **all five** grades;
+F1(DR2) 0.5736 → 0.6920, F1(DR1) 0.1375 → 0.2710. In the confusion matrix the mass of DR2 → DR1 falls
+from 245 to 193 instances and DR2 → DR0 from 96 to 35. There is a gain on **all five** grades;
 macro-F1 rises more than weighted-F1 (+0.102 against +0.089) — the same "gain on the minority classes"
 pattern as in exp1.
 
 **4. Errors remain adjacent on the scale.** The DR0 → DR4 cell is 2 for baseline and 0 for the
 pipeline; DR0 → DR3 goes 8 → 2. The residual error mass concentrates on the DR3↔DR4 boundary
 (110 instances) — "severe NPDR vs PDR" remains the hardest boundary on APTOS too. This explains the
-large κ gain (0.7879 → 0.8848), since κ penalizes precisely the distant errors.
+large κ gain (0.7865 → 0.8834), since κ penalizes precisely the distant errors.
 
-**5. Clinically — the same gain as in-domain.** Referable DR: Sens 0.7330 → 0.8366 (+10.4 pp) **with
-specificity rising at the same time** (0.9209 → 0.9411), referable AUC 0.8930 → 0.9340. The
+**5. Clinically — the same gain as in-domain.** Referable DR: Sens 0.7330 → 0.8346 (+10.2 pp) **with
+specificity rising at the same time** (0.9200 → 0.9411), referable AUC 0.8902 → 0.9338. The
 sensitivity gain (+0.10) matches in-domain (+0.11) and the camera groups (+0.11) — the most
 reproducible clinical effect of the pipeline across the entire experiment suite.
 
 **6. Consistent with the measured reduction in domain distance.** The EyePACS↔APTOS MMD falls from
-0.1840 to 0.1120 (Δd +0.0720, CI excludes zero) and KL from 0.0940 to 0.0610 (−35%). See the H-3
+0.1886 to 0.1139 (Δd +0.0747, CI excludes zero) and KL from 0.0916 to 0.0611 (−33%). See the H-3
 section in `findings/summary-and-dominance.md` and `tables/H-3_domain_distance.md`. The transfer
 mechanism is not postulated but measured independently.
 

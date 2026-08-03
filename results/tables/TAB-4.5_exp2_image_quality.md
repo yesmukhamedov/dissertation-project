@@ -1,7 +1,7 @@
 # TAB-4.5 — Experiment 2: Image-Quality Metrics per Ablation Level
 
 Image-quality metrics across the eight levels of the cumulative ablation, sample n = 100 images.
-SSIM is computed against the original (unprocessed) frame. Source: the **2026-08-02** run
+SSIM is computed against the original (unprocessed) frame. Source: the **2026-08-03** run
 (`VALUES.md` §2d.3); wF1 comes from `TAB-4.4_exp2_ablation.md`.
 
 | Level | Stages | mean CNR | mean Entropy (bits) | mean SSIM | wF1 (TAB-4.4) |

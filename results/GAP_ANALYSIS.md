@@ -1,7 +1,7 @@
 # GAP_ANALYSIS — what is assembled, what is missing (dissertation + presentation + demo)
 
 A reconciliation of the requirements of three consumers against what has been assembled in
-`results/`. State as of the **2026-08-02** run. The requirements are taken from
+`results/`. State as of the **2026-08-03** run. The requirements are taken from
 `thesis/ASSET_INVENTORY.md` (the list of what is needed is current, the statuses are stale),
 `demo/web/src/data.js` and `defense/presentation/slides/*`.
 
@@ -54,7 +54,7 @@ Three things remain, and the first is blocking:
 
 | # | Item | How to obtain | What it blocks |
 |---|------|--------------|---------------|
-| **NEW-1** | Raw artifacts of the 2026-08-02 run in `experiments/outputs/` + update of `results/data/*.json` | publish the run files; then reconcile with `results/tables/` | traceability of the numbers in the chapters; cross-checking; closing G-10 |
+| **NEW-1** | Raw artifacts of the 2026-08-03 run in `experiments/outputs/` + update of `results/data/*.json` | publish the run files; then reconcile with `results/tables/` | traceability of the numbers in the chapters; cross-checking; closing G-10 |
 
 ### Requires a run / code
 

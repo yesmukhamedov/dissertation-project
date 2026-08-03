@@ -4,7 +4,7 @@
 
 ## 1. Provenance of the current `results/` revision (important)
 
-The values and verdicts in this folder were taken from **`VALUES.md` (the 2026-08-02 run)**.
+The values and verdicts in this folder were taken from **`VALUES.md` (the 2026-08-03 run)**.
 
 ⚠️ **The raw artifacts of that run are absent from the repository.** In `experiments/outputs/` the
 latest files are dated 2026-07-30; what is stored there are the results of the **previous** run. The
@@ -14,7 +14,7 @@ Consequences:
 
 | What | State |
 |-----|-----------|
-| `results/STATUS.md`, `tables/`, `hypotheses/`, `findings/` | ✅ the 2026-08-02 run |
+| `results/STATUS.md`, `tables/`, `hypotheses/`, `findings/` | ✅ the 2026-08-03 run |
 | `results/data/*.json` | ⚠️ **previous run** — the numbers do not match the tables above |
 | `experiments/outputs/**` | ⚠️ **previous run** |
 | `demo/web/`, `defense/figures/` | ❌ a third, even older set of numbers (see §2) |
@@ -28,13 +28,13 @@ cross-check** — they belong to a different run and will disagree. Item **NEW-1
 
 The demo dashboard (`demo/web/`) and the defense figures (`defense/figures/`) are built on
 **manually transcribed** numbers that do not read `outputs/`. They present every hypothesis as
-confirmed — which, per the 2026-08-02 run, is **close to the truth on verdicts but wrong on
+confirmed — which, per the 2026-08-03 run, is **close to the truth on verdicts but wrong on
 magnitudes**. That does not make them usable: agreement of the conclusion under wrong numbers is a
 coincidence, not correctness.
 
 ### The main example — exp1, Weighted F1
 
-| Config | Demo (`data.js`) | 2026-08-02 run |
+| Config | Demo (`data.js`) | 2026-08-03 run |
 |--------|------------------|-------------------|
 | A | 0.724 | **0.7518** |
 | B | 0.776 | **0.8172** |
@@ -58,7 +58,7 @@ The demo understates both arms and underestimates the size of the effect by roug
   by hand.
 - **`defense/figures/figures_mine/fig8_training_curves.png`, `fig9_confusion_matrix.png`** — copied
   from the demo PNGs, i.e. based on the demo numbers.
-- **`demo/web/CLAUDE.md`** declares "HYPOTHESES — 6 confirmed hypotheses". Per the 2026-08-02 run
+- **`demo/web/CLAUDE.md`** declares "HYPOTHESES — 6 confirmed hypotheses". Per the 2026-08-03 run
   there really are 6 confirmed (H-1, H-2, H-3, H-4, H-5, H-6) — but **H-7 is partial**, and the
   demo's list does not include H-3 and rests on incorrect values. The wording still has to be
   replaced during the rebuild.

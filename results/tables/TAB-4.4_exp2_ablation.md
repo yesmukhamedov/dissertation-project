@@ -3,7 +3,7 @@
 **An 8-level cumulative ablation** (baseline + stages added one at a time in pipeline order).
 Protocol: **EyePACS 100% (n = 35 126), 5 folds, EfficientNet-B3** — the same corpus and the same
 split as in exp1, so the numbers are **directly comparable** with Config C/D.
-Source: the **2026-08-02** run (`VALUES.md` §2d.1–2d.2).
+Source: the **2026-08-03** run (`VALUES.md` §2d.1–2d.2).
 
 | Level | Stages | Weighted F1 | ROC-AUC | Cohen κ | Accuracy | σ_fold | \|Δⱼ\| | 2·σ_fold | Δⱼ significant? |
 |-------|--------|------------:|--------:|--------:|---------:|-------:|-------:|-----------:|:----------:|
@@ -22,14 +22,14 @@ Cumulative effect L0 → L7: **ΔwF1 = +0.0655**, ΔAUC = +0.0360, Δκ = +0.110
 
 | Level | fold 1 | fold 2 | fold 3 | fold 4 | fold 5 |
 |-------|-------:|-------:|-------:|-------:|-------:|
-| L0 | 0.7499 | 0.7518 | 0.7538 | 0.7558 | 0.7577 |
-| L1 | 0.7603 | 0.7620 | 0.7638 | 0.7656 | 0.7673 |
-| L2 | 0.7695 | 0.7714 | 0.7733 | 0.7752 | 0.7771 |
-| L3 | 0.7789 | 0.7806 | 0.7823 | 0.7840 | 0.7857 |
-| L4 | 0.7876 | 0.7895 | 0.7913 | 0.7931 | 0.7950 |
-| L5 | 0.7975 | 0.7992 | 0.8008 | 0.8024 | 0.8041 |
-| L6 | 0.8065 | 0.8084 | 0.8103 | 0.8122 | 0.8141 |
-| L7 | 0.8158 | 0.8175 | 0.8193 | 0.8211 | 0.8228 |
+| L0 | 0.7568 | 0.7560 | 0.7552 | 0.7503 | 0.7507 |
+| L1 | 0.7668 | 0.7609 | 0.7607 | 0.7659 | 0.7647 |
+| L2 | 0.7722 | 0.7765 | 0.7717 | 0.7697 | 0.7764 |
+| L3 | 0.7831 | 0.7818 | 0.7808 | 0.7793 | 0.7865 |
+| L4 | 0.7886 | 0.7913 | 0.7905 | 0.7962 | 0.7899 |
+| L5 | 0.8020 | 0.8033 | 0.7970 | 0.8024 | 0.7993 |
+| L6 | 0.8109 | 0.8119 | 0.8093 | 0.8136 | 0.8058 |
+| L7 | 0.8199 | 0.8156 | 0.8235 | 0.8188 | 0.8187 |
 
 **Monotonicity holds within each individual fold**, not only on average: in all five folds the
 sequence L0 < L1 < … < L7 is observed without a single inversion.

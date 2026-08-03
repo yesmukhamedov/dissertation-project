@@ -4,37 +4,37 @@ Grad-CAM against the IDRiD pixel-level lesion masks. Backbone EfficientNet-B3, b
 against full pipeline (Config D, 4ch). **ALO = area(GradCAM ∩ lesion)/area(lesion)** is the primary
 metric; **IoU** is secondary. The heatmap is binarized at the threshold τ = 0.5 (the canonical one).
 The analysis covers **all 54** IDRiD images that have lesion masks.
-Source: the **2026-08-02** run (`VALUES.md` §5).
+Source: the **2026-08-03** run (`VALUES.md` §5).
 
 ## ALO (primary) — paired comparison, τ = 0.5
 
 | Lesion type | n | ALO (C) | ALO (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-sided) |
 |---|--:|---:|---:|---:|---|---:|
-| Microaneurysms (MA) | 54 | 0.2140 | **0.3180** | +0.1040 | [+0.0412, +0.1668] | **0.0031** |
-| Haemorrhages (HE) | 53 | 0.2870 | **0.4020** | +0.1150 | [+0.0523, +0.1777] | **0.0018** |
-| Hard exudates (EX) | 54 | 0.3510 | **0.4830** | +0.1320 | [+0.0684, +0.1956] | **0.0007** |
-| Soft exudates (SE) | 26 | 0.2260 | **0.3340** | +0.1080 | [+0.0296, +0.1864] | **0.0142** |
+| Microaneurysms (MA) | 54 | 0.2191 | **0.3208** | +0.1017 | [+0.0329, +0.1585] | **0.0029** |
+| Haemorrhages (HE) | 53 | 0.2890 | **0.4022** | +0.1132 | [+0.0446, +0.1700] | **0.0017** |
+| Hard exudates (EX) | 54 | 0.3528 | **0.4784** | +0.1256 | [+0.0729, +0.2001] | **0.0007** |
+| Soft exudates (SE) | 26 | 0.2249 | **0.3381** | +0.1132 | [+0.0276, +0.1844] | **0.0147** |
 
 ## IoU (secondary)
 
 | Lesion type | n | IoU (C) | IoU (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-sided) |
 |---|--:|---:|---:|---:|---|---:|
-| Microaneurysms | 54 | 0.1080 | **0.1690** | +0.0610 | [+0.0241, +0.0979] | **0.0048** |
-| Haemorrhages | 53 | 0.1520 | **0.2280** | +0.0760 | [+0.0318, +0.1202] | **0.0032** |
-| Hard exudates | 54 | 0.1940 | **0.2810** | +0.0870 | [+0.0401, +0.1339] | **0.0011** |
-| Soft exudates | 26 | 0.1160 | **0.1780** | +0.0620 | [+0.0154, +0.1086] | **0.0187** |
+| Microaneurysms | 54 | 0.1097 | **0.1705** | +0.0608 | [+0.0190, +0.0928] | **0.0043** |
+| Haemorrhages | 53 | 0.1536 | **0.2335** | +0.0799 | [+0.0297, +0.1181] | **0.0032** |
+| Hard exudates | 54 | 0.1932 | **0.2850** | +0.0918 | [+0.0514, +0.1452] | **0.0010** |
+| Soft exudates | 26 | 0.1143 | **0.1777** | +0.0634 | [+0.0287, +0.1219] | **0.0195** |
 
 ## Direction of the effect on individual images (§5.3)
 
 | Type | n | ↑ (better with the pipeline) | ↓ (worse) | = (unchanged) | share ↑ |
 |---|--:|--:|--:|--:|---:|
-| MA | 54 | 38 | 9 | 7 | 70% |
-| HE | 53 | 37 | 9 | 7 | 70% |
-| EX | 54 | 40 | 8 | 6 | 74% |
-| SE | 26 | 17 | 5 | 4 | 65% |
+| MA | 54 | 38 | 7 | 9 | 70% |
+| HE | 53 | 36 | 8 | 9 | 68% |
+| EX | 54 | 41 | 5 | 8 | 76% |
+| SE | 26 | 17 | 4 | 5 | 65% |
 
-The effect does not rest on individual observations: improvement is seen on 65–74% of images against
-15–19% of deteriorations. The mean shifts are the result of a coherent movement of the majority, not
+The effect does not rest on individual observations: improvement is seen on 65–76% of images against
+9–15% of deteriorations. The mean shifts are the result of a coherent movement of the majority, not
 of outliers.
 
 ## Floor effect (§5.4)
@@ -63,13 +63,13 @@ The direction holds at all four thresholds; significance is lost for only one ty
 The wording of H-5 requires ALO for the preprocessed model to be **significantly** higher. This is met:
 
 - the directional criterion — **4/4** lesion types (≥3/4 required);
-- the statistical one — **4/4** types significant (p from 0.0007 to 0.0142), all 95% CIs excluding zero;
-- the secondary metric IoU gives the same result on all four types (p 0.0011–0.0187);
+- the statistical one — **4/4** types significant (p from 0.0007 to 0.0147), all 95% CIs excluding zero;
+- the secondary metric IoU gives the same result on all four types (p 0.0010–0.0195);
 - the result is robust to the binarization threshold (4/4 directionally at τ = 0.2…0.7).
 
-Relative effect size: ALO rises by 37–49% (e.g. EX 0.3510 → 0.4830) and IoU by 45–56%. The largest
-absolute gain is for hard exudates (+0.1320); the weakest significance is for soft exudates
-(p = 0.0142), where the sample is three times smaller (n = 26).
+Relative effect size: ALO rises by 36–50% (e.g. EX 0.3528 → 0.4784) and IoU by 48–55%. The largest
+absolute gain is for hard exudates (+0.1256); the weakest significance is for soft exudates
+(p = 0.0147), where the sample is three times smaller (n = 26).
 
 ## Mandatory caveats
 

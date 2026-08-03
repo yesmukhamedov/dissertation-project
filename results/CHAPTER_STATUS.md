@@ -3,7 +3,7 @@
 Source: `thesis/PLAN.md`, `thesis/outline/TABLE_OF_CONTENTS_EN.md`, the chapter READMEs,
 `thesis/ASSET_INVENTORY.md`. Workflow for a single section:
 `briefs/ → drafts/ → continuity/ → reviews/ → translations/` (the quintet).
-State of the data — the **2026-08-02** run.
+State of the data — the **2026-08-03** run.
 
 ## What has already been written and approved (Phase 1)
 
@@ -77,7 +77,7 @@ Formulations that must be **replaced** when writing (they rested on the previous
 | "The strict H-1 dominance criterion is not met; the F1 gain is within noise" | EH-3 is met on both backbones, ΔF1 +6.5 pp |
 | "The pipeline degrades calibration; recalibration is needed before deployment" | Calibration **improves** (ECE ~1.7× lower) |
 | "Preprocessing on its own does not improve classification; the exp1 effect is an indivisible composite with the SSL init" | The ablation under a single initialization yields the whole gain (+0.0655); the composite has been decomposed |
-| "The baseline transfers to APTOS better than the pipeline" | The pipeline is better: G 0.8976 vs 0.8577 |
+| "The baseline transfers to APTOS better than the pipeline" | The pipeline is better: G 0.8966 vs 0.8569 |
 | "Attention does not align with lesions; PC-7 REFUTED" | 4/4 types significant, PC-7 STRONG (within the bounds of NC-14) |
 | "3 of 5 camera groups fall below the generalization floor; device-specific threshold recalibration is required" | 5/5 groups are above the floor; the spread shrinks by a factor of 2.6 |
 | "EfficientNet-B3 gains nothing from continual-SSL (asymmetry)" | Both backbones gain comparably |

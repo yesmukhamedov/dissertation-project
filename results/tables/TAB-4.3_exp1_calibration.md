@@ -1,6 +1,6 @@
 # TAB-4.3 — exp1 calibration (ECE, Brier)
 
-Source: the **2026-08-02** run (`VALUES.md` §1.5). n = 35 126, pooled val folds.
+Source: the **2026-08-03** run (`VALUES.md` §1.5). n = 35 126, pooled val folds.
 
 | Config | Arm | ECE | Brier |
 |---|---|---|---|
@@ -17,7 +17,7 @@ reliability of the probabilities themselves.
 > **Sign change relative to the previous run.** In the run prior to 2026-07-28, calibration was the
 > pipeline's only systematic drawback (ECE for B/D 0.19–0.21 against 0.06–0.07 for A/C, ~3× worse),
 > and this was carried into §5.4 as a mandatory caveat that "recalibration is required before
-> deployment". Per the 2026-08-02 run this drawback has **disappeared and turned into an advantage**.
+> deployment". Per the 2026-08-03 run this drawback has **disappeared and turned into an advantage**.
 > Formulations in chapters 4/5 that relied on "the pipeline degrades calibration" must be replaced.
 
 Consistency with the operating point: the improved calibration is accompanied by a rise in referable

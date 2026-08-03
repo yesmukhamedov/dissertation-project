@@ -2,7 +2,7 @@
 
 Models trained on EyePACS, evaluated on groups defined by camera manufacturer.
 Robustness threshold **g_floor = 0.7**, where g_ratio = wF1_group / wF1_in-domain.
-In-domain: C = 0.7538, D = 0.8193. Source: the **2026-08-02** run (`VALUES.md` §6).
+In-domain: C = 0.7538, D = 0.8193. Source: the **2026-08-03** run (`VALUES.md` §6).
 
 Group sizes: kowa_idrid 413 · mixed_ddr 1 200 · mixed_odir5k 950 ·
 topcon_messidor2 1 744 · mixed_rfmid 640.
@@ -11,61 +11,62 @@ topcon_messidor2 1 744 · mixed_rfmid 640.
 
 | Camera group | wF1 (C) | wF1 (D) | Δ | 95% CI (Δ) | g_ratio (C) | g_ratio (D) | ≥0.7 (C/D) |
 |--------------|--------:|--------:|--:|------------|------------:|------------:|:----------:|
-| kowa_idrid | 0.5920 | **0.6620** | +0.0700 | [+0.0463, +0.0937] | 0.7854 | 0.8080 | ✓ / ✓ |
-| mixed_ddr | 0.6140 | **0.6710** | +0.0570 | [+0.0338, +0.0802] | 0.8145 | 0.8190 | ✓ / ✓ |
-| mixed_odir5k | 0.5680 | **0.6560** | +0.0880 | [+0.0621, +0.1139] | 0.7535 | 0.8007 | ✓ / ✓ |
-| topcon_messidor2 | 0.6270 | **0.6780** | +0.0510 | [+0.0284, +0.0736] | 0.8318 | 0.8275 | ✓ / ✓ |
-| mixed_rfmid | 0.5510 | **0.6480** | +0.0970 | [+0.0698, +0.1242] | 0.7310 | 0.7909 | ✓ / ✓ |
+| kowa_idrid | 0.5913 | **0.6613** | +0.0700 | [+0.0526, +0.1000] | 0.7844 | 0.8072 | ✓ / ✓ |
+| mixed_ddr | 0.6111 | **0.6693** | +0.0582 | [+0.0296, +0.0760] | 0.8107 | 0.8169 | ✓ / ✓ |
+| mixed_odir5k | 0.5729 | **0.6565** | +0.0836 | [+0.0522, +0.1040] | 0.7600 | 0.8013 | ✓ / ✓ |
+| topcon_messidor2 | 0.6280 | **0.6840** | +0.0560 | [+0.0355, +0.0807] | 0.8331 | 0.8349 | ✓ / ✓ |
+| mixed_rfmid | 0.5544 | **0.6442** | +0.0898 | [+0.0659, +0.1203] | 0.7355 | 0.7863 | ✓ / ✓ |
 
 ## ROC-AUC and κ by group (§6.2, §6.3)
 
 | Group | AUC (C) | AUC (D) | Δ AUC | 95% CI (Δ) | κ (C) | κ (D) |
 |--------|--------:|--------:|------:|------------|------:|------:|
-| kowa_idrid | 0.8210 | **0.8620** | +0.0410 | [+0.0262, +0.0558] | 0.6840 | **0.7710** |
-| mixed_ddr | 0.8340 | **0.8680** | +0.0340 | [+0.0208, +0.0472] | 0.7020 | **0.7830** |
-| mixed_odir5k | 0.7960 | **0.8560** | +0.0600 | [+0.0411, +0.0789] | 0.6410 | **0.7540** |
-| topcon_messidor2 | 0.8420 | **0.8710** | +0.0290 | [+0.0171, +0.0409] | 0.7180 | **0.7920** |
-| mixed_rfmid | 0.7880 | **0.8530** | +0.0650 | [+0.0448, +0.0852] | 0.6230 | **0.7460** |
+| kowa_idrid | 0.8194 | **0.8580** | +0.0386 | [+0.0210, +0.0506] | 0.6873 | **0.7722** |
+| mixed_ddr | 0.8333 | **0.8681** | +0.0348 | [+0.0194, +0.0458] | 0.7008 | **0.7811** |
+| mixed_odir5k | 0.7982 | **0.8531** | +0.0549 | [+0.0386, +0.0764] | 0.6424 | **0.7524** |
+| topcon_messidor2 | 0.8428 | **0.8670** | +0.0242 | [+0.0143, +0.0381] | 0.7209 | **0.7896** |
+| mixed_rfmid | 0.7870 | **0.8536** | +0.0666 | [+0.0428, +0.0832] | 0.6244 | **0.7440** |
 
 ## Between-group spread (§6.8) — the key result
 
 | Quantity | C | D | Δ (D − C) | 95% CI (Δ) | CI excludes 0 |
 |----------|--:|--:|----------:|------------|:--------------:|
-| std (wF1, 5 groups) | 0.0281 | **0.0106** | −0.0175 | [−0.0268, −0.0082] | ✓ |
-| std (ROC-AUC, 5 groups) | 0.0210 | **0.0068** | −0.0142 | [−0.0221, −0.0063] | ✓ |
+| std (wF1, 5 groups) | 0.0262 | **0.0133** | −0.0129 | [−0.0186, −0.0049] | ✓ |
+| std (ROC-AUC, 5 groups) | 0.0209 | **0.0064** | −0.0145 | [−0.0247, −0.0085] | ✓ |
 
-The pipeline reduces the between-camera spread of weighted-F1 by **a factor of 2.6** and the spread
-of ROC-AUC by **a factor of 3.1**, and both reductions are statistically significant (the CIs exclude
+The pipeline reduces the between-camera spread of weighted-F1 by **a factor of 2.0** and the spread
+of ROC-AUC by **a factor of 3.3**, and both reductions are statistically significant (the CIs exclude
 zero).
 
 ## Referable AUC by group (§6.4)
 
 | Group | Referable AUC (C) | Referable AUC (D) |
 |--------|------------------:|------------------:|
-| kowa_idrid | 0.8940 | **0.9310** |
-| mixed_ddr | 0.9010 | **0.9370** |
-| mixed_odir5k | 0.8620 | **0.9180** |
-| topcon_messidor2 | 0.9080 | **0.9420** |
-| mixed_rfmid | 0.8530 | **0.9140** |
+| kowa_idrid | 0.8891 | **0.9333** |
+| mixed_ddr | 0.9038 | **0.9372** |
+| mixed_odir5k | 0.8639 | **0.9171** |
+| topcon_messidor2 | 0.9097 | **0.9455** |
+| mixed_rfmid | 0.8510 | **0.9104** |
 
 ## Verdict: `h6_supported = true`
 
 1. **The generalization floor is cleared by every group and both arms.** The pipeline's minimum
-   g_ratio is 0.7909 (mixed_rfmid), a margin of 0.09 over the 0.7 threshold.
-2. **The pipeline reduces the between-device spread significantly** (std wF1 0.0281 → 0.0106,
-   CI [−0.0268, −0.0082]). This — and not the mere fact of clearing the threshold — is the
+   g_ratio is 0.7863 (mixed_rfmid), a margin of 0.086 over the 0.7 threshold.
+2. **The pipeline reduces the between-device spread significantly** (std wF1 0.0262 → 0.0133,
+   CI [−0.0186, −0.0049]). This — and not the mere fact of clearing the threshold — is the
    substantive result: baseline clears the threshold too, but its quality depends noticeably more on
    the camera.
-3. **The g_ratio range contracts:** for C it is 0.7310–0.8318 (span 0.101), for D 0.7909–0.8275
-   (span 0.037). The pipeline levels out the model's behaviour across devices.
+3. **The g_ratio range contracts:** for C it is 0.7355–0.8331 (span 0.098), for D 0.7863–0.8349
+   (span 0.049). The pipeline levels out the model's behaviour across devices.
 4. **The gain is larger the worse the group performed under baseline.** The largest Δ wF1 are for
-   mixed_rfmid (+0.0970, C's worst group) and mixed_odir5k (+0.0880, the second worst); the smallest
-   is topcon_messidor2 (+0.0510, C's best group). That is exactly what produces the contraction of
+   mixed_rfmid (+0.0898, C's worst group) and mixed_odir5k (+0.0836, the second worst); the smallest
+   is topcon_messidor2 (+0.0560, C's best group). That is exactly what produces the contraction of
    the spread.
-5. **The only exception is topcon_messidor2**, where the pipeline's g_ratio is slightly lower
-   (0.8275 against baseline's 0.8318). Its absolute wF1 is nevertheless higher (0.6780 against
-   0.6270); the drop in g_ratio is a consequence of the larger denominator (in-domain 0.8193 against
-   0.7538), not of worse performance. Flag it in the text as a normalization artifact.
+5. **g_ratio now rises in all five groups**, including topcon_messidor2 (0.8331 → 0.8349), where the
+   previous run showed an inversion. On that group the g_ratio gain is nonetheless marginal (+0.0018)
+   against a clear absolute gain (wF1 0.6280 → 0.6840): the ratio is damped by the pipeline's larger
+   denominator (in-domain 0.8193 against 0.7538). Flag this in the text — g_ratio understates the
+   pipeline's advantage by construction.
 
 ## Caveats
 

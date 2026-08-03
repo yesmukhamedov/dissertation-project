@@ -1,7 +1,7 @@
 # TODO — what to do BEFORE writing the dissertation (working checklist)
 
 > Temporary working file. Delete/archive once everything is closed out and chapter writing has begun.
-> State — after the **2026-08-02** run. Full analysis in [GAP_ANALYSIS.md](GAP_ANALYSIS.md);
+> State — after the **2026-08-03** run. Full analysis in [GAP_ANALYSIS.md](GAP_ANALYSIS.md);
 > experiment statuses in [STATUS.md](STATUS.md); what the chapters need in
 > [CHAPTER_STATUS.md](CHAPTER_STATUS.md); the letter of the hypotheses in
 > [HYPOTHESIS_COVERAGE.md](HYPOTHESIS_COVERAGE.md).
@@ -21,14 +21,14 @@
 - [x] **Gaps G-1, G-2, G-4, G-5, G-6, G-7, G-9, G-11, G-12** — closed.
 - [x] The new **H-3** block (domain distance, MMD/KL) is assembled: `tables/H-3_domain_distance.md`,
       `hypotheses/H-3.md`.
-- [x] All values and verdicts in `results/` have been rewritten for the 2026-08-02 run, preserving
+- [x] All values and verdicts in `results/` have been rewritten for the 2026-08-03 run, preserving
       the structure.
 
 ---
 
 ## PHASE 1 — blocking
 
-- [ ] 🔴 **NEW-1. Restore provenance.** Publish the raw artifacts of the 2026-08-02 run into
+- [ ] 🔴 **NEW-1. Restore provenance.** Publish the raw artifacts of the 2026-08-03 run into
       `experiments/outputs/exp{1..7}/` and `outputs/ssl*/`: `summary.json`, `*_results.json`,
       `metrics.csv`, `predictions.npz`, the σ-sweep and two-dimensional CLAHE grid artifacts, and the
       MMD/KL results for H-3. Then update `results/data/*.json` and remove the warnings in
