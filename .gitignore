@@ -20,6 +20,10 @@ Thumbs.db
 .sync_manifests/
 .preserved_from_D/
 
+# Python virtualenvs (machine-local; the demo backend venv is several GB)
+.venv/
+venv/
+
 # Secrets — never commit
 kaggle.json
 **/kaggle.json

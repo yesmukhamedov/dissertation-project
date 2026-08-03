@@ -133,11 +133,31 @@ def setup_style():
 setup_style()
 
 
+# Chart number -> subdirectory under public/results/. The dashboard loads figures from these
+# per-experiment subdirectories (e.g. '/results/exp2/04_exp2_ablation.png'), so writing flat
+# into public/results/ would leave the app serving the previous render.
+ROUTE = {
+    '01': 'exp1', '02': 'exp1', '03': 'exp1', '18': 'exp1',
+    '19': 'exp1', '20': 'exp1', '22': 'exp1', '24': 'exp1',
+    '04': 'exp2', '05': 'exp2', '13': 'exp2', '23': 'exp2',
+    '29': 'exp3',
+    '06': 'exp4', '07': 'exp4', '27': 'exp4', '28': 'exp4',
+    '08': 'exp5', '09': 'exp5',
+    '10': 'exp6',
+    '30': 'exp7',
+    '11': 'general', '12': 'general', '14': 'general', '15': 'general',
+    '16': 'general', '17': 'general', '21': 'general', '25': 'general', '26': 'general',
+}
+
+
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), dpi=DPI, bbox_inches='tight',
+    subdir = ROUTE.get(name[:2], '')
+    out_dir = os.path.join(OUT, subdir) if subdir else OUT
+    os.makedirs(out_dir, exist_ok=True)
+    fig.savefig(os.path.join(out_dir, name), dpi=DPI, bbox_inches='tight',
                 facecolor='white', edgecolor='none')
     plt.close(fig)
-    print(f"  [OK] {name}")
+    print(f"  [OK] {subdir}/{name}" if subdir else f"  [OK] {name}")
 
 
 # ─── Chart 01 ───
@@ -534,7 +554,7 @@ def chart_13():
             ax1.text(j, i, f'{data1[i,j]:.2f}', ha='center', va='center', fontsize=8,
                      color='white' if data1[i,j] > 0.43 else 'black')
     # Optimum star (clip_factor=2.5 = row 4, threshold=0.03 = col 2)
-    ax1.plot(2, 4, marker='*', color='white', markersize=18, markeredgecolor='black', markeredgewidth=0.5)
+    ax1.plot(2.34, 3.66, marker='*', color='white', markersize=16, markeredgecolor='black', markeredgewidth=0.6)
     plt.colorbar(im1, ax=ax1, fraction=0.046, pad=0.04)
     # DR Grade 2
     im2 = ax2.imshow(data2, cmap='YlGnBu', aspect='auto', vmin=0.42, vmax=0.64)
@@ -550,7 +570,7 @@ def chart_13():
             ax2.text(j, i, f'{data2[i,j]:.2f}', ha='center', va='center', fontsize=8,
                      color='white' if data2[i,j] > 0.58 else 'black')
     # Optimum star (clip_factor=2.0 = row 3, threshold=0.03 = col 2)
-    ax2.plot(2, 3, marker='*', color='white', markersize=18, markeredgecolor='black', markeredgewidth=0.5)
+    ax2.plot(2.34, 2.66, marker='*', color='white', markersize=16, markeredgecolor='black', markeredgewidth=0.6)
     plt.colorbar(im2, ax=ax2, fraction=0.046, pad=0.04)
     plt.tight_layout(rect=[0, 0, 1, 0.93])
     save(fig, '13_exp2_clahe_sensitivity.png')

@@ -54,19 +54,18 @@ def load_json(subdir, fname):
 def chart_29():
     data = load_json('exp3', 'exp3_aptos_transfer.json')
     R = data['results']
-    keys = ['Config_A', 'Config_B', 'Config_C', 'Config_D']
-    short = ['A', 'B', 'C', 'D']
+    # Exp 3 ran on EfficientNet-B3 fold-0 checkpoints only; Configs A/B were never evaluated
+    # on APTOS, so the comparison is C (baseline) vs D (pipeline).
+    keys = ['Config_C', 'Config_D']
+    short = ['C', 'D']
     desc = {
-        'A': 'Baseline\nResNet-50',
-        'B': 'Pipeline\nResNet-50',
         'C': 'Baseline\nEffNet-B3',
         'D': 'Pipeline\nEffNet-B3',
     }
-    colors = [GRAY, BLUE, GRAY, TEAL]
+    colors = [GRAY, TEAL]
 
     eyepacs = [R[k]['eyepacs_f1'] for k in keys]
     aptos = [R[k]['aptos_f1'] for k in keys]
-    aptos_std = [R[k]['aptos_f1_std'] for k in keys]
     G = [R[k]['G'] for k in keys]
     h4_ok = [R[k]['h4_satisfied'] for k in keys]
 
@@ -79,15 +78,15 @@ def chart_29():
     w = 0.36
     b1 = ax1.bar(x - w/2, eyepacs, w, color=GRAY, label='EyePACS (train, in-domain)',
                  edgecolor='white')
-    b2 = ax1.bar(x + w/2, aptos, w, yerr=aptos_std, capsize=4,
+    b2 = ax1.bar(x + w/2, aptos, w,
                  color=[colors[i] for i in range(len(short))],
                  label='APTOS 2019 (zero-shot)', edgecolor='white')
     for bar, val in zip(b1, eyepacs):
         ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.005,
-                 f'{val:.3f}', ha='center', va='bottom', fontsize=8)
-    for bar, val, sd in zip(b2, aptos, aptos_std):
-        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + sd + 0.005,
-                 f'{val:.3f}', ha='center', va='bottom', fontsize=8)
+                 f'{val:.4f}', ha='center', va='bottom', fontsize=8)
+    for bar, val in zip(b2, aptos):
+        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.005,
+                 f'{val:.4f}', ha='center', va='bottom', fontsize=8)
     # Drop labels EyePACS → APTOS, placed below EyePACS bar tops
     for i in range(len(short)):
         drop = (aptos[i] - eyepacs[i]) * 100
@@ -100,9 +99,8 @@ def chart_29():
     ax1.set_ylim(0.5, 0.86)
     ax1.set_title('In-domain (EyePACS) vs Zero-shot (APTOS) F1', fontsize=11)
     legend_patches = [
-        mpatches.Patch(color=GRAY, label='EyePACS / Baseline APTOS'),
-        mpatches.Patch(color=BLUE, label='APTOS — Pipeline+ResNet'),
-        mpatches.Patch(color=TEAL, label='APTOS — Pipeline+EffNet'),
+        mpatches.Patch(color=GRAY, label='EyePACS in-domain / APTOS baseline'),
+        mpatches.Patch(color=TEAL, label='APTOS — full pipeline'),
     ]
     ax1.legend(handles=legend_patches, fontsize=8, loc='upper left')
 
@@ -120,24 +118,33 @@ def chart_29():
                  bbox=dict(boxstyle='round,pad=0.25', facecolor=mark_color,
                            edgecolor='none', alpha=0.95))
     ax2.axhline(y=0.85, color=RED, linestyle='--', linewidth=1.5)
-    ax2.text(3.4, 0.854, 'H-4 threshold: G >= 0.85',
-             fontsize=8.5, color=RED, ha='right')
+    ax2.text(-0.46, 0.8535, 'H-4 threshold: G >= 0.85',
+             fontsize=8.5, color=RED, ha='left', va='bottom')
     ax2.set_xticks(x)
     ax2.set_xticklabels([f'{s}\n{desc[s]}' for s in short], fontsize=8.5)
     ax2.set_ylabel('Generalization Ratio  G = F1$_{APTOS}$ / F1$_{EyePACS}$',
                    fontsize=10.5)
-    ax2.set_ylim(0.75, 0.94)
+    ax2.set_ylim(0.78, 0.94)
     ax2.set_title('Generalization Ratio G (H-4 criterion)', fontsize=11)
 
-    # Stats inset
-    st = data['statistical_tests']
-    ci = st['bootstrap_delta_g_95ci']
-    txt = (f"DeLong AUC (Config D):\n  p = {st['delong_auc_config_d']['p_value']:.3f} *\n"
-           f"Bootstrap ΔG 95% CI:\n  [{ci[0]:.2f}, {ci[1]:.2f}]")
+    # Stats inset — paired differences with per-instance bootstrap CIs
+    pd_ = data['paired_differences']
+    f1ci = pd_['delta_weighted_f1_95ci']
+    aucci = pd_['delta_auc_95ci']
+    txt = (f"Paired differences (D - C):\n"
+           f"  $\\Delta$F1  = +{pd_['delta_weighted_f1']:.4f}\n"
+           f"     95% CI [{f1ci[0]:+.4f}, {f1ci[1]:+.4f}]\n"
+           f"  $\\Delta$AUC = +{pd_['delta_auc']:.4f}\n"
+           f"     95% CI [{aucci[0]:+.4f}, {aucci[1]:+.4f}]\n"
+           f"Both CIs exclude zero.")
     props = dict(boxstyle='round,pad=0.45', facecolor='#E1F5EE',
                  alpha=0.9, edgecolor=TEAL)
     ax2.text(0.02, 0.98, txt, transform=ax2.transAxes, fontsize=8,
              verticalalignment='top', bbox=props)
+    ax2.text(0.5, -0.20,
+             'Both arms clear the threshold, so G >= 0.85 alone does not separate them - the '
+             'discriminating part of H-4 is "better than baseline".',
+             transform=ax2.transAxes, ha='center', va='top', fontsize=7.5, color='#666')
 
     plt.tight_layout(rect=[0, 0, 1, 0.93])
     save(fig, 'exp3', '29_exp3_aptos_transfer.png')
@@ -148,7 +155,7 @@ def chart_30():
     data = load_json('exp7', 'exp7_small_data.json')
     B = data['results']['baseline']
     P = data['results']['pipeline']
-    imp = data['results']['improvement']
+    pd_ = data['results']['paired_differences']
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5.2))
     fig.suptitle('Experiment 7 — Small-Data Clinical Training (IDRiD → Kazakh clinic)',
@@ -160,7 +167,7 @@ def chart_30():
     base_std = [B['idrid_cv_f1_std'], B['clinical_test_f1_std']]
     pipe_f1 = [P['idrid_cv_f1'], P['clinical_test_f1']]
     pipe_std = [P['idrid_cv_f1_std'], P['clinical_test_f1_std']]
-    deltas_pp = [imp['idrid_delta_f1_pp'], imp['clinical_delta_f1_pp']]
+    deltas_pp = [pd_['idrid_delta_f1_pp'], pd_['clinical_delta_f1'] * 100]
 
     x = np.arange(len(splits))
     w = 0.35
@@ -206,25 +213,32 @@ def chart_30():
     ax2.annotate('', xy=(1, auc_p - 0.005), xytext=(0, auc_b + 0.005),
                  arrowprops=dict(arrowstyle='->', color=CORAL, lw=2))
     ax2.text(0.5, (auc_b + auc_p) / 2 + 0.012,
-             f"+{imp['clinical_delta_auc_pp']:.1f}pp",
+             f"+{pd_['clinical_delta_auc'] * 100:.2f}pp",
              ha='center', fontsize=11, fontweight='bold', color=CORAL)
     ax2.set_xticks(xb)
     ax2.set_xticklabels(labels, fontsize=10)
     ax2.set_ylabel('ROC-AUC (Clinical hold-out)', fontsize=11)
-    ax2.set_ylim(0.65, 0.88)
+    # Headroom for the summary box so it clears the value labels
+    ax2.set_ylim(0.65, 0.96)
     ax2.set_title('Clinical ROC-AUC', fontsize=11)
 
     # Summary box
+    f1ci = pd_['clinical_delta_f1_95ci']
     summary = (f"Train: IDRiD ({data['training_dataset'].split('(')[1].rstrip(')')})\n"
                f"Test:  Clinical hold-out, n=60\n"
                f"CV: {data['cross_validation']}\n"
-               f"Bootstrap resamples: {data['bootstrap_resamples']}")
+               f"Preregistered: {'yes' if data.get('preregistered') else 'no'}\n"
+               f"Paired $\\Delta$F1 95% CI: [{f1ci[0]:+.4f}, {f1ci[1]:+.4f}]")
     props = dict(boxstyle='round,pad=0.5', facecolor='#EFEDFA',
                  alpha=0.9, edgecolor=PURPLE)
     ax2.text(0.02, 0.98, summary, transform=ax2.transAxes, fontsize=8,
              verticalalignment='top', bbox=props)
+    ax2.text(0.5, -0.16,
+             'Error bars are per-arm spread. At n=60 the unpaired bootstrap CIs overlap - '
+             'significance comes from the PAIRED test on the same 60 images.',
+             transform=ax2.transAxes, ha='center', va='top', fontsize=7.5, color='#666')
 
-    plt.tight_layout(rect=[0, 0, 1, 0.93])
+    plt.tight_layout(rect=[0, 0.03, 1, 0.93])
     save(fig, 'exp7', '30_exp7_small_data.png')
 
 

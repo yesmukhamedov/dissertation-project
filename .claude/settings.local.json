@@ -639,7 +639,24 @@
       "PowerShell(python \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\e795af3d-42bd-4191-8508-bb9ef17bf6c4\\\\scratchpad\\\\check_imports.py\")",
       "PowerShell(git status --short; \"--- diffstat ---\"; git diff --stat 2>$null | Select-Object -Last 30)",
       "PowerShell(\"=== VALUES.md head ===\")",
-      "PowerShell(\"=== INTEGRITY_NOTE diff ===\")"
+      "PowerShell(\"=== INTEGRITY_NOTE diff ===\")",
+      "PowerShell(wsl.exe -l -v)",
+      "PowerShell(winget install *)",
+      "PowerShell(& D:\\\\dissertation-project\\\\demo\\\\.venv\\\\Scripts\\\\python.exe -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126)",
+      "PowerShell(& D:\\\\dissertation-project\\\\demo\\\\.venv\\\\Scripts\\\\python.exe -m pip install -r D:\\\\dissertation-project\\\\demo\\\\server\\\\requirements.txt)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location D:\\\\dissertation-project\\\\demo; & .\\\\.venv\\\\Scripts\\\\python.exe \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\fda8aa88-3b63-4133-897e-d12b46f5915c\\\\scratchpad\\\\smoke.py\")",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; $env:PYTHONPATH='D:\\\\dissertation-project\\\\demo'; Set-Location D:\\\\dissertation-project\\\\demo; & .\\\\.venv\\\\Scripts\\\\python.exe \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\fda8aa88-3b63-4133-897e-d12b46f5915c\\\\scratchpad\\\\smoke.py\")",
+      "PowerShell(& D:\\\\dissertation-project\\\\demo\\\\.venv\\\\Scripts\\\\python.exe -m pip install pandas scikit-learn matplotlib --quiet; if \\($?\\) { \"installed\" })",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; Set-Location D:\\\\dissertation-project\\\\demo; & .\\\\.venv\\\\Scripts\\\\python.exe -m uvicorn server.app.main:app --host 127.0.0.1 --port 8000)",
+      "PowerShell($env:Path = [Environment]::GetEnvironmentVariable\\('Path','Machine'\\) + ';' + [Environment]::GetEnvironmentVariable\\('Path','User'\\); \"node: $\\(node --version\\)\"; \"npm: $\\(npm --version\\)\")",
+      "PowerShell(try { Invoke-RestMethod 'http://127.0.0.1:8000/api/selftest' -TimeoutSec 180 | ConvertTo-Json -Depth 5 } catch { \"ERR: $\\($_.Exception.Message\\)\"; $_.ErrorDetails.Message })",
+      "PowerShell(Write-Output \"=== python ===\"; \\(Get-Command python -ErrorAction SilentlyContinue\\).Source; python --version 2>&1; Write-Output \"=== py launcher ===\"; try { py -0p 2>&1 } catch { \"no py launcher\" }; Write-Output \"=== conda ===\"; \\(Get-Command conda -ErrorAction SilentlyContinue\\).Source; Write-Output \"=== wsl ===\"; \\(Get-Command wsl -ErrorAction SilentlyContinue\\).Source)",
+      "Bash(sed -n '/^def save/,/^$/p' generate_charts_01_14.py)",
+      "Bash(sed -n '/^def save/,/^$/p' generate_charts_15_28.py)",
+      "Bash(sed -n '/^def save/,/^$/p' generate_charts_29_30.py)",
+      "PowerShell(python -m pip install --disable-pip-version-check matplotlib scipy opencv-python-headless Pillow 2>&1 | Select-Object -Last 15)",
+      "PowerShell(python \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\e795af3d-42bd-4191-8508-bb9ef17bf6c4\\\\scratchpad\\\\fix_inventory.py\")",
+      "PowerShell(python \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\e795af3d-42bd-4191-8508-bb9ef17bf6c4\\\\scratchpad\\\\fix_inventory2.py\"; Write-Output \"--- remaining DEMO-R rows \\(32,33 + general 25/26\\) ---\"; Select-String -Path D:\\\\dissertation-project\\\\thesis\\\\ASSET_INVENTORY.md -Pattern \"DEMO-R-3[23]|25_pipeline|26_bilateral\")"
     ]
   }
 }

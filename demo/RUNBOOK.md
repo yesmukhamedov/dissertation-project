@@ -20,11 +20,24 @@ To re-point at a different fold, either overwrite `config_d_fold0.pt` or set
 ## Local
 
 **One-shot:** `demo/start-demo.ps1` (or double-click `start-demo.bat`) launches both:
-backend in a WSL window + frontend in a CRA window, waits for health checks, opens the
-browser. Drive-letter agnostic (derives `/mnt/<letter>/` from its own location); skips
-a component if its port (8000/3000) is already listening. Manual commands below.
+backend + frontend in their own windows, waits for health checks, opens the browser.
+Drive-letter agnostic; skips a component if its port (8000/3000) is already listening.
 
-**Backend** (WSL2 Ubuntu, conda `dr-classifier`; conda not on PATH; default WSL distro is
+The backend runs one of two ways, selected by `-Backend auto|native|wsl`. **`auto` (default)
+uses native Windows when `demo/.venv` exists, else WSL.** WSL is not required — `server/` is
+pure FastAPI + torch + cv2 + timm with no Linux-specific code. Manual commands below.
+
+**Backend A — native Windows** (no WSL, no conda). One-time setup:
+```
+python -m venv .venv
+.venv\Scripts\python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+.venv\Scripts\python -m pip install -r server\requirements.txt pandas scikit-learn
+```
+`pandas` and `scikit-learn` are NOT in `server/requirements.txt`, but importing the app
+pulls them in via `src/data/__init__.py` — without them it fails with `ModuleNotFoundError`.
+Run (from `demo/`): `.venv\Scripts\python -m uvicorn server.app.main:app --host 127.0.0.1 --port 8000`
+
+**Backend B — WSL2 Ubuntu**, conda `dr-classifier` (conda not on PATH; default WSL distro is
 docker-desktop, so pass `-d Ubuntu`). The traveling drive mounts under a different letter per
 machine — adjust `/mnt/<letter>/` to wherever the project sits:
 ```
@@ -32,8 +45,8 @@ wsl -d Ubuntu bash -lc "cd /mnt/d/dissertation-project/demo && \
   ~/miniconda3/bin/conda run --no-capture-output -n dr-classifier \
   uvicorn server.app.main:app --host 127.0.0.1 --port 8000"
 ```
-Check: `/api/health` → `checkpoint_loaded:true, device:cuda`; `/api/selftest` → all pass.
-CORS allowlist from env `CORS_ORIGINS` (default `http://localhost:3000`).
+Check either way: `/api/health` → `checkpoint_loaded:true, device:cuda`; `/api/selftest` → all
+pass. CORS allowlist from env `CORS_ORIGINS` (default `http://localhost:3000`).
 
 **Frontend** (Windows, Node, CRA), from `demo/web`:
 ```
@@ -41,6 +54,13 @@ set BROWSER=none && npm start      # → http://localhost:3000
 ```
 `demo/web/.env.development` sets `REACT_APP_API_URL=http://localhost:8000`. CRA reads
 `REACT_APP_*` at startup — override via env, don't edit the file mid-session.
+Needs Node; if absent: `winget install --id OpenJS.NodeJS.LTS -e`.
+
+> **`demo/web/build/` is gitignored and can be badly out of date.** `npm start` dev-serves
+> from `src/`, so the local demo is always current — but `build/` is only refreshed by an
+> explicit `npm run build`. Rebuild before serving `build/` statically or tunnelling it,
+> or you may present superseded figures. Also note `npm run build` reads `.env.production`,
+> where `REACT_APP_API_URL` is empty → simulator-only unless you set it.
 
 ## Public (real model) — Cloudflare quick tunnels
 

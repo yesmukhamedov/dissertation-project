@@ -124,11 +124,30 @@ plt.rcParams.update({
 })
 
 
+# Chart number -> subdirectory under public/results/ (see generate_charts_01_14.py for the
+# rationale: the dashboard loads from these subdirectories, not from the flat directory).
+ROUTE = {
+    '01': 'exp1', '02': 'exp1', '03': 'exp1', '18': 'exp1',
+    '19': 'exp1', '20': 'exp1', '22': 'exp1', '24': 'exp1',
+    '04': 'exp2', '05': 'exp2', '13': 'exp2', '23': 'exp2',
+    '29': 'exp3',
+    '06': 'exp4', '07': 'exp4', '27': 'exp4', '28': 'exp4',
+    '08': 'exp5', '09': 'exp5',
+    '10': 'exp6',
+    '30': 'exp7',
+    '11': 'general', '12': 'general', '14': 'general', '15': 'general',
+    '16': 'general', '17': 'general', '21': 'general', '25': 'general', '26': 'general',
+}
+
+
 def save(fig, name):
-    fig.savefig(os.path.join(OUT, name), dpi=DPI, bbox_inches='tight',
+    subdir = ROUTE.get(name[:2], '')
+    out_dir = os.path.join(OUT, subdir) if subdir else OUT
+    os.makedirs(out_dir, exist_ok=True)
+    fig.savefig(os.path.join(out_dir, name), dpi=DPI, bbox_inches='tight',
                 facecolor='white', edgecolor='none')
     plt.close(fig)
-    print(f"  [OK] {name}")
+    print(f"  [OK] {subdir}/{name}" if subdir else f"  [OK] {name}")
 
 
 # ─── Chart 15: Calibration ───
@@ -195,12 +214,15 @@ def chart_16():
         ax.set_xticks(x)
         ax.set_xticklabels(['Before', 'After'], fontsize=9)
         ax.set_title(iq['m'], fontsize=10, fontweight='bold')
+        # Headroom so the change annotation sits inside the axes, clear of the title
+        ax.set_ylim(0, max(vals) * 1.28)
         for bar, val in zip(bars, vals):
             ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02 * max(vals),
                     f'{val:.2f}', ha='center', va='bottom', fontsize=9)
-        # Improvement annotation
-        ax.annotate(iq['pct'], xy=(0.5, max(vals) * 1.1), fontsize=11, fontweight='bold',
-                    color=CORAL, ha='center', xycoords=('axes fraction', 'data'))
+        # Change annotation
+        ax.annotate(iq['pct'], xy=(0.5, max(vals) * 1.17), fontsize=11, fontweight='bold',
+                    color=CORAL, ha='center', va='center',
+                    xycoords=('axes fraction', 'data'))
     plt.tight_layout(rect=[0, 0, 1, 0.92])
     save(fig, '16_image_quality.png')
 
@@ -736,18 +758,20 @@ def chart_28():
 # ─── Main ───
 if __name__ == '__main__':
     print("Generating charts 15-28...")
-    chart_15()
-    chart_16()
-    chart_17()
-    chart_18()
-    chart_19()
-    chart_20()
-    chart_21()
-    chart_22()
-    chart_23()
-    chart_24()
-    chart_25()
-    chart_26()
-    chart_27()
+    for fn in (chart_15, chart_16, chart_17, chart_18, chart_19,
+               chart_20, chart_21, chart_22, chart_23, chart_24):
+        fn()
+
+    # Charts 25/26/27 are pipeline / Grad-CAM ILLUSTRATIONS rendered from real fundus images in
+    # public/fundus-examples/dr04/. They display no metric from any run, so if the source images
+    # are absent the existing PNGs are still valid and are simply left in place — the batch must
+    # not fail on their account.
+    for fn in (chart_25, chart_26, chart_27):
+        try:
+            fn()
+        except FileNotFoundError as e:
+            print(f"  [SKIP] {fn.__name__}: source image missing ({e}). "
+                  f"Existing PNG left untouched; it carries no run metric.")
+
     chart_28()
     print("[OK] Charts 15-28 complete!")

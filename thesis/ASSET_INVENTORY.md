@@ -3,6 +3,7 @@
 **Document type:** Resource inventory (prerequisite for the chapter-by-chapter writing PLAN)
 **Candidate:** Yesmukhamedov N.S.
 **Compiled:** 2026-06-08
+**Revised:** 2026-08-03 — reconciled against the **2026-08-02 experimental run** (all 7 experiments executed) and the regenerated demo figures.
 **Scope:** Full monorepo scan (`experiments/`, `demo/`, `defense/`, `thesis/assets/`) reconciled against the required figures/tables derived from `thesis/outline/MASTER_OUTLINE.md`, every chapter `README.md`, `thesis/governance/RESEARCH_ARCHITECTURE.md` (v6.0.0), and `HYPOTHESIS.md`.
 
 ---
@@ -15,12 +16,20 @@ This inventory distinguishes three things that are easy to conflate:
 2. **A real experimental result** produced by running the dr-classifier pipeline.
 3. **A demo or slide preview figure** rendered for the *defense slides* or the *demo dashboard* to illustrate the intended layout of a result.
 
-**Hard rule applied throughout:** A figure or JSON existing in `defense/` or `demo/` does **NOT** by itself mean the underlying experiment has been run. Several demo result files carry placeholder metrics authored for the dashboard preview — e.g. `demo/web/public/results/exp3/exp3_aptos_transfer.json` reports `G = 0.890`, `h4_satisfied: true`, and a DeLong `p = 0.015`, although **Experiment 3 has not yet been executed and no APTOS evaluation output exists on disk**. Such files are catalogued as demo assets; the corresponding dissertation result is flagged `❌ MISSING (real result)` until the experiment is run.
+**Hard rule applied throughout:** A figure or JSON existing in `defense/` or `demo/` does **NOT** by itself mean the underlying experiment has been run.
+
+**Amendment 2026-08-03.** The situation has changed but the rule has not. All 7 experiments were executed in the 2026-08-02 run, and the demo figures and JSONs have been regenerated from that run's numbers — they are no longer invented placeholders. **However**, the run's raw artifacts (`summary.json`, `*_results.json`, `metrics.csv`, `predictions.npz`) are **still absent from `experiments/outputs/`**; the numbers currently reach the repository only through `VALUES.md` → `results/` → `demo/`. Two consequences:
+
+1. A demo PNG is **still not a citable primary source.** It is now a faithful *rendering* of the run rather than a preview of an imagined one, but the chain back to a machine-produced output file is broken.
+2. `results/data/*.json` and `experiments/outputs/` still hold the **previous** run and will contradict the demo. Do not cross-check one against the other until the artifacts are published.
+
+Tracked as **NEW-1** in `results/HYPOTHESIS_COVERAGE.md`; see also `results/INTEGRITY_NOTE.md` §1.
 
 **Status legend:**
 - `✅ AVAILABLE` — a real, citable artifact verified to exist at the stated path (real fundus image, real preprocessing render, real metrics from a training run, real validation JSON, or a conceptual/architecture diagram).
-- `⏳ PENDING` — partial real data exists on disk but the full required result set (e.g. all configs × 5 folds) is not yet complete; or the artifact is derivable now from existing data but not yet rendered.
-- `❌ MISSING` — no real result artifact on disk yet. A demo-dashboard preview may exist (path noted) and is catalogued as a demo asset.
+- `🟡 RENDERED (provenance pending)` — the experiment has been run and the figure/table is rendered from its numbers via `results/`, but the raw output artifact is not yet in `experiments/outputs/`. Usable for writing; **not** yet citable as a primary source.
+- `⏳ PENDING` — partial real data exists on disk but the full required result set is not yet complete; or the artifact is derivable now from existing data but not yet rendered.
+- `❌ MISSING` — no real result artifact on disk yet.
 
 ---
 
@@ -28,26 +37,36 @@ This inventory distinguishes three things that are easy to conflate:
 
 ### 1.1 Experiment result status (real data on disk)
 
-| Exp | Hypothesis | Required | What is actually on disk | Verdict |
-|-----|-----------|----------|--------------------------|---------|
-| **Exp 1** | H-1 | 2×2 factorial A–D, EyePACS 100%, 5-fold CV, full metric suite | Config **A** fold 0 only (19 ep, full-data backup); Configs **A/B/C** folds 0–2 partial at **40% data**; a **broken Config D** fold 0 (ImageNet, diverged val_loss≈140); a **clean Config D** fold 0 (10 ep, EyePACS) + checkpoints | **⏳ PARTIAL** — no complete A–D × 5-fold at 100%; v6.0.0 ophthalmology-SSL arm (B/D) not yet trained |
-| **Exp 2** | H-2 | 7-level ablation + CLAHE sweep + σ sweep + image-quality metrics | No real run; demo-dashboard preview PNGs + placeholder `exp2_ff_sweep.json` | **❌ NOT RUN** |
-| **Exp 3** | H-4 | APTOS 2019 zero-shot transfer, G ratio | No real run; demo-dashboard preview `exp3_aptos_transfer.json` + PNG | **❌ NOT RUN** |
-| **Exp 4** | H-5 | Grad-CAM ALO/IoU on IDRiD + Clinical | No real run; demo-dashboard preview gradcam/alo/iou PNGs | **❌ NOT RUN** |
-| **Exp 5** | H-7 | Clinical degradation Δ on IDRiD + Messidor-2 | No real run; demo-dashboard preview `exp5_degradation.json` + PNG | **❌ NOT RUN** |
-| **Exp 6** | H-6 | Device domain shift on DDR/ODIR-5K/RFMiD | No real run; demo-dashboard preview PNG | **❌ NOT RUN** |
-| **Exp 7** | — | Small-data 5-fold IDRiD → Clinical | No real run; demo-dashboard preview `exp7_small_data.json` + PNG | **❌ NOT RUN** |
+**Superseded by the 2026-08-02 run.** The table below now reflects that run. Numbers and verdicts are
+consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
+
+| Exp | Hypothesis | Required | State after the 2026-08-02 run | Verdict |
+|-----|-----------|----------|--------------------------------|---------|
+| **Exp 1** | H-1 | 2×2 factorial A–D, EyePACS 100%, 5-fold CV, full metric suite | Complete A–D × 5 folds at 100%; per-class, confusion, calibration, clinical metrics, DeLong/McNemar/Holm/ANOVA | **✅ RUN** — `h1_supported = true`; EH-3 met on both backbones (ΔF1 +6.54/+6.55pp) |
+| **Exp 2** | H-2 | ablation + CLAHE sweep + σ sweep + image-quality metrics | 8-level cumulative ablation on full EyePACS × 5 folds under one initialization; joint CLAHE grid 8×5 on EyePACS; **σ sweep now run**; per-level IQ | **✅ RUN** — PC-2 confirmed on both sweeps; PC-8: contributions significant but **near-uniform, stages not rankable** |
+| **Exp 3** | H-4 | APTOS 2019 zero-shot transfer, G ratio | C vs D on fold-0 checkpoints; per-class, confusion, referable metrics, bootstrap CIs | **✅ RUN** — `h4_supported = true` (G_D = 0.8976); caveat: baseline also clears 0.85 |
+| **Exp 4** | H-5 | Grad-CAM ALO/IoU on IDRiD + Clinical | All 54 mask-carrying IDRiD images, paired Wilcoxon + bootstrap CI + τ sweep | **✅ RUN (IDRiD)** — `h5_alo_supported = true`, 4/4 types significant. **Clinical (KZ) overlays still missing** (gap G-3) |
+| **Exp 5** | H-7 | Clinical degradation Δ on IDRiD + Messidor-2 | Both sets, Δ_drop + absolute external F1 with CIs | **✅ RUN** — **◐ H-7 PARTIAL (1 of 2)**: criterion as written holds only on IDRiD; absolute external F1 significantly higher on both |
+| **Exp 6** | H-6 | Device domain shift on DDR/ODIR-5K/RFMiD | 5 camera groups, g-ratio, between-group spread, per-class F1 | **✅ RUN** — `h6_supported = true`; substantive result is std(F1) narrowing 2.6× |
+| **H-3** | H-3 | *(not previously inventoried — recorded as dropped)* | MMD over penultimate-layer features + KL over channel histograms, 6 target domains | **✅ RUN** — `h3_supported = true`, 6/6 domains, all CIs exclude 0. **⚠️ Conflicts with `thesis/CLAUDE.md` "H-3: DROPPED in V3"** — governance decision required |
+| **Exp 7** | — | Small-data 5-fold IDRiD → Clinical | 5-fold IDRiD CV + clinical hold-out n=60, paired CIs; **preregistered** | **✅ RUN** — positive: +0.079 wF1, +0.122 κ, +0.051 AUC |
+| **SSL** | — (Premise 4) | in-domain SSL linear-probe gate | from-scratch BYOL/MoCo-v2/DINO + SIP; continual-SSL on both backbones, 2 runs | **✅ RUN** — gate passed; SIP now passes from scratch; both backbones gain from continual-SSL |
 | **Validation** | — (supporting Ch 3/Exp 4) | OD/fovea detector accuracy on IDRiD | **Real** `od_fovea_idrid_metrics.json` + montage (516 imgs) | **✅ COMPLETE** |
 | **Preproc artifacts** | — (Ch 3) | norm stats | **Real** EyePACS + IDRiD norm stats | **✅ COMPLETE** |
 
+⚠️ **All rows marked ✅ RUN carry the provenance caveat in §0:** the run's raw output files are not yet in `experiments/outputs/`, so these results are usable for writing but not yet citable as primary sources.
+
 ### 1.2 Resource tally
 
-**Reconciliation table (§2) — required dissertation resources:** 78 catalogued.
-- **✅ AVAILABLE (real, citable):** 33 — almost entirely **preprocessing stage renders, dataset sample images, conceptual/architecture diagrams, the OD/fovea validation, norm-stat artifacts, source code, and publication certificates**.
-- **⏳ PENDING:** 6 — Exp 1 partial-data tables/curves derivable now from real `metrics.csv`, plus claim-strength/SOTA tables that depend on results.
-- **❌ MISSING (real result):** 39 — **every result table/figure for Exp 2–7**, Exp 1 full 100% A–D suite, confusion matrices, ROC curves, calibration, statistical-test tables, Grad-CAM gallery, and UML diagrams. Demo-dashboard previews exist for many (catalogued in §4) but are not citable as results.
+**Reconciliation table (§2) — required dissertation resources:** 78 catalogued. *(Revised 2026-08-03.)*
+- **✅ AVAILABLE (real, citable):** 33 — unchanged: **preprocessing stage renders, dataset sample images, conceptual/architecture diagrams, the OD/fovea validation, norm-stat artifacts, source code, and publication certificates**.
+- **🟡 RENDERED (provenance pending):** 30 — essentially **every result table and figure for Exp 1–7**, now rendered from the 2026-08-02 run via `results/`. Writable against; not yet citable (see §0).
+- **⏳ PENDING:** 5 — TAB-5.3 (SOTA comparison, literature-bound), FIG-5.4 (PR curves — need `predictions.npz`), App B partial, plus per-group confusion matrices and per-class ROC-AUC that the run did not record.
+- **❌ MISSING (real result):** 10 — clinical (KZ) Grad-CAM gallery (gap G-3), UML diagrams (App C), and the App E/F supplements that depend on them.
 
-**Demo web asset manifest (§4) — files present in `demo/web/public/`:** 471 files, all `✅ AVAILABLE` on disk — `results/` (33), `diagrams/` (4), `pipeline/` (430 PNG + 1 helper JSON). The `pipeline/` preprocessing renders are real pipeline outputs; the `results/` figures and `pipeline/.../results/` overlays are dashboard previews whose result-level status is tracked in §2.
+**Demo web asset manifest (§4) — files present in `demo/web/public/`:** 471 files. `results/` (33 files: 30 PNG + 3 JSON — **27 PNGs regenerated 2026-08-03** from the current run; 3 pipeline/Grad-CAM illustrations left untouched, see below), `diagrams/` (4), `pipeline/` (430 PNG + 1 helper JSON). The `pipeline/` preprocessing renders are real pipeline outputs. The `results/` figures are **no longer previews** — they are rendered from the run's numbers, subject to the §0 provenance caveat.
+
+**Not regenerated (deliberately):** `results/general/25_pipeline_stages_real.png`, `…/26_bilateral_pair.png`, `results/exp4/27_gradcam_overlay.png`. These are pipeline/Grad-CAM *illustrations* that display no metric from any run, so they are not stale. Their source images (`demo/web/public/fundus-examples/dr04/{right,left}_eye.jpeg`) are absent from this checkout, so they are also not currently reproducible. See `demo/TASK.md` §1.3.
 
 ### 1.3 Implication for writing order
 
@@ -58,12 +77,19 @@ This inventory distinguishes three things that are easy to conflate:
 - **Chapter 6 (System Architecture)** — design-only chapter; system diagram + webapp screenshots available. **Only blocker:** UML diagrams (component/sequence/class/activity/ER) are not on disk.
 - **§4.1 (Datasets & Configuration)** — dataset architecture table + class distribution + samples available.
 
-**Blocked pending experiment execution:**
-- **§4.2 (Exp 1)** — partially writable from real partial data, but the headline 2×2 factorial table and EH-3 dominance verdict require the full 100% A–D × 5-fold run (and the v6.0.0 ophthalmology-SSL B/D arm).
-- **§4.3–§4.8 (Exp 2–7)** — fully blocked; no real data.
-- **Chapter 5 (Validation)** — fully blocked; depends on Ch 4 results, statistical tests, and the Grad-CAM gallery.
-- **Chapter 0 (Introduction) & Chapter 7 (Conclusion)** — depend on all results being final.
-- **Appendices B, C, E, F** — confusion matrices, UML, Grad-CAM gallery, device tables: all missing.
+**Unblocked by the 2026-08-02 run (revised 2026-08-03):**
+- **§4.2 (Exp 1)** — ✅ writable. Full 100% A–D × 5-fold suite, statistical layer, calibration, per-class, clinical metrics. Material in `results/findings/exp1.md` + `results/tables/`.
+- **§4.3 (Exp 2)** — ✅ writable, all three parts (ablation, CLAHE sweep, σ sweep) closed.
+- **§4.4 (Exp 3), §4.6 (Exp 5), §4.7 (Exp 6), §4.8 (Exp 7)** — ✅ writable.
+- **§4.5 (Exp 4) + §5.1** — 🟡 quantitative part writable; the clinical (KZ) Grad-CAM overlays that H-5 also calls for are still missing (gap G-3).
+- **Chapter 5 (Validation)** — ✅ §5.2.1/§5.2.2 writable (`results/tables/TAB-5.1`, `TAB-5.2`); §5.3 still needs the literature-side TAB-5.3.
+- **Chapter 0 (§0.8) & Chapter 7 (Conclusion)** — ✅ unblocked; all verdicts are final.
+- **Appendices B, E, F** — data exists; App B needs `predictions.npz` for PR/ROC curves, App E needs G-3, App F needs a per-group confusion-matrix dump.
+- **Appendix C (UML)** — ❌ still missing; asset task, not experiment-gated.
+
+**Two decisions the candidate must make before writing:**
+1. **Where H-3 goes.** The run measures and confirms it, but `thesis/CLAUDE.md` still records "H-3: DROPPED in V3" and Chapter 4 has no section for it. Its placement changes the numbering of §4.x and of the TAB/FIG identifiers downstream.
+2. **Provenance.** Publishing the run's raw artifacts into `experiments/outputs/` before the defense — otherwise no result in Chapters 4–5 traces to a primary output file.
 
 ---
 
@@ -123,41 +149,41 @@ This inventory distinguishes three things that are easy to conflate:
 | FIG-4.1 | figure | EyePACS class-distribution chart | §4.1.2 | defense | `defense/presentation/assets/datasets/27_overview/12_dataset_class_distribution.png` (+`.svg`); data `defense/figures/figures_mine/fig3_dataset_distribution.csv` | ✅ AVAILABLE |
 | FIG-4.2 | figure | Sample fundus per DR grade — EyePACS (+ APTOS/IDRiD/Messidor2/DDR/ODIR5K/RFMiD/Clinical) | §4.1.1 | demo | `demo/web/public/datasets/<ds>/samples/dr{0..4}/` | ✅ AVAILABLE |
 | FIG-4.3 | figure | Cross-dataset comparison / datasets matrix | §4.1.1 | defense | `defense/presentation/assets/datasets/28_experiments/datasets_matrix.png`; `…/29_cameras/cameras_alignment.png` | ✅ AVAILABLE |
-| RES-EXP1 | result-set | Exp 1 training metrics (loss, weighted F1, ROC-AUC, κ, accuracy per epoch/fold/config) | §4.2 | **Exp (real, partial)** | `experiments/outputs/backup_exp1_full/metrics.csv` (A f0); `…/backup_exp1_abc_40pct_20260324/metrics.csv` (A/B/C f0–2 @40%); `…/kaggle_config_d_v2/outputs/exp1/metrics.csv` (D f0) | ⏳ PENDING |
-| TAB-4.2 | table | **Exp 1 2×2 factorial results** — F1/ROC-AUC/κ/Acc (mean±std), configs A–D, EH-3 verdict | §4.2.3 | Exp 1 (full 100% A–D × 5-fold) | demo dashboard: `demo/web/public/results/exp1/02_exp1_all_metrics.png` | ❌ MISSING |
-| FIG-4.4 | figure | Exp 1 factorial weighted-F1 bar chart (A–D) | §4.2.3 | Exp 1 | demo dashboard: `demo/web/public/results/exp1/01_exp1_factorial_f1.png`, `…/03_exp1_delta.png` | ❌ MISSING |
-| FIG-4.5 | figure | Exp 1 training/validation convergence curves (A–D) | §4.2.2 | Exp 1 | derivable from real `metrics.csv` for A f0 & D f0 (partial); demo dashboard: `…/results/exp1/19_training_curves.png` | ⏳ PENDING |
-| FIG-4.6 | figure | Exp 1 confusion matrices (per config) | §4.2.3 / App B | Exp 1 | demo dashboard: `…/results/exp1/20_confusion_matrix.png` (no per-sample preds saved) | ❌ MISSING |
-| FIG-4.7 | figure | Exp 1 ROC curves (per config) | §4.2.3 | Exp 1 | demo dashboard: `…/results/exp1/24_roc_curves.png` | ❌ MISSING |
-| FIG-4.8 | figure | Exp 1 per-class F1 under class imbalance | §4.2.3 | Exp 1 | demo dashboard: `…/results/exp1/18_per_class_f1.png` | ❌ MISSING |
-| TAB-4.3 | table | Exp 1 calibration (ECE, Brier) per config | §4.2.2 | Exp 1 | demo dashboard: `…/results/general/15_calibration.png` | ❌ MISSING |
-| TAB-4.4 | table | **Exp 2 ablation (Levels 0–6)** — weighted F1 per level | §4.3.1 | Exp 2 | demo dashboard: `…/results/exp2/04_exp2_ablation.png`, `…/05_exp2_per_stage.png` | ❌ MISSING |
-| FIG-4.9 | figure | Exp 2 CLAHE clip-limit sensitivity curve | §4.3.2 | Exp 2 | demo dashboard: `…/results/exp2/13_exp2_clahe_sensitivity.png` | ❌ MISSING |
-| FIG-4.10 | figure | Exp 2 flat-field σ sweep | §4.3.3 | Exp 2 | demo dashboard: `…/results/exp2/exp2_ff_sweep.json` | ❌ MISSING |
-| TAB-4.5 | table | Exp 2 image-quality metrics per stage (CNR/VVI/Entropy/SSIM) | §4.3.3 | Exp 2 | demo dashboard: `…/results/general/16_image_quality.png` | ❌ MISSING |
-| TAB-4.6 | table | **Exp 3 APTOS transfer** — G = F1_APTOS/F1_EyePACS per config | §4.4 | Exp 3 | demo dashboard: `…/results/exp3/exp3_aptos_transfer.json` (preview G=0.890) | ❌ MISSING |
-| FIG-4.11 | figure | Exp 3 cross-dataset transfer chart | §4.4 | Exp 3 | demo dashboard: `…/results/exp3/29_exp3_aptos_transfer.png` | ❌ MISSING |
-| FIG-4.12 | figure | **Exp 4 Grad-CAM overlays** per DR class, baseline vs integrated (IDRiD) | §4.5.1 / App E | Exp 4 | demo dashboard: `…/results/exp4/27_gradcam_overlay.png` | ❌ MISSING |
-| TAB-4.7 | table | **Exp 4 ALO (primary) + IoU (secondary)** per lesion type | §4.5.2 | Exp 4 | demo dashboard: `…/results/exp4/06_exp4_alo.png`, `…/07_exp4_iou.png` | ❌ MISSING |
-| FIG-4.13 | figure | Exp 4 attention-consistency across datasets | §4.5.3 | Exp 4 | demo dashboard: `…/results/exp4/28_attention_consistency.png` | ❌ MISSING |
+| RES-EXP1 | result-set | Exp 1 metrics — A–D × 5 folds, EyePACS 100% | §4.2 | **Run 2026-08-02** | `results/STATUS.md`; `results/tables/TAB-4.2_exp1_factorial.md`, `exp1_per_class.md`, `exp1_convergence_ci.md` | 🟡 RENDERED |
+| TAB-4.2 | table | **Exp 1 2×2 factorial results** — F1/ROC-AUC/κ/Acc (mean±std), configs A–D, EH-3 verdict | §4.2.3 | Exp 1 | `results/tables/TAB-4.2_exp1_factorial.md`; figure `demo/web/public/results/exp1/02_exp1_all_metrics.png` | 🟡 RENDERED |
+| FIG-4.4 | figure | Exp 1 factorial weighted-F1 bar chart (A–D) | §4.2.3 | Exp 1 | `demo/web/public/results/exp1/01_exp1_factorial_f1.png`, `…/03_exp1_delta.png`, `…/22_exp1_all_6_configs.png` | 🟡 RENDERED |
+| FIG-4.5 | figure | Exp 1 training/validation convergence curves (A–D) | §4.2.2 | Exp 1 | `…/results/exp1/19_training_curves.png` — ⚠️ **schematic**: anchored to measured endpoints (final val F1, best-epoch val loss); per-epoch history not exported by the run. Numeric table: `results/tables/exp1_convergence_ci.md` | ⏳ PENDING |
+| FIG-4.6 | figure | Exp 1 confusion matrices (per config) | §4.2.3 / App B | Exp 1 | `…/results/exp1/20_confusion_matrix.png`; numeric matrices in `results/tables/exp1_per_class.md` (n = 35,126) | 🟡 RENDERED |
+| FIG-4.7 | figure | Exp 1 per-class discrimination | §4.2.3 | Exp 1 | `…/results/exp1/24_roc_curves.png` — **now plots per-class recall**: per-class ROC-AUC was not recorded in this run (only macro 0.8210 → 0.8570). True ROC curves need `predictions.npz` | ⏳ PENDING |
+| FIG-4.8 | figure | Exp 1 per-class F1 under class imbalance | §4.2.3 | Exp 1 | `…/results/exp1/18_per_class_f1.png`; `results/tables/exp1_per_class.md` | 🟡 RENDERED |
+| TAB-4.3 | table | Exp 1 calibration (ECE, Brier) per config | §4.2.2 | Exp 1 | `results/tables/TAB-4.3_exp1_calibration.md`; figure `…/results/general/15_calibration.png`. ⚠️ Sign reversed vs earlier run — the pipeline now **improves** calibration | 🟡 RENDERED |
+| TAB-4.4 | table | **Exp 2 cumulative ablation (L0–L7)** — weighted F1 per level, single shared init | §4.3.1 | Exp 2 | `results/tables/TAB-4.4_exp2_ablation.md`; figures `…/results/exp2/04_exp2_ablation.png`, `…/05_exp2_per_stage.png`, `…/23_exp2_individual_ablation.png` | 🟡 RENDERED |
+| FIG-4.9 | figure | Exp 2 CLAHE sensitivity — joint grid (clip_factor × global_threshold), 8×5, on EyePACS | §4.3.2 | Exp 2 | `results/tables/exp2_clahe_sweep.md`; figure `…/results/exp2/13_exp2_clahe_sensitivity.png` | 🟡 RENDERED |
+| FIG-4.10 | figure | Exp 2 flat-field σ sweep (0.05–0.10·D) | §4.3.3 | Exp 2 | **newly run** — `results/tables/exp2_flatfield_sigma_sweep.md`; data `demo/web/public/results/exp2/exp2_ff_sweep.json`. σ* = 0.07·D, held-out Δ +0.0570 | 🟡 RENDERED |
+| TAB-4.5 | table | Exp 2 image-quality per ablation level (CNR/Entropy/SSIM) | §4.3.3 | Exp 2 | `results/tables/TAB-4.5_exp2_image_quality.md`; figure `…/results/general/16_image_quality.png`. **VVI dropped — not implemented in `image_quality.py`** | 🟡 RENDERED |
+| TAB-4.6 | table | **Exp 3 APTOS transfer** — G = F1_APTOS/F1_EyePACS, C vs D | §4.4 | Exp 3 | `results/tables/TAB-4.6_exp3_transfer.md`; data `…/results/exp3/exp3_aptos_transfer.json` (G_D = 0.8976, G_C = 0.8577) | 🟡 RENDERED |
+| FIG-4.11 | figure | Exp 3 cross-dataset transfer chart | §4.4 | Exp 3 | `…/results/exp3/29_exp3_aptos_transfer.png` (rendered directly from the JSON) | 🟡 RENDERED |
+| FIG-4.12 | figure | **Exp 4 Grad-CAM overlays** per DR class, baseline vs integrated (IDRiD) | §4.5.1 / App E | Exp 4 | 54 real overlays at `experiments/outputs/exp4/gradcam_maskset/*.png`; demo illustration `…/results/exp4/27_gradcam_overlay.png` (not regenerated — source image missing) | ⏳ PENDING |
+| TAB-4.7 | table | **Exp 4 ALO (primary) + IoU (secondary)** per lesion type, n = 54 masks | §4.5.2 | Exp 4 | `results/tables/TAB-4.7_exp4_alo_iou.md`; figures `…/results/exp4/06_exp4_alo.png`, `…/07_exp4_iou.png`. 4/4 types significant; **stays within NC-14** | 🟡 RENDERED |
+| FIG-4.13 | figure | Exp 4 per-image direction of the ALO effect | §4.5.3 | Exp 4 | `…/results/exp4/28_attention_consistency.png` — **repurposed**: cross-dataset attention consistency was never measured; the figure now shows improved/unchanged/worsened counts per lesion type | 🟡 RENDERED |
 | FIG-4.14 | figure | Exp 4 lesion-overlay reference (IDRiD masks) | §4.5.2 | Exp 4 | demo asset: `defense/figures/figures_mine/fig2_lesion_overlays.png` | ❌ MISSING |
-| TAB-4.8 | table | **Exp 5 clinical degradation** Δ=F1_val−F1_ext (IDRiD, Messidor-2) | §4.6 | Exp 5 | demo dashboard: `…/results/exp5/exp5_degradation.json` | ❌ MISSING |
-| FIG-4.15 | figure | Exp 5 degradation / generalization chart | §4.6 | Exp 5 | demo dashboard: `…/results/exp5/08_exp5_generalization.png`, `…/09_exp5_G_ratio.png` | ❌ MISSING |
-| TAB-4.9 | table | **Exp 6 device domain shift** — per-camera F1/AUC (Canon/Topcon/Kowa/Zeiss) | §4.7 / App F | Exp 6 | demo dashboard: `…/results/exp6/10_exp6_device_shift.png` | ❌ MISSING |
-| TAB-4.10 | table | **Exp 7 small-data** 5-fold IDRiD→Clinical (baseline vs integrated) | §4.8 | Exp 7 | demo dashboard: `…/results/exp7/exp7_small_data.json` | ❌ MISSING |
-| FIG-4.16 | figure | Exp 7 small-data performance chart | §4.8 | Exp 7 | demo dashboard: `…/results/exp7/30_exp7_small_data.png` | ❌ MISSING |
+| TAB-4.8 | table | **Exp 5 clinical degradation** Δ_drop (IDRiD, Messidor-2) | §4.6 | Exp 5 | `results/tables/TAB-4.8_exp5_degradation.md`; data `…/results/exp5/exp5_degradation.json`. **◐ H-7 partial (1 of 2)** — see the metric critique in that table | 🟡 RENDERED |
+| FIG-4.15 | figure | Exp 5 degradation / generalization chart | §4.6 | Exp 5 | `…/results/exp5/08_exp5_generalization.png`, `…/09_exp5_G_ratio.png` | 🟡 RENDERED |
+| TAB-4.9 | table | **Exp 6 device domain shift** — per-camera F1/AUC/κ + between-group spread | §4.7 / App F | Exp 6 | `results/tables/TAB-4.9_exp6_device.md`; figure `…/results/exp6/10_exp6_device_shift.png`. Per-group confusion matrices **not recorded** (App F gap) | 🟡 RENDERED |
+| TAB-4.10 | table | **Exp 7 small-data** 5-fold IDRiD→Clinical (baseline vs integrated), preregistered | §4.8 | Exp 7 | `results/tables/TAB-4.10_exp7_smalldata.md`; data `…/results/exp7/exp7_small_data.json` | 🟡 RENDERED |
+| FIG-4.16 | figure | Exp 7 small-data performance chart | §4.8 | Exp 7 | `…/results/exp7/30_exp7_small_data.png` (rendered directly from the JSON) | 🟡 RENDERED |
 
 ### 2.5 Chapter 5 — Reliability Validation
 
 | ID | Type | Description / caption | Target § | Source | File path | Status |
 |----|------|----------------------|----------|--------|-----------|--------|
-| FIG-5.1 | figure | Grad-CAM gallery (representative per class, baseline vs integrated) | §5.1 / App E | Exp 4 | — | ❌ MISSING |
-| TAB-5.1 | table | Statistical tests (McNemar, DeLong, bootstrap 95% CI, mixed-effects) | §5.2.1 | Exp 1–7 | demo dashboard: `…/results/general/21_statistical_tests.png` | ❌ MISSING |
-| TAB-5.2 | table | Final claim-strength classification PC-1…PC-10 (STRONG/MODERATE/CONDITIONAL) | §5.2.2 | governance + results | derivable once results exist | ⏳ PENDING |
+| FIG-5.1 | figure | Grad-CAM gallery (representative per class, baseline vs integrated) | §5.1 / App E | Exp 4 | 54 IDRiD overlays at `experiments/outputs/exp4/gradcam_maskset/`; **clinical (KZ) overlays missing — gap G-3** | ⏳ PENDING |
+| TAB-5.1 | table | Statistical tests (DeLong, McNemar, Holm, bootstrap 95% CI, mixed-effects) | §5.2.1 | Exp 1–7 | `results/tables/TAB-5.1_statistical.md`; figure `…/results/general/21_statistical_tests.png` | 🟡 RENDERED |
+| TAB-5.2 | table | Final claim-strength classification PC-0…PC-10 | §5.2.2 | governance + results | `results/tables/TAB-5.2_claim_strength.md` — 5 STRONG, 2 MODERATE, 0 REFUTED | 🟡 RENDERED |
 | TAB-5.3 | table | Comparative analysis vs published systems (IDx-DR, EyeNuk, DeepMind, Gulshan — contextual only) | §5.3.1 | literature cards | text (numbers pending own results) | ⏳ PENDING |
-| FIG-5.2 | figure | Performance–complexity trade-off | §5.3.2 | Exp 1/6 | demo dashboard: `…/results/general/17_computational.png` | ❌ MISSING |
-| FIG-5.3 | figure | Summary radar across hypotheses / EH-3 dominance | §5.2 | all Exp | demo dashboard: `…/results/general/11_summary_radar.png`, `…/12_eh3_dominance.png` | ❌ MISSING |
-| TAB-5.4 | table | Clinical screening metrics (Sensitivity/Specificity/PPV/NPV, referable DR) | §5.2 | Exp 1/3/5 | demo dashboard: `…/results/general/14_clinical_metrics.png` | ❌ MISSING |
+| FIG-5.2 | figure | Performance–complexity trade-off | §5.3.2 | Exp 1/6 | `results/tables/computational_and_iq.md` (measured on RTX 3060); figure `…/results/general/17_computational.png` | 🟡 RENDERED |
+| FIG-5.3 | figure | Summary radar across hypotheses / EH-3 dominance | §5.2 | all Exp | radar data in `results/findings/summary-and-dominance.md`; figures `…/results/general/11_summary_radar.png`, `…/12_eh3_dominance.png` | 🟡 RENDERED |
+| TAB-5.4 | table | Clinical screening metrics (Sens/Spec/PPV/NPV, referable DR) across 3 scenarios | §5.2 | Exp 1/3/6 | `results/tables/TAB-5.4_clinical_referable.md`; figure `…/results/general/14_clinical_metrics.png` | 🟡 RENDERED |
 | FIG-5.4 | figure | Precision–recall curves | §5.2 / App B | Exp 1 | demo asset: `defense/figures/figures_mine/fig7_pr_curves.png` | ❌ MISSING |
 
 ### 2.6 Chapter 6 — System Architecture (design-only)
@@ -199,56 +225,88 @@ experiments/data/processed/idrid_norm_stats.json                       # Stage-7
 experiments/logs/exp1_*.log, smoke_test_*.log, exp2_remaining_smoke.log  # training/smoke logs
 ```
 
-**Key honesty notes carried into the PLAN:**
-1. **Exp 1 is the only experiment with any real metrics, and it is incomplete** — no complete A–D × 5-fold at 100% data; the v6.0.0 design (ophthalmology-SSL initialization for the integrated arm B/D) has **not** been trained at all (current Config-D checkpoints are the retired ImageNet artifact, per project memory). The clean Config-D fold-0 run reports strong numbers (e.g. weighted F1 ≈ 0.82, ROC-AUC ≈ 0.93 at epoch 4) but is a **single fold**.
-2. **Exp 2–7 have produced no real result artifacts yet.** The corresponding figures/JSONs in `demo/` and `defense/` are **demo-dashboard preview assets** (catalogued in §4) and carry placeholder numbers until the experiments are run, so they are not citable as results.
-3. **Confusion matrices, ROC curves, calibration, and statistical tests** cannot be derived even for Exp 1 from current outputs, because **per-sample predictions/probabilities were not saved** — only per-epoch aggregate metrics. Producing TAB-4.2 / FIG-4.6 / FIG-4.7 requires re-running inference with prediction dumps.
-4. **Chapter 3 and §4.1 are the safe starting points** — every asset they need is real and on disk.
+> ⚠️ **The listing above is the state as of 2026-06-08 and is now itself stale.** It predates both the
+> 2026-07 re-runs and the 2026-08-02 run. The files listed still exist, but they are **not** the current
+> results. Nothing in `experiments/outputs/` has been written since **2026-07-30**, i.e. the 2026-08-02
+> run has not been published into this directory at all.
+
+**Key honesty notes carried into the PLAN (revised 2026-08-03):**
+1. **All 7 experiments have now been run** (2026-08-02) and every result table/figure is derived from
+   that run through `results/`. The old note that "Exp 1 is the only experiment with any real metrics"
+   is superseded.
+2. **But the run's raw artifacts are not on disk.** `experiments/outputs/` still holds the *previous*
+   run, and so does `results/data/*.json`. The current numbers reach the repository only via
+   `VALUES.md` → `results/` → `demo/`. **This is the single most important open item before the
+   defense** — until it is closed, no Chapter 4–5 number is traceable to a machine-produced file, and
+   the two sources will actively contradict each other. Tracked as NEW-1 in
+   `results/HYPOTHESIS_COVERAGE.md`.
+3. **What the 2026-08-02 run did not record**, and therefore cannot be cited: per-class ROC-AUC
+   (macro only), per-camera-group confusion matrices (per-class F1 only), per-epoch training history
+   (endpoints only — FIG-4.5 is schematic), MMD kernel/sample-size parameters, and CPU preprocessing
+   wall-clock.
+4. **Chapter 3 and §4.1 remain the safest starting points** — their assets are real, on disk, and
+   independent of the run.
 
 ---
 
 ## 4. Demo Web Asset Manifest (`demo/web/public/`)
 
-Complete enumeration of every PNG/JSON under `demo/web/public/results`, `demo/web/public/diagrams`, and `demo/web/public/pipeline`. All paths below are relative to `demo/web/public/` and all files were verified to exist during this scan. **Status `✅ AVAILABLE`** means the file is present on disk; for the `results/` group it does **not** assert that a real experiment backs the depicted numbers (see the Status column of §2.4–§2.5 for the result-level verdict).
+Complete enumeration of every PNG/JSON under `demo/web/public/results`, `demo/web/public/diagrams`, and `demo/web/public/pipeline`. All paths below are relative to `demo/web/public/` and all files were verified to exist during this scan. **Status `✅ AVAILABLE`** means the file is present on disk; for the `results/` group it does **not** assert that the depicted numbers are traceable to a primary output file (see §0 and the Status column of §2.4–§2.5).
 
 ### 4.1 `results/` — dashboard result figures (33 files)
 
+> **Regenerated 2026-08-03** from the 2026-08-02 run — 27 of the 30 PNGs plus all 3 JSONs.
+> Regeneration procedure and its prerequisites: `demo/TASK.md`.
+> Rendered by `demo/web/generate_charts_{01_14,15_28,29_30}.py`; the numbers come from
+> `demo/web/src/data.js` (charts 01–28) and from the JSONs in this directory (charts 29–30).
+>
+> **Three files intentionally NOT regenerated** — DEMO-R-05 is regenerated but schematic; the three
+> below were skipped entirely: `results/general/25_pipeline_stages_real.png`,
+> `results/general/26_bilateral_pair.png`, `results/exp4/27_gradcam_overlay.png`. They are
+> pipeline/Grad-CAM *illustrations* carrying no metric from any run, so they are not stale; their
+> source fundus images are absent from the checkout, so they are also not reproducible here.
+>
+> **Four figures changed meaning**, because the run does not contain what they previously plotted:
+> `05`/`23` (per-stage contribution → marginal Δ against the noise band; stages are not rankable),
+> `16` (VVI dropped — never implemented), `24` (synthesized ROC curves → measured per-class recall),
+> `28` (attention consistency → per-image direction of the ALO effect).
+
 | ID | Path (`demo/web/public/`) | Type | Linked resource | Status |
 |----|---------------------------|------|-----------------|--------|
-| DEMO-R-01 | `results/exp1/01_exp1_factorial_f1.png` | png | FIG-4.4 | ✅ AVAILABLE |
-| DEMO-R-02 | `results/exp1/02_exp1_all_metrics.png` | png | TAB-4.2 | ✅ AVAILABLE |
-| DEMO-R-03 | `results/exp1/03_exp1_delta.png` | png | FIG-4.4 | ✅ AVAILABLE |
-| DEMO-R-04 | `results/exp1/18_per_class_f1.png` | png | FIG-4.8 | ✅ AVAILABLE |
-| DEMO-R-05 | `results/exp1/19_training_curves.png` | png | FIG-4.5 | ✅ AVAILABLE |
-| DEMO-R-06 | `results/exp1/20_confusion_matrix.png` | png | FIG-4.6 | ✅ AVAILABLE |
-| DEMO-R-07 | `results/exp1/22_exp1_all_6_configs.png` | png | TAB-4.2 | ✅ AVAILABLE |
-| DEMO-R-08 | `results/exp1/24_roc_curves.png` | png | FIG-4.7 | ✅ AVAILABLE |
-| DEMO-R-09 | `results/exp2/04_exp2_ablation.png` | png | TAB-4.4 | ✅ AVAILABLE |
-| DEMO-R-10 | `results/exp2/05_exp2_per_stage.png` | png | TAB-4.4 | ✅ AVAILABLE |
-| DEMO-R-11 | `results/exp2/13_exp2_clahe_sensitivity.png` | png | FIG-4.9 | ✅ AVAILABLE |
-| DEMO-R-12 | `results/exp2/23_exp2_individual_ablation.png` | png | TAB-4.4 | ✅ AVAILABLE |
-| DEMO-R-13 | `results/exp2/exp2_ff_sweep.json` | json | FIG-4.10 | ✅ AVAILABLE |
-| DEMO-R-14 | `results/exp3/29_exp3_aptos_transfer.png` | png | FIG-4.11 | ✅ AVAILABLE |
-| DEMO-R-15 | `results/exp3/exp3_aptos_transfer.json` | json | TAB-4.6 | ✅ AVAILABLE |
-| DEMO-R-16 | `results/exp4/06_exp4_alo.png` | png | TAB-4.7 | ✅ AVAILABLE |
-| DEMO-R-17 | `results/exp4/07_exp4_iou.png` | png | TAB-4.7 | ✅ AVAILABLE |
-| DEMO-R-18 | `results/exp4/27_gradcam_overlay.png` | png | FIG-4.12 | ✅ AVAILABLE |
-| DEMO-R-19 | `results/exp4/28_attention_consistency.png` | png | FIG-4.13 | ✅ AVAILABLE |
-| DEMO-R-20 | `results/exp5/08_exp5_generalization.png` | png | FIG-4.15 | ✅ AVAILABLE |
-| DEMO-R-21 | `results/exp5/09_exp5_G_ratio.png` | png | FIG-4.15 | ✅ AVAILABLE |
-| DEMO-R-22 | `results/exp5/exp5_degradation.json` | json | TAB-4.8 | ✅ AVAILABLE |
-| DEMO-R-23 | `results/exp6/10_exp6_device_shift.png` | png | TAB-4.9 | ✅ AVAILABLE |
-| DEMO-R-24 | `results/exp7/30_exp7_small_data.png` | png | FIG-4.16 | ✅ AVAILABLE |
-| DEMO-R-25 | `results/exp7/exp7_small_data.json` | json | TAB-4.10 | ✅ AVAILABLE |
-| DEMO-R-26 | `results/general/11_summary_radar.png` | png | FIG-5.3 | ✅ AVAILABLE |
-| DEMO-R-27 | `results/general/12_eh3_dominance.png` | png | FIG-5.3 | ✅ AVAILABLE |
-| DEMO-R-28 | `results/general/14_clinical_metrics.png` | png | TAB-5.4 | ✅ AVAILABLE |
-| DEMO-R-29 | `results/general/15_calibration.png` | png | TAB-4.3 | ✅ AVAILABLE |
-| DEMO-R-30 | `results/general/16_image_quality.png` | png | TAB-4.5 | ✅ AVAILABLE |
-| DEMO-R-31 | `results/general/17_computational.png` | png | FIG-5.2 | ✅ AVAILABLE |
-| DEMO-R-32 | `results/general/21_statistical_tests.png` | png | TAB-5.1 | ✅ AVAILABLE |
-| DEMO-R-33 | `results/general/25_pipeline_stages_real.png` | png | FIG-3.1 | ✅ AVAILABLE |
-| DEMO-R-34 | `results/general/26_bilateral_pair.png` | png | FIG-4.2 | ✅ AVAILABLE |
+| DEMO-R-01 | `results/exp1/01_exp1_factorial_f1.png` | png | FIG-4.4 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-02 | `results/exp1/02_exp1_all_metrics.png` | png | TAB-4.2 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-03 | `results/exp1/03_exp1_delta.png` | png | FIG-4.4 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-04 | `results/exp1/18_per_class_f1.png` | png | FIG-4.8 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-05 | `results/exp1/19_training_curves.png` | png | FIG-4.5 | 🔄 REGENERATED 2026-08-03 — ⚠️ **schematic**: per-epoch history not exported; anchored to measured endpoints |
+| DEMO-R-06 | `results/exp1/20_confusion_matrix.png` | png | FIG-4.6 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-07 | `results/exp1/22_exp1_all_6_configs.png` | png | TAB-4.2 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-08 | `results/exp1/24_roc_curves.png` | png | FIG-4.7 | 🔄 REGENERATED 2026-08-03 — **repurposed**: now per-class recall; per-class ROC-AUC not recorded |
+| DEMO-R-09 | `results/exp2/04_exp2_ablation.png` | png | TAB-4.4 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-10 | `results/exp2/05_exp2_per_stage.png` | png | TAB-4.4 | 🔄 REGENERATED 2026-08-03 — marginal Δ vs the 2·σ_fold band; stages **not rankable** |
+| DEMO-R-11 | `results/exp2/13_exp2_clahe_sensitivity.png` | png | FIG-4.9 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-12 | `results/exp2/23_exp2_individual_ablation.png` | png | TAB-4.4 | 🔄 REGENERATED 2026-08-03 — same marginal-Δ framing as DEMO-R-10 |
+| DEMO-R-13 | `results/exp2/exp2_ff_sweep.json` | json | FIG-4.10 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-14 | `results/exp3/29_exp3_aptos_transfer.png` | png | FIG-4.11 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-15 | `results/exp3/exp3_aptos_transfer.json` | json | TAB-4.6 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-16 | `results/exp4/06_exp4_alo.png` | png | TAB-4.7 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-17 | `results/exp4/07_exp4_iou.png` | png | TAB-4.7 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-18 | `results/exp4/27_gradcam_overlay.png` | png | FIG-4.12 | ⏸️ KEPT (pre-run illustration) — illustration, no run metric; source image missing |
+| DEMO-R-19 | `results/exp4/28_attention_consistency.png` | png | FIG-4.13 | 🔄 REGENERATED 2026-08-03 — **repurposed**: per-image direction of the ALO effect |
+| DEMO-R-20 | `results/exp5/08_exp5_generalization.png` | png | FIG-4.15 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-21 | `results/exp5/09_exp5_G_ratio.png` | png | FIG-4.15 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-22 | `results/exp5/exp5_degradation.json` | json | TAB-4.8 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-23 | `results/exp6/10_exp6_device_shift.png` | png | TAB-4.9 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-24 | `results/exp7/30_exp7_small_data.png` | png | FIG-4.16 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-25 | `results/exp7/exp7_small_data.json` | json | TAB-4.10 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-26 | `results/general/11_summary_radar.png` | png | FIG-5.3 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-27 | `results/general/12_eh3_dominance.png` | png | FIG-5.3 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-28 | `results/general/14_clinical_metrics.png` | png | TAB-5.4 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-29 | `results/general/15_calibration.png` | png | TAB-4.3 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-30 | `results/general/16_image_quality.png` | png | TAB-4.5 | 🔄 REGENERATED 2026-08-03 — **VVI dropped** (not implemented); L0 vs L7 |
+| DEMO-R-31 | `results/general/17_computational.png` | png | FIG-5.2 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-32 | `results/general/21_statistical_tests.png` | png | TAB-5.1 | 🔄 REGENERATED 2026-08-03 |
+| DEMO-R-33 | `results/general/25_pipeline_stages_real.png` | png | FIG-3.1 | ⏸️ KEPT (pre-run illustration) — no run metric; source image missing |
+| DEMO-R-34 | `results/general/26_bilateral_pair.png` | png | FIG-4.2 | ⏸️ KEPT (pre-run illustration) — no run metric; source image missing |
 
 > Note: `results/exp3/exp3_aptos_transfer.json`, `results/exp5/exp5_degradation.json`, `results/exp7/exp7_small_data.json`, and `results/exp2/exp2_ff_sweep.json` contain dashboard preview numbers; the matching dissertation results remain `❌ MISSING` (§2.4) until the experiments are run.
 
