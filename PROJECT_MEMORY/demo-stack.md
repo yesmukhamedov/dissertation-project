@@ -5,7 +5,23 @@ metadata:
   type: project
 ---
 
-Human-facing runbook: `demo/RUNBOOK.md`. This is the Claude-facing fact.
+Human-facing runbook: `demo/RUNBOOK.md`. Launch protocol for sessions: `demo/CLAUDE.md`
+(loaded automatically when working in `demo/`). This file is the full Claude-facing detail.
+
+## SETTLED — act, do not ask
+
+| Candidate says | Run |
+|---|---|
+| «запускаем demo локально» | `demo\start-demo.ps1` |
+| «запускаем demo публично» | `demo\start-pages-demo.ps1` (background; takes minutes) |
+| «останови demo» | `demo\start-pages-demo.ps1 -Stop` |
+
+Decided and **not to be reopened** unless the candidate raises it: public hosting is
+**Cloudflare Pages + quick tunnel at $0** (chosen 2026-08-03 over paying ~$50 to restore the
+lapsed zone or ~$5-12/yr for a new domain); permanent URL **https://dr-classification.pages.dev**;
+password gate always ON, value read from gitignored `demo/.demo-password`; backend mode `auto`
+= native Windows venv (no WSL on this box); wrangler already logged in, `-AccountId` unneeded.
+Every public launch rebuilds the frontend on purpose — the tunnel URL is baked into the bundle.
 
 **One-shot launcher (since 2026-07-19) — DEFAULT way to run the demo locally.** When the candidate asks to start/launch the demo locally, run `demo/start-demo.ps1` (or point them at `demo/start-demo.bat` for double-click) instead of composing the manual WSL/npm commands below; keep the manual commands for debugging a single component or for the tunnel recipe. `demo/start-demo.ps1` (+ `start-demo.bat` wrapper) orchestrates the whole local stack: spawns backend and frontend (CRA) in separate windows via self-reinvocation with `-Role backend|frontend`, waits for `/api/health` and `:3000`, opens the browser. Drive-letter agnostic ($PSScriptRoot → `/mnt/<letter>/`), idempotent (skips a component whose port already listens). Verified cold-start end-to-end 2026-07-19. Keep the .ps1 ASCII-only — PS 5.1 reads BOM-less .ps1 as ANSI and em dashes break string parsing.
 
@@ -33,7 +49,31 @@ wsl -d Ubuntu bash -lc "cd /mnt/e/dissertation-project/demo && \
 
 ## Public demo with REAL model (Cloudflare quick tunnels)
 
-`demo/web/start-tunnel.bat` only tunnels the frontend AND respawns npm + ends on a blocking `pause` — DON'T run as-is in a non-interactive shell. The dashboard badge shows **"simulator (backend offline)"** for remote users because the HTTPS tunnel page can't call `http://localhost:8000` (browser **mixed-content** block). cloudflared is at `C:\Program Files (x86)\cloudflared\cloudflared.exe` (on PATH). Full recipe:
+**One-shot public launcher (since 2026-08-03) — DEFAULT way to expose the demo.** `demo/start-tunnel.ps1` (+ `start-tunnel.bat`) is the tunnel twin of `start-demo.ps1`: same `-Role` self-reinvocation and `-Backend auto|native|wsl`, plus `-Password` (→ `DEMO_PASSWORD`), `-Http2` (venue blocks QUIC/UDP 7844), `-Stop` (kill cloudflared + :3000/:8000). It creates BOTH quick tunnels first (URL scraped from `--logfile` in `$env:TEMP`), then starts the servers already carrying `CORS_ORIGINS` / `REACT_APP_API_URL`, then verifies: local health, both tunnel URLs, and the CORS preflight (`Access-Control-Allow-Origin` must echo the frontend tunnel) — it only opens the browser when all pass. It **restarts** anything already on :3000/:8000, since the random URLs must be in the environment at process start. Frontend runs the CRA **dev** server with `WDS_SOCKET_PORT=0` + `DANGEROUSLY_DISABLE_HOST_CHECK=true`, so tunnelling serves current `src/` and the stale-`build/` hazard above does not apply. Verified end-to-end 2026-08-03 through the public URL: `checkpoint_loaded=true device=cuda`, `/api/selftest` predict+gradcam+visualize all pass, wrong password → 401, `requires_password:true`.
+
+**cloudflared was NOT installed on this box** (re-image, see above) — restored with `winget install --id Cloudflare.cloudflared -e` → 2026.7.3 at `C:\Program Files (x86)\cloudflared\cloudflared.exe`. `Find-Cloudflared` in the script checks PATH then that path.
+
+**Stale-PATH gotcha (cost a failed run).** A shell started before node/cloudflared were installed keeps the old PATH **and hands it to every window it spawns** — the frontend window died with `npm` not found while `C:\Program Files\nodejs\` was in the machine PATH all along. Both launchers now rebuild `$env:Path` from the registry (`Sync-PathFromRegistry`, Machine+User) and resolve `npm.cmd` explicitly via `Find-Npm`.
+
+## Permanent free URL — Cloudflare Pages + quick tunnel (CHOSEN PATH)
+
+**Decision 2026-08-03: strictly $0, no domain.** After the zone lapsed (below) Cloudflare quoted ~$50 to restore; the candidate rejected paying and chose the free split-hosting route, so `demo/start-pages-demo.ps1` is the path to a permanent public link. Dashboard = static build on **Cloudflare Pages** at `https://<project>.pages.dev` (default project `dr-classification`), backend = quick tunnel to the local GPU box. Because the tunnel URL is random per launch, the frontend is **rebuilt with `REACT_APP_API_URL=<tunnel>` and redeployed every session** (`wrangler pages deploy`); in exchange `CORS_ORIGINS` becomes the CONSTANT pages.dev origin, so the backend no longer restarts per tunnel. Needs a one-time interactive `npx wrangler login` (browser OAuth; token lands in `%APPDATA%\xdg.config\.wrangler\config\default.toml`). Logged in 2026-08-03 as **yesmukhamedov.yeskendyr@outlook.com**, which sees exactly **one** account — `41edab150aea08647c6379508249ffb8` — so `-AccountId` is optional on this box. The older account `f729bcbe9f1803411472825d9cdd76b5` (which owned the dead zone) sits behind a **different login** and is not reachable from this token; pass `-AccountId` only if a login ever exposes several. wrangler is run via `npx --yes wrangler` (4.118.0, no repo dependency added); `WRANGLER_SEND_METRICS=false` + `CI=1` keep it from prompting — but `CI=1` is scoped to wrangler ONLY, since CRA turns build warnings into errors under `CI`.
+
+**Correcting a plausible-sounding wrong plan:** `*.pages.dev` cannot host the demo on its own and cannot be a tunnel target. Pages serves static files only (the FastAPI+CUDA backend can't live there), and Cloudflare docs are explicit that "the `cfargotunnel.com` subdomain only proxies traffic for DNS records in the same Cloudflare account" — a named tunnel needs a zone **you own** in **your** account, which `pages.dev` never is. The Cloudflare free plan covers DNS/SSL/CDN for a domain you already have; it never included the domain name itself.
+
+**LIVE since 2026-08-03: https://dr-classification.pages.dev** (project `dr-classification`, production branch `main`). First deploy uploaded **897 files in 99 s** after pruning. Verified independently of the launcher: index 200; the tunnel URL is baked into `static/js/main.<hash>.js`; all **30 result PNGs + 4 result JSONs** served with real content types; both referenced SVGs (`/diagrams/02_system_architecture.svg`, `04_preprocessing_pipeline_vertical.svg`); a 9.1 MB `pipeline/` PNG and a `datasets/` JPEG; `/api/selftest` through the session tunnel → predict+gradcam+visualize all pass; CORS preflight 200 echoing the pages.dev origin.
+
+**Gotcha — HTTP 200 does NOT prove an asset exists on Pages.** Any unknown path returns the SPA fallback: `200`, `text/html`, **674 bytes** (index.html). A status-only check therefore reports every missing figure as present. Always assert `Content-Type` (or size) — that is how the pruned `images/` tree was confirmed gone and how three of my own invented filenames were caught.
+
+**Build is 1.1 GB and mostly dead weight.** CRA copies all of `public/` into `build/`. Verified 2026-08-03 that `images/` (352 MB — a stale duplicate of `pipeline/`), `fundus-examples/` (15 MB), `camera/` and `webApp/` are referenced **nowhere** in `src/` or `public/*.md` (the one "images/" hit in `RESULTS.md` is the unit "images/s"); the script prunes them before upload → ~730 MB / 1412 files, inside the Pages free limits (20,000 files, 25 MiB per file, no documented total). Still USED: `pipeline/` (338 MB, `ModelMethods.js`/`ModelPipeline.js`), `datasets/` (314 MB, `_eyepacsPairs.js` random-patient samples), `results/`, `diagrams/`, `static/`. First deploy uploads everything; later ones only the rebuilt JS bundle. Next lever if that is too slow: `pipeline/` and `datasets/` are full-resolution PNGs (up to 8.7 MB each) displayed a few hundred pixels wide — recompressing them is the obvious 10× win, not yet done.
+
+## Permanent hostname (Cloudflare named tunnel)
+
+`demo/start-named-tunnel.ps1` (2026-08-03) serves the demo on a stable name instead of a random quick-tunnel URL. **Single hostname, path-routed** — every backend route is under `/api/` (`server/app/main.py`) and every frontend call is `${API}/api/...` (`web/src/tabs/_apiPredict.js`), so one ingress splits them: `path: ^/api/` → :8000, else → :3000. Same-origin ⇒ **no CORS and no mixed-content problem at all**, one URL to hand out; `REACT_APP_API_URL` is set to the public origin itself (it must be non-empty — `_apiPredict.js` throws on empty, it does NOT fall back to relative). Modes: `-Setup` (create tunnel + write `~/.cloudflared/config.yml` + `tunnel route dns`), run, `-InstallService` (connector only — backend/frontend are NOT services, so a reboot needs the script again), `-Stop`. **Kept but NOT the active path** — it needs a domain, and the $0 Pages route above was chosen instead; revive it if a zone is ever acquired. Requires a one-time interactive `cloudflared tunnel login` (browser) and an **ACTIVE zone on FULL DNS setup** — a partial/CNAME zone cannot hold the `CNAME → <uuid>.cfargotunnel.com`. Universal SSL `*.<zone>` covers a single-label subdomain, so no cert work. **UNTESTED end-to-end** — see the blocker below.
+
+**BLOCKER: the candidate's zone `yeskendyr.men` lapsed.** Registered 2025-05-29 via Cloudflare Registrar, **expired 2026-05-29**; on 2026-08-03 registry RDAP (`https://rdap.nic.men/domain/yeskendyr.men`) reports status `redemption period` + `pending delete`, and the name is NXDOMAIN on public resolvers (so the "validate to renew SSL" mail of 2026-08-01 was moot — the registration, not the certificate, is what died). Cloudflare's schedule is 40-day grace / days 41–70 redemption / days 71–75 pendingDelete, i.e. ~day 66 of 75 on 2026-08-03: restore is a **paid, irreversible, dashboard-only** action (Registrar restores only while EPP status is `redemptionPeriod`) and the window is days. Intended name once a zone exists: **`dr-classification.<zone>`**.
+
+`demo/web/start-tunnel.bat` and `demo/web/_launch_with_tunnel.bat` are now **superseded stubs** forwarding to `demo/start-tunnel.ps1`; the old bodies tunnelled only the frontend, hardcoded `/mnt/e/`, were WSL-only and ended on a blocking `pause`. The dashboard badge shows **"simulator (backend offline)"** for remote users when only the frontend is tunnelled, because the HTTPS tunnel page can't call `http://localhost:8000` (browser **mixed-content** block). Manual recipe (for debugging one leg):
 
 1. `cloudflared tunnel --url http://localhost:3000` → FRONTEND url (e.g. `https://<a>.trycloudflare.com`)
 2. `cloudflared tunnel --url http://localhost:8000` → BACKEND url (e.g. `https://<b>.trycloudflare.com`)

@@ -36,6 +36,24 @@ function Resolve-BackendMode([string]$Requested) {
     return 'wsl'
 }
 
+# A shell started before node was installed carries a stale PATH and passes it to
+# every window it spawns. Rebuild PATH from the registry so npm is found.
+function Sync-PathFromRegistry {
+    $machine = [Environment]::GetEnvironmentVariable('Path', 'Machine')
+    $user    = [Environment]::GetEnvironmentVariable('Path', 'User')
+    $env:Path = (@($machine, $user) | Where-Object { $_ } ) -join ';'
+}
+Sync-PathFromRegistry
+
+function Find-Npm {
+    $cmd = Get-Command npm.cmd -ErrorAction SilentlyContinue
+    if ($cmd) { return $cmd.Source }
+    foreach ($c in @("${env:ProgramFiles}\nodejs\npm.cmd", "${env:ProgramFiles(x86)}\nodejs\npm.cmd")) {
+        if (Test-Path $c) { return $c }
+    }
+    return $null
+}
+
 function Test-PortListening([int]$Port) {
     $conn = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
     return ($null -ne $conn)
@@ -79,7 +97,13 @@ if ($Role -eq 'frontend') {
     $host.UI.RawUI.WindowTitle = 'demo frontend - CRA :3000'
     Set-Location $webDir
     $env:BROWSER = 'none'   # orchestrator opens the browser itself
-    & npm start
+    $npm = Find-Npm
+    if (-not $npm) {
+        Write-Error 'npm not found. Install Node: winget install --id OpenJS.NodeJS.LTS -e'
+        Read-Host 'Press Enter to close'
+        exit 1
+    }
+    & $npm start
     exit $LASTEXITCODE
 }
 
@@ -111,6 +135,9 @@ if (-not (Test-Path $normStats)) {
 }
 if (-not (Test-Path (Join-Path $webDir 'node_modules'))) {
     Write-Warning "demo/web/node_modules missing - run 'npm install' in demo/web first."
+}
+if (-not (Find-Npm)) {
+    Write-Warning 'npm not found - the frontend will not start. Install Node: winget install --id OpenJS.NodeJS.LTS -e'
 }
 
 $spawnArgs = @('-NoExit', '-ExecutionPolicy', 'Bypass', '-File', $PSCommandPath, '-Backend', $backendMode, '-Role')

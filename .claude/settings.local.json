@@ -656,7 +656,19 @@
       "Bash(sed -n '/^def save/,/^$/p' generate_charts_29_30.py)",
       "PowerShell(python -m pip install --disable-pip-version-check matplotlib scipy opencv-python-headless Pillow 2>&1 | Select-Object -Last 15)",
       "PowerShell(python \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\e795af3d-42bd-4191-8508-bb9ef17bf6c4\\\\scratchpad\\\\fix_inventory.py\")",
-      "PowerShell(python \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\e795af3d-42bd-4191-8508-bb9ef17bf6c4\\\\scratchpad\\\\fix_inventory2.py\"; Write-Output \"--- remaining DEMO-R rows \\(32,33 + general 25/26\\) ---\"; Select-String -Path D:\\\\dissertation-project\\\\thesis\\\\ASSET_INVENTORY.md -Pattern \"DEMO-R-3[23]|25_pipeline|26_bilateral\")"
+      "PowerShell(python \"C:\\\\Users\\\\PC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--dissertation-project\\\\e795af3d-42bd-4191-8508-bb9ef17bf6c4\\\\scratchpad\\\\fix_inventory2.py\"; Write-Output \"--- remaining DEMO-R rows \\(32,33 + general 25/26\\) ---\"; Select-String -Path D:\\\\dissertation-project\\\\thesis\\\\ASSET_INVENTORY.md -Pattern \"DEMO-R-3[23]|25_pipeline|26_bilateral\")",
+      "Bash(\"/c/Program Files \\(x86\\)/cloudflared/cloudflared.exe\" --version)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\\\\dissertation-project\\\\demo\\\\start-tunnel.ps1\")",
+      "PowerShell(winget list *)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\\\\dissertation-project\\\\demo\\\\start-tunnel.ps1\" -Password \"defense2026\")",
+      "PowerShell($b='https://powerful-acquire-hosting-still.trycloudflare.com'; \\(Invoke-RestMethod \"$b/api/health\" -TimeoutSec 30 | ConvertTo-Json -Compress\\))",
+      "WebFetch(domain:rdap.org)",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "Bash(grep -n \"API}\\\\|\\\\${API}\" web/src/tabs/_apiPredict.js)",
+      "WebFetch(domain:nic.eu.org)",
+      "WebFetch(domain:www.cloudflare.com)",
+      "Bash(awk '{printf \"%.1f MB  %s\\\\n\", $1/1048576, $2}')",
+      "Bash(grep -rhoE \"['\\\\\"\\\\`]/\\(images|pipeline|datasets|fundus-examples|results|diagrams|camera|webApp\\)[^'\\\\\"\\\\`]*\" src/)"
     ]
   }
 }

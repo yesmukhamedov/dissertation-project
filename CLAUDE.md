@@ -97,10 +97,12 @@ python run_experiment.py exp1 --config configs/default.yaml
 python run_experiment.py exp2 --config configs/default.yaml
 ```
 
-```bash
-cd demo
-npm start     # localhost:3000
-npm run build # production build
+Demo — one-shot launchers, see `demo/CLAUDE.md` for the settled launch protocol:
+
+```powershell
+demo\start-demo.ps1         # local:  backend :8000 + dashboard :3000
+demo\start-pages-demo.ps1   # public: https://dr-classification.pages.dev + GPU tunnel
+demo\start-pages-demo.ps1 -Stop
 ```
 
 ## Versioning policy

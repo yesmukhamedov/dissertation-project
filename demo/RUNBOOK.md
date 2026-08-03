@@ -64,18 +64,108 @@ Needs Node; if absent: `winget install --id OpenJS.NodeJS.LTS -e`.
 
 ## Public (real model) — Cloudflare quick tunnels
 
-The dashboard shows "simulator (backend offline)" for remote users unless the backend is
-ALSO tunnelled (browser mixed-content blocks calling `http://localhost:8000` from an HTTPS
-page). cloudflared: `C:\Program Files (x86)\cloudflared\cloudflared.exe`.
+**One-shot:** `demo/start-tunnel.ps1` (or double-click `start-tunnel.bat`). It does the whole
+recipe below: creates both quick tunnels, starts backend + frontend already wired to them,
+then verifies health and the CORS preflight before opening the browser.
+
+```
+powershell -ExecutionPolicy Bypass -File start-tunnel.ps1 -Password "<secret>"
+powershell -ExecutionPolicy Bypass -File start-tunnel.ps1 -Stop     # tear everything down
+```
+
+Options: `-Backend auto|native|wsl` (as in `start-demo.ps1`), `-Password` → `DEMO_PASSWORD`
+(**use it — a quick tunnel is world-reachable and runs on your GPU**; the dashboard then shows
+an access-password screen, and `/api/health` reports `requires_password:true`), `-Http2` if the
+venue network blocks QUIC/UDP 7844 and the tunnels never answer.
+
+It restarts anything already on :3000/:8000 — the tunnel URLs are random per launch and have
+to be in the servers' environment at process start. The frontend is the CRA **dev** server
+(`WDS_SOCKET_PORT=0`, `DANGEROUSLY_DISABLE_HOST_CHECK=true`), so it serves current `src/` and
+the stale `build/` warning above does not apply.
+
+Requires cloudflared (`winget install --id Cloudflare.cloudflared -e`); the script finds it on
+PATH or at `C:\Program Files (x86)\cloudflared\cloudflared.exe`.
+
+**Manual equivalent**, for debugging one leg. The dashboard shows "simulator (backend offline)"
+for remote users unless the backend is ALSO tunnelled (browser mixed-content blocks calling
+`http://localhost:8000` from an HTTPS page).
 
 1. `cloudflared tunnel --url http://localhost:3000` → FRONTEND url `https://<a>.trycloudflare.com`
 2. `cloudflared tunnel --url http://localhost:8000` → BACKEND url `https://<b>.trycloudflare.com`
-3. Relaunch **backend** with `export CORS_ORIGINS='http://localhost:3000,https://<a>.trycloudflare.com'`
+3. Relaunch **backend** with `CORS_ORIGINS='http://localhost:3000,https://<a>.trycloudflare.com'`
 4. Relaunch **frontend** with `set REACT_APP_API_URL=https://<b>.trycloudflare.com`
 5. Verify CORS: `curl -X OPTIONS <backend>/api/predict -H "Origin: <frontend>"` → 200.
 
 URLs are random per launch → set the frontend API target AFTER the backend tunnel exists;
-restart the frontend whenever the backend tunnel changes. `demo/web/start-tunnel.bat` only
-tunnels the frontend and ends on a blocking `pause` — don't use it in a non-interactive shell.
-Free ports: WSL `pkill -f 'uvicorn server.app.main'`; Windows kill the PID on :3000.
-All servers/tunnels are session-bound — they die with the session/WSL; relaunch as above.
+restart the frontend whenever the backend tunnel changes. Free ports: Windows kill the PID on
+:3000/:8000; WSL `pkill -f 'uvicorn server.app.main'`. All servers/tunnels are session-bound —
+they die with their windows; relaunch as above. The two `demo/web/*tunnel*.bat` files are
+superseded stubs that forward to `start-tunnel.ps1`.
+
+## Permanent free URL, no domain — Cloudflare Pages + quick tunnel
+
+`demo/start-pages-demo.ps1`. Split hosting, costs nothing. **Live at
+https://dr-classification.pages.dev**:
+
+```
+https://dr-classification.pages.dev  dashboard — static build on Pages (PERMANENT)
+https://<random>.trycloudflare.com   API — quick tunnel to the local GPU backend
+```
+
+The dashboard URL never changes, so it can go on a slide. The backend URL is random per
+launch, so the frontend is **rebuilt with it baked into `REACT_APP_API_URL` and redeployed**
+each session. The payoff: `CORS_ORIGINS` becomes a **constant** (the pages.dev origin), so the
+backend no longer has to be restarted whenever the tunnel changes.
+
+```
+npx wrangler login                                     # once, opens a browser
+.\start-pages-demo.ps1 -Password "<secret>" -AccountId <hex>
+.\start-pages-demo.ps1 -Stop                           # stops the GPU backend; Pages stays up
+```
+
+`-AccountId` (the hex string in the dashboard URL) is only needed when the login exposes more
+than one Cloudflare account — the current login does not, so it can be omitted. Other flags:
+`-Project` (default `dr-classification`), `-Backend`, `-Http2`, `-SkipBuild` (redeploy the
+existing `build/` — only valid if the tunnel URL has not changed).
+
+**Size.** `npm run build` produces ~1.1 GB. The script prunes `images/`,
+`fundus-examples/`, `camera/` and `webApp/` — 367 MB that nothing in `src/` or `public/*.md`
+references (`images/` is a stale duplicate of `pipeline/`), leaving ~730 MB in 1412 files.
+That is within the Pages free limits (20,000 files, 25 MiB per file, no documented total),
+but the **first** deploy uploads all of it; later ones send only the changed JS bundle. If
+that upload is too slow, the next lever is recompressing `pipeline/` and `datasets/` — they
+are full-resolution PNGs (up to 8.7 MB each) shown at a few hundred pixels.
+
+**When the backend is down** the deployed dashboard stays online and falls back to
+"simulator (backend offline)" — the figures, tables and pipeline pages all still work.
+
+## Public on a permanent hostname — Cloudflare named tunnel
+
+`demo/start-named-tunnel.ps1` serves the demo at a stable name in your own zone, and can run
+as a Windows service so it survives reboots. **One hostname, path-routed** — every backend
+route lives under `/api/` and every frontend call is `${API}/api/…`, so both halves fit behind
+one name, same-origin: no CORS preflight, no mixed content, one URL to hand out.
+
+```
+https://<hostname>/api/*  ->  localhost:8000   (FastAPI)
+https://<hostname>/*      ->  localhost:3000   (CRA)
+```
+
+Prerequisites: cloudflared installed; an **ACTIVE** zone in the Cloudflare account on **full
+DNS setup** (nameservers delegated to Cloudflare — a partial/CNAME zone cannot hold the
+`CNAME → <uuid>.cfargotunnel.com` that routing needs); and a one-time interactive
+`cloudflared tunnel login`. Universal SSL's `*.<zone>` wildcard already covers a
+single-label subdomain, so no certificate work is needed.
+
+```
+cloudflared tunnel login                                     # once, opens a browser
+.\start-named-tunnel.ps1 -Hostname dr-classification.<zone> -Setup
+.\start-named-tunnel.ps1 -Hostname dr-classification.<zone> -Password "<secret>"
+.\start-named-tunnel.ps1 -Stop
+```
+
+`-Setup` creates the tunnel, writes `~/.cloudflared/config.yml` (a copy lands in
+`demo/cloudflared/config.yml.example` so the setup travels with the drive — the credentials
+JSON does not) and routes DNS. `-InstallService` registers the **connector** as a Windows
+service (elevated shell); the backend and frontend are not services, so after a reboot the
+hostname answers only once you rerun the script to start them.

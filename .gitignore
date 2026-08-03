@@ -27,3 +27,12 @@ venv/
 # Secrets — never commit
 kaggle.json
 **/kaggle.json
+
+# Cloudflare tunnel credentials (cert.pem / <tunnel-uuid>.json). Only the
+# generated demo/cloudflared/config.yml.example is tracked.
+.cloudflared/
+demo/cloudflared/*.json
+demo/cloudflared/cert.pem
+
+# Demo access password (DEMO_PASSWORD) read by the demo launchers
+demo/.demo-password

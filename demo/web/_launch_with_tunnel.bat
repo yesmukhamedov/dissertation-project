@@ -1,4 +1,4 @@
 @echo off
-set "PATH=C:\Program Files (x86)\cloudflared;%PATH%"
-cd /d "%~dp0"
-call start-tunnel.bat
+rem SUPERSEDED. See demo\start-tunnel.ps1 (it locates cloudflared itself).
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0..\start-tunnel.ps1" %*
+pause
