@@ -1,4 +1,4 @@
-# TEMPLATE-VALUES
+# VALUES
 
 ---
 
