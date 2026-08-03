@@ -1,26 +1,31 @@
 # `results/` — portable knowledge base for the dissertation experiments
 
-> ▶ **Updated for the 2026-08-03 run.** All values and verdicts in this folder have been replaced
-> with the results of the latest run (`VALUES.md`). **The verdicts are unchanged from the previous
-> (2026-08-02) revision: 6 of 7 hypotheses are fully confirmed** (H-1, H-2, H-3, H-4, H-5, H-6), H-7
-> is partial (1 of 2 sets), and none are refuted. exp7 (small data) — significant positive; the SSL
-> gate passed with both backbones; **H-3** (domain distance, MMD/KL) confirmed on 6/6. The key
-> methodological result stands: **confound CFC-2.8 has been decomposed** — the cumulative exp2
-> ablation on full EyePACS under a single initialization reproduces the entire exp1 gain (+0.0655),
-> i.e. the contribution of preprocessing has been measured separately from the contribution of the
-> SSL initialization.
+> ▶ **Updated for the 2026-08-03 run 2** (the second run received on that date; it supersedes the
+> earlier 2026-08-03 figures). All values and verdicts in this folder have been replaced with the
+> results of the latest run (`VALUES.md`). **6 of 7 hypotheses are confirmed** (H-1, H-2, H-3, H-4,
+> H-5, H-6); **H-7 is not supported in its original wording (0 of 2 sets)**. exp7 (small data) —
+> significant positive; the SSL gate passed with both backbones; **H-3** (domain distance, MMD/KL)
+> confirmed on 6/6. The key methodological result stands: **confound CFC-2.8 has been decomposed** —
+> the cumulative exp2 ablation on full EyePACS under a single initialization reproduces the entire
+> exp1 gain (+0.0655), i.e. the contribution of preprocessing has been measured separately from the
+> contribution of the SSL initialization.
 >
-> Substantive shifts introduced by this run (the exp1/exp2-ablation headline numbers are unchanged;
-> what moved are the transfer, explainability, device and small-data figures):
-> - **H-6**: the previous run's g_ratio inversion at `topcon_messidor2` has gone — g_ratio now rises
->   in **all five** camera groups; the spread reduction is smaller than before (std wF1 −2.0× rather
->   than −2.6×, std AUC −3.3×).
-> - **E-7**: on the internal IDRiD CV the pipeline is now higher in **4 of 5** folds, not all five
->   (fold 2: 0.6352 against 0.6466).
-> - **H-7**: in *relative* terms the arms now degrade the same or slightly in the pipeline's favour
->   (16.7% vs 16.5% on Messidor-2), where before they were identical.
-> - **per-class by group**: the between-group spread contracts on four of five classes — **DR0 is now
->   the exception**.
+> ⚠️ **Two verdicts moved in this run, in opposite directions. Both must be carried into the text.**
+> - **H-2 / PC-8 strengthened — the stage hierarchy is no longer flat.** Δⱼ now spans 0.0065–0.0143
+>   (spread ≈3·σ_fold, previously 0.0010 < σ_fold): **flat-field (0.0143) and CLAHE (0.0125) lead**,
+>   together 41% of the total gain. The previous framing — "an ensemble of normalizations of
+>   comparable strength; the stages cannot be ranked" — is **withdrawn**. PC-8 goes MODERATE → STRONG.
+> - **H-7 weakened — the criterion now fails on both sets.** IDRiD, which previously passed by
+>   −0.0045, flips to +0.0020 and joins Messidor-2 (+0.0129). Verdict goes from "partial (1/2)" to
+>   **0/2, not supported as written**; PC-10 goes MODERATE → REFUTED-as-written. The line "none
+>   refuted" no longer holds. Absolute external performance remains significantly higher on both sets.
+>
+> Smaller shifts: **H-6** — g_ratio now *falls* in 2 of 5 groups (mixed_ddr, topcon_messidor2), a
+> denominator artifact with absolute wF1 rising in all five; spread reduction std wF1 −2.4×, AUC
+> −3.1×. **E-7** — 4 of 5 folds again, but the inverting fold moved (2 → 3), so it should be reported
+> as a count, not an index. **per-class by group** — the spread now contracts on **all five** classes
+> (the DR0 exception has gone). **H-3** — the size of the distance reduction no longer tracks the size
+> of the transfer gain (ρ ≈ 0.49); report direction only.
 >
 > ⚠️ **Provenance needs syncing.** The numbers were taken from `VALUES.md`. The raw run artifacts
 > (`summary.json`, `*_results.json`, `metrics.csv`, `predictions.npz`) were **absent from
@@ -75,27 +80,34 @@ Fundus Image Enhancement and CNN Classification". Central thesis: **model = prep
 - **The work rests on confirmed hypotheses.** 6 of 7 are confirmed, the pipeline effect is stable
   across all scenarios (in-domain, zero-shot, device change, external clinic, small data), remains
   significant after correction for multiplicity, and does not depend on the backbone.
-- **The end-to-end mechanism is measured, not postulated.** H-3 shows a reduction in domain distance
-  (MMD/KL, 6/6 domains); the exp2 ablation decomposes the gain across stages; and the same pattern
-  recurs in every experiment (Δκ > ΔwF1, Δmacro-F1 > ΔwF1, ΔSens ≈ +0.10 with rising Spec).
+- **The end-to-end mechanism is measured, not postulated, and now localized.** H-3 shows a reduction
+  in domain distance (MMD/KL, 6/6 domains); the exp2 ablation decomposes the gain across stages **and
+  identifies where it comes from** — the two photometric stages carry 41% of it; and the same pattern
+  recurs in every experiment (Δκ > ΔwF1, Δmacro-F1 > ΔwF1, ΔSens ≈ +0.11 with rising Spec).
   See `findings/summary-and-dominance.md`.
 - **The boundaries of the claims are kept alongside the results** — this strengthens the work rather
   than weakening it. `INVARIANTS.md` remains in force: **NC-14** (Grad-CAM ≠ clinical localization) —
   for H-5 what is claimed is attention alignment, confirmed on 4/4 lesion types; the H-4/H-6
   thresholds apply to both arms, so the difference between arms rests on the comparison with baseline
-  and on the reduction in spread, not on the threshold itself; H-7 is reported as partial — with an
-  analysis of the bias in the Δ_drop metric, which itself goes into §5.4 as a contribution. The full
-  list is in `findings/summary-and-dominance.md`, section "Limits of applicability and directions for
-  further work".
+  and on the reduction in spread, not on the threshold itself; **H-7 is reported as not supported
+  (0/2)** — with an analysis of the bias in the Δ_drop metric, which itself goes into §5.4 as a
+  contribution. The full list is in `findings/summary-and-dominance.md`, section "Limits of
+  applicability and directions for further work".
+- **The work now carries one explicit negative result, and that is fine.** H-7 fails on the letter of
+  its criterion while the practical claim behind it holds on both sets. Presenting the failure openly,
+  together with the demonstration that Δ_drop penalizes the stronger arm by construction, is stronger
+  than the previous borderline pass. Do not restate it as "partial".
 - **Only numbers from this folder** (and from `experiments/outputs/` after synchronization). Do not
   use numbers from the demo/defense — see `INTEGRITY_NOTE.md`.
 
 ## Boundaries of this session
 
 Done: all numeric values in `STATUS`, `tables/`, `hypotheses/`, `findings/` and the top-level
-documents have been re-synchronized with `VALUES.md` for the 2026-08-03 run; the structure and the
-file set are unchanged from the previous revision. Prose that depended on values that moved
-(H-6 inversion, E-7 fold 2, H-7 relative degradation, DR0 spread) was rewritten to match.
+documents have been re-synchronized with `VALUES.md` for the 2026-08-03 run 2; the structure and the
+file set are unchanged from the previous revision. Prose that depended on values that moved was
+rewritten to match — in particular the **two flipped verdicts** (PC-8 hierarchy now resolvable;
+H-7/PC-10 now 0/2), plus the H-6 g_ratio inversions, the E-7 fold index, the DR0 spread, and the
+weakened H-3 ↔ transfer association.
 **Not done:** synchronizing `data/*.json` and `experiments/outputs/` with the raw run artifacts
 (they are not on disk).
 
@@ -108,6 +120,12 @@ file set are unchanged from the previous revision. Prose that depended on values
 - [ ] **G-3** — qualitative Grad-CAM overlays on the clinical (KZ) dataset; the only gap still open
       with respect to the wording of H-5 (`exp4_explainability.py` has no clinical branch).
 - [ ] **Remainder of G-8** — isolate Stage 3 (FOV mask): requires a flag + a 3-channel model variant.
+      **Higher priority than before:** now that the stages are ranked, level L3 (rank 4) still bundles
+      Stage 2 with Stage 3, so that rank belongs to the pair rather than to a stage.
+- [ ] **Check the stability of the PC-8 ranking** — the hierarchy flipped from flat to resolvable
+      between two runs a day apart. Before the ranking is carried into the thesis, confirm that
+      Δⱼ = 0.0143 for flat-field and 0.0125 for CLAHE reproduce; a claim that reverses between runs is
+      not yet safe to build §4.3 on.
 - [ ] **Synchronize demo/defense** with the real numbers (`demo/web/src/data.js`,
       `demo/web/generate_charts_*.py`, `defense/figures/`). Academic integrity ahead of the defense.
 - [ ] **Write chapters 4/5/7/0** from the material in `findings/` + `tables/`
@@ -115,8 +133,14 @@ file set are unchanged from the previous revision. Prose that depended on values
 
 ## Provenance
 
-Revision of **2026-08-03**: values carried over from `VALUES.md` (run of 03.08.2026), replacing the
-2026-08-02 revision (run of 02.08.2026); the verdicts are the same, the figures differ. The revision
-before that (2026-07-24…28) was assembled directly from `experiments/outputs/` and contained the
+Revision of **2026-08-03 (run 2)**: values carried over from `VALUES.md`, replacing the first
+2026-08-03 revision — **two verdicts changed** (PC-8 flat → resolvable; H-7 partial → 0/2). That
+revision had in turn replaced the 2026-08-02 one (same verdicts, different figures). The revision
+before those (2026-07-24…28) was assembled directly from `experiments/outputs/` and contained the
 opposite verdicts. The source of truth for metrics remains `experiments/outputs/`; until the new
 run's artifacts appear there, `VALUES.md` is the sole carrier of these numbers.
+
+⚠️ **Three runs in three days have now produced three different sets of figures for the same
+experiments, and the last two disagree on two verdicts.** Until the raw artifacts are published and
+the run-to-run variability is understood, treat every number here as provisional and do not build
+chapter text on the claims that moved (PC-8 ranking, H-7 direction).

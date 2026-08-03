@@ -32,7 +32,7 @@ There are no placeholder files; the sections have not been created yet. They are
 | §4.3 Exp 2 (H-2): ablation + sweeps | §4.3.1 ablation · §4.3.2 CLAHE · §4.3.3 flat-field σ | TAB-4.4, TAB-4.5, FIG-4.9, FIG-4.10 | ✅ **all three parts closed** (the σ sweep has been run): `TAB-4.4`, `TAB-4.5`, `exp2_clahe_sweep`, `exp2_flatfield_sigma_sweep` |
 | §4.4 Exp 3 (H-4): transfer to APTOS | §4.4.1 zero-shot · §4.4.2 baseline vs pipeline | TAB-4.6, FIG-4.11 | ✅ `TAB-4.6`, `per_class_and_confusion`, `findings/exp3` |
 | §4.5 Exp 4 (H-5): Grad-CAM | §4.5.1 protocol · §4.5.2 ALO/IoU · §4.5.3 consistency | TAB-4.7, FIG-4.12–4.14 | 🟡 quantitative part ✅ (`TAB-4.7`, `exp4_classification`); **clinical (KZ) overlays NOT produced — G-3** |
-| §4.6 Exp 5 (H-7): clinical degradation | — | TAB-4.8, FIG-4.15 | ✅ `TAB-4.8`, `findings/exp5`; ⚠️ requires careful wording (partial confirmation) |
+| §4.6 Exp 5 (H-7): clinical degradation | — | TAB-4.8, FIG-4.15 | ✅ `TAB-4.8`, `findings/exp5`; ⚠️ requires careful wording (**not supported as written, 0/2**; the Δ_drop critique is the contribution) |
 | §4.7 Exp 6 (H-6): device shift | — | TAB-4.9, App F | ✅ `TAB-4.9`, `per_class_and_confusion`; ⚠️ per-group confusion matrices are missing (R3) |
 | §4.8 Exp 7: small-data training | — | TAB-4.10, FIG-4.16 | ✅ `TAB-4.10`, `findings/exp7-and-ssl` |
 | **§4.x H-3: domain distance** ⭐ | new block — MMD/KL over 6 domains | new table + figure | ✅ the data exist (`tables/H-3_domain_distance.md`, `hypotheses/H-3.md`); **its place in the chapter structure is undecided** — decide whether it is its own section or part of §4.4 |
@@ -77,12 +77,12 @@ Formulations that must be **replaced** when writing (they rested on the previous
 | "The strict H-1 dominance criterion is not met; the F1 gain is within noise" | EH-3 is met on both backbones, ΔF1 +6.5 pp |
 | "The pipeline degrades calibration; recalibration is needed before deployment" | Calibration **improves** (ECE ~1.7× lower) |
 | "Preprocessing on its own does not improve classification; the exp1 effect is an indivisible composite with the SSL init" | The ablation under a single initialization yields the whole gain (+0.0655); the composite has been decomposed |
-| "The baseline transfers to APTOS better than the pipeline" | The pipeline is better: G 0.8966 vs 0.8569 |
+| "The baseline transfers to APTOS better than the pipeline" | The pipeline is better: G 0.8976 vs 0.8577 |
 | "Attention does not align with lesions; PC-7 REFUTED" | 4/4 types significant, PC-7 STRONG (within the bounds of NC-14) |
 | "3 of 5 camera groups fall below the generalization floor; device-specific threshold recalibration is required" | 5/5 groups are above the floor; the spread shrinks by a factor of 2.6 |
 | "EfficientNet-B3 gains nothing from continual-SSL (asymmetry)" | Both backbones gain comparably |
 | "exp7 is the work's only clean positive" | One of several consistent results; the gain is comparable to EyePACS |
-| "Not a single hypothesis is confirmed" | 6 of 7 are confirmed, H-7 partially |
+| "Not a single hypothesis is confirmed" | 6 of 7 are confirmed; H-7 is not supported as written (0/2), but absolute external performance is significantly higher on both sets |
 
 ## Writing order (recommendation)
 

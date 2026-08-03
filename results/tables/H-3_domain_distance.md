@@ -15,23 +15,23 @@ reduces the distance.
 
 | Target domain X | d(BASE, X) | d(INT, X) | Δd | 95% CI (Δd) | CI excludes 0 |
 |---|---:|---:|---:|---|:---:|
-| APTOS | 0.1886 | 0.1139 | +0.0747 | [+0.0375, +0.0991] | ✓ |
-| IDRiD | 0.2272 | 0.1456 | +0.0816 | [+0.0403, +0.1101] | ✓ |
-| Messidor-2 | 0.1717 | 0.1131 | +0.0586 | [+0.0367, +0.0923] | ✓ |
-| DDR | 0.2070 | 0.1322 | +0.0748 | [+0.0497, +0.1171] | ✓ |
-| ODIR-5K | 0.2474 | 0.1537 | +0.0937 | [+0.0536, +0.1254] | ✓ |
-| RFMiD | 0.2563 | 0.1699 | +0.0864 | [+0.0387, +0.1143] | ✓ |
+| APTOS | 0.1910 | 0.1178 | +0.0732 | [+0.0380, +0.0996] | ✓ |
+| IDRiD | 0.2211 | 0.1395 | +0.0816 | [+0.0530, +0.1228] | ✓ |
+| Messidor-2 | 0.1768 | 0.1068 | +0.0700 | [+0.0475, +0.1031] | ✓ |
+| DDR | 0.2098 | 0.1314 | +0.0784 | [+0.0387, +0.1061] | ✓ |
+| ODIR-5K | 0.2387 | 0.1599 | +0.0788 | [+0.0371, +0.1089] | ✓ |
+| RFMiD | 0.2606 | 0.1675 | +0.0931 | [+0.0489, +0.1245] | ✓ |
 
 ## KL over per-channel histograms (§3.2)
 
 | Target domain X | d_KL(BASE, X) | d_KL(INT, X) | Reduction |
 |---|---:|---:|---:|
-| APTOS | 0.0916 | 0.0611 | −33% |
-| IDRiD | 0.1162 | 0.0753 | −35% |
-| Messidor-2 | 0.0852 | 0.0554 | −35% |
-| DDR | 0.1055 | 0.0656 | −38% |
-| ODIR-5K | 0.1273 | 0.0829 | −35% |
-| RFMiD | 0.1330 | 0.0899 | −32% |
+| APTOS | 0.0894 | 0.0588 | −34% |
+| IDRiD | 0.1171 | 0.0725 | −38% |
+| Messidor-2 | 0.0905 | 0.0575 | −36% |
+| DDR | 0.1067 | 0.0658 | −38% |
+| ODIR-5K | 0.1282 | 0.0817 | −36% |
+| RFMiD | 0.1370 | 0.0899 | −34% |
 
 The Stage 7 normalization uses source-domain statistics (the target domains do not recompute their
 own statistics), so the reduction in distance is achieved by stages 0–6 rather than by fitting the
@@ -42,12 +42,12 @@ normalization to the target set.
 1. **The direction is the same for all six target domains** on both measures, with no exceptions.
 2. **All six 95% CIs on Δd exclude zero** — the effect is statistically stable at the
    representational level.
-3. **The KL reduction lies in a narrow band (−32…−38%)** regardless of how far the domain was to begin
+3. **The KL reduction lies in a narrow band (−34…−38%)** regardless of how far the domain was to begin
    with. This points to a multiplicative character of the normalization: the pipeline compresses the
    photometric spread by a roughly fixed proportion rather than "pulling" distant domains up to
    nearby ones.
 4. **The ranking of the domains is preserved** after preprocessing: RFMiD remains the most distant
-   (0.2563 → 0.1699) and Messidor-2 the closest (0.1717 → 0.1131). That is, the residual difference
+   (0.2606 → 0.1675) and Messidor-2 the closest (0.1768 → 0.1068). That is, the residual difference
    between the sets is substantive in nature (population composition, imaging protocol) and does not
    reduce to illumination and contrast.
 
@@ -57,19 +57,26 @@ The size of the MMD reduction agrees with the size of the transfer gain:
 
 | Domain | Δd (MMD) | Δ wF1 (D − C) on transfer | Source |
 |---|---:|---:|---|
-| ODIR-5K | +0.0937 | +0.0836 | `TAB-4.9_exp6_device.md` |
-| RFMiD | +0.0864 | +0.0898 | `TAB-4.9_exp6_device.md` |
-| IDRiD | +0.0816 | +0.0700 | `TAB-4.8_exp5_degradation.md` |
-| DDR | +0.0748 | +0.0582 | `TAB-4.9_exp6_device.md` |
-| APTOS | +0.0747 | +0.0887 | `TAB-4.6_exp3_transfer.md` |
-| Messidor-2 | +0.0586 | +0.0560 | `TAB-4.8_exp5_degradation.md` |
+| RFMiD | +0.0931 | +0.0987 | `TAB-4.9_exp6_device.md` |
+| IDRiD | +0.0816 | +0.0635 | `TAB-4.8_exp5_degradation.md` |
+| ODIR-5K | +0.0788 | +0.0881 | `TAB-4.9_exp6_device.md` |
+| DDR | +0.0784 | +0.0517 | `TAB-4.9_exp6_device.md` |
+| APTOS | +0.0732 | +0.0889 | `TAB-4.6_exp3_transfer.md` |
+| Messidor-2 | +0.0700 | +0.0526 | `TAB-4.8_exp5_degradation.md` |
 
-The domains for which the pipeline reduces the distance most (ODIR-5K, RFMiD) are the same ones where
-it produces the largest wF1 gain; the smallest reduction (Messidor-2) corresponds to the smallest
-gain. **This is an association over 6 points, not causation:** no formal correlation test was run on
-the available data, and the ordering does not match perfectly (APTOS stands out upward on gain at a
-middling Δd). Carry this into the text as consistency of the mechanism, without quantitative claims
-about the strength of the relationship.
+**The correspondence is weaker than in the previous revision and should be stated cautiously.** The
+one clean match is at the top: RFMiD has both the largest distance reduction and the largest wF1 gain.
+Below that the two orderings diverge — IDRiD is 2nd on Δd but only 4th on gain, DDR is 4th on Δd yet
+has the **smallest** gain of all six, and APTOS is 5th on Δd with the 2nd-largest gain. Rank
+correlation over the six points is weak-to-moderate (Spearman ρ ≈ 0.49).
+
+The earlier formulation — "the smallest reduction (Messidor-2) corresponds to the smallest gain" — is
+**no longer true** and must not be carried into the text: the smallest gain now belongs to DDR, at a
+middling Δd.
+
+**This is an association over 6 points, not causation**, and a loose one. Carry it into the text only
+as qualitative consistency of the mechanism (distance falls everywhere, quality rises everywhere),
+explicitly **without** claiming that the size of the distance reduction predicts the size of the gain.
 
 ## Caveats
 

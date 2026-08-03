@@ -116,4 +116,5 @@ Three things remain, and the first is blocking:
 
 `thesis/ASSET_INVENTORY.md` predates the runs and marks exp1–7 as ⏳/❌ NOT RUN. In fact all of them
 are complete. The inventory should be updated (RES-EXP1 ✅, TAB-4.2…4.10 ✅ with real numbers,
-hypothesis verdicts — 6 confirmed, H-7 partial, the H-3 block added) — a separate step after NEW-1.
+hypothesis verdicts — 6 confirmed, H-7 not supported as written (0/2), the H-3 block added) — a
+separate step after NEW-1.

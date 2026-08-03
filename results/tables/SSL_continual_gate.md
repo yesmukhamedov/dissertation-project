@@ -11,21 +11,22 @@ Reference: random κ ≈ 0.00; ImageNet κ ≈ 0.32–0.45.
 
 | Method (from scratch, 4ch) | epochs | κ | passed |
 |---------------------------|------:|--:|--------|
-| BYOL (primary per governance) | 50 | 0.0023 | ✗ (collapse) |
-| MoCo-v2 | 50 | 0.1113 | ✗ |
-| MoCo-v2 | 100 | 0.1092 | ✗ |
-| DINO | 50 | 0.0787 | ✗ |
-| DINO | 100 | 0.0632 | ✗ |
-| **SIP** | 100 | **0.6530** | **✓** |
+| BYOL (primary per governance) | 50 | 0.0018 | ✗ (collapse) |
+| MoCo-v2 | 50 | 0.1125 | ✗ |
+| MoCo-v2 | 100 | 0.1098 | ✗ |
+| DINO | 50 | 0.0763 | ✗ |
+| DINO | 100 | 0.0602 | ✗ |
+| **SIP** | 100 | **0.6616** | **✓** |
 
 **Change relative to the previous run.** Previously from-scratch SSL failed the gate entirely, and
 the only remaining option was the continual-SSL fallback. Now **SIP (100 epochs) passes the gate**
-(κ = 0.6530) — i.e. from-scratch in-domain initialization is in principle achievable within the
+(κ = 0.6616) — i.e. from-scratch in-domain initialization is in principle achievable within the
 project's budget. The classical contrastive methods (BYOL/MoCo-v2/DINO) still fail, and increasing
-from 50 to 100 epochs **does not save them** (MoCo 0.111 → 0.109, DINO 0.079 → 0.063 — a slight
+from 50 to 100 epochs **does not save them** (MoCo 0.113 → 0.110, DINO 0.076 → 0.060 — a slight
 deterioration). The negative result for BYOL/MoCo/DINO stands and remains substantive.
 
-> SIP κ = 0.6530 practically coincides with continual-SSL on ResNet-50 (0.6591). The initialization
+> SIP κ = 0.6616 practically coincides with continual-SSL on ResNet-50 (0.6591) — in this run it is
+> marginally **above** it, though the gap (0.0025) is far inside probe noise. The initialization
 > actually used in Config B/D is **continual-SSL**; SIP remains a constructed but unselected
 > alternative.
 
@@ -37,26 +38,26 @@ Patient-level holdout, n_test = 8 036. Frozen backbone + linear head.
 
 | Init | wF1 | ROC-AUC | κ | kNN | feat_std |
 |------|----:|--------:|--:|----:|---------:|
-| random | 0.6212 | 0.5030 | 0.0043 | 0.3131 | 0.0081 |
-| ImageNet | 0.6675 | 0.7388 | 0.3249 | 0.5556 | 0.0418 |
-| **Continual-SSL** | **0.7419** | **0.7725** | **0.6591** | **0.6869** | **0.0566** |
-| Δ (continual − ImageNet) | +0.0744 | +0.0337 | **+0.3342** | +0.1313 | +0.0148 |
+| random | 0.6250 | 0.5096 | 0.0040 | 0.3097 | 0.0082 |
+| ImageNet | 0.6602 | 0.7452 | 0.3381 | 0.5585 | 0.0415 |
+| **Continual-SSL** | **0.7421** | **0.7688** | **0.6552** | **0.6918** | **0.0572** |
+| Δ (continual − ImageNet) | +0.0819 | +0.0236 | **+0.3171** | +0.1333 | +0.0157 |
 
 ### EfficientNet-B3 (Config D)
 
 | Init | wF1 | ROC-AUC | κ | kNN | feat_std |
 |------|----:|--------:|--:|----:|---------:|
-| random | 0.6281 | 0.5142 | 0.0045 | 0.3083 | 0.0078 |
-| ImageNet | 0.6804 | 0.7396 | 0.4479 | 0.5885 | 0.0394 |
-| **Continual-SSL** | **0.7554** | **0.7733** | **0.6827** | **0.7013** | **0.0569** |
-| Δ (continual − ImageNet) | +0.0750 | +0.0337 | **+0.2348** | +0.1128 | +0.0175 |
+| random | 0.6245 | 0.5123 | 0.0047 | 0.3064 | 0.0072 |
+| ImageNet | 0.6820 | 0.7461 | 0.4450 | 0.5813 | 0.0393 |
+| **Continual-SSL** | **0.7562** | **0.7752** | **0.6807** | **0.7029** | **0.0571** |
+| Δ (continual − ImageNet) | +0.0742 | +0.0291 | **+0.2357** | +0.1216 | +0.0178 |
 
 ### Second run (§A1.3)
 
 | Backbone | ImageNet κ | Continual κ | Δκ |
 |--------|-----------:|------------:|---:|
-| ResNet-50 | 0.3549 | 0.6440 | **+0.2891** |
-| EfficientNet-B3 | 0.4388 | 0.6607 | **+0.2219** |
+| ResNet-50 | 0.3526 | 0.6409 | **+0.2883** |
+| EfficientNet-B3 | 0.4312 | 0.6648 | **+0.2336** |
 
 ## Gate verdict (§A1.4)
 
@@ -67,15 +68,15 @@ Patient-level holdout, n_test = 8 036. Frozen backbone + linear head.
 
 ## Interpretation
 
-1. **Continual-SSL delivers a large in-domain gain on both backbones** — Δκ +0.334 / +0.235 in the
-   first run and +0.289 / +0.222 in the second. The direction and order of magnitude reproduce across
+1. **Continual-SSL delivers a large in-domain gain on both backbones** — Δκ +0.317 / +0.236 in the
+   first run and +0.288 / +0.234 in the second. The direction and order of magnitude reproduce across
    runs.
 2. **A change of picture for EfficientNet-B3.** In the previous run continual-SSL gave EfficientNet-B3
    no gain at all (κ 0.435 against ImageNet's 0.445, Δ ≈ 0), and this was reported as an honest
    asymmetry — "retina-aware initialization only for ResNet-50". Per the current data there is no
-   asymmetry: **both backbones receive a comparable gain** (+0.235 and +0.334). Formulations that
+   asymmetry: **both backbones receive a comparable gain** (+0.236 and +0.317). Formulations that
    relied on the previous asymmetry must be replaced.
-3. **There is no collapse:** feat_std rises from 0.008 (random) to 0.056–0.057 (continual), and kNN
+3. **There is no collapse:** feat_std rises from 0.007–0.008 (random) to 0.057 (continual), and kNN
    from 0.31 to 0.69–0.70. The features are not degenerate.
 4. **CFC-2.8 — the status has changed.** The "preprocessing × initialization" confound in Config B/D
    formally remains, but it is now **decomposable**: the cumulative ablation

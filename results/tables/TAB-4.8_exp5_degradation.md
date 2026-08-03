@@ -8,43 +8,53 @@ In-domain: C = 0.7538, D = 0.8193. Source: the **2026-08-03** run (`VALUES.md` �
 
 | Set | n | wF1 (C) | wF1 (D) | Δ (D − C) | 95% CI (Δ) | p (1-sided) |
 |-------|--:|--------:|--------:|----------:|------------|------------:|
-| IDRiD | 413 | 0.5913 | **0.6613** | +0.0700 | [+0.0526, +0.1000] | **0.0021** |
-| Messidor-2 | 1 744 | 0.6280 | **0.6840** | +0.0560 | [+0.0355, +0.0807] | **0.0138** |
+| IDRiD | 413 | 0.5957 | **0.6592** | +0.0635 | [+0.0445, +0.0919] | **0.0021** |
+| Messidor-2 | 1 744 | 0.6283 | **0.6809** | +0.0526 | [+0.0264, +0.0716] | **0.0138** |
 
 ## Size of the degradation relative to in-domain (§7.3)
 
 | Set | Δ_drop (C) | Δ_drop (D) | Δ_drop(D) − Δ_drop(C) | Δ_full < Δ_base? |
 |-------|-----------:|-----------:|----------------------:|:----------------:|
-| IDRiD | 0.1625 | **0.1580** | −0.0045 | ✓ (negligibly) |
-| Messidor-2 | **0.1258** | 0.1353 | +0.0095 | ✗ |
+| IDRiD | **0.1581** | 0.1601 | +0.0020 | ✗ |
+| Messidor-2 | **0.1255** | 0.1384 | +0.0129 | ✗ |
 
-## Verdict: `h7_supported` — PARTIAL (1 of 2 sets), with an unambiguous win in absolute terms
+## Verdict: `h7_supported` — NOT SUPPORTED as written (0 of 2 sets); unambiguous win in absolute terms
+
+> ⚠️ **Change from the previous revision.** H-7 was reported there as **partial (1 of 2)** — IDRiD
+> passed by a hair (−0.0045). In the current run IDRiD flips sign too (+0.0020), so the as-written
+> criterion now fails on **both** sets. The verdict must be reported as **0/2**, not 1/2.
 
 Two formulations must be strictly separated here, because they give **different** answers:
 
-**(a) The hypothesis as written — "Δ_full < Δ_base" — is confirmed only on IDRiD, and by a negligible
-margin.** On IDRiD the pipeline loses 0.1580 against baseline's 0.1625 (a difference of −0.0045 — an
-order of magnitude smaller than the width of the CIs on the absolute metrics). On Messidor-2 the sign
-is **reversed**: the pipeline loses MORE (0.1353 against 0.1258). By the strict criterion: **1 of 2**,
-and on IDRiD the difference is within noise. It is **not permissible** to claim that "the pipeline is
-more resistant to clinical degradation".
+**(a) The hypothesis as written — "Δ_full < Δ_base" — fails on both sets.** IDRiD: the pipeline loses
+0.1601 against baseline's 0.1581 (+0.0020). Messidor-2: 0.1384 against 0.1255 (+0.0129). Neither
+difference is large — the IDRiD gap is far inside the width of the CIs on the absolute metrics — but
+both point the wrong way. It is **not permissible** to claim in any form that "the pipeline is more
+resistant to clinical degradation".
 
 **(b) The practically meaningful claim — "the pipeline performs better on external clinical sets" —
-is confirmed on both sets and statistically.** wF1 is higher by +0.0700 (p = 0.0021) and +0.0560
+is confirmed on both sets and statistically.** wF1 is higher by +0.0635 (p = 0.0021) and +0.0526
 (p = 0.0138), and both CIs exclude zero.
 
-The reason for the discrepancy is formal: Δ_drop is measured from each arm's **own** in-domain level,
-and the pipeline's is 6.55 pp higher. An arm with a higher starting point is bound to lose more in
-absolute units to arrive at the same external level. Relative degradation confirms this: on
-Messidor-2 C loses 16.7% of its in-domain level and D loses 16.5%, and on IDRiD 21.6% against 19.3%,
-i.e. **proportionally the arms degrade the same or slightly in the pipeline's favour**, and the
-pipeline simply starts higher and finishes higher.
+The reason for the divergence is formal, and the same as before: Δ_drop is measured from each arm's
+**own** in-domain level, and the pipeline's is 6.55 pp higher. An arm with a higher starting point
+must lose more in absolute units to arrive at the same external level — **Δ_drop structurally
+penalizes the stronger arm.** Relative degradation shows how little is actually at stake:
 
-**Formulation for the text:** "the integrated configuration does not reduce the *absolute* size of
-the drop on transfer to external clinical sets, but delivers statistically significantly higher
-absolute performance on both (Δ wF1 +0.070 and +0.056)". Hypothesis H-7 in its original wording
-should be reported as **partially confirmed**, with an explicit note that the Δ_drop metric
-systematically penalizes the stronger arm.
+| Set | relative drop (C) | relative drop (D) | favours |
+|---|---:|---:|---|
+| IDRiD | 21.0% | **19.5%** | pipeline |
+| Messidor-2 | **16.6%** | 16.9% | baseline (marginally) |
+
+In proportional terms the two arms degrade almost identically, with IDRiD favouring the pipeline and
+Messidor-2 the baseline by a fraction of a percentage point. There is no resistance effect in either
+direction — what there is, is a uniformly higher level.
+
+**Formulation for the text:** "the integrated configuration does not reduce the size of the drop on
+transfer to external clinical sets — on the Δ_drop criterion it is marginally worse on both sets —
+but delivers statistically significantly higher absolute performance on both (Δ wF1 +0.064 and
++0.053)". Hypothesis H-7 in its original wording should be reported as **not supported**, with the
+Δ_drop bias analysis carried into §5.4 as a contribution in its own right.
 
 ## Caveats
 
@@ -54,6 +64,8 @@ systematically penalizes the stronger arm.
   but it is not separately recorded in the run's source data.
 - The same two sets appear in exp6 as camera groups (`TAB-4.9_exp6_device.md`) — the numbers there are the same.
 
-Domain distances for these sets — `H-3_domain_distance.md` (IDRiD Δd +0.0816, Messidor-2 +0.0586:
-the smallest reduction in distance falls on the set with the smallest wF1 gain).
+Domain distances for these sets — `H-3_domain_distance.md` (IDRiD Δd +0.0816, Messidor-2 +0.0700).
+Note that the ordering no longer lines up: IDRiD has the larger distance reduction *and* the larger
+wF1 gain here, but across all six domains the two quantities do not track each other — see the
+caveat in that table.
 Hypothesis card — `hypotheses/H-7.md`.

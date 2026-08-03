@@ -10,12 +10,12 @@ binarization threshold. Source: the **2026-08-03** run.
 
 **1. H-5 is confirmed on both parts of the criterion.** ALO is higher for the preprocessed model on
 **4 of 4** lesion types (≥3/4 required), and on **all four** the difference is statistically
-significant: MA p = 0.0029, HE p = 0.0017, EX p = 0.0007, SE p = 0.0147; all 95% CIs exclude zero.
-The secondary metric IoU gives the same result on all four types (p = 0.0010…0.0195).
+significant: MA p = 0.0033, HE p = 0.0016, EX p = 0.0007, SE p = 0.0148; all 95% CIs exclude zero.
+The secondary metric IoU gives the same result on all four types (p = 0.0011…0.0189).
 `h5_alo_supported = true`.
 
-**2. The effect size is substantive, not marginal.** ALO rises by 36–50% relative to baseline (e.g.
-hard exudates 0.3528 → 0.4784) and IoU by 48–55%. The absolute ALO levels (0.22–0.48) lie in the
+**2. The effect size is substantive, not marginal.** ALO rises by 37–49% relative to baseline (e.g.
+hard exudates 0.3502 → 0.4790) and IoU by 46–59%. The absolute ALO levels (0.21–0.48) lie in the
 working range of the metric.
 
 **3. The floor effect has been eliminated.** ALO = 0 in both arms is observed for only **6 of 54**
@@ -50,7 +50,7 @@ with respect to the threshold. The pipeline's advantage therefore runs **both** 
 
 Grad-CAM activation **is not** clinical localization of pathology. The correct formulation is: "the
 attention of the model with preprocessing is significantly better aligned with the annotated lesions
-(4/4 types, p ≤ 0.0147; the same for IoU)", and **not** "the model finds the lesions" or "the model
+(4/4 types, p ≤ 0.0148; the same for IoU)", and **not** "the model finds the lesions" or "the model
 is clinically interpretable". Confirmation of H-5 does not weaken NC-14 — it measures alignment, not
 diagnostic localization. This distinction must be present in the text of §4.5 and §5.1.
 

@@ -59,7 +59,8 @@ The demo understates both arms and underestimates the size of the effect by roug
 - **`defense/figures/figures_mine/fig8_training_curves.png`, `fig9_confusion_matrix.png`** — copied
   from the demo PNGs, i.e. based on the demo numbers.
 - **`demo/web/CLAUDE.md`** declares "HYPOTHESES — 6 confirmed hypotheses". Per the 2026-08-03 run
-  there really are 6 confirmed (H-1, H-2, H-3, H-4, H-5, H-6) — but **H-7 is partial**, and the
+  there really are 6 confirmed (H-1, H-2, H-3, H-4, H-5, H-6) — but **H-7 is not supported as written
+  (0/2)**, and the
   demo's list does not include H-3 and rests on incorrect values. The wording still has to be
   replaced during the rebuild.
 

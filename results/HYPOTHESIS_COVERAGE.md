@@ -69,7 +69,8 @@ EyePACS", per-class F1 for DR1 and DR2 with ≥1 local optimum; (b) a flat-field
 **Available:** (a) a 7 × 5 two-dimensional grid on EyePACS plus separate F1(DR1) and F1(DR2) grids,
 interior optima θ\* = (2.5, 0.03), θ̂(DR1) = (2.5, 0.03), θ̂(DR2) = (2.0, 0.03), held-out +0.0599;
 (b) a 6-point σ sweep with a unimodal maximum at σ\* = 0.07, held-out +0.0574; (c) an 8-level
-cumulative ablation on EyePACS 100% × 5 folds, all 7 transitions significant.
+cumulative ablation on EyePACS 100% × 5 folds, all 7 transitions significant **and rankable**
+(Δⱼ 0.0065–0.0143, spread ≈3·σ_fold; flat-field and CLAHE lead with 41% of the gain between them).
 
 **Closed by the run: G-5, G-6, G-7.** All three requirements in the letter of the hypothesis are met.
 
@@ -86,7 +87,8 @@ cumulative ablation on EyePACS 100% × 5 folds, all 7 transitions significant.
 **Requires:** a reduction in the distance between the source and target domains.
 
 **Available:** MMD over penultimate-layer features and KL over per-channel histograms for 6 domains;
-Δd > 0 in all 6 cases, all 95% CIs exclude zero; KL −32…−38%. `h3_supported = true`.
+Δd > 0 in all 6 cases, all 95% CIs exclude zero; KL −34…−38%. `h3_supported = true`.
+⚠️ The magnitude of the reduction does not track the transfer gain across domains (ρ ≈ 0.49).
 
 **Open — NEW-2.** The MMD kernel, the per-domain sample size and the number of bootstrap iterations
 are not recorded in the run data. For §4/§5 they must be extracted from the experiment configuration.
@@ -97,7 +99,7 @@ stated explicitly.
 
 **Requires:** G = F1_APTOS / F1_EyePACS ≥ 0.85 for models with the full pipeline.
 
-**Available:** G_D = 0.8966 ≥ 0.85 ✓, G_C = 0.8569; Δ wF1 +0.0887 (CI excludes 0); per-class,
+**Available:** G_D = 0.8976 ≥ 0.85 ✓, G_C = 0.8577; Δ wF1 +0.0889 (CI excludes 0); per-class,
 confusion matrices, referable metrics. `h4_supported = true`. **G-4 closed.**
 
 **Caveat (not cheaply resolvable):** exp3/5/6 were computed from **fold0** checkpoints, so there is
@@ -108,7 +110,7 @@ no between-fold variance.
 **Requires:** ALO as the **primary** metric, IoU as secondary; ALO_preproc **significantly** higher;
 in addition — **qualitative Grad-CAM overlays on the Kazakhstani clinical dataset**.
 
-**Available:** ALO/IoU over all 54 IDRiD images with masks; **4/4 types significant** (p 0.0007–0.0147),
+**Available:** ALO/IoU over all 54 IDRiD images with masks; **4/4 types significant** (p 0.0007–0.0148),
 the same for IoU; a threshold sweep τ = 0.2…0.7; a small floor effect (f₀ = 6/54); arm classification.
 `h5_alo_supported = true`. **G-1, G-2 closed.**
 
@@ -121,17 +123,20 @@ the same for IoU; a threshold sweep τ = 0.2…0.7; a small floor effect (f₀ =
 ## H-6 — Device Robustness (exp6) — no gaps
 
 5 camera groups, between-group variance, g_ratio; all 5 groups above the floor for both arms; std wF1
-shrinks by a factor of 2.0 (CI excludes 0). `h6_supported = true`. Caveat: fold0 checkpoints.
+shrinks by a factor of 2.4 (CI excludes 0). `h6_supported = true`. Caveat: fold0 checkpoints.
 Protocol change: `mixed_rfmid` is now evaluated on the 5-class scale (previously binary only).
+Note: g_ratio falls in 2 of 5 groups — a denominator artifact, absolute wF1 rises in all five.
 
 ## H-7 — Clinical Degradation Resistance (exp5)
 
 **Available:** Δ for IDRiD and Messidor-2, 95% CIs, p, Δ_drop for both arms. **G-12 closed.**
 
-**The result is partial (1/2), and this is not a data gap but a property of the criterion.** Δ_drop
-is measured from each arm's own in-domain level and systematically penalizes the stronger arm. An
-additional run will not change this. *What can be done:* record relative degradation
-(Δ_drop / in-domain) as a supplementary quantity — that is a computation over existing numbers, not a run.
+**The result is 0/2 — not supported as written — and this is not a data gap but a property of the
+criterion.** Δ_drop is measured from each arm's own in-domain level and structurally penalizes the
+stronger arm. An additional run will not change this; indeed the criterion has now failed on both
+sets in the current run after passing on one in the previous. *What can be done:* record relative
+degradation (Δ_drop / in-domain) as a supplementary quantity — a computation over existing numbers,
+not a run.
 
 ---
 

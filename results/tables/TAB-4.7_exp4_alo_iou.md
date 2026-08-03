@@ -10,19 +10,19 @@ Source: the **2026-08-03** run (`VALUES.md` §5).
 
 | Lesion type | n | ALO (C) | ALO (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-sided) |
 |---|--:|---:|---:|---:|---|---:|
-| Microaneurysms (MA) | 54 | 0.2191 | **0.3208** | +0.1017 | [+0.0329, +0.1585] | **0.0029** |
-| Haemorrhages (HE) | 53 | 0.2890 | **0.4022** | +0.1132 | [+0.0446, +0.1700] | **0.0017** |
-| Hard exudates (EX) | 54 | 0.3528 | **0.4784** | +0.1256 | [+0.0729, +0.2001] | **0.0007** |
-| Soft exudates (SE) | 26 | 0.2249 | **0.3381** | +0.1132 | [+0.0276, +0.1844] | **0.0147** |
+| Microaneurysms (MA) | 54 | 0.2126 | **0.3160** | +0.1034 | [+0.0331, +0.1587] | **0.0033** |
+| Haemorrhages (HE) | 53 | 0.2794 | **0.4011** | +0.1217 | [+0.0485, +0.1739] | **0.0016** |
+| Hard exudates (EX) | 54 | 0.3502 | **0.4790** | +0.1288 | [+0.0735, +0.2007] | **0.0007** |
+| Soft exudates (SE) | 26 | 0.2318 | **0.3310** | +0.0992 | [+0.0401, +0.1969] | **0.0148** |
 
 ## IoU (secondary)
 
 | Lesion type | n | IoU (C) | IoU (D) | Δ | 95% CI (Δ) | p (Wilcoxon, 1-sided) |
 |---|--:|---:|---:|---:|---|---:|
-| Microaneurysms | 54 | 0.1097 | **0.1705** | +0.0608 | [+0.0190, +0.0928] | **0.0043** |
-| Haemorrhages | 53 | 0.1536 | **0.2335** | +0.0799 | [+0.0297, +0.1181] | **0.0032** |
-| Hard exudates | 54 | 0.1932 | **0.2850** | +0.0918 | [+0.0514, +0.1452] | **0.0010** |
-| Soft exudates | 26 | 0.1143 | **0.1777** | +0.0634 | [+0.0287, +0.1219] | **0.0195** |
+| Microaneurysms | 54 | 0.1065 | **0.1694** | +0.0629 | [+0.0304, +0.1042] | **0.0053** |
+| Haemorrhages | 53 | 0.1516 | **0.2229** | +0.0713 | [+0.0166, +0.1050] | **0.0029** |
+| Hard exudates | 54 | 0.1944 | **0.2830** | +0.0886 | [+0.0318, +0.1256] | **0.0011** |
+| Soft exudates | 26 | 0.1183 | **0.1775** | +0.0592 | [+0.0223, +0.1155] | **0.0189** |
 
 ## Direction of the effect on individual images (§5.3)
 
@@ -63,13 +63,13 @@ The direction holds at all four thresholds; significance is lost for only one ty
 The wording of H-5 requires ALO for the preprocessed model to be **significantly** higher. This is met:
 
 - the directional criterion — **4/4** lesion types (≥3/4 required);
-- the statistical one — **4/4** types significant (p from 0.0007 to 0.0147), all 95% CIs excluding zero;
-- the secondary metric IoU gives the same result on all four types (p 0.0010–0.0195);
+- the statistical one — **4/4** types significant (p from 0.0007 to 0.0148), all 95% CIs excluding zero;
+- the secondary metric IoU gives the same result on all four types (p 0.0011–0.0189);
 - the result is robust to the binarization threshold (4/4 directionally at τ = 0.2…0.7).
 
-Relative effect size: ALO rises by 36–50% (e.g. EX 0.3528 → 0.4784) and IoU by 48–55%. The largest
-absolute gain is for hard exudates (+0.1256); the weakest significance is for soft exudates
-(p = 0.0147), where the sample is three times smaller (n = 26).
+Relative effect size: ALO rises by 37–49% (e.g. EX 0.3502 → 0.4790) and IoU by 46–59%. The largest
+absolute gain is for hard exudates (+0.1288); the weakest significance is for soft exudates
+(p = 0.0148), where the sample is three times smaller (n = 26).
 
 ## Mandatory caveats
 

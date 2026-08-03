@@ -14,16 +14,30 @@ with separate per-class F1 grids for DR1 and DR2. (C) A **flat-field σ sweep** 
 
 **1. Every stage of the pipeline makes a significant positive contribution.** wF1 rises monotonically
 from L0 = 0.7538 to L7 = 0.8193 (+0.0655), and for all seven transitions |Δⱼ| exceeds 2·σ_fold
-(0.0090–0.0100 against 0.0052–0.0060). **Monotonicity holds within each individual fold** — in all
+(0.0065–0.0143 against 0.0042–0.0060). **Monotonicity holds within each individual fold** — in all
 five, the sequence L0 < L1 < … < L7 is observed without a single inversion. PC-8 is established in
 the part "the stage contributions are identifiable".
 
-**2. But the contribution hierarchy is flat — the stages cannot be ranked.** The spread of Δⱼ is
-0.0010, which is smaller than σ_fold (≈0.0028). No stage dominates; the contribution is distributed
-almost evenly and adds up additively. This is a substantive result in itself: the pipeline works as
-an **ensemble of normalizations of comparable strength**, not as "one useful stage plus scaffolding".
-For the thesis this is stronger than an ordinary hierarchy — any stage may be removed, and each one
-costs roughly 1 pp of wF1. Formulations of the form "the leading stage is …" are **incorrect**.
+**2. And the hierarchy is resolvable — the photometric stages lead it.** ⚠️ **This reverses the
+previous revision**, which had Δⱼ = 0.0090–0.0100 (spread 0.0010 < σ_fold) and reported the hierarchy
+as flat and the stages as unrankable. Here the spread is **0.0078 ≈ 3·σ_fold**:
+
+| Rank | Stage | Δⱼ | share of +0.0655 |
+|---|---|---:|---:|
+| 1 | Stage 4 — flat-field | **0.0143** | 22% |
+| 2 | Stage 5 — CLAHE | **0.0125** | 19% |
+| 3 | Stage 6 — augmentation | 0.0101 | 15% |
+| 4 | Stages 2–3 — FOV crop + mask | 0.0082 | 13% |
+| 5 | Stage 0 — canonical flip | 0.0071 | 11% |
+| 6 | Stage 1 — OD-fovea rotation | 0.0068 | 10% |
+| 7 | Stage 7 — normalize → tensor | 0.0065 | 10% |
+
+The **photometric pair (flat-field + CLAHE) carries 41% of the gain** — as much as the four
+geometric/normalization stages combined. This is consistent with PC-2 (both photometric parameters
+have sharp interior optima) and with H-3 (domain distance falls mainly through illumination and
+contrast). No stage is redundant: the weakest still clears its own 2·σ_fold threshold. What the data
+support is the **grouping** — photometric clearly above the rest — not a strict 1-to-7 order:
+adjacent ranks (0.0068 vs 0.0065) sit within noise.
 
 **3. The main consequence: the CFC-2.8 confound has been decomposed.** The endpoints of the ablation
 reproduce exp1 exactly — L0 = 0.7538 = Config C, L7 = 0.8193 = Config D — under **a single
@@ -45,23 +59,29 @@ comparable to the full pipeline effect — i.e. the parameter requires tuning ra
 choice. Held-out: 0.7513 → 0.8087 (Δ +0.0574, CI [+0.0428, +0.0806]). σ\* coincides with the value in
 the Stage 4 specification — the sweep confirms the adopted setting.
 
-**6. "Image quality ≠ classification quality" — the thesis holds, but in its weak form.**
-The full pipeline improves both IQ (CNR 20.43 → 24.02, Entropy 5.502 → 5.901) and classification. But
-there is no **level-by-level** correspondence: the CNR maximum falls at L4 (flat-field, 28.60),
-whereas wF1 keeps rising through L7; the geometric levels L1–L3 deliver +2.85 pp wF1 with CNR/Entropy
-**unchanged**; level L6 (augmentation) delivers +0.95 pp with the IQ metrics completely unchanged.
-**Within a single stage**, however (the σ sweep), CNR and wF1 move together perfectly — both peak at
-σ = 0.07. The correct formulation: the IQ metrics capture the photometric part of the mechanism but
-do not exhaust it, and they are insufficient as a predictor of the classification gain.
+**6. "Image quality ≠ classification quality" — the thesis holds, in a sharpened form.**
+The full pipeline improves both IQ (CNR 20.43 → 24.02, Entropy 5.502 → 5.901) and classification, and
+the two now line up better than before: **the only two levels that move the IQ metrics are the two
+top-ranked contributors** — L4 (flat-field) jumps CNR 20.38 → 28.60 and ranks 1st (Δⱼ = 0.0143);
+L5 (CLAHE) jumps Entropy 5.596 → 5.884 and ranks 2nd (0.0125). Where the IQ metrics see something,
+they see the largest effects. They remain **insufficient** all the same: the geometric levels L1–L3
+deliver +2.21 pp wF1 with CNR/Entropy **unchanged**, and L6 (augmentation) delivers +1.01 pp with all
+three metrics unchanged — 49% of the total gain, invisible to IQ; and the CNR maximum still sits at
+L4 while wF1 keeps rising through L7. **Within a single stage** (the σ sweep) CNR and wF1 move
+together perfectly — both peak at σ = 0.07. The correct formulation: the IQ metrics track the
+photometric part of the mechanism — the largest single part — but do not exhaust it, and they are
+insufficient as a predictor of the classification gain.
 
 ## The main substantive conclusion (for §4.3 and §5.4)
 
 The ablation on the full corpus at fixed initialization shows that **preprocessing on its own
-delivers the entire gain observed in exp1** (+6.55 pp wF1), distributed evenly across the eight
-stages. Together with the sweeps (two interior optima confirmed on held-out data) this means: the
-pipeline is not a set of just-in-case heuristics but a parameterized model component, each part of
-which measurably contributes to the result and requires tuning. This is direct empirical support for
-the central thesis *model = preprocessing + CNN*.
+delivers the entire gain observed in exp1** (+6.55 pp wF1), spread across all eight stages with
+**illumination and contrast normalization contributing the largest share (41%)**. Together with the
+sweeps (two interior optima confirmed on held-out data, both on those same photometric parameters)
+this means: the pipeline is not a set of just-in-case heuristics but a parameterized model component,
+each part of which measurably contributes to the result and requires tuning — and its dominant part
+is exactly the part that is parameterized and tuned. This is direct empirical support for the central
+thesis *model = preprocessing + CNN*.
 
 ## Caveats (mandatory in the text)
 
@@ -69,7 +89,10 @@ the central thesis *model = preprocessing + CNN*.
   stage **given that the preceding ones are already applied**; interactions between stages are not
   measured by this design.
 - **Stage 3 (FOV mask) is not isolated**: level L3 adds Stage 2 and Stage 3 jointly (disabling the
-  mask requires a 3-channel model variant). This is the remainder of gap G-8.
+  mask requires a 3-channel model variant). This is the remainder of gap G-8, and it now carries more
+  weight: rank 4 in the hierarchy belongs to the *pair*, not to either stage separately.
+- **The ranking rests on the 2·σ_fold heuristic**, not on a formal paired test. Adjacent ranks are
+  within noise; report the grouping (photometric ≫ the rest), not the full permutation.
 - The sweep grids were obtained on train folds, one evaluation per point, without std.
 - The held-out F1(DR1) at θ\* (0.2091) is substantially below the grid value (0.4693); the
   discrepancy is not explained by the available data — **use the held-out value in the text**.

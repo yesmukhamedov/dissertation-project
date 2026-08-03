@@ -72,10 +72,10 @@
 ## PHASE 4 — synchronize the consumers
 
 - [ ] **S1.** Update `thesis/ASSET_INVENTORY.md` to the real statuses (all exp ✅; 6 hypotheses
-      confirmed, H-7 partial; the H-3 block added).
+      confirmed, **H-7 not supported as written (0/2)**; the H-3 block added).
 - [ ] **S2.** Rebuild `demo/web/src/data.js` from the real numbers; remove the invented `IQ` (VVI)
       and the incorrect `COMPUTE` (25.6M/12.2M → 23.52M/10.70M); `HYPOTHESES` — real verdicts
-      including H-3 and the partial status of H-7. Rebuild `demo/web/generate_charts_*.py` from `outputs/`.
+      including H-3 and the **0/2 status of H-7**. Rebuild `demo/web/generate_charts_*.py` from `outputs/`.
 - [ ] **S3.** Update the defense slides `defense/presentation/slides/33–43_*` and the narrative
       scripts to the real values.
 
@@ -101,5 +101,8 @@
 - The list of formulations that need to be replaced relative to the previous revision is in
   `CHAPTER_STATUS.md`, table "What changed in the content".
 - Confirmation of the hypotheses **does not repeal** `INVARIANTS.md`: NC-14 is in force for H-5; the
-  H-4/H-6 thresholds are met by both arms; H-7 is partial. The list of limitations is in
-  `findings/summary-and-dominance.md`.
+  H-4/H-6 thresholds are met by both arms; **H-7 is not supported as written (0/2)**. The list of
+  limitations is in `findings/summary-and-dominance.md`.
+- ⚠️ **Two verdicts flipped between the two 2026-08-03 runs** (PC-8 flat → resolvable; H-7 1/2 → 0/2).
+  Do not write §4.3 around the stage ranking, or §4.6 around the H-7 direction, until the raw
+  artifacts are published and the run-to-run variability is understood (NEW-1).

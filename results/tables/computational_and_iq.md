@@ -51,13 +51,15 @@ Summary of findings:
 |---|---|
 | Flat-field is the only stage that noticeably raises CNR (20.38 → 28.60) | `TAB-4.5` |
 | CLAHE lowers CNR (28.60 → 24.15) but produces peak entropy (5.884) | `TAB-4.5` |
-| Geometric stages 0–3 leave CNR/Entropy unchanged yet deliver +2.85 pp wF1 | `TAB-4.5` |
+| Geometric stages 0–3 leave CNR/Entropy unchanged yet deliver +2.21 pp wF1 | `TAB-4.5` |
+| The two stages that DO move the IQ metrics (flat-field, CLAHE) are the two largest contributors — 41% of the gain | `TAB-4.4` + `TAB-4.5` |
 | Within the flat-field stage, CNR and wF1 move together (both peak at σ = 0.07) | `exp2_flatfield_sigma_sweep` |
-| Across stages there is no IQ ↔ wF1 correspondence | `TAB-4.5` |
+| Across stages there is no level-by-level IQ ↔ wF1 correspondence (CNR peaks at L4, wF1 rises to L7) | `TAB-4.5` |
 
-**Final formulation:** the IQ metrics capture the photometric part of the pipeline's mechanism but do
-not exhaust it — the gain from geometric canonicalization and augmentation is invisible to them. As
-predictors of the classification gain, CNR/Entropy/SSIM are insufficient.
+**Final formulation:** the IQ metrics track the photometric part of the pipeline's mechanism — which
+the ablation now shows to be its **largest** single part (41% of the gain) — but do not exhaust it:
+the geometric and augmentation stages contribute roughly as much again (49%) and are invisible to
+CNR/Entropy/SSIM. As predictors of the classification gain, CNR/Entropy/SSIM remain insufficient.
 
 **Residual gap:** **VVI is not implemented** in `src/utils/image_quality.py`. The `VVI` value in the
 demo `data.js` has no source in the code — do not use it.
