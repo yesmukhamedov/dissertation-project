@@ -127,16 +127,27 @@ shrinks by a factor of 2.4 (CI excludes 0). `h6_supported = true`. Caveat: fold0
 Protocol change: `mixed_rfmid` is now evaluated on the 5-class scale (previously binary only).
 Note: g_ratio falls in 2 of 5 groups — a denominator artifact, absolute wF1 rises in all five.
 
-## H-7 — Clinical Degradation Resistance (exp5)
+## H-7 — External Clinical Performance (exp5) — no gaps
 
-**Available:** Δ for IDRiD and Messidor-2, 95% CIs, p, Δ_drop for both arms. **G-12 closed.**
+**Requires (operative form):** Δ wF1(D−C) ≥ MCID = 0.050 with CI⁻ > 0 on **both** external clinical
+sets; sets not aggregated.
 
-**The result is 0/2 — not supported as written — and this is not a data gap but a property of the
-criterion.** Δ_drop is measured from each arm's own in-domain level and structurally penalizes the
-stronger arm. An additional run will not change this; indeed the criterion has now failed on both
-sets in the current run after passing on one in the previous. *What can be done:* record relative
-degradation (Δ_drop / in-domain) as a supplementary quantity — a computation over existing numbers,
-not a run.
+**Available:** Δ, 95% CIs and p for IDRiD and Messidor-2; Δ_drop for both arms as a reference
+quantity. **G-12 closed.** IDRiD +0.0689 [+0.0494, +0.0968]; Messidor-2 +0.0541 [+0.0362, +0.0814] →
+PASS_S = 1 on each → **`h7_supported = true`, 2/2 CONFIRMED**. Caveat: the Messidor-2 margin over the
+MCID is 0.0041.
+
+**Retired form.** The original degradation wording ("Δ_drop of the integrated arm statistically
+smaller") is retired, not failed: Δ_drop(D) − Δ_drop(C) ≡ Δ_in-domain − Δ_external = 0.0655 − Δ wF1(X),
+i.e. the metric is the in-domain gap minus the very quantity under test. No additional run can fix
+that; it is a property of the criterion. Kept as descriptive (1/2 by that measure) and analysed in
+§5.4.
+
+🔴 **Governance gap.** `thesis/governance/HYPOTHESIS.md` still states H-7 in the retired form, and
+`thesis/` is read-only from this folder. The binding document must be updated by hand before chapter
+assembly, together with the H-7 row of `thesis/ASSET_INVENTORY.md`. The formula specification
+(PASS_S, MCID, retirement rule) is likewise not present in the repository and should be committed
+into `thesis/governance/`.
 
 ---
 

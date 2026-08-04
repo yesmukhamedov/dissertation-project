@@ -4,7 +4,9 @@
 
 **Candidate:** Yesmukhamedov N.S.
 **Document Type:** Formal contributions register
-**Version:** 6.2.0 | **Date:** 2026-06-26 | **Binding Reference:** INVARIANTS.md v6.2.0
+**Version:** 7.0.0 | **Date:** 2026-08-04 | **Binding Reference:** INVARIANTS.md v7.0.0
+
+**v7.0.0 Amendment:** SC-G is reframed in step with the H-7 reformulation (INVARIANTS v7.0.0) — from *Clinical Degradation Resistance* to *External Clinical Performance*. A secondary methodological contribution is added under SC-G: the analytic identification of the Δ_drop defect. No other contribution is affected.
 
 **v6.2.0 Amendment:** SC-H is refined with the now-locked operational specifics of the integrated-arm initialization (no contribution added or removed): the fundus-SSL corpus is the unlabeled EyePACS "test" split (53,576 images, disjoint from the ~35,126 Experiment-1 corpus per INVARIANTS SB-2.4); the primary protocol is BYOL pretrained from-scratch on the 4-channel tensor; and the initialization must pass a linear-probe acceptance gate (beat random init, competitive with ImageNet) before entering Experiment 1. CFC-2.8 and the composite-IV boundary are unchanged.
 
@@ -104,11 +106,13 @@ The principal conceptual contribution of this dissertation is a **paradigm shift
 
 ---
 
-### SC-G: Clinical Degradation Resistance
+### SC-G: External Clinical Performance
 
-**Contribution:** Empirical demonstration that preprocessing reduces cross-dataset performance degradation. The metric Δ = F1_EyePACS_val − F1_external is computed for both baseline and models on IDRiD and Messidor-2. Smaller Δ with indicates more robust transfer.
+**Contribution:** Empirical demonstration that the integrated configuration attains higher absolute performance on external clinical datasets under zero-shot transfer. Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X) is computed on IDRiD and Messidor-2, each required to satisfy Δ ≥ MCID_wF1 = 0.050 with CI⁻ > 0. **The contribution is higher external performance, not reduced degradation.**
 
-**Evidence:** Experiment 5 (clinical degradation resistance, H-7).
+**Secondary methodological contribution [v7.0.0]:** identification of a defect in the degradation metric Δ_drop = F1_in-domain − F1_external, in common use in the domain-shift literature. Since Δ_drop(integrated) − Δ_drop(baseline) ≡ Δ_in-domain − Δ_external, the comparison is the fixed in-domain margin minus the quantity under test; it can be satisfied only by an arm whose advantage grows under domain shift and penalizes the stronger arm for its in-domain result. Carried in Chapter 5 §5.4.
+
+**Evidence:** Experiment 5 (external clinical performance, H-7).
 
 ---
 

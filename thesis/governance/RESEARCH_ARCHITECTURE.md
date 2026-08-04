@@ -5,7 +5,9 @@
 **Candidate:** Yesmukhamedov N.S.
 **Status:** Binding Methodological Blueprint
 **Function:** Experimental, statistical, and architectural formalization of the dissertation research
-**Version:** 6.2.0 | **Date:** 2026-06-26 | **Binding Reference:** INVARIANTS.md v6.2.0
+**Version:** 7.0.0 | **Date:** 2026-08-04 | **Binding Reference:** INVARIANTS.md v7.0.0
+
+**v7.0.0 Amendment:** §5.5 (Experiment 5) is rewritten in step with the H-7 reformulation (INVARIANTS v7.0.0) — purpose, metric definitions and success criterion move from the retired Δ_drop degradation form to absolute external performance (Δ wF1 ≥ MCID 0.050, CI⁻ > 0, both datasets, no aggregation). The §9.1 H-7 bullet and the PC-10 traceability row are synced. No experimental protocol, dataset role, or other experiment definition changes.
 
 **v6.2.0 Amendment:** Operationalizes the locked fundus-SSL corpus and acceptance protocol for the integrated arm (no design/factorial/hypothesis change). §4.2bis is extended to fix the SSL corpus as the unlabeled EyePACS "test" split (53,576 images, disjoint from the ~35,126 Experiment-1 corpus per INVARIANTS SB-2.4), to record **BYOL** as the primary CNN-compatible protocol (MoCo-v2 / SimSiam / DINO as alternatives) pretrained **from-scratch on the 4-channel tensor**, and to add the **linear-probe acceptance gate** as the precondition for an SSL checkpoint to enter Experiment 1. §9.1 (Leakage Control) gains a pretraining-corpus-disjointness bullet. Adds referenceable entities (SB-2.4, the acceptance gate) without reversing any binding → MINOR bump per INVARIANTS v6.2.0. CFC-2.8 and the composite independent variable are retained.
 
@@ -372,20 +374,24 @@ The v5.1 config **B′** (single full-pipeline + RETFound cell) is **retired** i
 
 ---
 
-## 5.5 Experiment 5 — Clinical Degradation Resistance
+## 5.5 Experiment 5 — External Clinical Performance
 
-**Purpose:** Quantify whether preprocessing reduces the performance drop between EyePACS validation and external clinical datasets.
+**Purpose:** Quantify whether the integrated configuration attains higher absolute performance than baseline on external clinical datasets under zero-shot transfer. [v7.0.0 — the prior purpose, "reduce the performance drop", is retired; see the H-7 reformulation in INVARIANTS v7.0.0.]
 
-**Hypothesis tested:** H-7
+**Hypothesis tested:** H-7 (External Clinical Performance)
+
+**Acceptance:** PASS_S on both datasets — Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X) ≥ MCID_wF1 = 0.050 and CI⁻ > 0, evaluated independently per dataset (no aggregation). Δ_drop remains computable as descriptive context but is **not** a criterion.
 
 **Training:** EyePACS (5-fold CV). Evaluation on IDRiD and Messidor-2.
 
 **Protocol:** For each architecture × preprocessing combination (baseline vs integrated), compute:
-- F1_val = weighted F1 on EyePACS validation fold
-- F1_ext = weighted F1 on external dataset (IDRiD or Messidor-2)
-- Δ = F1_val − F1_ext
+- wF1_ext(arm) = weighted F1 on the external dataset (IDRiD or Messidor-2), zero-shot
+- Δ wF1(X) = wF1_ext(integrated, X) − wF1_ext(baseline, X), with a bootstrap confidence interval
+- Δ_drop(arm, X) = wF1_val(arm) − wF1_ext(arm, X) — **descriptive context only, not a criterion**
 
-**Success criterion:** Δ_integrated < Δ_baseline with statistical significance (paired test across folds).
+**Success criterion [v7.0.0]:** PASS_S on **both** datasets — Δ wF1(X) ≥ MCID_wF1 = 0.050 **and** CI⁻ > 0, evaluated independently per dataset (no aggregation; a reversal on either yields REVERSED). The form requires Δ ≥ MCID and CI⁻ > 0; it does **not** require CI⁻ ≥ MCID.
+
+*The prior success criterion — Δ_drop(integrated) < Δ_drop(baseline) — is retired.* It is algebraically degenerate: Δ_drop(integrated) − Δ_drop(baseline) ≡ Δ_in-domain − Δ_external, i.e. the fixed in-domain margin minus the quantity under test. See INVARIANTS v7.0.0.
 
 ---
 
@@ -585,7 +591,7 @@ Novelty IS:
 * component ablation (7 levels: baseline → +flip → +rotation → +isotropic+mask → +flat-field → +CLAHE → full pipeline)
 * Cross-dataset transferability validation on APTOS 2019 (G ≥ 0.85, zero-shot)
 * Grad-CAM explainability with quantitative ALO (primary) and IoU (secondary) against pixel-level lesion masks (IDRiD) and qualitative overlays (Clinical)
-* H-7 clinical degradation resistance — preprocessing reduces Δ = F1_val − F1_ext on IDRiD and Messidor-2
+* H-7 external clinical performance — the integrated arm exceeds baseline in absolute weighted F1 on IDRiD and Messidor-2 (Δ ≥ MCID 0.050, CI⁻ > 0, both sets)
 * Device domain shift evaluation across 4 camera manufacturers (Canon, Topcon, Kowa, Zeiss) on DDR, ODIR-5K, RFMiD
 * Architecture constrained to resource-limited environments
 
@@ -603,7 +609,7 @@ Novelty IS:
 | PC-7 | Exp 4 Grad-CAM ALO (primary) + IoU (secondary) on IDRiD; qualitative on Clinical | Active |
 | PC-8 | Exp 2 component ablation (7 levels: baseline → +flip → +rotation → +isotropic+mask → +flat-field → +CLAHE → full pipeline) | Active |
 | PC-9 | Exp 6 cross-camera metrics (device domain shift across Canon, Topcon, Kowa, Zeiss on DDR, ODIR-5K, RFMiD) | Active |
-| PC-10 | Exp 5 clinical degradation resistance (Δ comparison on IDRiD and Messidor-2, H-7) | Active |
+| PC-10 | Exp 5 external clinical performance (Δ wF1 vs MCID on IDRiD and Messidor-2, H-7) | Active |
 
 Mapped to ARGUMENT_MAP.
 

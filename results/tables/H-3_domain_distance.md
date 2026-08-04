@@ -58,11 +58,11 @@ The size of the MMD reduction agrees with the size of the transfer gain:
 | Domain | Δd (MMD) | Δ wF1 (D − C) on transfer | Source |
 |---|---:|---:|---|
 | RFMiD | +0.0931 | +0.0987 | `TAB-4.9_exp6_device.md` |
-| IDRiD | +0.0816 | +0.0635 | `TAB-4.8_exp5_degradation.md` |
+| IDRiD | +0.0816 | +0.0689 | `TAB-4.8_exp5_degradation.md` |
 | ODIR-5K | +0.0788 | +0.0881 | `TAB-4.9_exp6_device.md` |
 | DDR | +0.0784 | +0.0517 | `TAB-4.9_exp6_device.md` |
 | APTOS | +0.0732 | +0.0889 | `TAB-4.6_exp3_transfer.md` |
-| Messidor-2 | +0.0700 | +0.0526 | `TAB-4.8_exp5_degradation.md` |
+| Messidor-2 | +0.0700 | +0.0541 | `TAB-4.8_exp5_degradation.md` |
 
 **The correspondence is weaker than in the previous revision and should be stated cautiously.** The
 one clean match is at the top: RFMiD has both the largest distance reduction and the largest wF1 gain.

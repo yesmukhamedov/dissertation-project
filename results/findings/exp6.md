@@ -12,15 +12,15 @@ g_ratio is 0.7837 (mixed_rfmid), a margin of 0.084 over the threshold. `h6_suppo
 
 **2. The main result is not the threshold but the spread.** Since both arms clear the threshold, the
 mere fact of "g ≥ 0.7" does not discriminate between them. The substantive difference is the
-**significant reduction in between-camera spread**: std(wF1) 0.0307 → 0.0127 (a factor of 2.4,
+**significant reduction in between-camera spread**: std(wF1) 0.0306 → 0.0130 (a factor of 2.4,
 CI [−0.0253, −0.0062]), std(ROC-AUC) 0.0214 → 0.0070 (a factor of 3.1, CI [−0.0233, −0.0072]). Both
-CIs exclude zero. The g_ratio range contracts from 0.7209–0.8335 (span 0.113) to 0.7837–0.8311
-(span 0.047).
+CIs exclude zero. The g_ratio range contracts from 0.7209–0.8334 (span 0.113) to 0.7837–0.8328
+(span 0.049).
 
 **3. The levelling mechanism: the pipeline raises the floor rather than the ceiling.** The gain is
 larger the worse a group performed under baseline: the largest Δ wF1 are for mixed_rfmid (+0.0987,
 C's worst group) and mixed_odir5k (+0.0881, the second worst); the smallest are mixed_ddr (+0.0517)
-and topcon_messidor2 (+0.0526, C's best group). It is exactly this negative relationship
+and topcon_messidor2 (+0.0541, C's best group). It is exactly this negative relationship
 "gain ↔ initial quality" that produces the contraction of the spread.
 
 **4. Directionally consistent with the measured domain distance.** RFMiD has both the largest MMD
@@ -39,11 +39,13 @@ all five groups. The sensitivity range narrows from 0.651–0.748 (span 0.096) t
 (span 0.041).
 
 **7. g_ratio falls in 2 of 5 groups — a normalization artifact.** mixed_ddr (0.8164 → 0.8142) and
-topcon_messidor2 (0.8335 → 0.8311) are the two groups with the smallest absolute gains; absolute wF1
-rises in both (0.6154 → 0.6671 and 0.6283 → 0.6809). g_ratio divides by each arm's own in-domain wF1,
+topcon_messidor2 (0.8334 → 0.8328) are the two groups with the smallest absolute gains; absolute wF1
+rises in both (0.6154 → 0.6671 and 0.6282 → 0.6823). g_ratio divides by each arm's own in-domain wF1,
 and the pipeline's denominator is 6.55 pp larger, so a group must gain ~8% relative just to hold its
-ratio. Flag explicitly that g_ratio understates the advantage by construction; the H-6 verdict rests
-on the floor criterion and the spread reduction, not on the ratio rising everywhere.
+ratio. This is the **same structural defect that retired the Δ_drop form of H-7** (`findings/exp5.md`)
+— worth cross-referencing in §5.4, since it is one critique covering two metrics. Flag explicitly that
+g_ratio understates the advantage by construction; the H-6 verdict rests on the floor criterion and
+the spread reduction, not on the ratio rising everywhere.
 
 **8. What the pipeline does not change.** The difficulty ordering of the classes is the same for both
 arms and in every group (DR0 ≫ DR2 > DR4 > DR3 ≫ DR1), and the ordering of the groups by quality

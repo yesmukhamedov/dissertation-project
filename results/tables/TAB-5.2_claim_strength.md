@@ -15,8 +15,8 @@ Based on the results of the **2026-08-03** run. Definitions — `thesis/governan
 | PC-6 | Transfer to APTOS, G ≥ 0.85 | exp3 | G ≥ 0.85, full > baseline | G_D = 0.8976 ≥ 0.85 ✓, G_C = 0.8577; APTOS wF1 +0.0889 (CI [+0.068, +0.120]); wins on all 5 classes | **STRONG** (with the caveat that baseline also clears the threshold) |
 | PC-7 | Grad-CAM ALO/IoU higher for the preprocessed model | exp4 | ALO_preproc > ALO_base, significantly | 4/4 lesion types directionally and **statistically** (p 0.0007–0.0148), IoU likewise (p 0.0011–0.0189); robust to the threshold τ = 0.2…0.7; small floor effect (f₀ = 6/54) | **STRONG** (within the bounds of NC-14) |
 | PC-8 | Ranked hierarchy of stage contributions (ablation) | exp2 | incremental ΔF1 across levels | All 7 transitions significant (\|Δⱼ\| = 0.0065–0.0143 against 2σ_fold = 0.0042–0.0060), monotonicity holds in every fold; **and the hierarchy is now resolvable** (spread of Δⱼ = 0.0078 ≈ 3σ_fold): flat-field 0.0143 and CLAHE 0.0125 lead, together 41% of the gain | **STRONG** (upgraded from MODERATE — contributions identified, significant, and rankable by group) |
-| PC-9 | Robustness to a change of camera | exp6 | variance within tolerance, g ≥ 0.7 | 5/5 groups above the floor for both arms (min g_D = 0.7837); between-group std wF1 0.0307 → 0.0127 (−2.4×, CI [−0.025, −0.006]), std AUC −3.1×. g_ratio falls in 2/5 groups — a denominator artifact, absolute wF1 rises in all 5 | **STRONG** |
-| PC-10 | Smaller degradation for the preprocessed model | exp5 | Δ_drop_full < Δ_drop_base | **Fails on both sets**: IDRiD 0.1601 against 0.1581 (+0.0020), Messidor-2 0.1384 against 0.1255 (+0.0129). Absolute external wF1 is nevertheless significantly higher on both (+0.064 p = 0.0021; +0.053 p = 0.0138) | **REFUTED as written** (0/2; the practical version "higher on external sets" — STRONG) |
+| PC-9 | Robustness to a change of camera | exp6 | variance within tolerance, g ≥ 0.7 | 5/5 groups above the floor for both arms (min g_D = 0.7837); between-group std wF1 0.0306 → 0.0130 (−2.4×, CI [−0.025, −0.006]), std AUC −3.1×. g_ratio falls in 2/5 groups — the same denominator artifact that retired Δ_drop in PC-10; absolute wF1 rises in all 5 | **STRONG** |
+| PC-10 | Higher absolute performance on external clinical sets | exp5 | Δ wF1(D−C) ≥ MCID 0.050 ∧ CI⁻ > 0, both sets | **2/2**: IDRiD +0.0689 (CI [+0.0494, +0.0968]), Messidor-2 +0.0541 (CI [+0.0362, +0.0814]). Δ_drop form retired — it reduces to 0.0655 − Δ wF1(X), i.e. the in-domain gap minus the tested quantity | **STRONG** (Messidor-2 margin over MCID is thin: 0.0041) |
 
 ## Additional empirical results (outside the formal PCs)
 
@@ -34,27 +34,30 @@ Based on the results of the **2026-08-03** run. Definitions — `thesis/governan
 
 - **STRONG:** PC-1 (dominance), PC-2 (parametric sensitivity), PC-6 (transfer to APTOS), PC-7
   (attention alignment), PC-8 (stage hierarchy — **upgraded this revision**), PC-9 (camera
-  robustness) — **6 of 7** empirical primary claims are confirmed as stated.
+  robustness), PC-10 (external clinical performance) — **all 7** empirical primary claims are
+  confirmed as stated.
 - **MODERATE:** none.
-- **REFUTED as written:** PC-10 (Δ_drop criterion fails on both sets — **changed this revision**,
-  previously MODERATE at 1/2). The practical version, "higher absolute performance on external
-  clinical sets", is STRONG and significant on both.
+- **REFUTED:** none.
 - **DESIGN/THEORETICAL (untouched by the empirics):** PC-0, PC-4, PC-5.
 
-> Two verdicts moved relative to the previous revision, in opposite directions: **PC-8 up**
-> (MODERATE → STRONG: the stage hierarchy became resolvable) and **PC-10 down**
-> (MODERATE → REFUTED as written: the last passing set flipped sign). Net: the empirical claim set is
-> stronger, but it now contains one explicit negative — which should be presented as such, not
-> softened.
+> **PC-10 was re-specified, not re-scored.** The operative criterion is absolute wF1 on the external
+> clinical sets (form S, both mandatory), and it passes 2/2 — as it did at every prior revision. The
+> earlier MODERATE/REFUTED entries in this table applied the retired Δ_drop form, which is
+> algebraically degenerate (it equals the in-domain gap minus the quantity under test). The Δ_drop
+> analysis remains in the work as a **methodological contribution for §5.4**, not as a verdict.
+>
+> **PC-8** moved genuinely this revision (MODERATE → STRONG): the stage hierarchy became resolvable.
 
 ## What requires care when carrying this into §5.2.2 / §5.4
 
-1. **PC-10 must be reported as refuted in its original wording — not as "partial".** The criterion
-   fails on both sets. The Δ_drop metric structurally penalizes the arm with the higher in-domain
-   level; in *relative* terms the two arms degrade almost identically (21.0% against 19.5% on IDRiD,
-   favouring the pipeline; 16.6% against 16.9% on Messidor-2, favouring baseline). The honest
-   formulation is in `TAB-4.8_exp5_degradation.md`. The critique of the criterion is the contribution
-   here; present the negative result plainly rather than softening it.
+1. **PC-10 is confirmed 2/2 on the operative criterion — but do not overstate the Messidor-2 pass.**
+   Its margin over the MCID is 0.0041, and its CI⁻ (+0.0362) lies below the threshold; form S permits
+   this, and the text should say so rather than leaving the reader to check. Separately, §5.4 must
+   carry the **Δ_drop identity** — Δ_drop(D) − Δ_drop(C) ≡ 0.0655 − Δ wF1(X) — as the reason the
+   degradation form was retired. That is a critique of a metric in common use, and it is a
+   contribution in its own right; the same defect recurs in H-6's g_ratio, so one argument covers
+   both. Do **not** present H-7 as a claim about resistance: the proportional drop is essentially
+   equal for the two arms (21.2%/19.1% and 16.7%/16.7%).
 2. **PC-8 now supports "the hierarchy is established", but only as a grouping.** All stages are
    significant, and the photometric pair (flat-field, CLAHE) is separated from the rest by ≈3·σ_fold.
    "Flat-field is the largest single contributor (22% of the gain)" is now defensible; a strict

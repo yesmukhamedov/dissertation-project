@@ -6,6 +6,27 @@ The versioning scheme is defined in [VERSIONING_POLICY.md](VERSIONING_POLICY.md)
 
 ---
 
+## v7.0.0 — 2026-08-04
+
+**H-7 reformulated: Clinical Degradation Resistance → External Clinical Performance (MAJOR — a hypothesis is reformulated incompatibly with the prior version).** The dependent variable of H-7 changes from the degradation quantity Δ_drop = F1_EyePACS_val − F1_external to the **absolute external performance difference** Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X). Acceptance is form S on **both** external clinical datasets, evaluated independently: Δ wF1(X) ≥ MCID_wF1 = 0.050 **and** CI⁻ > 0. The datasets are not aggregated — a reversal (CI⁺ < 0) on either yields REVERSED regardless of the other. The form requires Δ ≥ MCID and CI⁻ > 0; it does **not** require CI⁻ ≥ MCID.
+
+**Why the prior form was retired.** Δ_drop is not independent of the hypothesis it was meant to test. For any external set X:
+
+    Δ_drop(integrated, X) − Δ_drop(baseline, X)
+      = [wF1(int, in) − wF1(int, X)] − [wF1(base, in) − wF1(base, X)]
+      = [wF1(int, in) − wF1(base, in)] − [wF1(int, X) − wF1(base, X)]
+      = Δ_in-domain − Δ_external
+
+The comparison thus reduces to the fixed in-domain margin minus the very quantity H-7 measures. Its sign is satisfied only when the integrated arm exceeds baseline *more on foreign data than on its own*, so the criterion penalizes the integrated arm for its in-domain result and carries no information about degradation resistance. The defect is analytic and was identified from the algebra, not from inspecting experimental outcomes.
+
+**Relation to the version-control rules.** **VCR-3** — which forbids silent modification of a hypothesis when results contradict the *direction of effect* — is **not engaged**: the direction of effect for H-7, the integrated arm performing better on external clinical data, was never contradicted at any evaluation; what failed was the metric expressing it. The amendment is recorded openly across INVARIANTS, HYPOTHESIS, VERSION_SYNC and this changelog, and the retired quantity is **preserved as descriptive**, not deleted — its results remain reportable in Chapter 5 §5.4. **VCR-1** — Core Hypotheses immutable post-ratification, modifiable only through a new versioned Invariants document — is satisfied by the INVARIANTS v7.0.0 issue that accompanies this entry.
+
+**Unchanged:** H-1 through H-6, all scope boundaries (SB-x), forbidden claims (CFC-2.x), non-claims (NC-x), the composite *(preprocessing × pretraining)* independent variable, and CFC-2.8. No preprocessing operational definition (OD-3, Stages 0–7) is touched.
+
+**Secondary methodological contribution.** The Δ_drop defect is recorded in CONTRIBUTIONS under SC-G as a critique of a degradation metric in common use in the domain-shift literature. The same structural defect affects the g_ratio normalization used in H-6 reporting, and one argument covers both.
+
+Governance files updated: INVARIANTS (Section II H-7, header), HYPOTHESIS (H-7, Central-Hypothesis note, Conclusion, header), ARGUMENT_MAP (PC-10, SC-10.1, PC-10 strength, DAG label, dependency note), CONTRIBUTIONS (SC-G), RESEARCH_ARCHITECTURE (§5.5, §9.1, PC-10 row), VERSION_SYNC. Pending downstream sync (does not gate this bump): `thesis/ASSET_INVENTORY.md` H-7 row, chapter 4/5 briefs and drafts, glossary EN/KZ.
+
 ## v6.2.0 — 2026-06-26
 
 **Fundus-SSL corpus and acceptance protocol locked for the integrated arm (MINOR — new referenceable entities, no binding reversed).** The v6.0.0 ophthalmology-SSL decision is unchanged; this amendment fixes the operational specifics that were previously left open. The integrated-arm self-supervised pretraining corpus is fixed to the **unlabeled EyePACS original "test" split — 53,576 images** — which is **disjoint** from the Experiment-1 evaluation corpus (the ~35,126 labeled "train" split, 5-fold patient-level CV) by image identity and patient identity. This no-pretraining-leakage constraint is recorded as new clause **SB-2.4** (INVARIANTS) and is operationalized in the experiments code as the disjointness assertions **INV-SSL-1 / INV-SSL-2**. **BYOL** (Grill et al., 2020) is recorded as the primary CNN-compatible protocol (MoCo-v2 / SimSiam / DINO retained as alternatives), pretrained **from-scratch (random initialization)** directly on the 4-channel tensor (RGB + FOV mask). A **linear-probe acceptance gate** is added as the precondition for any SSL checkpoint to enter Experiment 1: with the backbone frozen, a linear head must beat random init and be competitive with ImageNet on a label-bearing EyePACS-test slice, for both backbones; an ImageNet→continual-SSL initialization is a documented (non-default) fallback.

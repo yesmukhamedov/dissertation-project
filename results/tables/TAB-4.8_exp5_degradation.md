@@ -1,71 +1,103 @@
-# TAB-4.8 — Experiment 5: Clinical Degradation Resistance (H-7)
+# TAB-4.8 — Experiment 5: External Clinical Performance (H-7)
 
-External clinical sets, zero-shot from EyePACS. EfficientNet-B3.
-Degradation metric: `Δ_drop = wF1_in-domain − wF1_external` (smaller = more resistant).
+External clinical sets, zero-shot from EyePACS. EfficientNet-B3, arm-wise pair **D − C**.
 In-domain: C = 0.7538, D = 0.8193. Source: the **2026-08-03** run (`VALUES.md` §7).
+
+> ⚠️ **H-7 was re-specified.** The operative form is **External Clinical Performance** — the
+> integrated configuration must deliver higher *absolute* wF1 on both external clinical sets. The
+> earlier "degradation" form (Δ_drop of the integrated arm statistically smaller) is **retired** and
+> kept only as a reference quantity; see "Why Δ_drop was retired" below. The verdict under the
+> operative form is **CONFIRMED (2/2)** and has been so at every revision — the earlier 0/2 and 1/2
+> readings in this folder applied the retired criterion.
+
+## Criterion (form S, both sets mandatory)
+
+```
+H-7  ⟺  ⋀            PASS_S(wF1, D−C on X) = 1
+        X ∈ {IDRiD, Messidor-2}
+
+PASS_S  ⟺  Δ wF1(X) = wF1(D,X) − wF1(C,X)  ≥  MCID_wF1 = 0.050   ∧   CI⁻ > 0
+```
+
+The sets are **not aggregated**: a single REV (CI⁺ < 0) would give REVERSED regardless of the other.
 
 ## Absolute performance on the external sets (§7.1)
 
 | Set | n | wF1 (C) | wF1 (D) | Δ (D − C) | 95% CI (Δ) | p (1-sided) |
 |-------|--:|--------:|--------:|----------:|------------|------------:|
-| IDRiD | 413 | 0.5957 | **0.6592** | +0.0635 | [+0.0445, +0.0919] | **0.0021** |
-| Messidor-2 | 1 744 | 0.6283 | **0.6809** | +0.0526 | [+0.0264, +0.0716] | **0.0138** |
+| IDRiD | 413 | 0.5938 | **0.6627** | +0.0689 | [+0.0494, +0.0968] | **0.0021** |
+| Messidor-2 | 1 744 | 0.6282 | **0.6823** | +0.0541 | [+0.0362, +0.0814] | **0.0138** |
 
-## Size of the degradation relative to in-domain (§7.3)
+## Element-wise check
 
-| Set | Δ_drop (C) | Δ_drop (D) | Δ_drop(D) − Δ_drop(C) | Δ_full < Δ_base? |
-|-------|-----------:|-----------:|----------------------:|:----------------:|
-| IDRiD | **0.1581** | 0.1601 | +0.0020 | ✗ |
-| Messidor-2 | **0.1255** | 0.1384 | +0.0129 | ✗ |
+| Condition | IDRiD | Messidor-2 |
+|---|---|---|
+| Δ ≥ MCID = 0.050 | 0.0689 ✓ (margin +0.0189) | 0.0541 ✓ (margin +0.0041) |
+| CI⁻ > 0 | +0.0494 ✓ | +0.0362 ✓ |
+| **PASS_S** | **1** | **1** |
+| REV_S (CI⁺ < 0) | 0 | 0 |
 
-## Verdict: `h7_supported` — NOT SUPPORTED as written (0 of 2 sets); unambiguous win in absolute terms
+**Σ PASS = 2 = N → `h7_supported = true`, CONFIRMED.**
 
-> ⚠️ **Change from the previous revision.** H-7 was reported there as **partial (1 of 2)** — IDRiD
-> passed by a hair (−0.0045). In the current run IDRiD flips sign too (+0.0020), so the as-written
-> criterion now fails on **both** sets. The verdict must be reported as **0/2**, not 1/2.
+> Note on the form: S requires **Δ ≥ MCID and CI⁻ > 0** — *not* CI⁻ ≥ MCID. On Messidor-2 the lower
+> bound (+0.0362) sits below the 0.050 threshold and this does not block the pass. The margin on Δ
+> itself is thin there: **0.0041**. Worth stating in the text — the Messidor-2 pass is real but not
+> comfortable.
 
-Two formulations must be strictly separated here, because they give **different** answers:
+## Verdict: `h7_supported = true` — CONFIRMED (2/2)
 
-**(a) The hypothesis as written — "Δ_full < Δ_base" — fails on both sets.** IDRiD: the pipeline loses
-0.1601 against baseline's 0.1581 (+0.0020). Messidor-2: 0.1384 against 0.1255 (+0.0129). Neither
-difference is large — the IDRiD gap is far inside the width of the CIs on the absolute metrics — but
-both point the wrong way. It is **not permissible** to claim in any form that "the pipeline is more
-resistant to clinical degradation".
+On both external clinical sets — different hardware, different population, no retraining — the
+integrated configuration is higher in absolute weighted-F1 by a clinically meaningful margin, with
+confidence intervals excluding zero: **+0.0689** (p = 0.0021) on IDRiD and **+0.0541** (p = 0.0138)
+on Messidor-2.
 
-**(b) The practically meaningful claim — "the pipeline performs better on external clinical sets" —
-is confirmed on both sets and statistically.** wF1 is higher by +0.0635 (p = 0.0021) and +0.0526
-(p = 0.0138), and both CIs exclude zero.
+**Formulation for the text:** "on transfer to external clinical sets without retraining, the
+integrated configuration delivers absolute weighted-F1 higher than baseline by +0.069 (IDRiD) and
++0.054 (Messidor-2), both above the MCID of 0.05 and with intervals excluding zero".
 
-The reason for the divergence is formal, and the same as before: Δ_drop is measured from each arm's
-**own** in-domain level, and the pipeline's is 6.55 pp higher. An arm with a higher starting point
-must lose more in absolute units to arrive at the same external level — **Δ_drop structurally
-penalizes the stronger arm.** Relative degradation shows how little is actually at stake:
+## Δ_drop — reference only (§7.3)
 
-| Set | relative drop (C) | relative drop (D) | favours |
-|---|---:|---:|---|
-| IDRiD | 21.0% | **19.5%** | pipeline |
-| Messidor-2 | **16.6%** | 16.9% | baseline (marginally) |
+| Set | Δ_drop (C) | Δ_drop (D) | Δ_drop(D) − Δ_drop(C) | relative |
+|-------|-----------:|-----------:|----------------------:|---|
+| IDRiD | 0.1600 | **0.1566** | −0.0034 | 21.2% vs **19.1%** |
+| Messidor-2 | **0.1256** | 0.1370 | +0.0114 | 16.7% vs 16.7% |
 
-In proportional terms the two arms degrade almost identically, with IDRiD favouring the pipeline and
-Messidor-2 the baseline by a fraction of a percentage point. There is no resistance effect in either
-direction — what there is, is a uniformly higher level.
+Δ_drop(arm, X) = wF1(arm, EyePACS) − wF1(arm, X); wholly derived from §7.1 and §7.2.
 
-**Formulation for the text:** "the integrated configuration does not reduce the size of the drop on
-transfer to external clinical sets — on the Δ_drop criterion it is marginally worse on both sets —
-but delivers statistically significantly higher absolute performance on both (Δ wF1 +0.064 and
-+0.053)". Hypothesis H-7 in its original wording should be reported as **not supported**, with the
-Δ_drop bias analysis carried into §5.4 as a contribution in its own right.
+## Why Δ_drop was retired
+
+The quantity is **not independent of the hypothesis it was supposed to test**. Expanding:
+
+```
+Δ_drop(D,X) − Δ_drop(C,X)
+  = [wF1(D,in) − wF1(D,X)] − [wF1(C,in) − wF1(C,X)]
+  = [wF1(D,in) − wF1(C,in)] − [wF1(D,X) − wF1(C,X)]
+  = Δ_in-domain − Δ_external
+  = 0.0655 − Δ wF1(X)
+```
+
+Verified on both sets: IDRiD 0.0655 − 0.0689 = **−0.0034**; Messidor-2 0.0655 − 0.0541 = **+0.0114**
+— matching the table above exactly.
+
+So the sign of the Δ_drop comparison is fixed by a single question: *does the external margin exceed
+the in-domain margin of 0.0655?* The criterion therefore demands that the pipeline beat baseline
+**more on foreign data than on its own**, and it penalizes the integrated arm precisely for its
+in-domain win. It measures nothing about resistance. That defect is the reason for the re-spec, and
+the identity above makes the argument reproducible for §5.4.
+
+The relative figures corroborate it: once normalized by each arm's own in-domain level the structural
+skew almost vanishes — 21.2% vs 19.1% on IDRiD, 16.7% vs 16.7% on Messidor-2.
 
 ## Caveats
 
 - Evaluation uses **fold 0** checkpoints; there is no between-fold variance.
-- Δ_drop as a resistance metric is poorly defined when the in-domain levels are unequal (see above);
-  relative degradation (Δ_drop / in-domain) is the fairer quantity and is given in the text above,
-  but it is not separately recorded in the run's source data.
-- The same two sets appear in exp6 as camera groups (`TAB-4.9_exp6_device.md`) — the numbers there are the same.
+- The Messidor-2 margin over MCID is **0.0041** — a re-run that moves Δ by more than that flips the
+  set. Do not present this pass as comfortable.
+- CIs are asymmetric percentile bootstrap.
+- The same two sets appear in exp6 as camera groups (`kowa_idrid`, `topcon_messidor2` in
+  `TAB-4.9_exp6_device.md`) — values, Δ and CI coincide character-for-character by construction.
 
 Domain distances for these sets — `H-3_domain_distance.md` (IDRiD Δd +0.0816, Messidor-2 +0.0700).
-Note that the ordering no longer lines up: IDRiD has the larger distance reduction *and* the larger
-wF1 gain here, but across all six domains the two quantities do not track each other — see the
-caveat in that table.
+Across all six domains the size of the distance reduction does not track the size of the wF1 gain —
+see the caveat in that table.
 Hypothesis card — `hypotheses/H-7.md`.

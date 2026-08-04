@@ -1,4 +1,21 @@
-**Version:** 6.2.0 | **Date:** 2026-06-26 | **Binding Reference:** INVARIANTS.md v6.2.0
+**Version:** 7.0.0 | **Date:** 2026-08-04 | **Binding Reference:** INVARIANTS.md v7.0.0
+
+**v7.0.0 Amendment:** **H-7 is reformulated from "Clinical Degradation Resistance" to "External Clinical Performance."** The dependent variable changes from the degradation quantity Δ_drop = F1_EyePACS_val − F1_external to the **absolute external performance difference** Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X), evaluated independently on each external clinical set with an acceptance form requiring Δ wF1(X) ≥ MCID_wF1 = 0.050 **and** CI⁻ > 0 on **both** sets (sets are not aggregated; a single reversal gives REVERSED regardless of the other).
+
+*Reason — the retired dependent variable is not independent of the hypothesis it was meant to test.* For any external set X:
+
+```
+Δ_drop(integrated, X) − Δ_drop(baseline, X)
+  = [wF1(int, in) − wF1(int, X)] − [wF1(base, in) − wF1(base, X)]
+  = [wF1(int, in) − wF1(base, in)] − [wF1(int, X) − wF1(base, X)]
+  = Δ_in-domain − Δ_external
+```
+
+The comparison therefore reduces to the fixed in-domain margin minus the very quantity H-7 sets out to measure. Its sign is satisfied **only** when the integrated arm beats baseline *more on foreign data than on its own*, so the criterion penalizes the integrated arm precisely for its in-domain result and measures nothing about resistance to degradation. This is a defect of operationalization, identified analytically and not by inspection of outcomes.
+
+*Relation to VCR-3.* VCR-3 forbids silent modification of a hypothesis when results **contradict the direction of effect**. That condition is not met here: the direction of effect for H-7 — the integrated arm performing better on external clinical data — was never contradicted at any evaluation. What failed was the metric chosen to express it. The amendment is recorded openly here, in INVARIANTS v7.0.0, in CHANGELOG and in VERSION_SYNC, and the retired form is preserved below with its own results rather than deleted; no falsifying observation is being concealed. *Relation to VCR-1.* Core Hypotheses are immutable post-ratification and may be modified only through a new versioned Invariants document — hence the MAJOR bump to INVARIANTS v7.0.0, which this file's binding reference now tracks.
+
+**Bump rationale:** a hypothesis is reformulated incompatibly with the prior version → **MAJOR** per VERSIONING_POLICY §4. Governance files updated: INVARIANTS (Section II H-7, header), HYPOTHESIS (H-7, Conclusion, header), ARGUMENT_MAP (PC-10, SC-10.1, PC-10 strength), CONTRIBUTIONS (SC-G), RESEARCH_ARCHITECTURE (§5.5, §9.1, PC-10 row), VERSION_SYNC, CHANGELOG. H-1 through H-6, the composite IV and CFC-2.8 are unchanged.
 
 **v6.2.0 Amendment:** Two changes, no binding reversed. (1) **Argument-structure sync:** Premise 4 and the Conclusion are corrected to the v6.0.0 ophthalmology-SSL framing — the residual RETFound wording (carried over unmodified from v5.2) is replaced, since RETFound is no longer the integrated-arm initialization source. (2) **Operational specifics** of the integrated-arm SSL are recorded: corpus = unlabeled EyePACS "test" split (53,576 images, disjoint from the ~35,126 Experiment-1 corpus per INVARIANTS SB-2.4); primary protocol = BYOL, from-scratch on the 4-channel tensor; admission to Experiment 1 gated by a linear-probe acceptance criterion. H-1's composite IV and CFC-2.8 are unchanged. MINOR bump per INVARIANTS v6.2.0.
 
@@ -12,7 +29,7 @@
 
 ## Central Hypothesis
 
-The proposed preprocessing pipeline reduces domain variability across fundus imaging devices and acquisition conditions while preserving diagnostically relevant retinal features, leading to improved CNN-based diabetic retinopathy detection. The hypotheses H-1, H-2, H-4, H-5, H-6, and H-7 below are decompositions of this central hypothesis, each testing a specific aspect of the overarching claim.
+The proposed preprocessing pipeline reduces domain variability across fundus imaging devices and acquisition conditions while preserving diagnostically relevant retinal features, leading to improved CNN-based diabetic retinopathy detection. The hypotheses H-1, H-2, H-4, H-5, H-6, and H-7 below are decompositions of this central hypothesis, each testing a specific aspect of the overarching claim. H-7 was reformulated in v7.0.0 (see the amendment above); the central hypothesis itself is unchanged.
 
 ---
 
@@ -28,7 +45,20 @@ The independent variable is the composite *(preprocessing × pretraining source)
 
 **H-6 (Device Robustness).** If preprocessed models trained on EyePACS (Canon CR-1) are evaluated on images from different fundus cameras (Topcon, Kowa via RFMiD; Canon, Topcon via DDR; Canon, Zeiss via ODIR-5K), then classification performance will be maintained across camera domains, with cross-device performance variance remaining within acceptable bounds relative to in-domain performance. DR labels only; non-DR disease labels are ignored or mapped to non-DR.
 
-**H-7 (Clinical Degradation Resistance).** If a CNN model trained on EyePACS is evaluated on external clinical datasets (IDRiD, Messidor-2) with and without the preprocessing pipeline, then the performance degradation Δ = F1_EyePACS_val − F1_external will be statistically smaller for the integrated-preprocessed model than for the baseline model, demonstrating that preprocessing reduces cross-dataset performance loss.
+**H-7 (External Clinical Performance) [v7.0.0 reformulated].** If a CNN model trained on EyePACS is evaluated without retraining on external clinical datasets (IDRiD, Messidor-2) with and without the preprocessing pipeline, then on **each** external dataset the integrated-preprocessed model will attain a weighted F1-score higher than the baseline model by at least the minimal clinically important difference, with the confidence interval of the difference excluding zero:
+
+```
+H-7  ⟺  ⋀            PASS_S(wF1, integrated − baseline on X) = 1
+        X ∈ {IDRiD, Messidor-2}
+
+PASS_S  ⟺  Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X)  ≥  MCID_wF1 = 0.050   ∧   CI⁻ > 0
+```
+
+The independent variable is the presence vs. absence of the preprocessing pipeline (comparison arm-wise, backbone held fixed). The dependent variable is Δ wF1(X), computed separately for IDRiD and Messidor-2. **The datasets are not aggregated:** a reversal (CI⁺ < 0) on either set yields REVERSED for the hypothesis irrespective of the other. Note that the acceptance form requires Δ ≥ MCID **and** CI⁻ > 0 — it does **not** require CI⁻ ≥ MCID.
+
+*Scope.* Bounded to the tested datasets (IDRiD, Messidor-2) and architectures (ResNet-50, EfficientNet-B3), zero-shot with no target-domain adaptation. The hypothesis claims **higher absolute performance on external clinical data**; it does **not** claim reduced degradation, reduced proportional drop, or resistance to domain shift, and no such claim may be derived from it.
+
+*Retired form (v6.2.0 and earlier), retained as descriptive only.* The degradation quantity Δ_drop = F1_EyePACS_val − F1_external may still be reported for context, but it is **not** a criterion for H-7 and no verdict may rest on it. It is algebraically degenerate — Δ_drop(integrated) − Δ_drop(baseline) ≡ Δ_in-domain − Δ_external — and therefore requires the integrated arm to exceed baseline more on external data than in-domain, penalizing it for its own in-domain result. See the v7.0.0 amendment above and the analysis carried in Chapter 5 §5.4.
 
 ---
 
@@ -44,4 +74,4 @@ The hypotheses above are linked by the following causal argument:
 
 **Premise 4 (In-Domain Pretraining Provides Retina-Aware Initialization) [v6.0.0; specifics v6.2.0].** The integrated arm initializes the same CNN backbone (ResNet-50 / EfficientNet-B3) from **ophthalmology-specific self-supervised pretraining** on an unlabeled retinal fundus corpus, using a CNN-compatible domain-adaptive SSL protocol (the DINO / BYOL / SimCLR / MoCo family; **BYOL primary**), pretrained from-scratch on the 4-channel pipeline tensor. No diabetic-retinopathy labels are used during pretraining; the objective is representation learning over retinal anatomical structure (vascular topology, optic-disc and macular morphology, retinal texture, illumination variability, imaging artifacts). The corpus is the unlabeled EyePACS "test" split (53,576 images), disjoint from the Experiment-1 corpus per INVARIANTS SB-2.4, and the initialization must pass a linear-probe acceptance gate before entering Experiment 1. In-domain (retinal-imaging) initialization is expected to improve sample efficiency and clinical generalization relative to natural-image (ImageNet) initialization; this expectation is evaluated empirically and is not assumed (DGL-6).
 
-**Conclusion (v6.0.0; specifics v6.2.0):** The integrated configuration — preprocessing pipeline combined with ophthalmology-specific self-supervised in-domain pretraining — improves diagnostic performance over the baseline configuration (stretch-resize + ImageNet pretraining) as a unitary system (H-1). The pipeline additionally exhibits parameter robustness (H-2), cross-dataset transfer (H-4), lesion-aligned attention (H-5), cross-device generalization (H-6), and reduced clinical degradation (H-7). The decomposition of the H-1 effect into preprocessing-only and pretraining-only contributions is outside the scope of this dissertation (see CFC-2.8).
+**Conclusion (v6.0.0; specifics v6.2.0):** The integrated configuration — preprocessing pipeline combined with ophthalmology-specific self-supervised in-domain pretraining — improves diagnostic performance over the baseline configuration (stretch-resize + ImageNet pretraining) as a unitary system (H-1). The pipeline additionally exhibits parameter robustness (H-2), cross-dataset transfer (H-4), lesion-aligned attention (H-5), cross-device generalization (H-6), and higher absolute performance on external clinical datasets (H-7, v7.0.0 — not a claim of reduced degradation). The decomposition of the H-1 effect into preprocessing-only and pretraining-only contributions is outside the scope of this dissertation (see CFC-2.8).

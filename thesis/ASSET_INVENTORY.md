@@ -3,8 +3,8 @@
 **Document type:** Resource inventory (prerequisite for the chapter-by-chapter writing PLAN)
 **Candidate:** Yesmukhamedov N.S.
 **Compiled:** 2026-06-08
-**Revised:** 2026-08-03 — reconciled against the **2026-08-02 experimental run** (all 7 experiments executed) and the regenerated demo figures.
-**Scope:** Full monorepo scan (`experiments/`, `demo/`, `defense/`, `thesis/assets/`) reconciled against the required figures/tables derived from `thesis/outline/MASTER_OUTLINE.md`, every chapter `README.md`, `thesis/governance/RESEARCH_ARCHITECTURE.md` (v6.0.0), and `HYPOTHESIS.md`.
+**Revised:** 2026-08-04 — reconciled against the latest **2026-08-03 experimental run** and against **governance v7.0.0** (H-7 reformulated: *Clinical Degradation Resistance* → *External Clinical Performance*; the Δ_drop form retired to descriptive status).
+**Scope:** Full monorepo scan (`experiments/`, `demo/`, `defense/`, `thesis/assets/`) reconciled against the required figures/tables derived from `thesis/outline/MASTER_OUTLINE.md`, every chapter `README.md`, `thesis/governance/RESEARCH_ARCHITECTURE.md` (v7.0.0), and `HYPOTHESIS.md` (v7.0.0).
 
 ---
 
@@ -43,13 +43,13 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 | Exp | Hypothesis | Required | State after the 2026-08-02 run | Verdict |
 |-----|-----------|----------|--------------------------------|---------|
 | **Exp 1** | H-1 | 2×2 factorial A–D, EyePACS 100%, 5-fold CV, full metric suite | Complete A–D × 5 folds at 100%; per-class, confusion, calibration, clinical metrics, DeLong/McNemar/Holm/ANOVA | **✅ RUN** — `h1_supported = true`; EH-3 met on both backbones (ΔF1 +6.54/+6.55pp) |
-| **Exp 2** | H-2 | ablation + CLAHE sweep + σ sweep + image-quality metrics | 8-level cumulative ablation on full EyePACS × 5 folds under one initialization; joint CLAHE grid 8×5 on EyePACS; **σ sweep now run**; per-level IQ | **✅ RUN** — PC-2 confirmed on both sweeps; PC-8: contributions significant but **near-uniform, stages not rankable** |
+| **Exp 2** | H-2 | ablation + CLAHE sweep + σ sweep + image-quality metrics | 8-level cumulative ablation on full EyePACS × 5 folds under one initialization; joint CLAHE grid 8×5 on EyePACS; **σ sweep now run**; per-level IQ | **✅ RUN** — PC-2 confirmed on both sweeps; PC-8: all 7 contributions significant **and the hierarchy is now resolvable** (Δⱼ 0.0065–0.0143 ≈ 3·σ_fold) — flat-field and CLAHE lead with 41% of the gain. ⚠️ Reversed the prior run's "not rankable"; stability unconfirmed |
 | **Exp 3** | H-4 | APTOS 2019 zero-shot transfer, G ratio | C vs D on fold-0 checkpoints; per-class, confusion, referable metrics, bootstrap CIs | **✅ RUN** — `h4_supported = true` (G_D = 0.8976); caveat: baseline also clears 0.85 |
 | **Exp 4** | H-5 | Grad-CAM ALO/IoU on IDRiD + Clinical | All 54 mask-carrying IDRiD images, paired Wilcoxon + bootstrap CI + τ sweep | **✅ RUN (IDRiD)** — `h5_alo_supported = true`, 4/4 types significant. **Clinical (KZ) overlays still missing** (gap G-3) |
-| **Exp 5** | H-7 | Clinical degradation Δ on IDRiD + Messidor-2 | Both sets, Δ_drop + absolute external F1 with CIs | **✅ RUN** — **◐ H-7 PARTIAL (1 of 2)**: criterion as written holds only on IDRiD; absolute external F1 significantly higher on both |
-| **Exp 6** | H-6 | Device domain shift on DDR/ODIR-5K/RFMiD | 5 camera groups, g-ratio, between-group spread, per-class F1 | **✅ RUN** — `h6_supported = true`; substantive result is std(F1) narrowing 2.6× |
+| **Exp 5** | H-7 | External clinical performance on IDRiD + Messidor-2 | Both sets, Δ wF1 with bootstrap CIs (+ Δ_drop as descriptive context) | **✅ RUN** — `h7_supported = true`, **CONFIRMED 2/2** (Δ +0.0689 / +0.0541, both ≥ MCID 0.050 with CI⁻ > 0). ⚠️ Messidor-2 margin over MCID is thin: 0.0041 |
+| **Exp 6** | H-6 | Device domain shift on DDR/ODIR-5K/RFMiD | 5 camera groups, g-ratio, between-group spread, per-class F1 | **✅ RUN** — `h6_supported = true`; substantive result is std(F1) narrowing 2.4×. g_ratio falls in 2/5 groups — a denominator artifact, absolute wF1 rises in all 5 |
 | **H-3** | H-3 | *(not previously inventoried — recorded as dropped)* | MMD over penultimate-layer features + KL over channel histograms, 6 target domains | **✅ RUN** — `h3_supported = true`, 6/6 domains, all CIs exclude 0. **⚠️ Conflicts with `thesis/CLAUDE.md` "H-3: DROPPED in V3"** — governance decision required |
-| **Exp 7** | — | Small-data 5-fold IDRiD → Clinical | 5-fold IDRiD CV + clinical hold-out n=60, paired CIs; **preregistered** | **✅ RUN** — positive: +0.079 wF1, +0.122 κ, +0.051 AUC |
+| **Exp 7** | — | Small-data 5-fold IDRiD → Clinical | 5-fold IDRiD CV + clinical hold-out n=60, paired CIs; **preregistered** | **✅ RUN** — positive: +0.080 wF1, +0.125 κ, +0.048 AUC |
 | **SSL** | — (Premise 4) | in-domain SSL linear-probe gate | from-scratch BYOL/MoCo-v2/DINO + SIP; continual-SSL on both backbones, 2 runs | **✅ RUN** — gate passed; SIP now passes from scratch; both backbones gain from continual-SSL |
 | **Validation** | — (supporting Ch 3/Exp 4) | OD/fovea detector accuracy on IDRiD | **Real** `od_fovea_idrid_metrics.json` + montage (516 imgs) | **✅ COMPLETE** |
 | **Preproc artifacts** | — (Ch 3) | norm stats | **Real** EyePACS + IDRiD norm stats | **✅ COMPLETE** |
@@ -167,8 +167,8 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 | TAB-4.7 | table | **Exp 4 ALO (primary) + IoU (secondary)** per lesion type, n = 54 masks | §4.5.2 | Exp 4 | `results/tables/TAB-4.7_exp4_alo_iou.md`; figures `…/results/exp4/06_exp4_alo.png`, `…/07_exp4_iou.png`. 4/4 types significant; **stays within NC-14** | 🟡 RENDERED |
 | FIG-4.13 | figure | Exp 4 per-image direction of the ALO effect | §4.5.3 | Exp 4 | `…/results/exp4/28_attention_consistency.png` — **repurposed**: cross-dataset attention consistency was never measured; the figure now shows improved/unchanged/worsened counts per lesion type | 🟡 RENDERED |
 | FIG-4.14 | figure | Exp 4 lesion-overlay reference (IDRiD masks) | §4.5.2 | Exp 4 | demo asset: `defense/figures/figures_mine/fig2_lesion_overlays.png` | ❌ MISSING |
-| TAB-4.8 | table | **Exp 5 clinical degradation** Δ_drop (IDRiD, Messidor-2) | §4.6 | Exp 5 | `results/tables/TAB-4.8_exp5_degradation.md`; data `…/results/exp5/exp5_degradation.json`. **◐ H-7 partial (1 of 2)** — see the metric critique in that table | 🟡 RENDERED |
-| FIG-4.15 | figure | Exp 5 degradation / generalization chart | §4.6 | Exp 5 | `…/results/exp5/08_exp5_generalization.png`, `…/09_exp5_G_ratio.png` | 🟡 RENDERED |
+| TAB-4.8 | table | **Exp 5 external clinical performance** Δ wF1 vs MCID (IDRiD, Messidor-2) | §4.6 | Exp 5 | `results/tables/TAB-4.8_exp5_degradation.md`; data `…/results/exp5/exp5_degradation.json`. **✅ H-7 CONFIRMED 2/2**; the table also carries the retired Δ_drop form and its critique for §5.4. ⚠️ Filenames still say `degradation` — artifact paths, not renamed | 🟡 RENDERED |
+| FIG-4.15 | figure | Exp 5 external clinical performance / generalization chart | §4.6 | Exp 5 | `…/results/exp5/08_exp5_generalization.png`, `…/09_exp5_G_ratio.png`. ⚠️ Must be regenerated for the current run and re-captioned away from "degradation" | 🟡 RENDERED |
 | TAB-4.9 | table | **Exp 6 device domain shift** — per-camera F1/AUC/κ + between-group spread | §4.7 / App F | Exp 6 | `results/tables/TAB-4.9_exp6_device.md`; figure `…/results/exp6/10_exp6_device_shift.png`. Per-group confusion matrices **not recorded** (App F gap) | 🟡 RENDERED |
 | TAB-4.10 | table | **Exp 7 small-data** 5-fold IDRiD→Clinical (baseline vs integrated), preregistered | §4.8 | Exp 7 | `results/tables/TAB-4.10_exp7_smalldata.md`; data `…/results/exp7/exp7_small_data.json` | 🟡 RENDERED |
 | FIG-4.16 | figure | Exp 7 small-data performance chart | §4.8 | Exp 7 | `…/results/exp7/30_exp7_small_data.png` (rendered directly from the JSON) | 🟡 RENDERED |
@@ -179,7 +179,7 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 |----|------|----------------------|----------|--------|-----------|--------|
 | FIG-5.1 | figure | Grad-CAM gallery (representative per class, baseline vs integrated) | §5.1 / App E | Exp 4 | 54 IDRiD overlays at `experiments/outputs/exp4/gradcam_maskset/`; **clinical (KZ) overlays missing — gap G-3** | ⏳ PENDING |
 | TAB-5.1 | table | Statistical tests (DeLong, McNemar, Holm, bootstrap 95% CI, mixed-effects) | §5.2.1 | Exp 1–7 | `results/tables/TAB-5.1_statistical.md`; figure `…/results/general/21_statistical_tests.png` | 🟡 RENDERED |
-| TAB-5.2 | table | Final claim-strength classification PC-0…PC-10 | §5.2.2 | governance + results | `results/tables/TAB-5.2_claim_strength.md` — 5 STRONG, 2 MODERATE, 0 REFUTED | 🟡 RENDERED |
+| TAB-5.2 | table | Final claim-strength classification PC-0…PC-10 | §5.2.2 | governance + results | `results/tables/TAB-5.2_claim_strength.md` — 7 STRONG, 0 MODERATE, 0 REFUTED (PC-8 upgraded on the data; PC-10 re-specified under H-7 v7.0.0) | 🟡 RENDERED |
 | TAB-5.3 | table | Comparative analysis vs published systems (IDx-DR, EyeNuk, DeepMind, Gulshan — contextual only) | §5.3.1 | literature cards | text (numbers pending own results) | ⏳ PENDING |
 | FIG-5.2 | figure | Performance–complexity trade-off | §5.3.2 | Exp 1/6 | `results/tables/computational_and_iq.md` (measured on RTX 3060); figure `…/results/general/17_computational.png` | 🟡 RENDERED |
 | FIG-5.3 | figure | Summary radar across hypotheses / EH-3 dominance | §5.2 | all Exp | radar data in `results/findings/summary-and-dominance.md`; figures `…/results/general/11_summary_radar.png`, `…/12_eh3_dominance.png` | 🟡 RENDERED |

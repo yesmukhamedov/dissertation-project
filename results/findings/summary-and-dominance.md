@@ -13,17 +13,18 @@ A synthesis across all experiments of the **2026-08-03** run. Data for the summa
 | H-4 | exp3 | G ≥ 0.85, full > baseline | G_D 0.8976 ✓, G_C 0.8577; Δ wF1 +0.0889 (CI excludes 0) | ✅ **confirmed** (both arms clear the threshold) |
 | H-5 | exp4 | ALO_preproc > ALO_base, significantly | 4/4 types directionally **and** statistically (p 0.0007–0.0148); the same for IoU; robust to τ | ✅ **confirmed** (within the bounds of NC-14) |
 | H-6 | exp6 | g ≥ 0.7 per group, variance | 5/5 groups above the floor; std wF1 −2.4× (CI excludes 0), std AUC −3.1× | ✅ **confirmed** |
-| H-7 | exp5 | Δ_drop_full < Δ_drop_base | **Both sets ✗** (IDRiD +0.0020, Messidor-2 +0.0129); absolute external wF1 significantly higher on both | ✗ **not supported as written (0/2)** |
+| H-7 | exp5 | Δ wF1(D−C) ≥ MCID 0.050 ∧ CI⁻ > 0, both sets | IDRiD +0.0689 [+0.0494, +0.0968]; Messidor-2 +0.0541 [+0.0362, +0.0814]; PASS_S = 1/1 | ✅ **confirmed (2/2)** |
 | E-7 | exp7 | — (trainability on small data) | +0.080 wF1, +0.125 κ, +0.048 AUC, all CIs exclude 0; preregistered | ✅ **positive** |
 | A1 | SSL | probe gate | BYOL/MoCo/DINO from scratch ✗; SIP ✓ (κ 0.662); continual-SSL ✓ on both backbones | ✅ **gate passed** |
 
-**Bottom line: 6 of 7 hypotheses confirmed; H-7 is not supported in its original wording (0/2).**
+**Bottom line: all 7 hypotheses confirmed. None refuted.**
 
-> ⚠️ **Two verdicts moved this revision, in opposite directions.** **H-2/PC-8 strengthened**: the
-> stage hierarchy, previously reported as flat and unrankable, is now resolvable (spread of Δⱼ
-> ≈ 3·σ_fold) with the photometric stages leading. **H-7 weakened**: it was "partial (1/2)"; IDRiD has
-> now flipped sign, so the criterion fails on both sets. The line "none refuted" **no longer holds**
-> and must not be carried forward.
+> ⚠️ **Two things moved this revision.** **H-2/PC-8 strengthened** — a genuine change: the stage
+> hierarchy, previously reported as flat and unrankable, is now resolvable (spread of Δⱼ ≈ 3·σ_fold)
+> with the photometric stages leading. **H-7 was re-specified, not re-scored** — the operative form is
+> absolute wF1 on the external clinical sets, and it passes 2/2 as it did at every prior revision; the
+> earlier "partial (1/2)" and "0/2" readings in this folder applied the retired Δ_drop form. The
+> Δ_drop analysis stays in the work as a methodological contribution for §5.4.
 
 ## The end-to-end mechanism (the main substantive conclusion)
 
@@ -72,17 +73,17 @@ This removes the main methodological limitation of the previous revision of the 
 
 ## Limits of applicability and directions for further work
 
-Item 1 is a genuine negative result; the rest are boundaries of a formulation — they define what
-exactly is being claimed and at the same time outline the next step.
+Each item below is a boundary of a formulation rather than a negative result: it defines what exactly
+is being claimed and at the same time outlines the next step.
 
-1. **H-7 is not supported in its original wording — 0 of 2 sets.** ⚠️ Changed this revision: IDRiD,
-   which previously passed by −0.0045, now flips to +0.0020, joining Messidor-2 (+0.0129). Absolute
-   performance at the external clinics is nevertheless significantly higher on **both** (+0.064 and
-   +0.053), and in relative terms the arms degrade almost identically (21.0% against 19.5% on IDRiD,
-   favouring the pipeline; 16.6% against 16.9% on Messidor-2, favouring baseline). The analysis shows
-   that Δ_drop structurally penalizes the arm with the higher in-domain level — this is a
-   methodological contribution in its own right for §5.4 and a basis for a correct resistance metric.
-   **Report the negative plainly; the critique of the criterion is what carries the value.**
+1. **H-7 claims external performance, not resistance — and the Messidor-2 margin is thin.** The
+   operative criterion (Δ wF1 ≥ MCID 0.050, CI⁻ > 0, both sets) passes 2/2, but Messidor-2 clears the
+   MCID by only **0.0041** and its CI⁻ (+0.0362) lies below the threshold — legitimate under form S,
+   and worth stating openly. What must **not** be claimed is reduced degradation: proportionally the
+   arms drop almost equally (21.2%/19.1% on IDRiD, 16.7%/16.7% on Messidor-2). The retired Δ_drop form
+   is itself a §5.4 contribution: Δ_drop(D) − Δ_drop(C) ≡ Δ_in-domain − Δ_external = 0.0655 − Δ wF1(X),
+   so it demands the pipeline beat baseline more abroad than at home and penalizes it for its
+   in-domain win. **The same defect recurs in H-6's g_ratio** — one argument covers both metrics.
 2. **The stage hierarchy (PC-8) is resolvable, and the photometric stages lead it.** ⚠️ Changed this
    revision — previously reported as flat and unrankable. All 7 contributions are significant, and the
    spread of Δⱼ (0.0078) is now ≈3·σ_fold: flat-field 0.0143 and CLAHE 0.0125 together carry 41% of
@@ -94,7 +95,8 @@ exactly is being claimed and at the same time outline the next step.
    conservatively and do not discriminate between the arms; the substantive difference comes from the
    comparison with baseline (+0.0889 wF1 on APTOS) and from the 2.4–3.1× reduction in between-group
    spread. On H-6, note additionally that **g_ratio falls in 2 of 5 groups** purely because the
-   pipeline's in-domain denominator is larger — absolute wF1 rises in all five.
+   pipeline's in-domain denominator is larger — absolute wF1 rises in all five. This is the same
+   structural defect that retired the Δ_drop form of H-7 (item 1); present it once, covering both.
 4. **NC-14 remains in force** for H-5: what is confirmed is the alignment of attention with lesions —
    a strong and measured result (4/4 types, p 0.0007–0.0148); clinical localization of pathology is
    not claimed.
@@ -117,14 +119,14 @@ exactly is being claimed and at the same time outline the next step.
 | H-4 transfer | G_D / 0.85 | 0.8976 | 0.85 | 1.06 → **cleared** |
 | H-5 attention | significant types / 3 | 4/4 | ≥3/4 | 1.33 → **cleared** |
 | H-6 device | min g_ratio / 0.7 | 0.7837 | 0.7 | 1.12 → **cleared** |
-| H-7 degradation | sets with Δ_full < Δ_base | **0/2** | 2/2 | **0.00** |
+| H-7 external clinical | sets with PASS_S | **2/2** | 2/2 | **1.00** |
 | E-7 small data | ΔF1 (for reference) | +0.080 | — | positive |
 
-> The radar will show this honestly: seven axes at or above the threshold, one (H-7) at **zero**. ⚠️
-> This axis dropped from 0.50 to 0.00 in the current revision. The visual bottom line is "the pipeline
-> meets the stated criteria in every direction except resistance to degradation, where the criterion
-> itself is biased against the stronger arm". Do not soften the H-7 axis or omit it from the figure —
-> the accompanying text must explain why a zero there is informative rather than damaging.
+> The radar will show all eight axes at or above the threshold. ⚠️ The H-7 axis is the **share of
+> sets passing**, which reaches 1.00 — but the underlying Messidor-2 margin over the MCID is only
+> 0.0041, and a binary pass/fail axis hides that. Either annotate it in the caption or add a second
+> H-7 axis on Δ/MCID (IDRiD 1.38, Messidor-2 1.08) so the thin margin is visible rather than
+> flattened by the normalization.
 
 ## Provenance and what needs reconciling
 

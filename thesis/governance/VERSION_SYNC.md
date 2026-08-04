@@ -1,6 +1,18 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 6.3.0 | **Date:** 2026-07-09
+**Version:** 7.0.0 | **Date:** 2026-08-04
+
+## v7.0.0 Amendment Scope
+
+**H-7 reformulated: Clinical Degradation Resistance → External Clinical Performance.** The dependent variable changes from the degradation quantity Δ_drop = F1_EyePACS_val − F1_external to the **absolute external performance difference** Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X), with acceptance form S — Δ wF1(X) ≥ MCID_wF1 = 0.050 **and** CI⁻ > 0 — required on **both** external clinical sets, evaluated independently (no aggregation; a reversal on either set yields REVERSED). Note the form requires Δ ≥ MCID and CI⁻ > 0, **not** CI⁻ ≥ MCID.
+
+**Rationale.** The retired dependent variable is not independent of the hypothesis it was meant to test: Δ_drop(integrated) − Δ_drop(baseline) ≡ [wF1(int,in) − wF1(base,in)] − [wF1(int,X) − wF1(base,X)] = Δ_in-domain − Δ_external. The comparison is therefore the fixed in-domain margin minus the quantity under test, satisfiable only when the integrated arm exceeds baseline *more on foreign data than on its own* — it penalizes the integrated arm for its in-domain result and measures nothing about resistance. Identified analytically, not by inspection of outcomes.
+
+**VCR-3 is not engaged:** it governs results contradicting the *direction of effect*, and that direction — the integrated arm performing better on external clinical data — was never contradicted at any evaluation; the failure was in the metric expressing it. The retired form is preserved as a descriptive quantity in HYPOTHESIS/INVARIANTS and its results remain reportable in Chapter 5 §5.4 as a critique of a degradation metric in common use (a secondary methodological contribution, SC-G). **VCR-1 is satisfied** by issuing a new versioned Invariants document (this bump).
+
+**A hypothesis is reformulated incompatibly with the prior version → MAJOR bump** per VERSIONING_POLICY §4. H-1 through H-6, all scope boundaries, forbidden claims, non-claims, the composite IV and CFC-2.8 are unchanged. Governance files updated: INVARIANTS (Section II H-7, header), HYPOTHESIS (H-7, Central-Hypothesis note, Conclusion, header), ARGUMENT_MAP (PC-10, SC-10.1, PC-10 strength, DAG label, dependency note), CONTRIBUTIONS (SC-G + secondary methodological contribution), RESEARCH_ARCHITECTURE (§5.5, §9.1 bullet, PC-10 row), VERSION_SYNC, CHANGELOG. **Downstream sync completed 2026-08-04:** `thesis/ASSET_INVENTORY.md` (Exp-5 row, TAB-4.8, FIG-4.15, TAB-5.2 tally, header provenance; Exp-2/6/7 verdict rows also refreshed to the current run), `thesis/glossary/GLOSSARY_EN.md` and `GLOSSARY_KZ.md` (both → v7.0.0: H-7 entry renamed and redefined, **MCID** added as a new operational term, "Clinical Degradation Resistance" and "Δ_drop" moved to Deprecated Terms with Superseded-By pointers, Messidor-2 entry corrected). `results/` was already aligned.
+
+**Still pending** (does not gate this bump): chapter 4/5 briefs and drafts referring to "clinical degradation resistance"; FIG-4.15 needs regeneration and re-captioning; artifact filenames (`TAB-4.8_exp5_degradation.md`, `exp5_degradation.json`, `08_exp5_generalization.png`) retain the old term — paths, not prose, and renaming them is optional. **CENTRAL_THESIS.md (v6.0.0) and CORE_OBJECTIVE.md (v5.0)** both contain the phrase "clinical degradation resistance" in prose enumerations of the validation programme; they were **not** bumped here because neither states a criterion — the wording should be changed to "external clinical performance" in their next revision, and both were already behind the INVARIANTS line before this amendment.
 
 ## v6.3.0 Amendment Scope
 
@@ -38,11 +50,12 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 
 | File | Version | Synced |
 |------|---------|--------|
-| governance/INVARIANTS.md | 6.3.0 | ✅ — v6.3.0: SB-2.4 relaxed + CFC-2.8 extended to admit supervised in-domain pretraining (SIP) as a gate-selected integrated-arm init (SSL negative result); header summary added — completed 2026-07-09. v6.2.0: SB-2.4 added; DGL-6 extended (EyePACS-test 53,576, BYOL-primary, from-scratch, linear-probe gate) |
-| governance/HYPOTHESIS.md | 6.2.0 | ✅ — v6.2.0: Premise 4 + Conclusion corrected RETFound→ophthalmology-SSL (v6.0.0 sync miss); SSL operational specifics recorded — completed 2026-06-26 |
-| governance/RESEARCH_ARCHITECTURE.md | 6.2.0 | ✅ — v6.2.0: §4.2bis extended (corpus, BYOL-primary, from-scratch 4-channel, linear-probe gate); §9.1 pretraining-leakage bullet — completed 2026-06-26 |
-| governance/VERSION_SYNC.md | 6.2.0 | ✅ |
-| governance/ARGUMENT_MAP.md | 6.0.0 | ✅ — unaffected by v6.2.0 (no pretraining-source node in this file; binding-ref unchanged) |
+| governance/INVARIANTS.md | 7.0.0 | ✅ — v7.0.0: H-7 reformulated (Section II) Clinical Degradation Resistance → External Clinical Performance; Δ_drop retired to descriptive; header summary added — completed 2026-08-04. v6.3.0: SB-2.4 relaxed + CFC-2.8 extended to admit SIP as a gate-selected integrated-arm init |
+| governance/HYPOTHESIS.md | 7.0.0 | ✅ — v7.0.0: H-7 reformulated (form S, MCID 0.050, CI⁻ > 0, both sets); Conclusion + Central-Hypothesis note synced; binding ref → INVARIANTS v7.0.0 — completed 2026-08-04. v6.2.0: Premise 4 + Conclusion RETFound→ophthalmology-SSL |
+| governance/RESEARCH_ARCHITECTURE.md | 7.0.0 | ✅ — v7.0.0: §5.5 purpose + acceptance rewritten, §9.1 H-7 bullet, PC-10 row — completed 2026-08-04. v6.2.0: §4.2bis extended; §9.1 pretraining-leakage bullet |
+| governance/CONTRIBUTIONS.md | 7.0.0 | ✅ — v7.0.0: SC-G reframed to external clinical performance + secondary methodological contribution (Δ_drop defect) — completed 2026-08-04 |
+| governance/VERSION_SYNC.md | 7.0.0 | ✅ |
+| governance/ARGUMENT_MAP.md | 7.0.0 | ✅ — v7.0.0: PC-10 formal statement, SC-10.1, PC-10 strength criteria, DAG label and dependency note — completed 2026-08-04 |
 | governance/CONTRIBUTIONS.md | 6.3.0 | ✅ — v6.3.0: SC-H generalized to "in-domain initialization (self-supervised OR supervised), gate-selected" — SIP admitted, SSL negative result recorded — completed 2026-07-09. v6.2.0: SC-H refined with locked SSL specifics; CFC-2.8 boundary unchanged |
 | governance/CENTRAL_THESIS.md | 6.0.0 | ✅ — unaffected by v6.2.0 (no pretraining reference in body; binding-ref unchanged) |
 | literature/external/gulshan-2016.md | v5.3 sync ✅ | ✅ — v5.3: §15 Paradigmatic Role block + §16 Paradigmatic citation-ready statements + §18 Paradigmatic Synthesis — completed 2026-05-28 |

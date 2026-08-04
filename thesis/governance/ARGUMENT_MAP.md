@@ -2,7 +2,9 @@
 ## PhD Dissertation: Automated Diabetic Retinopathy Diagnosis via Fundus Image Enhancement and CNN Classification
 **Candidate:** Yesmukhamedov N.S.
 **Document Type:** Formal Claim-Evidence-Dependency Structure
-**Version:** 6.0.0 | **Date:** 2026-06-01 | **Binding Reference:** INVARIANTS.md v6.0.0
+**Version:** 7.0.0 | **Date:** 2026-08-04 | **Binding Reference:** INVARIANTS.md v7.0.0
+
+**v7.0.0 Amendment:** PC-10 is reformulated in step with H-7 (INVARIANTS v7.0.0) — *Clinical Degradation Resistance* → *External Clinical Performance*. The claim is now higher absolute weighted F1 on each external clinical dataset (Δ wF1 ≥ MCID 0.050, CI⁻ > 0, both sets, no aggregation); the Δ_drop degradation form is retired to descriptive status and can neither promote nor demote the claim. Updated: PC-10 formal statement and evidence type, SC-10.1, PC-10 strength criteria, the DAG label, and the PC-1 dependency note. No other claim node is affected.
 
 ---
 
@@ -140,11 +142,11 @@
 
 ### PC-10
 **Claim ID:** PC-10
-**Formal Statement:** Performance degradation Δ = F1_EyePACS_val − F1_external is statistically smaller when models are trained with the preprocessing pipeline than with the baseline (stretch-resize + ImageNet normalize), evaluated on IDRiD and Messidor-2 without retraining.
+**Formal Statement:** On each external clinical dataset (IDRiD, Messidor-2), evaluated without retraining, the weighted F1-score of the integrated-preprocessed model exceeds that of the baseline (stretch-resize + ImageNet normalize) by at least MCID_wF1 = 0.050 with the confidence interval of the difference excluding zero. [v7.0.0 reformulated — the retired Δ_drop degradation form is descriptive only.]
 **Claim Type:** Empirical
-**Required Evidence Type:** Experiment 5 — clinical degradation comparison. Δ computed for baseline and conditions; paired statistical test across folds.
+**Required Evidence Type:** Experiment 5 — external clinical evaluation. Δ wF1 with bootstrap CI computed per dataset per architecture; both datasets must pass independently (no aggregation).
 **Dependency:** Depends on PC-1 (pipeline validity)
-**Tests whether:** Preprocessing reduces cross-dataset performance loss (H-7).
+**Tests whether:** Preprocessing yields higher absolute performance on external clinical data (H-7). **Does not test** degradation resistance — see the v7.0.0 amendment in INVARIANTS/HYPOTHESIS.
 
 ---
 
@@ -370,16 +372,17 @@
 ### SC-10.1
 **Parent Claim:** PC-10
 **Sub-Claim ID:** SC-10.1
-**Formal Statement:** For each architecture (ResNet-50, EfficientNet-B3) × preprocessing condition (baseline vs integrated), Δ = F1_EyePACS_val − F1_external is computed on both IDRiD and Messidor-2. Δ_integrated < Δ_baseline on both external datasets demonstrates clinical degradation resistance.
+**Formal Statement:** For each architecture (ResNet-50, EfficientNet-B3), Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X) is computed on both IDRiD and Messidor-2. PASS_S on both — Δ wF1(X) ≥ 0.050 and CI⁻ > 0 — establishes higher absolute external clinical performance.
 
 **Evidence Reference:**
-- Dissertation Section: Experiment 5 (Clinical Degradation Resistance)
-- Dataset: EyePACS (training/validation), IDRiD and Messidor-2 (external evaluation)
-- Metrics: Δ per dataset per architecture; paired test across 5-fold CV results
+- Dissertation Section: Experiment 5 (External Clinical Performance)
+- Dataset: EyePACS (training), IDRiD and Messidor-2 (external evaluation, zero-shot)
+- Metrics: Δ wF1 with bootstrap CI per dataset per architecture; sets evaluated independently
 
 **Boundary Conditions:**
-- Claim is bounded to the tested datasets (IDRiD, Messidor-2) and architectures (ResNet-50, EfficientNet-B3).
-- Does not claim zero degradation — only reduced degradation with preprocessing.
+- Claim is bounded to the tested datasets (IDRiD, Messidor-2) and architectures (ResNet-50, EfficientNet-B3), zero-shot with no target-domain adaptation.
+- Claims higher absolute performance only. **Does not claim** reduced degradation, reduced proportional drop, or resistance to domain shift.
+- Acceptance requires Δ ≥ MCID and CI⁻ > 0; it does **not** require CI⁻ ≥ MCID.
 
 ---
 
@@ -529,7 +532,7 @@ IT-1 (Main Thesis)
 ├── PC-9 [Empirical — Device Domain Shift Robustness]   ← Depends on PC-1
 │   └── SC-9.1 [Cross-camera performance matrix: DDR, ODIR-5K, RFMiD]
 │
-└── PC-10 [Empirical — Clinical Degradation Resistance] ← Depends on PC-1
+└── PC-10 [Empirical — External Clinical Performance] ← Depends on PC-1
     └── SC-10.1 [Δ comparison on IDRiD and Messidor-2]
 ```
 
@@ -542,7 +545,7 @@ IT-1 (Main Thesis)
 - PC-7 requires PC-1 (pipeline validity). IDRiD supplies lesion masks; Clinical supplies qualitative context.
 - PC-8 requires PC-1: component-level ablation presupposes an established full pipeline whose components can be systematically removed.
 - PC-9 requires PC-1 (pipeline validity); evaluation on DDR, ODIR-5K, RFMiD grouped by camera.
-- PC-10 requires PC-1 (pipeline validity); clinical degradation resistance is only meaningful after pipeline dominance is established.
+- PC-10 requires PC-1 (pipeline validity); external clinical performance is only meaningful after pipeline dominance is established.
 - EH-4 (Sufficient Validation Criterion) requires PC-1 to be satisfied on EyePACS AND confirmed in direction of effect on at least one external dataset (APTOS 2019, IDRiD, or Messidor-2) AND replicated across both architectures in the factorial design (ResNet-50 and EfficientNet-B3). PC-6 contributes the cross-dataset confirmation required by EH-4.
 
 ---
@@ -626,12 +629,13 @@ IT-1 (Main Thesis)
 
 ---
 
-### PC-10 — Clinical Degradation Resistance
+### PC-10 — External Clinical Performance
 **Strength: CONDITIONAL**
 **Justification:**
 - No experimental results yet available; claim is pending Experiment 5 execution.
-- CONDITIONAL: promotion to MODERATE requires Δ_integrated < Δ_baseline with statistical significance (paired test across 5-fold CV folds) on at least one of IDRiD and Messidor-2.
-- Claim fails if Δ_integrated ≥ Δ_baseline on both tested external datasets.
+- CONDITIONAL: promotion requires PASS_S on **both** IDRiD and Messidor-2 — Δ wF1(X) ≥ MCID_wF1 = 0.050 with CI⁻ > 0 on each.
+- Claim fails (REVERSED) if CI⁺ < 0 on either dataset; datasets are not aggregated.
+- [v7.0.0] The prior Δ_drop-based promotion condition is withdrawn; Δ_drop is descriptive only and cannot promote or demote this claim.
 
 ---
 
