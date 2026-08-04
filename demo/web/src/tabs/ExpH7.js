@@ -53,15 +53,17 @@ export default function ExpH7() {
           ])}
         />
         <Note>
-          The pipeline (4ch) gains +7.90pp weighted F1, +12.20pp κ and +5.10pp AUC on the clinical hold-out, and is
-          ahead on the internal IDRiD CV in <strong>all five folds</strong>. The experiment is <strong>preregistered</strong>,
-          so the metric was not chosen after the fact.
+          The pipeline (4ch) gains +7.98pp weighted F1, +12.45pp κ and +4.82pp AUC on the clinical hold-out, and is
+          ahead on the internal IDRiD CV in <strong>4 of the 5 folds</strong> (margins +12.62, +9.52, +9.06 and
+          +2.87pp), with one marginal inversion of −0.57pp on baseline's strongest fold — an order of magnitude
+          smaller than the typical margin and well inside the between-fold std (0.031–0.038). The experiment is
+          <strong> preregistered</strong>, so the metric was not chosen after the fact.
           <br /><br />
           <strong>Read the paired CIs, not the unpaired ones.</strong> At n = 60 the per-arm bootstrap intervals
-          overlap (C [0.4402, 0.5898], D [0.5238, 0.6642]); significance comes from the paired test, where both arms
+          overlap (C [0.4511, 0.6007], D [0.5338, 0.6742]); significance comes from the paired test, where both arms
           are scored on the very same 60 images.
           <br /><br />
-          Note also that the gain here (+7.90pp) is comparable to the full-EyePACS gain (Exp 1: +6.55pp). The pipeline
+          Note also that the gain here (+7.98pp) is comparable to the full-EyePACS gain (Exp 1: +6.55pp). The pipeline
           advantage is therefore <em>not</em> specific to the small-data regime and does not wash out as data grows —
           which is a weaker but more honest claim than "preprocessing matters most when data is scarce".
         </Note>

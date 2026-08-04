@@ -51,7 +51,7 @@ export default function ExpH3() {
         <Note>
           H-4 criterion: G = F1<sub>APTOS</sub> / F1<sub>EyePACS</sub> ≥ 0.85, and pipeline &gt; baseline.
           Both parts hold: G<sub>D</sub> = 0.8976 clears the threshold with 0.048 to spare, and the pipeline beats
-          the baseline by +0.0889 weighted F1 (CI [+0.0631, +0.1147]).
+          the baseline by +0.0889 weighted F1 (CI [+0.0681, +0.1197]).
           <strong> Important caveat:</strong> the baseline clears the threshold too (G<sub>C</sub> = 0.8577), so the
           "G ≥ 0.85" test on its own does not separate the two arms — the discriminating part of the hypothesis is
           "better than baseline". The honest phrasing is that the pipeline does not <em>rescue</em> transfer, it
@@ -114,7 +114,7 @@ export default function ExpH3() {
           mixed cameras, Indian population). Protocol: zero-shot — no retraining or fine-tuning on APTOS.
           The gain is present on <strong>all five</strong> DR grades, and macro-F1 rises more than weighted F1
           (+0.102 vs +0.089), i.e. the improvement is concentrated on the minority grades. κ gains most of all
-          (+0.097): remaining errors stay adjacent on the severity scale.
+          (+0.099): remaining errors stay adjacent on the severity scale.
           <br /><br />
           <strong>Caveat:</strong> evaluated from fold-0 checkpoints, so there is no between-fold variance for this
           experiment; the 95% CIs above are per-instance bootstrap intervals.

@@ -24,7 +24,7 @@ export default function ResultsBestConfig() {
         </div>
         <Note>
           Config D achieves +6.55pp weighted F1 and +3.60pp AUC over the baseline (Config C, same architecture).
-          Statistical significance: DeLong p=0.0028, McNemar p=0.0041, bootstrap 95% CI for ΔF1 [+4.66pp, +8.44pp],
+          Statistical significance: DeLong p=0.0028, McNemar p=0.0041, bootstrap 95% CI for ΔF1 [+4.23pp, +8.01pp],
           Holm-corrected p_adj=0.0056. macro-F1 rises further than weighted F1 (0.4300 → 0.5355, +10.55pp), i.e. the
           gain is concentrated on the minority grades.
         </Note>

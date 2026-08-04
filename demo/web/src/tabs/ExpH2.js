@@ -33,10 +33,12 @@ export default function ExpH2() {
           highlightRow={(row, i) => i === ABL.length - 1}
         />
         <Note>
-          Every stage contributes significantly, and the contributions are near-uniform (+0.90…+1.00pp each).
-          The whole spread of Δ across stages (0.10pp) is smaller than the between-fold σ (≈0.28pp), so the stages
-          <strong> cannot be ranked against one another</strong> — there is no "leading stage". The pipeline behaves as an
-          ensemble of comparably-strong normalizations whose effects add up.
+          Every stage contributes significantly — all 7 transitions clear the 2·σ_fold band — and the contributions
+          are <strong>rankable</strong>: Δⱼ spans 0.65–1.43pp, a spread of ≈3·σ_fold. The two photometric stages lead:
+          flat-field (+1.43pp) and CLAHE (+1.25pp) together carry <strong>41%</strong> of the +6.55pp total, about as
+          much as the four geometric/normalization stages combined. No stage is redundant — the weakest still adds
+          +0.65pp, above its own noise band. What the data resolve is the <em>grouping</em>, not a strict 1-to-7 order:
+          adjacent ranks (Stage 1 at +0.68pp against Stage 7 at +0.65pp) sit inside the noise.
           Because all 8 levels share a single initialization, the +6.55pp total is attributable to preprocessing
           alone — this is what decomposes the preprocessing × SSL-init confound (CFC-2.8) in Exp 1.
         </Note>
@@ -49,23 +51,29 @@ export default function ExpH2() {
             v: d.delta_f1,
             color: d.significant ? C.teal : C.gray,
           }))}
-          maxV={1.4}
+          maxV={1.5}
         />
         <DataTable
-          headers={['Stage', 'Marginal ΔF1 (pp)', '2·σ_fold band (pp)', 'Exceeds noise?']}
+          headers={['Stage', 'Marginal ΔF1 (pp)', '2·σ_fold band (pp)', 'Exceeds noise?', 'Rank', 'Share of +6.55pp']}
           rows={STAGE_CONTRIB.map(d => [
             d.stage,
             `+${d.delta_f1.toFixed(2)}pp`,
             `${d.band.toFixed(2)}pp`,
             d.significant ? '✓' : '✗',
+            d.rank,
+            `${d.share}%`,
           ])}
+          highlightRow={(row, i) => STAGE_CONTRIB[i].rank <= 2}
         />
-        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp2/05_exp2_per_stage.png'} caption="Marginal F1 contribution of each pipeline stage against the 2·σ_fold significance band. All 7 transitions clear the band, but the contributions are statistically indistinguishable from one another." figNum={5} tooltip="tooltip.fig05" />
+        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp2/05_exp2_per_stage.png'} caption="Marginal F1 contribution of each pipeline stage against the 2·σ_fold significance band. All 7 transitions clear the band; the two photometric stages (flat-field, CLAHE) lead and together account for 41% of the total gain." figNum={5} tooltip="tooltip.fig05" />
         <Note>
           Δ is the contribution of stage j <em>given</em> stages 0…j−1 already applied — the ordering is fixed by the
           pipeline, so these are not isolated single-stage effects and inter-stage interactions are not measured here.
           Caveat: Stage 3 (FOV mask) is not isolated — level L3 adds Stages 2 and 3 together, because disabling the
-          mask would require a 3-channel variant of the model.
+          mask would require a 3-channel variant of the model, so rank 4 belongs to the pair rather than to Stage 2
+          alone. The 2·σ_fold threshold is a heuristic for significance, not a formal paired test, and the ranking
+          rests on the same heuristic: the supportable claim is that photometric normalization dominates, not a
+          strict ordering of all seven.
         </Note>
       </Sec>
 
@@ -118,7 +126,7 @@ export default function ExpH2() {
                               background: `rgba(${hi === C.coral ? '216,90,48' : '29,158,117'},${0.08 + t * 0.55})`,
                               color: t > 0.55 ? 'white' : 'inherit', borderRadius: 2,
                             }}>
-                              {v.toFixed(2)}{isMax ? ' ★' : ''}
+                              {v.toFixed(3)}{isMax ? ' ★' : ''}
                             </td>
                           );
                         })}
@@ -133,8 +141,8 @@ export default function ExpH2() {
         <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp2/13_exp2_clahe_sensitivity.png'} caption="CLAHE parameter sensitivity heatmap for DR grades 1 and 2. Optimal parameters identified at clip_factor=2.5 (DR 1) and 2.0 (DR 2) with global_threshold=0.03." figNum={13} tooltip="tooltip.fig13" />
         <Note>
           The grids are train-fold values used to <em>select</em> θ*, not a performance estimate. On held-out data the
-          per-class figures diverge from the grid in both directions — F1(DR 1) is markedly lower (0.2088 vs 0.4700 at θ*),
-          F1(DR 2) higher (0.6482 vs 0.6000). The held-out numbers are the ones to quote.
+          per-class figures diverge from the grid in both directions — F1(DR 1) is markedly lower (0.2091 vs 0.4693 at θ*),
+          F1(DR 2) higher (0.6477 vs 0.5968). The held-out numbers are the ones to quote.
         </Note>
       </Sec>
 
@@ -163,7 +171,7 @@ export default function ExpH2() {
         />
         <Note>
           Strictly unimodal with an interior maximum at σ* = 0.07·D and a symmetric fall-off on both sides.
-          The range over the sweep (R = 0.052) is comparable to the entire pipeline effect, so σ is a parameter that
+          The range over the sweep (R = 0.0512) is comparable to the entire pipeline effect, so σ is a parameter that
           genuinely has to be tuned rather than picked arbitrarily. σ* coincides with the value already fixed in the
           Stage 4 specification — the sweep confirms the existing setting rather than changing it.
           Within this one stage CNR and F1 move together (both peak at σ = 0.07); <em>across</em> stages they do not

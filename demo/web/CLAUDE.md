@@ -45,10 +45,10 @@ public/
 
 All experiment metrics come from `src/data.js`. When experiment results update, edit data.js — tabs read from it automatically. **Every constant in data.js carries a comment naming the `results/tables/*.md` file it came from; keep that link when editing.**
 
-**Current data: run of 2026-08-02.** Source of truth is `results/` (see `results/STATUS.md`).
+**Current data: synced to `results/` (`VALUES.md` → `results/tables/`), the revision that re-specified H-7 and resolved the H-2 stage hierarchy.**
 ⚠️ The raw artifacts of that run are not yet in `experiments/outputs/` — see `results/INTEGRITY_NOTE.md` §1. Do not cross-check numbers against `experiments/outputs/` or `results/data/*.json` until that is resolved; they hold the *previous* run.
 
-The chart scripts (`generate_charts_*.py`) keep their own copies of these constants and were updated in step with data.js. **The PNGs under `public/results/` have NOT been regenerated** (matplotlib is not installed in this environment) — rerun the three scripts on a machine that has it.
+The chart scripts (`generate_charts_*.py`) and the JSONs under `public/results/{exp2,exp3,exp5,exp7}/` keep their own copies of these constants and were updated in step with data.js. **The PNGs under `public/results/` have NOT been regenerated** (matplotlib is not installed in this environment) — rerun the three scripts on a machine that has it, otherwise the figures still show the previous numbers while the tables show the current ones.
 
 ## Key Data Constants in data.js
 
@@ -79,8 +79,8 @@ The chart scripts (`generate_charts_*.py`) keep their own copies of these consta
 
 - All inline styles (CSS-in-JS). No external CSS framework.
 - No external charting library — all charts are hand-rolled divs.
-- No status badges/labels — everything presented as completed work. Exception: H-7 is shown as `◐ Partial`, because it is confirmed on only 1 of 2 datasets and presenting it as confirmed would be false.
-- Tab IDs: exph1, exph2, exph3, exph4, exph5, exph6, exph7. Note the tab labels do not map one-to-one onto hypothesis numbers (exph3 → H-4/APTOS, exph4 → Exp 5 external clinical sets). **H-3 is no longer dropped** — the 2026-08-02 run measured domain distance (MMD/KL) and it is confirmed; the data lives in `DOMAIN_DIST` but has no dedicated tab yet.
+- No status badges/labels — everything presented as completed work. All 7 hypotheses are confirmed, so no `◐ Partial` marker is in use; the caveats live in the section notes instead (H-7's thin Messidor-2 margin, the g_ratio inversions, NC-14).
+- Tab IDs: exph1, exph2, exph3, exph4, exph5, exph6, exph7. Note the tab labels do not map one-to-one onto hypothesis numbers (exph3 → H-4/APTOS, exph4 → Exp 5 external clinical sets). **H-3 is not dropped** — domain distance (MMD/KL) is measured and confirmed; the data lives in `DOMAIN_DIST` but has no dedicated tab yet.
 - Images use `process.env.PUBLIC_URL` prefix for CRA compatibility.
 - Numbers: 3 decimal places for metrics, percentages as `pp`.
 
@@ -89,7 +89,7 @@ The chart scripts (`generate_charts_*.py`) keep their own copies of these consta
 Dashboard data must match `../../thesis/governance/` invariants exactly:
 - Pipeline: 8-stage
 - EyePACS: ~35,126 labeled images; Exp 1: 100%, 5-fold CV
-- Hypotheses: H-1 … H-7 (H-3 = domain distance, measured and confirmed in the 2026-08-02 run)
+- Hypotheses: H-1 … H-7 (H-3 = domain distance, measured and confirmed)
 - ALO is primary explainability metric; IoU is secondary
 - EH-3 threshold: ΔF1 ≥ 5pp, ΔAUC ≥ 2pp, no κ degradation
 - H-4 threshold: generalization ratio G ≥ 0.85; H-6 device floor: g ≥ 0.70
@@ -97,8 +97,8 @@ Dashboard data must match `../../thesis/governance/` invariants exactly:
 **Claims that must not be overstated** (see `results/findings/summary-and-dominance.md`):
 - **NC-14** — Grad-CAM is attention alignment, not clinical localization of pathology. H-5 being confirmed does not relax this.
 - The H-4 and H-6 thresholds are cleared by the **baseline** as well, so those criteria alone do not separate the arms — the discriminating evidence is the comparison against baseline and the narrowed between-device spread.
-- **H-7 is partial.** Δ_drop penalizes the stronger arm; the supportable claim is higher absolute external performance, not greater degradation resistance.
-- Stage contributions in the ablation are near-uniform — **the stages cannot be ranked**. Never write "the leading stage is X".
+- **H-7 claims external performance, not resistance.** It is confirmed 2/2 under the operative form (Δ wF1 ≥ MCID 0.050, CI⁻ > 0), but never write "the pipeline degrades less": proportionally the arms drop almost equally. The Δ_drop form is retired and algebraically degenerate; the same defect drives the H-6 g_ratio inversions. Always carry the Messidor-2 caveat — the margin over the MCID is 0.0041.
+- Stage contributions **can** be ranked as a grouping: flat-field (+1.43pp) and CLAHE (+1.25pp) lead with 41% of the gain between them. But adjacent ranks sit within noise, so never write "stage X ranks above stage Y" outside the photometric-vs-rest split, and note that the hierarchy has not yet been shown to reproduce across runs.
 - Clinical metrics are operating characteristics on annotated datasets, not a clinical validation.
 
 ## Common Tasks

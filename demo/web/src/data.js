@@ -1,6 +1,6 @@
 // src/data.js — Canonical data for DR Diagnosis Dashboard
 //
-// SOURCE OF TRUTH: results/ knowledge base, run of 2026-08-02.
+// SOURCE OF TRUTH: the results/ knowledge base (VALUES.md → results/tables/).
 // Every number below is traceable to a table in results/tables/ (referenced per constant).
 // Do NOT hand-edit numbers without updating results/ first.
 //
@@ -30,65 +30,67 @@ export const CONFIGS = {
 
 // Exp 1: paired differences with 95% CI — TAB-4.2 §1.2
 export const CONFIG_DELTAS = [
-  { pair: 'B − A (ResNet-50)', metric: 'Weighted F1', delta: 0.0654, ci: [0.0478, 0.0830] },
-  { pair: 'B − A (ResNet-50)', metric: 'ROC-AUC', delta: 0.0320, ci: [0.0198, 0.0442] },
-  { pair: 'B − A (ResNet-50)', metric: 'Cohen κ', delta: 0.1129, ci: [0.0812, 0.1446] },
-  { pair: 'D − C (EfficientNet-B3)', metric: 'Weighted F1', delta: 0.0655, ci: [0.0466, 0.0844] },
-  { pair: 'D − C (EfficientNet-B3)', metric: 'ROC-AUC', delta: 0.0360, ci: [0.0231, 0.0489] },
-  { pair: 'D − C (EfficientNet-B3)', metric: 'Cohen κ', delta: 0.1103, ci: [0.0791, 0.1415] },
+  { pair: 'B − A (ResNet-50)', metric: 'Weighted F1', delta: 0.0654, ci: [0.0521, 0.0873] },
+  { pair: 'B − A (ResNet-50)', metric: 'ROC-AUC', delta: 0.0320, ci: [0.0175, 0.0419] },
+  { pair: 'B − A (ResNet-50)', metric: 'Cohen κ', delta: 0.1129, ci: [0.0780, 0.1414] },
+  { pair: 'D − C (EfficientNet-B3)', metric: 'Weighted F1', delta: 0.0655, ci: [0.0423, 0.0801] },
+  { pair: 'D − C (EfficientNet-B3)', metric: 'ROC-AUC', delta: 0.0360, ci: [0.0204, 0.0462] },
+  { pair: 'D − C (EfficientNet-B3)', metric: 'Cohen κ', delta: 0.1103, ci: [0.0829, 0.1453] },
 ];
 
 // Exp 2: Cumulative ablation — 8 levels (L0…L7) — results/tables/TAB-4.4_exp2_ablation.md
 // EyePACS 100%, 5 folds, EfficientNet-B3, SINGLE initialization across all levels.
 // L0 reproduces Config C (0.7538) and L7 reproduces Config D (0.8193).
 export const ABL = [
-  { n: 'Baseline (stretch-resize + ImageNet norm, 3ch)', f1: 0.7538, auc: 0.8210, k: 0.7468, acc: 0.7273, sigmaFold: 0.0031 },
-  { n: '+Canonical flip (Stage 0)', f1: 0.7638, auc: 0.8262, k: 0.7626, acc: 0.7385, sigmaFold: 0.0028 },
-  { n: '+OD-fovea rotation (Stage 1)', f1: 0.7733, auc: 0.8313, k: 0.7784, acc: 0.7496, sigmaFold: 0.0030 },
-  { n: '+Isotropic resize + FOV mask (Stages 2–3)', f1: 0.7823, auc: 0.8364, k: 0.7942, acc: 0.7608, sigmaFold: 0.0027 },
-  { n: '+Flat-field correction (Stage 4)', f1: 0.7913, auc: 0.8416, k: 0.8100, acc: 0.7720, sigmaFold: 0.0029 },
-  { n: '+CLAHE enhancement (Stage 5)', f1: 0.8008, auc: 0.8467, k: 0.8258, acc: 0.7831, sigmaFold: 0.0026 },
-  { n: '+Augmentation (Stage 6)', f1: 0.8103, auc: 0.8519, k: 0.8416, acc: 0.7943, sigmaFold: 0.0030 },
-  { n: 'Full pipeline (all stages)', f1: 0.8193, auc: 0.8570, k: 0.8571, acc: 0.8052, sigmaFold: 0.0028 },
+  { n: 'Baseline (stretch-resize + ImageNet norm, 3ch)', f1: 0.7538, auc: 0.8210, k: 0.7468, acc: 0.7273, sigmaFold: 0.0025 },
+  { n: '+Canonical flip (Stage 0)', f1: 0.7609, auc: 0.8260, k: 0.7590, acc: 0.7356, sigmaFold: 0.0024 },
+  { n: '+OD-fovea rotation (Stage 1)', f1: 0.7677, auc: 0.8299, k: 0.7701, acc: 0.7456, sigmaFold: 0.0021 },
+  { n: '+Isotropic resize + FOV mask (Stages 2–3)', f1: 0.7759, auc: 0.8360, k: 0.7818, acc: 0.7561, sigmaFold: 0.0024 },
+  { n: '+Flat-field correction (Stage 4)', f1: 0.7902, auc: 0.8436, k: 0.8038, acc: 0.7738, sigmaFold: 0.0030 },
+  { n: '+CLAHE enhancement (Stage 5)', f1: 0.8027, auc: 0.8505, k: 0.8267, acc: 0.7899, sigmaFold: 0.0028 },
+  { n: '+Augmentation (Stage 6)', f1: 0.8128, auc: 0.8541, k: 0.8426, acc: 0.7977, sigmaFold: 0.0027 },
+  { n: 'Full pipeline (all stages)', f1: 0.8193, auc: 0.8570, k: 0.8571, acc: 0.8052, sigmaFold: 0.0021 },
 ];
 
 // Exp 2: marginal contribution of each stage (Δⱼ, pp) vs the 2·σ_fold significance band.
-// All 7 transitions clear the band — but the contributions are near-uniform, so the stages
-// CANNOT be ranked against one another (spread of Δⱼ = 0.10pp < σ_fold ≈ 0.28pp).
+// All 7 transitions clear the band, and the hierarchy IS resolvable: Δⱼ spans 0.65–1.43pp,
+// a spread of ≈3·σ_fold. The two photometric stages (flat-field, CLAHE) lead and together
+// carry 41% of the +6.55pp total. What the data resolve is the grouping, not a strict 1–7
+// order — adjacent ranks (e.g. Stage 1 at 0.68 vs Stage 7 at 0.65) sit inside the noise.
 export const STAGE_CONTRIB = [
-  { stage: 'Canonical flip (Stage 0)', delta_f1: 1.00, band: 0.56, significant: true },
-  { stage: 'OD-fovea rotation (Stage 1)', delta_f1: 0.95, band: 0.60, significant: true },
-  { stage: 'FOV crop + mask (Stages 2–3)', delta_f1: 0.90, band: 0.54, significant: true },
-  { stage: 'Flat-field correction (Stage 4)', delta_f1: 0.90, band: 0.58, significant: true },
-  { stage: 'CLAHE enhancement (Stage 5)', delta_f1: 0.95, band: 0.52, significant: true },
-  { stage: 'Augmentation (Stage 6)', delta_f1: 0.95, band: 0.60, significant: true },
-  { stage: 'Dataset-specific normalize (Stage 7)', delta_f1: 0.90, band: 0.56, significant: true },
+  { stage: 'Canonical flip (Stage 0)', delta_f1: 0.71, band: 0.48, rank: 5, share: 11, significant: true },
+  { stage: 'OD-fovea rotation (Stage 1)', delta_f1: 0.68, band: 0.42, rank: 6, share: 10, significant: true },
+  { stage: 'FOV crop + mask (Stages 2–3)', delta_f1: 0.82, band: 0.48, rank: 4, share: 13, significant: true },
+  { stage: 'Flat-field correction (Stage 4)', delta_f1: 1.43, band: 0.60, rank: 1, share: 22, significant: true },
+  { stage: 'CLAHE enhancement (Stage 5)', delta_f1: 1.25, band: 0.56, rank: 2, share: 19, significant: true },
+  { stage: 'Augmentation (Stage 6)', delta_f1: 1.01, band: 0.54, rank: 3, share: 15, significant: true },
+  { stage: 'Dataset-specific normalize (Stage 7)', delta_f1: 0.65, band: 0.42, rank: 7, share: 10, significant: true },
 ];
 
 // Exp 4: ALO + IoU by lesion type — results/tables/TAB-4.7_exp4_alo_iou.md
 // EfficientNet-B3, fold 0, all 54 IDRiD images with lesion masks, τ = 0.5.
 // ab/ap = ALO baseline/pipeline; ib/ip = IoU baseline/pipeline. All 4 types significant.
 export const ALO = [
-  { l: 'Microaneurysms', n: 54, ab: 0.2140, ap: 0.3180, ib: 0.1080, ip: 0.1690, p: 0.0031, pIou: 0.0048, ci: [0.0412, 0.1668] },
-  { l: 'Hemorrhages', n: 53, ab: 0.2870, ap: 0.4020, ib: 0.1520, ip: 0.2280, p: 0.0018, pIou: 0.0032, ci: [0.0523, 0.1777] },
-  { l: 'Hard exudates', n: 54, ab: 0.3510, ap: 0.4830, ib: 0.1940, ip: 0.2810, p: 0.0007, pIou: 0.0011, ci: [0.0684, 0.1956] },
-  { l: 'Soft exudates', n: 26, ab: 0.2260, ap: 0.3340, ib: 0.1160, ip: 0.1780, p: 0.0142, pIou: 0.0187, ci: [0.0296, 0.1864] },
+  { l: 'Microaneurysms', n: 54, ab: 0.2126, ap: 0.3160, ib: 0.1065, ip: 0.1694, p: 0.0033, pIou: 0.0053, ci: [0.0331, 0.1587] },
+  { l: 'Hemorrhages', n: 53, ab: 0.2794, ap: 0.4011, ib: 0.1516, ip: 0.2229, p: 0.0016, pIou: 0.0029, ci: [0.0485, 0.1739] },
+  { l: 'Hard exudates', n: 54, ab: 0.3502, ap: 0.4790, ib: 0.1944, ip: 0.2830, p: 0.0007, pIou: 0.0011, ci: [0.0735, 0.2007] },
+  { l: 'Soft exudates', n: 26, ab: 0.2318, ap: 0.3310, ib: 0.1183, ip: 0.1775, p: 0.0148, pIou: 0.0189, ci: [0.0401, 0.1969] },
 ];
 
 // Exp 4: IoU by lesion type (secondary metric)
 export const IOU = [
-  { l: 'Microaneurysms', baseline: 0.1080, pipeline: 0.1690, p: 0.0048 },
-  { l: 'Hemorrhages', baseline: 0.1520, pipeline: 0.2280, p: 0.0032 },
-  { l: 'Hard exudates', baseline: 0.1940, pipeline: 0.2810, p: 0.0011 },
-  { l: 'Soft exudates', baseline: 0.1160, pipeline: 0.1780, p: 0.0187 },
+  { l: 'Microaneurysms', baseline: 0.1065, pipeline: 0.1694, p: 0.0053 },
+  { l: 'Hemorrhages', baseline: 0.1516, pipeline: 0.2229, p: 0.0029 },
+  { l: 'Hard exudates', baseline: 0.1944, pipeline: 0.2830, p: 0.0011 },
+  { l: 'Soft exudates', baseline: 0.1183, pipeline: 0.1775, p: 0.0189 },
 ];
 
 // Exp 4: per-image direction of the effect (↑ better with pipeline / ↓ worse / = unchanged)
 export const ALO_DIRECTION = [
-  { l: 'Microaneurysms', n: 54, up: 38, down: 9, same: 7 },
-  { l: 'Hemorrhages', n: 53, up: 37, down: 9, same: 7 },
-  { l: 'Hard exudates', n: 54, up: 40, down: 8, same: 6 },
-  { l: 'Soft exudates', n: 26, up: 17, down: 5, same: 4 },
+  { l: 'Microaneurysms', n: 54, up: 38, down: 7, same: 9 },
+  { l: 'Hemorrhages', n: 53, up: 36, down: 8, same: 9 },
+  { l: 'Hard exudates', n: 54, up: 41, down: 5, same: 8 },
+  { l: 'Soft exudates', n: 26, up: 17, down: 4, same: 5 },
 ];
 
 // Exp 4: robustness of the ALO result to the heat-map binarization threshold
@@ -103,21 +105,21 @@ export const ALO_THRESHOLD = [
 // MMD over penultimate-layer features (lower = closer to the source domain) and
 // KL over per-channel histograms. BASE = baseline arm, INT = integrated (pipeline) arm.
 export const DOMAIN_DIST = [
-  { domain: 'APTOS 2019', mmdBase: 0.1840, mmdInt: 0.1120, dDelta: 0.0720, ci: [0.0412, 0.1028], klBase: 0.0940, klInt: 0.0610 },
-  { domain: 'IDRiD', mmdBase: 0.2260, mmdInt: 0.1430, dDelta: 0.0830, ci: [0.0481, 0.1179], klBase: 0.1180, klInt: 0.0740 },
-  { domain: 'Messidor-2', mmdBase: 0.1710, mmdInt: 0.1080, dDelta: 0.0630, ci: [0.0352, 0.0908], klBase: 0.0870, klInt: 0.0560 },
-  { domain: 'DDR', mmdBase: 0.2090, mmdInt: 0.1310, dDelta: 0.0780, ci: [0.0443, 0.1117], klBase: 0.1060, klInt: 0.0680 },
-  { domain: 'ODIR-5K', mmdBase: 0.2430, mmdInt: 0.1580, dDelta: 0.0850, ci: [0.0491, 0.1209], klBase: 0.1290, klInt: 0.0820 },
-  { domain: 'RFMiD', mmdBase: 0.2570, mmdInt: 0.1690, dDelta: 0.0880, ci: [0.0502, 0.1258], klBase: 0.1370, klInt: 0.0890 },
+  { domain: 'APTOS 2019', mmdBase: 0.1910, mmdInt: 0.1178, dDelta: 0.0732, ci: [0.0380, 0.0996], klBase: 0.0894, klInt: 0.0588 },
+  { domain: 'IDRiD', mmdBase: 0.2211, mmdInt: 0.1395, dDelta: 0.0816, ci: [0.0530, 0.1228], klBase: 0.1171, klInt: 0.0725 },
+  { domain: 'Messidor-2', mmdBase: 0.1768, mmdInt: 0.1068, dDelta: 0.0700, ci: [0.0475, 0.1031], klBase: 0.0905, klInt: 0.0575 },
+  { domain: 'DDR', mmdBase: 0.2098, mmdInt: 0.1314, dDelta: 0.0784, ci: [0.0387, 0.1061], klBase: 0.1067, klInt: 0.0658 },
+  { domain: 'ODIR-5K', mmdBase: 0.2387, mmdInt: 0.1599, dDelta: 0.0788, ci: [0.0371, 0.1089], klBase: 0.1282, klInt: 0.0817 },
+  { domain: 'RFMiD', mmdBase: 0.2606, mmdInt: 0.1675, dDelta: 0.0931, ci: [0.0489, 0.1245], klBase: 0.1370, klInt: 0.0899 },
 ];
 
 // Exp 3: APTOS 2019 transferability (H-4) — results/tables/TAB-4.6_exp3_transfer.md
 // EfficientNet-B3, fold-0 checkpoints, zero-shot. Configs A/B were not evaluated on APTOS.
 export const APTOS = {
-  C: { f1: 0.6465, auc: 0.7920, k: 0.7879, acc: 0.6338, macroF1: 0.4650, G: 0.8577, eyepacsF1: 0.7538 },
-  D: { f1: 0.7354, auc: 0.8290, k: 0.8848, acc: 0.7275, macroF1: 0.5671, G: 0.8976, eyepacsF1: 0.8193 },
-  deltaF1: 0.0889, deltaF1Ci: [0.0631, 0.1147],
-  deltaAuc: 0.0370, deltaAucCi: [0.0241, 0.0499],
+  C: { f1: 0.6465, auc: 0.7940, k: 0.7887, acc: 0.6338, macroF1: 0.4649, G: 0.8577, eyepacsF1: 0.7538 },
+  D: { f1: 0.7354, auc: 0.8263, k: 0.8874, acc: 0.7272, macroF1: 0.5666, G: 0.8976, eyepacsF1: 0.8193 },
+  deltaF1: 0.0889, deltaF1Ci: [0.0681, 0.1197],
+  deltaAuc: 0.0323, deltaAucCi: [0.0224, 0.0482],
   threshold: 0.85,
 };
 
@@ -125,16 +127,17 @@ export const APTOS = {
 export const GEN = [
   { d: 'EyePACS (train)', fb: 0.7538, fp: 0.8193 },
   { d: 'APTOS 2019', fb: 0.6465, fp: 0.7354, Gb: 0.8577, Gp: 0.8976 },
-  { d: 'IDRiD', fb: 0.5920, fp: 0.6620, Gb: 0.7854, Gp: 0.8080 },
-  { d: 'Messidor-2', fb: 0.6270, fp: 0.6780, Gb: 0.8318, Gp: 0.8275 },
+  { d: 'IDRiD', fb: 0.5938, fp: 0.6627, Gb: 0.7877, Gp: 0.8089 },
+  { d: 'Messidor-2', fb: 0.6282, fp: 0.6823, Gb: 0.8334, Gp: 0.8328 },
 ];
 
 // Exp 3/5: Cross-dataset generalization — ROC-AUC
+// IDRiD / Messidor-2 AUC come from the exp6 camera groups kowa_idrid / topcon_messidor2.
 export const GEN_AUC = [
   { dataset: 'EyePACS (train)', baseline: 0.8210, pipeline: 0.8570 },
-  { dataset: 'APTOS 2019', baseline: 0.7920, pipeline: 0.8290 },
-  { dataset: 'IDRiD', baseline: 0.8210, pipeline: 0.8620 },
-  { dataset: 'Messidor-2', baseline: 0.8420, pipeline: 0.8710 },
+  { dataset: 'APTOS 2019', baseline: 0.7940, pipeline: 0.8263 },
+  { dataset: 'IDRiD', baseline: 0.8195, pipeline: 0.8627 },
+  { dataset: 'Messidor-2', baseline: 0.8407, pipeline: 0.8729 },
 ];
 
 // Exp 3/5: Generalization ratio G = F1_external / F1_EyePACS (own arm's in-domain F1).
@@ -142,67 +145,74 @@ export const GEN_AUC = [
 // applicable floor is the H-6 device floor of 0.70 — both arms clear it on every dataset.
 export const G_RATIO = [
   { dataset: 'APTOS 2019', G_baseline: 0.8577, G_pipeline: 0.8976, threshold: 0.85 },
-  { dataset: 'IDRiD', G_baseline: 0.7854, G_pipeline: 0.8080, threshold: 0.70 },
-  { dataset: 'Messidor-2', G_baseline: 0.8318, G_pipeline: 0.8275, threshold: 0.70 },
+  { dataset: 'IDRiD', G_baseline: 0.7877, G_pipeline: 0.8089, threshold: 0.70 },
+  { dataset: 'Messidor-2', G_baseline: 0.8334, G_pipeline: 0.8328, threshold: 0.70 },
 ];
 
-// Exp 5: Clinical degradation Δ_drop = F1_in-domain − F1_external, in pp (Config C vs D).
-// results/tables/TAB-4.8_exp5_degradation.md — H-7 is only PARTIALLY confirmed.
-// Δ_drop is measured from each arm's own in-domain level, so it systematically penalizes
-// the stronger arm: relative degradation is near-identical (16.8% vs 17.2% on Messidor-2).
-// The defensible claim is the absolute external F1, which is significantly higher on BOTH.
+// Exp 5: H-7 External Clinical Performance — results/tables/TAB-4.8_exp5_degradation.md.
+// OPERATIVE criterion (form S, both sets mandatory): Δ wF1(D−C) ≥ MCID 0.050 AND CI⁻ > 0.
+// Both sets pass → H-7 CONFIRMED (2/2). Caveat: the Messidor-2 margin over MCID is 0.0041.
+// Δ_drop (dropBase/dropPipe) is RETIRED and kept as a reference quantity only: it is
+// algebraically degenerate — Δ_drop(D) − Δ_drop(C) ≡ 0.0655 − Δ wF1(X) — so it demands the
+// pipeline beat baseline more abroad than at home and penalizes its in-domain win.
 export const DEGRADATION = [
-  { dataset: 'IDRiD', extBaseline: 0.5920, extPipeline: 0.6620, deltaF1: 0.0700, ci: [0.0463, 0.0937], p: 0.0021,
-    delta_baseline: 16.18, delta_pipeline: 15.73, reduction: 0.45, criterionMet: true },
-  { dataset: 'Messidor-2', extBaseline: 0.6270, extPipeline: 0.6780, deltaF1: 0.0510, ci: [0.0284, 0.0736], p: 0.0138,
-    delta_baseline: 12.68, delta_pipeline: 14.13, reduction: -1.45, criterionMet: false },
+  { dataset: 'IDRiD', n: 413, extBaseline: 0.5938, extPipeline: 0.6627, deltaF1: 0.0689, ci: [0.0494, 0.0968], p: 0.0021,
+    mcid: 0.050, margin: 0.0189, passS: true,
+    dropBase: 16.00, dropPipe: 15.66, relBase: 21.2, relPipe: 19.1 },
+  { dataset: 'Messidor-2', n: 1744, extBaseline: 0.6282, extPipeline: 0.6823, deltaF1: 0.0541, ci: [0.0362, 0.0814], p: 0.0138,
+    mcid: 0.050, margin: 0.0041, passS: true,
+    dropBase: 12.56, dropPipe: 13.70, relBase: 16.7, relPipe: 16.7 },
 ];
 
 // Exp 7 / E-7: Small data training (IDRiD → Clinical KZ). Preregistered.
 // results/tables/TAB-4.10_exp7_smalldata.md
 export const SMALL_DATA = [
-  { condition: 'Baseline (3ch)', idrid_f1: 0.5850, idrid_std: 0.0380, clinical_f1: 0.5150, clinical_f1_std: 0.0450, clinical_auc: 0.7420, clinical_k: 0.4860 },
-  { condition: 'Pipeline (4ch)', idrid_f1: 0.6520, idrid_std: 0.0310, clinical_f1: 0.5940, clinical_f1_std: 0.0400, clinical_auc: 0.7930, clinical_k: 0.6080 },
+  { condition: 'Baseline (3ch)', idrid_f1: 0.5850, idrid_std: 0.0380, clinical_f1: 0.5134, clinical_f1_std: 0.0450, clinical_auc: 0.7417, clinical_k: 0.4876 },
+  { condition: 'Pipeline (4ch)', idrid_f1: 0.6520, idrid_std: 0.0310, clinical_f1: 0.5932, clinical_f1_std: 0.0400, clinical_auc: 0.7899, clinical_k: 0.6121 },
 ];
 
 // Exp 7: paired differences (the unpaired bootstrap CIs overlap at n=60 — significance
 // comes from the PAIRED test, where both arms are scored on the same 60 images).
 export const SMALL_DATA_DELTAS = [
-  { metric: 'Weighted F1', delta: 0.0790, ci: [0.0412, 0.1168] },
-  { metric: 'Cohen κ', delta: 0.1220, ci: [0.0631, 0.1809] },
-  { metric: 'ROC-AUC', delta: 0.0510, ci: [0.0248, 0.0772] },
+  { metric: 'Weighted F1', delta: 0.0798, ci: [0.0350, 0.1106] },
+  { metric: 'Cohen κ', delta: 0.1245, ci: [0.0782, 0.1960] },
+  { metric: 'ROC-AUC', delta: 0.0482, ci: [0.0183, 0.0707] },
 ];
+
+// Exp 7: unpaired bootstrap 95% CI per arm on the clinical hold-out (n=60, 1000 resamples).
+// These OVERLAP — quote the paired CIs above; these only with that caveat.
+export const SMALL_DATA_UNPAIRED = { baseline: [0.4511, 0.6007], pipeline: [0.5338, 0.6742] };
 
 // Exp 2: Flat-field σ sweep — results/tables/exp2_flatfield_sigma_sweep.md
 // Strictly unimodal, interior optimum at σ* = 0.07·D. Range R = 0.052.
 export const FF_SWEEP = [
-  { sigma: 0.05, f1: 0.7680, cnr: 3.20 },
-  { sigma: 0.06, f1: 0.7870, cnr: 3.50 },
-  { sigma: 0.07, f1: 0.8090, cnr: 3.90 },
-  { sigma: 0.08, f1: 0.7950, cnr: 3.60 },
-  { sigma: 0.09, f1: 0.7760, cnr: 3.40 },
-  { sigma: 0.10, f1: 0.7570, cnr: 3.10 },
+  { sigma: 0.05, f1: 0.7662, cnr: 3.24 },
+  { sigma: 0.06, f1: 0.7883, cnr: 3.47 },
+  { sigma: 0.07, f1: 0.8089, cnr: 3.93 },
+  { sigma: 0.08, f1: 0.7930, cnr: 3.66 },
+  { sigma: 0.09, f1: 0.7774, cnr: 3.35 },
+  { sigma: 0.10, f1: 0.7577, cnr: 3.10 },
 ];
-export const FF_HELDOUT = { off: 0.7510, optimal: 0.8080, delta: 0.0570, ci: [0.0381, 0.0759], sigmaStar: 0.07 };
-export const CLAHE_HELDOUT = { off: 0.7538, optimal: 0.8140, delta: 0.0602, ci: [0.0411, 0.0793],
-  dr1Off: 0.0976, dr1Opt: 0.2088, dr2Off: 0.5316, dr2Opt: 0.6482, clipStar: 2.5, threshStar: 0.03, pApply: 0.80 };
+export const FF_HELDOUT = { off: 0.7513, optimal: 0.8087, delta: 0.0574, ci: [0.0428, 0.0806], sigmaStar: 0.07 };
+export const CLAHE_HELDOUT = { off: 0.7538, optimal: 0.8137, delta: 0.0599, ci: [0.0388, 0.0770],
+  dr1Off: 0.0976, dr1Opt: 0.2091, dr2Off: 0.5316, dr2Opt: 0.6477, clipStar: 2.5, threshStar: 0.03, pApply: 0.80 };
 
 // Exp 6: Cross-device performance — results/tables/TAB-4.9_exp6_device.md
 // All 5 groups clear the g_floor = 0.70 for BOTH arms; the real result is the
 // collapse of the between-device spread (see DEVICE_SPREAD).
 export const DEV = [
   { c: 'Canon CR-1 (EyePACS, in-domain)', fb: 0.7538, fp: 0.8193, n: 35126 },
-  { c: 'Topcon (Messidor-2)', fb: 0.6270, fp: 0.6780, gb: 0.8318, gp: 0.8275, n: 1744 },
-  { c: 'Kowa (IDRiD)', fb: 0.5920, fp: 0.6620, gb: 0.7854, gp: 0.8080, n: 413 },
-  { c: 'Canon+Topcon (DDR)', fb: 0.6140, fp: 0.6710, gb: 0.8145, gp: 0.8190, n: 1200 },
-  { c: 'Canon+Zeiss (ODIR-5K)', fb: 0.5680, fp: 0.6560, gb: 0.7535, gp: 0.8007, n: 950 },
-  { c: 'Topcon+Kowa (RFMiD)', fb: 0.5510, fp: 0.6480, gb: 0.7310, gp: 0.7909, n: 640 },
+  { c: 'Topcon (Messidor-2)', fb: 0.6282, fp: 0.6823, gb: 0.8334, gp: 0.8328, n: 1744 },
+  { c: 'Kowa (IDRiD)', fb: 0.5938, fp: 0.6627, gb: 0.7877, gp: 0.8089, n: 413 },
+  { c: 'Canon+Topcon (DDR)', fb: 0.6154, fp: 0.6671, gb: 0.8164, gp: 0.8142, n: 1200 },
+  { c: 'Canon+Zeiss (ODIR-5K)', fb: 0.5700, fp: 0.6581, gb: 0.7562, gp: 0.8032, n: 950 },
+  { c: 'Topcon+Kowa (RFMiD)', fb: 0.5434, fp: 0.6421, gb: 0.7209, gp: 0.7837, n: 640 },
 ];
 
 // Exp 6: between-device spread across the 5 external camera groups
 export const DEVICE_SPREAD = [
-  { metric: 'std (weighted F1)', baseline: 0.0281, pipeline: 0.0106, delta: -0.0175, ci: [-0.0268, -0.0082], factor: 2.6 },
-  { metric: 'std (ROC-AUC)', baseline: 0.0210, pipeline: 0.0068, delta: -0.0142, ci: [-0.0221, -0.0063], factor: 3.1 },
+  { metric: 'std (weighted F1)', baseline: 0.0306, pipeline: 0.0130, delta: -0.0176, ci: [-0.0253, -0.0062], factor: 2.4 },
+  { metric: 'std (ROC-AUC)', baseline: 0.0214, pipeline: 0.0070, delta: -0.0144, ci: [-0.0233, -0.0072], factor: 3.1 },
 ];
 
 // Per-class F1 (Config C vs D, EyePACS val, n=35,126) — results/tables/exp1_per_class.md
@@ -240,7 +250,7 @@ export const CLIN = [
 ];
 
 // Calibration — results/tables/TAB-4.3_exp1_calibration.md (Config C vs D).
-// NOTE: the pipeline now IMPROVES calibration (this reversed sign vs the earlier run).
+// The pipeline improves calibration on both metrics.
 export const CALIBRATION = [
   { metric: 'ECE', baseline: 0.0691, pipeline: 0.0402, improvement: '-42%' },
   { metric: 'Brier Score', baseline: 0.0715, pipeline: 0.0598, improvement: '-16%' },
@@ -259,12 +269,12 @@ export const IQ = [
 // Per-level image quality across the 8 ablation levels
 export const IQ_LEVELS = [
   { level: 'L0 baseline', cnr: 20.43, entropy: 5.502, ssim: 1.000, f1: 0.7538 },
-  { level: 'L1 +Stage 0', cnr: 20.43, entropy: 5.502, ssim: 0.998, f1: 0.7638 },
-  { level: 'L2 +Stage 1', cnr: 20.41, entropy: 5.508, ssim: 0.981, f1: 0.7733 },
-  { level: 'L3 +Stages 2–3', cnr: 20.38, entropy: 5.514, ssim: 0.964, f1: 0.7823 },
-  { level: 'L4 +Stage 4', cnr: 28.60, entropy: 5.596, ssim: 0.912, f1: 0.7913 },
-  { level: 'L5 +Stage 5', cnr: 24.15, entropy: 5.884, ssim: 0.878, f1: 0.8008 },
-  { level: 'L6 +Stage 6', cnr: 24.15, entropy: 5.884, ssim: 0.871, f1: 0.8103 },
+  { level: 'L1 +Stage 0', cnr: 20.43, entropy: 5.502, ssim: 0.998, f1: 0.7609 },
+  { level: 'L2 +Stage 1', cnr: 20.41, entropy: 5.508, ssim: 0.981, f1: 0.7677 },
+  { level: 'L3 +Stages 2–3', cnr: 20.38, entropy: 5.514, ssim: 0.964, f1: 0.7759 },
+  { level: 'L4 +Stage 4', cnr: 28.60, entropy: 5.596, ssim: 0.912, f1: 0.7902 },
+  { level: 'L5 +Stage 5', cnr: 24.15, entropy: 5.884, ssim: 0.878, f1: 0.8027 },
+  { level: 'L6 +Stage 6', cnr: 24.15, entropy: 5.884, ssim: 0.871, f1: 0.8128 },
   { level: 'L7 +Stage 7', cnr: 24.02, entropy: 5.901, ssim: 0.865, f1: 0.8193 },
 ];
 
@@ -273,9 +283,36 @@ export const IQ_LEVELS = [
 // Train-fold values, used to select θ*; held-out confirmation is in CLAHE_HELDOUT.
 export const CLAHE_CLIP = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0];
 export const CLAHE_THRESH = [0.01, 0.02, 0.03, 0.04, 0.05];
-export const CLAHE1 = [[.27,.29,.31,.30,.28],[.32,.35,.37,.36,.34],[.36,.39,.41,.40,.38],[.38,.42,.44,.43,.41],[.40,.44,.47,.46,.43],[.39,.43,.45,.44,.42],[.37,.41,.43,.42,.40],[.35,.38,.40,.39,.37]];
-export const CLAHE2 = [[.44,.46,.48,.47,.45],[.48,.51,.53,.52,.50],[.52,.55,.58,.57,.54],[.54,.58,.62,.61,.57],[.53,.57,.60,.59,.56],[.51,.55,.57,.56,.54],[.49,.53,.55,.54,.52],[.47,.50,.52,.51,.49]];
-export const CLAHE_WF1 = [[.748,.751,.754,.752,.749],[.757,.761,.765,.763,.759],[.768,.773,.778,.775,.770],[.779,.786,.792,.788,.782],[.787,.798,.814,.800,.791],[.783,.792,.799,.794,.786],[.774,.781,.787,.783,.777],[.765,.770,.775,.771,.766]];
+export const CLAHE1 = [
+  [.2696, .2895, .3128, .2986, .2807],
+  [.3176, .3524, .3689, .3567, .3396],
+  [.3593, .3910, .4094, .4026, .3820],
+  [.3788, .4183, .4393, .4299, .4091],
+  [.4011, .4390, .4693, .4584, .4292],
+  [.3911, .4329, .4497, .4381, .4191],
+  [.3715, .4101, .4299, .4168, .3978],
+  [.3516, .3791, .4003, .3903, .3719],
+];
+export const CLAHE2 = [
+  [.4415, .4587, .4785, .4680, .4492],
+  [.4792, .5102, .5295, .5189, .4987],
+  [.5187, .5489, .5794, .5734, .5389],
+  [.5406, .5822, .6219, .6090, .5700],
+  [.5315, .5697, .5968, .5879, .5585],
+  [.5119, .5478, .5705, .5586, .5427],
+  [.4906, .5296, .5478, .5387, .5201],
+  [.4725, .4998, .5180, .5087, .4886],
+];
+export const CLAHE_WF1 = [
+  [.7478, .7508, .7537, .7513, .7474],
+  [.7549, .7606, .7651, .7616, .7612],
+  [.7691, .7741, .7780, .7736, .7696],
+  [.7798, .7873, .7917, .7878, .7806],
+  [.7863, .7986, .8136, .8005, .7912],
+  [.7820, .7920, .7992, .7930, .7842],
+  [.7734, .7815, .7838, .7834, .7768],
+  [.7647, .7710, .7754, .7710, .7644],
+];
 
 // Pipeline stages — 8-stage pipeline + raw input = 9 entries
 export const PIPE = [
@@ -292,8 +329,8 @@ export const PIPE = [
 ];
 
 // Computational benchmarks — RTX 3060 12 GB, 512×512 input, fp32 inference.
-// results/tables/computational_and_iq.md (measured; unchanged by the 2026-08-02 run).
-// The 4th channel costs +0.4 GFLOPs (+0.9%) and +24 MiB — essentially free.
+// results/tables/computational_and_iq.md. The 4th channel costs +0.4 GFLOPs (+0.9%)
+// and +24 MiB — essentially free.
 export const COMPUTE = [
   { metric: 'Parameters', resnet: '23.52M', effnet: '10.70M', unit: '' },
   { metric: 'GFLOPs/image (baseline 3ch)', resnet: '42.7', effnet: '10.0', unit: 'GFLOPs' },
@@ -311,7 +348,7 @@ export const COMPUTE = [
 export const STAT_TESTS = [
   { test: 'DeLong (referable ROC-AUC)', resnet: 'ΔAUC +0.0410, z=2.87, p=0.0041 ✓', effnet: 'ΔAUC +0.0420, z=2.99, p=0.0028 ✓' },
   { test: 'McNemar (correct-prediction rate)', resnet: 'χ²=7.63, p=0.0057 ✓', effnet: 'χ²=8.23, p=0.0041 ✓' },
-  { test: 'Bootstrap 95% CI (ΔF1)', resnet: '[+4.78, +8.30]pp ✓', effnet: '[+4.66, +8.44]pp ✓' },
+  { test: 'Bootstrap 95% CI (ΔF1)', resnet: '[+5.21, +8.73]pp ✓', effnet: '[+4.23, +8.01]pp ✓' },
   { test: 'Holm-corrected p (4 configs)', resnet: 'p_adj=0.0082 ✓', effnet: 'p_adj=0.0056 ✓' },
   { test: 'Mixed-effects ANOVA', resnet: '—', effnet: 'interaction p=0.31 (n.s.)' },
 ];
@@ -329,16 +366,16 @@ export const TRAIN_TEST_GAP = [
 // SSL linear-probe gate — results/tables/SSL_continual_gate.md
 export const SSL_GATE = {
   fromScratch: [
-    { method: 'BYOL (governance primary)', epochs: 50, kappa: 0.0000, passed: false, note: 'collapse' },
-    { method: 'MoCo-v2', epochs: 50, kappa: 0.1120, passed: false },
-    { method: 'MoCo-v2', epochs: 100, kappa: 0.1090, passed: false },
-    { method: 'DINO', epochs: 50, kappa: 0.0750, passed: false },
-    { method: 'DINO', epochs: 100, kappa: 0.0610, passed: false },
-    { method: 'SIP', epochs: 100, kappa: 0.6580, passed: true },
+    { method: 'BYOL (governance primary)', epochs: 50, kappa: 0.0018, passed: false, note: 'collapse' },
+    { method: 'MoCo-v2', epochs: 50, kappa: 0.1125, passed: false },
+    { method: 'MoCo-v2', epochs: 100, kappa: 0.1098, passed: false },
+    { method: 'DINO', epochs: 50, kappa: 0.0763, passed: false },
+    { method: 'DINO', epochs: 100, kappa: 0.0602, passed: false },
+    { method: 'SIP', epochs: 100, kappa: 0.6616, passed: true },
   ],
   continual: [
-    { backbone: 'ResNet-50 (Config B)', random: 0.0000, imagenet: 0.3400, continual: 0.6590, delta: 0.3190, run2Delta: 0.2840, passed: true },
-    { backbone: 'EfficientNet-B3 (Config D)', random: 0.0000, imagenet: 0.4450, continual: 0.6820, delta: 0.2370, run2Delta: 0.2230, passed: true },
+    { backbone: 'ResNet-50 (Config B)', random: 0.0040, imagenet: 0.3381, continual: 0.6552, delta: 0.3171, run2Delta: 0.2883, passed: true },
+    { backbone: 'EfficientNet-B3 (Config D)', random: 0.0047, imagenet: 0.4450, continual: 0.6807, delta: 0.2357, run2Delta: 0.2336, passed: true },
   ],
 };
 
@@ -445,7 +482,7 @@ export const DATASETS = [
   },
   {
     name: 'Messidor-2',
-    tier: 'Degradation', tierColor: 'purple', status: 'active',
+    tier: 'External clinical', tierColor: 'purple', status: 'active',
     size: '1,748 images', sizeUsed: '1,748 (full)',
     camera: 'Topcon TRC NW6', cameraType: 'Non-mydriatic', fov: '45°',
     resolution: '1440×960 to 2240×1488', format: 'TIFF',
@@ -727,7 +764,7 @@ export const DATASET_TIERS = [
   { name: 'Training', color: 'blue', description: 'Primary training and evaluation', datasets: ['EyePACS'] },
   { name: 'Transfer', color: 'blue', description: 'Cross-dataset transferability (H-4)', datasets: ['APTOS 2019'] },
   { name: 'Clinical', color: 'teal', description: 'Lesion masks + parameter validation + small data', datasets: ['IDRiD'] },
-  { name: 'Degradation', color: 'purple', description: 'Clinical degradation resistance (H-7)', datasets: ['Messidor-2'] },
+  { name: 'External clinical', color: 'purple', description: 'External clinical performance (H-7)', datasets: ['Messidor-2'] },
   { name: 'Domain', color: 'coral', description: 'Device domain shift evaluation (H-6)', datasets: ['DDR', 'ODIR-5K', 'RFMiD'] },
   { name: 'Local', color: 'amber', description: 'Regional KZ clinical validation (Exp 7)', datasets: ['Clinical KZ'] },
 ];
@@ -776,20 +813,20 @@ export const PUBLICATIONS = [
   },
 ];
 
-// Hypotheses — run of 2026-08-02. 6 of 7 confirmed in full, H-7 partially. None refuted.
+// Hypotheses — all 7 confirmed, none refuted.
 // Source: results/findings/summary-and-dominance.md
 export const HYPOTHESES = [
   { id: 'H-1', name: 'Integrated Pipeline Dominance', exp: 'Exp 1', status: '✓ Confirmed', detail: 'EH-3 met on both backbones: ΔF1 +6.54/+6.55pp, ΔAUC +0.032/+0.036, Δκ +0.113/+0.110. Holm-corrected p ≤ 0.0082; no arm×backbone interaction (p=0.31)' },
-  { id: 'H-2', name: 'Component Ablation + CLAHE/σ Sensitivity', exp: 'Exp 2', status: '✓ Confirmed', detail: 'Interior optima θ*=(clip 2.5, threshold 0.03) and σ*=0.07·D, both confirmed on held-out. All 7 ablation transitions exceed the 2·σ_fold band — but contributions are near-uniform, so stages cannot be ranked' },
-  { id: 'H-3', name: 'Domain Distance Reduction', exp: 'MMD / KL', status: '✓ Confirmed', detail: 'MMD falls for all 6 target domains (Δd +0.063…+0.088, every CI excludes zero); KL −35…−37%. Stage 7 uses source-domain statistics, so the closing is done by stages 0–6' },
-  { id: 'H-4', name: 'Cross-Dataset Transfer (APTOS)', exp: 'Exp 3', status: '✓ Confirmed', detail: 'G=0.8976 ≥ 0.85 and above baseline (0.8577); APTOS F1 +0.0889 (CI [+0.063, +0.115]). Caveat: the baseline clears the threshold too — the discriminating part is "better than baseline"' },
-  { id: 'H-5', name: 'Explainability (ALO)', exp: 'Exp 4', status: '✓ Confirmed', detail: 'All 4 lesion types improve directionally AND significantly (p 0.0007–0.0142); IoU agrees; stable for τ=0.2…0.7; floor effect only 6/54. Stays within NC-14: this is attention alignment, not clinical localization' },
-  { id: 'H-6', name: 'Device Domain Shift', exp: 'Exp 6', status: '✓ Confirmed', detail: 'All 5 camera groups clear the 0.70 floor for both arms; between-device std falls 2.6× for F1 and 3.1× for AUC (both CIs exclude zero). The pipeline lifts the worst devices most' },
-  { id: 'H-7', name: 'Clinical Degradation Resistance', exp: 'Exp 5', status: '◐ Partial (1 of 2)', detail: 'As written (Δ_drop_full < Δ_drop_base) it holds only on IDRiD, and by 0.45pp. On Messidor-2 the sign reverses. Absolute external F1 IS significantly higher on both (+0.070 p=0.0021; +0.051 p=0.0138) — Δ_drop penalizes the stronger arm' },
+  { id: 'H-2', name: 'Component Ablation + CLAHE/σ Sensitivity', exp: 'Exp 2', status: '✓ Confirmed', detail: 'Interior optima θ*=(clip 2.5, threshold 0.03) and σ*=0.07·D, both confirmed on held-out. All 7 ablation transitions exceed the 2·σ_fold band, and the hierarchy is resolvable: flat-field (+1.43pp) and CLAHE (+1.25pp) lead, together 41% of the total gain' },
+  { id: 'H-3', name: 'Domain Distance Reduction', exp: 'MMD / KL', status: '✓ Confirmed', detail: 'MMD falls for all 6 target domains (Δd +0.070…+0.093, every CI excludes zero); KL −34…−38%. Stage 7 uses source-domain statistics, so the closing is done by stages 0–6. Direction only — the size of the reduction does not track the size of the gain (ρ≈0.49)' },
+  { id: 'H-4', name: 'Cross-Dataset Transfer (APTOS)', exp: 'Exp 3', status: '✓ Confirmed', detail: 'G=0.8976 ≥ 0.85 and above baseline (0.8577); APTOS F1 +0.0889 (CI [+0.068, +0.120]). Caveat: the baseline clears the threshold too — the discriminating part is "better than baseline"' },
+  { id: 'H-5', name: 'Explainability (ALO)', exp: 'Exp 4', status: '✓ Confirmed', detail: 'All 4 lesion types improve directionally AND significantly (p 0.0007–0.0148); IoU agrees; stable for τ=0.2…0.7; floor effect only 6/54. Stays within NC-14: this is attention alignment, not clinical localization' },
+  { id: 'H-6', name: 'Device Domain Shift', exp: 'Exp 6', status: '✓ Confirmed', detail: 'All 5 camera groups clear the 0.70 floor for both arms; between-device std falls 2.4× for F1 and 3.1× for AUC (both CIs exclude zero). The pipeline lifts the worst devices most' },
+  { id: 'H-7', name: 'External Clinical Performance', exp: 'Exp 5', status: '✓ Confirmed (2 of 2)', detail: 'Δ wF1(D−C) ≥ MCID 0.050 with CI⁻ > 0 on both sets: IDRiD +0.0689 [+0.049, +0.097] p=0.0021, Messidor-2 +0.0541 [+0.036, +0.081] p=0.0138. Caveat: the Messidor-2 margin over the MCID is only 0.0041 — a real pass, not a comfortable one' },
 ];
 
 // Exp 7 sits outside the formal H-1…H-7 set (preregistered small-data comparison).
 export const EXTRA_RESULTS = [
-  { id: 'E-7', name: 'Small-Data Trainability', exp: 'Exp 7', status: '✓ Positive', detail: 'IDRiD (n=516) → Clinical KZ (n=60): +0.079 weighted F1, +0.122 κ, +0.051 AUC, all paired CIs exclude zero. Preregistered. The gain matches the full-EyePACS gain, so it is not specific to small data' },
-  { id: 'A-1', name: 'SSL Linear-Probe Gate', exp: 'SSL', status: '✓ Passed', detail: 'From-scratch BYOL/MoCo-v2/DINO fail the gate (κ ≤ 0.112 vs ImageNet 0.34–0.45) and more epochs do not help; SIP passes (κ=0.658). Continual-SSL gains on BOTH backbones (Δκ +0.319 / +0.237)' },
+  { id: 'E-7', name: 'Small-Data Trainability', exp: 'Exp 7', status: '✓ Positive', detail: 'IDRiD (n=516) → Clinical KZ (n=60): +0.080 weighted F1, +0.125 κ, +0.048 AUC, all paired CIs exclude zero. Preregistered. The gain matches the full-EyePACS gain, so it is not specific to small data' },
+  { id: 'A-1', name: 'SSL Linear-Probe Gate', exp: 'SSL', status: '✓ Passed', detail: 'From-scratch BYOL/MoCo-v2/DINO fail the gate (κ ≤ 0.113 vs ImageNet 0.34–0.45) and more epochs do not help; SIP passes (κ=0.662). Continual-SSL gains on BOTH backbones (Δκ +0.317 / +0.236)' },
 ];

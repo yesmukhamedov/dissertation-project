@@ -37,24 +37,31 @@ export default function ExpH6() {
           ])}
           highlightRow={(row, i) => i === 0}
         />
-        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp6/10_exp6_device_shift.png'} caption="Cross-device F1 across the 5 external camera groups plus the in-domain reference. The pipeline (orange) beats the baseline (gray) everywhere, and by the widest margin on the most distant cameras: RFMiD (+9.70pp) and ODIR-5K (+8.80pp)." figNum={10} tooltip="tooltip.fig10" />
+        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp6/10_exp6_device_shift.png'} caption="Cross-device F1 across the 5 external camera groups plus the in-domain reference. The pipeline (orange) beats the baseline (gray) everywhere, and by the widest margin on the most distant cameras: RFMiD (+9.87pp) and ODIR-5K (+8.81pp)." figNum={10} tooltip="tooltip.fig10" />
         <Note>
           Models trained exclusively on Canon CR-1 (EyePACS) and evaluated on 5 external camera groups without retraining.
-          All 5 groups clear the g_floor = 0.70 for <strong>both</strong> arms (pipeline minimum: 0.7909 on RFMiD), so
-          the threshold on its own does not separate them — the real result is the collapse of the spread below.
+          All 5 groups clear the g_floor = 0.70 for <strong>both</strong> arms (pipeline minimum: 0.7837 on RFMiD, a
+          margin of 0.084), so the threshold on its own does not separate them — the real result is the collapse of
+          the spread below.
           <br /><br />
-          The gain scales inversely with how well the group already worked: largest on RFMiD (+9.70pp, the baseline's
-          worst group) and ODIR-5K (+8.80pp), smallest on Messidor-2 (+5.10pp, the baseline's best). The pipeline
-          lifts the floor rather than raising the ceiling.
+          The gain scales inversely with how well the group already worked: largest on RFMiD (+9.87pp, the baseline's
+          worst group) and ODIR-5K (+8.81pp), smallest on DDR (+5.17pp) and Messidor-2 (+5.41pp, the baseline's best).
+          The pipeline lifts the floor rather than raising the ceiling.
+          <br /><br />
+          <strong>g_ratio falls marginally in 2 of the 5 groups</strong> — DDR (0.8164 → 0.8142) and Messidor-2
+          (0.8334 → 0.8328) — while absolute F1 rises in all five. That is a denominator artefact, not a regression:
+          g_ratio divides by each arm's own in-domain F1, and the pipeline's is 6.55pp larger, so a group must gain
+          roughly 8% relative just to hold its ratio. It is the same structural defect that retired the Δ_drop form
+          of H-7, and it understates the pipeline's advantage by construction.
         </Note>
       </Sec>
 
       <Sec title={t('exp.variance')}>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
-          <Card label="std F1 (Baseline)" value="0.0281" color="red" sub="across 5 camera groups" />
-          <Card label="std F1 (Pipeline)" value="0.0106" color="green" delta="2.6× narrower ✓" sub="CI [−0.0268, −0.0082]" />
-          <Card label="std AUC (Baseline)" value="0.0210" color="red" sub="across 5 camera groups" />
-          <Card label="std AUC (Pipeline)" value="0.0068" color="green" delta="3.1× narrower ✓" sub="CI [−0.0221, −0.0063]" />
+          <Card label="std F1 (Baseline)" value="0.0306" color="red" sub="across 5 camera groups" />
+          <Card label="std F1 (Pipeline)" value="0.0130" color="green" delta="2.4× narrower ✓" sub="CI [−0.0253, −0.0062]" />
+          <Card label="std AUC (Baseline)" value="0.0214" color="red" sub="across 5 camera groups" />
+          <Card label="std AUC (Pipeline)" value="0.0070" color="green" delta="3.1× narrower ✓" sub="CI [−0.0233, −0.0072]" />
         </div>
         <DataTable
           headers={['Spread measure', 'Baseline', 'Pipeline', 'Δ', '95% CI (Δ)', 'Factor']}
@@ -68,14 +75,13 @@ export default function ExpH6() {
           ])}
         />
         <Note>
-          This is the substantive H-6 result. The between-device std of weighted F1 falls 2.6× and that of ROC-AUC
-          3.1×; both CIs exclude zero. The g-ratio range narrows from 0.7310–0.8318 (span 0.101) to 0.7909–0.8275
-          (span 0.037) — the pipeline makes model behaviour markedly more uniform across camera hardware.
+          This is the substantive H-6 result. The between-device std of weighted F1 falls 2.4× and that of ROC-AUC
+          3.1×; both CIs exclude zero. The g-ratio range narrows from 0.7209–0.8334 (span 0.113) to 0.7837–0.8328
+          (span 0.049) — the pipeline makes model behaviour markedly more uniform across camera hardware.
           <br /><br />
           Computed across the 5 external camera groups (IDRiD, DDR, ODIR-5K, Messidor-2, RFMiD), excluding the
           EyePACS training domain. Evaluated from fold-0 checkpoints, so this std is <em>between-group</em>, not
-          between-fold. In this run RFMiD is scored on the full 5-class scale (it was binary-only previously), so
-          its numbers are not comparable with the earlier revision.
+          between-fold. All five groups are scored on the full 5-class scale.
         </Note>
       </Sec>
     </div>

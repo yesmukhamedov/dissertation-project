@@ -40,7 +40,7 @@ export default function ResultsMain() {
       <Sec title="Summary Radar Chart">
         <ImageWithTooltip
           src={process.env.PUBLIC_URL + '/results/general/11_summary_radar.png'}
-          caption="Performance radar across 4 configurations (A–D) and all 6 hypotheses. Config D (Pipeline + EfficientNet-B3) is the best configuration."
+          caption="Performance radar over six evaluation axes: in-domain weighted F1, ROC-AUC and κ, APTOS transfer ratio G, mean ALO, and the minimum device g_ratio. The pipeline polygon encloses the baseline on every axis."
           figNum={11}
           tooltip="tooltip.fig11"
         />
@@ -62,9 +62,10 @@ export default function ResultsMain() {
           ]}
         />
         <Note>
-          Both architectures satisfy EH-3 dominance independently. The mixed-effects ANOVA shows a significant main
-          effect of preprocessing (p&lt;0.001) with a non-significant interaction (p=0.23), confirming that the
-          pipeline improves classification performance regardless of backbone architecture.
+          Both architectures satisfy EH-3 dominance independently. The mixed-effects ANOVA finds no arm × architecture
+          interaction (p = 0.31), which is the statistical form of "on both backbones" — the pipeline improves
+          classification regardless of the backbone. Only the interaction term was recorded, so main-effect p-values
+          are not quoted; the per-arm effects are established directly by the paired DeLong/McNemar tests.
         </Note>
       </Sec>
     </div>

@@ -24,7 +24,7 @@ GRAY = '#888780'
 GREEN = '#639922'
 RED = '#E24B4A'
 
-# ─── Data (run of 2026-08-02; mirrors src/data.js, sourced from results/tables/) ───
+# ─── Data (mirrors src/data.js, sourced from results/tables/) ───
 CONFIGS = {
     'A': {'f1': 0.7518, 'f1s': 0.0110, 'auc': 0.8300, 'aucs': 0.0140, 'k': 0.7410, 'ks': 0.0350, 'acc': 0.7247,
           'lbl': 'A: Baseline + ResNet-50'},
@@ -40,70 +40,72 @@ CONFIGS = {
 # L0 reproduces Config C (0.7538) and L7 reproduces Config D (0.8193).
 ABL = [
     {'n': 'Baseline', 'f1': 0.7538, 'auc': 0.8210},
-    {'n': '+Canonical flip', 'f1': 0.7638, 'auc': 0.8262},
-    {'n': '+OD-fovea rot.', 'f1': 0.7733, 'auc': 0.8313},
-    {'n': '+FOV crop + mask', 'f1': 0.7823, 'auc': 0.8364},
-    {'n': '+Flat-field', 'f1': 0.7913, 'auc': 0.8416},
-    {'n': '+CLAHE', 'f1': 0.8008, 'auc': 0.8467},
-    {'n': '+Augmentation', 'f1': 0.8103, 'auc': 0.8519},
+    {'n': '+Canonical flip', 'f1': 0.7609, 'auc': 0.8260},
+    {'n': '+OD-fovea rot.', 'f1': 0.7677, 'auc': 0.8299},
+    {'n': '+FOV crop + mask', 'f1': 0.7759, 'auc': 0.8360},
+    {'n': '+Flat-field', 'f1': 0.7902, 'auc': 0.8436},
+    {'n': '+CLAHE', 'f1': 0.8027, 'auc': 0.8505},
+    {'n': '+Augmentation', 'f1': 0.8128, 'auc': 0.8541},
     {'n': 'Full pipeline', 'f1': 0.8193, 'auc': 0.8570},
 ]
 
-# Marginal contribution of each stage (pp). All exceed the 2*sigma_fold band, but the
-# contributions are near-uniform, so the stages CANNOT be ranked against one another.
+# Marginal contribution of each stage (pp). All 7 exceed the 2*sigma_fold band, and the
+# spread (0.65-1.43pp, about 3*sigma_fold) makes the hierarchy resolvable: the two
+# photometric stages lead and together carry 41% of the +6.55pp total.
 ABL_INDIV = [
-    {'stage': 'Stage 0: Canonical flip', 'f1': 1.00},
-    {'stage': 'Stage 1: OD-fovea rot.', 'f1': 0.95},
-    {'stage': 'Stages 2-3: FOV crop+mask', 'f1': 0.90},
-    {'stage': 'Stage 4: Flat-field', 'f1': 0.90},
-    {'stage': 'Stage 5: CLAHE', 'f1': 0.95},
-    {'stage': 'Stage 6: Augmentation', 'f1': 0.95},
-    {'stage': 'Stage 7: Normalize', 'f1': 0.90},
+    {'stage': 'Stage 0: Canonical flip', 'f1': 0.71},
+    {'stage': 'Stage 1: OD-fovea rot.', 'f1': 0.68},
+    {'stage': 'Stages 2-3: FOV crop+mask', 'f1': 0.82},
+    {'stage': 'Stage 4: Flat-field', 'f1': 1.43},
+    {'stage': 'Stage 5: CLAHE', 'f1': 1.25},
+    {'stage': 'Stage 6: Augmentation', 'f1': 1.01},
+    {'stage': 'Stage 7: Normalize', 'f1': 0.65},
 ]
 
 # All 54 mask-carrying IDRiD images, tau = 0.5. All four types significant.
 ALO = [
-    {'l': 'Microaneurysms', 'ab': 0.2140, 'ap': 0.3180},
-    {'l': 'Hemorrhages', 'ab': 0.2870, 'ap': 0.4020},
-    {'l': 'Hard exudates', 'ab': 0.3510, 'ap': 0.4830},
-    {'l': 'Soft exudates', 'ab': 0.2260, 'ap': 0.3340},
+    {'l': 'Microaneurysms', 'ab': 0.2126, 'ap': 0.3160},
+    {'l': 'Hemorrhages', 'ab': 0.2794, 'ap': 0.4011},
+    {'l': 'Hard exudates', 'ab': 0.3502, 'ap': 0.4790},
+    {'l': 'Soft exudates', 'ab': 0.2318, 'ap': 0.3310},
 ]
 
 IOU = [
-    {'l': 'Microaneurysms', 'b': 0.1080, 'p': 0.1690},
-    {'l': 'Hemorrhages', 'b': 0.1520, 'p': 0.2280},
-    {'l': 'Hard exudates', 'b': 0.1940, 'p': 0.2810},
-    {'l': 'Soft exudates', 'b': 0.1160, 'p': 0.1780},
+    {'l': 'Microaneurysms', 'b': 0.1065, 'p': 0.1694},
+    {'l': 'Hemorrhages', 'b': 0.1516, 'p': 0.2229},
+    {'l': 'Hard exudates', 'b': 0.1944, 'p': 0.2830},
+    {'l': 'Soft exudates', 'b': 0.1183, 'p': 0.1775},
 ]
 
 GEN = [
     {'d': 'EyePACS (train)', 'fb': 0.7538, 'fp': 0.8193},
     {'d': 'APTOS 2019', 'fb': 0.6465, 'fp': 0.7354},
-    {'d': 'IDRiD', 'fb': 0.5920, 'fp': 0.6620},
-    {'d': 'Messidor-2', 'fb': 0.6270, 'fp': 0.6780},
+    {'d': 'IDRiD', 'fb': 0.5938, 'fp': 0.6627},
+    {'d': 'Messidor-2', 'fb': 0.6282, 'fp': 0.6823},
 ]
+# IDRiD / Messidor-2 AUC come from the exp6 camera groups kowa_idrid / topcon_messidor2.
 GEN_AUC = [
     {'d': 'EyePACS (train)', 'b': 0.8210, 'p': 0.8570},
-    {'d': 'APTOS 2019', 'b': 0.7920, 'p': 0.8290},
-    {'d': 'IDRiD', 'b': 0.8210, 'p': 0.8620},
-    {'d': 'Messidor-2', 'b': 0.8420, 'p': 0.8710},
+    {'d': 'APTOS 2019', 'b': 0.7940, 'p': 0.8263},
+    {'d': 'IDRiD', 'b': 0.8195, 'p': 0.8627},
+    {'d': 'Messidor-2', 'b': 0.8407, 'p': 0.8729},
 ]
 
 # G is normalized by each arm's own in-domain F1. The 0.85 threshold belongs to H-4 (APTOS);
 # for the clinical sets the applicable floor is the H-6 device floor of 0.70.
 G_RATIO = [
     {'d': 'APTOS 2019', 'Gb': 0.8577, 'Gp': 0.8976},
-    {'d': 'IDRiD', 'Gb': 0.7854, 'Gp': 0.8080},
-    {'d': 'Messidor-2', 'Gb': 0.8318, 'Gp': 0.8275},
+    {'d': 'IDRiD', 'Gb': 0.7877, 'Gp': 0.8089},
+    {'d': 'Messidor-2', 'Gb': 0.8334, 'Gp': 0.8328},
 ]
 
 DEV = [
     {'c': 'Canon CR-1\n(EyePACS)', 'fb': 0.7538, 'fp': 0.8193},
-    {'c': 'Topcon\n(Messidor-2)', 'fb': 0.6270, 'fp': 0.6780},
-    {'c': 'Kowa\n(IDRiD)', 'fb': 0.5920, 'fp': 0.6620},
-    {'c': 'Canon+Topcon\n(DDR)', 'fb': 0.6140, 'fp': 0.6710},
-    {'c': 'Canon+Zeiss\n(ODIR-5K)', 'fb': 0.5680, 'fp': 0.6560},
-    {'c': 'Topcon+Kowa\n(RFMiD)', 'fb': 0.5510, 'fp': 0.6480},
+    {'c': 'Topcon\n(Messidor-2)', 'fb': 0.6282, 'fp': 0.6823},
+    {'c': 'Kowa\n(IDRiD)', 'fb': 0.5938, 'fp': 0.6627},
+    {'c': 'Canon+Topcon\n(DDR)', 'fb': 0.6154, 'fp': 0.6671},
+    {'c': 'Canon+Zeiss\n(ODIR-5K)', 'fb': 0.5700, 'fp': 0.6581},
+    {'c': 'Topcon+Kowa\n(RFMiD)', 'fb': 0.5434, 'fp': 0.6421},
 ]
 
 # Referable DR (grade >= 2), EyePACS in-domain, Config C vs D.
@@ -116,8 +118,26 @@ CLIN = [
 
 # Joint CLAHE grid on EyePACS: rows = clip_factor 0.5..4.0, cols = global_threshold 0.01..0.05.
 CLAHE_CLIP = ['0.5', '1.0', '1.5', '2.0', '2.5', '3.0', '3.5', '4.0']
-CLAHE1 = [[.27,.29,.31,.30,.28],[.32,.35,.37,.36,.34],[.36,.39,.41,.40,.38],[.38,.42,.44,.43,.41],[.40,.44,.47,.46,.43],[.39,.43,.45,.44,.42],[.37,.41,.43,.42,.40],[.35,.38,.40,.39,.37]]
-CLAHE2 = [[.44,.46,.48,.47,.45],[.48,.51,.53,.52,.50],[.52,.55,.58,.57,.54],[.54,.58,.62,.61,.57],[.53,.57,.60,.59,.56],[.51,.55,.57,.56,.54],[.49,.53,.55,.54,.52],[.47,.50,.52,.51,.49]]
+CLAHE1 = [
+    [.2696, .2895, .3128, .2986, .2807],
+    [.3176, .3524, .3689, .3567, .3396],
+    [.3593, .3910, .4094, .4026, .3820],
+    [.3788, .4183, .4393, .4299, .4091],
+    [.4011, .4390, .4693, .4584, .4292],
+    [.3911, .4329, .4497, .4381, .4191],
+    [.3715, .4101, .4299, .4168, .3978],
+    [.3516, .3791, .4003, .3903, .3719],
+]
+CLAHE2 = [
+    [.4415, .4587, .4785, .4680, .4492],
+    [.4792, .5102, .5295, .5189, .4987],
+    [.5187, .5489, .5794, .5734, .5389],
+    [.5406, .5822, .6219, .6090, .5700],
+    [.5315, .5697, .5968, .5879, .5585],
+    [.5119, .5478, .5705, .5586, .5427],
+    [.4906, .5296, .5478, .5387, .5201],
+    [.4725, .4998, .5180, .5087, .4886],
+]
 
 
 def setup_style():
@@ -448,16 +468,17 @@ def chart_10():
     ax.set_xticks(x)
     ax.set_xticklabels(cameras, fontsize=8)
     ax.set_ylabel('Weighted F1', fontsize=11)
-    ax.set_ylim(0.45, 0.85)
+    # Headroom above the tallest bar so the legend and the spread inset do not sit on the data.
+    ax.set_ylim(0.45, 0.92)
     ax.set_title('Cross-Device Performance (H-6)', fontsize=13, fontweight='bold')
     ax.legend(fontsize=9, loc='upper right')
     # Between-device spread inset (5 external camera groups, EyePACS excluded)
     textstr = ('Between-device spread (5 groups):\n'
-               'std(F1): 0.0281 $\\rightarrow$ 0.0106  (2.6$\\times$)\n'
-               'std(AUC): 0.0210 $\\rightarrow$ 0.0068  (3.1$\\times$)\n'
+               'std(F1): 0.0306 $\\rightarrow$ 0.0130  (2.4$\\times$)\n'
+               'std(AUC): 0.0214 $\\rightarrow$ 0.0070  (3.1$\\times$)\n'
                'both 95% CIs exclude zero')
     props = dict(boxstyle='round,pad=0.5', facecolor='#E1F5EE', alpha=0.9, edgecolor=TEAL)
-    ax.text(0.98, 0.55, textstr, transform=ax.transAxes, fontsize=9, verticalalignment='top',
+    ax.text(0.98, 0.74, textstr, transform=ax.transAxes, fontsize=9, verticalalignment='top',
             horizontalalignment='right', bbox=props)
     save(fig, '10_exp6_device_shift.png')
 
@@ -470,8 +491,8 @@ def chart_11():
     # Normalize each to [0, 1] range for radar
     # Config C vs D. Axes: in-domain wF1 / in-domain AUC / in-domain kappa /
     # APTOS G ratio / mean ALO over the 4 lesion types / min g_ratio across camera groups.
-    baseline_raw = [0.7538, 0.8210, 0.7468, 0.8577, 0.2695, 0.7310]
-    pipeline_raw = [0.8193, 0.8570, 0.8571, 0.8976, 0.3843, 0.7909]
+    baseline_raw = [0.7538, 0.8210, 0.7468, 0.8577, 0.2685, 0.7209]
+    pipeline_raw = [0.8193, 0.8570, 0.8571, 0.8976, 0.3818, 0.7837]
     # Scale to 0-1 for display (min-max per axis)
     mins = [0.70, 0.78, 0.68, 0.80, 0.20, 0.68]
     maxs = [0.88, 0.90, 0.90, 0.95, 0.50, 0.88]

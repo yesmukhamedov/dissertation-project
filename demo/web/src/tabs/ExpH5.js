@@ -36,12 +36,12 @@ export default function ExpH5() {
             `+${((d.ap - d.ab) / d.ab * 100).toFixed(0)}%`,
           ])}
         />
-        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp4/06_exp4_alo.png'} caption="ALO (Attention-Lesion Overlap) by lesion type across all 54 mask-carrying IDRiD images. The pipeline raises ALO on all 4 types, and all 4 differences are statistically significant (p 0.0007–0.0142)." figNum={6} tooltip="tooltip.fig06" />
+        <ImageWithTooltip src={process.env.PUBLIC_URL + '/results/exp4/06_exp4_alo.png'} caption="ALO (Attention-Lesion Overlap) by lesion type across all 54 mask-carrying IDRiD images. The pipeline raises ALO on all 4 types, and all 4 differences are statistically significant (p 0.0007–0.0148)." figNum={6} tooltip="tooltip.fig06" />
         <Note>
           ALO = area(GradCAM ∩ lesion_mask) / area(lesion_mask). Primary explainability metric.
           Preprocessing improves ALO by +37–49% and every difference is significant, with all four 95% CIs excluding zero.
-          Hard exudates gain most in absolute terms (+0.1320; bright, well-defined boundary → strong contrast response after CLAHE).
-          Soft exudates carry the weakest significance (p = 0.0142) simply because only 26 of the 54 images are annotated for them.
+          Hard exudates gain most in absolute terms (+0.1288; bright, well-defined boundary → strong contrast response after CLAHE).
+          Soft exudates carry the weakest significance (p = 0.0148) simply because only 26 of the 54 images are annotated for them.
           <strong> INVARIANTS NC-14 still applies:</strong> this measures alignment of attention with annotated lesions, not
           clinical localization of pathology — the model is not "finding lesions".
         </Note>
@@ -71,7 +71,7 @@ export default function ExpH5() {
           because it penalizes excessive activation outside lesions. Lower absolute values are expected since Grad-CAM
           activations are inherently diffuse. The pipeline reduces off-lesion activation by suppressing non-diagnostic
           image regions through flat-field correction and CLAHE. IoU agrees with ALO on all four types
-          (+45–56% relative, p = 0.0011–0.0187), so the secondary metric does not contradict the primary one.
+          (+46–59% relative, p = 0.0011–0.0189), so the secondary metric does not contradict the primary one.
         </Note>
       </Sec>
 
@@ -94,8 +94,8 @@ export default function ExpH5() {
           ])}
         />
         <Note>
-          The effect holds at the level of individual images rather than resting on a few outliers: 65–74% of images
-          improve against 15–19% that get worse. The mean shifts therefore reflect a consistent movement of the
+          The effect holds at the level of individual images rather than resting on a few outliers: 65–76% of images
+          improve against 9–15% that get worse. The mean shifts therefore reflect a consistent movement of the
           majority. Floor effect is minor — only 6 of 54 images have ALO = 0 in <em>both</em> arms (f₀ = 0.111),
           so the measurement operates inside the metric's working range.
         </Note>

@@ -34,7 +34,7 @@ export default function Overview() {
       <Sec title="Summary Radar Chart">
         <ImageWithTooltip
           src={process.env.PUBLIC_URL + '/results/general/11_summary_radar.png'}
-          caption="Summary performance radar across 4 configurations (A–D) and all 6 hypotheses. Config D (Pipeline + EfficientNet-B3) is the best configuration."
+          caption="Summary performance radar over six evaluation axes: in-domain weighted F1, ROC-AUC and κ, APTOS transfer ratio G, mean ALO, and the minimum device g_ratio. The pipeline polygon encloses the baseline on every axis."
           figNum={11}
           tooltip="tooltip.fig11"
         />
@@ -52,8 +52,7 @@ export default function Overview() {
           ])}
         />
         <div style={{ fontSize: 11, color: 'var(--color-text-secondary,#666)', lineHeight: 1.6, marginTop: 8 }}>
-          6 of 7 hypotheses are confirmed in full; H-7 is partial (1 of 2 datasets on the criterion as written).
-          None are refuted. E-7 and A-1 sit outside the formal H-1…H-7 set.
+          All 7 hypotheses are confirmed; none are refuted. E-7 and A-1 sit outside the formal H-1…H-7 set.
         </div>
       </Sec>
 
@@ -101,14 +100,16 @@ export default function Overview() {
           Holm correction across the 4 configs (p_adj = 0.0056 / 0.0082). The mixed-effects ANOVA finds no
           arm×architecture interaction (p=0.31), so the effect size is statistically the same on either backbone.
           The gain is decomposable: an 8-level cumulative ablation under a <em>single</em> initialization reproduces
-          the whole +6.55pp, which separates the preprocessing contribution from the SSL-init contribution.
-          Between-device F1 spread narrows 2.6×, transfer to APTOS reaches G = 0.8976 (threshold 0.85), and Grad-CAM
+          the whole +6.55pp, which separates the preprocessing contribution from the SSL-init contribution, and it
+          localizes the mechanism — the two photometric stages (flat-field, CLAHE) carry 41% of the gain.
+          Between-device F1 spread narrows 2.4×, transfer to APTOS reaches G = 0.8976 (threshold 0.85), and Grad-CAM
           attention aligns significantly better with annotated lesions on all 4 lesion types.
           <br /><br />
-          <strong>Where the evidence stops:</strong> H-7 is only partially confirmed — the pipeline is significantly
-          better on both external clinical sets in absolute terms, but it does not reduce the <em>proportional</em>
-          degradation under domain shift. The H-4 and H-6 thresholds are also cleared by the baseline, so those
-          criteria alone do not separate the arms.
+          <strong>Where the evidence stops:</strong> H-7 claims higher absolute performance on the external clinical
+          sets, <em>not</em> reduced degradation — proportionally the two arms drop almost equally (21.2%/19.1% on
+          IDRiD, 16.7%/16.7% on Messidor-2), and the Messidor-2 margin over the MCID is only 0.0041. The H-4 and H-6
+          thresholds are cleared by the baseline as well, so those criteria alone do not separate the arms; and the
+          stage ranking resolves a <em>grouping</em> (photometric ahead of the rest), not a strict 1-to-7 order.
         </div>
       </Sec>
 

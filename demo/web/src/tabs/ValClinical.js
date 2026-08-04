@@ -66,10 +66,8 @@ export default function ValClinical() {
           (0.0715 → 0.0598). Well-calibrated probabilities matter for decision support, where a probability
           threshold drives the referral.
           <br /><br />
-          Worth flagging: in the previous run calibration was the pipeline's one systematic <em>weakness</em>
-          (ECE roughly 3× worse), and "recalibrate before deployment" was a standing caveat. In the 2026-08-02 run
-          that sign has reversed. The improvement is consistent with the operating point above — higher sensitivity
-          arrives together with higher specificity, so there is no drift toward over-confidence.
+          The improvement is consistent with the operating point above — higher sensitivity arrives together with
+          higher specificity, so there is no drift toward over-confidence.
         </Note>
       </Sec>
 

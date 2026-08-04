@@ -43,18 +43,22 @@ export default function ValQuality() {
           highlightRow={(row, i) => i === IQ_LEVELS.length - 1}
         />
         <Note>
-          The full pipeline improves both image quality and classification — but the two do <strong>not</strong>
-          track each other level by level:
+          The full pipeline improves both image quality and classification, and the two levels that move the IQ
+          metrics are exactly the two largest classification contributors — L4 (flat-field, the CNR jump, Δⱼ =
+          +1.43pp) and L5 (CLAHE, the entropy jump, +1.25pp), together 41% of the gain. So the IQ metrics are not
+          noise: they flag the leading part of the mechanism. But they do <strong>not</strong> track classification
+          level by level:
           <br />• CNR peaks at L4 (flat-field, 28.60) while F1 keeps climbing to L7;
-          <br />• the geometric levels L1–L3 add +2.85pp F1 with CNR and entropy essentially unchanged;
-          <br />• L6 (augmentation) adds +0.95pp F1 with all three IQ metrics identical to L5 — expected, since
+          <br />• the geometric levels L1–L3 add +2.21pp F1 with CNR and entropy essentially unchanged;
+          <br />• L6 (augmentation) adds +1.01pp F1 with all three IQ metrics identical to L5 — expected, since
           Stage 6 is train-only while quality is measured on the validation configuration.
           <br /><br />
-          Conclusion for the thesis: IQ metrics capture the photometric part of the pipeline's mechanism but not the
-          geometric canonization or the augmentation, and are therefore <em>not</em> a sufficient predictor of the
-          classification gain. Within a single stage the picture differs — in the flat-field σ sweep CNR and F1 peak
-          together at σ = 0.07 (see H-2). Note the CNR normalization differs between the two, so absolute values are
-          not comparable across tables.
+          Conclusion for the thesis: IQ metrics track the photometric part of the pipeline's mechanism — which the
+          ablation now shows to be its largest single part — but do not exhaust it; the geometric and augmentation
+          stages contribute roughly as much again (49% of the gain) and are invisible to CNR/Entropy/SSIM. They are
+          therefore <em>not</em> a sufficient predictor of the classification gain. Within a single stage the picture
+          differs — in the flat-field σ sweep CNR and F1 peak together at σ = 0.07 (see H-2). Note the CNR
+          normalization differs between the two, so absolute values are not comparable across tables.
         </Note>
       </Sec>
 

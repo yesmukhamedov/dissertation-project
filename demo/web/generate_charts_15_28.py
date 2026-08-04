@@ -28,7 +28,7 @@ GREEN = '#639922'
 RED = '#E24B4A'
 
 # Data
-# Run of 2026-08-02; mirrors src/data.js, sourced from results/tables/.
+# Mirrors src/data.js, sourced from results/tables/.
 CONFIGS = {
     'A': {'f1': 0.7518, 'f1s': 0.0110, 'auc': 0.8300, 'aucs': 0.0140, 'k': 0.7410, 'ks': 0.0350, 'acc': 0.7247},
     'B': {'f1': 0.8172, 'f1s': 0.0090, 'auc': 0.8620, 'aucs': 0.0110, 'k': 0.8539, 'ks': 0.0260, 'acc': 0.8027},
@@ -36,7 +36,7 @@ CONFIGS = {
     'D': {'f1': 0.8193, 'f1s': 0.0100, 'auc': 0.8570, 'aucs': 0.0120, 'k': 0.8571, 'ks': 0.0270, 'acc': 0.8052},
 }
 
-# Config C vs D. NOTE: the pipeline now IMPROVES calibration (sign reversed vs the earlier run).
+# Config C vs D. The pipeline improves calibration on both metrics.
 CALIBRATION = [
     {'metric': 'ECE', 'b': 0.0691, 'p': 0.0402},
     {'metric': 'Brier Score', 'b': 0.0715, 'p': 0.0598},
@@ -95,25 +95,26 @@ TRAIN_TEST_GAP = [
     {'config': 'D', 'trainLoss': 0.131, 'valLoss': 0.153, 'gap': 0.022},
 ]
 
-# Marginal contribution per stage (pp). Near-uniform: the stages cannot be ranked.
+# Marginal contribution per stage (pp). All 7 clear the 2*sigma_fold band; the spread
+# (0.65-1.43pp) makes the hierarchy resolvable, with the two photometric stages leading.
 ABL_INDIV = [
-    {'stage': 'Canonical flip', 'f1': 1.00},
-    {'stage': 'OD-fovea rot.', 'f1': 0.95},
-    {'stage': 'FOV crop+mask', 'f1': 0.90},
-    {'stage': 'Flat-field', 'f1': 0.90},
-    {'stage': 'CLAHE', 'f1': 0.95},
-    {'stage': 'Augmentation', 'f1': 0.95},
-    {'stage': 'Normalize', 'f1': 0.90},
+    {'stage': 'Canonical flip', 'f1': 0.71},
+    {'stage': 'OD-fovea rot.', 'f1': 0.68},
+    {'stage': 'FOV crop+mask', 'f1': 0.82},
+    {'stage': 'Flat-field', 'f1': 1.43},
+    {'stage': 'CLAHE', 'f1': 1.25},
+    {'stage': 'Augmentation', 'f1': 1.01},
+    {'stage': 'Normalize', 'f1': 0.65},
 ]
 
 # Attention consistency across dataset pairs was NOT measured in this run and the previous
 # values had no source in the outputs. Chart 28 now shows the per-image direction of the ALO
 # effect instead, which is real: share of images improving / worsening / unchanged.
 ALO_DIRECTION = [
-    {'l': 'Microaneurysms', 'n': 54, 'up': 38, 'down': 9, 'same': 7},
-    {'l': 'Hemorrhages', 'n': 53, 'up': 37, 'down': 9, 'same': 7},
-    {'l': 'Hard exudates', 'n': 54, 'up': 40, 'down': 8, 'same': 6},
-    {'l': 'Soft exudates', 'n': 26, 'up': 17, 'down': 5, 'same': 4},
+    {'l': 'Microaneurysms', 'n': 54, 'up': 38, 'down': 7, 'same': 9},
+    {'l': 'Hemorrhages', 'n': 53, 'up': 36, 'down': 8, 'same': 9},
+    {'l': 'Hard exudates', 'n': 54, 'up': 41, 'down': 5, 'same': 8},
+    {'l': 'Soft exudates', 'n': 26, 'up': 17, 'down': 4, 'same': 5},
 ]
 
 plt.rcParams.update({
@@ -155,9 +156,9 @@ def chart_15():
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
     fig.suptitle('Probability Calibration', fontsize=14, fontweight='bold')
     # Left: ECE and Brier
-    metrics = ['ECE', 'Brier Score']
-    base = [0.082, 0.185]
-    pipe = [0.045, 0.142]
+    metrics = [c['metric'] for c in CALIBRATION]
+    base = [c['b'] for c in CALIBRATION]
+    pipe = [c['p'] for c in CALIBRATION]
     x = np.arange(2)
     w = 0.3
     b1 = ax1.bar(x - w/2, base, w, color=GRAY, label='Baseline', edgecolor='white')
@@ -171,7 +172,7 @@ def chart_15():
     ax1.set_xticks(x)
     ax1.set_xticklabels(metrics, fontsize=10)
     ax1.set_ylabel('Score (lower is better)', fontsize=10)
-    ax1.set_ylim(0, 0.25)
+    ax1.set_ylim(0, 0.10)
     ax1.set_title('Calibration Metrics', fontsize=11)
     ax1.legend(fontsize=9)
     # Right: Reliability diagram
@@ -376,24 +377,23 @@ def chart_20():
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5.5))
     fig.suptitle('Normalized Confusion Matrices', fontsize=14, fontweight='bold')
     labels = ['DR 0', 'DR 1', 'DR 2', 'DR 3', 'DR 4']
-    # Config C (baseline) - plausible confusion matrix
+    # Measured confusion counts, EyePACS validation union n = 35,126 (results VALUES.md 1.7).
+    # Rows = true grade, columns = prediction; row-normalized for display.
     cm_c = np.array([
-        [0.88, 0.06, 0.04, 0.01, 0.01],
-        [0.25, 0.35, 0.25, 0.10, 0.05],
-        [0.08, 0.12, 0.55, 0.15, 0.10],
-        [0.03, 0.08, 0.20, 0.42, 0.27],
-        [0.02, 0.05, 0.12, 0.23, 0.58],
-    ])
-    # Normalize rows to sum to 1
+        [22145, 2939, 586, 117, 23],
+        [1273, 355, 658, 131, 26],
+        [535, 1385, 2513, 716, 143],
+        [45, 116, 300, 257, 155],
+        [16, 40, 105, 271, 276],
+    ], dtype=float)
     cm_c = cm_c / cm_c.sum(axis=1, keepdims=True)
-    # Config D (pipeline) - improved
     cm_d = np.array([
-        [0.91, 0.04, 0.03, 0.01, 0.01],
-        [0.18, 0.47, 0.22, 0.08, 0.05],
-        [0.06, 0.09, 0.62, 0.14, 0.09],
-        [0.02, 0.06, 0.15, 0.54, 0.23],
-        [0.02, 0.04, 0.08, 0.18, 0.68],
-    ])
+        [23667, 1872, 237, 30, 4],
+        [1016, 671, 661, 84, 11],
+        [211, 1085, 3202, 705, 89],
+        [10, 52, 267, 371, 173],
+        [2, 10, 53, 271, 372],
+    ], dtype=float)
     cm_d = cm_d / cm_d.sum(axis=1, keepdims=True)
     for ax, cm, title in [(ax1, cm_c, 'Config C (Baseline)'), (ax2, cm_d, 'Config D (Pipeline)')]:
         im = ax.imshow(cm, cmap='Blues', vmin=0, vmax=1)
@@ -408,8 +408,11 @@ def chart_20():
             for j in range(5):
                 ax.text(j, i, f'{cm[i,j]:.2f}', ha='center', va='center', fontsize=9,
                         color='white' if cm[i,j] > 0.5 else 'black')
-    plt.colorbar(im, ax=[ax1, ax2], fraction=0.02, pad=0.04)
-    plt.tight_layout(rect=[0, 0, 0.95, 0.93])
+    # tight_layout cannot lay out a colorbar that spans both axes — it leaves the bar on top
+    # of the right panel. Reserve the right margin explicitly instead.
+    fig.subplots_adjust(left=0.07, right=0.88, top=0.86, bottom=0.16, wspace=0.25)
+    cax = fig.add_axes([0.91, 0.16, 0.02, 0.70])
+    fig.colorbar(im, cax=cax)
     save(fig, '20_confusion_matrix.png')
 
 
@@ -417,18 +420,18 @@ def chart_20():
 def chart_21():
     fig, ax = plt.subplots(figsize=(8, 5))
     tests = ['DeLong\n(ROC-AUC)', 'McNemar']
-    resnet_p = [0.006, 0.009]
-    effnet_p = [0.008, 0.012]
+    resnet_p = [STAT_TESTS_P['DeLong']['resnet'], STAT_TESTS_P['McNemar']['resnet']]
+    effnet_p = [STAT_TESTS_P['DeLong']['effnet'], STAT_TESTS_P['McNemar']['effnet']]
     x = np.arange(len(tests))
     w = 0.3
     b1 = ax.bar(x - w/2, resnet_p, w, color=BLUE, label='ResNet-50', edgecolor='white')
     b2 = ax.bar(x + w/2, effnet_p, w, color=TEAL, label='EfficientNet-B3', edgecolor='white')
     for bar, val in zip(b1, resnet_p):
         ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.001,
-                f'p={val:.3f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
+                f'p={val:.4f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
     for bar, val in zip(b2, effnet_p):
         ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.001,
-                f'p={val:.3f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
+                f'p={val:.4f}', ha='center', va='bottom', fontsize=9, fontweight='bold')
     ax.axhline(y=0.05, color=RED, linestyle='--', linewidth=1.5)
     ax.text(1.45, 0.052, 'p = 0.05 significance', fontsize=9, color=RED, ha='right')
     ax.set_xticks(x)
@@ -474,7 +477,10 @@ def chart_22():
     save(fig, '22_exp1_all_6_configs.png')
 
 
-# ─── Chart 23: Individual Ablation ───
+# ─── Chart 23: Per-stage marginal contribution (same decomposition as chart 05, bar view) ───
+# NOTE: an *independent* (non-cumulative) single-stage ablation was never run. This chart
+# shows the cumulative marginal contributions Δⱼ, which by construction sum to the full
+# L0 → L7 gain of +6.55pp.
 def chart_23():
     fig, ax = plt.subplots(figsize=(9, 5.5))
     stages = [a['stage'] for a in ABL_INDIV]
@@ -487,13 +493,13 @@ def chart_23():
                 f'+{val:.1f}pp', ha='center', va='bottom', fontsize=10, fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels(stages, fontsize=9, rotation=15, ha='right')
-    ax.set_ylabel('Individual $\\Delta$F1 (pp)', fontsize=11)
+    ax.set_ylabel('Marginal $\\Delta$F1 (pp)', fontsize=11)
     ax.set_ylim(0, 2.0)
-    ax.set_title('Individual Stage Ablation', fontsize=13, fontweight='bold')
+    ax.set_title('Per-Stage Marginal Contribution (cumulative ablation)', fontsize=13, fontweight='bold')
     # Annotation box
-    textstr = ('Sum of individual: 4.5pp\n'
-               'Actual total: 5.3pp\n'
-               'Mild positive interaction')
+    textstr = ('Sum of marginal $\\Delta$: 6.55pp\n'
+               '= the full L0 $\\rightarrow$ L7 gain\n'
+               'Photometric stages: 41% of it')
     props = dict(boxstyle='round,pad=0.5', facecolor='#E6F1FB', alpha=0.9, edgecolor=BLUE)
     ax.text(0.98, 0.95, textstr, transform=ax.transAxes, fontsize=9, verticalalignment='top',
             horizontalalignment='right', bbox=props)
@@ -504,7 +510,7 @@ def chart_23():
 def chart_24():
     """Per-class recall by DR grade.
 
-    Per-class ROC-AUC was NOT recorded in the 2026-08-02 run. The previous version of this
+    Per-class ROC-AUC was NOT recorded. The previous version of this
     chart synthesized ROC curves from per-class AUC values, which no longer have a source,
     so it now plots measured per-class recall instead (filename kept for compatibility).
     """
@@ -722,7 +728,7 @@ def chart_27():
 def chart_28():
     """Share of images improving / worsening / unchanged with the pipeline.
 
-    Cross-dataset attention consistency was NOT measured in the 2026-08-02 run and the values
+    Cross-dataset attention consistency was NOT measured, and the values
     previously plotted here had no source in the outputs. This slot now carries the per-image
     direction of the ALO effect, which is measured (filename kept for compatibility).
     """

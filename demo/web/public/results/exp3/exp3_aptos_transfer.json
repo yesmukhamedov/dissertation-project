@@ -1,7 +1,6 @@
 {
   "experiment": "Experiment 3 — APTOS 2019 Cross-Dataset Transferability",
   "hypothesis": "H-4",
-  "run": "2026-08-02",
   "source_of_truth": "results/tables/TAB-4.6_exp3_transfer.md",
   "criterion": "Generalization ratio G = F1_APTOS / F1_EyePACS >= 0.85, and pipeline > baseline",
   "training_dataset": "EyePACS (~35,126 images, Canon CR-1)",
@@ -14,11 +13,11 @@
       "description": "Baseline (3ch) + EfficientNet-B3",
       "eyepacs_f1": 0.7538,
       "aptos_f1": 0.6465,
-      "aptos_auc": 0.7920,
-      "aptos_kappa": 0.7879,
+      "aptos_auc": 0.7940,
+      "aptos_kappa": 0.7887,
       "aptos_accuracy": 0.6338,
-      "aptos_macro_f1": 0.4650,
-      "aptos_per_class_f1": [0.8554, 0.1394, 0.5747, 0.2443, 0.5113],
+      "aptos_macro_f1": 0.4649,
+      "aptos_per_class_f1": [0.8554, 0.1395, 0.5747, 0.2438, 0.5113],
       "G": 0.8577,
       "h4_satisfied": true
     },
@@ -26,24 +25,24 @@
       "description": "Pipeline (4ch) + EfficientNet-B3",
       "eyepacs_f1": 0.8193,
       "aptos_f1": 0.7354,
-      "aptos_auc": 0.8290,
-      "aptos_kappa": 0.8848,
-      "aptos_accuracy": 0.7275,
-      "aptos_macro_f1": 0.5671,
-      "aptos_per_class_f1": [0.9150, 0.2717, 0.6931, 0.3271, 0.6287],
+      "aptos_auc": 0.8263,
+      "aptos_kappa": 0.8874,
+      "aptos_accuracy": 0.7272,
+      "aptos_macro_f1": 0.5666,
+      "aptos_per_class_f1": [0.9152, 0.2720, 0.6931, 0.3252, 0.6275],
       "G": 0.8976,
       "h4_satisfied": true
     }
   },
   "paired_differences": {
     "delta_weighted_f1": 0.0889,
-    "delta_weighted_f1_95ci": [0.0631, 0.1147],
-    "delta_auc": 0.0370,
-    "delta_auc_95ci": [0.0241, 0.0499]
+    "delta_weighted_f1_95ci": [0.0681, 0.1197],
+    "delta_auc": 0.0323,
+    "delta_auc_95ci": [0.0224, 0.0482]
   },
   "referable_dr": {
-    "Config_C": { "sensitivity": 0.7330, "specificity": 0.9209, "ppv": 0.8637, "npv": 0.8346, "auc": 0.8930 },
-    "Config_D": { "sensitivity": 0.8366, "specificity": 0.9411, "ppv": 0.9067, "npv": 0.8939, "auc": 0.9340 }
+    "Config_C": { "sensitivity": 0.7337, "specificity": 0.9209, "ppv": 0.8638, "npv": 0.8349, "auc": 0.8944 },
+    "Config_D": { "sensitivity": 0.8393, "specificity": 0.9411, "ppv": 0.9070, "npv": 0.8955, "auc": 0.9346 }
   },
   "caveats": [
     "The baseline also clears the G >= 0.85 threshold (0.8577), so that criterion on its own does not separate the arms — the discriminating part of H-4 is 'better than baseline'. The honest phrasing is that the pipeline does not rescue transfer, it improves transfer that was already acceptable.",
