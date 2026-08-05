@@ -4,7 +4,9 @@
 
 **Candidate:** Yesmukhamedov N.S.
 **Document Type:** Formal contributions register
-**Version:** 7.0.0 | **Date:** 2026-08-04 | **Binding Reference:** INVARIANTS.md v7.0.0
+**Version:** 7.1.0 | **Date:** 2026-08-05 | **Binding Reference:** INVARIANTS.md v7.0.0
+
+**v7.1.0 Amendment:** **SC-I (Direct Measurement of Domain-Shift Reduction) is added**, in step with the restoration of H-3 and the addition of PC-11. The contribution is that the dissertation measures the postulated mechanism directly — source-to-target distance in feature space, six corpora, forward passes only — rather than inferring it from external accuracy, and does so under a source-domain-statistics condition that keeps the measurement a property of the preprocessing rather than of a fitting procedure. Bounded: it establishes *that* the mechanism operates, never that the size of the reduction predicts the size of any gain. No existing contribution is altered.
 
 **v7.0.0 Amendment:** SC-G is reframed in step with the H-7 reformulation (INVARIANTS v7.0.0) — from *Clinical Degradation Resistance* to *External Clinical Performance*. A secondary methodological contribution is added under SC-G: the analytic identification of the Δ_drop defect. No other contribution is affected.
 
@@ -113,6 +115,20 @@ The principal conceptual contribution of this dissertation is a **paradigm shift
 **Secondary methodological contribution [v7.0.0]:** identification of a defect in the degradation metric Δ_drop = F1_in-domain − F1_external, in common use in the domain-shift literature. Since Δ_drop(integrated) − Δ_drop(baseline) ≡ Δ_in-domain − Δ_external, the comparison is the fixed in-domain margin minus the quantity under test; it can be satisfied only by an arm whose advantage grows under domain shift and penalizes the stronger arm for its in-domain result. Carried in Chapter 5 §5.4.
 
 **Evidence:** Experiment 5 (external clinical performance, H-7).
+
+---
+
+### SC-I: Direct Measurement of Domain-Shift Reduction [v7.1.0]
+
+**Contribution:** Most work asserting that preprocessing improves cross-domain robustness demonstrates it through its *consequence* — external accuracy — and leaves the postulated mechanism, a reduction in distributional distance, unmeasured. This dissertation measures the mechanism directly. Source-to-target distance is computed at the penultimate layer under both arms across six external corpora, with bootstrap confidence intervals on the paired reduction, at the cost of forward passes only. The contribution is methodological as much as empirical: it supplies the middle term of the dissertation's own causal chain rather than leaving the chain to be inferred from its endpoints, and it makes the mechanistic claim independently falsifiable of the performance claims.
+
+**Design element that gives the measurement its force.** Stage 7 normalization is computed from **source-domain statistics**, never recomputed on the target. Any convergence observed is therefore produced by Stages 0–6 operating identically on every corpus, with no information about the target distribution entering the transform — the measurement is a property of the preprocessing, not of a fitting procedure. Without this condition the result would be a form of target-domain adaptation and would be incomparable with H-4, H-6 and H-7.
+
+**Falsifiability, recorded prospectively.** Stage 5 (CLAHE tuned on the source corpus) and Stage 7 (dataset-specific normalization) are bound to the source domain by construction, so a reversal — variability reduced *within* the source domain while increased *across* domains — was a live possibility. Had it occurred it would have been an established finding rather than a failed run, and would have explained any corresponding reversal in H-4 and H-7. The contribution is therefore not the outcome but the measurement's existence and its capacity to have come out the other way.
+
+**Evidence:** H-3 / PC-11. MMD (or FID) over penultimate-layer features as the primary metric; KL over per-channel intensity histograms secondary and informational only.
+
+**Boundary:** SC-I establishes **that** the mechanism operates. It does **not** establish that the magnitude of the distance reduction predicts the magnitude of any performance gain, and no such correspondence may be claimed from it. Because the distance is computed over model-dependent features, the two arms are measured in different representation spaces, and the comparison is of a target corpus's relative remoteness within each arm's own space. The contribution is mechanistic and carries no claim of diagnostic performance, device compatibility (NC-16) or clinical utility.
 
 ---
 

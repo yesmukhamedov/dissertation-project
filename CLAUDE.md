@@ -65,9 +65,13 @@ Full pipeline (Exp 1 B/D) = all 8 stages (4 channels: RGB + FOV mask).
 | 2   | H-2       | EyePACS | pipeline stage ablation (7 levels) + CLAHE sweep + flat-field σ sweep |
 | 3   | H-4       | EyePACS → APTOS 2019 | Cross-dataset transfer (G ≥ 0.85) |
 | 4   | H-5       | EyePACS → IDRiD + Clinical | Explainability: IDRiD quantitative (ALO/IoU), Clinical qualitative (Grad-CAM) |
-| 5   | H-7       | EyePACS → IDRiD + Messidor-2 | Clinical degradation resistance |
+| 5   | H-7       | EyePACS → IDRiD + Messidor-2 | External clinical performance (governance v7.0.0 re-spec of "clinical degradation resistance") |
 | 6   | H-6       | EyePACS → DDR + ODIR-5K + RFMiD | Device domain shift (DR labels only) |
 | 7   | —         | IDRiD → Clinical | Small data training (5-fold CV on IDRiD) |
+| —   | H-3       | EyePACS → 6 target domains | Domain distance: MMD over penultimate-layer features + KL over channel histograms. Mechanistic — explains H-4/H-6/H-7. Reinstated after being recorded as dropped; written as thesis §4.4 |
+
+Results, verdicts and tables for all of the above live in `results/` — the single source of truth for
+every number that reaches the thesis, the defense or the demo. Never take numbers from `demo/web/data.js`.
 
 ## Hardware
 

@@ -89,24 +89,29 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 
 ## Chapter Status
 
-- 00-introduction: Not started (depends on all other chapters)
-- 01-problem-domain: In progress
-- 02-theoretical-foundations: In progress
-- 03-methodology: In progress
-- 04-experiments: In progress
-- 05-validation: Not started
-- 06-system-architecture: Not started
-- 07-conclusion: Not started (depends on all chapters)
+- 00-introduction: Not started — unblocked (all verdicts final)
+- 01-problem-domain: ✅ APPROVED (11/11)
+- 02-theoretical-foundations: ✅ APPROVED (15/15)
+- 03-methodology: ✅ APPROVED (13/13)
+- 04-experiments: §4.1 ✅ APPROVED; §4.2–§4.C in drafting (all experiments run)
+- 05-validation: Not started — unblocked except TAB-5.3 (literature) and the §5.1 clinical overlays (G-3)
+- 06-system-architecture: ✅ APPROVED (9/9)
+- 07-conclusion: Not started — unblocked (depends on §5.2.2)
+
+Experimental chapters are written from `results/` (`findings/`, `tables/`, `hypotheses/`), which is the
+single source of truth for every number and verdict. Where an earlier draft conflicts with `results/`,
+`results/` wins and the draft is revised. `results/` provenance (run dates, recomputation history,
+artifact paths) never enters the prose — system-prompt rule 16.
 
 ## Hypotheses
 
 - H-1: Integrated Pipeline Dominance (Exp 1, EyePACS 100%; integrated arm = ophthalmology-SSL, composite IV, CFC-2.8)
 - H-2: Component Ablation + CLAHE/σ sweeps (Exp 2, EyePACS)
-- H-3: DROPPED in V3
+- H-3: **Domain-Shift Reduction** (§4.4) — MMD/FID over penultimate-layer features (**primary**, sole basis of the criterion) + KL over channel histograms (**secondary, informational only**), six target domains. Criterion: **Σ PASS_S ≥ K = 5 of n = 6**, with `PASS_S ⟺ Δd(X) ≥ MCID_d = 0.0 ∧ CI⁻(Δd) > 0`; 1 000 bootstrap resamples; arms D − C (EfficientNet-B3); forward passes only, no training. **Mandatory protocol condition:** Stage 7 must use source-domain statistics — computing it from the target makes the test incomparable with H-4/H-6/H-7. **Restored in governance v7.1.0** — the label formerly denoted a *training-method comparison* dropped in V3; **that retirement stands and the label is reused**, so "H-3 dropped" in §2.3.2/§3.3.3 refers to the retired hypothesis, not this one. Mechanistic, not clinical: it measures the middle term of the causal chain that H-4/H-6/H-7 approach only through its consequence.
 - H-4: Cross-Dataset Transferability on APTOS 2019 (Exp 3, G ≥ 0.85)
 - H-5: Explainability — Grad-CAM ALO/IoU (Exp 4, IDRiD + Clinical)
 - H-6: Device Domain Shift (Exp 6, DDR/ODIR-5K/RFMiD)
-- H-7: Clinical Degradation Resistance (Exp 5, IDRiD + Messidor-2)
+- H-7: **External Clinical Performance** (Exp 5, IDRiD + Messidor-2) — reformulated in governance v7.0.0 from "Clinical Degradation Resistance". Criterion (form S): Δ wF1(integrated − baseline) ≥ MCID 0.050 with CI⁻ > 0 on **each** set. The retired Δ_drop form is descriptive only; no verdict may rest on it.
 
 ## Language
 

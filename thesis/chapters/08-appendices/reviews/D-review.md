@@ -53,7 +53,7 @@
 - [x] Purpose connects to §0.11/§0.12 — opens by stating the appendix is the documentary basis for the approbation/publications front-matter.
 - [x] Cross-references present — backward to §2.4.1 (#20), §3/§4 (#19/#21/#23/#24), §6 (#22); forward to §0.11/§0.12 and Phase 3 §11.2.
 - [x] Continuity Note accurate and complete (`continuity/D-continuity.md`), incl. the binding STOP marker and Phase-1-complete declaration.
-- [x] Word count: framing prose target 500–800 — Actual: **~640**. PASS. (Table + asset list excluded from count, as specified.)
+- [x] Word count: framing prose target 500–800 — Actual: **640**. PASS. (Table + asset list excluded from count, as specified.)
 
 **E verdict:** PASS.
 
@@ -74,4 +74,4 @@
 
 - [x] **APPROVED** — appendix passes all applicable checks (A–G). No revision needed. **Appendix D COMPLETE.**
 
-**Notes for downstream:** (1) **Phase 1 is now COMPLETE** — App A and App D were the last two writable-now items. (2) STOP per task instruction: no Phase-2 section to be started (§4.2–§4.8, Ch 5, Ch 0, Ch 7, App B/C/E/F all blocked on experiment results / DIA-6.3). (3) Carry-forward corpus-hygiene flags: `scopus-q2.md` ID `LC-AlTimemy-2021` mismatch; #23/#24 card consolidation (LITERATURE_INDEX note 5). (4) Phase 3 §11.2 resolves the six APP-D placeholders to inline images.
+**Notes for downstream:** (1) **Phase 1 is now COMPLETE** — App A and App D were the last two writable-now items. (2) STOP per task instruction: no Phase-2 section to be started (§4.2–§4.9, Ch 5, Ch 0, Ch 7, App B/C/E/F all blocked on experiment results / DIA-6.3). (3) Carry-forward corpus-hygiene flags: `scopus-q2.md` ID `LC-AlTimemy-2021` mismatch; #23/#24 card consolidation (LITERATURE_INDEX note 5). (4) Phase 3 §11.2 resolves the six APP-D placeholders to inline images.

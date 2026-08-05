@@ -174,10 +174,12 @@ if ($Stop) {
     Get-Process cloudflared -ErrorAction SilentlyContinue | Stop-Process -Force
     Stop-Port 8000
     Stop-Port 3000
-    & wsl.exe --status *> $null
-    if ($LASTEXITCODE -eq 0) {
-        & wsl.exe -d Ubuntu bash -lc "pkill -f 'uvicorn server.app.main' >/dev/null 2>&1; exit 0"
-    }
+    try {
+        & wsl.exe --status *> $null
+        if ($LASTEXITCODE -eq 0) {
+            & wsl.exe -d Ubuntu bash -lc "pkill -f 'uvicorn server.app.main' >/dev/null 2>&1; exit 0"
+        }
+    } catch {}
     Write-Host 'Stopped: cloudflared, :8000, :3000.' -ForegroundColor Yellow
     Write-Host "The Pages site stays online at https://$Project.pages.dev (it will show 'simulator (backend offline)')."
     exit 0

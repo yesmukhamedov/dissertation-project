@@ -22,7 +22,7 @@
 
 **Final topic:** The closing paragraph declares Table D.1 + the six assets the approbation evidence for §0.11/§0.12, with provenance intact and no imported performance claims.
 
-**⛔ STOP MARKER (task-binding):** Per the task instruction, work **stops here**. App A and App D — the two writable-now appendices — are both saved and the tracker is updated. **Do NOT start any Phase-2 section** (§4.2–§4.8, §4.C, Ch 5, Ch 0, Ch 7, App B/C/E/F): all remain ⛔ blocked on experiment results (App C on the DIA-6.3 UML asset). Phase 1 is now complete.
+**⛔ STOP MARKER (task-binding):** Per the task instruction, work **stops here**. App A and App D — the two writable-now appendices — are both saved and the tracker is updated. **Do NOT start any Phase-2 section** (§4.2–§4.9, §4.C, Ch 5, Ch 0, Ch 7, App B/C/E/F): all remain ⛔ blocked on experiment results (App C on the DIA-6.3 UML asset). Phase 1 is now complete.
 
 **Unresolved threads / flags (carry forward to whoever resumes):**
 - **Card-ID anomaly** `scopus-q2.md` → `LC-AlTimemy-2021` (corpus-hygiene fix, separate from this catalogue) — see project memory `literature-corpus-integrity-flags`.

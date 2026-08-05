@@ -1,4 +1,14 @@
-**Version:** 7.0.0 | **Date:** 2026-08-04 | **Binding Reference:** INVARIANTS.md v7.0.0
+**Version:** 7.1.0 | **Date:** 2026-08-05 | **Binding Reference:** INVARIANTS.md v7.0.0
+
+**v7.1.0 Amendment: H-3 is restored as *Domain-Shift Reduction*.** The label H-3 was vacated in V3, when the *training-method comparison* it then denoted (frozen-layer versus progressive fine-tuning as an experimental factor) was dropped and fine-tuning was demoted to a shared training method applied uniformly across the H-1 configurations. **That retirement stands and is not reversed.** The label is **reused** here for a distinct and previously unstated hypothesis: that the integrated configuration measurably reduces the distance between the source and external domains in feature space.
+
+*Reason for restoration.* The central hypothesis asserts a causal chain — the pipeline reduces domain variability, and reduced variability yields improved external classification. Every hypothesis in the programme prior to this amendment measured the chain's **consequence** (external accuracy: H-4, H-6, H-7) and none measured its **middle term**. Domain-shift reduction was therefore the single unmeasured link in the dissertation's own argument, inferred throughout but never tested. H-3 tests it directly and at low cost — forward passes only, no training.
+
+*Label-reuse notice (binding on all downstream text).* Occurrences of "H-3 dropped" in §2.3.2 and §3.3.3 and in their briefs and continuity notes refer to the **retired training-method hypothesis** and are historically correct. They must not be read as referring to the present H-3. No text may treat the two as the same hypothesis, and no claim about training method may be derived from H-3.
+
+*Threshold provenance — stated openly.* Neither `MCID_d` nor `K` was specified when the domain-shift question was first posed; **both are assigned at this formalization**, not pre-registered. Two facts bound the significance of that. First, `MCID_d = 0.0` is not a tuned choice: `d` is an unnormalized distance in arbitrary units, so no non-zero minimal difference is interpretable, and the per-set condition degenerates to `CI⁻(Δd) > 0` — a bare directional-significance test. Second, the outcome is **insensitive to `K`**: the measured result passes for every `K ≤ 6`, so the choice of `K = 5` does not determine the verdict. Recorded here so that a reader can verify the criterion was not fitted to the result. **VCR-1** is satisfied by issuing this versioned amendment; **VCR-3** is not engaged, since no result contradicting a direction of effect is being concealed — the direction was never contradicted.
+
+**Bump rationale:** a new hypothesis is added and no existing binding is reversed → **MINOR** per VERSIONING_POLICY §4. H-1, H-2, H-4, H-5, H-6, H-7, the composite IV and CFC-2.8 are unchanged. Governance files updated: HYPOTHESIS (this amendment, H-3 definition, Central-Hypothesis note, Conclusion), VERSION_SYNC, CHANGELOG, ARGUMENT_MAP (PC-11), CONTRIBUTIONS (SC-I). Downstream sync: `thesis/ASSET_INVENTORY.md` (H-3 row, decision 3 closed), `thesis/CLAUDE.md`, `thesis/outline/TABLE_OF_CONTENTS_EN.md` and `_KZ.md` (§4.4), `thesis/chapters/04-experiments/` (§4.4.1, §4.4.2 and their briefs/continuity/reviews). `results/` already carries the block.
 
 **v7.0.0 Amendment:** **H-7 is reformulated from "Clinical Degradation Resistance" to "External Clinical Performance."** The dependent variable changes from the degradation quantity Δ_drop = F1_EyePACS_val − F1_external to the **absolute external performance difference** Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X), evaluated independently on each external clinical set with an acceptance form requiring Δ wF1(X) ≥ MCID_wF1 = 0.050 **and** CI⁻ > 0 on **both** sets (sets are not aggregated; a single reversal gives REVERSED regardless of the other).
 
@@ -29,7 +39,7 @@ The comparison therefore reduces to the fixed in-domain margin minus the very qu
 
 ## Central Hypothesis
 
-The proposed preprocessing pipeline reduces domain variability across fundus imaging devices and acquisition conditions while preserving diagnostically relevant retinal features, leading to improved CNN-based diabetic retinopathy detection. The hypotheses H-1, H-2, H-4, H-5, H-6, and H-7 below are decompositions of this central hypothesis, each testing a specific aspect of the overarching claim. H-7 was reformulated in v7.0.0 (see the amendment above); the central hypothesis itself is unchanged.
+The proposed preprocessing pipeline reduces domain variability across fundus imaging devices and acquisition conditions while preserving diagnostically relevant retinal features, leading to improved CNN-based diabetic retinopathy detection. The hypotheses H-1 through H-7 below are decompositions of this central hypothesis, each testing a specific aspect of the overarching claim. **H-3 (v7.1.0) tests the first clause of the central hypothesis directly** — that the pipeline reduces domain variability — which the remaining hypotheses had previously approached only through its downstream consequence. H-7 was reformulated in v7.0.0 (see the amendment above); the central hypothesis itself is unchanged.
 
 ---
 
@@ -38,6 +48,38 @@ The proposed preprocessing pipeline reduces domain variability across fundus ima
 The independent variable is the composite *(preprocessing × pretraining source)* pair (baseline ⟹ ImageNet, integrated ⟹ ophthalmology-SSL). Attribution of the observed effect to preprocessing alone, pretraining alone, or their interaction is **forbidden** under CFC-2.8 (INVARIANTS v6.0.0). The integrated-arm backbone architecture and 4-channel input questions (AOQ-1, AOQ-2, AOQ-4) are **resolved** in v6.0.0 (INVARIANTS Section X): both ResNet-50 and EfficientNet-B3 are used in both arms, and SSL pretraining is performed on the 4-channel input.
 
 **H-2 (CLAHE Threshold Sensitivity and Component Ablation).** If the dual-constraint CLAHE clip limit parameters (clip_factor and global_threshold) are varied across controlled values on EyePACS, where clip_limit = min(clip_factor × tile_area / 256, global_threshold × tile_area) and CLAHE is applied stochastically at train time (80% probability), then per-class F1-score for DR 1 and DR 2 will exhibit a parameter-dependent sensitivity profile with at least one local optimum within the tested range of (clip_factor, global_threshold) combinations. Additionally, the flat-field correction σ factor is swept across 0.05–0.10 × FOV diameter to identify optimal illumination normalization.
+
+**H-3 (Domain-Shift Reduction) [v7.1.0 restored — label reused, see amendment].** If fundus images from the source corpus (EyePACS) and from each external corpus X are passed through the baseline and the integrated configurations and embedded by the network's penultimate layer, then the distance between the source and target feature distributions will be smaller under the integrated configuration than under the baseline, on at least five of the six external corpora, with the confidence interval of the reduction excluding zero:
+
+```
+H-3  ⟺  Σ            PASS_S(d, X)  ≥  K = 5,        n = 6
+        X ∈ 𝕏
+
+PASS_S(d, X)  ⟺  Δd(X) = d(BASE, X) − d(INT, X)  ≥  MCID_d = 0.0   ∧   CI⁻(Δd) > 0
+
+𝕏 = {APTOS 2019, IDRiD, Messidor-2, DDR, ODIR-5K, RFMiD}
+```
+
+**Variables.**
+
+| Symbol | Definition | Range / units | How measured |
+|---|---|---|---|
+| X | external corpus | the 6 sets of 𝕏 | fixed |
+| φ(·) | penultimate-layer features | vector | forward pass, **no training** |
+| **d** | **MMD (or FID) between φ(EyePACS) and φ(X)** | ≥ 0, dimensionless | **primary metric — the criterion is computed on d alone** |
+| d_KL | KL divergence over per-channel intensity histograms | ≥ 0 | **secondary, informational only — carries no part of the criterion** |
+| Δd(X) | d(BASE, X) − d(INT, X), the reduction in distance | absolute units of d | paired within X |
+| CI⁻(Δd) | lower bound of the bootstrap CI of the reduction | absolute | **1 000 resamples** |
+
+**Arms.** The comparison is the pair **integrated − baseline** (EfficientNet-B3 backbone: pipeline + in-domain SSL initialization against baseline + ImageNet), i.e. the configuration pair D − C of Experiment 1.
+
+**Sign convention and acceptance form.** Δd is defined as a *decrease* in distance, so the sign is already normalized and the ordinary superiority form **S** applies. Because `d` is unnormalized, `MCID_d = 0.0` and the per-corpus condition reduces to `CI⁻(Δd) > 0`.
+
+**Protocol condition (mandatory).** Stage 7 normalization **must** be computed from **source-domain statistics**, exactly as in zero-shot deployment. Computing it from the target corpus would make the measurement a form of target-domain adaptation and would render the result incomparable with H-4, H-6 and H-7. Any evaluation violating this condition does not test H-3.
+
+**Pre-specified reversal case (recorded before the outcome, retained).** Stage 5 (CLAHE tuned on EyePACS) and Stage 7 (dataset-specific normalization) are bound to the source domain by construction, so a REVERSED outcome was a live possibility rather than a remote one: the pipeline could reduce variability *within* the source domain while increasing it *across* domains. Had that occurred it would have been an established finding, not a failed run — it would have directly explained any reversal in H-4 and H-7 and would have been reported as a result. Recording the reversal case here preserves the hypothesis's falsifiability on the face of the governance document (VCR-3).
+
+*Scope.* Bounded to the six named corpora and to the architectures evaluated. H-3 is **mechanistic**: it measures a property of the representation, not a clinical outcome, and supports no claim of diagnostic performance, device compatibility (NC-16) or clinical utility. It establishes **that** the mechanism operates; it does **not** establish that the magnitude of the distance reduction predicts the magnitude of any performance gain, and no such correspondence may be asserted from it. Because d is computed over model-dependent features, the baseline and integrated distances are measured in different representation spaces; the comparison is of a target corpus's relative remoteness within each arm's own space.
 
 **H-4 (Cross-Dataset Transferability).** If models trained on EyePACS with the full preprocessing pipeline are evaluated on APTOS 2019 without retraining, then the generalization ratio G = F1_APTOS / F1_EyePACS will be ≥ 0.85.
 
@@ -74,4 +116,4 @@ The hypotheses above are linked by the following causal argument:
 
 **Premise 4 (In-Domain Pretraining Provides Retina-Aware Initialization) [v6.0.0; specifics v6.2.0].** The integrated arm initializes the same CNN backbone (ResNet-50 / EfficientNet-B3) from **ophthalmology-specific self-supervised pretraining** on an unlabeled retinal fundus corpus, using a CNN-compatible domain-adaptive SSL protocol (the DINO / BYOL / SimCLR / MoCo family; **BYOL primary**), pretrained from-scratch on the 4-channel pipeline tensor. No diabetic-retinopathy labels are used during pretraining; the objective is representation learning over retinal anatomical structure (vascular topology, optic-disc and macular morphology, retinal texture, illumination variability, imaging artifacts). The corpus is the unlabeled EyePACS "test" split (53,576 images), disjoint from the Experiment-1 corpus per INVARIANTS SB-2.4, and the initialization must pass a linear-probe acceptance gate before entering Experiment 1. In-domain (retinal-imaging) initialization is expected to improve sample efficiency and clinical generalization relative to natural-image (ImageNet) initialization; this expectation is evaluated empirically and is not assumed (DGL-6).
 
-**Conclusion (v6.0.0; specifics v6.2.0):** The integrated configuration — preprocessing pipeline combined with ophthalmology-specific self-supervised in-domain pretraining — improves diagnostic performance over the baseline configuration (stretch-resize + ImageNet pretraining) as a unitary system (H-1). The pipeline additionally exhibits parameter robustness (H-2), cross-dataset transfer (H-4), lesion-aligned attention (H-5), cross-device generalization (H-6), and higher absolute performance on external clinical datasets (H-7, v7.0.0 — not a claim of reduced degradation). The decomposition of the H-1 effect into preprocessing-only and pretraining-only contributions is outside the scope of this dissertation (see CFC-2.8).
+**Conclusion (v6.0.0; specifics v6.2.0):** The integrated configuration — preprocessing pipeline combined with ophthalmology-specific self-supervised in-domain pretraining — improves diagnostic performance over the baseline configuration (stretch-resize + ImageNet pretraining) as a unitary system (H-1). The pipeline additionally exhibits parameter robustness (H-2), **reduced source-to-target distance in feature space (H-3, v7.1.0 — mechanistic, not a performance claim)**, cross-dataset transfer (H-4), lesion-aligned attention (H-5), cross-device generalization (H-6), and higher absolute performance on external clinical datasets (H-7, v7.0.0 — not a claim of reduced degradation). The decomposition of the H-1 effect into preprocessing-only and pretraining-only contributions is outside the scope of this dissertation (see CFC-2.8).

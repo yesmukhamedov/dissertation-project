@@ -80,16 +80,17 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 **Unblocked by the 2026-08-02 run (revised 2026-08-03):**
 - **§4.2 (Exp 1)** — ✅ writable. Full 100% A–D × 5-fold suite, statistical layer, calibration, per-class, clinical metrics. Material in `results/findings/exp1.md` + `results/tables/`.
 - **§4.3 (Exp 2)** — ✅ writable, all three parts (ablation, CLAHE sweep, σ sweep) closed.
-- **§4.4 (Exp 3), §4.6 (Exp 5), §4.7 (Exp 6), §4.8 (Exp 7)** — ✅ writable.
-- **§4.5 (Exp 4) + §5.1** — 🟡 quantitative part writable; the clinical (KZ) Grad-CAM overlays that H-5 also calls for are still missing (gap G-3).
+- **§4.5 (Exp 3), §4.7 (Exp 5), §4.8 (Exp 6), §4.9 (Exp 7)** — ✅ writable.
+- **§4.6 (Exp 4) + §5.1** — 🟡 quantitative part writable; the clinical (KZ) Grad-CAM overlays that H-5 also calls for are still missing (gap G-3).
 - **Chapter 5 (Validation)** — ✅ §5.2.1/§5.2.2 writable (`results/tables/TAB-5.1`, `TAB-5.2`); §5.3 still needs the literature-side TAB-5.3.
 - **Chapter 0 (§0.8) & Chapter 7 (Conclusion)** — ✅ unblocked; all verdicts are final.
 - **Appendices B, E, F** — data exists; App B needs `predictions.npz` for PR/ROC curves, App E needs G-3, App F needs a per-group confusion-matrix dump.
 - **Appendix C (UML)** — ❌ still missing; asset task, not experiment-gated.
 
-**Two decisions the candidate must make before writing:**
-1. **Where H-3 goes.** The run measures and confirms it, but `thesis/CLAUDE.md` still records "H-3: DROPPED in V3" and Chapter 4 has no section for it. Its placement changes the numbering of §4.x and of the TAB/FIG identifiers downstream.
-2. **Provenance.** Publishing the run's raw artifacts into `experiments/outputs/` before the defense — otherwise no result in Chapters 4–5 traces to a primary output file.
+**Decisions:**
+1. **Where H-3 goes — RESOLVED.** H-3 is reinstated as its own section, **§4.4 Domain Distance Reduction Across Six Target Domains**, placed after the stage ablation and before every external-generalization section, because it states the mechanism those sections test the consequences of. Chapter-4 numbering downstream of §4.3 shifts by one: Exp 3 → §4.5, Exp 4 → §4.6, Exp 5 → §4.7, Exp 6 → §4.8, Exp 7 → §4.9. New identifiers **TAB-4.11** and **FIG-4.17** carry its table and figure. The "H-3: DROPPED in V3" record in `thesis/CLAUDE.md` is superseded.
+2. **Provenance — OPEN.** Publishing the run's raw artifacts into `experiments/outputs/` before the defense — otherwise no result in Chapters 4–5 traces to a primary output file.
+3. ✅ **H-3 governance definition — RESOLVED (option (a), label reused).** `HYPOTHESIS.md` **v7.1.0** now formally defines **H-3 (Domain-Shift Reduction)** with its variable table, acceptance form and mandatory protocol condition; `ARGUMENT_MAP.md` carries **PC-11** and `CONTRIBUTIONS.md` carries **SC-I**. The V3 retirement of the *training-method comparison* that formerly held the label **stands and is not reversed**; the label-reuse notice is binding on downstream text, and the "H-3 dropped" references in §2.3.2 and §3.3.3 are correct as statements about that retired hypothesis. Acceptance form: **Σ PASS_S(d, X) ≥ K = 5 of n = 6**, with `PASS_S ⟺ Δd(X) ≥ MCID_d = 0.0 ∧ CI⁻(Δd) > 0`; `d` = MMD/FID over penultimate-layer features (**primary, sole basis of the criterion**), `d_KL` **secondary and informational only**; 1 000 bootstrap resamples; arms = D − C (EfficientNet-B3); forward passes only. **Both thresholds were assigned at formalization, not pre-registered** — stated openly in the governance amendment and in §4.4.2, where the verdict is shown to be insensitive to K (it passes for every K ≤ 6) and MCID_d = 0.0 is shown to be the only interpretable choice for an unnormalized distance. The measured outcome is **6/6**, so H-3 is supported with the rule's one-corpus tolerance unused.
 
 ---
 
@@ -138,7 +139,7 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 | TAB-3.2 | table | Multi-metric evaluation framework & diagnostic thresholds (EH-1, OD-5) | §3.4.1 | governance | text | ✅ AVAILABLE |
 | TAB-3.3 | table | Image-quality metrics definitions (CNR/VVI/Entropy/SSIM) | §3.4.1 | governance (RESEARCH_ARCHITECTURE §3.3) | text | ✅ AVAILABLE |
 | RES-NORM | result-set | Per-dataset normalization stats (EyePACS, IDRiD) — Stage 7 | §3.1.1 | **Exp (real)** | `experiments/data/processed/eyepacs_norm_stats.json`, `experiments/data/processed/idrid_norm_stats.json` | ✅ AVAILABLE |
-| RES-PCA | result-set | ~~EyePACS PCA color-jitter basis (Stage 6)~~ | — | — | — | ❌ RETIRED (2026-06-26 — Stage 6 chromatic aug replaced by ColorJitter; no PCA basis used) |
+| RES-PCA | result-set | EyePACS PCA color-jitter basis (Stage 6) | — | — | — | ❌ RETIRED (2026-06-26 — Stage 6 chromatic aug replaced by ColorJitter; no PCA basis used) |
 | RES-VAL | result-set | OD/fovea detector accuracy metrics (IDRiD train/test) | §3.1.1 | **Exp (real)** | `experiments/outputs/validation/od_fovea_idrid_metrics.json` | ✅ AVAILABLE |
 
 ### 2.4 Chapter 4 — Experimental Research
@@ -161,17 +162,21 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 | FIG-4.9 | figure | Exp 2 CLAHE sensitivity — joint grid (clip_factor × global_threshold), 8×5, on EyePACS | §4.3.2 | Exp 2 | `results/tables/exp2_clahe_sweep.md`; figure `…/results/exp2/13_exp2_clahe_sensitivity.png` | 🟡 RENDERED |
 | FIG-4.10 | figure | Exp 2 flat-field σ sweep (0.05–0.10·D) | §4.3.3 | Exp 2 | **newly run** — `results/tables/exp2_flatfield_sigma_sweep.md`; data `demo/web/public/results/exp2/exp2_ff_sweep.json`. σ* = 0.07·D, held-out Δ +0.0570 | 🟡 RENDERED |
 | TAB-4.5 | table | Exp 2 image-quality per ablation level (CNR/Entropy/SSIM) | §4.3.3 | Exp 2 | `results/tables/TAB-4.5_exp2_image_quality.md`; figure `…/results/general/16_image_quality.png`. **VVI dropped — not implemented in `image_quality.py`** | 🟡 RENDERED |
-| TAB-4.6 | table | **Exp 3 APTOS transfer** — G = F1_APTOS/F1_EyePACS, C vs D | §4.4 | Exp 3 | `results/tables/TAB-4.6_exp3_transfer.md`; data `…/results/exp3/exp3_aptos_transfer.json` (G_D = 0.8976, G_C = 0.8577) | 🟡 RENDERED |
-| FIG-4.11 | figure | Exp 3 cross-dataset transfer chart | §4.4 | Exp 3 | `…/results/exp3/29_exp3_aptos_transfer.png` (rendered directly from the JSON) | 🟡 RENDERED |
-| FIG-4.12 | figure | **Exp 4 Grad-CAM overlays** per DR class, baseline vs integrated (IDRiD) | §4.5.1 / App E | Exp 4 | 54 real overlays at `experiments/outputs/exp4/gradcam_maskset/*.png`; demo illustration `…/results/exp4/27_gradcam_overlay.png` (not regenerated — source image missing) | ⏳ PENDING |
-| TAB-4.7 | table | **Exp 4 ALO (primary) + IoU (secondary)** per lesion type, n = 54 masks | §4.5.2 | Exp 4 | `results/tables/TAB-4.7_exp4_alo_iou.md`; figures `…/results/exp4/06_exp4_alo.png`, `…/07_exp4_iou.png`. 4/4 types significant; **stays within NC-14** | 🟡 RENDERED |
-| FIG-4.13 | figure | Exp 4 per-image direction of the ALO effect | §4.5.3 | Exp 4 | `…/results/exp4/28_attention_consistency.png` — **repurposed**: cross-dataset attention consistency was never measured; the figure now shows improved/unchanged/worsened counts per lesion type | 🟡 RENDERED |
-| FIG-4.14 | figure | Exp 4 lesion-overlay reference (IDRiD masks) | §4.5.2 | Exp 4 | demo asset: `defense/figures/figures_mine/fig2_lesion_overlays.png` | ❌ MISSING |
-| TAB-4.8 | table | **Exp 5 external clinical performance** Δ wF1 vs MCID (IDRiD, Messidor-2) | §4.6 | Exp 5 | `results/tables/TAB-4.8_exp5_degradation.md`; data `…/results/exp5/exp5_degradation.json`. **✅ H-7 CONFIRMED 2/2**; the table also carries the retired Δ_drop form and its critique for §5.4. ⚠️ Filenames still say `degradation` — artifact paths, not renamed | 🟡 RENDERED |
-| FIG-4.15 | figure | Exp 5 external clinical performance / generalization chart | §4.6 | Exp 5 | `…/results/exp5/08_exp5_generalization.png`, `…/09_exp5_G_ratio.png`. ⚠️ Must be regenerated for the current run and re-captioned away from "degradation" | 🟡 RENDERED |
-| TAB-4.9 | table | **Exp 6 device domain shift** — per-camera F1/AUC/κ + between-group spread | §4.7 / App F | Exp 6 | `results/tables/TAB-4.9_exp6_device.md`; figure `…/results/exp6/10_exp6_device_shift.png`. Per-group confusion matrices **not recorded** (App F gap) | 🟡 RENDERED |
-| TAB-4.10 | table | **Exp 7 small-data** 5-fold IDRiD→Clinical (baseline vs integrated), preregistered | §4.8 | Exp 7 | `results/tables/TAB-4.10_exp7_smalldata.md`; data `…/results/exp7/exp7_small_data.json` | 🟡 RENDERED |
-| FIG-4.16 | figure | Exp 7 small-data performance chart | §4.8 | Exp 7 | `…/results/exp7/30_exp7_small_data.png` (rendered directly from the JSON) | 🟡 RENDERED |
+| TAB-4.6 | table | **Exp 3 APTOS transfer** — G = F1_APTOS/F1_EyePACS, C vs D | §4.5 | Exp 3 | `results/tables/TAB-4.6_exp3_transfer.md`; data `…/results/exp3/exp3_aptos_transfer.json` (G_D = 0.8976, G_C = 0.8577) | 🟡 RENDERED |
+| FIG-4.11 | figure | Exp 3 cross-dataset transfer chart | §4.5 | Exp 3 | `…/results/exp3/29_exp3_aptos_transfer.png` (rendered directly from the JSON) | 🟡 RENDERED |
+| FIG-4.12 | figure | **Exp 4 Grad-CAM overlays** per DR class, baseline vs integrated (IDRiD) | §4.6.1 / App E | Exp 4 | 54 real overlays at `experiments/outputs/exp4/gradcam_maskset/*.png`; demo illustration `…/results/exp4/27_gradcam_overlay.png` (not regenerated — source image missing) | ⏳ PENDING |
+| TAB-4.7 | table | **Exp 4 ALO (primary) + IoU (secondary)** per lesion type, n = 54 masks | §4.6.2 | Exp 4 | `results/tables/TAB-4.7_exp4_alo_iou.md`; figures `…/results/exp4/06_exp4_alo.png`, `…/07_exp4_iou.png`. 4/4 types significant; **stays within NC-14** | 🟡 RENDERED |
+| FIG-4.13 | figure | Exp 4 per-image direction of the ALO effect | §4.6.3 | Exp 4 | `…/results/exp4/28_attention_consistency.png` — **repurposed**: cross-dataset attention consistency was never measured; the figure now shows improved/unchanged/worsened counts per lesion type | 🟡 RENDERED |
+| FIG-4.14 | figure | Exp 4 lesion-overlay reference (IDRiD masks) | §4.6.2 | Exp 4 | demo asset: `defense/figures/figures_mine/fig2_lesion_overlays.png` | ❌ MISSING |
+| TAB-4.8 | table | **Exp 5 external clinical performance** Δ wF1 vs MCID (IDRiD, Messidor-2) | §4.7 | Exp 5 | `results/tables/TAB-4.8_exp5_degradation.md`; data `…/results/exp5/exp5_degradation.json`. **✅ H-7 CONFIRMED 2/2**; the table also carries the retired Δ_drop form and its critique for §5.4. ⚠️ Filenames still say `degradation` — artifact paths, not renamed | 🟡 RENDERED |
+| FIG-4.15 | figure | Exp 5 external clinical performance / generalization chart | §4.7 | Exp 5 | `…/results/exp5/08_exp5_generalization.png`, `…/09_exp5_G_ratio.png`. ⚠️ Must be regenerated for the current run and re-captioned away from "degradation" | 🟡 RENDERED |
+| TAB-4.9 | table | **Exp 6 device domain shift** — per-camera F1/AUC/κ + between-group spread | §4.8 / App F | Exp 6 | `results/tables/TAB-4.9_exp6_device.md`; figure `…/results/exp6/10_exp6_device_shift.png`. Per-group confusion matrices **not recorded** (App F gap) | 🟡 RENDERED |
+| TAB-4.10 | table | **Exp 7 small-data** 5-fold IDRiD→Clinical (baseline vs integrated), preregistered | §4.9 | Exp 7 | `results/tables/TAB-4.10_exp7_smalldata.md`; data `…/results/exp7/exp7_small_data.json` | 🟡 RENDERED |
+| FIG-4.16 | figure | Exp 7 small-data performance chart | §4.9 | Exp 7 | `…/results/exp7/30_exp7_small_data.png` (rendered directly from the JSON) | 🟡 RENDERED |
+| TAB-4.11 | table | **H-3 domain distance** — MMD over penultimate-layer features and KL over channel histograms, baseline vs integrated, six target domains, with bootstrap CIs on Δd | §4.4.2 | H-3 | `results/tables/H-3_domain_distance.md`; card `results/hypotheses/H-3.md`. 6/6 domains, all CIs exclude zero | 🟡 RENDERED |
+| FIG-4.17 | figure | H-3 domain-distance reduction chart (Δd per target domain, both measures) | §4.4.2 | H-3 | not yet rendered — derivable from `results/tables/H-3_domain_distance.md` | ❌ MISSING |
+
+> **NEW-2 (open, gates §4.4.1 only):** the MMD kernel, the per-domain sample size and the bootstrap iteration count are not recorded in the run data. They must be read off the experiment configuration before §4.4.1 can state the measurement protocol in full; §4.4.2 (the results) is unaffected.
 
 ### 2.5 Chapter 5 — Reliability Validation
 

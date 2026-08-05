@@ -2,7 +2,9 @@
 ## PhD Dissertation: Automated Diabetic Retinopathy Diagnosis via Fundus Image Enhancement and CNN Classification
 **Candidate:** Yesmukhamedov N.S.
 **Document Type:** Formal Claim-Evidence-Dependency Structure
-**Version:** 7.0.0 | **Date:** 2026-08-04 | **Binding Reference:** INVARIANTS.md v7.0.0
+**Version:** 7.1.0 | **Date:** 2026-08-05 | **Binding Reference:** INVARIANTS.md v7.0.0
+
+**v7.1.0 Amendment:** **PC-11 (Domain-Shift Reduction) is added**, in step with the restoration of H-3 (HYPOTHESIS v7.1.0). PC-11 is the programme's only **mechanistic** empirical claim: it asserts that the integrated configuration reduces source-to-target distance in penultimate-layer feature space on ≥ 5 of 6 external corpora, and it supplies the middle term of the central hypothesis's causal chain, which PC-6/PC-9/PC-10 had previously approached only through its consequence. PC-11 depends on PC-1 and feeds PC-6/PC-9/PC-10 explanatorily; it carries an explicit boundary forbidding any magnitude-correspondence inference. Updated: the PC-11 node and the DAG. No existing claim node is altered.
 
 **v7.0.0 Amendment:** PC-10 is reformulated in step with H-7 (INVARIANTS v7.0.0) — *Clinical Degradation Resistance* → *External Clinical Performance*. The claim is now higher absolute weighted F1 on each external clinical dataset (Δ wF1 ≥ MCID 0.050, CI⁻ > 0, both sets, no aggregation); the Δ_drop degradation form is retired to descriptive status and can neither promote nor demote the claim. Updated: PC-10 formal statement and evidence type, SC-10.1, PC-10 strength criteria, the DAG label, and the PC-1 dependency note. No other claim node is affected.
 
@@ -147,6 +149,17 @@
 **Required Evidence Type:** Experiment 5 — external clinical evaluation. Δ wF1 with bootstrap CI computed per dataset per architecture; both datasets must pass independently (no aggregation).
 **Dependency:** Depends on PC-1 (pipeline validity)
 **Tests whether:** Preprocessing yields higher absolute performance on external clinical data (H-7). **Does not test** degradation resistance — see the v7.0.0 amendment in INVARIANTS/HYPOTHESIS.
+
+---
+
+### PC-11
+**Claim ID:** PC-11
+**Formal Statement:** For at least five of the six external corpora {APTOS 2019, IDRiD, Messidor-2, DDR, ODIR-5K, RFMiD}, the distance between the source (EyePACS) and target feature distributions at the penultimate layer is smaller under the integrated configuration than under the baseline — Δd(X) = d(BASE, X) − d(INT, X) ≥ MCID_d = 0.0 with CI⁻(Δd) > 0 — where Stage 7 normalization is computed from source-domain statistics. [v7.1.0 added, with H-3.]
+**Claim Type:** Empirical — **mechanistic**
+**Required Evidence Type:** H-3 domain-shift measurement. MMD (or FID) over penultimate-layer features as the primary metric, with 1 000-resample bootstrap CIs on the paired reduction; forward passes only, no training. KL over per-channel intensity histograms is secondary and informational, carrying no part of the criterion.
+**Dependency:** Depends on PC-1 (pipeline validity). **Feeds** PC-6, PC-9 and PC-10 as the mechanistic account of why external performance holds — but see the boundary below.
+**Tests whether:** The pipeline reduces source-to-target domain distance in the representation the classifier consumes — the middle term of the central hypothesis's causal chain, which PC-6/PC-9/PC-10 had previously approached only through its consequence.
+**Boundary:** PC-11 establishes **that** the mechanism operates. It does **not** establish that the magnitude of the distance reduction predicts the magnitude of any performance gain, and no downstream claim may rest on such a correspondence. It is not a claim of diagnostic performance, device compatibility (NC-16) or clinical utility. Because d is computed over model-dependent features, the two arms' distances are measured in different representation spaces; the comparison is of a target corpus's relative remoteness within each arm's own space.
 
 ---
 
@@ -532,7 +545,8 @@ IT-1 (Main Thesis)
 ├── PC-9 [Empirical — Device Domain Shift Robustness]   ← Depends on PC-1
 │   └── SC-9.1 [Cross-camera performance matrix: DDR, ODIR-5K, RFMiD]
 │
-└── PC-10 [Empirical — External Clinical Performance] ← Depends on PC-1
+├── PC-10 [Empirical — External Clinical Performance] ← Depends on PC-1
+└── PC-11 [Empirical — Domain-Shift Reduction, MECHANISTIC] ← Depends on PC-1; feeds PC-6/PC-9/PC-10
     └── SC-10.1 [Δ comparison on IDRiD and Messidor-2]
 ```
 

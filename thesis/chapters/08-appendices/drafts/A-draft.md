@@ -129,7 +129,7 @@ The remaining modules follow the same conventions established for the codebase �
 
 ### Word count
 
-PART 1 framing prose: ~840 words (within the 700–1,000 target). The reproduced code block is not counted toward prose word count.
+PART 1 framing prose: 840 words (within the 700–1,000 target). The reproduced code block is not counted toward prose word count.
 
 ### Deferred-asset log
 

@@ -6,6 +6,36 @@ The versioning scheme is defined in [VERSIONING_POLICY.md](VERSIONING_POLICY.md)
 
 ---
 
+## v7.1.0 — 2026-08-05
+
+**H-3 restored as Domain-Shift Reduction (MINOR — a hypothesis is added; no existing binding is reversed).** The label H-3 was vacated in V3, when the *training-method comparison* it then denoted — frozen-layer versus progressive fine-tuning as an experimental factor — was dropped and fine-tuning was demoted to a shared training method applied uniformly across the H-1 configurations. **That retirement stands and is not reversed.** The label is **reused** for a distinct and previously unstated hypothesis: that the integrated configuration measurably reduces the distance between the source and external domains in feature space.
+
+**Why it was restored.** The central hypothesis asserts a causal chain — the pipeline reduces domain variability, and reduced variability yields improved external classification. Every hypothesis in the programme measured the chain's *consequence* (external accuracy: H-4, H-6, H-7); none measured its *middle term*. Domain-shift reduction was the single unmeasured link in the dissertation's own argument, inferred throughout but never tested. H-3 tests it directly, at the cost of forward passes only, and makes the mechanism independently falsifiable of the performance claims.
+
+**Acceptance form — "K of n", K = 5, n = 6:**
+
+```
+H-3  ⟺  Σ PASS_S(d, X)  ≥  5,    X ∈ {APTOS, IDRiD, Messidor-2, DDR, ODIR-5K, RFMiD}
+
+PASS_S(d, X)  ⟺  Δd(X) = d(BASE, X) − d(INT, X)  ≥  MCID_d = 0.0   ∧   CI⁻(Δd) > 0
+```
+
+`d` is MMD (or FID) over penultimate-layer features and is the **primary metric and the sole basis of the criterion**; `d_KL` over per-channel intensity histograms is **secondary and informational only**. Confidence intervals come from **1 000 bootstrap resamples**. The compared arms are integrated − baseline (EfficientNet-B3; configurations D − C of Experiment 1). Because `d` is unnormalized, `MCID_d = 0.0` and the per-corpus condition reduces to `CI⁻(Δd) > 0`.
+
+**Mandatory protocol condition.** Stage 7 normalization must be computed from **source-domain statistics**, exactly as in zero-shot deployment. Computing it from the target corpus would make the measurement a form of target-domain adaptation and would render the result incomparable with H-4, H-6 and H-7. An evaluation violating this condition does not test H-3.
+
+**Threshold provenance, stated openly.** Neither `MCID_d` nor `K` was pre-registered; both are assigned at this formalization. `MCID_d = 0.0` is not a tuned choice — `d` is unnormalized, so no non-zero minimal difference is interpretable. The outcome is insensitive to `K`: it passes for every `K ≤ 6`, so the choice of `K = 5` does not determine the verdict. **VCR-1** is satisfied by issuing this versioned amendment. **VCR-3** is not engaged: no result contradicting a direction of effect is being concealed, since the direction was never contradicted.
+
+**Pre-specified reversal case, retained on the record.** Stage 5 (CLAHE tuned on the source corpus) and Stage 7 (dataset-specific normalization) are bound to the source domain by construction, so a REVERSED outcome — variability reduced *within* the source domain while increased *across* domains — was a live possibility rather than a remote one. Had it occurred it would have been an established finding, not a failed run: it would have directly explained any reversal in H-4 and H-7 and would have been reported as a result.
+
+**Label-reuse notice, binding on downstream text.** Occurrences of "H-3 dropped" in §2.3.2 and §3.3.3 and in their briefs and continuity notes refer to the **retired training-method hypothesis** and are historically correct. They must not be read as referring to the present H-3, and no claim about training method may be derived from it.
+
+**Files updated.** HYPOTHESIS (amendment, H-3 definition with its variable table and formula, Central-Hypothesis note, Conclusion), ARGUMENT_MAP (new **PC-11** node, DAG, header amendment), CONTRIBUTIONS (new **SC-I**, header amendment), VERSION_SYNC, CHANGELOG. Downstream: `thesis/ASSET_INVENTORY.md`, `thesis/CLAUDE.md`, both tables of contents, and the §4.4 material in `thesis/chapters/04-experiments/`. `results/` already carried the block.
+
+**Unchanged:** H-1, H-2, H-4, H-5, H-6, H-7, all scope boundaries, forbidden claims, non-claims, the composite independent variable and CFC-2.8.
+
+---
+
 ## v7.0.0 — 2026-08-04
 
 **H-7 reformulated: Clinical Degradation Resistance → External Clinical Performance (MAJOR — a hypothesis is reformulated incompatibly with the prior version).** The dependent variable of H-7 changes from the degradation quantity Δ_drop = F1_EyePACS_val − F1_external to the **absolute external performance difference** Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X). Acceptance is form S on **both** external clinical datasets, evaluated independently: Δ wF1(X) ≥ MCID_wF1 = 0.050 **and** CI⁻ > 0. The datasets are not aggregated — a reversal (CI⁺ < 0) on either yields REVERSED regardless of the other. The form requires Δ ≥ MCID and CI⁻ > 0; it does **not** require CI⁻ ≥ MCID.

@@ -1,8 +1,10 @@
 # Chapter 4: Experimental Research
 
-**Status:** Not started — BLOCKED on dr-classifier experiment completion
-**Chapter function:** Experiments 1–4 execution, results, analysis
-**Governance bindings:** H-1, H-2, H-4, H-5, H-6, PC-1, PC-2, PC-6, PC-7, PC-8, PC-9, EH-3, EH-4, **SB-1.12, CFC-2.9, PC-0 (v5.3)**
+**Status:** §4.1 approved; §4.2–§4.C in drafting (all experiments run; every section unblocked except the clinical Grad-CAM overlays of §4.6, gap G-3)
+**Chapter function:** Experiments 1–7 + the H-3 domain-distance analysis — execution, results, analysis
+**Governance bindings:** H-1, H-2, **H-3**, H-4, H-5, H-6, **H-7 (v7.0.0 External Clinical Performance)**, PC-1, PC-2, PC-6, PC-7, PC-8, PC-9, PC-10, EH-3, EH-4, **SB-1.12, CFC-2.9, PC-0 (v5.3)**
+
+> **§4.4 (H-3) inserted; §4.4–§4.8 renumbered to §4.5–§4.9.** H-3 (domain distance) was recorded as dropped in earlier versions but was measured and confirmed on 6/6 target domains. It is placed before every external-generalization section because it states the mechanism those sections test the consequences of. Chapter-4 numbering downstream of §4.3 shifts by one.
 **Key sources:** dr-classifier experiment outputs (training logs, metrics, confusion matrices)
 
 ## Paradigmatic framing insertion (v5.3) — Task 2.6
@@ -30,23 +32,27 @@
 - 4.2.3 Quantitative Comparison of Diagnostic Metrics
 
 ## 4.3 Experiment 2: Stage Ablation + CLAHE/σ Sweeps (H-2)
-- 4.3.1 Ablation Design (Levels 0–6)
+- 4.3.1 Cumulative Ablation Design (Levels L0–L7)
 - 4.3.2 CLAHE Threshold Sensitivity Analysis (H-2 Sub-Analysis)
 - 4.3.3 Flat-Field σ Sweep and Image Quality Metrics
 
-## 4.4 Experiment 3: Cross-Dataset Transferability on APTOS 2019 (H-4)
-- 4.4.1 Zero-Shot Transfer to APTOS 2019
-- 4.4.2 Baseline vs Pipeline Comparison
+## 4.4 Domain Distance Reduction Across Six Target Domains (H-3)
+- 4.4.1 Measurement Protocol: MMD over Representations and KL over Channel Histograms
+- 4.4.2 Distance Reduction Results and Their Interpretive Limits
 
-## 4.5 Experiment 4: Grad-CAM Explainability on IDRiD + Clinical (H-5)
-- 4.5.1 Grad-CAM Generation Protocol
-- 4.5.2 Quantitative ALO and IoU with IDRiD Lesion Masks
-- 4.5.3 Attention Consistency Across Datasets
+## 4.5 Experiment 3: Cross-Dataset Transferability on APTOS 2019 (H-4)
+- 4.5.1 Zero-Shot Transfer to APTOS 2019
+- 4.5.2 Baseline vs Pipeline Comparison
 
-## 4.6 Experiment 5: Clinical Degradation Resistance on IDRiD + Messidor-2 (H-7)
+## 4.6 Experiment 4: Grad-CAM Explainability on IDRiD + Clinical (H-5)
+- 4.6.1 Grad-CAM Generation Protocol
+- 4.6.2 Quantitative ALO and IoU with IDRiD Lesion Masks
+- 4.6.3 Per-Image Consistency of the Attention Effect and Limits of the Present Evidence
 
-## 4.7 Experiment 6: Device Domain Shift on DDR + ODIR-5K + RFMiD (H-6)
+## 4.7 Experiment 5: External Clinical Performance on IDRiD + Messidor-2 (H-7)
 
-## 4.8 Experiment 7: Small Data Training (IDRiD → Clinical)
+## 4.8 Experiment 6: Device Domain Shift on DDR + ODIR-5K + RFMiD (H-6)
+
+## 4.9 Experiment 7: Small Data Training (IDRiD → Clinical)
 
 - Conclusions to Chapter 4

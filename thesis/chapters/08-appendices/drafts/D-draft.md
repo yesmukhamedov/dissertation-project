@@ -63,7 +63,7 @@ Together, Table D.1 and these six confirmation assets constitute the approbation
 
 ### Word count
 
-PART 1 framing prose: ~640 words (within the 500–800 target). Table D.1 and the asset list are not counted toward prose word count.
+PART 1 framing prose: 640 words (within the 500–800 target). Table D.1 and the asset list are not counted toward prose word count.
 
 ### Deferred-asset log
 

@@ -121,24 +121,28 @@
 - 4.2.3 Quantitative Comparison of Diagnostic Metrics  
 
 ## 4.3 Experiment 2: Pipeline Stage Ablation + CLAHE/σ Sweeps (H-2)
-- 4.3.1 Ablation Design (Levels 0–6)
+- 4.3.1 Cumulative Ablation Design (Levels L0–L7)
 - 4.3.2 CLAHE Threshold Sensitivity Analysis (H-2 Sub-Analysis)  
 - 4.3.3 Flat-Field σ Sweep and Image Quality Metrics  
 
-## 4.4 Experiment 3: Cross-Dataset Transferability on APTOS 2019 (H-4)
-- 4.4.1 Zero-Shot Transfer to APTOS 2019
-- 4.4.2 Baseline vs Pipeline Comparison
+## 4.4 Domain Distance Reduction Across Six Target Domains (H-3)
+- 4.4.1 Measurement Protocol: MMD over Representations and KL over Channel Histograms
+- 4.4.2 Distance Reduction Results and Their Interpretive Limits
 
-## 4.5 Experiment 4: Grad-CAM Explainability on IDRiD + Clinical (H-5)
-- 4.5.1 Grad-CAM Generation Protocol
-- 4.5.2 Quantitative ALO and IoU with IDRiD Lesion Masks
-- 4.5.3 Attention Consistency Across Datasets
+## 4.5 Experiment 3: Cross-Dataset Transferability on APTOS 2019 (H-4)
+- 4.5.1 Zero-Shot Transfer to APTOS 2019
+- 4.5.2 Baseline vs Pipeline Comparison
 
-## 4.6 Experiment 5: Clinical Degradation Resistance on IDRiD + Messidor-2 (H-7)
+## 4.6 Experiment 4: Grad-CAM Explainability on IDRiD + Clinical (H-5)
+- 4.6.1 Grad-CAM Generation Protocol
+- 4.6.2 Quantitative ALO and IoU with IDRiD Lesion Masks
+- 4.6.3 Per-Image Consistency of the Attention Effect and Limits of the Present Evidence
 
-## 4.7 Experiment 6: Device Domain Shift on DDR + ODIR-5K + RFMiD (H-6)
+## 4.7 Experiment 5: External Clinical Performance on IDRiD + Messidor-2 (H-7)
 
-## 4.8 Experiment 7: Small Data Training (IDRiD → Clinical)
+## 4.8 Experiment 6: Device Domain Shift on DDR + ODIR-5K + RFMiD (H-6)
+
+## 4.9 Experiment 7: Small Data Training (IDRiD → Clinical)
 
 - Conclusions to Chapter 4
 

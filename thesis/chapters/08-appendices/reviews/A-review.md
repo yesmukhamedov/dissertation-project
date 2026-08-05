@@ -53,7 +53,7 @@
 - [x] Connects to §4.1.3 — opens from the reproducibility promise; closes the loop.
 - [x] Cross-references present — backward to §4.1.3, §3.1.1, §3.1.2, CENTRAL_THESIS; forward to App B (blocked) and Phase 3 §11.2.
 - [x] Continuity Note accurate and complete (`continuity/A-continuity.md`), incl. App D setup and STOP marker.
-- [x] Word count: framing prose target 700–1,000 — Actual: **~840**. PASS. (Reproduced code block excluded from count, as specified.)
+- [x] Word count: framing prose target 700–1,000 — Actual: **840**. PASS. (Reproduced code block excluded from count, as specified.)
 
 **E verdict:** PASS.
 

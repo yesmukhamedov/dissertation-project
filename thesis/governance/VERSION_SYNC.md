@@ -1,6 +1,34 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 7.0.0 | **Date:** 2026-08-04
+**Version:** 7.1.0 | **Date:** 2026-08-05
+
+## v7.1.0 Amendment Scope
+
+**H-3 restored as *Domain-Shift Reduction* (MINOR — a hypothesis is added; no binding is reversed).** The label H-3 was vacated in V3 when the *training-method comparison* it then denoted was dropped; **that retirement stands** and the label is **reused** for a distinct hypothesis. H-3 now asserts that the integrated configuration reduces the distance between source and external domains in penultimate-layer feature space.
+
+**Acceptance form — "K of n", K = 5, n = 6:**
+
+```
+H-3  ⟺  Σ PASS_S(d, X)  ≥  5,    X ∈ {APTOS, IDRiD, Messidor-2, DDR, ODIR-5K, RFMiD}
+
+PASS_S(d, X)  ⟺  Δd(X) = d(BASE, X) − d(INT, X)  ≥  MCID_d = 0.0   ∧   CI⁻(Δd) > 0
+```
+
+`d` = MMD (or FID) over penultimate-layer features — **primary, and the sole basis of the criterion**. `d_KL` over per-channel intensity histograms is **secondary and informational only**. Confidence intervals from **1 000 bootstrap resamples**. Arms = the integrated − baseline pair (EfficientNet-B3; configurations D − C of Experiment 1). **Cost: forward passes only, no training.**
+
+**Rationale.** The central hypothesis asserts a causal chain — the pipeline reduces domain variability, and reduced variability improves external classification. Every prior hypothesis measured the chain's *consequence* (H-4, H-6, H-7); none measured its *middle term*. H-3 measures it directly, making the mechanism independently falsifiable of the performance claims.
+
+**Mandatory protocol condition.** Stage 7 normalization **must** use source-domain statistics, as in zero-shot deployment. Computing it from the target corpus would make the measurement a form of target-domain adaptation and would render it incomparable with H-4/H-6/H-7. An evaluation violating this condition does not test H-3.
+
+**Threshold provenance — stated openly.** Neither MCID_d nor K was pre-registered; **both are assigned at this formalization**. MCID_d = 0.0 is not a tuned choice — d is unnormalized, so no non-zero minimal difference is interpretable and the per-corpus condition degenerates to CI⁻(Δd) > 0, a bare directional-significance test. The outcome is **insensitive to K**: it passes for every K ≤ 6, so the choice K = 5 does not determine the verdict. **VCR-1** is satisfied by this versioned amendment; **VCR-3** is not engaged — the direction of effect was never contradicted.
+
+**Pre-specified reversal case, retained.** Stage 5 (CLAHE tuned on the source corpus) and Stage 7 (dataset-specific normalization) are source-bound by construction, so a REVERSED outcome — variability reduced *within* the source domain while increased *across* domains — was a live possibility. It would have been an established finding, not a failed run, and would have explained any corresponding reversal in H-4 and H-7.
+
+**Label-reuse notice (binding downstream).** "H-3 dropped" in §2.3.2 and §3.3.3 and in their briefs and continuity notes refers to the **retired training-method hypothesis** and is historically correct; it must not be read as referring to the present H-3.
+
+**Governance files updated:** HYPOTHESIS (amendment, H-3 definition, Central-Hypothesis note, Conclusion), ARGUMENT_MAP (**PC-11** node + DAG), CONTRIBUTIONS (**SC-I**), VERSION_SYNC, CHANGELOG. **Downstream sync completed 2026-08-05:** `thesis/ASSET_INVENTORY.md` (H-3 row; open decision 3 closed), `thesis/CLAUDE.md`, `thesis/outline/TABLE_OF_CONTENTS_EN.md` and `TABLE_OF_CONTENTS_KZ.md` (§4.4), and `thesis/chapters/04-experiments/` (§4.4.1 / §4.4.2 drafts, briefs, continuity notes and reviews). `results/` already carried the block. **Still pending, and not gating this bump:** FIG-4.17 to be rendered; the MMD kernel and the per-domain sample size remain unrecorded and are `[VERIFY]`-flagged in §4.4.1.
+
+**H-1 through H-7 (other than the H-3 addition), all scope boundaries, forbidden claims, non-claims, the composite independent variable and CFC-2.8 are unchanged.**
 
 ## v7.0.0 Amendment Scope
 

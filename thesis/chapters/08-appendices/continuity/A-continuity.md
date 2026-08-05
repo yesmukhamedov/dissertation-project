@@ -21,7 +21,7 @@
 **Setup for next item (App D — Certificates & Publication Confirmations, Phase-1 writable):** App D is the second and final Phase-1 appendix. It catalogues the real publication-confirmation assets (6 PNGs in `defense/presentation/assets/publications/`) and the 5 distinct self-publications (#19–#24, with #23/#24 a duplicate-card pair for the one EEJET article), all co-authored by the candidate → **SIR-4**. No fabricated entries; identify all as prior own work.
 
 **Unresolved threads / flags (carry forward):**
-- **STOP after App D.** Per task instruction, work stops once App D is saved + tracker updated. Do NOT start any Phase-2 section (§4.2–§4.8, Ch 5, Ch 0, Ch 7, App B/C/E/F) — all remain experiment-result blocked.
+- **STOP after App D.** Per task instruction, work stops once App D is saved + tracker updated. Do NOT start any Phase-2 section (§4.2–§4.9, Ch 5, Ch 0, Ch 7, App B/C/E/F) — all remain experiment-result blocked.
 - **Phase 3 §11.2:** remaining preprocessing modules reproduced in full from the package into the assembled `.docx`; App A paths resolved there.
 - **App B/C/E/F remain ⛔ blocked** (App B = Exp 1–7 curves/matrices; App C = DIA-6.3 UML asset; App E = Exp 4; App F = Exp 6).
 - **Stage 5 polar-default divergence** (project memory: existing Config-D checkpoints predate the polar default) — relevant only to experiment execution, not to this code catalogue; noted, not acted on.
