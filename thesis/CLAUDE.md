@@ -89,14 +89,15 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 
 ## Chapter Status
 
-- 00-introduction: Not started — unblocked (all verdicts final)
+- 00-introduction: ✅ APPROVED (16/16 — 13 sections drafted here + 3 front-matter units already complete as EN/KZ deliverables in `thesis/output/`, not re-drafted). **Section identifiers are stable (§0.8 = Provisions Submitted for Defence); manuscript order is the TOC's and differs from numeric order** — see `chapters/00-introduction/README.md`. The nine short apparatus sections are verified as one block (`reviews/0.apparatus-review.md`)
 - 01-problem-domain: ✅ APPROVED (11/11)
 - 02-theoretical-foundations: ✅ APPROVED (15/15)
 - 03-methodology: ✅ APPROVED (13/13)
-- 04-experiments: §4.1 ✅ APPROVED; §4.2–§4.C in drafting (all experiments run)
-- 05-validation: Not started — unblocked except TAB-5.3 (literature) and the §5.1 clinical overlays (G-3)
+- 04-experiments: ✅ APPROVED (20/20 — §4.1.1–§4.C)
+- 05-validation: ✅ APPROVED (7/7 — §5.1, §5.2.1, §5.2.2, §5.3.1, §5.3.2, §5.4, §5.C). TAB-5.3 assembled in §5.3.1 from the literature cards; §5.1 written in its quantitative part only (clinical overlays absent, G-3, stated as an absence)
 - 06-system-architecture: ✅ APPROVED (9/9)
-- 07-conclusion: Not started — unblocked (depends on §5.2.2)
+- 08-appendices: ✅ APPROVED (6/6 — A, B, C, D, E, F). **App C discharges DIA-6.3**, the last asset task in Ch 6. B and F are transcription-only from `results/`, verified mechanically value by value. E reproduces the complete 54-plate annotated subset, no selection.
+- 07-conclusion: ✅ APPROVED (1/1). Bounded by two ceilings — §5.C behind it, §0.8 in front; the review carries a provision-by-provision ceiling audit and a fence audit (8/8 intact). No metric value appears in the chapter.
 
 Experimental chapters are written from `results/` (`findings/`, `tables/`, `hypotheses/`), which is the
 single source of truth for every number and verdict. Where an earlier draft conflicts with `results/`,

@@ -16,13 +16,13 @@ Based on the results of the **2026-08-03** run. Definitions — `thesis/governan
 | PC-7 | Grad-CAM ALO/IoU higher for the preprocessed model | exp4 | ALO_preproc > ALO_base, significantly | 4/4 lesion types directionally and **statistically** (p 0.0007–0.0148), IoU likewise (p 0.0011–0.0189); robust to the threshold τ = 0.2…0.7; small floor effect (f₀ = 6/54) | **STRONG** (within the bounds of NC-14) |
 | PC-8 | Ranked hierarchy of stage contributions (ablation) | exp2 | incremental ΔF1 across levels | All 7 transitions significant (\|Δⱼ\| = 0.0065–0.0143 against 2σ_fold = 0.0042–0.0060), monotonicity holds in every fold; **and the hierarchy is now resolvable** (spread of Δⱼ = 0.0078 ≈ 3σ_fold): flat-field 0.0143 and CLAHE 0.0125 lead, together 41% of the gain | **STRONG** (upgraded from MODERATE — contributions identified, significant, and rankable by group) |
 | PC-9 | Robustness to a change of camera | exp6 | variance within tolerance, g ≥ 0.7 | 5/5 groups above the floor for both arms (min g_D = 0.7837); between-group std wF1 0.0306 → 0.0130 (−2.4×, CI [−0.025, −0.006]), std AUC −3.1×. g_ratio falls in 2/5 groups — the same denominator artifact that retired Δ_drop in PC-10; absolute wF1 rises in all 5 | **STRONG** |
+| PC-11 | Reduction of source-to-target domain distance in feature space | H-3 | Σ PASS ≥ K = 5 of n = 6; PASS ⟺ Δd ≥ MCID_d = 0.0 ∧ CI⁻ > 0 | **6/6** on the primary representational measure, every Δd CI excludes 0; KL −34…−38 % (informational). Magnitude does **not** track transfer gain (ρ ≈ 0.49) | **STRONG** (direction only) |
 | PC-10 | Higher absolute performance on external clinical sets | exp5 | Δ wF1(D−C) ≥ MCID 0.050 ∧ CI⁻ > 0, both sets | **2/2**: IDRiD +0.0689 (CI [+0.0494, +0.0968]), Messidor-2 +0.0541 (CI [+0.0362, +0.0814]). Δ_drop form retired — it reduces to 0.0655 − Δ wF1(X), i.e. the in-domain gap minus the tested quantity | **STRONG** (Messidor-2 margin over MCID is thin: 0.0041) |
 
 ## Additional empirical results (outside the formal PCs)
 
 | Observation | Exp. | Outcome | Strength |
 |------------|-------|------|------|
-| Reduction of domain distance by preprocessing (MMD, KL) | H-3 | 6/6 domains, all Δd CIs exclude 0; KL −34…−38%. Magnitude does **not** track transfer gain (ρ ≈ 0.49) | **STRONG** (direction only) |
 | Gain on small clinical data | exp7 / E-7 | +0.080 wF1, +0.125 κ, +0.048 AUC, all CIs exclude 0; preregistered | **STRONG** |
 | The pipeline as a regularizer | exp1 | loss gap 0.052 → 0.021 (ResNet) and 0.054 → 0.022 (EffNet); convergence 6–7 epochs earlier | **MODERATE** |
 | Improvement in calibration | exp1 | ECE 0.0712 → 0.0418 and 0.0691 → 0.0402; Brier lower on both | **MODERATE** |
@@ -33,9 +33,13 @@ Based on the results of the **2026-08-03** run. Definitions — `thesis/governan
 ## Summary
 
 - **STRONG:** PC-1 (dominance), PC-2 (parametric sensitivity), PC-6 (transfer to APTOS), PC-7
-  (attention alignment), PC-8 (stage hierarchy — **upgraded this revision**), PC-9 (camera
-  robustness), PC-10 (external clinical performance) — **all 7** empirical primary claims are
-  confirmed as stated.
+  (attention alignment), PC-8 (stage hierarchy), PC-9 (camera robustness), PC-10 (external clinical
+  performance), PC-11 (domain-distance reduction — **direction only**) — **all 8** empirical primary
+  claims are confirmed as stated.
+  ⚠ **Register position corrected:** the domain-distance result was previously filed below as an
+  "additional empirical result outside the formal PCs". `ARGUMENT_MAP.md` v7.1.0 carries it as **PC-11**,
+  a first-class claim node depending on PC-1 and feeding PC-6 / PC-9 / PC-10 explanatorily. Substance and
+  strength are unchanged; only the register position was wrong. §0.8 and §7 submit it as PC-11.
 - **MODERATE:** none.
 - **REFUTED:** none.
 - **DESIGN/THEORETICAL (untouched by the empirics):** PC-0, PC-4, PC-5.

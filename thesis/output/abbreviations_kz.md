@@ -1,7 +1,7 @@
 # БЕЛГІЛЕУЛЕР МЕН ҚЫСҚАРТУЛАР
 
 | AI | Artificial Intelligence (жасанды интеллект) |
-| ALO | Activation–Lesion Overlap (explainability метрикасы) |
+| ALO | Attention–Lesion Overlap (explainability метрикасы) |
 | APTOS | Asia Pacific Tele-Ophthalmology Society (2019 Blindness Detection деректер жиынтығы) |
 | AUC | Area Under the Curve (қисық астындағы аудан) |
 | BYOL | Bootstrap Your Own Latent (өзін-өзі бақылаусыз оқыту әдісі) |

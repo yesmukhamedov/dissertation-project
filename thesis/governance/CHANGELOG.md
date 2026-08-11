@@ -6,6 +6,21 @@ The versioning scheme is defined in [VERSIONING_POLICY.md](VERSIONING_POLICY.md)
 
 ---
 
+## v7.1.1 — 2026-08-11
+
+**Downstream currency pass (PATCH — documentation sync only; no binding created, reversed or reinterpreted).** Four governance and planning documents that had fallen behind the INVARIANTS v7.0.0 / HYPOTHESIS v7.1.0 line are brought current, and one register position is corrected. Every change tracks a decision already ratified.
+
+- **`CORE_OBJECTIVE.md` 5.0 → 7.1.0** — *clinical degradation resistance* → **external clinical performance**; the **H-3 direct measurement** added to the validation programme. §0.3 is named as the authoritative prose formulation of the goal.
+- **`CENTRAL_THESIS.md` 6.0.0 → 7.1.0** — same H-7 correction; the measured distance reduction added to the substantiating evidence. **Correction found during the pass:** the prior text cited *qualitative Grad-CAM overlays on a Kazakh clinical dataset* as substantiating evidence. Those overlays were **never produced** (gap G-3), so the text asserted evidence that does not exist. H-5 is supported in its **quantitative half only**.
+- **`outline/MASTER_OUTLINE.md` 6.0.0 → 7.1.0** — four currency defects: the **object of research** stated as the fundus images rather than the *process* (a category error against the house convention and the council-verified abstract); **H-3** recorded as dropped though it is live and written as §4.4; **H-7** in its retired form; and a **duplicated objective number**. Its Novelty and Provisions lists are **marked superseded** by §0.2 and §0.8 rather than rewritten — they enumerate what was planned, not what is defended.
+- **`results/tables/TAB-5.2_claim_strength.md`** — the domain-distance result is moved from "additional empirical results outside the formal PCs" into the formal register as **PC-11**, matching `ARGUMENT_MAP.md` v7.1.0. Substance and strength unchanged (STRONG, direction only); the tally becomes **8 of 8** empirical primary claims confirmed as stated.
+
+**Also closed in the same pass (not governance, recorded for traceability): the trilingual abstract.** `thesis/output/abstract_{en,kz,ru}.md` said "seven experiments" where the programme is **eight** investigations; omitted H-3 entirely; carried a statements-for-defence list of six items with one still expressed in the retired Δ_drop form; and **listed the Vessel Visibility Index among the methods although §4.3.3 excluded it for want of an implementation and a source** — an error rather than staleness. All three languages are synced against §0.2 / §0.6 / §0.8 / §7: novelty 10 items, main results 9, statements for defence 11 plus one observation, followed by an explicit paragraph of what is *not* submitted.
+
+**Context.** The dissertation's chapter body is complete: Chapters 0–7 are drafted, reviewed and approved. **§0.8 is the forward ceiling** for every downstream deliverable and §5.C the rearward one; the §7 review carries a provision-by-provision ceiling audit showing no promotion, and a fence audit at 8 of 8 intact.
+
+---
+
 ## v7.1.0 — 2026-08-05
 
 **H-3 restored as Domain-Shift Reduction (MINOR — a hypothesis is added; no existing binding is reversed).** The label H-3 was vacated in V3, when the *training-method comparison* it then denoted — frozen-layer versus progressive fine-tuning as an experimental factor — was dropped and fine-tuning was demoted to a shared training method applied uniformly across the H-1 configurations. **That retirement stands and is not reversed.** The label is **reused** for a distinct and previously unstated hypothesis: that the integrated configuration measurably reduces the distance between the source and external domains in feature space.

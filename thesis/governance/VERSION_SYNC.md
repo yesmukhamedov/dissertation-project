@@ -1,6 +1,43 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 7.1.0 | **Date:** 2026-08-05
+**Version:** 7.1.1 | **Date:** 2026-08-11
+
+## v7.1.1 Sync Scope — downstream currency pass (no new binding)
+
+Four documents that had fallen behind the INVARIANTS v7.0.0 / HYPOTHESIS v7.1.0 line are brought current,
+plus one register-position correction. **No binding is created, reversed or reinterpreted**; every change
+tracks a decision already ratified. **PATCH-level** per VERSIONING_POLICY §4 (documentation sync only).
+
+- **`CORE_OBJECTIVE.md` 5.0 → 7.1.0.** *Clinical degradation resistance* → **external clinical performance**;
+  the **H-3 direct measurement** added to the validation programme — the one element this document predated
+  entirely. Authoritative prose is now §0.3, from which the statement is derived; the two must agree.
+- **`CENTRAL_THESIS.md` 6.0.0 → 7.1.0.** Same H-7 correction; the directly measured distance reduction added
+  to the substantiating evidence. **Plus a correction found during the pass:** the prior text listed
+  *qualitative Grad-CAM overlays on a Kazakh clinical dataset* among the substantiating evidence. Those
+  overlays were **never produced** (gap G-3), so citing them as substantiation asserted evidence that does
+  not exist. H-5 is supported in its **quantitative half only**.
+- **`outline/MASTER_OUTLINE.md` 6.0.0 → 7.1.0.** Four currency defects corrected: the **object of research**
+  (a category error — the images were named as the object rather than the *process*, contradicting the
+  house convention and the council-verified abstract); **H-3** recorded as dropped, whereas it is live and
+  written as §4.4; **H-7** in its retired form; and a **duplicated objective number** (two items numbered 8).
+  The Novelty and Provisions lists are **marked superseded** by §0.2 and §0.8 rather than rewritten — they
+  enumerate what was planned, not what is defended, and where outline and drafted sections disagree the
+  drafted sections win.
+- **`results/tables/TAB-5.2_claim_strength.md` — register position corrected.** The domain-distance result
+  was filed as an "additional empirical result outside the formal PCs"; `ARGUMENT_MAP.md` v7.1.0 carries it
+  as **PC-11**, a first-class node depending on PC-1 and feeding PC-6 / PC-9 / PC-10 explanatorily. Substance
+  and strength unchanged (STRONG, direction only); the tally becomes **8 of 8** empirical primary claims.
+  §0.8 and §7 already submit it as PC-11.
+
+**Chapter body complete.** Chapters 0–7 are drafted, reviewed and approved. §0.8 (Provisions Submitted for
+Defence) is the forward ceiling for every downstream deliverable, and §5.C the rearward one; the §7 review
+carries the provision-by-provision ceiling audit. **A fifth defect closed in the same pass:** the trilingual
+abstract (`thesis/output/abstract_{en,kz,ru}.md`) said "seven experiments" (the programme is **eight**
+investigations), omitted H-3, carried a statements-for-defence list of six items with one still in the
+retired Δ_drop form, and **listed the Vessel Visibility Index among the methods although §4.3.3 excluded it
+for want of an implementation and a source** — an error, not merely stale. All three languages are now
+synced against §0.2 / §0.6 / §0.8 / §7: novelty 10 items, results 9, statements 11 + one observation + an
+explicit non-claims paragraph.
 
 ## v7.1.0 Amendment Scope
 
@@ -85,7 +122,7 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 | governance/VERSION_SYNC.md | 7.0.0 | ✅ |
 | governance/ARGUMENT_MAP.md | 7.0.0 | ✅ — v7.0.0: PC-10 formal statement, SC-10.1, PC-10 strength criteria, DAG label and dependency note — completed 2026-08-04 |
 | governance/CONTRIBUTIONS.md | 6.3.0 | ✅ — v6.3.0: SC-H generalized to "in-domain initialization (self-supervised OR supervised), gate-selected" — SIP admitted, SSL negative result recorded — completed 2026-07-09. v6.2.0: SC-H refined with locked SSL specifics; CFC-2.8 boundary unchanged |
-| governance/CENTRAL_THESIS.md | 6.0.0 | ✅ — unaffected by v6.2.0 (no pretraining reference in body; binding-ref unchanged) |
+| governance/CENTRAL_THESIS.md | 7.1.0 | ✅ — v7.1.1 sync: H-7 → external clinical performance; H-3 mechanism added to the substantiating evidence; **the clinical Grad-CAM overlays removed from the substantiation** (never produced, G-3 — H-5 is supported in its quantitative half only) |
 | literature/external/gulshan-2016.md | v5.3 sync ✅ | ✅ — v5.3: §15 Paradigmatic Role block + §16 Paradigmatic citation-ready statements + §18 Paradigmatic Synthesis — completed 2026-05-28 |
 | literature/external/pratt-2016.md | v5.3 sync ✅ | ✅ — v5.3: P1 position-in-paradigm-space line added to §15 |
 | literature/external/rakhlin-2017.md | v5.3 sync ✅ | ✅ — v5.3: P1 position-in-paradigm-space line added to §15 |
@@ -106,9 +143,9 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 | demo/src/tabs/Overview.js | v5.3 ✅ | ✅ — Task 3.2.1 paradigmatic context block added |
 | demo/src/tabs/ExpH1.js | v5.3 ✅ | ✅ — Task 3.2.2 P1/P2 paradigm column added to factorial table |
 | demo/src/i18n.js | v5.3 ✅ | ✅ — Task 3.2.3 paradigm.* keys added in EN and KZ |
-| governance/CORE_OBJECTIVE.md | 5.0 | ⚠️ — review for pretrain references AND paradigmatic phrasings |
-| outline/MASTER_OUTLINE.md | 5.0 | ❌ — chapter outlines that frame H-1 must be updated AND paradigmatic framing inserted in ch 1.4 / 1.5 |
-| outline/TABLE_OF_CONTENTS_EN.md | 5.0 | ⚠️ — likely unchanged but verify |
+| governance/CORE_OBJECTIVE.md | 7.1.0 | ✅ — v7.1.1 sync: H-7 → external clinical performance; H-3 measurement added; §0.3 named as the authoritative prose formulation |
+| outline/MASTER_OUTLINE.md | 7.1.0 | ✅ — v7.1.1 sync: object-of-research category error; H-3 restored; H-7 reformulated; duplicated objective number; Novelty + Provisions lists marked **superseded by §0.2 / §0.8**. Remains a *structural* spec — the drafted sections win on content |
+| outline/TABLE_OF_CONTENTS_EN.md | 7.1.0 | ✅ — verified: §4.4 (H-3) present; the Introduction ordering here is **authoritative for the manuscript** and differs from MASTER_OUTLINE's identifier ordering (see `chapters/00-introduction/README.md`) |
 | outline/TABLE_OF_CONTENTS_KZ.md | 5.0 | ⚠️ — likely unchanged but verify |
 | glossary/GLOSSARY_EN.md | 6.2.0 | ✅ — v6.0.0 SSL/paradigm terms present; v6.2.0: added Linear-Probe Acceptance Gate + Fundus-SSL Pretraining Corpus terms, refined SSL-Method-Family (BYOL primary) and Ophthalmology-SSL entries — completed 2026-06-26 |
 | glossary/GLOSSARY_KZ.md | 6.2.0 | ✅ — v6.2.0: Kazakh equivalents mirrored for the new/refined SSL terms — completed 2026-06-26 |
@@ -141,8 +178,13 @@ Version history: v5.1 (2026-05-14) adopted RETFound for the integrated arm; v5.2
 ## Sync Protocol
 
 Before any chapter-writing session:
-1. Verify all governance files marked ✅ are at version 6.0.0 (current authoritative version).
-2. Files marked ❌ must not be cited as authoritative until brought to v6.0.0.
+1. Verify all governance files marked ✅ are at the **v7.x** line (INVARIANTS v7.0.0 / HYPOTHESIS v7.1.0 /
+   ARGUMENT_MAP v7.1.0 are the current authoritative versions).
+2. Files marked ❌ must not be cited as authoritative until brought to the v7.x line.
+2a. **The drafted dissertation sections now outrank the planning documents on content.** §0.3 is the
+   authoritative goal, §0.5 the object and subject, §0.6 the hypothesis register in prose, §0.2 the novelty,
+   §0.8 the provisions with their fences, and §7 the conclusion. `MASTER_OUTLINE.md` remains authoritative
+   for *structure* only.
 3. AOQ-1/AOQ-3/AOQ-4 are resolved and AOQ-2 simplified in v6.0.0 (INVARIANTS Section X); the integrated arm uses ophthalmology-specific SSL on the existing CNN backbones.
 4. The v5.3 paradigmatic-framing constraints (SB-1.12, CFC-2.9, SIR-9) remain binding on every chapter, slide, and demo update.
 5. After any governance update, re-verify dependent files.

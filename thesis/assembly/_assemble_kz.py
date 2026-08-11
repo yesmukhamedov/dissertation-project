@@ -5,22 +5,45 @@ Mirror of `_assemble_en.py` for the Kazakh translations under
 `chapters/**/translations/*-translation.md`. For each file it keeps the
 `# §x Title` line plus the **1-БӨЛІК: БӨЛІМ МӘТІНІ** body only, dropping the
 `> Қазақ тіліндегі аударма…` blockquote and the trailing `### Аудармашы ескертуі`
-note. Files are ordered by parsed section number (`X.C` conclusions and appendix
-letters sort last); chapters concatenated in Table-of-Contents order
+note. Chapters are concatenated in Table-of-Contents order
 (outline/TABLE_OF_CONTENTS_KZ.md). Working author-year citations are left
 unconverted (GOST `[N]` is a deferred single pass on the final manuscript).
 This is a reversible, read-only-source operation.
+
+--------------------------------------------------------------------------
+TWO DEFECTS FIXED 2026-08-11 — the same pair repaired in `_assemble_en.py`
+--------------------------------------------------------------------------
+1. **Missing PART-1 markers.** The extractor returned an *empty body* for any
+   file lacking a literal ``## 1-БӨЛІК`` line, and said nothing about it. In
+   the EN tree this silently emptied 24 of 94 sections. It now falls back to
+   "start at the top, after any ``# `` title line and ``> `` header
+   blockquote", and reports any section whose body comes out suspiciously
+   short instead of emitting it quietly.
+
+2. **Chapter 0 cannot be ordered numerically.** Section *identifiers* in
+   Chapter 0 are stable and deliberately do not follow manuscript order
+   (§0.8 = Қорғауға ұсынылатын тұжырымдар). For every other chapter numeric
+   sort == TOC order; **for Chapter 0 it does not**, so Chapter 0 is assembled
+   from the explicit list in ``ORDER_OVERRIDE`` and any mismatch between that
+   list and the files on disk is a hard error rather than a reordering.
+
+Chapters 0, 5 and 7 were also absent from ``CHAPTERS`` and are added. **Their
+Kazakh translations do not exist yet** (Ch 0: 0/16, Ch 4: 3/20, Ch 5: 0/7,
+Ch 7: 0/1) — the script simply skips a chapter with no files, so fixing it now
+means the defects cannot bite when those translations land.
 """
 from __future__ import annotations
 import re
+import sys
 from pathlib import Path
 from datetime import date
 
 CH_ROOT = Path(__file__).resolve().parent.parent / "chapters"
 OUT = Path(__file__).resolve().parent / f"DISSERTATION_KZ_partial_{date.today()}.md"
 
-# Chapter dir -> TOC chapter heading (KZ). Only chapters with approved translations.
+# Chapter dir -> TOC chapter heading (KZ), in manuscript order.
 CHAPTERS = [
+    ("00-introduction", "КІРІСПЕ"),
     ("01-problem-domain",
      "1 ДИАБЕТТІК РЕТИНОПАТИЯНЫ АВТОМАТТАНДЫРЫЛҒАН ДИАГНОСТИКАЛАУДЫҢ "
      "ПРОБЛЕМАЛЫҚ САЛАСЫН ТАЛДАУ ЖӘНЕ ҚАЗІРГІ ЖАЙ-КҮЙІ"),
@@ -32,15 +55,42 @@ CHAPTERS = [
     ("04-experiments",
      "4 ЭКСПЕРИМЕНТТІК ЗЕРТТЕУ — PREPROCESSING-ТІҢ CNN ДИАГНОСТИКАЛЫҚ "
      "ӨНІМДІЛІГІНЕ ӘСЕРІ"),
+    ("05-validation",
+     "5 СЕНІМДІЛІКТІ ВАЛИДАЦИЯЛАУ ЖӘНЕ САЛЫСТЫРМАЛЫ ТАЛДАУ"),
     ("06-system-architecture",
      "6 РЕСУРСТАРЫ ШЕКТЕУЛІ ОРТАҒА АРНАЛҒАН DR АВТОМАТТАНДЫРЫЛҒАН СКРИНИНГ "
      "ЖҮЙЕСІНІҢ АРХИТЕКТУРАСЫ"),
+    ("07-conclusion", "ҚОРЫТЫНДЫ"),
     ("08-appendices", "ҚОСЫМШАЛАР"),
 ]
+
+# Chapters whose manuscript order is NOT the numeric order of their section
+# identifiers. Values are section ids in outline/TABLE_OF_CONTENTS_KZ.md order.
+ORDER_OVERRIDE = {
+    "00-introduction": [
+        "0.1",   # Зерттеу тақырыбының өзектілігі
+        "0.3",   # Зерттеу мақсаты
+        "0.4",   # Зерттеу міндеттері
+        "0.5",   # Зерттеу нысаны мен пәні
+        "0.6",   # Зерттеу гипотезасы
+        "0.2",   # Ғылыми жаңалығы
+        "0.8",   # Қорғауға ұсынылатын тұжырымдар
+        "0.7",   # Әдіснамалық негізі
+        "0.9",   # Теориялық маңыздылығы
+        "0.10",  # Практикалық маңыздылығы
+        "0.13",  # Нәтижелердің сенімділігі
+        "0.14",  # Эмпирикалық (эксперименттік) базасы
+        "0.11",  # Зерттеу нәтижелерінің апробациясы
+        "0.15",  # Ғылыми бағдарламалармен байланысы
+        "0.12",  # Жарияланымдар
+        "0.16",  # Диссертацияның құрылымы мен көлемі
+    ],
+}
 
 # body ends at the translator note or a PART-2/PART-3 style block
 BODY_END = re.compile(r"^(### Аудармашы ескертуі|## 2-БӨЛІК|## PART [23]\b|## 3-БӨЛІК)", re.I)
 PART1_HDR = re.compile(r"^## 1-БӨЛІК\b", re.I)
+SHORT_BODY_WORDS = 60  # below this, a body is almost certainly a mis-extraction
 
 
 def section_key(p: Path):
@@ -54,22 +104,61 @@ def section_key(p: Path):
     return toks
 
 
+def ordered_files(cdir: str, d: Path) -> list[Path]:
+    """Files in manuscript order, honouring ORDER_OVERRIDE."""
+    files = list(d.glob("*-translation.md"))
+    if cdir not in ORDER_OVERRIDE or not files:
+        return sorted(files, key=section_key)
+
+    by_id = {f.name.replace("-translation.md", ""): f for f in files}
+    want = ORDER_OVERRIDE[cdir]
+    missing = [s for s in want if s not in by_id]
+    extra = [s for s in by_id if s not in want]
+    if missing or extra:
+        raise SystemExit(
+            f"ORDER_OVERRIDE for {cdir} does not match the translations on disk.\n"
+            f"  listed but absent: {missing or 'none'}\n"
+            f"  present but unlisted: {extra or 'none'}\n"
+            "Chapter 0 must not be assembled by numeric sort - update the list."
+        )
+    return [by_id[s] for s in want]
+
+
 def extract(p: Path):
+    """Return (title, body, word_count).
+
+    Prefers an explicit '## 1-БӨЛІК' marker; falls back to the top of the file
+    when the translation has none, skipping a leading '# ' title line and a
+    leading '> ' header blockquote. `title` is returned only when the file
+    carries a '# ' line; files without one already open with their own '##'
+    heading and must not have anything prepended.
+    """
     lines = p.read_text(encoding="utf-8").splitlines()
-    title = next((l for l in lines if l.startswith("# ")), p.stem)
-    try:
-        i = next(idx for idx, l in enumerate(lines) if PART1_HDR.match(l))
-    except StopIteration:
-        return title, "", 0
+    title = next((l for l in lines if l.startswith("# ")), None)
+
+    marker = next((i for i, l in enumerate(lines) if PART1_HDR.match(l)), None)
+    if marker is not None:
+        start = marker + 1
+    else:
+        start = 0
+        while start < len(lines):
+            s = lines[start].strip()
+            if s == "" or s == "---" or s.startswith("> ") or lines[start].startswith("# "):
+                start += 1
+                continue
+            break
+
     body = []
-    for l in lines[i + 1:]:
+    for l in lines[start:]:
         if BODY_END.match(l):
             break
         body.append(l)
-    while body and (body[0].strip() == "" or body[0].strip() == "---"):
+
+    while body and body[0].strip() in ("", "---"):
         body.pop(0)
-    while body and (body[-1].strip() == "" or body[-1].strip() == "---"):
+    while body and body[-1].strip() in ("", "---"):
         body.pop()
+
     text = "\n".join(body)
     words = len(re.findall(r"\S+", text))
     return title, text, words
@@ -78,6 +167,8 @@ def extract(p: Path):
 def main():
     out = []
     manifest = []
+    suspect = []
+
     out.append("# Көз түбі кескінін жақсарту және CNN жіктеуі арқылы диабеттік "
                "ретинопатияны автоматтандырылған диагностикалау")
     out.append("")
@@ -86,14 +177,15 @@ def main():
                "автор-жыл дәйексөздері түрлендірілмеген (GOST `[N]` — түпкі жинақтаудағы "
                "жалғыз шегерілген өту). Аудармашы ескертулері, аударма тақырыпшалары мен "
                "тексеру тізімдері қосылмаған. Бұл — түпкі түптелген диссертация ЕМЕС: "
-               "эксперимент-шартты тараулар (4-тараудың көп бөлігі, 5-тарау) мен "
-               "алғы/соңғы материал (0-тарау, 7-тарау) жоқ. 1, 2, 3, 6-тараулар + §4.1 "
-               "мазмұны толық.")
+               "төмендегі манифест қай тараулардың аудармасы бар екенін көрсетеді.")
     out.append("")
+
     total_words = 0
     for cdir, heading in CHAPTERS:
         d = CH_ROOT / cdir / "translations"
-        files = sorted(d.glob("*-translation.md"), key=section_key)
+        if not d.is_dir():
+            continue
+        files = ordered_files(cdir, d)
         if not files:
             continue
         out.append("\n---\n")
@@ -102,22 +194,36 @@ def main():
         for f in files:
             title, text, words = extract(f)
             total_words += words
-            manifest.append((f.name, words))
-            out.append(text if title in text else f"{title}\n\n{text}")
+            manifest.append((f"{cdir}/{f.name}", words))
+            if words < SHORT_BODY_WORDS:
+                suspect.append((f.name, f"body extracted as {words} words"))
+            out.append(text if (title is None or title in text) else f"{title}\n\n{text}")
             out.append("")
+
     OUT.write_text("\n".join(out), encoding="utf-8")
+
     # ASCII-safe stdout (Windows console may be cp1251 and cannot encode Cyrillic)
-    import sys
     try:
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
+
     print(f"WROTE {OUT}")
     print(f"Sections: {len(manifest)} | Total PART-1 (1-BOLIK) words: {total_words:,}")
+
+    if suspect:
+        print("\n!! SUSPECT EXTRACTIONS - check before using this assembly:")
+        for name, why in suspect:
+            print(f"   {name}: {why}")
+    else:
+        print("\nNo suspect extractions.")
+
     print("\n# file -> words")
     for name, w in manifest:
-        print(f"  {name:28s} {w:6,d}")
+        print(f"  {name:46s} {w:6,d}")
+
+    return 1 if suspect else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -1,0 +1,132 @@
+# Appendix E — Grad-CAM Visualization Gallery
+
+> Draft generated per `prompts/writing-session-system-prompt.md` v6.0.0 · Brief: `briefs/E-brief.md` · Binding reference: INVARIANTS.md v7.0.0 · Sources: §4.6.1 (paired design, mask subset, threshold sweep, floor control), §4.6.2 (the ALO/IoU measurement), §4.6.3 (per-image direction counts; the G-3 absence), §5.1 (the corroboration argument and the ceiling NC-14 imposes). Assets: the 54 paired comparison plates of the annotated subset. **The plates carry no measurement.**
+
+---
+
+## PART 1: SECTION TEXT
+
+### E.1 What this gallery is, and how it must be read
+
+The reading rule comes before the plates, because a gallery of attention maps is more persuasive than it is probative and the distinction matters here.
+
+A gradient-weighted class activation map indicates where activation in the final convolutional layer is high, weighted by its gradient with respect to the predicted class. It is a post-hoc interpretability instrument. **It is not a delineation of pathology.** A plate in which the attention region overlaps an annotated lesion does not show that the model detected that lesion, does not show that the model reasoned from it, and does not constitute clinical localisation. What such an overlap can support is a claim about *alignment* between model evidence and expert annotation — and even that is a claim about the aggregate, not about any individual image.
+
+It follows that **these plates are illustration and carry no measurement**. The measurement is the one reported in §4.6.2: Attention–Lesion Overlap as the primary quantity and Intersection-over-Union as the secondary, computed per lesion type over the whole annotated subset with interval estimates and a threshold sweep. A reader who forms an impression from the images in this appendix has not thereby checked that result, and a reader who wishes to check it should read §4.6.2 and Appendix B rather than these pages. The gallery exists so that the material behind the measurement can be inspected, not so that the measurement can be re-made by eye.
+
+### E.2 Composition, and why the gallery is exhaustive
+
+The gallery reproduces **all 54 plates of the annotated subset — the entire subset, not a selection**. Each plate pairs the same fundus image under both configurations, the baseline arm on the left and the integrated arm on the right, against the expert pixel-level annotation.
+
+Exhaustiveness is the point rather than a convenience. A gallery that selects its plates can flatter the result it accompanies, and no reader can detect the selection from inside the gallery. Reproducing the subset entire removes that possibility: whatever the plates show, favourable or otherwise, they show for every image on which the measurement was made.
+
+### E.3 The subset, and what bounds it
+
+Of the 516 images in the annotated corpus, 54 carry pixel-level lesion annotation and constitute the subset on which the explainability measurement was performed. Availability differs by lesion type — 54, 53, 54 and 26 images respectively for the four annotated types — so the per-type figure for the least-represented type rests on roughly half the images of the others and is correspondingly the least stable of the four.
+
+One further property of the subset is recorded here because it affects what the plates show. On 6 of the 54 images neither configuration's attention meets the annotation at the operating threshold, leaving 48 informative pairs. **Those 6 plates are included in the gallery, not dropped.** Removing them would convert the gallery into a selection of exactly the kind §E.2 refuses, and their presence is part of what the reader is entitled to see.
+
+The evidence in this appendix rests on a single annotated corpus and on the models of a single cross-validation fold. Neither the corpus nor the fold is varied anywhere in the explainability analysis, and no between-fold variation is available for it.
+
+### E.4 Plate index
+
+The plates follow in identifier order. Each is resolved to its image during document conversion.
+
+- `[FIG-E.1: Paired attention overlay, IDRiD_001 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_001_comparison.png]`
+- `[FIG-E.2: Paired attention overlay, IDRiD_002 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_002_comparison.png]`
+- `[FIG-E.3: Paired attention overlay, IDRiD_003 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_003_comparison.png]`
+- `[FIG-E.4: Paired attention overlay, IDRiD_004 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_004_comparison.png]`
+- `[FIG-E.5: Paired attention overlay, IDRiD_005 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_005_comparison.png]`
+- `[FIG-E.6: Paired attention overlay, IDRiD_006 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_006_comparison.png]`
+- `[FIG-E.7: Paired attention overlay, IDRiD_007 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_007_comparison.png]`
+- `[FIG-E.8: Paired attention overlay, IDRiD_008 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_008_comparison.png]`
+- `[FIG-E.9: Paired attention overlay, IDRiD_009 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_009_comparison.png]`
+- `[FIG-E.10: Paired attention overlay, IDRiD_010 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_010_comparison.png]`
+- `[FIG-E.11: Paired attention overlay, IDRiD_011 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_011_comparison.png]`
+- `[FIG-E.12: Paired attention overlay, IDRiD_012 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_012_comparison.png]`
+- `[FIG-E.13: Paired attention overlay, IDRiD_013 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_013_comparison.png]`
+- `[FIG-E.14: Paired attention overlay, IDRiD_014 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_014_comparison.png]`
+- `[FIG-E.15: Paired attention overlay, IDRiD_015 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_015_comparison.png]`
+- `[FIG-E.16: Paired attention overlay, IDRiD_016 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_016_comparison.png]`
+- `[FIG-E.17: Paired attention overlay, IDRiD_017 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_017_comparison.png]`
+- `[FIG-E.18: Paired attention overlay, IDRiD_018 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_018_comparison.png]`
+- `[FIG-E.19: Paired attention overlay, IDRiD_019 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_019_comparison.png]`
+- `[FIG-E.20: Paired attention overlay, IDRiD_020 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_020_comparison.png]`
+- `[FIG-E.21: Paired attention overlay, IDRiD_021 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_021_comparison.png]`
+- `[FIG-E.22: Paired attention overlay, IDRiD_022 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_022_comparison.png]`
+- `[FIG-E.23: Paired attention overlay, IDRiD_023 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_023_comparison.png]`
+- `[FIG-E.24: Paired attention overlay, IDRiD_024 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_024_comparison.png]`
+- `[FIG-E.25: Paired attention overlay, IDRiD_025 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_025_comparison.png]`
+- `[FIG-E.26: Paired attention overlay, IDRiD_026 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_026_comparison.png]`
+- `[FIG-E.27: Paired attention overlay, IDRiD_027 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_027_comparison.png]`
+- `[FIG-E.28: Paired attention overlay, IDRiD_028 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_028_comparison.png]`
+- `[FIG-E.29: Paired attention overlay, IDRiD_029 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_029_comparison.png]`
+- `[FIG-E.30: Paired attention overlay, IDRiD_030 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_030_comparison.png]`
+- `[FIG-E.31: Paired attention overlay, IDRiD_031 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_031_comparison.png]`
+- `[FIG-E.32: Paired attention overlay, IDRiD_032 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_032_comparison.png]`
+- `[FIG-E.33: Paired attention overlay, IDRiD_033 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_033_comparison.png]`
+- `[FIG-E.34: Paired attention overlay, IDRiD_034 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_034_comparison.png]`
+- `[FIG-E.35: Paired attention overlay, IDRiD_035 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_035_comparison.png]`
+- `[FIG-E.36: Paired attention overlay, IDRiD_036 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_036_comparison.png]`
+- `[FIG-E.37: Paired attention overlay, IDRiD_037 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_037_comparison.png]`
+- `[FIG-E.38: Paired attention overlay, IDRiD_038 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_038_comparison.png]`
+- `[FIG-E.39: Paired attention overlay, IDRiD_039 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_039_comparison.png]`
+- `[FIG-E.40: Paired attention overlay, IDRiD_040 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_040_comparison.png]`
+- `[FIG-E.41: Paired attention overlay, IDRiD_041 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_041_comparison.png]`
+- `[FIG-E.42: Paired attention overlay, IDRiD_042 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_042_comparison.png]`
+- `[FIG-E.43: Paired attention overlay, IDRiD_043 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_043_comparison.png]`
+- `[FIG-E.44: Paired attention overlay, IDRiD_044 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_044_comparison.png]`
+- `[FIG-E.45: Paired attention overlay, IDRiD_045 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_045_comparison.png]`
+- `[FIG-E.46: Paired attention overlay, IDRiD_046 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_046_comparison.png]`
+- `[FIG-E.47: Paired attention overlay, IDRiD_047 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_047_comparison.png]`
+- `[FIG-E.48: Paired attention overlay, IDRiD_048 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_048_comparison.png]`
+- `[FIG-E.49: Paired attention overlay, IDRiD_049 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_049_comparison.png]`
+- `[FIG-E.50: Paired attention overlay, IDRiD_050 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_050_comparison.png]`
+- `[FIG-E.51: Paired attention overlay, IDRiD_051 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_051_comparison.png]`
+- `[FIG-E.52: Paired attention overlay, IDRiD_052 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_052_comparison.png]`
+- `[FIG-E.53: Paired attention overlay, IDRiD_053 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_053_comparison.png]`
+- `[FIG-E.54: Paired attention overlay, IDRiD_054 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_054_comparison.png]`
+
+### E.5 What is absent, and what follows from it
+
+The hypothesis under which these plates were produced contemplates two halves: a quantitative comparison against pixel-level annotation, and a qualitative examination of overlays on the clinical corpus. **The second half was not carried out.** The clinical overlays were never produced, and this appendix is therefore confined to the annotated public corpus.
+
+Four consequences follow, and they are the same four recorded in §4.6.3. The explainability evidence of this dissertation rests on one public corpus. This appendix is limited to that corpus and contains no clinical plate. Closing the gap would require no retraining of any model — only the generation of the overlays and their review by a qualified reader. And the gap is an **absence rather than a negative result**: nothing was examined on the clinical corpus and found wanting; the examination was not performed, and no inference about what it would have shown is available in either direction.
+
+Accordingly, the claim these plates accompany is supported in its quantitative half only, within the boundary that separates alignment from localisation, on one annotated corpus and one fold.
+
+---
+
+## PART 3: COMPLIANCE CHECKLIST
+
+**NC-14 stated before any plate is described** — ✅ It opens the appendix, ahead of composition and index: *"It is not a delineation of pathology. A plate in which the attention region overlaps an annotated lesion does not show that the model detected that lesion, does not show that the model reasoned from it, and does not constitute clinical localisation."*
+
+**The plates are illustration, not evidence** — ✅ Stated explicitly and with its consequence for the reader: *"these plates are illustration and carry no measurement… A reader who forms an impression from the images in this appendix has not thereby checked that result."*
+
+**SB-1.11 (Grad-CAM is not clinical validation of the model's reasoning)** — ✅ Carried by the same passage: the overlay supports a claim about alignment, not about reasoning, and *"even that is a claim about the aggregate, not about any individual image."*
+
+**Exhaustiveness, with its reason** — ✅ §E.2: all 54 plates, *"the entire subset, not a selection"*, with the reason given — *"A gallery that selects its plates can flatter the result it accompanies, and no reader can detect the selection from inside the gallery."*
+
+**Floor cases retained** — ✅ §E.3: the 6 non-informative pairs are included and identified, *"not dropped"*, with the reason.
+
+**Subset bounds present** — ✅ 54 of 516; per-type 54 / 53 / 54 / 26 with the stability consequence for the smallest; 6 of 54 floor cases leaving 48 informative pairs; one corpus and one fold, with no between-fold variation available.
+
+**No per-plate commentary** — ✅ Satisfied. The index carries identifiers and figure markers only. No individual plate is described, interpreted or singled out — which is what §4.6.3's refusal of post-hoc pattern-finding requires.
+
+**No new number** — ✅ Every numeral (516, 54, 53, 26, 6, 48) is established in §4.6.1 or §4.6.2. No ALO or IoU value is restated here.
+
+**EH-2** — ✅ Honoured: explainability material is supplementary and is presented as such; the appendix establishes nothing on its own.
+
+**G-3 stated as an absence with its four consequences** — ✅ §E.5, including the distinction that matters: *"nothing was examined on the clinical corpus and found wanting; the examination was not performed, and no inference about what it would have shown is available in either direction."*
+
+**PC-7 not exceeded** — ✅ The closing sentence restates the claim at exactly the level §5.2.2 assigned: quantitative half only, within the alignment/localisation boundary, one corpus, one fold.
+
+**CFC-2.1 / CFC-2.2 / CFC-2.4 / CFC-2.5** — ✅ Satisfied (absent). No universal claim, no comparison with a published system, no clinical-grade or deployment claim, no perfect-performance figure.
+
+**SIR-1 / SIR-2** — ✅ No reading is strengthened beyond §4.6; the single-corpus and single-fold limitations are inherited and restated rather than dropped.
+
+**Rule 16** — ✅ Satisfied. Artifact paths appear **only inside figure markers**, which the rule exempts and which are resolved at conversion. No run identity, no checkpoint, no log reference and no revision narrative appears in the prose.
+
+### Word count
+
+Prose ≈ 830 words excluding the plate index; 54 plates.

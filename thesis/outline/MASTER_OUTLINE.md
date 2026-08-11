@@ -3,7 +3,13 @@
 
 **Candidate:** Yesmukhamedov N.S.
 **Document Type:** Master Structural Outline — Chapter-by-Chapter Content Specification
-**Binding References:** INVARIANTS.md v6.0.0 | ARGUMENT_MAP.md v6.0.0 | HYPOTHESIS.md v6.0.0 | GLOSSARY_EN.md | TABLE_OF_CONTENTS_EN.md
+**Binding References:** INVARIANTS.md v7.0.0 | ARGUMENT_MAP.md v7.1.0 | HYPOTHESIS.md v7.1.0 | GLOSSARY_EN.md | TABLE_OF_CONTENTS_EN.md
+
+> **v7.1.0 currency sync.** This document is a *structural* specification. Four governance-currency defects were corrected in this pass: the object of research (a category error — images named as the object instead of the process); H-3 (recorded as dropped, whereas it is live as *Domain-Shift Reduction* and is written as §4.4); H-7 (the retired *Clinical Degradation Resistance* form, replaced by *External Clinical Performance*); and a duplicated objective number (two items numbered 8).
+>
+> **Superseded content, not corrected here.** The **Scientific Novelty** and **Provisions Submitted for Defence** lists below predate the experimental results: they enumerate what was *planned*, not what is defended. The authoritative versions are **§0.2** (ten items, from `CONTRIBUTIONS.md` v7.1.0, including SC-I and the transfer-measure defect) and **§0.8** (eleven provisions plus one observation, each with the qualification that is inseparable from it, at the levels §5.2.2 assigned). Where this outline and the drafted sections disagree, **the drafted sections win**.
+>
+> **Introduction ordering.** This document orders the Introduction by section identifier; the manuscript follows `TABLE_OF_CONTENTS_EN.md`, which differs. See `chapters/00-introduction/README.md`.
 **Source Corpus:** LC-CONF | LC-KBTU | LC-KazUTB | LC-NAN_RK | LC-SQOPUS_Q2 | LC-SQOPUS_Q3
 **Governing Documents:** CENTRAL_THESIS.md | CORE_OBJECTIVE.md | HYPOTHESIS.md
 
@@ -54,24 +60,27 @@
 5. Validate the preprocessing component contribution hierarchy via component-level ablation on EyePACS (→ Chapter 4, Experiment 2) and CLAHE threshold sensitivity (H-2) as a sub-analysis, plus flat-field σ sweep.
 6. Validate cross-dataset transferability to APTOS 2019 without retraining, generalization ratio G ≥ 0.85 (H-4) (→ Chapter 4, Experiment 3).
 7. Validate explainability via Grad-CAM on EfficientNet-B4 with ALO (primary) and IoU (secondary) against IDRiD lesion masks and Clinical qualitative Grad-CAM (H-5) (→ Chapter 4, Experiment 4).
-8. Validate clinical degradation resistance (H-7) on IDRiD + Messidor-2 (→ Chapter 4, Experiment 5).
+8. Validate external clinical performance (H-7) on IDRiD + Messidor-2 (→ Chapter 4, Experiment 5).
 9. Validate device domain shift on RFMiD/DDR/ODIR-5K across camera hardware (H-6) (→ Chapter 4, Experiment 6).
 10. Validate small data training on IDRiD → Clinical dataset, 5-fold CV (→ Chapter 4, Experiment 7).
-8. Design a modular system architecture for automated DR screening deployable in resource-limited environments, informed by multi-dataset and multi-device experimental evidence (→ Chapter 6).
+11. Measure directly the reduction in source-to-target distance in feature space across six external corpora (H-3) (→ Chapter 4, §4.4). **[added v7.1.0]**
+12. Design a modular system architecture for automated DR screening deployable in resource-limited environments, informed by multi-dataset and multi-device experimental evidence (→ Chapter 6).
 
 ### Object and Subject of Research
-- **Object:** Fundus images of patients with diabetic retinopathy, sourced from EyePACS (primary training), APTOS 2019 (cross-dataset transferability), IDRiD (explainability + CLAHE sweep), Messidor-2 (clinical degradation), DDR/ODIR-5K/RFMiD (device domain shift), and Clinical dataset (small data, Exp 7).
-- **Subject:** The process of automated multi-stage DR classification through integrated preprocessing and CNN-based analysis.
+- **Object:** The *process* of automated multi-stage diagnosis of diabetic retinopathy from colour fundus photographs by convolutional neural networks, studied end to end — from the image as it leaves the camera to the five-class grade the model assigns. **[v7.1.0 correction]** The prior formulation named the fundus images themselves as the object; that is a category error — an object of research is a process or a system, and the images are its *material*. The material is the tiered eight-corpus architecture (EyePACS primary training and ablation; APTOS 2019 external public evaluation; IDRiD and Messidor-2 external clinical evaluation; DDR / ODIR-5K / RFMiD device domain; the Kazakh clinical set), which is not itself the object.
+- **Subject:** The methods and models by which fundus image preprocessing is integrated with CNN classification, together with the properties the resulting integrated configuration exhibits — diagnostic performance under five-class grading, transferability, alignment of attention with annotated pathology, and behaviour across camera domains. It is the *integration* that is manipulated, not the preprocessing considered apart from the network it feeds (CFC-2.8 at scope level).
+
+> Authoritative prose: §0.5 of the dissertation.
 
 ### Research Hypothesis
 - Verbatim from HYPOTHESIS.md, mapped to INVARIANTS §II:
   - **H-1 (Primary — Integrated Pipeline Dominance):** See INVARIANTS §II, H-1. The independent variable is the composite *(preprocessing × pretraining source)* pair (baseline ⟹ ImageNet, integrated ⟹ ophthalmology-SSL). Dependent variables: Accuracy, F1-score, ROC-AUC, Cohen's Kappa. Tested on ResNet-50 and EfficientNet-B3 on EyePACS 100% (4 configs A–D, 5-fold CV). Empirical dominance criterion: EH-3 (weighted F1 Δ ≥ 5 pp; ROC-AUC Δ ≥ 0.02; no Cohen's Kappa degradation). Attribution of the observed effect to preprocessing alone, pretraining alone, or their interaction is **forbidden** under CFC-2.8; permissible claims are restricted to the integrated pipeline as a whole.
   - **H-2 (Secondary — Component Ablation + CLAHE/σ Sweeps):** See INVARIANTS §II, H-2. Bounded to tested parameter range on EyePACS/IDRiD; no extrapolation permissible.
-  - **H-3 [DROPPED V3]:** H-3 is not tested. Empirical reference from LC-CONF / LC-KBTU cited as prior self-publications only (SIR-4).
+  - **H-3 (Domain-Shift Reduction) [RESTORED v7.1.0 — label reused]:** The integrated configuration reduces the distance between the source and each external feature distribution, on at least K = 5 of n = 6 external corpora, with `Δd(X) = d(BASE, X) − d(INT, X) ≥ MCID_d = 0.0` and `CI⁻(Δd) > 0`. MMD over penultimate-layer features is **primary and the sole basis of the criterion**; KL over per-channel histograms is secondary and informational. **Mandatory protocol condition:** Stage 7 must use source-domain statistics — computing it from the target makes the measurement target-domain adaptation and incomparable with H-4/H-6/H-7. **Threshold provenance, stated openly:** neither MCID_d nor K was pre-registered; both were assigned at formalization, `d` being unnormalized so that no non-zero minimal difference is interpretable, and the outcome is insensitive to K. Mechanistic — no claim of diagnostic performance, device compatibility or clinical utility. **Label-reuse notice:** the H-3 dropped in V3 denoted a *training-method comparison*; **that retirement stands** and the label is reused. Written as §4.4.
   - **H-4 (Cross-Dataset Transferability — APTOS 2019):** Models trained on EyePACS with pipeline generalize to APTOS 2019 without retraining, achieving generalization ratio G ≥ 0.85 (G = F1_APTOS / F1_EyePACS).
   - **H-5 (Explainability):** Preprocessing shifts CNN attention toward clinically relevant lesion regions: ALO between Grad-CAM activation maps and IDRiD lesion masks is higher for preprocessed models than baseline (ALO_preproc > ALO_baseline) — ALO is the PRIMARY metric. IoU_preproc > IoU_baseline is the secondary condition.
   - **H-6 (Device Domain Shift):** Preprocessed models maintain classification performance across images from different fundus camera domains (Canon, Topcon, Kowa, Zeiss), as evaluated on DDR, ODIR-5K, RFMiD.
-  - **H-7 (Clinical Degradation Resistance):** preprocessing reduces cross-dataset performance drop compared to baseline, evaluated on IDRiD + Messidor-2.
+  - **H-7 (External Clinical Performance) [REFORMULATED v7.0.0]:** on **each** external clinical corpus, `Δ wF1(X) = wF1(integrated, X) − wF1(baseline, X) ≥ MCID_wF1 = 0.050` with `CI⁻ > 0`, for X ∈ {IDRiD, Messidor-2}. **Not aggregated** — a reversal on either set yields REVERSED regardless of the other; and the form requires `CI⁻ > 0`, **not** `CI⁻ ≥ MCID`. The hypothesis claims **higher absolute external performance, not reduced degradation**. The retired dependent variable `Δ_drop = F1_in-domain − F1_external` is descriptive only and carries no verdict: `Δ_drop(int) − Δ_drop(base) ≡ Δ_in-domain − Δ_external`, so it is the fixed in-domain margin minus the quantity under test.
 
 ### Methodological Basis
 - Experimental comparison with controlled conditions (matched dataset, hardware, training budget).
@@ -397,7 +406,7 @@
 - **EyePACS (Primary Training):** ~35,126 labeled images (100%), five-class DR staging (DR 0–4), Canon CR-1 camera. Primary dataset for Experiments 1, 2, 3, 4, 5, 6. Public dataset.
 - **APTOS 2019 (Cross-Dataset Transferability):** ~3,662 labeled samples. Five-class DR staging. Mixed camera models. External test dataset for Experiment 3 (zero-shot transfer from EyePACS, G ≥ 0.85).
 - **IDRiD (Explainability + CLAHE Sweep + Small Data):** Five-class DR staging with pixel-level lesion annotations. Kowa camera. Datasets for Experiments 2 (CLAHE sweep), 4 (explainability), 5 (clinical degradation), 7 (small data training). Public dataset.
-- **Messidor-2 (Clinical Degradation):** Topcon camera. Dataset for Experiment 5 (clinical degradation resistance H-7). Public dataset.
+- **Messidor-2 (External Clinical Evaluation):** Topcon camera. Dataset for Experiment 5 (external clinical performance, H-7). Public dataset.
 - **RFMiD (Device Domain Shift):** Topcon, Kowa cameras. Multi-disease including DR subset. Dataset for Experiment 6.
 - **DDR (Device Domain Shift):** Canon, Topcon cameras. Five-class DR grading. Dataset for Experiment 6.
 - **ODIR-5K (Device Domain Shift):** Canon, Zeiss cameras. Multi-disease including DR subset. Dataset for Experiment 6.
@@ -497,7 +506,7 @@
 #### 4.5.3 Attention Consistency Across Datasets
 - Cosine similarity of Grad-CAM distributions across dataset pairs.
 
-### 4.6 Experiment 5: Clinical Degradation Resistance (H-7)
+### 4.6 Experiment 5: External Clinical Performance (H-7)
 - **Tests:** H-7 (preprocessing reduces cross-dataset performance drop)
 - **Datasets:** EyePACS → IDRiD + Messidor-2
 - pipeline should narrow cross-dataset performance gap compared to baseline.
@@ -634,7 +643,7 @@
 ## CONCLUSION
 
 - Restate Central Thesis (INVARIANTS IT-1) and evaluate against experimental evidence.
-- Summarize hypothesis outcomes: H-1, H-2, H-4, H-5, H-6, H-7 — confirmed, partially confirmed, or falsified (per VCR-3). [H-3 DROPPED — not tested]
+- Summarize hypothesis outcomes: H-1 through H-7 — confirmed, partially confirmed, or falsified (per VCR-3), **each restated with the qualification that is inseparable from it**. [v7.1.0: H-3 is live as Domain-Shift Reduction; the H-3 dropped in V3 was the retired training-method hypothesis.] Authoritative prose: §7.
 - Enumerate primary contributions (provisions submitted for defense) with final claim strength classifications for PC-1 through PC-10.
 - Restate scope boundaries and non-claims (NC-1 through NC-17).
 - Identify directions for future work: prototype implementation, clinical validation trial, architecture comparison, demographic subgroup evaluation, CLAHE parameter portability testing, extended device domain shift evaluation, prospective explainability validation.
@@ -691,11 +700,11 @@
 | §2.4 | — | — | PC-4 | SC-4.1 | LC-KazUTB | SB-1.5, SIR-6, CFC-2.4 |
 | §6.1–6.4 | — | — | PC-5 | SC-5.1 | LC-NAN_RK | SB-4.1, SB-4.2, SB-4.3, DGL-4 |
 
-*Historical note (v6.0.0): H-3 is dropped (not tested); PC-3 (two-stage fine-tuning) is demoted to a prior-work citation only; the old §4.4 "Robustness to Image Degradation" experiment is removed.*
+*Historical note (v6.0.0, superseded in part by v7.1.0): H-3 was dropped as a **training-method comparison** — that retirement stands, but the label is **reused** from v7.1.0 for *Domain-Shift Reduction* (§4.4, claim node PC-11); PC-3 (two-stage fine-tuning) is demoted to a prior-work citation only and **PC-3 remains unused in the claim register**; the old §4.4 "Robustness to Image Degradation" experiment is removed.*
 
 ---
 
 *End of MASTER_OUTLINE.md*
 *Binding references: INVARIANTS.md v6.0.0 | ARGUMENT_MAP.md v6.0.0 | HYPOTHESIS.md v6.0.0 | CENTRAL_THESIS.md v6.0.0 | CONTRIBUTIONS.md v6.0.0 | RESEARCH_ARCHITECTURE.md v6.0.0 | GLOSSARY_EN.md*
-*Document Version: 6.0.0 — v6.0.0 sync: 8-stage pipeline (canonical flip → OD-fovea rotation normalization → FOV crop + isotropic resize → FOV mask → adaptive flat-field correction σ=0.07·D → dual-constraint CLAHE → augmentation → dataset-specific normalization); Experiment 1 = 2×2 factorial, 4 configs A–D (ResNet-50 A/B, EfficientNet-B3 C/D), 5-fold CV; H-1 = Integrated Pipeline Dominance (composite preprocessing × pretraining IV, baseline⟹ImageNet vs integrated⟹ophthalmology-SSL, CFC-2.8); all seven experiments in Chapter 4 (§4.2–§4.8), Chapter 5 = Reliability Validation (§5.1 Explainability, §5.2 Statistical, §5.3 Comparative, §5.4 Limitations); added §2.3.3 and §3.3.2 SSL sections; PC-0 paradigmatic framing + PC-10 clinical degradation; H-3 dropped, ALO primary / IoU secondary.*
+*Document Version: 7.1.0 — v7.1.0 sync: object-of-research category error corrected; H-3 restored as Domain-Shift Reduction; H-7 reformulated to External Clinical Performance; duplicated objective numbering fixed; novelty and provisions lists marked superseded by §0.2 / §0.8. Prior v6.0.0 sync: 8-stage pipeline (canonical flip → OD-fovea rotation normalization → FOV crop + isotropic resize → FOV mask → adaptive flat-field correction σ=0.07·D → dual-constraint CLAHE → augmentation → dataset-specific normalization); Experiment 1 = 2×2 factorial, 4 configs A–D (ResNet-50 A/B, EfficientNet-B3 C/D), 5-fold CV; H-1 = Integrated Pipeline Dominance (composite preprocessing × pretraining IV, baseline⟹ImageNet vs integrated⟹ophthalmology-SSL, CFC-2.8); all seven experiments in Chapter 4 (§4.2–§4.8), Chapter 5 = Reliability Validation (§5.1 Explainability, §5.2 Statistical, §5.3 Comparative, §5.4 Limitations); added §2.3.3 and §3.3.2 SSL sections; PC-0 paradigmatic framing + PC-10 clinical degradation; H-3 dropped, ALO primary / IoU secondary.*
 *All structural decisions traceable to the governing source corpus.*

@@ -1,6 +1,6 @@
 ---
 name: thesis-writing-status
-description: "Dissertation writing status — Phase 1 (all writable-now sections) drafted & APPROVED 2026-06-10; Ch3 detail; Phase 2 experiment-gated"
+description: "Dissertation WRITTEN TEXT COMPLETE — Chapters 0–7 + Appendices A–F all APPROVED (98 sections, ~101k words). Abstract EN/KZ/RU, governance and both assemblers synced/repaired. Remaining: KZ translations (45 units), Phase-3 asset/placeholder/citation passes, NEW-1 traceability"
 metadata:
   type: project
 ---
@@ -17,7 +17,171 @@ All writable-now sections drafted and APPROVED on disk (each with brief/draft/co
 - **§4.1** Datasets & Configuration — 3/3 ✅ (commit 71723a5)
 - **App A** (preprocessing source code) + **App D** (certificates & publications) ✅ — under `thesis/chapters/08-appendices/`
 
-Everything remaining is **Phase 2, hard-blocked on real experiment results** (§4.2–§4.8, Ch 5, Ch 0 except writable-now front-matter, Ch 7, App B/C/E/F). Gating artifacts RES-EXP1(full)/TAB-4.x/FIG-4.x are ❌ MISSING; demo preview JSONs are barred as results (CFC-2.x/SIR-1). App C unblocks only on the DIA-6.3 UML drawing. Phase 3 = assemble→resolve placeholders→single .docx, after Phase 2.
+## Phase 2 — Ch 4 and Ch 5 COMPLETE
+
+The experiment gate is closed: all seven experiments ran, all seven hypotheses are supported, and the
+experimental chapters are written from `results/` (the single source of truth for every number).
+
+- **Ch 4** Experiments — **20/20 ✅** (§4.1.1–§4.C). H-3 reinstated as its own **§4.4**; Exp 3–7 shifted to §4.5–§4.9.
+- **Ch 5** Reliability Validation — **7/7 ✅** (§5.1, §5.2.1, §5.2.2, §5.3.1, §5.3.2, §5.4, §5.C).
+  **TAB-5.3 was assembled inside §5.3.1 from the literature cards** — it was never an experiment gate.
+
+**The eight fences that bind everything downstream (Ch 0 §0.8, Ch 7, defence, demo)** — compression is
+where they get lost, so restate them, never paraphrase them upward:
+CFC-2.8 (the composite is **decomposable, not dissolved** — the ablation under one initialization
+reproduces the whole in-domain gain, but B/D remain differently initialized); PC-8 at **grouping
+resolution only**; H-3 **direction only** (ρ ≈ 0.49 — magnitude does not track transfer gain); H-5
+**quantitative half only** (G-3: clinical overlays never produced); H-7 **performance, not resistance**,
+Messidor-2 margin **0.0041** with CI⁻ below the MCID; H-4/H-6 thresholds cleared by **both** arms;
+E-7 **comparable, not larger** than the abundant-data gain; two camera groupings are the external
+corpora themselves, so not independent replication.
+
+**Two Chapter-5 items worth carrying as contributions/limits:** (1) the **normalization defect** —
+generalization ratio, retired Δ_drop form and retention ratio all normalize external performance
+against an arm's *own* in-domain performance, so each penalizes in-domain strength;
+`Δ_drop(D) − Δ_drop(C) ≡ Δ_in-domain − Δ_external` makes it exact. Stated in §5.4 as a **secondary
+methodological contribution, strictly descriptive — it rehabilitates no result**. (2) **Inference
+uncertainty is understated outside Exp 1**: only Exp 1 has fold-level replication, so Exp 3–6
+intervals quantify evaluation-corpus sampling alone, and Holm correction is scoped to Exp 1 —
+**no dissertation-wide error rate is claimed**.
+
+## Sync + repair pass, 2026-08-11 — three items closed
+
+**1. Trilingual abstract synced** (`thesis/output/abstract_{en,kz,ru}.md`, all three now 153 lines, parallel).
+Four defects closed: "seven experiments" → **eight investigations**; **H-3 added** as objective, novelty item,
+result and provision; statements-for-defence **6 → 11 provisions + one observation + an explicit non-claims
+paragraph**, each provision carrying its fence, with the retired Δ_drop item replaced by the External Clinical
+Performance form; and **VVI removed from the methods** — §4.3.3 excluded it for want of an implementation and
+a source, so that one was an *error*, not staleness. Also corrected in the same pass: SC-H stated as fundus-SSL
+→ gate-selected in-domain initialisation (v6.3.0 generalisation, with the negative gate result reported);
+the Messidor-2 tier label "clinical degradation"; the reliability section now carries the pre-specification
+argument, placement-not-ranking **with its reason**, and both aggregate concessions.
+
+**2. Governance synced → VERSION_SYNC v7.1.1 / CHANGELOG entry (PATCH, no new binding).**
+`CORE_OBJECTIVE.md` 5.0→7.1.0 and `CENTRAL_THESIS.md` 6.0.0→7.1.0 (H-7 form; H-3 added).
+`MASTER_OUTLINE.md` 6.0.0→7.1.0 — four currency defects: **object of research stated as the images rather
+than the process** (category error), H-3 recorded as dropped, H-7 in its retired form, and a **duplicated
+objective number**; its Novelty and Provisions lists are **marked superseded by §0.2 / §0.8** rather than
+rewritten. `TAB-5.2` — domain distance moved from "outside the formal PCs" into the register as **PC-11**,
+matching ARGUMENT_MAP v7.1.0; tally becomes **8 of 8** empirical primary claims.
+**Two further errors found during the pass:** CENTRAL_THESIS cited *qualitative Grad-CAM overlays on the
+Kazakh clinical dataset* as substantiating evidence — they were **never produced** (G-3), so the text asserted
+evidence that does not exist; and `abbreviations_{en,kz}.md` expanded **ALO as "Activation–Lesion Overlap"**
+where it is **Attention–Lesion Overlap** everywhere else. Both fixed.
+**New standing rule recorded in VERSION_SYNC §2a:** the drafted sections now outrank the planning documents
+on content — §0.3 goal, §0.5 object/subject, §0.6 hypotheses, §0.2 novelty, §0.8 provisions, §7 conclusion;
+`MASTER_OUTLINE.md` is authoritative for *structure* only.
+
+**3. Both assemblers repaired.** `_assemble_en.py` extracted only text under a literal `## PART 1` marker —
+Ch 4 carries it in **3 of 20** drafts and Ch 5 in **none of 7**, so **24 sections assembled as empty and
+nothing said so**. Fixed with a top-of-file fallback plus a **suspect-extraction report**. Chapter 0 is now
+assembled from an **explicit ordered list** (its identifiers deliberately do not follow manuscript order), and
+a list/disk mismatch is a hard error. Chapters **0, 5 and 7 were missing from the chapter list entirely**, and
+the three front-matter units from `thesis/output/` are now inserted ahead of the Introduction. Same two fixes
+applied to `_assemble_kz.py`. **Verified: EN → 94 sections / ≈94,200 words, no suspect extractions**
+(previously 53 with 24 empty); KZ → 53 translations, clean.
+
+## APPENDICES A–F COMPLETE — the written text is finished
+
+**App B** — 13 tables decomposing Ch 4–5 to the class and the confusion cell. **Transcription verified
+mechanically**: 168 distinct 3–4 dp values + 184 confusion-matrix integers, none absent from `results/`,
+nothing recomputed. §B.8 states three absences with a reason and a consequence each.
+**App C** — **DIA-6.3 DISCHARGED**, the last asset task in Ch 6. Four views as Mermaid source + a
+module → FR → NFR traceability table. **New conversion requirement: the Mermaid source must be rendered at
+conversion, or the converter must handle fenced Mermaid.**
+**App E** — the **complete** 54-plate annotated subset, no selection, floor cases retained; NC-14 before the
+first plate; plates declared illustration carrying no measurement; G-3 stated as an absence.
+**App F** — 8 tables; three qualifications stated *before* the tables; §F.8 explains the retention-ratio
+artefact as an instance of the §5.4 normalisation defect, bounded as descriptive.
+
+⚠ **Correction worth remembering:** an initial asset search was built wrongly and reported *no* Grad-CAM
+overlays on disk. **They exist** — 54 paired plates at `experiments/outputs/exp4/gradcam_maskset/`, exactly
+where `ASSET_INVENTORY.md` records them. Repo-wide asset searches on this tree must not use
+`find -path X -prune -o -name Y -print` casually; it silently under-reports.
+
+**Assembly re-run: 98 sections / ~101,050 words, no suspect extractions.**
+
+**Remaining:** (App B/C/E/F now done — historical note: B was bounded by
+unrecorded per-epoch/per-class curves; E is IDRiD-only per G-3; F lacks per-group confusion matrices;
+C needs the DIA-6.3 UML). **KZ translations are now the largest remaining task — 45 units: Ch 0 (16), Ch 4 (17 of 20), Ch 5 (7), Ch 7 (1), App B/C/E/F (4).**
+Phase 3 = assemble → resolve placeholders → single `.docx`.
+See [[results-knowledge-base]], [[no-process-history-in-deliverables]].
+
+## CHAPTER BODY COMPLETE — Chapters 0–7 all approved
+
+**Ch 7 (Conclusion) ✅ APPROVED**, ~1,610 w, **inside band, no flags** — the first chapter-scale front/back-matter
+section to land in band without a mandatory-content exemption. Six movements; principal finding stated as
+**consistency, not effect size**; four kinds of contribution with the methodological one **strictly
+descriptive**; eight open questions sorted by closing cost incl. **one measurement cannot close**.
+Three audits recorded in `reviews/7-review.md`: **fence audit 8/8 intact** through the document's most
+compressive section, **ceiling audit against §0.8 provision by provision — no promotion**, and **VCR-3
+discharged** (the initialisation branch that failed its acceptance gate is reported, not omitted).
+**No metric value anywhere in Ch 7** — the thin external margin is stated in words, per §5.C's precedent.
+One **deliberate omission**, recorded so it is not read as an oversight: §0.8's provisions 11 (thermal-optical
+model, screening architecture) are not restated among the conclusion's contributions, because doing so would
+imply an empirical standing they do not have.
+
+**Ch 7 is bounded by two ceilings and exceeds neither** — §5.C behind it, **§0.8 in front**. If the two ever
+disagree, one is wrong and it must be resolved, not averaged. That rule binds any future edit to either.
+
+## Chapter 0 (Introduction) — ✅ COMPLETE, 16/16
+
+**Gate discharged** — §0.8 was the last block and §5.2.2 (TAB-5.2) supplied it. All thirteen sections
+drafted here are approved; the three front-matter units were already complete in `thesis/output/`.
+
+**Artifact-set deviation, deliberate:** the seven substantive sections (§0.1–0.6, §0.8) each carry their own
+continuity + review file; the nine short apparatus sections are verified and handed off **as one block** —
+`reviews/0.apparatus-review.md` + `continuity/0.apparatus-continuity.md` — since they share one binding set.
+Precedent: §6.3.1. The governing constraint held across all nine: **no apparatus section states an outcome
+§0.8 has not submitted** (verified per section, incl. the two predicted drift points §0.9 and §0.10, where
+§0.10 deliberately omits the measured computational cost because §0.8 did not submit it).
+
+**§0.8 is the section to protect.** Eleven provisions; fence audit 8/8 intact; promotion audit against
+TAB-5.2 shows no promotion and no softened qualification; the Messidor-2 margin 0.0041 disclosed *with* its
+sub-threshold lower bound (a fence stronger than the table's); exactly one metric value in the whole section
+and no table reproduced, so the Introduction cannot be used to re-adjudicate Ch 4. **PC-3 stays unused.**
+
+**§0.6 leaks no outcome** — every numeral in it is a threshold. That property is what §5.2.2's
+pre-specification argument depends on and it must survive any later edit.
+
+Front matter §0.FM1–FM3 is **already done
+outside `chapters/`** as EN/KZ deliverables in `thesis/output/` (normative refs, definitions,
+abbreviations) — not re-drafted. See [[front-matter-deliverables]].
+
+**Two orderings, both binding — do not conflate.** Section *identifiers* are stable and are what governance,
+this memory and `5.C-continuity.md` reference (**§0.8 = Provisions Submitted for Defence**). *Manuscript
+order* is `outline/TABLE_OF_CONTENTS_EN.md`'s and is NOT the numeric order; four TOC items lacked an
+identifier and got §0.13 Reliability, §0.14 Empirical Basis, §0.15 Scientific Programmes, §0.16 Structure.
+**Phase-3 consequence:** `assembly/_assemble_en.py` sorts numerically, which equals TOC order for every
+chapter except Ch 0 — Ch 0 needs an explicit ordered list.
+
+**Three project documents are stale and must not be followed when writing Ch 7 or the council deliverables:**
+`governance/CORE_OBJECTIVE.md` v5.0 (retired H-7 "clinical degradation resistance"; no H-3);
+`outline/MASTER_OUTLINE.md` v6.0.0 (H-3 recorded as dropped; retired H-7 form; two objectives numbered "8";
+**object of research given as the images rather than the process** — a category error);
+`thesis/output/abstract_en.md` ("seven experiments" — the programme is **eight** investigations; H-3 absent;
+provision 5 still in the retired Δ_drop form; **and it lists the Vessel Visibility Index as a method — §4.3.3 excluded VVI for want of an implementation and a source, so this one is an ERROR, not merely stale**). **The abstract sync pass is now DUE** — §0.2, §0.6 and §0.8
+have landed and are what it must be rewritten against; its statements-for-defence list has six items where
+§0.8 submits eleven provisions plus one observation. A governance-sync pass on the first two is also due.
+
+A fourth divergence surfaced while writing §0.8: **`results/tables/TAB-5.2_claim_strength.md` lags
+`ARGUMENT_MAP.md` v7.1.0** — it files the domain-distance result under "additional empirical results outside
+the formal PCs", while the argument map carries it as **PC-11**, a first-class node depending on PC-1 and
+feeding PC-6/PC-9/PC-10. Substance and strength agree (STRONG, direction only); only the register position
+differs. §0.8 submits it as PC-11.
+
+**Chapter 0 is running long — six of seven sections over band** (§0.1 ~1,125/800–1,000; §0.2 ~1,205/800–1,000;
+§0.3 ~535/300–500; §0.4 ~695/400–600; §0.6 ~1,205/600–900; §0.8 ~1,255/700–900; only §0.5 ~290 is in band).
+Cause is consistent and legitimate — mandatory disclosures, inventories and qualifications that cannot be
+compressed. Each draft's word-count note names its own compressible material. **Excluded from the trim in
+every case:** §0.6's four mandatory disclosures, §0.8's qualifications, and the §0.3 goal sentence (quoted
+verbatim in the abstract and defence materials).
+
+**Latent Phase-3 defect found while reading the assembler:** `_assemble_en.py` extracts only text under a
+`## PART 1` marker, but most Ch 4 and all Ch 5 drafts were written **without** that marker (body starts at
+the section heading). Verified: Ch 1 = 11/11 have it, Ch 4 = **3/20**, Ch 5 = **0/7** — so **24 sections
+would assemble as empty**. Fix at Phase 3 (either add the markers or relax the extractor). Ch 0 drafts use
+the marker.
 
 ## Chapter 3 (Methodology) detail — drafted & APPROVED 2026-06-09
 

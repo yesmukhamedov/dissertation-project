@@ -1,7 +1,7 @@
 # DESIGNATIONS AND ABBREVIATIONS
 
 | AI | Artificial Intelligence |
-| ALO | Activation–Lesion Overlap (explainability metric) |
+| ALO | Attention–Lesion Overlap (explainability metric) |
 | APTOS | Asia Pacific Tele-Ophthalmology Society (2019 Blindness Detection dataset) |
 | AUC | Area Under the Curve |
 | BYOL | Bootstrap Your Own Latent (self-supervised learning method) |
