@@ -566,6 +566,56 @@ _FENCE = re.compile(r"^\s*```\s*([A-Za-z0-9_+-]*)")
 
 MERMAID_CACHE_DIR = "defense/figures/mermaid"
 
+# Appendix C authors each diagram's caption as a bold line ABOVE its Mermaid
+# fence. GOST places an illustration's caption under the illustration ("Слово
+# «Рисунок» и его наименование помещают после пояснительных данных"), which is
+# where every other caption in this document sits. The caption is therefore moved
+# below its diagram at conversion time and set in the same centred form, so the
+# appendix source stays readable and the output stays conventional.
+_CAPTION_TOKEN = "\x01CAP\x01"
+_DIAGRAM_CAPTION = re.compile(
+    r"^\*\*(?:"
+    r"(?P<en>(?:Diagram|Figure)\s+[\w.]+)"          # "Diagram C.1. Title."
+    r"|(?P<kz>[\w.]+-(?:диаграмма|сурет))"          # "Б.1-диаграмма. Атауы."
+    r")[.:]\s*(?P<title>.+?)\.?\*\*$"
+)
+
+
+def _relocate_diagram_captions(lines: list[str]) -> list[str]:
+    """Move a bold diagram caption from above its Mermaid fence to below it."""
+    out: list[str] = []
+    i, n = 0, len(lines)
+    while i < n:
+        m = _DIAGRAM_CAPTION.match(lines[i].strip())
+        if not m:
+            out.append(lines[i])
+            i += 1
+            continue
+        j = i + 1
+        while j < n and not lines[j].strip():
+            j += 1
+        if j >= n or not lines[j].strip().startswith("```mermaid"):
+            out.append(lines[i])          # not a diagram caption after all
+            i += 1
+            continue
+        end = j + 1
+        while end < n and not lines[end].strip().startswith("```"):
+            end += 1
+        if m.group("kz"):
+            # "Б.1-диаграмма" -> "Диаграмма Б.1": the instruction's own example
+            # puts the word first ("Рисунок 1 – Детали прибора"), and every other
+            # caption this converter emits is label-first, so the two forms would
+            # otherwise sit side by side in the same document.
+            num, _, word = m.group("kz").rpartition("-")
+            label = f"{word.capitalize()} {num}"
+        else:
+            label = m.group("en").strip()
+        out.extend(lines[j:end + 1])
+        out.append("")
+        out.append(f"{_CAPTION_TOKEN}{label} – {m.group('title').strip()}")
+        i = end + 1
+    return out
+
 # Chrome/Chromium locations tried when PUPPETEER_EXECUTABLE_PATH is unset. The
 # candidate builds on several machines; reusing an installed browser avoids a
 # per-machine Chromium download.
@@ -866,7 +916,7 @@ def render_into(
     labels = _LABELS["kz" if lang == "kz" else "en"]
     if base_dir is None:
         base_dir = Path(".")
-    lines = text.splitlines()
+    lines = _relocate_diagram_captions(text.splitlines())
 
     figs: dict[tuple, dict] = {}   # (kind, num, target) -> registration
     seq: dict[tuple, int] = {}     # (kind, num) -> next sequence for letter-only ids
@@ -998,6 +1048,15 @@ def render_into(
             continue
         else:
             flush_table()
+
+        if stripped.startswith(_CAPTION_TOKEN):
+            flush_paragraph()
+            c = doc.add_paragraph()
+            c.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            c.paragraph_format.first_line_indent = Mm(0)
+            c.paragraph_format.space_after = Pt(6)
+            _add_runs(c, stripped[len(_CAPTION_TOKEN):])
+            continue
 
         if not stripped:
             flush_paragraph()

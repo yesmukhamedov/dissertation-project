@@ -39,3 +39,7 @@ demo/.demo-password
 
 # Build cache: images downscaled to print resolution by md2gost.py
 defense/docs/.print_cache/
+
+# Intermediate bodies written by build_full_dissertation.py, and Word scratch files
+thesis/assembly/_tmp_body/
+*.tmp

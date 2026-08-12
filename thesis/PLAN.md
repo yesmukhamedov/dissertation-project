@@ -797,12 +797,27 @@ numbered with the appendix letter (its own example is "Рисунок А3"; Tokh
 which is what the converter now emits, and captions sit **below** the figure, which is where it puts
 them. Chapter-scoped numbering in the body is explicitly permitted (§5, "в пределах раздела").
 
+**Diagram captions are uniform (2026-08-13).** Appendix C authored its four captions as bold lines
+*above* the Mermaid source; the converter now moves each below its rendered diagram and sets it in the
+same centred `Label N – Title` form as every other caption, which is where the instruction puts one
+("Слово «Рисунок» и его наименование помещают после пояснительных данных"). The Kazakh postfix form is
+normalised to label-first at the same time — `Б.1-диаграмма` → `Диаграмма Б.1` — because the
+instruction's own example leads with the word and the marker-driven captions already did, so the two
+forms would otherwise stand side by side in one document. All six diagram captions in each language now
+sit directly under their image; none of the old form remains. **The appendix source is unchanged** — the
+relocation happens at conversion, so the Markdown stays readable as authored.
+
 **Still open in this section:**
 
-- **Appendix C's four diagrams are captioned above, not below.** Their captions are the appendix's own
-  bold "Diagram C.1. …" lines, so they neither sit below the image nor use the "Figure C.1 – …" wording
-  the instruction illustrates. Cosmetic and self-consistent, but it is the one place the document
-  departs from the caption convention the rest of it follows.
+- **Internal resource IDs appear in the reader-facing text — 40 occurrences.** Drafts cross-reference
+  assets in the project's own notation (`TAB-3.3`, `FIG-2.2`, `DIA-6.3a`) and those strings reach the
+  page. **This cannot be fixed by a mechanical rewrite**: of 34 distinct IDs only 14 correspond to a
+  caption of the same number, while `TAB-3.1` for instance is rendered in the document as Table 4.2, so
+  substituting "Table 3.1" would manufacture a dangling reference. Each of the remaining 20 needs a
+  decision about what it actually points at.
+- **Table captions are inconsistent in the Kazakh edition** for the same reason the diagrams were:
+  authored captions use the postfix form (`Б.1-кесте`) while converter-driven ones are label-first
+  (`Кесте 1.1 – …`). Diagram captions are now uniform; tables are not, and there are dozens of them.
 - The abstract was checked against this pass and needs no correction: it already carries the current
   structure — H-3 as a separate investigation, Experiment 5 as external clinical performance, eight
   investigations — and its "Structure and length" section deliberately states no counts, so nothing in
