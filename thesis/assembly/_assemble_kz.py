@@ -31,6 +31,13 @@ Chapters 0, 5 and 7 were also absent from ``CHAPTERS`` and are added. **Their
 Kazakh translations do not exist yet** (Ch 0: 0/16, Ch 4: 3/20, Ch 5: 0/7,
 Ch 7: 0/1) — the script simply skips a chapter with no files, so fixing it now
 means the defects cannot bite when those translations land.
+
+3. **Front matter was missing (added 2026-08-12).** The same repair added a
+   ``FRONT_MATTER`` block to ``_assemble_en.py`` but not here, so the Kazakh
+   manuscript opened straight at Chapter 1 while the English one carried
+   normative references, definitions and abbreviations ahead of the
+   Introduction. The three ``thesis/output/*_kz.md`` sources already existed;
+   only the insertion was absent. A missing file is now reported as suspect.
 """
 from __future__ import annotations
 import re
@@ -38,8 +45,21 @@ import sys
 from pathlib import Path
 from datetime import date
 
-CH_ROOT = Path(__file__).resolve().parent.parent / "chapters"
+THESIS = Path(__file__).resolve().parent.parent
+CH_ROOT = THESIS / "chapters"
+OUT_DIR = THESIS / "output"
 OUT = Path(__file__).resolve().parent / f"DISSERTATION_KZ_partial_{date.today()}.md"
+
+# Front matter, authored in thesis/output/ as council deliverables (EN/KZ,
+# exported to GOST docx/pdf) and NOT re-drafted under chapters/00-introduction.
+# Inserted ahead of the Introduction, in house order. Mirrors FRONT_MATTER in
+# _assemble_en.py -- the 2026-08-11 repair added it there but not here, so the
+# KZ manuscript opened straight at Chapter 1.
+FRONT_MATTER = [
+    "normative_references_kz.md",
+    "definitions_kz.md",
+    "abbreviations_kz.md",
+]
 
 # Chapter dir -> TOC chapter heading (KZ), in manuscript order.
 CHAPTERS = [
@@ -92,6 +112,11 @@ BODY_END = re.compile(r"^(### Аудармашы ескертуі|## 2-БӨЛІ�
 PART1_HDR = re.compile(r"^## 1-БӨЛІК\b", re.I)
 SHORT_BODY_WORDS = 60  # below this, a body is almost certainly a mis-extraction
 
+# Chapters listed in ORDER_OVERRIDE that are only partially translated. Filled
+# by ordered_files(); reported at the end so an incomplete chapter is visible
+# without being fatal.
+PARTIAL: list[tuple[str, list[str]]] = []
+
 
 def section_key(p: Path):
     stem = p.name.replace("-translation.md", "")
@@ -112,16 +137,24 @@ def ordered_files(cdir: str, d: Path) -> list[Path]:
 
     by_id = {f.name.replace("-translation.md", ""): f for f in files}
     want = ORDER_OVERRIDE[cdir]
-    missing = [s for s in want if s not in by_id]
     extra = [s for s in by_id if s not in want]
-    if missing or extra:
+    if extra:
+        # An unlisted file is the dangerous case: it would have to be placed by
+        # numeric sort, which for Chapter 0 is the wrong order. Still fatal.
         raise SystemExit(
-            f"ORDER_OVERRIDE for {cdir} does not match the translations on disk.\n"
-            f"  listed but absent: {missing or 'none'}\n"
-            f"  present but unlisted: {extra or 'none'}\n"
+            f"ORDER_OVERRIDE for {cdir} does not cover the translations on disk.\n"
+            f"  present but unlisted: {extra}\n"
             "Chapter 0 must not be assembled by numeric sort - update the list."
         )
-    return [by_id[s] for s in want]
+    # A *missing* translation is not dangerous, only incomplete: the sections
+    # that do exist are still emitted in listed order. Erroring on this made a
+    # partially translated Chapter 0 break the whole KZ build, which blocks
+    # incremental translation for no safety gain. Report it instead.
+    present = [s for s in want if s in by_id]
+    missing = [s for s in want if s not in by_id]
+    if missing:
+        PARTIAL.append((cdir, missing))
+    return [by_id[s] for s in present]
 
 
 def extract(p: Path):
@@ -180,6 +213,16 @@ def main():
                "төмендегі манифест қай тараулардың аудармасы бар екенін көрсетеді.")
     out.append("")
 
+    # ---- front matter -----------------------------------------------------
+    for fname in FRONT_MATTER:
+        fm = OUT_DIR / fname
+        if not fm.exists():
+            suspect.append((fname, "MISSING front-matter file"))
+            continue
+        out.append("\n---\n")
+        out.append(fm.read_text(encoding="utf-8").strip())
+        out.append("")
+
     total_words = 0
     for cdir, heading in CHAPTERS:
         d = CH_ROOT / cdir / "translations"
@@ -217,6 +260,11 @@ def main():
             print(f"   {name}: {why}")
     else:
         print("\nNo suspect extractions.")
+
+    for cdir, missing in PARTIAL:
+        print(f"\n-- {cdir}: PARTIAL, {len(missing)} translation(s) still missing "
+              f"(emitted sections are in listed order):")
+        print("   " + ", ".join(missing))
 
     print("\n# file -> words")
     for name, w in manifest:

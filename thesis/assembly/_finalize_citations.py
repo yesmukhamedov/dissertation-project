@@ -27,8 +27,19 @@ from pathlib import Path
 from datetime import date
 
 HERE = Path(__file__).resolve().parent
-SRC_EN = HERE / "DISSERTATION_EN_partial_2026-06-17.md"
-SRC_KZ = HERE / "DISSERTATION_KZ_partial_2026-06-17.md"
+
+
+def latest(prefix: str) -> Path:
+    """Newest DISSERTATION_<lang>_partial_<date>.md. Pinning a date here is how
+    the June run silently kept converting a stale 53-section manuscript."""
+    cands = sorted(HERE.glob(f"{prefix}_partial_*.md"))
+    if not cands:
+        raise SystemExit(f"no {prefix}_partial_*.md in {HERE}")
+    return cands[-1]
+
+
+SRC_EN = latest("DISSERTATION_EN")
+SRC_KZ = latest("DISSERTATION_KZ")
 BIB = HERE / "_card_bib.tsv"
 OUT_EN = HERE / f"DISSERTATION_EN_GOST_{date.today()}.md"
 OUT_KZ = HERE / f"DISSERTATION_KZ_GOST_{date.today()}.md"
@@ -106,6 +117,45 @@ K2C = {
  "hinton|2012":"krizhevsky-2012-alexnet.md","gonzalez-diaz|2024":"gonzalez-diaz-2024.md",
  "abramoff|2018":"abramoff-2018-clinical-ai-validation.md",
 }
+
+# ---- the candidate's own publications (SIR-4) -----------------------------
+# Numbered like any other source: GOST requires them in the reference list, and
+# the "prior own work" framing lives in the prose, not in the bracket, so it
+# survives conversion untouched.
+#
+# The June run left these author-year, calling the mapping ambiguous. It is not:
+# every occurrence resolves on evidence, and the ambiguity was an artefact of
+# matching on first author alone.
+#   * "Yesmukhamedov et al., 2025" carries page locators 74, 77, 78-79, 83, 85,
+#     86, 87, 88, 90 -- every one inside the NAS RK article's span 74-91, and
+#     inside no other self-work's span. -> nan-rk.
+#   * "Sapakova, Yesmukhamedov & Sapakov, 2025" is cited in 2.1.2 for
+#     "Eq. 1/Eq. 2, p. 5"; the EEJET card records exactly those two equations
+#     (CL = ceil(L/T) + beta(phi - ceil(L/T)) and CLIP LIMIT = T/80) at its p. 5.
+#   * The three remaining works appear with full author lists (Appendix D
+#     Table D.1), so they resolve on the full-join key before any fallback.
+#   * 2.4.1 cites the laser-modelling work by venue rather than by author, in
+#     both languages ("the modeling study reported in the Herald of KazUTB,
+#     2024"); "kazutb|2024" catches it through resolve()'s single-surname tier.
+# scopus-q2 and scopus-q3 are two literature cards for ONE article, exactly as
+# 0.12 discloses ("five distinct works, not six"), so both map to one entry.
+SELF_K2C = {
+ "yesmukhamedov|2025": "yesmukhamedov-nan-rk.md",
+ "yesmukhamedov-sapakova-al-haddad-daniyarova|2025": "yesmukhamedov-nan-rk.md",
+ "yesmukhamedov-sapakova-haddad-daniyarova|2025": "yesmukhamedov-nan-rk.md",
+ "yesmukhamedov-sapakova-kozhamkulova-daniyarova-armankyzy|2025": "yesmukhamedov-kbtu.md",
+ "sapakova-yesmukhamedov-sapakov|2025": "yesmukhamedov-scopus-q2.md",
+ # 2.2.2 cites the same article in the short form "Sapakova et al., 2025", in a
+ # pair the draft itself calls "a single prior-work thread"; 1.2.2 attributes
+ # that experiment (APTOS 2019, ROC-AUC 0.9638) to the EEJET article. Safe as a
+ # first-author fallback: the one other Sapakova-2025 work, the Procedia paper,
+ # is only ever cited with its full author list, which resolves first.
+ "sapakova|2025": "yesmukhamedov-scopus-q2.md",
+ "sapakova-yesmukhamedov-sapakov-yemberdiyeva-kozhamkulova|2025": "yesmukhamedov-conf.md",
+ "sapakova-daniyarova-yesmukhamedov-armankyzy-emberdieva-kaldybaeva|2024": "yesmukhamedov-kazutb.md",
+ "kazutb|2024": "yesmukhamedov-kazutb.md",
+}
+K2C.update(SELF_K2C)
 SELF_SUR = {"yesmukhamedov", "sapakova", "sapakov", "kazutb"}  # candidate's own work -> keep author-year
 APPD_SUR = {"yemberdiyeva", "kozhamkulova", "daniyarova", "armankyzy", "emberdieva",
             "kaldybaeva", "haddad", "altimemy", "procedia", "ds", "istanbul"}
@@ -160,9 +210,21 @@ PAREN = re.compile(r"\(([^()]*?[A-Za-z][^()]*?(?:19|20)\d{2}[a-z]?[^()]*?)\)")
 PAGE = re.compile(r"((?:p{1,2}\.\s*[\dIVxiv–\-]+)|(?:\d+\s*-?\s*б\.))\s*$", re.I)
 
 
+# Body starts at the Introduction when one is assembled, else at Chapter 1.
+# Front matter (normative references / definitions / abbreviations) stays in the
+# head: it is authored in thesis/output/ and carries no author-year citations.
+# NOTE: the June run hard-coded '^# 1 ', which was correct only while Chapter 0
+# was unwritten. With Chapter 0 assembled ahead of Chapter 1 that pattern would
+# have dropped the whole Introduction from BOTH numbering and conversion.
+BODY_START = [r"(?m)^# INTRODUCTION\s*$", r"(?m)^# КІРІСПЕ\s*$", r"(?m)^# 1 "]
+
+
 def split_body(path: Path):
     text = path.read_text(encoding="utf-8")
-    i = re.search(r"(?m)^# 1 ", text).start()
+    hits = [m.start() for p in BODY_START for m in [re.search(p, text)] if m]
+    if not hits:
+        raise SystemExit(f"{path.name}: no body-start heading found")
+    i = min(hits)
     return text[:i], text[i:]
 
 
@@ -278,23 +340,23 @@ def residual(conv):
 
 
 SELF_NOTE_EN = (
-    "\n\n> **Note — pending entries.** Self-citations of the candidate (Yesmukhamedov; Sapakova, "
-    "Yesmukhamedov & Sapakov, 2024–2025) and the Appendix-D publication records are intentionally "
-    "left in author-year form: the same surface form maps to different self-papers by section, so "
-    "their `[N]` numbers require manual per-section disambiguation before the final bound "
-    "submission. Their SIR-4 'prior own work' prose framing is preserved in the running text.\n")
+    "\n\n> **Note — the candidate's own publications.** The five works of the candidate are numbered "
+    "in this list on the same terms as every other source, as GOST requires. The SIR-4 framing that "
+    "identifies them as prior own work is carried by the prose that introduces each one and is "
+    "unaffected by the numbering. The two Scopus literature cards record **one** article, per §0.12 "
+    "(five distinct works, not six), and so take a single number.\n")
 SELF_NOTE_KZ = (
-    "\n\n> **Ескерту — кейінге қалдырылған жазбалар.** Кандидаттың өзіне сілтемелері (Есмұхамедов; "
-    "Сапақова, Есмұхамедов және Сапақов, 2024–2025) мен Қосымша Д жариялым жазбалары әдейі автор-жыл "
-    "түрінде қалдырылды: бірдей жазылым әртүрлі бөлімдерде әртүрлі өз мақалаға сәйкес келеді, "
-    "сондықтан олардың `[N]` нөмірлері түпкі түптеуге дейін қолмен бөлім-бойынша ажыратуды талап "
-    "етеді. Мәтіндегі SIR-4 'кандидаттың алдыңғы жеке жұмысы' тұжырымдамасы сақталған.\n")
+    "\n\n> **Ескерту — кандидаттың жеке жарияланымдары.** Кандидаттың бес жұмысы бұл тізімде GOST "
+    "талабына сай басқа кез келген дереккөзбен бірдей негізде нөмірленген. Оларды кандидаттың "
+    "алдыңғы жеке жұмысы ретінде сипаттайтын SIR-4 тұжырымдамасы әрқайсысын енгізетін мәтінде "
+    "сақталған және нөмірлеу оған әсер етпейді. Екі Scopus әдебиет карточкасы **бір** мақаланы "
+    "тіркейді (§0.12 — алты емес, бес түрлі жұмыс), сондықтан бір нөмір алады.\n")
 
 hdr_en = (f"# Automated Diabetic Retinopathy Diagnosis — EN manuscript with GOST [N] citations\n\n"
           f"> **STAGE-G (final pass) — {date.today()}.** Working author-year citations converted to "
           f"numbered `[N]` (GOST 7.32-2001 §6.11, by first appearance). {N} external sources numbered "
-          f"[1]–[{N}]. Numbers are shared with the Kazakh manuscript (language invariance). Provisional "
-          f"until the experiment-gated chapters (most of Ch 4, Ch 5, Ch 0, Ch 7) join the assembly.\n")
+          f"[1]–[{N}]. Numbers are shared with the Kazakh manuscript (language invariance). Run over "
+          f"the complete 98-section manuscript, Introduction included.\n")
 hdr_kz = (f"# Диабеттік ретинопатияны автоматтандырылған диагностикалау — GOST [N] дәйексөздері бар "
           f"қазақ тіліндегі мәтін\n\n"
           f"> **STAGE-G (түпкі өту) — {date.today()}.** Жұмыстық автор-жыл дәйексөздері нөмірленген "

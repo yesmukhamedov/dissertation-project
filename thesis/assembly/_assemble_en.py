@@ -189,9 +189,11 @@ def main():
                "author-year citations are unconverted (GOST `[N]` is a deferred "
                "single Stage-G pass). Compliance checklists, draft headers, and "
                "word-count blocks are excluded. **NOT the final bound thesis:** "
-               "figure and table placeholders are unresolved, the deferred diagrams "
-               "are undrawn, Appendices B/C/E/F are unwritten, and the four count "
-               "placeholders in §0.16 are unfilled.")
+               "figure and table placeholders are unresolved, four assets are "
+               "outstanding (FIG-1.1 path, FIG-3.8 regeneration, FIG-4.17, the "
+               "§6.1.2 DIA-6.3 wording), and the four count placeholders in §0.16 "
+               "are unfilled. All 98 sections, Appendices A-F included, are written "
+               "and approved.")
     out.append("")
 
     # ---- front matter -----------------------------------------------------

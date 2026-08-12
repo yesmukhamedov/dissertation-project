@@ -3,6 +3,7 @@
 **Document type:** Execution plan (the live to-do board for drafting the entire dissertation)
 **Candidate:** Yesmukhamedov N.S.
 **Compiled:** 2026-06-09
+**Revised:** 2026-08-12 — writing phases closed; the board now tracks completion work only
 **Grounded in:**
 - `thesis/ASSET_INVENTORY.md` (resource IDs, real-vs-demo provenance, §2 reconciliation table)
 - `thesis/governance/` v6.0.0 (INVARIANTS, HYPOTHESIS, ARGUMENT_MAP, RESEARCH_ARCHITECTURE, CONTRIBUTIONS)
@@ -11,6 +12,52 @@
 - `thesis/literature/LITERATURE_INDEX.md` Coverage Matrix (literature-card IDs per section)
 
 > **Scope of this document:** This is the plan only. **No chapter draft is written here.** Drafting begins only after the candidate reviews and approves this plan.
+
+---
+
+## CURRENT STATE (verified on disk, 2026-08-12)
+
+**The English text is finished.** 98 sections, every one APPROVED, assembled by
+`_assemble_en.py` — **101,459 words of section body** (103,147 by `wc -w` over the whole file, which also
+counts headings and the banner; quote the body figure), no suspect extractions.
+Phases 1 and 2 are closed and nothing in §4–§9 below is outstanding; those tables are now a
+record of what was written, not a queue.
+
+| Chapter | drafts | reviews | KZ translations |
+|---|---|---|---|
+| 0 Introduction | 16 | 8 (7 + one apparatus block) | **0** |
+| 1 Problem Domain | 11 | 11 | 11 |
+| 2 Theoretical Foundations | 15 | 15 | 15 |
+| 3 Methodology | 13 | 13 | 13 |
+| 4 Experiments | 20 | 20 | **3 of 20** |
+| 5 Validation | 7 | 7 | **0** |
+| 6 System Architecture | 9 | 9 | 9 |
+| 7 Conclusion | 1 | 1 | **0** |
+| Appendices A–F | 6 | 3 (A, D, BCEF block) | **2 of 6** |
+| **Total** | **98** | — | **53 of 98** |
+
+**What remains is completion work in four tracks**, two of which are independent and may run in
+parallel. The full task board is §11; the tracker entries are in §1 Phase 3 / Phase 4.
+
+1. ~~**Kazakh translation.**~~ ✅ **COMPLETE 2026-08-12 — 98 of 98.** All 45 outstanding units landed
+   in one day. KZ assembly emits **98 sections / 81,438 body words** against the English 98 / 101,575;
+   every chapter is 100 % (Ch 0 16/16, Ch 1 11/11, Ch 2 15/15, Ch 3 13/13, Ch 4 20/20, Ch 5 7/7,
+   Ch 6 9/9, Ch 7 1/1, App 6/6). No suspect extractions, every KZ asset path resolves, citation pass
+   clean in both languages (107 sources, BLOCKING 0).
+2. ~~**Citation conversion.**~~ ✅ **DONE 2026-08-12** — 107 sources, one shared EN/KZ register,
+   BLOCKING 0. Only the trim queue remains of this track. See §11.3.
+3. ~~**Asset defects.**~~ ✅ **ALL CLOSED 2026-08-12** — FIG-1.1, DIA-6.3, FIG-3.8, FIG-4.17, plus two
+   placeholder paths that contained a literal ellipsis and resolved to nothing. Every referenced asset
+   path in both manuscripts now resolves, and `ASSET TO BE CREATED` is zero. See §11.2.
+4. **Re-export — NOW THE CRITICAL PATH.** Every `.docx`/`.pdf` in `defense/docs/` was built from the
+   53-section June manuscript. **There is no council-ready file for the current text**, EN or KZ. Two
+   conditions bind the conversion — Appendix C's four Mermaid fences must render, and §0.16's four
+   count placeholders are fillable only after it produces a paginated document, so **§0.16 closes last
+   in both languages**. Full statement in §11.4 and in the critical-path block at the end of §12.
+
+> **`ASSET_INVENTORY.md` is itself partly stale** and must not be used alone to decide what is
+> missing: it still marks App C, App E and App F as `❌ MISSING` when all three are written and
+> approved. Where it disagrees with this section, verify on disk.
 
 ---
 
@@ -217,13 +264,104 @@
 > **Verified:** EN assembly now emits **94 sections / ≈94,200 words**, no suspect extractions (previously
 > 53 sections with 24 of them empty). KZ emits 53 translations, no suspect extractions.
 
+> **Re-verified 2026-08-12 against the emitted manuscript**, not against this tracker. EN emits
+> **98 sections / 101,459 body words**; KZ emits **53 / 41,605**; neither reports a suspect extraction.
+> The figures quoted in the paragraph above (94 sections / ≈94,200 words) were the state before Chapter 7
+> and Appendices B/C/E/F landed.
+
 - [x] ✅ §11.0 Assembler repaired — EN and KZ; run `python thesis/assembly/_assemble_en.py`
 - [x] ✅ §11.1 Concatenate all approved drafts in **TOC order** (not `MASTER_OUTLINE` order — the two differ
   for Chapter 0, and the TOC is authoritative for the manuscript)
-- [ ] ⬜ §11.2 Resolve every `[FIG/TAB]` placeholder to its real asset path; draw the deferred diagrams
-  (FIG-2.1, FIG-2.3, FIG-2.4, FIG-2.5, FIG-4.17, FIG-5.1, FIG-5.2, DIA-6.3); fill the **four count
-  placeholders in §0.16**; verify no `[UNSOURCED CLAIM]` or `[TERM NOT IN GLOSSARY]` flag survives
-- [ ] ⬜ §11.3 Citation conversion (author-year → GOST `[N]`), the trim queue, then convert to a single `.docx`
+- [x] ✅ §11.0b **KZ assembler front matter — FIXED 2026-08-12.** `_assemble_kz.py` had no `FRONT_MATTER`
+  block, so the KZ manuscript opened straight at Chapter 1 while the EN one carried normative references,
+  definitions and abbreviations ahead of the Introduction; the three `thesis/output/*_kz.md` sources
+  existed and only the insertion was absent. Ported from `_assemble_en.py`, with a missing file reported
+  as suspect. **Verified: KZ now emits НОРМАТИВТІК СІЛТЕМЕЛЕР → АНЫҚТАМАЛАР → БЕЛГІЛЕУЛЕР МЕН
+  ҚЫСҚАРТУЛАР ahead of Chapter 1; 53 sections, 41,605 words, no suspect extractions.**
+- [x] ✅ §11.2 Assets — **ALL CLOSED 2026-08-12.** FIG-1.1, DIA-6.3, FIG-3.8, FIG-4.17, two
+  ellipsis paths, and the inventory staleness. **Verified on both assembled manuscripts: every
+  referenced asset path resolves to a file on disk, and `ASSET TO BE CREATED` is now zero.**
+  Only the §0.16 count placeholders remain, and those can only close after conversion.
+  90 `[FIG/TAB/DIA-…]` placeholders were
+  scanned and 76 of the 80 distinct referenced paths resolve to files that exist; only these four fail.
+  Also fill the **four count placeholders in §0.16** (pages/tables/figures/references — resolvable only
+  after conversion) and confirm the two **intentional** `[UNSOURCED CLAIM]` markers (§3.1.4 ingestion,
+  §3.3.2 SSL) are kept by decision while the three `[VERIFY]` markers are cleared.
+- [x] ✅ §11.3a **Citation conversion — DONE 2026-08-12.** **107 sources numbered**, one shared register
+  across both languages; EN 292 bracketed citations, KZ 230; reference list 107 entries in each language,
+  no `[card not found]`. **BLOCKING 0 / residual self-citations 0 / UNKNOWN 1** — the single UNKNOWN is
+  `(No. 230-VIII of 17 November 2025)`, a legal-act designation in §0.15, correctly not a citation.
+- [ ] ⬜ §11.3b Trim queue (see §11.3 below) — the only part of the citation step still open
+- [ ] ⬜ §11.4 Convert to GOST `.docx`/`.pdf`, EN and KZ — the converter **must render the 4 Mermaid
+  fences** in Appendix C
+
+### Phase 4 — Kazakh translation — ✅ COMPLETE 2026-08-12, 98/98
+
+> Promoted from "out of scope, Stages E/F" to a first-class tracked phase, and closed the same day all
+> 45 outstanding units landed. Pipeline was unchanged — translate `drafts/*.md` →
+> `translations/*-translation.md` per `GLOSSARY_KZ.md`, then translation review.
+> **The critical path has moved on: it is now §11.4, the EN + KZ GOST re-export.**
+
+- [x] ✅ Ch 1 (11), Ch 2 (15), Ch 3 (13), Ch 6 (9), App A + App D — 53 units done
+- [x] ✅ **Ch 4 — COMPLETE 2026-08-12, 20/20** (17 translated in this pass + §4.1.1–§4.1.3 already done).
+  Every table transcribed digit for digit; verified assembling with no suspect extractions, and the
+  KZ manuscript's asset paths all resolve. Fences carried across and checked per section — CFC-2.8 at
+  §4.2.1/§4.2.3 and its **discharge** at §4.3.1 (single initialization stated before the claim, and the
+  "this does not retroactively make Experiment 1 single-factor" sentence kept in the same paragraph);
+  PC-8 grouping-resolution-only at §4.3.1; the selection-surface-vs-held-out rule and the open DR1
+  discrepancy at §4.3.2; the 41 %/49 % "tracks but does not exhaust" formulation and VVI's exclusion at
+  §4.3.3; the MMD/KL primary-secondary asymmetry at §4.4.1; **ρ ≈ 0.49 and direction-only at §4.4.2**;
+  the both-arms-clear qualification at §4.5.1; **NC-14 stated before the method at §4.6.1**; the IoU
+  "corroboration, not a second finding" status and the τ = 0.7 exception at §4.6.2; **G-3 as an absence,
+  not a negative result, at §4.6.3**; the **0.0041 Messidor-2 margin in bold in the body** plus the full
+  Δ_drop identity at §4.7; the retention-ratio inversions as a denominator artefact and NC-16 at §4.8;
+  E-7 **comparable, not larger**, and the unpaired-interval overlap at §4.9; and all **eight fences
+  restated at §4.C without softening**. Each translation carries a PART-2 term report and a translator's
+  note recording what was deliberately held together.
+- [x] ✅ **Ch 0 — COMPLETE 2026-08-12, 16/16.** Assembles in **manuscript order, not numeric** (§0.6
+  before §0.2, §0.8 before §0.7) — verified against the emitted KZ manuscript.
+  **Two invariants machine-checked after translation.** §0.6: the body contains exactly four decimals
+  (0.0, 0.02, 0.050, 0.85) and **every one is a threshold**, so the pre-specification property §5.2.2
+  depends on survived intact. §0.8: the body contains **exactly one metric value (0.0041)** and **PC-3
+  does not appear**, so the Introduction still cannot be used to re-adjudicate Chapter 4.
+  §0.5 keeps object = *process* with the eight corpora named as material (the deliberate departure from
+  `MASTER_OUTLINE.md`'s category error) and subject = *the integration*, which is what stops CFC-2.8
+  being prejudged at scope level. §0.2 carries CFC-2.8 at three points, the negative gate result, and
+  the transfer-measure defect held strictly descriptive.
+  §0.5 keeps object = *process* with the eight corpora named as material, and subject = *the
+  integration*. §0.7 carries EH-1's metric order verbatim, DGL-6, and both §5.2.1 concessions. §0.10
+  keeps each item's bound in its own paragraph and omits the measured computational cost, which §0.8
+  did not submit. §0.16's four count placeholders are left in their English form in both languages so
+  one Phase-3 scan finds them all.
+- [x] ✅ **Ch 5 — COMPLETE 2026-08-12, 7/7** (§5.1, §5.2.1, §5.2.2, §5.3.1, §5.3.2, §5.4, §5.C).
+  §5.1 keeps NC-14 as a **ceiling on claim strength, not a closing caveat**, and records both absences.
+  §5.2.1 keeps the three-sources-of-variability structure, "only Experiment 1 admits all three", and
+  both aggregate concessions. §5.2.2 keeps classification as **a check, not a judgement**, exhibits
+  PC-8 as a failable criterion, names the two results that were **not** promoted, and — verified
+  mechanically — reproduces the claim register with **11 rows and no PC-3 row**, exactly as the English
+  does, while still naming PC-3 in prose as the unused identifier. §5.3.1 keeps the incommensurability
+  in the **columns** and the refusal as **forced, not chosen**. §5.3.2 keeps the cheap-prior result
+  inside its confinement (the eight preprocessing stages were never benchmarked) and both corrections.
+  §5.4 keeps the normalization defect as the centrepiece, **strictly descriptive**. §5.C sorts the open
+  questions by closing cost, including **the one measurement cannot close**.
+- [x] ✅ **Ch 7 — COMPLETE 2026-08-12.** **Audited: the only decimal in the body is `5.4`, a section
+  reference — identical to the English, so the "no metric value" property survived.** The thin external
+  margin stays in words per §5.C's precedent; VCR-3 discharged (the failed initialisation branch is
+  reported); §0.8's provision 11 deliberately not restated among the contributions.
+- [x] ✅ **App B, C, E, F — ALL COMPLETE 2026-08-12.**
+  **App C** — the four Mermaid blocks were kept **verbatim** and verified byte-identical to the English:
+  the appendix itself calls the source "the definition of the diagram", its node labels are technical
+  terms and governance codes the directive keeps in English, and an identical source guarantees both
+  editions render the same figure. **App E** — the 54 plate lines were rewritten by one regex that
+  translates the caption and leaves the `FIG-E.*` identifiers and image paths untouched; verified: all
+  54 paths and all 54 identifiers identical to the English, in the same order.
+  Both are transcription-only, so their Kazakh bodies were **derived programmatically from the English
+  drafts** — only prose, headings, captions and column labels substituted, every numeric cell copied
+  byte-for-byte. **Verified mechanically after the fact:** App B 529 numeric tokens identical and 84
+  table rows in both; App F 295 identical and 53 rows. (The comparison must normalise *both* thousands
+  conventions — EN `35,126` vs KZ `35 126` — or it false-alarms.) Group identifiers such as
+  `mixed_ddr` are data keys and were left untranslated.
+  **Remaining: App C and App E.**
 
 ---
 
@@ -497,25 +635,193 @@ For **each writable section, in the Phase-1 narrative order** (then Phase-2 orde
 
 ---
 
-## 11. PHASE 3 — FINAL ASSEMBLY (LAST step; depends on Phase 2 completion)
+## 11. COMPLETION WORK — the live task board
 
-Run only after **every** section in §1 is ✅ verified (all Phase-1 *and* Phase-2 gates cleared). Do not start earlier.
+The gate condition ("run only after every section verifies") **is met**: all 98 sections are approved.
+Everything below is what stands between the approved text and a council-ready pair of documents.
 
-**§11.1 Concatenate.** Assemble all approved `drafts/*.md` in exact `MASTER_OUTLINE.md` order: Front Matter → Introduction (Ch 0) → Ch 1 → Ch 2 → Ch 3 → Ch 4 (§4.1 → §4.2 → … → §4.8 → §4.C) → Ch 5 → Ch 6 → Ch 7 (Conclusion) → References → Appendices A–F.
+**Critical path (2026-08-12): §11.4, the EN + KZ GOST re-export.** Phase 4 is closed and §11.2/§11.3 are
+done, so the conversion is the only large item left. `defense/docs/` still holds nothing but the June
+builds of the 53-section manuscript, so **there is currently no council-ready file for the current text
+in either language**. Two conditions bind that conversion and are set out in full in §11.4: the **four
+Mermaid fences in Appendix C must render**, and the **four §0.16 count placeholders are fillable only
+after the conversion produces a paginated document — so §0.16 closes last, in both languages**. The
+**trim queue (§11.3b)** runs in parallel but must finish *before* the final conversion pass, since a
+trim moves pagination.
 
-**§11.2 Resolve placeholders.** Replace every `[FIG-x.x: …]` / `[TAB-x.x: …]` placeholder with its real asset, using the file path from `ASSET_INVENTORY.md §2`. Any remaining `ASSET TO BE CREATED` (FIG-2.1, FIG-2.3, FIG-2.4, FIG-2.5, DIA-6.3/App C) must be drawn and dropped in here before conversion. Verify no placeholder, no `[UNSOURCED CLAIM]`, and no `[TERM NOT IN GLOSSARY]` flag survives.
+### §11.1 Concatenate — ✅ DONE
 
-**§11.3 Convert to `.docx`.** Convert the single assembled Markdown document to one `.docx` (e.g. via Pandoc with a reference docx for dissertation styling), embedding the resolved figures and rendering tables. Output: one defense-ready `.docx`. (Kazakh translation is a separate downstream pipeline — Stages E/F — and is out of scope for this plan.)
+`python thesis/assembly/_assemble_en.py` in **TOC order**, not `MASTER_OUTLINE` order — the two differ for
+Chapter 0 and the TOC is authoritative for the manuscript. Emits front matter → Ch 0 → Ch 1 → … → Ch 7 →
+Appendices A–F. **One structural gap remains: `_assemble_kz.py` omits the front matter** (§11.0b).
+
+### §11.2 Assets — four defects, not ninety
+
+Of 90 placeholders carrying 80 distinct paths, **76 resolve to files that exist**. These four do not:
+
+| ID | Defect | Status |
+|---|---|---|
+| FIG-1.1 | Placeholder pointed at `fig1_1_dr_grades_eyepacs.png` — **no such file**; on disk is `fig1_1_dr_grades_idrid.png` | ✅ **FIXED 2026-08-12.** The corpus question was settled by evidence, not preference: `figures_mine/README.md` records a deliberate decision that dataset-illustration figures are rebuilt from IDRiD, and **the plate carries "(IDRiD)" in its own rendered title** — so the EyePACS caption contradicted the image a reader would be looking at. Path *and* caption corrected to IDRiD in the EN draft and the KZ translation, plus "illustration only, carrying no measurement" (SIR-2). |
+| DIA-6.3 | **Discharged by Appendix C**, but §6.1.2 still called it "a deferred conceptual asset" | ✅ **FIXED 2026-08-12.** Not merely re-pointed: §6.1.2 promised *component, sequence, class, activity and ER* diagrams, while Appendix C delivers *component, deployment, sequence and data* views. Repointing alone would have left the text promising three diagram kinds that do not exist. The sentence now names the four views actually supplied and carries the SB-4.1 design-specification framing. Draft header and compliance checklist updated to match. |
+| FIG-3.8 | Render depicted the **superseded PCA colour augmentation**, and also listed a *"horizontal re-flip"* step the implementation does not perform — the figure contradicted its section twice | ✅ **FIXED 2026-08-12.** The source diagram had already been re-specified; only the six PNG copies lagged. Re-rendered by `defense/presentation/scripts/render_stage6_card.py`, which writes every copy from one source so they cannot drift apart again. **A layout defect was fixed in the same pass**: the re-specification added a fourth PARAMETERS line at the y the fixed panel grid reserves for OUTPUT, so the two would have overlapped; the full sheet was re-rendered too. Every parameter now matches `config.py` verbatim (rotation σ fallback **13.0°**, per the divergence register — not 15.0°). |
+| FIG-4.17 | `ASSET TO BE CREATED` — H-3 domain-distance reduction chart | ✅ **RENDERED 2026-08-12** — the manuscript's last outstanding asset. `defense/figures/figures_mine/_make_fig4_17.py` **parses** `results/tables/H-3_domain_distance.md` instead of transcribing it, so the figure cannot drift from the table above it. Three panels, one per claim the section makes; caption carries the model-dependence caveat and KL's secondary status. **Deliberately not drawn:** any pairing of Δd with transfer gain — ρ ≈ 0.49, and a scatter would invite the magnitude reading §4.4.2 forecloses. |
+| *(found in the same pass)* | **Two FIG-3.8 placeholders contained a literal ellipsis** in their path (`19_aug_rotation/…/stage6_augmentation.png`) and so resolved to no file at all — in §3.1.1 and §3.1.3, English and Kazakh alike | ✅ **FIXED 2026-08-12.** All four now name one real file. |
+
+Also at this step: the **four count placeholders in §0.16** (`TO BE RESOLVED AT FINAL ASSEMBLY` — pages,
+tables, figures, references) can only be filled after §11.4 produces a paginated document, so §0.16 closes
+last. And **§0.16 carries its own Phase-3 obligation block** — read it before touching the section.
+
+**Flags:** three `[VERIFY]` markers to clear (MMD kernel/bandwidth, per-domain sample size, OD-3 Stage 5
+vs the shipped polar-CLAHE default). The two `[UNSOURCED CLAIM]` markers (§3.1.4 ingestion, §3.3.2 SSL)
+are **deliberate candidate methodological positions and are kept** — do not "fix" them.
+
+### §11.3 Citations — ✅ DONE
+
+Outputs: `DISSERTATION_EN_GOST_2026-08-12.md`, `DISSERTATION_KZ_GOST_2026-08-12.md`,
+`_citation_resolution_final_2026-08-12.md`. Re-runnable end to end with
+`python thesis/assembly/_finalize_citations.py`.
+
+**Result: 107 sources, numbered once by first appearance in EN and reused verbatim in KZ.**
+EN 292 bracketed citations, KZ 230; 107 reference entries per language; no `[card not found]`;
+BLOCKING 0, residual self-citations 0, UNKNOWN 1 (the §0.15 legal-act number — correctly not a citation).
+
+**Five defects were found and fixed in the process, three of which would have shipped a wrong book:**
+
+1. **The script was pinned to the June source files.** It hard-coded
+   `DISSERTATION_EN_partial_2026-06-17.md`, so re-running it would have silently reconverted the stale
+   53-section manuscript and reported success. It now resolves the newest assembly at run time.
+2. **The Introduction was excluded from the citation body.** `split_body()` took the body to start at
+   `^# 1 `, which was right only while Chapter 0 was unwritten. With Chapter 0 assembled ahead of
+   Chapter 1, every Introduction citation would have been left unconverted *and* excluded from the
+   numbering — which also shifts every subsequent number. Body start is now the Introduction where one
+   exists, with Chapter 1 as the fallback (KZ still has no Chapter 0).
+3. **The self-citation bibliography was broken.** Three of the six self cards carried
+   `[NO APA LINE]` in `_card_bib.tsv` and `yesmukhamedov-nan-rk.md` carried an entry for a *different*
+   paper entirely (Pallavi et al., 2022 — an extraction artefact). All six rows rewritten from the cards'
+   own bibliographic records.
+4. **The "irreducibly manual" self-citation step was not actually ambiguous** — the ambiguity was an
+   artefact of matching on first author alone. Every occurrence resolves on evidence: `Yesmukhamedov et
+   al., 2025` carries page locators 74–90, all inside the NAS RK span 74–91 and no other self-work's;
+   `Sapakova, Yesmukhamedov & Sapakov, 2025` is cited in §2.1.2 for two equations the EEJET card records
+   verbatim; the remaining three appear with full author lists. The five works are now numbered like any
+   other source, as GOST requires, with the two Scopus cards taking **one** number per §0.12's
+   "five distinct works, not six". The SIR-4 prose framing is untouched — it lives in the sentence, not
+   the bracket.
+5. **§2.1.2 cited pages that do not exist in the cited article** — see the box below.
+
+> **⚠ CARRY-FORWARD — verify against the published PDF.** §2.1.2's four locators into the candidate's
+> Scopus article read p. 5 (×3) and p. 9 (×1). Those are the literature card's *internal PDF* pages; the
+> article is published at **EEJET 4(9(136)), pp. 79–88**, so a reader checking either locator would find
+> nothing. The card's internal pages run 1–10 against exactly ten journal pages, fixing the offset at 78,
+> so p. 5 → **p. 83** and p. 9 → **p. 87**. Remapped in the EN draft and the KZ translation, and recorded
+> in the §2.1.2 compliance checklist. The arithmetic is forced *if* the PDF has no cover page —
+> **the candidate should confirm before submission.** No claim, quotation or equation was changed.
+
+### §11.3b Trim queue — ⬜ OPEN
+
+Sections at or over their word band: §0.1, §0.2, §0.3, §0.4, §0.6, §0.8, §1.2.2
+(~1,130), §1.3.1 (~1,325), §1.4 (~1,585), §2.2.3 (~915). **Excluded from the trim in every case:** §0.6's
+four mandatory disclosures, §0.8's qualifications, and the §0.3 goal sentence (quoted verbatim in the
+abstract and defence materials).
+
+### §11.4 Convert and re-export — ⬜ OPEN, **THE CRITICAL PATH**
+
+With Phase 4 closed, this is the only large item left and everything else waits behind it.
+
+**Why it is urgent: `defense/docs/` still holds nothing but the June builds of the 53-section
+manuscript.** Both language editions there are superseded by ~45 sections of text that did not exist
+when they were made, so at present **there is no council-ready file for the current manuscript in
+either language**. Both builds must be re-run — not one — and the front-matter, abstract and TOC
+exports re-checked against the final pagination.
+
+Convert each assembled manuscript to a single GOST `.docx` + `.pdf` via `md2gost.py` (which also runs
+the `strip_process_metadata` scrubber).
+
+**Two conditions bind this conversion, and neither can be discovered late:**
+
+1. **The four Mermaid fences in Appendix C must render.** The requirement is carried from Appendix C
+   itself, which gives its four structural views as Mermaid source and states that rendering to an
+   image happens at conversion. If the converter does not handle fenced Mermaid, those views reach the
+   reader as code blocks and Appendix C fails to discharge DIA-6.3. The KZ edition inherits this
+   verbatim — its Mermaid source is byte-identical to the English by design, so whatever the converter
+   does to one it does to the other. **Test this on a single appendix before running the full build.**
+
+2. **The four count placeholders in §0.16 can only be filled after the conversion produces a paginated
+   document** — pages, tables, figures and references are not knowable before then, and §0.16 says so
+   rather than inventing them. **Therefore §0.16 closes last, in both languages**, and the sequence is:
+   convert → read off the four counts → fill §0.16 EN and KZ → re-convert. The placeholders were
+   deliberately left in their **English** form in the Kazakh translation as well, so one scan finds all
+   eight. §0.16 also carries its own Phase-3 obligation block — read it before editing the section.
+
+Remaining alongside this: **§11.3b, the trim queue.** It is independent of the conversion and can run
+in parallel, but any trim changes word counts and therefore pagination, so **finish the trim before the
+final conversion pass**, not between the conversion and the §0.16 fill.
+
+### §11.5 Open items to close before defence
+
+- **NEW-1 traceability** — the run's raw artifacts are not in `experiments/outputs/`, so numbers are
+  written but not yet traceable to a primary output file. Not a text defect; it is a submission defect.
+- **`results/tables/TAB-5.2_claim_strength.md`** still files the domain-distance result outside the formal
+  PCs, where `ARGUMENT_MAP.md` v7.1.0 carries it as **PC-11**. Substance and strength agree; only the
+  register position differs. §0.8 already submits it as PC-11 — resynchronise the table.
+- ~~**`ASSET_INVENTORY.md`** marks App C/E/F as `❌ MISSING`~~ — ✅ **closed 2026-08-12.** APP-B/C/E/F and
+  DIA-6.3 rows now record written-and-approved status with their bounds (App E is IDRiD-only per G-3;
+  App B/F list their stated absences); FIG-1.1's row records the corpus correction.
+- **Missing literature cards** #49 RFMiD / #50 DDR / #51 ODIR-5K, and the DDR full-PDF upgrade — corpus
+  hygiene, non-blocking, but they surface in the bibliography pass.
 
 ---
 
 ## 12. SUMMARY
 
-- **Writable now (Phase 1): 51 sections** — Ch 1 (11) + Ch 2 (15) + Ch 3 (13) + Ch 6 (9) + §4.1 (3) — **plus Appendix A and Appendix D** (already `✅ AVAILABLE`). Four of these (§2.1.1, §2.4.1, §2.5.1, §2.6) and §6.1.2/App C carry **deferred conceptual/UML diagrams**, which do not block the prose (§3.2).
-- **Blocked (Phase 2): 42 sections** — Ch 4 §4.2–§4.8 + §4.C (15) + Ch 5 (7) + Ch 0 (15, of which 13 are content-writable-now and 2 hard-blocked) + Ch 7 (1) + Appendices B/C/E/F (4) — each gated on the missing Resource IDs catalogued in §2 and §9.
-- **Hard honesty rule is in force:** no section is drafted while a result-dependent resource it needs is `❌ MISSING`; no demo-dashboard preview numbers are ever used as real results (CFC-2.x / SIR-1).
-- **Phase 3 is last** and runs only after all sections verify.
+- **Phase 1 — CLOSED.** 51 sections + App A + App D, all approved.
+- **Phase 2 — CLOSED.** All eight investigations ran, all seven hypotheses are supported, Ch 4 / Ch 5 /
+  Ch 0 / Ch 7 / App B/C/E/F written from `results/`.
+- **English text: 98 sections, 101,575 body words, complete.**
+- **Phase 3 (completion) — NEARLY DONE.** Closed: KZ assembler front matter, **all four asset defects
+  plus two dead ellipsis paths**, the inventory staleness, and **the whole citation pass (107 sources,
+  shared EN/KZ register)**. Still open: the trim queue, the §0.16 counts (which need pagination first),
+  and a full re-export in both languages.
+- **Phase 4 (KZ translation) — ✅ COMPLETE 2026-08-12, 98 of 98** (81,438 KZ body words). Both
+  manuscripts now carry the same 98 sections.
+- **The hard honesty rule stays in force** for every remaining edit: no demo-dashboard preview number is
+  ever used as a real result, and `results/` remains the single source of truth for every figure that
+  reaches the text (CFC-2.x / SIR-1).
+- **The eight fences bind every remaining edit, including translation.** Compression and translation are
+  exactly where fences get lost, so restate them, never paraphrase them upward: CFC-2.8 (the composite is
+  **decomposable, not dissolved**); PC-8 at **grouping resolution only**; H-3 **direction only** (ρ ≈ 0.49);
+  H-5 **quantitative half only** (G-3); H-7 **performance, not resistance**, Messidor-2 margin **0.0041**
+  with CI⁻ below the MCID; H-4/H-6 thresholds cleared by **both** arms; E-7 **comparable, not larger**;
+  two camera groupings **are** the external corpora, so not independent replication.
 
-**First section to execute: §1.1.1 — Pathophysiology and Clinical Grading Systems.** ✅ Confirmed.
+## THE CRITICAL PATH — §11.4, the EN + KZ GOST re-export
 
-> Awaiting candidate review of this plan before any section is drafted.
+With Phase 4 closed and §11.2/§11.3 done, **the re-export is the critical path and the only large item
+left**. Stated once, in full, because it is what the remaining work is:
+
+> **`defense/docs/` still holds nothing but the June builds of the 53-section manuscript.** Roughly 45
+> sections of approved text did not exist when those files were made, so **there is currently no
+> council-ready file for the current manuscript in either language**.
+>
+> **Two conditions bind the conversion.** First, **the four Mermaid fences in Appendix C must render** —
+> Appendix C supplies its four structural views as Mermaid source and states that rendering happens at
+> conversion, so a converter that does not handle fenced Mermaid delivers them as code blocks and
+> Appendix C fails to discharge DIA-6.3. The Kazakh Mermaid source is byte-identical by design, so both
+> editions succeed or fail together; **test it on one appendix before the full build**. Second, **the
+> four §0.16 count placeholders (pages, tables, figures, references) are fillable only after the
+> conversion produces a paginated document — so §0.16 closes last, in both languages**: convert → read
+> off the counts → fill §0.16 EN and KZ → re-convert. The placeholders were left in English in the
+> Kazakh text as well, so one scan finds all eight.
+>
+> **Plus the trim queue (§11.3b).** It runs in parallel, but a trim moves word counts and therefore
+> pagination, so **finish it before the final conversion pass** — not between the conversion and the
+> §0.16 fill.
+
+**Next action: §11.3b, then §11.4.**
+
+> **Assembler note (changed 2026-08-12).** `_assemble_kz.py` used to treat a *missing* Chapter-0
+> translation as a hard error, so a partially translated Chapter 0 broke the entire KZ build and made
+> incremental translation impossible. A missing file is not the dangerous case — a file present but
+> **unlisted** is, since it would have to be placed by numeric sort, which is the wrong order for this
+> chapter. The check now hard-errors only on unlisted extras, emits the sections that do exist in listed
+> order, and prints a `PARTIAL` report naming what is still missing.

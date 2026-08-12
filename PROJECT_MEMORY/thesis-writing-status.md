@@ -1,6 +1,6 @@
 ---
 name: thesis-writing-status
-description: "Dissertation WRITTEN TEXT COMPLETE — Chapters 0–7 + Appendices A–F all APPROVED (98 sections, ~101k words). Abstract EN/KZ/RU, governance and both assemblers synced/repaired. Remaining: KZ translations (45 units), Phase-3 asset/placeholder/citation passes, NEW-1 traceability"
+description: "Dissertation WRITTEN TEXT COMPLETE — Chapters 0–7 + Appendices A–F all APPROVED (98 sections, 101,459 body words). PLAN.md is now a completion board. Remaining: KZ translations (45 of 98 units), citation pass, FIG-3.8/FIG-4.17, EN+KZ re-export, NEW-1 traceability"
 metadata:
   type: project
 ---
@@ -100,6 +100,161 @@ where `ASSET_INVENTORY.md` records them. Repo-wide asset searches on this tree m
 `find -path X -prune -o -name Y -print` casually; it silently under-reports.
 
 **Assembly re-run: 98 sections / ~101,050 words, no suspect extractions.**
+
+## Completion pass, 2026-08-12 — PLAN.md rewritten as a completion board; four items closed
+
+`thesis/PLAN.md` no longer tracks writing. It now carries a **CURRENT STATE** table (verified on disk,
+not from checkboxes), a Phase-4 KZ-translation tracker, and §11 as the live completion board.
+**Verified counts to reuse instead of re-deriving:** EN = 98 sections / **101,459 body words**
+(103,147 by `wc -w`, which also counts headings and banner — quote the body figure); KZ = 53 / 41,605.
+Of 90 `[FIG/TAB/DIA]` placeholders carrying 80 distinct paths, **76 resolve to files that exist**.
+
+**1. `_assemble_kz.py` had no `FRONT_MATTER` block** — the 2026-08-11 repair added it to the EN
+assembler only, so the KZ manuscript opened straight at Chapter 1 for months while EN carried normative
+references / definitions / abbreviations. The three `thesis/output/*_kz.md` sources existed; only the
+insertion was absent. Ported, missing file now reported as suspect, verified.
+
+**2. FIG-1.1 named the wrong corpus.** The placeholder pointed at `fig1_1_dr_grades_eyepacs.png`, which
+**does not exist**; `figures_mine/README.md` records a deliberate decision that dataset-illustration
+figures are rebuilt from IDRiD, and **the plate carries "(IDRiD)" in its own rendered title** — so the
+caption contradicted the image itself. Path and caption corrected in the EN draft *and* the KZ
+translation. The EyePACS generator `_make_dataset_montages.py` is still on disk but its output was
+never kept — do not "restore" the EyePACS path.
+
+**3. DIA-6.3 needed more than re-pointing.** §6.1.2 called it a deferred asset *and* promised
+component/sequence/**class/activity/ER** diagrams, whereas App C delivers component/deployment/sequence/
+**data**. Repointing alone would have left three promised diagram kinds that do not exist; the sentence
+was rewritten to the four views actually supplied, SB-4.1 framing retained.
+
+**4. `ASSET_INVENTORY.md` staleness closed** for APP-B/C/E/F + DIA-6.3 + FIG-1.1.
+
+## Citation pass — DONE 2026-08-12 (`_finalize_citations.py`, re-runnable)
+
+**107 sources, numbered once by first appearance in EN and reused verbatim in KZ.** EN 292 brackets,
+KZ 230; 107 reference entries per language; no `[card not found]`; **BLOCKING 0, residual self-citations
+0, UNKNOWN 1** — the §0.15 legal-act number `(No. 230-VIII …)`, correctly not a citation.
+
+**Five defects found and fixed; three would have shipped a wrong book:**
+1. The script was **pinned to `..._partial_2026-06-17.md`** — re-running it would have silently
+   reconverted the stale 53-section manuscript and printed success. Now resolves the newest assembly.
+2. **`split_body()` started the body at `^# 1 `**, correct only while Ch 0 was unwritten. With Ch 0
+   assembled ahead of Ch 1, every Introduction citation would have been left unconverted *and* dropped
+   from the numbering, shifting every later number. Now starts at the Introduction, Ch 1 as fallback.
+3. **Self-citation bibliography was broken**: 3 of 6 self cards were `[NO APA LINE]` in `_card_bib.tsv`
+   and `yesmukhamedov-nan-rk.md` held an entry for a *different paper* (Pallavi et al. 2022 — extraction
+   artefact). All six rewritten from the cards.
+4. **Self-citations were never actually ambiguous** — the ambiguity was an artefact of matching on first
+   author alone. `Yesmukhamedov et al., 2025` locators (74–90) fall only inside NAS RK's 74–91;
+   `Sapakova, Yesmukhamedov & Sapakov, 2025` matches the EEJET card's two recorded equations. Now
+   numbered like any source (GOST requires it); two Scopus cards = **one** number per §0.12's "five
+   distinct works, not six"; SIR-4 framing lives in the prose, so conversion leaves it intact.
+5. **⚠ OPEN FOR THE CANDIDATE — §2.1.2 cited pages that do not exist in the cited article.** Locators
+   read p. 5 (×3) / p. 9 (×1); those are the card's *internal PDF* pages, but the article is published
+   at **EEJET 4(9(136)), pp. 79–88**. Card pages 1–10 map onto exactly ten journal pages ⇒ offset 78, so
+   p. 5 → **83**, p. 9 → **87**. Remapped in EN draft + KZ translation, recorded in the §2.1.2 checklist.
+   **Forced only if the PDF has no cover page — verify against the published article.**
+
+## Assets — ALL CLOSED 2026-08-12; `ASSET TO BE CREATED` is now zero
+
+**Verified on both assembled manuscripts: every referenced asset path resolves to a file on disk.**
+
+- **FIG-4.17** (the manuscript's last outstanding asset) rendered by
+  `defense/figures/figures_mine/_make_fig4_17.py`, which **parses `results/tables/H-3_domain_distance.md`
+  rather than transcribing it** — the figure cannot drift from the table printed above it. Three panels:
+  distance per arm (ordering visibly preserved), Δd vs MCID_d = 0 (all six intervals clear of zero), KL
+  reduction vs its 34–38 % band. **Deliberately not drawn:** any pairing of Δd with transfer gain
+  (ρ ≈ 0.49 — a scatter would invite the magnitude reading §4.4.2 forecloses).
+- **FIG-3.8** re-rendered by `defense/presentation/scripts/render_stage6_card.py`. The old card showed the
+  retired **PCA colour jitter** *and* a **"horizontal re-flip"** step `augmentation_unified.py` does not
+  perform. The source SVG had already been re-specified — only the six PNG copies lagged; the script now
+  writes all six from one source. **Layout defect fixed in the same pass:** the re-specification put a 4th
+  PARAMETERS line at the y the fixed panel grid reserves for OUTPUT. Parameters verified against
+  `config.py`; rotation σ fallback stays **13.0°** per [[governance-implementation-divergences]].
+- **Two FIG-3.8 placeholders contained a literal ellipsis** in their path
+  (`19_aug_rotation/…/stage6_augmentation.png`) in §3.1.1 and §3.1.3, EN and KZ — they resolved to no file
+  at all. Fixed in all four.
+- ⚠️ Folder `defense/presentation/assets/preprocessing/23_aug_pca_color/` still carries the retired name.
+  Path only, contents current; renaming would ripple into demo assets, so it was left.
+
+**Gotcha:** rendering an SVG via headless Chrome from Git Bash — build the file URI with
+`Path.as_uri()`, never `file:///$PWD/...`. The malformed form silently screenshots Chrome's
+*"file not found"* error page **over the target PNG** (recoverable here only because it was git-tracked).
+
+## KZ TRANSLATION COMPLETE — 98 of 98 (2026-08-12)
+
+**All 45 outstanding units translated in one day**: Ch 4 (17), Ch 0 (16), Ch 5 (7), Ch 7 (1),
+App B/C/E/F (4). **KZ assembly emits 98 sections / 81,438 body words** against the English
+98 / 101,575; every chapter is 100 % (0: 16/16 · 1: 11/11 · 2: 15/15 · 3: 13/13 · 4: 20/20 ·
+5: 7/7 · 6: 9/9 · 7: 1/1 · App: 6/6). No suspect extractions, every KZ asset path resolves, citation
+pass clean in both languages (107 sources, BLOCKING 0, KZ 267 brackets).
+**Chapter 0 verified to assemble in manuscript order, not numeric** (§0.6 before §0.2, §0.8 before §0.7).
+
+**Phase 4 is closed. The critical path is now §11.4, the EN + KZ GOST re-export** — `defense/docs/`
+still holds only June builds of the 53-section manuscript.
+
+**Transcription-only appendices must be built programmatically, not retyped.** App B and F carry
+mechanically verified values (168 + 184 in B, 159 in F), and re-typing them into a translation would
+put that guarantee at risk. Both Kazakh bodies were derived from the English drafts by substituting
+only prose, headings, captions and column labels, leaving every numeric cell byte-for-byte; the
+builders live in the session scratchpad. **Verified afterwards: B = 529 numeric tokens identical /
+84 table rows; F = 295 identical / 53 rows.** ⚠ The numeric comparison must normalise **both**
+thousands conventions (EN `35,126` vs KZ `35 126`) or it reports a false mismatch. Group identifiers
+like `mixed_ddr` are data keys and stay untranslated.
+
+**Ch 7 audited: the only decimal in the body is `5.4`, a section reference** — identical to the English,
+so its "no metric value anywhere" property survived translation.
+
+**App C and App E were built the same programmatic way, each with its own fidelity check.**
+App C: the **four Mermaid blocks are byte-identical** to the English and deliberately untranslated —
+the appendix calls the source "the definition of the diagram", the node labels are technical terms and
+governance codes the directive keeps in English, and an identical source makes both editions render
+the same figure. App E: the **54 plate lines** were rewritten by one regex translating only the caption;
+**all 54 image paths and all 54 `FIG-E.*` identifiers verified identical and in the same order**.
+
+**Two Chapter-0 invariants are machine-checkable and were checked after translation — re-run both after
+any future edit in either language:**
+- **§0.6** — the section body must contain only thresholds. Measured: exactly four decimals,
+  `0.0, 0.02, 0.050, 0.85`, all thresholds, no outcome. §5.2.2's pre-specification argument depends on it.
+- **§0.8** — measured: **exactly one metric value (`0.0041`)** in the body and **no `PC-3`**, so the
+  Introduction cannot be used to re-adjudicate Chapter 4 and the deliberate identifier gap stays open.
+- **§5.2.2** — the same PC-3 rule takes a *different* form here and the two must not be conflated:
+  §5.2.2 **names PC-3 in prose** as the unused identifier (the English draft does too), so a naive
+  "PC-3 must not appear" check false-alarms. The real invariant is the **table**: 11 claim rows,
+  `PC-0, PC-1, PC-2, PC-4 … PC-11`, **no PC-3 row** — verified identical in both languages.
+
+**`_assemble_kz.py` blocked incremental Chapter-0 work and was fixed.** Its `ORDER_OVERRIDE` check
+hard-errored when *any* listed Ch-0 translation was absent, so translating one section broke the entire
+KZ build. Missing is not the dangerous case — a file present but **unlisted** is, since it would fall
+back to numeric sort, which is the wrong order for Chapter 0. Now: unlisted extras stay fatal, existing
+sections are emitted in listed order, and a `PARTIAL` report names what is still missing.
+
+**§0.6 audited after translation: the body carries exactly four decimals — 0.0, 0.02, 0.050, 0.85 — and
+every one is a threshold.** No outcome leaked, so §5.2.2's pre-specification argument still holds. Re-run
+that check after any future edit to §0.6 in either language.
+
+**House format for a Ch-4 translation** (Ch 4 drafts have no `# ` title line — they open at their own
+`##`/`###` heading, and the assembler must not prepend anything): metadata blockquote → `---` →
+`## 1-БӨЛІК: БӨЛІМ МӘТІНІ` → the `##`/`###` headings and body → `## 2-БӨЛІК: ТЕРМИН ҚОЛДАНЫСЫ ЕСЕБІ` →
+`### Аудармашы ескертуі`. `BODY_END` cuts at `## 2-БӨЛІК`, so the term report and note stay out of the
+manuscript. Verify each batch with `_assemble_kz.py` — "No suspect extractions" plus a plausible word
+delta is the check.
+
+**Fences verified as surviving translation**, section by section: CFC-2.8 in §4.2.1/§4.2.3 and its
+**discharge** in §4.3.1 (single-initialization premise stated *before* the claim, with the "does not
+retroactively make Experiment 1 single-factor" sentence in the same paragraph); PC-8
+grouping-resolution-only; §4.3.2's selection-surface-vs-held-out rule and the open DR1 discrepancy
+(0.2091 vs 0.4693); §4.3.3's "tracks the photometric part and does not exhaust it" plus VVI's exclusion;
+§4.4.1's MMD-primary/KL-secondary asymmetry and the source-domain-statistics condition; **§4.4.2's
+ρ ≈ 0.49 and direction-only**; §4.5.1's both-arms-clear qualification and the G-denominator asymmetry;
+**NC-14 stated before the method in §4.6.1**; §4.6.2's IoU-as-corroboration status and the τ = 0.7
+exception; **G-3 as an absence, not a negative result, in §4.6.3**; §4.7's **bold 0.0041 Messidor-2
+margin**, the non-aggregation rule and the full Δ_drop identity; §4.8's retention-ratio inversions as a
+denominator artefact plus NC-16; §4.9's **E-7 comparable-not-larger** and the unpaired-interval overlap;
+and **all eight fences restated in §4.C without softening**. Governance codes, `[VERIFY]` markers,
+formulas and every table value pass through untranslated.
+
+**Still open:** the trim queue, the §0.16 count placeholders (need pagination first), and a full EN+KZ
+re-export — **everything in `defense/docs/` was built from the June 53-section manuscript**.
 
 **Remaining:** (App B/C/E/F now done — historical note: B was bounded by
 unrecorded per-epoch/per-class curves; E is IDRiD-only per G-3; F lacks per-group confusion matrices;

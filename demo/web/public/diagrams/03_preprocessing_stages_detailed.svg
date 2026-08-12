@@ -227,11 +227,11 @@
     <text x="20" y="242" class="body">3.  Gaussian noise  ·  4.  JPEG compression</text>
     <text x="20" y="276" class="body-em">At inference: skipped (deterministic).</text>
 
-    <text x="20" y="320" class="sec-hdr">PARAMETERS</text>
-    <text x="20" y="340" class="mono">rot σ_adapt (fallback 13°, clip ±40°)</text>
-    <text x="20" y="358" class="mono">zoom ∈ [0.9, 1.1]   ·   shear ±2°  (p=0.3)</text>
-    <text x="20" y="376" class="mono">CJ factors ∈ [0.9,1.1], hue ±0.02  (p=0.5)</text>
-    <text x="20" y="392" class="mono">noise σ∈[2,6] p=.15 · JPEG q∈[70,100] p=.20</text>
+    <text x="20" y="306" class="sec-hdr">PARAMETERS</text>
+    <text x="20" y="326" class="mono">rot σ_adapt (fallback 13°, clip ±40°)</text>
+    <text x="20" y="344" class="mono">zoom ∈ [0.9, 1.1]   ·   shear ±2°  (p=0.3)</text>
+    <text x="20" y="362" class="mono">CJ factors ∈ [0.9,1.1], hue ±0.02  (p=0.5)</text>
+    <text x="20" y="380" class="mono">noise σ∈[2,6] p=.15 · JPEG q∈[70,100] p=.20</text>
 
     <text x="20" y="402" class="sec-hdr">OUTPUT</text>
     <text x="20" y="424" class="mono">RGB uint8  ·  512 × 512 × 3</text>
