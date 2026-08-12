@@ -760,13 +760,38 @@ column with ~4 pt labels. C.1 is now `flowchart TB` (142 × 215 mm) and C.2 `flo
 (165 × 86 mm), both ~8–9 pt. C.4 stays a full-page ER model with small labels by decision; its
 content is carried in the prose of §C.4.
 
+**Front matter and the full build are done, and §0.16 is closed.** `FRONT_MATTER_{EN,KZ}` and
+`FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-12` are built from the current text. **EN 281 pages, KZ 311**,
+front matter 10 and 11 pages respectively. §0.16's four counts are filled and **verified against the
+rebuilt document**: the counts are of the dissertation *excluding the appendices*, which is the volume
+the council rule measures — **239 pages EN / 266 KZ, 42 tables, 30 figures, 107 sources**. Filling the
+placeholders shortened the Kazakh text by one page, so the first fill drifted −1 and was corrected; both
+editions now state a figure that matches their own pagination exactly.
+
+**Three further defects were found and fixed while building the front matter:**
+
+6. **The reference list sat after the appendices** in every build so far. GOST 7.32-2001 orders it after
+   the conclusion and before them; `_finalize_citations.py` appended it to the end of the assembled text.
+7. **The CONTENTS was a chapter behind the manuscript.** H-3's reinstatement as §4.4 pushed Experiments
+   3–7 down to §4.5–§4.9, but the outline still numbered them 4.4–4.8, so six Chapter-4 entries named the
+   wrong section, §4.9 was absent, and §4.6.1–4.6.3 were missing. Titles were reconciled to the
+   manuscript throughout — 8 in English, 43 in Kazakh — and the Kazakh appendix letters were corrected
+   from the Russian sequence (А Б В Г Д Е) to the Kazakh one the manuscript uses (А Ә Б Д Е Ж).
+8. **Twelve contents entries had no page number.** `build_toc.py` looked for chapter conclusions under a
+   `§N.C` key that only Chapters 1–3 and 6 carry, matched appendix headings by a prefix no heading has,
+   and could not see a Kazakh appendix heading at all because it leads with its letter. All now resolve;
+   the only dashes left are the three front-matter sections, which take their pages in the full build.
+
 **Still open in this section:**
 
 - **FIG-5.1 points at a directory**, `experiments/outputs/exp4/gradcam_maskset/`, not an image, so it
   is the one figure that prints as a caption with `[asset to be created]`. Appendix E already
   reproduces the complete 54-plate set with no selection, so making §5.1 show a *chosen* subset is a
   selection decision (SIR-1) and is left to the candidate.
-- Front-matter bundle → `FULL_DISSERTATION_{EN,KZ}` → PDFs, then the §0.16 fill and a re-convert.
+- The abstract was checked against this pass and needs no correction: it already carries the current
+  structure — H-3 as a separate investigation, Experiment 5 as external clinical performance, eight
+  investigations — and its "Structure and length" section deliberately states no counts, so nothing in
+  it went stale. Whether to add the now-known page count there is the candidate's call.
 
 ---
 

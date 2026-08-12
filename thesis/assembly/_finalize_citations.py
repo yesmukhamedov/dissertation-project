@@ -364,18 +364,38 @@ hdr_kz = (f"# Диабеттік ретинопатияны автоматтан
           f"дереккөз [1]–[{N}] болып нөмірленді. Нөмірлер ағылшын тіліндегі мәтінмен ортақ "
           f"(тіл-инварианттылық).\n")
 
-OUT_EN.write_text(
-    hdr_en + "\n" + conv_en +
+# The first appendix heading, in either language.
+_APPENDIX_A = re.compile(r"^#\s+(?:Appendix\s+A\b|А\s+қосымшасы)", re.M)
+
+
+def place_references(body: str, block: str) -> str:
+    """Insert the reference list between the Conclusion and the appendices.
+
+    GOST 7.32-2001 orders the list of sources after the conclusion and before the
+    appendices. Appending the block to the assembled text put it after Appendix F,
+    which is where it sat in every build so far.
+    """
+    m = _APPENDIX_A.search(body)
+    if not m:
+        return body + block
+    return body[:m.start()].rstrip() + "\n" + block.rstrip() + "\n\n" + body[m.start():]
+
+
+REFS_EN = (
     "\n\n---\n\n# LIST OF REFERENCES USED\n\n"
     "> In order of first appearance (GOST 7.32-2001 §6.11). Entries derived from the literature "
     "cards; GOST 7.1-2003 punctuation refinement is the final typesetting step.\n\n"
-    + "\n".join(refs) + SELF_NOTE_EN, encoding="utf-8")
-OUT_KZ.write_text(
-    hdr_kz + "\n" + conv_kz +
+    + "\n".join(refs) + SELF_NOTE_EN
+)
+REFS_KZ = (
     "\n\n---\n\n# ПАЙДАЛАНЫЛҒАН ӘДЕБИЕТТЕР ТІЗІМІ\n\n"
     "> Алғаш кездесу ретімен (GOST 7.32-2001 §6.11). Дереккөздер тізімі ағылшын тіліндегі мәтінмен "
     "бірдей нөмірленген (тіл-инварианттылық).\n\n"
-    + "\n".join(refs) + SELF_NOTE_KZ, encoding="utf-8")
+    + "\n".join(refs) + SELF_NOTE_KZ
+)
+
+OUT_EN.write_text(hdr_en + "\n" + place_references(conv_en, REFS_EN), encoding="utf-8")
+OUT_KZ.write_text(hdr_kz + "\n" + place_references(conv_kz, REFS_KZ), encoding="utf-8")
 
 # ---------- QA report ----------
 b_en, s_en, a_en, u_en = residual(conv_en)

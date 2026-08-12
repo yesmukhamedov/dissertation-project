@@ -21,13 +21,13 @@
 
 ### 1.3 Deep Learning Approaches to Retinal Image Classification
 
-- 1.3.1 Convolutional Neural Network Architectures for Medical Imaging
+- 1.3.1 CNN Architectures for Medical Imaging
 - 1.3.2 Transfer Learning and Self-Supervised Pretraining in Ophthalmic Diagnostics
 - 1.3.3 Explainability Methods in Medical Image Classification
 
 ### 1.4 Critical Analysis of Existing Automated DR Screening Systems
 
-### 1.5 Formulation of the Research Problem and Justification of Research Direction
+### 1.5 Formulation of the Research Problem
 
 - Conclusions to Chapter 1
 
@@ -53,15 +53,15 @@
 
 ### 2.4 Mathematical Modeling of Laser-Tissue Interaction in Retinal Therapy
 
-- 2.4.1 Coupled Thermal-Optical Model of Fundus Tissue Response (incl. implications for diagnostic image feature interpretation)
+- 2.4.1 Coupled Thermal-Optical Model of Fundus Tissue Response
 
 ### 2.5 Explainability in Deep Learning for Medical Imaging
 
-- 2.5.1 Class Activation Mapping (CAM) and Grad-CAM Mathematical Formulation
-- 2.5.2 Interpretation of Attention Maps in Ophthalmic Context
+- 2.5.1 CAM / Grad-CAM Theory and Formalization
+- 2.5.2 Attention Map Interpretation
 - 2.5.3 ALO and IoU as Quantitative Explainability Metrics
 
-### 2.6 Image Quality Metrics for Preprocessing Evaluation
+### 2.6 Image Quality Metrics for Preprocessing Evaluation: CNR, VVI, Entropy, SSIM
 
 - Conclusions to Chapter 2
 
@@ -97,9 +97,9 @@
 
 ### 4.1 Datasets and Experimental Configuration
 
-- 4.1.1 Tiered Dataset Architecture
-- 4.1.2 Class Distribution Analysis and Data Partitioning Strategy
-- 4.1.3 Hardware Specification and Reproducibility Protocol
+- 4.1.1 Dataset Architecture
+- 4.1.2 Class Distribution and Data Partitioning
+- 4.1.3 Hardware and Reproducibility Protocol
 
 ### 4.2 Experiment 1: Integrated Pipeline Dominance — Pipeline + In-Domain Pretraining vs. Baseline on EyePACS (H-1)
 
@@ -109,26 +109,31 @@
 
 ### 4.3 Experiment 2: Pipeline Stage Ablation + CLAHE/σ Sweeps (H-2)
 
-- 4.3.1 Ablation Design (Levels 0–6)
+- 4.3.1 Cumulative Ablation Design (Levels L0–L7)
 - 4.3.2 CLAHE Threshold Sensitivity Analysis (H-2 Sub-Analysis)
 - 4.3.3 Flat-Field σ Sweep and Image Quality Metrics
 
-### 4.4 Experiment 3: Cross-Dataset Transferability on APTOS 2019 (H-4)
+### 4.4 Domain Distance Reduction Across Six Target Domains (H-3)
 
-- 4.4.1 Zero-Shot Transfer to APTOS 2019
-- 4.4.2 Baseline vs Pipeline Comparison
+- 4.4.1 Measurement Protocol: MMD over Representations and KL over Channel Histograms
+- 4.4.2 Distance Reduction Results and Their Interpretive Limits
 
-### 4.5 Experiment 4: Grad-CAM Explainability on IDRiD + Clinical (H-5)
+### 4.5 Experiment 3: Cross-Dataset Transferability on APTOS 2019 (H-4)
 
-- 4.5.1 Grad-CAM Generation Protocol
-- 4.5.2 Quantitative ALO and IoU with IDRiD Lesion Masks
-- 4.5.3 Attention Consistency Across Datasets
+- 4.5.1 Zero-Shot Transfer to APTOS 2019
+- 4.5.2 Baseline vs Pipeline Comparison
 
-### 4.6 Experiment 5: Clinical Degradation Resistance on IDRiD + Messidor-2 (H-7)
+### 4.6 Experiment 4: Grad-CAM Explainability on IDRiD + Clinical (H-5)
 
-### 4.7 Experiment 6: Device Domain Shift on DDR + ODIR-5K + RFMiD (H-6)
+- 4.6.1 Grad-CAM Generation Protocol
+- 4.6.2 Quantitative ALO and IoU with IDRiD Lesion Masks
+- 4.6.3 Per-Image Consistency of the Attention Effect and Limits of the Present Evidence
 
-### 4.8 Experiment 7: Small Data Training (IDRiD → Clinical)
+### 4.7 Experiment 5: External Clinical Performance on IDRiD + Messidor-2 (H-7)
+
+### 4.8 Experiment 6: Device Domain Shift on DDR + ODIR-5K + RFMiD (H-6)
+
+### 4.9 Experiment 7: Small Data Training (IDRiD → Clinical)
 
 - Conclusions to Chapter 4
 
@@ -144,7 +149,7 @@
 ### 5.3 Comparative Analysis with Published Systems
 
 - 5.3.1 Benchmarking Against Published Results: IDx-DR, EyeNuk, DeepMind
-- 5.3.2 Performance-Complexity Trade-Off Analysis
+- 5.3.2 Performance–Complexity Trade-Off Analysis
 
 ### 5.4 Limitations and Boundary Conditions of the Proposed Approach
 
@@ -159,7 +164,7 @@
 
 ### 6.2 AI Processing Module Design
 
-- 6.2.1 Preprocessing Engine with Configurable Pipeline Parameters
+- 6.2.1 Preprocessing Engine with Configurable Pipeline
 - 6.2.2 Inference Module with Model Selection Logic
 
 ### 6.3 Clinical Workflow Integration
@@ -179,7 +184,7 @@
 
 ## CONCLUSION
 
-## REFERENCES
+## LIST OF REFERENCES USED
 
 ## APPENDIX A
 

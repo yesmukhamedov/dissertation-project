@@ -43,6 +43,9 @@ INDENT_MM = {1: 0.0, 2: 0.0, 3: 7.0, 4: 14.0}
 _LEADNUM = re.compile(r"^§?\s*(\d+(?:\.[0-9A-Za-z]+)*)")
 _CONCL_EN = re.compile(r"Conclusions to Chapter (\d+)", re.I)
 _CONCL_KZ = re.compile(r"(\d+)-тарау")
+# A Kazakh appendix heading leads with its letter ("А қосымшасы — …"), so it
+# matches none of the `fronts` prefixes.
+_KZ_APPENDIX = re.compile(r"^[А-ЯЁӘҒҚҢӨҰҮҺІ]\s+қосымшасы\b", re.I)
 
 
 # --- page-number extraction from the assembled manuscript ---------------------
@@ -61,7 +64,7 @@ def dump_pages(word, docx_path: Path) -> tuple[dict[str, int], dict[str, int]]:
     doc = _safe(lambda: word.Documents.Open(str(docx_path), ReadOnly=True))
     fronts = (
         "INTRODUCTION", "CONCLUSION", "LIST OF REFERENCES", "REFERENCES",
-        "APPENDIC", "NORMATIVE", "DEFINITION", "DESIGNATION",
+        "APPENDIC", "APPENDIX", "NORMATIVE", "DEFINITION", "DESIGNATION",
         "КІРІСПЕ", "ҚОРЫТЫНДЫ", "ПАЙДАЛАН", "ҚОСЫМША", "НОРМАТИВ",
         "АНЫҚТАМА", "БЕЛГІЛЕУ",
     )
@@ -77,9 +80,15 @@ def dump_pages(word, docx_path: Path) -> tuple[dict[str, int], dict[str, int]]:
             continue
         mm = _LEADNUM.match(t)
         page = int(rng.Information(3))  # wdActiveEndPageNumber
+        cm = _CONCL_EN.search(t) or _CONCL_KZ.match(t)
         if mm:
             num.setdefault(mm.group(1), page)
-        elif any(t.upper().startswith(k) for k in fronts):
+        elif cm:
+            # Chapters 1-3 and 6 head their conclusions "§N.C Conclusions to
+            # Chapter N", but 4 and 5 carry the title alone. Register the same
+            # key either way so the outline entry resolves for all six.
+            num.setdefault(f"{cm.group(1)}.C", page)
+        elif any(t.upper().startswith(k) for k in fronts) or _KZ_APPENDIX.match(t):
             front.setdefault(t.upper(), page)
     _safe(lambda: doc.Close(False))
     return num, front
@@ -99,7 +108,16 @@ def resolve_page(text: str, num, front):
     cm = _CONCL_EN.search(text) or _CONCL_KZ.search(text)
     if cm:
         return num.get(f"{cm.group(1)}.C")
-    return front.get(text.strip().upper())
+    key = text.strip().upper()
+    if key in front:
+        return front[key]
+    # The outline names a section more briefly than the document heads it
+    # ("REFERENCES" vs "LIST OF REFERENCES USED", "APPENDIX A" vs "Appendix A —
+    # Source Code…"), so fall back to matching on whichever is the prefix.
+    for k, page in front.items():
+        if k.startswith(key) or key.startswith(k):
+            return page
+    return None
 
 
 # --- outline parsing + document emission --------------------------------------
