@@ -581,6 +581,34 @@ _DIAGRAM_CAPTION = re.compile(
 )
 
 
+# Table captions are authored in three forms — "Table 4.4. Title", "Table 4.3 —
+# Title" and, in Kazakh, the postfix "4.5-кесте. Атауы" — while the caption the
+# converter builds from a [TAB-…] marker is label-first with an en-dash. GOST
+# shows one form for all of them ("Таблица 1 – Распределение…"), so the caption is
+# normalised to "Label N – Title" and set flush left above its table, which is
+# also where a table caption belongs.
+_TABLE_CAPTION = re.compile(
+    r"^\*\*(?:"
+    r"(?P<en>Table)\s+(?P<ennum>[\w.]+)"
+    r"|(?P<kznum>[\w.]+)-(?P<kz>кесте)"
+    r")\s*[.:—–-]\s*(?P<title>.+?)\.?\*\*(?P<rest>.*)$"
+)
+
+
+def _table_caption(line: str) -> tuple[str, str] | None:
+    """(canonical caption, trailing prose) for a caption line, else None.
+
+    Some captions are followed by a sentence in the same paragraph, so the
+    remainder is handed back rather than folded into the caption.
+    """
+    m = _TABLE_CAPTION.match(line.strip())
+    if not m:
+        return None
+    num = m.group("ennum") or m.group("kznum")
+    label = "Table" if m.group("en") else "Кесте"
+    return f"{label} {num} – {m.group('title').strip()}", m.group("rest").strip()
+
+
 def _relocate_diagram_captions(lines: list[str]) -> list[str]:
     """Move a bold diagram caption from above its Mermaid fence to below it."""
     out: list[str] = []
@@ -880,13 +908,20 @@ def _insert_figure(doc: Document, label: str, num: str, caption: str, img: Path 
         src = _print_ready(img, w, base_dir) if base_dir is not None else img
         p.add_run().add_picture(str(src), width=Mm(w))
     c = doc.add_paragraph()
-    c.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    is_table = label in ("Table", "Кесте")
+    # A table caption sits flush left above its table; a figure caption is
+    # centred under the illustration.
+    c.alignment = WD_ALIGN_PARAGRAPH.LEFT if is_table else WD_ALIGN_PARAGRAPH.CENTER
     c.paragraph_format.first_line_indent = Mm(0)
-    c.paragraph_format.space_after = Pt(6)
+    if is_table:
+        c.paragraph_format.space_before = Pt(6)
+        c.paragraph_format.keep_with_next = True
+    else:
+        c.paragraph_format.space_after = Pt(6)
     text = f"{label} {num} – {caption}" if num else f"{label} – {caption}"
     if img is None and note_missing:
         text += " [ресурс дайындалуда]" if label == "Сурет" else " [asset to be created]"
-    _add_runs(c, text)
+    _add_runs(c, text, bold=is_table)
 
 
 def _parse_table_row(line: str) -> list[str]:
@@ -1048,6 +1083,21 @@ def render_into(
             continue
         else:
             flush_table()
+
+        tcap = _table_caption(stripped)
+        if tcap:
+            caption, rest = tcap
+            flush_paragraph()
+            flush_table()
+            p = doc.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+            p.paragraph_format.first_line_indent = Mm(0)
+            p.paragraph_format.space_before = Pt(6)
+            p.paragraph_format.keep_with_next = True  # never orphan it from its table
+            _add_runs(p, caption, bold=True)
+            if rest:
+                buf.append(rest)
+            continue
 
         if stripped.startswith(_CAPTION_TOKEN):
             flush_paragraph()

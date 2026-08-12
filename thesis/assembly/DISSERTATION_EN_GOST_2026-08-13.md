@@ -248,7 +248,7 @@ The chapters proceed from the problem to the apparatus, from the apparatus to th
 
 Six appendices follow: **A**, the source code of the preprocessing pipeline; **B**, supplementary experimental results and confusion matrices; **C**, the system-architecture diagrams; **D**, the publication and approbation record; **E**, the attention-map gallery; and **F**, supplementary tables for the device-domain evaluation.
 
-The dissertation is set out on 239 pages, and contains 42 tables and 29 figures. The list of references comprises 107 sources.
+The dissertation is set out on 240 pages, and contains 42 tables and 29 figures. The list of references comprises 107 sources.
 
 
 ---

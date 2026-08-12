@@ -831,11 +831,24 @@ Verified after rebuild: **zero IDs in either edition, no dangling table or figur
 placed, and §0.16's counts unchanged (42 tables / 29 figures) with both page figures still matching.**
 Only PART 1 of each draft was touched, so the compliance checklists keep their ID references.
 
+**Table captions are uniform (2026-08-13).** Both editions carried three forms at once — 60 captions
+with a full stop, 4 with an em-dash, and the converter's own label-first en-dash form — and Kazakh added
+a fourth by writing the postfix `4.5-кесте`. GOST shows one shape for all of them
+("Таблица 1 – Распределение…"), so every caption is normalised to **`Label N – Title`**, Kazakh included
+(`4.5-кесте.` → `Кесте 4.5 – …`), and set **flush left with `keep-with-next`** so a caption can no longer
+be orphaned at the foot of a page. **66 captions per edition, all canonical**; the only remaining matches
+are ordinary sentences that open with a reference ("Table 2.1 contrasts…"), which is the in-text form the
+instruction prescribes. As with the diagrams, the normalisation happens at conversion and **no
+translation was edited**. Pagination moved +1 and §0.16 was corrected to 240 EN / 266 KZ and re-verified.
+
 **Still open in this section:**
 
-- **Table captions are inconsistent in the Kazakh edition** for the same reason the diagrams were:
-  authored captions use the postfix form (`Б.1-кесте`) while converter-driven ones are label-first
-  (`Кесте 1.1 – …`). Diagram captions are now uniform; tables are not, and there are dozens of them.
+- **Governance document names appear in the text — 27 occurrences** (`RESEARCH_ARCHITECTURE` ×21,
+  `INVARIANTS` ×5, `CENTRAL_THESIS` ×1), in table captions and in prose alike: "Table 4.1 – Tiered
+  dataset architecture (RESEARCH_ARCHITECTURE §2.1)". Same class as the resource IDs just cleaned —
+  internal provenance in reader-facing text. Not fixed here, because unlike the IDs these have no
+  reader-facing equivalent to map onto: each is a citation of an internal document, so the choice is to
+  delete the parenthetical or to reword the sentence, and that is a content decision.
 - The abstract was checked against this pass and needs no correction: it already carries the current
   structure — H-3 as a separate investigation, Experiment 5 as external clinical performance, eight
   investigations — and its "Structure and length" section deliberately states no counts, so nothing in
