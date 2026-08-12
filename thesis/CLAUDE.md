@@ -7,16 +7,19 @@ Candidate: Yesmukhamedov N.S., IITU, Almaty, Kazakhstan.
 
 ```
 governance/          — SINGLE SOURCE OF TRUTH for all project claims
-  INVARIANTS.md        v6.0.0 — scope, forbidden claims, binding constraints
-  HYPOTHESIS.md        v6.0.0 — H-1 through H-7 formal definitions
-  ARGUMENT_MAP.md      v6.0.0 — claim-evidence dependency DAG
-  CENTRAL_THESIS.md    v6.0.0 — one-paragraph thesis statement
-  CORE_OBJECTIVE.md    v5.0 — research goal (RETFound→SSL review pending)
-  CONTRIBUTIONS.md     v6.0.0 — 4 primary + supporting contributions
-  RESEARCH_ARCHITECTURE.md  v6.0.0 — full experimental design
-  VERSION_SYNC.md      v6.0.0 — cross-file version register
+  INVARIANTS.md        v7.0.0 — scope, forbidden claims, binding constraints
+  HYPOTHESIS.md        v7.1.0 — H-1 through H-7 formal definitions
+  ARGUMENT_MAP.md      v7.1.0 — claim-evidence dependency DAG (PC-0…PC-11, PC-3 unused)
+  CENTRAL_THESIS.md    v7.1.0 — one-paragraph thesis statement
+  CORE_OBJECTIVE.md    v7.1.0 — research goal (derived from §0.3, which is authoritative)
+  CONTRIBUTIONS.md     v7.1.0 — 4 primary + supporting contributions (SC-A…SC-I)
+  RESEARCH_ARCHITECTURE.md  v7.0.0 — full experimental design
+  VERSION_SYNC.md      v7.1.2 — cross-file version register
+  VERSIONING_POLICY.md        — bump scheme, detection regexes, containment scan
+  CHANGELOG.md                — amendment history
 
-chapters/            — 8 chapters (00–07), each with:
+chapters/            — 9 directories (00–08: introduction, six body chapters,
+                       conclusion, appendices), each with:
   briefs/              section briefs (writing specs)
   drafts/              generated text
   reviews/             review feedback

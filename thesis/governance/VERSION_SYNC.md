@@ -1,6 +1,66 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 7.1.1 | **Date:** 2026-08-11
+**Version:** 7.1.2 | **Date:** 2026-08-12
+
+## v7.1.2 Sync Scope — register repair + chapter currency (no new binding)
+
+A consistency audit of `thesis/chapters/` against governance and `results/` closed the last places where the
+H-3 / H-7 line had not landed, and repaired this register itself, which had drifted from the files it tracks.
+**No binding is created, reversed or reinterpreted. PATCH-level** per VERSIONING_POLICY §4.
+
+**Chapter corrections.**
+
+- **`§5.2.2` did not classify PC-11 at all** — the one section the H-3 restoration never reached. It recorded
+  "ten primary claims — seven empirical" and Table 5.4 had no PC-11 row, while `ARGUMENT_MAP.md` v7.1.0,
+  `results/tables/TAB-5.2_claim_strength.md`, §0.8 (provision 5) and §7 all carry PC-11. Since §0.8 derives its
+  ceiling from §5.2.2, provision 5 was submitted without a classification behind it. PC-11 is now a table row at
+  **STRONG (direction only)**, the tally reads **eight empirical claims**, and the direction-only bound —
+  no magnitude correspondence, separate representation spaces per arm, mechanistic scope — is set out with the
+  other travelling qualifications.
+- **`§3.1.1` and `§3.1.3` described the retired classical Stage-1 detector**, listed as pending narrative sync
+  since v6.1.0 but never done, and the chapter was approved over it. §3.1.1 now describes the pre-trained,
+  **frozen** U-Net + DSNT heatmap detector, and its reliability paragraph reports the held-out IDRiD **test**
+  split (103 images, disjoint from the detector's training): OD median **0.066 R** with every image inside one
+  optic-disc radius, fovea median **0.105 R** with **99.0%** inside one radius, and a confidence flag that
+  **discriminates** (declines on 9.7% of images, whose fovea error runs ≈4× the median of the rest). The
+  superseded figures it replaced — fovea inside one radius in 0.0%/0.97% of images, a median error of ~5 radii,
+  and a `confident` flag asserted on 100% of images and therefore uninformative — had been carried as the
+  dissertation's own analysis and as the justification for the stage's design.
+- **`§4.1.1` Table 4.1** labelled the roles of Messidor-2 and IDRiD with the retired *clinical degradation
+  resistance* form of H-7; both now read **external clinical performance**, as does the inherited-limitation
+  sentence that follows the table.
+- **`§7`** opened "Seven questions remain open" and then enumerated four, three, and "the eighth question" —
+  now **eight**, matching its own checklist.
+- **`§5.2.1`** described the apparatus as spanning "the seven experiments" while §4.C reports **eight
+  experimental investigations** and §5.2.1's own apparatus table carries the H-3 row; corrected to eight.
+- **`§0.8`** recorded a divergence — TAB-5.2 filing the domain-distance result outside the formal claim
+  register — that v7.1.1 closed. The checklist now records the register as uniform across all four sources.
+  The corresponding brief, continuity note and review are left as written: they are session records of a
+  divergence that was real when they were made.
+
+**Register repair.** The File Version Status table contradicted both the files it tracks and this document's own
+amendment prose: `CONTRIBUTIONS.md` appeared **twice** (7.0.0 and 6.3.0) against an actual 7.1.0;
+`LITERATURE_INDEX.md` **twice** (v5.3 ✅ and 5.0 ❌) against an actual 6.1.0; `gulshan-2016.md` **twice** with
+opposite verdicts; `VERSION_SYNC.md`'s own row read 7.0.0 at file version 7.1.1; `HYPOTHESIS.md` and
+`ARGUMENT_MAP.md` read 7.0.0 at actual 7.1.0; both glossaries read 6.2.0 although the v7.0.0 scope above
+records them bumped to 7.0.0, which they are; and `TABLE_OF_CONTENTS_KZ.md` read "5.0 ⚠️ verify" — verified,
+it is current. Duplicates removed, versions reconciled, one stale ⚠️ discharged.
+
+**Two defects found in the pass and left open, because closing either is a decision and not a sync:**
+
+1. **The fallback rotation σ in the v6.1.0 amendment summary is wrong.** It states that σ was "reconciled to
+   15.0° (the code/eval value; the prior 13.0° text is corrected)". The implementation does not bear this out:
+   `fallback_rotation_sigma: 13.0` in `configs/default.yaml` and in all sixteen run configurations, with
+   `rotation_sigma: 13.0` likewise. The two 15.0° constants in the detector source are a Gaussian `blur_sigma`
+   and `_MAX_ROTATION_SIGMA`, the **hard cap on the adaptive σ** — neither is the fallback. The 13.0° chapter
+   text was therefore correct and the amendment summary conflated cap with fallback. §3.1.1 retains 13.0°,
+   reports 15.0° as the cap, and carries a `[VERIFY]` flag naming this; INVARIANTS needs the correction.
+2. **OD-3 is internally inconsistent about Stage 5.** The Stage-1 fallback clause pivots "Stage-5 **polar**
+   CLAHE" on the FOV centroid, but the Stage-5 definition specifies a rectilinear 8×8 tile grid and defines no
+   polar variant — while Appendix A records the polar variant as the shipped default. §3.1.2 has carried a
+   `[VERIFY]` on exactly this since it was drafted. A proposed amendment is filed at
+   `records/AMENDMENT_PROPOSAL_stage5_polar_clahe.md`; it is **not applied**, because admitting the polar
+   variant as the operational default bears on which checkpoints remain valid.
 
 ## v7.1.1 Sync Scope — downstream currency pass (no new binding)
 
@@ -116,12 +176,11 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 | File | Version | Synced |
 |------|---------|--------|
 | governance/INVARIANTS.md | 7.0.0 | ✅ — v7.0.0: H-7 reformulated (Section II) Clinical Degradation Resistance → External Clinical Performance; Δ_drop retired to descriptive; header summary added — completed 2026-08-04. v6.3.0: SB-2.4 relaxed + CFC-2.8 extended to admit SIP as a gate-selected integrated-arm init |
-| governance/HYPOTHESIS.md | 7.0.0 | ✅ — v7.0.0: H-7 reformulated (form S, MCID 0.050, CI⁻ > 0, both sets); Conclusion + Central-Hypothesis note synced; binding ref → INVARIANTS v7.0.0 — completed 2026-08-04. v6.2.0: Premise 4 + Conclusion RETFound→ophthalmology-SSL |
+| governance/HYPOTHESIS.md | 7.1.0 | ✅ — v7.1.0: **H-3 restored** as Domain-Shift Reduction (K = 5 of n = 6, MMD primary, source-statistics protocol condition, label-reuse notice) — completed 2026-08-05. v7.0.0: H-7 reformulated (form S, MCID 0.050, CI⁻ > 0, both sets); Conclusion + Central-Hypothesis note synced. v6.2.0: Premise 4 + Conclusion RETFound→ophthalmology-SSL |
 | governance/RESEARCH_ARCHITECTURE.md | 7.0.0 | ✅ — v7.0.0: §5.5 purpose + acceptance rewritten, §9.1 H-7 bullet, PC-10 row — completed 2026-08-04. v6.2.0: §4.2bis extended; §9.1 pretraining-leakage bullet |
-| governance/CONTRIBUTIONS.md | 7.0.0 | ✅ — v7.0.0: SC-G reframed to external clinical performance + secondary methodological contribution (Δ_drop defect) — completed 2026-08-04 |
-| governance/VERSION_SYNC.md | 7.0.0 | ✅ |
-| governance/ARGUMENT_MAP.md | 7.0.0 | ✅ — v7.0.0: PC-10 formal statement, SC-10.1, PC-10 strength criteria, DAG label and dependency note — completed 2026-08-04 |
-| governance/CONTRIBUTIONS.md | 6.3.0 | ✅ — v6.3.0: SC-H generalized to "in-domain initialization (self-supervised OR supervised), gate-selected" — SIP admitted, SSL negative result recorded — completed 2026-07-09. v6.2.0: SC-H refined with locked SSL specifics; CFC-2.8 boundary unchanged |
+| governance/CONTRIBUTIONS.md | 7.1.0 | ✅ — v7.1.0: **SC-I** added for the direct domain-distance measurement (H-3 restoration) — completed 2026-08-05. v7.0.0: SC-G reframed to external clinical performance + secondary methodological contribution (Δ_drop defect) — completed 2026-08-04. v6.3.0: SC-H generalized to "in-domain initialization (self-supervised OR supervised), gate-selected" — SIP admitted, SSL negative result recorded. v6.2.0: SC-H refined with locked SSL specifics; CFC-2.8 boundary unchanged |
+| governance/VERSION_SYNC.md | 7.1.1 | ✅ — this document; v7.1.1 is the downstream-currency pass recorded above |
+| governance/ARGUMENT_MAP.md | 7.1.0 | ✅ — v7.1.0: **PC-11** node (Domain-Shift Reduction, mechanistic) + DAG edge, depends on PC-1, feeds PC-6/PC-9/PC-10 explanatorily; magnitude-correspondence boundary — completed 2026-08-05. v7.0.0: PC-10 formal statement, SC-10.1, PC-10 strength criteria, DAG label and dependency note — completed 2026-08-04 |
 | governance/CENTRAL_THESIS.md | 7.1.0 | ✅ — v7.1.1 sync: H-7 → external clinical performance; H-3 mechanism added to the substantiating evidence; **the clinical Grad-CAM overlays removed from the substantiation** (never produced, G-3 — H-5 is supported in its quantitative half only) |
 | literature/external/gulshan-2016.md | v5.3 sync ✅ | ✅ — v5.3: §15 Paradigmatic Role block + §16 Paradigmatic citation-ready statements + §18 Paradigmatic Synthesis — completed 2026-05-28 |
 | literature/external/pratt-2016.md | v5.3 sync ✅ | ✅ — v5.3: P1 position-in-paradigm-space line added to §15 |
@@ -129,7 +188,7 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 | literature/external/saxena-2020.md | v5.3 sync ✅ | ✅ — v5.3: P1 position-in-paradigm-space line added to §15 |
 | literature/external/ting-2017.md | v5.3 sync ✅ | ✅ — v5.3: P1 position-in-paradigm-space line added to §15 |
 | literature/external/voets-2019.md | v5.3 sync ✅ | ✅ — v5.3: P1 position-in-paradigm-space line added to §15 |
-| literature/LITERATURE_INDEX.md | v5.3 sync (Paradigm column) ✅ | ✅ — v5.3: Paradigm column added to Source Index; classification rule documented in Notes — completed 2026-05-28. v5.1/v5.2 RETFound card creation remains a separate work item (not part of v5.3 paradigmatic scope). |
+| literature/LITERATURE_INDEX.md | 6.1.0 | ✅ — v6.1.0: corpus expanded 81 → 120 sources (#83–#121), incl. the ophthalmology-SSL / foundation-model family, fundus degradation & quality, and the missing cards for #46 Grad-CAM, #47 EyePACS, #48 Messidor; resolves the §1.2.1 and §2.3.3/§3.3.2 gaps. v5.3: Paradigm column added to the Source Index with the classification rule documented in Notes. **Open items:** DDR full-PDF upgrade; the `yesmukhamedov-scopus-q2` identifier mismatch |
 | chapters/00-introduction/README.md | v5.3 spec ✅ | ✅ — Task 2.8 paradigmatic-framing block added |
 | chapters/01-problem-domain/README.md | v5.3 spec ✅ | ✅ — Tasks 2.1–2.4 paradigmatic-framing block added (primary site for paradigmatic discussion) |
 | chapters/02-theoretical-foundations/README.md | v5.3 spec ✅ | ✅ — v5.3 paradigmatic-framing note added |
@@ -146,11 +205,9 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 | governance/CORE_OBJECTIVE.md | 7.1.0 | ✅ — v7.1.1 sync: H-7 → external clinical performance; H-3 measurement added; §0.3 named as the authoritative prose formulation |
 | outline/MASTER_OUTLINE.md | 7.1.0 | ✅ — v7.1.1 sync: object-of-research category error; H-3 restored; H-7 reformulated; duplicated objective number; Novelty + Provisions lists marked **superseded by §0.2 / §0.8**. Remains a *structural* spec — the drafted sections win on content |
 | outline/TABLE_OF_CONTENTS_EN.md | 7.1.0 | ✅ — verified: §4.4 (H-3) present; the Introduction ordering here is **authoritative for the manuscript** and differs from MASTER_OUTLINE's identifier ordering (see `chapters/00-introduction/README.md`) |
-| outline/TABLE_OF_CONTENTS_KZ.md | 5.0 | ⚠️ — likely unchanged but verify |
-| glossary/GLOSSARY_EN.md | 6.2.0 | ✅ — v6.0.0 SSL/paradigm terms present; v6.2.0: added Linear-Probe Acceptance Gate + Fundus-SSL Pretraining Corpus terms, refined SSL-Method-Family (BYOL primary) and Ophthalmology-SSL entries — completed 2026-06-26 |
-| glossary/GLOSSARY_KZ.md | 6.2.0 | ✅ — v6.2.0: Kazakh equivalents mirrored for the new/refined SSL terms — completed 2026-06-26 |
-| literature/LITERATURE_INDEX.md | 5.0 | ❌ — v6.0.0: SSL-family cards (DINO/BYOL/SimCLR/MoCo) for the integrated-arm pretraining; Zhou et al. 2023 (RETFound) demoted to historical/contrast; Paradigm column (v5.3) |
-| literature/external/gulshan-2016.md | 5.0 | ❌ — Paradigmatic Role block required in §15 (v5.3) — see Task 1.1 |
+| outline/TABLE_OF_CONTENTS_KZ.md | 7.1.0 | ✅ — verified 2026-08-12: §4.4 (H-3) present with both sub-sections, §4.9 present, chapter structure mirrors the EN TOC |
+| glossary/GLOSSARY_EN.md | 7.0.0 | ✅ — v7.0.0: H-7 entry renamed and redefined to External Clinical Performance, **MCID** added as an operational term, "Clinical Degradation Resistance" and "Δ_drop" moved to Deprecated Terms with Superseded-By pointers, Messidor-2 entry corrected — completed 2026-08-04. v6.2.0: Linear-Probe Acceptance Gate + Fundus-SSL Pretraining Corpus terms added; SSL-Method-Family (BYOL primary) and Ophthalmology-SSL refined |
+| glossary/GLOSSARY_KZ.md | 7.0.0 | ✅ — v7.0.0: Kazakh mirror of the H-7 rename, the MCID entry and the two deprecations — completed 2026-08-04. v6.2.0: Kazakh equivalents mirrored for the new/refined SSL terms |
 | experiments/experimental-protocol.md | 5.0 | ❌ — v6.0.0: Exp 1 protocol must reflect the restored A/B/C/D factorial (integrated arm = ophthalmology-SSL); AOQ-1/3/4 resolved, AOQ-2 simplified |
 | methods/preprocessing-pipeline.md | 6.1.0 (Stage 1) | ✅ — v6.1.0: Stage-1 description updated to the frozen learned heatmap detector (σ = 15.0°); other stages still pending the v6.0.0 pretrain-reference review |
 | methods/implementation.md | 5.0 | ❌ — v6.0.0: model loading code paths must load an in-house ophthalmology-SSL CNN checkpoint (no RETFound/ViT-Large loader needed) |

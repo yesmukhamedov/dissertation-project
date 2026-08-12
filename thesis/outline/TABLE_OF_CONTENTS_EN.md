@@ -1,6 +1,6 @@
 # TABLE OF CONTENTS
 
-**Version:** 6.0.0 | **Binding Reference:** INVARIANTS.md v6.0.0
+**Version:** 7.1.0 | **Binding Reference:** INVARIANTS.md v7.0.0 / HYPOTHESIS.md v7.1.0
 
 - NORMATIVE REFERENCES  
 - DEFINITIONS  

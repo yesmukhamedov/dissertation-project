@@ -711,5 +711,7 @@ The following propositions are intentionally excluded from the dissertation's ar
 ---
 
 *End of Argument_Map*
-*Version: 6.0.0 | Bound to: INVARIANTS.md v6.0.0*
+*Version: 7.1.0 | Bound to: INVARIANTS.md v7.0.0*
+*v7.1.0 amendment: added PC-11 (Domain-Shift Reduction, mechanistic) as an empirical node depending on PC-1 and feeding PC-6/PC-9/PC-10 explanatorily, with an explicit boundary forbidding magnitude-correspondence inference.*
+*v7.0.0 amendment: PC-10 restated as External Clinical Performance (form S, MCID 0.050, CI⁻ > 0 on each set); SC-10.1, PC-10 strength criteria, DAG label and dependency note updated.*
 *v5.3 amendment: added PC-0 (Paradigmatic Framing Claim, methodological, non-empirical) as a top-level node feeding into IT-1; updated dependency structure to reflect PC-0 → PC-1 conceptual feed.*

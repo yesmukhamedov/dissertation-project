@@ -1,4 +1,4 @@
-# TAB-5.2 — Strength classification of the primary claims (PC-0…PC-10)
+# TAB-5.2 — Strength classification of the primary claims (PC-0…PC-11; PC-3 not in use)
 
 Based on the results of the **2026-08-03** run. Definitions — `thesis/governance/ARGUMENT_MAP.md`. Levels:
 **STRONG** (confirmed as stated) · **MODERATE** (partially / a weaker version holds) ·
@@ -11,7 +11,7 @@ Based on the results of the **2026-08-03** run. Definitions — `thesis/governan
 | PC-1 | Dominance of the integrated pipeline (both backbones) | exp1 | EH-3: ΔF1 ≥ 5 pp ∧ ΔAUC ≥ 0.02 ∧ κ↛ | All three criteria met on both backbones: ΔF1 +6.54/+6.55 pp, ΔAUC +0.032/+0.036, Δκ +0.113/+0.110; DeLong p 0.0041/0.0028, Holm p 0.0082/0.0056; no "arm × backbone" interaction (p = 0.31) | **STRONG** |
 | PC-2 | CLAHE and flat-field σ: parametric sensitivity with a local optimum | exp2 | ≥1 local optimum in range | Both parts closed: two-dimensional CLAHE grid (clip × threshold) on EyePACS → interior maximum θ\* = (2.5, 0.03); σ sweep → unimodal maximum σ\* = 0.07, R = 0.0512; held-out confirms (+0.0599 and +0.0574, CIs exclude 0) | **STRONG** |
 | PC-4 | Thermo-optical laser–tissue model | — | mathematical derivation + simulation | A theoretical contribution; "not clinically validated" (by design) | **DESIGN/THEORETICAL** |
-| PC-5 | Modular architecture of the screening information system | — | specification + UML | A design spec; not prototyped (by design); the UML is missing | **DESIGN/THEORETICAL** |
+| PC-5 | Modular architecture of the screening information system | — | specification + UML | A design spec; not prototyped (by design). The UML gap is closed: Appendix C supplies four structural views (component, deployment, sequence, data) as diagram source, discharging DIA-6.3 | **DESIGN/THEORETICAL** |
 | PC-6 | Transfer to APTOS, G ≥ 0.85 | exp3 | G ≥ 0.85, full > baseline | G_D = 0.8976 ≥ 0.85 ✓, G_C = 0.8577; APTOS wF1 +0.0889 (CI [+0.068, +0.120]); wins on all 5 classes | **STRONG** (with the caveat that baseline also clears the threshold) |
 | PC-7 | Grad-CAM ALO/IoU higher for the preprocessed model | exp4 | ALO_preproc > ALO_base, significantly | 4/4 lesion types directionally and **statistically** (p 0.0007–0.0148), IoU likewise (p 0.0011–0.0189); robust to the threshold τ = 0.2…0.7; small floor effect (f₀ = 6/54) | **STRONG** (within the bounds of NC-14) |
 | PC-8 | Ranked hierarchy of stage contributions (ablation) | exp2 | incremental ΔF1 across levels | All 7 transitions significant (\|Δⱼ\| = 0.0065–0.0143 against 2σ_fold = 0.0042–0.0060), monotonicity holds in every fold; **and the hierarchy is now resolvable** (spread of Δⱼ = 0.0078 ≈ 3σ_fold): flat-field 0.0143 and CLAHE 0.0125 lead, together 41% of the gain | **STRONG** (upgraded from MODERATE — contributions identified, significant, and rankable by group) |
@@ -39,7 +39,9 @@ Based on the results of the **2026-08-03** run. Definitions — `thesis/governan
   ⚠ **Register position corrected:** the domain-distance result was previously filed below as an
   "additional empirical result outside the formal PCs". `ARGUMENT_MAP.md` v7.1.0 carries it as **PC-11**,
   a first-class claim node depending on PC-1 and feeding PC-6 / PC-9 / PC-10 explanatorily. Substance and
-  strength are unchanged; only the register position was wrong. §0.8 and §7 submit it as PC-11.
+  strength are unchanged; only the register position was wrong. §0.8, §5.2.2 and §7 all submit it as PC-11
+  (§5.2.2 was brought into line 2026-08-12 — it had been the one section still classifying seven empirical
+  claims and omitting PC-11 from Table 5.4 altogether).
 - **MODERATE:** none.
 - **REFUTED:** none.
 - **DESIGN/THEORETICAL (untouched by the empirics):** PC-0, PC-4, PC-5.
