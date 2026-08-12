@@ -724,9 +724,53 @@ Sections at or over their word band: §0.1, §0.2, §0.3, §0.4, §0.6, §0.8, �
 four mandatory disclosures, §0.8's qualifications, and the §0.3 goal sentence (quoted verbatim in the
 abstract and defence materials).
 
-### §11.4 Convert and re-export — ⬜ OPEN, **THE CRITICAL PATH**
+### §11.4 Convert and re-export — 🟩 IN PROGRESS, **THE CRITICAL PATH**
 
-With Phase 4 closed, this is the only large item left and everything else waits behind it.
+**Both manuscript editions now convert cleanly (2026-08-12).** `defense/docs/DISSERTATION_{EN,KZ}_GOST_2026-08-12.docx`
+are built from the current 98-section text, ~18.7 MB each. **Condition 1 is met**: Appendix C's four
+Mermaid views render as embedded images in both languages, verified on the appendix alone before the
+full build, and a diagram that fails to render now exits non-zero instead of shipping as source. Still
+open below: the front-matter bundle, `FULL_DISSERTATION_*`, the PDFs, FIG-5.1, and the §0.16 fill.
+
+**Pagination (first real measurement).** EN **272 pages total, body 220** (appendices from p. 221);
+KZ **301 total, body 247** (appendices from p. 248). Against the council rule — PhD *as a rule* up to
+300 pages, **appendices not counted** — both editions clear the limit with room, which is what makes
+§11.3b optional rather than binding. Tables **66**, figures/diagrams **92**, references **107**;
+the page figure for §0.16 is not final until the front matter is prepended.
+
+**Five defects were found and fixed in this pass, four of which would have shipped a wrong book:**
+
+1. **The four Mermaid fences did not render at all** — `md2gost.py` had no Mermaid handling, so all
+   four views would have set as Consolas source and Appendix C would have failed to discharge DIA-6.3.
+2. **Appendix C's sequence view did not parse.** Two message labels contained a semicolon, which
+   Mermaid reads as a statement separator. Written as `#59;` so the rendered text is unchanged.
+3. **Sixty asset markers shipped as raw bracket text with their file paths showing** — the marker
+   regex matched digit-numbered ids only, so **all 54 Appendix-E plates** and the **6 Appendix-D
+   confirmations** printed as literal `[FIG-E.1: … .png]` lines, and Appendix E reproduced nothing.
+   Markers inside list items and backticks were not resolved either.
+4. **`build_full_dissertation.py` cut the body at `^# 1 `** and would have dropped all sixteen §0.x
+   sections, §0.16 included — the same defect as citation defect #2. Both it and
+   `build_frontmatter_bundle.py` also pinned `--date` to the June build; both now resolve the newest.
+5. **The document weighed 86 MB** because the Appendix-E plates embed at 455 dpi. Images are now
+   downscaled to 300 dpi at their placed width; ~18.7 MB per edition.
+
+**Diagram legibility (decided).** C.1 and C.2 were re-laid out — direction only, no node, edge or
+label touched — because as authored they fell on the page as a 165 × 28 mm ribbon and a 58 × 215 mm
+column with ~4 pt labels. C.1 is now `flowchart TB` (142 × 215 mm) and C.2 `flowchart LR`
+(165 × 86 mm), both ~8–9 pt. C.4 stays a full-page ER model with small labels by decision; its
+content is carried in the prose of §C.4.
+
+**Still open in this section:**
+
+- **FIG-5.1 points at a directory**, `experiments/outputs/exp4/gradcam_maskset/`, not an image, so it
+  is the one figure that prints as a caption with `[asset to be created]`. Appendix E already
+  reproduces the complete 54-plate set with no selection, so making §5.1 show a *chosen* subset is a
+  selection decision (SIR-1) and is left to the candidate.
+- Front-matter bundle → `FULL_DISSERTATION_{EN,KZ}` → PDFs, then the §0.16 fill and a re-convert.
+
+---
+
+Original statement of the task, retained:
 
 **Why it is urgent: `defense/docs/` still holds nothing but the June builds of the 53-section
 manuscript.** Both language editions there are superseded by ~45 sections of text that did not exist

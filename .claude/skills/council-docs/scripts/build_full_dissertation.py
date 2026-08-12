@@ -51,12 +51,24 @@ build_frontmatter = _load("build_frontmatter")
 bundle = _load("build_frontmatter_bundle")
 
 _CH1 = re.compile(r"^#\s+1\s")
+# The Introduction heading, in either language. The body starts here when Chapter 0
+# has been assembled — which it now is, ahead of Chapter 1.
+_INTRO = re.compile(r"^#\s+(?:INTRODUCTION|КІРІСПЕ)\s*$", re.IGNORECASE)
 
 
 def strip_body(md_text: str) -> str:
-    """Drop the working title + STAGE-G note; keep from chapter 1 onward."""
+    """Drop the working title + assembly note; keep the manuscript body.
+
+    The body begins at the Introduction where the manuscript has one, and at
+    Chapter 1 otherwise. Cutting unconditionally at Chapter 1 was correct only
+    while Chapter 0 was unwritten; with the Introduction assembled ahead of it,
+    that cut would silently drop all sixteen §0.x sections — including §0.16,
+    whose counts this build exists to paginate.
+    """
     lines = md_text.splitlines()
-    start = next((i for i, l in enumerate(lines) if _CH1.match(l)), 0)
+    start = next((i for i, l in enumerate(lines) if _INTRO.match(l)), None)
+    if start is None:
+        start = next((i for i, l in enumerate(lines) if _CH1.match(l)), 0)
     text = "\n".join(lines[start:])
     return md2gost.strip_version_markers(text)
 
@@ -94,11 +106,33 @@ def assemble(lang: str, body_text: str, merged_num, merged_front, out_docx: Path
     print("[docx]", out_docx.name)
 
 
+def latest_assembly_date() -> str:
+    """Date stamp of the newest GOST manuscript pair in thesis/assembly/.
+
+    Resolved at run time rather than pinned: a pinned date is how the June run
+    kept silently converting the stale 53-section manuscript and reporting
+    success (same defect as `_finalize_citations.py` carried).
+    """
+    asm = ROOT / "thesis/assembly"
+    dates = sorted(
+        m.group(1)
+        for p in asm.glob("DISSERTATION_EN_GOST_*.md")
+        if (m := re.search(r"_(\d{4}-\d{2}-\d{2})\.md$", p.name))
+        and (asm / p.name.replace("_EN_", "_KZ_")).is_file()
+    )
+    if not dates:
+        raise SystemExit(f"no DISSERTATION_{{EN,KZ}}_GOST_*.md pair in {asm}")
+    return dates[-1]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Assemble full dissertation (EN+KZ)")
-    ap.add_argument("--date", default="2026-06-17")
+    ap.add_argument("--date", default=None, help="assembly date stamp (default: newest)")
     ap.add_argument("--no-pdf", action="store_true")
     args = ap.parse_args()
+    if args.date is None:
+        args.date = latest_assembly_date()
+        print(f"[src ] newest assembly: {args.date}")
 
     docs = ROOT / "defense/docs"
     asm = ROOT / "thesis/assembly"

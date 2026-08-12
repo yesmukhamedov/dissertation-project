@@ -17,7 +17,7 @@ The diagrams are given as diagram source in Mermaid notation. The source is the 
 **Diagram C.1. Module decomposition with provided and required interfaces (DIA-6.3a).**
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph EXT_IN["External capture"]
     CAM["Fundus camera<br/>(desk / portable / smartphone-based)"]
   end
@@ -75,7 +75,7 @@ Two features of the decomposition are structural rather than incidental. The Pre
 **Diagram C.2. Store-and-forward deployment topology (DIA-6.3b).**
 
 ```mermaid
-flowchart TB
+flowchart LR
   subgraph PERIPH["Peripheral screening site — resource-limited (OD-6)"]
     direction TB
     P_CAM["Fundus camera"]
@@ -135,9 +135,9 @@ sequenceDiagram
     INF->>REP: five-class grade + posteriors
     REP->>REP: generate post-hoc attention overlay
     REP->>CLIN: grade + overlay (decision support)
-    CLIN->>CLIN: interpret; may override
+    CLIN->>CLIN: interpret#59; may override
     CLIN->>DM: diagnosis + disposition + rationale
-    DM->>DM: persist record; write audit event
+    DM->>DM: persist record#59; write audit event
     DM-->>REP: acknowledgement
   else input rejected (FR-7)
     ING->>REP: rejection + reason

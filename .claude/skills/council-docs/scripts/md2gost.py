@@ -6,7 +6,9 @@ GOST parameters (per council/en/02-formatting/gost-formatting.md):
     page numbers centered at the bottom (not printed on the first page).
 
 Markdown supported: # / ## / ### / #### headings, **bold**, *italic*, `code`,
-numbered lists (1.), bullet lists (- / *), --- rule, blank-line paragraphs.
+numbered lists (1.), bullet lists (- / *), --- rule, blank-line paragraphs,
+pipe tables, fenced code, LaTeX math, [FIG-x.x] markers, and ```mermaid
+diagrams (rendered to images — see the Mermaid section below).
 
 Usage:
     python md2gost.py INPUT.md [-o OUTPUT.docx] [--pdf]
@@ -15,7 +17,13 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
+import os
 import re
+import shutil
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 from docx import Document
@@ -539,20 +547,187 @@ _BUL = re.compile(r"^[-*]\s+(.*)$")
 _HDR = re.compile(r"^(#{1,6})\s+(.*)$")
 _TBL_ROW = re.compile(r"^\s*\|.*\|\s*$")
 _TBL_SEP = re.compile(r"^\s*\|?[\s:|-]*-[\s:|-]*\|?\s*$")
-_FENCE = re.compile(r"^\s*```")
+_FENCE = re.compile(r"^\s*```\s*([A-Za-z0-9_+-]*)")
+
+# --- Mermaid diagram rendering ------------------------------------------------
+# Appendix C supplies its four structural views (component, deployment, sequence,
+# data) as Mermaid source and states that rendering to an image happens at
+# conversion. A converter that treated the fence as an ordinary code block would
+# deliver those views to the reader as monospace source, and the appendix would
+# fail to discharge DIA-6.3. So a ```mermaid fence is rendered to a PNG and
+# embedded, and a failure to render is loud rather than silent.
+#
+# Rendered PNGs are cached under defense/figures/mermaid/ keyed by a hash of the
+# diagram source. The cache is a build input, not a scratch directory: the Kazakh
+# Mermaid source is byte-identical to the English by design, so both editions hit
+# the same entry, and a machine without Node can still build the document from the
+# committed PNGs. Change the source and the key changes with it, so a stale image
+# cannot survive an edit.
+
+MERMAID_CACHE_DIR = "defense/figures/mermaid"
+
+# Chrome/Chromium locations tried when PUPPETEER_EXECUTABLE_PATH is unset. The
+# candidate builds on several machines; reusing an installed browser avoids a
+# per-machine Chromium download.
+_CHROME_CANDIDATES = (
+    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    "/usr/bin/google-chrome",
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+)
+
+_mermaid_failures: list[str] = []
+
+
+def _chrome_executable() -> str | None:
+    """Path to an installed Chrome/Chromium, or None to let Puppeteer choose."""
+    env = os.environ.get("PUPPETEER_EXECUTABLE_PATH")
+    if env and Path(env).is_file():
+        return env
+    for cand in _CHROME_CANDIDATES:
+        if Path(cand).is_file():
+            return cand
+    found = shutil.which("google-chrome") or shutil.which("chromium")
+    return found
+
+
+def _mmdc_command() -> list[str] | None:
+    """Resolve the mermaid-cli invocation, or None if it cannot be found.
+
+    Tried in order: the MMDC environment variable, a mermaid-cli installed into
+    the repository's node_modules, one on PATH, then `npx` as a last resort
+    (which needs network access on first use).
+    """
+    env = os.environ.get("MMDC")
+    if env:
+        return [env]
+    here = Path(__file__).resolve().parent
+    for base in (here, *here.parents):
+        for name in ("mmdc.cmd", "mmdc"):
+            cand = base / "node_modules" / ".bin" / name
+            if cand.is_file():
+                return [str(cand)]
+    on_path = shutil.which("mmdc")
+    if on_path:
+        return [on_path]
+    npx = shutil.which("npx")
+    if npx:
+        return [npx, "--yes", "@mermaid-js/mermaid-cli"]
+    return None
+
+
+def _render_mermaid(code: str, base_dir: Path) -> Path | None:
+    """Render Mermaid `code` to a PNG and return its path, or None on failure.
+
+    Uses the cached render when one exists, so the document builds without Node
+    as long as the committed PNGs match the source.
+    """
+    digest = hashlib.sha256(code.strip().encode("utf-8")).hexdigest()[:12]
+    cache_dir = base_dir / MERMAID_CACHE_DIR
+    png = cache_dir / f"diagram_{digest}.png"
+    if png.is_file():
+        return png
+
+    cmd = _mmdc_command()
+    if cmd is None:
+        _mermaid_failures.append(
+            f"{digest}: mermaid-cli not found and no cached render at {png}"
+        )
+        return None
+
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        src = Path(tmp) / "diagram.mmd"
+        src.write_text(code.strip() + "\n", encoding="utf-8")
+        argv = [*cmd, "-i", str(src), "-o", str(png), "-b", "white", "-s", "3"]
+        chrome = _chrome_executable()
+        if chrome:
+            cfg = Path(tmp) / "puppeteer.json"
+            cfg.write_text(
+                '{"executablePath": %s, "args": ["--no-sandbox", '
+                '"--disable-setuid-sandbox"]}' % _json_str(chrome),
+                encoding="utf-8",
+            )
+            argv += ["-p", str(cfg)]
+        try:
+            proc = subprocess.run(argv, capture_output=True, text=True, timeout=180)
+        except (OSError, subprocess.SubprocessError) as exc:
+            _mermaid_failures.append(f"{digest}: {exc}")
+            return None
+    if proc.returncode != 0 or not png.is_file():
+        detail = (proc.stderr or proc.stdout or "").strip().splitlines()
+        _mermaid_failures.append(f"{digest}: {detail[-1] if detail else 'render failed'}")
+        return None
+    return png
+
+
+def _json_str(s: str) -> str:
+    """Minimal JSON string literal (avoids importing json for one value)."""
+    return '"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def mermaid_failures() -> list[str]:
+    """Diagrams that failed to render during the conversions run so far."""
+    return list(_mermaid_failures)
+
+
+def _add_mermaid(doc: Document, code_lines: list[str], base_dir: Path) -> None:
+    """Embed a Mermaid diagram as a centred image; fall back to source on failure.
+
+    The fallback is deliberately visible — the caller reports the failure and
+    exits non-zero — because a diagram silently shipped as source is the defect
+    this function exists to prevent.
+    """
+    img = _render_mermaid("\n".join(code_lines), base_dir)
+    if img is None:
+        _add_code_block(doc, code_lines)
+        return
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.first_line_indent = Mm(0)
+    p.paragraph_format.space_before = Pt(6)
+    p.paragraph_format.space_after = Pt(6)
+    p.add_run().add_picture(str(img), width=Mm(_fit_width_mm(img)))
 
 # --- Figure placeholders ------------------------------------------------------
-# Drafts carry figures as inline text markers `[FIG-3.1: caption — path/img.png]`
-# (and `[TAB-…]`). This converter resolves each to an embedded image with a GOST
-# caption below it ("Figure N – Title" / KZ "Сурет N – Атауы"), replacing the
-# inline marker with a cross-reference. `pre`("…in ") / `post`(" …суретінде")
-# are absorbed so the reference reads naturally in either language.
+# Drafts carry assets as inline text markers `[FIG-3.1: caption — path/img.png]`.
+# This converter resolves each to an embedded image with a GOST caption below it
+# ("Figure N – Title" / KZ "Сурет N – Атауы"), replacing the inline marker with a
+# cross-reference. `pre`("…in ") / `post`(" …суретінде") are absorbed so the
+# reference reads naturally in either language.
+#
+# Four marker prefixes occur, and they are NOT interchangeable:
+#   FIG / FIGURE — a figure, numbered within its chapter or appendix (E.1…E.54).
+#   APP          — an appendix exhibit carrying only the appendix letter, so the
+#                  sequence number is assigned here in order of appearance.
+#   DIA          — a diagram. It takes its own caption series because DIA-6.1 and
+#                  FIG-6.1 both exist: labelling both "Figure 6.1" would put two
+#                  different images under one number.
+#   TAB          — a table caption. Never an image: the table itself follows as
+#                  Markdown, and GOST places its caption above it, which is where
+#                  the marker already sits.
+# Numbers may carry an appendix letter (E.1, D), so the pattern is not digits-only
+# — matching digits alone left all 54 Appendix-E plates in the document as raw
+# bracket text with their file paths showing.
 _FIG = re.compile(
     r"(?P<pre>\b[Ii]n\s+)?"
-    r"\[(?:FIG|FIGURE)-(?P<num>[0-9]+(?:\.[0-9]+)?):\s*(?P<body>[^\]]*)\]"
+    r"\[(?P<kind>FIG|FIGURE|APP|DIA|TAB)-(?P<num>[A-Za-z]?[0-9]*(?:\.[0-9]+)?):"
+    r"\s*(?P<body>[^\]]*)\]"
     r"(?P<post>\s+сурет\w*)?"
 )
+
+# Caption word per marker kind and language.
+_LABELS = {
+    "en": {"FIG": "Figure", "FIGURE": "Figure", "APP": "Figure",
+           "DIA": "Diagram", "TAB": "Table"},
+    "kz": {"FIG": "Сурет", "FIGURE": "Сурет", "APP": "Сурет",
+           "DIA": "Диаграмма", "TAB": "Кесте"},
+}
 _DASH = re.compile(r"\s+[—–-]\s+")  # caption — target separator (em/en/hyphen)
+# A marker wrapped in backticks is still a marker, not a code span.
+_FIG_TICKS = re.compile(r"`(\[(?:FIG|FIGURE|APP|DIA|TAB)-[^\]]*\])`")
 
 
 def _png_size(p: Path):
@@ -593,20 +768,73 @@ def _parse_fig_body(body: str, base: Path):
     return caption, img
 
 
-def _insert_figure(doc: Document, label: str, num: str, caption: str, img: Path | None):
+# Images are embedded at the resolution the page can actually print. The 54
+# Appendix-E plates are 2954 px wide and sit 165 mm wide — 455 dpi, of which a
+# printer uses none above ~300 — and embedding them at native size put 73 MB of
+# plates into an 86 MB document. Downscaled copies are cached beside the output.
+PRINT_DPI = 300
+PRINT_CACHE_DIR = "defense/docs/.print_cache"
+
+
+def _print_ready(img: Path, width_mm: float, base_dir: Path) -> Path:
+    """A copy of `img` downscaled to PRINT_DPI at `width_mm`, or `img` itself.
+
+    Returns the original when it is already at or below the print resolution, or
+    when Pillow is unavailable — an oversized image is a size problem, never a
+    correctness one, so it is never worth failing the build over.
+    """
+    target = int(width_mm / 25.4 * PRINT_DPI)
+    sz = _png_size(img)
+    if not sz or sz[0] <= target * 1.1:
+        return img
+    try:
+        from PIL import Image
+    except ImportError:
+        return img
+    st = img.stat()
+    key = hashlib.sha256(
+        f"{img}|{st.st_mtime_ns}|{st.st_size}|{target}".encode("utf-8")
+    ).hexdigest()[:12]
+    cache = base_dir / PRINT_CACHE_DIR
+    hit = next(cache.glob(f"{img.stem}_{key}.*"), None) if cache.is_dir() else None
+    if hit:
+        return hit
+    cache.mkdir(parents=True, exist_ok=True)
+    # Encode both ways and let the measured sizes choose, rather than guessing
+    # from the content. PNG is kept unless JPEG is at least twice as small: on
+    # the photographic plates JPEG wins by ~7x and is worth taking, while on
+    # line art it saves ~50 KB and is not worth the ringing around type.
+    try:
+        with Image.open(img) as im:
+            im = im.convert("RGB")
+            small = im.resize((target, round(sz[1] * target / sz[0])), Image.LANCZOS)
+            png, jpg = cache / f"{img.stem}_{key}.png", cache / f"{img.stem}_{key}.jpg"
+            small.save(png, "PNG", optimize=True)
+            small.save(jpg, "JPEG", quality=90, optimize=True)
+    except OSError:
+        return img
+    keep, drop = (jpg, png) if jpg.stat().st_size * 2 <= png.stat().st_size else (png, jpg)
+    drop.unlink(missing_ok=True)
+    return keep
+
+
+def _insert_figure(doc: Document, label: str, num: str, caption: str, img: Path | None,
+                   *, note_missing: bool = True, base_dir: Path | None = None):
     if img is not None:
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.first_line_indent = Mm(0)
         p.paragraph_format.space_before = Pt(6)
         p.paragraph_format.keep_with_next = True
-        p.add_run().add_picture(str(img), width=Mm(_fit_width_mm(img)))
+        w = _fit_width_mm(img)
+        src = _print_ready(img, w, base_dir) if base_dir is not None else img
+        p.add_run().add_picture(str(src), width=Mm(w))
     c = doc.add_paragraph()
     c.alignment = WD_ALIGN_PARAGRAPH.CENTER
     c.paragraph_format.first_line_indent = Mm(0)
     c.paragraph_format.space_after = Pt(6)
-    text = f"{label} {num} – {caption}"
-    if img is None:
+    text = f"{label} {num} – {caption}" if num else f"{label} – {caption}"
+    if img is None and note_missing:
         text += " [ресурс дайындалуда]" if label == "Сурет" else " [asset to be created]"
     _add_runs(c, text)
 
@@ -635,32 +863,75 @@ def render_into(
     single-file case. Version-marker scrubbing is the caller's responsibility
     here (convert() still does it).
     """
-    fig_label = "Сурет" if lang == "kz" else "Figure"
+    labels = _LABELS["kz" if lang == "kz" else "en"]
     if base_dir is None:
         base_dir = Path(".")
     lines = text.splitlines()
 
-    figs: dict[str, dict] = {}  # num -> {caption, img, placed}
+    figs: dict[tuple, dict] = {}   # (kind, num, target) -> registration
+    seq: dict[tuple, int] = {}     # (kind, num) -> next sequence for letter-only ids
+
+    def _key(m: re.Match) -> tuple:
+        return (m.group("kind").upper(), m.group("num"), m.group("body").strip())
+
+    def _register(m: re.Match) -> dict:
+        """Resolve a marker once, assigning its caption number and image."""
+        k = _key(m)
+        if k not in figs:
+            kind, num = k[0], k[1]
+            caption, img = _parse_fig_body(m.group("body"), base_dir)
+            if "." not in num:
+                # An appendix-letter id (APP-D) carries no sequence of its own;
+                # number the exhibits in order of appearance: D.1, D.2, …
+                seq[(kind, num)] = seq.get((kind, num), 0) + 1
+                num = f"{num}.{seq[(kind, num)]}" if num else str(seq[(kind, num)])
+            figs[k] = {"label": labels.get(k[0], labels["FIG"]), "num": num,
+                       "caption": caption, "img": img, "placed": False}
+        return figs[k]
 
     def _fig_inline(m: re.Match) -> str:
-        """Register the figure and return its inline cross-reference text."""
-        num = m.group("num")
-        if num not in figs:
-            caption, img = _parse_fig_body(m.group("body"), base_dir)
-            figs[num] = {"caption": caption, "img": img, "placed": False}
+        """Register the marker and return the text that replaces it in the prose."""
+        f = _register(m)
+        if f["img"] is None:
+            # A marker with no image is a cross-reference, not a figure: the
+            # sentence around it already names the target ("…given in Appendix C"),
+            # so the bracket is dropped rather than printed at the reader.
+            return ""
         if lang == "kz":
             post = (m.group("post") or "").strip()
-            return f"{num}-{post}" if post else f"({num}-сурет)"
+            return f"{f['num']}-{post}" if post else f"({f['num']}-сурет)"
         pre = m.group("pre") or ""
-        return f"{pre}Figure {num}" if pre else f"(Figure {num})"
+        return f"{pre}{f['label']} {f['num']}" if pre else f"({f['label']} {f['num']})"
 
-    def _emit_figs(order: list[str]) -> None:
-        for num in order:
-            f = figs[num]
-            if f["placed"]:
-                continue
-            _insert_figure(doc, fig_label, num, f["caption"], f["img"])
-            f["placed"] = True
+    def _emit(f: dict, *, note_missing: bool = True) -> None:
+        if f["placed"]:
+            return
+        _insert_figure(doc, f["label"], f["num"], f["caption"], f["img"],
+                       note_missing=note_missing, base_dir=base_dir)
+        f["placed"] = True
+
+    def resolve_markers(raw: str) -> tuple[str, list[dict], bool]:
+        """Substitute asset markers in `raw`.
+
+        Returns the prose with markers replaced by cross-references, the assets
+        to emit after it, and whether the text was nothing but markers (a
+        standalone caption line, which becomes a figure block on its own).
+        """
+        raw = _FIG_TICKS.sub(r"\1", raw)  # a marker wrapped in `…` is not code
+        found = list(_FIG.finditer(raw))
+        if not found:
+            return raw, [], False
+        if not _FIG.sub("", raw).strip():
+            return "", [_register(m) for m in found], True
+        regs = [_register(m) for m in found]
+        cleaned = re.sub(r"[ \t]{2,}", " ", _FIG.sub(_fig_inline, raw)).strip()
+        cleaned = re.sub(r"\s+([,.;:])", r"\1", cleaned)
+        return cleaned, regs, False
+
+    def emit_after(regs: list[dict]) -> None:
+        for f in regs:
+            if f["img"] is not None:
+                _emit(f)
 
     buf: list[str] = []
 
@@ -669,10 +940,16 @@ def render_into(
             return
         raw = " ".join(buf).strip()
         buf.clear()
-        order = [m.group("num") for m in _FIG.finditer(raw)]
-        cleaned = _FIG.sub(_fig_inline, raw)
+        cleaned, regs, standalone = resolve_markers(raw)
+        if standalone:
+            # Nothing but markers — the Appendix-E plate list, a table caption.
+            # A table caption stands alone above its Markdown table, so its
+            # absent image is the normal case rather than a missing asset.
+            for f in regs:
+                _emit(f, note_missing=f["label"] != labels["TAB"])
+            return
         _body(doc, cleaned)
-        _emit_figs(order)
+        emit_after(regs)
 
     tbl_buf: list[list[str]] = []
 
@@ -682,21 +959,30 @@ def render_into(
             tbl_buf.clear()
 
     in_code = False
+    code_lang = ""
     code_buf: list[str] = []
 
     for raw in lines:
         line = raw.rstrip()
         stripped = line.strip()
 
-        # fenced code block: collect raw lines verbatim until the closing fence
-        if _FENCE.match(stripped):
+        # fenced block: collect raw lines verbatim until the closing fence. A
+        # ```mermaid fence is a diagram, rendered to an image rather than set as
+        # source (Appendix C states rendering happens at conversion time).
+        m_fence = _FENCE.match(stripped)
+        if m_fence:
             if in_code:
-                _add_code_block(doc, code_buf)
+                if code_lang.lower() == "mermaid":
+                    _add_mermaid(doc, code_buf, base_dir)
+                else:
+                    _add_code_block(doc, code_buf)
                 code_buf.clear()
+                code_lang = ""
                 in_code = False
             else:
                 flush_paragraph()
                 flush_table()
+                code_lang = m_fence.group(1) or ""
                 in_code = True
             continue
         if in_code:
@@ -734,22 +1020,31 @@ def render_into(
             _heading(doc, m.group(2).strip(), len(m.group(1)))
             continue
 
-        m = _NUM.match(stripped)
+        # List items carry asset markers too — the Appendix-E plate list and the
+        # Appendix-D publication confirmations are bulleted. Resolving markers
+        # only in paragraphs left all sixty of those in the document as raw
+        # bracket text with their file paths showing.
+        m = _NUM.match(stripped) or _BUL.match(stripped)
         if m:
             flush_paragraph()
-            _list_item(doc, f"{m.group(1)}.", m.group(2).strip())
-            continue
-
-        m = _BUL.match(stripped)
-        if m:
-            flush_paragraph()
-            _list_item(doc, "•", m.group(1).strip())
+            marker = f"{m.group(1)}." if m.re is _NUM else "•"
+            item = (m.group(2) if m.re is _NUM else m.group(1)).strip()
+            cleaned, regs, standalone = resolve_markers(item)
+            if standalone:
+                for f in regs:
+                    _emit(f, note_missing=f["label"] != labels["TAB"])
+            else:
+                _list_item(doc, marker, cleaned)
+                emit_after(regs)
             continue
 
         buf.append(stripped)
 
     if in_code and code_buf:
-        _add_code_block(doc, code_buf)
+        if code_lang.lower() == "mermaid":
+            _add_mermaid(doc, code_buf, base_dir)
+        else:
+            _add_code_block(doc, code_buf)
     flush_table()
     flush_paragraph()
 
@@ -794,6 +1089,17 @@ def main() -> None:
     docx_path: Path = args.output or md_path.with_suffix(".docx")
     convert(md_path, docx_path)
     print(f"[docx] {docx_path}")
+
+    if _mermaid_failures:
+        # A diagram that reached the reader as source would be a defect in the
+        # document, not a warning about the build — so say so and fail.
+        print(
+            f"[FAIL] {len(_mermaid_failures)} Mermaid diagram(s) shipped as source:",
+            file=sys.stderr,
+        )
+        for f in _mermaid_failures:
+            print(f"       {f}", file=sys.stderr)
+        raise SystemExit(1)
 
     if args.pdf:
         from docx2pdf import convert as to_pdf

@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import re
 from pathlib import Path
 
 from docx import Document
@@ -128,11 +129,32 @@ def build(lang: str, num, front, out_docx: Path) -> None:
     print("[docx]", out_docx.name)
 
 
+def latest_manuscript_date() -> str:
+    """Date stamp of the newest rendered manuscript pair in defense/docs/.
+
+    Resolved at run time rather than pinned, so the bundle reads its CONTENTS
+    page numbers off the current manuscript instead of a stale earlier build.
+    """
+    docs = ROOT / "defense/docs"
+    dates = sorted(
+        m.group(1)
+        for p in docs.glob("DISSERTATION_EN_GOST_*.docx")
+        if (m := re.search(r"_(\d{4}-\d{2}-\d{2})\.docx$", p.name))
+        and (docs / p.name.replace("_EN_", "_KZ_")).is_file()
+    )
+    if not dates:
+        raise SystemExit(f"no DISSERTATION_{{EN,KZ}}_GOST_*.docx pair in {docs}")
+    return dates[-1]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Combine GOST front matter (EN+KZ)")
-    ap.add_argument("--date", default="2026-06-17")
+    ap.add_argument("--date", default=None, help="manuscript date stamp (default: newest)")
     ap.add_argument("--no-pdf", action="store_true")
     args = ap.parse_args()
+    if args.date is None:
+        args.date = latest_manuscript_date()
+        print(f"[src ] newest manuscript: {args.date}")
 
     docs = ROOT / "defense/docs"
     jobs = [

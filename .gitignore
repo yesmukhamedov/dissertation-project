@@ -36,3 +36,6 @@ demo/cloudflared/cert.pem
 
 # Demo access password (DEMO_PASSWORD) read by the demo launchers
 demo/.demo-password
+
+# Build cache: images downscaled to print resolution by md2gost.py
+defense/docs/.print_cache/
