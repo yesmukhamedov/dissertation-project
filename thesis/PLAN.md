@@ -782,12 +782,27 @@ editions now state a figure that matches their own pagination exactly.
    and could not see a Kazakh appendix heading at all because it leads with its letter. All now resolve;
    the only dashes left are the three front-matter sections, which take their pages in the full build.
 
+**FIG-5.1 is closed — resolved against the council's own samples.** The marker pointed at a directory
+and named a *representative* selection from the 54-plate set; choosing which overlays a reader sees is
+the selection SIR-1 guards against, while Appendix E already reproduces the complete set with none.
+`Инструкция_по_оформлению_диссертации` requires only that every illustration be referenced, and the
+accepted dissertations in `D:\dissertation_council` put a full gallery in a lettered appendix —
+Myrzakerimova carries Figure C.2–C.13 there and duplicates no subset in the body. The sentence after
+the marker already read "The overlay gallery, presented in full in Appendix E, is an illustration and
+carries no measurement", so the marker was removed and that sentence carries the reference. **Every
+figure in both editions now resolves to a real image: `asset to be created` is zero.**
+
+The same instruction confirmed two choices made earlier in this pass: appendix illustrations are
+numbered with the appendix letter (its own example is "Рисунок А3"; Tokhtakhunov ships "Figure B.1"),
+which is what the converter now emits, and captions sit **below** the figure, which is where it puts
+them. Chapter-scoped numbering in the body is explicitly permitted (§5, "в пределах раздела").
+
 **Still open in this section:**
 
-- **FIG-5.1 points at a directory**, `experiments/outputs/exp4/gradcam_maskset/`, not an image, so it
-  is the one figure that prints as a caption with `[asset to be created]`. Appendix E already
-  reproduces the complete 54-plate set with no selection, so making §5.1 show a *chosen* subset is a
-  selection decision (SIR-1) and is left to the candidate.
+- **Appendix C's four diagrams are captioned above, not below.** Their captions are the appendix's own
+  bold "Diagram C.1. …" lines, so they neither sit below the image nor use the "Figure C.1 – …" wording
+  the instruction illustrates. Cosmetic and self-consistent, but it is the one place the document
+  departs from the caption convention the rest of it follows.
 - The abstract was checked against this pass and needs no correction: it already carries the current
   structure — H-3 as a separate investigation, Experiment 5 as external clinical performance, eight
   investigations — and its "Structure and length" section deliberately states no counts, so nothing in
