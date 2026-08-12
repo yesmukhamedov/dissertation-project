@@ -841,14 +841,36 @@ are ordinary sentences that open with a reference ("Table 2.1 contrasts…"), wh
 instruction prescribes. As with the diagrams, the normalisation happens at conversion and **no
 translation was edited**. Pagination moved +1 and §0.16 was corrected to 240 EN / 266 KZ and re-verified.
 
-**Still open in this section:**
+**Governance document names are out of the text (2026-08-13).** All 27 were provenance citations to
+documents the reader has no access to, always inside a parenthetical: the citation is removed with its
+separator, and a parenthetical left empty goes with it — `(RESEARCH_ARCHITECTURE §3.2; OD-3 Stage 5)`
+becomes `(OD-3 Stage 5)`, `(60 images, RESEARCH_ARCHITECTURE §2.1.8)` becomes `(60 images)`, and the one
+sentence that embedded the citation in prose now reads "the reasoning recorded in the dissertation's
+governance". 50 parentheticals across both editions; **zero names, zero empty parentheses, and zero
+literal `§X` remain.**
 
-- **Governance document names appear in the text — 27 occurrences** (`RESEARCH_ARCHITECTURE` ×21,
-  `INVARIANTS` ×5, `CENTRAL_THESIS` ×1), in table captions and in prose alike: "Table 4.1 – Tiered
-  dataset architecture (RESEARCH_ARCHITECTURE §2.1)". Same class as the resource IDs just cleaned —
-  internal provenance in reader-facing text. Not fixed here, because unlike the IDs these have no
-  reader-facing equivalent to map onto: each is a citation of an internal document, so the choice is to
-  delete the parenthetical or to reword the sentence, and that is a content decision.
+Two things travelled out with them. Three citations pointed at a literal **`§X`** — an unresolved
+cross-reference that would have printed as written — and the `INVARIANTS` citations carried a
+**`v6.0.0` version marker** that reached the page: the converter's scrubber only recognises V3/V4/V5,
+so it passed straight through the containment rule of `VERSIONING_POLICY.md` §6.
+
+The same scan found **two more version markers that survive in prose**, in §2.C and §3.C: "those
+sources were acquired in the **v6.1.0** corpus expansion". That is process history as well as a version
+marker — the reader is told when the project's literature corpus was extended — so both sentences now
+say it without the version ("those sources have since been acquired"). **Both editions now render zero
+version markers, zero governance document names and zero resource IDs.**
+
+**Still open in this section — larger than what it replaces:**
+
+- **The governance *codes* are undefined for the reader — 356 occurrences** across eight families
+  (`SB` ×71, `OD` ×66, `SIR` ×54, `PC` ×42, `NC` ×36, `EH` ×34, `DGL` ×33, `CFC` ×13; the 128 `H-x`
+  are hypotheses and are properly introduced in §0.6). **None of the eight is defined in
+  `DESIGNATIONS AND ABBREVIATIONS` or in `DEFINITIONS`** — and `OD` *is* listed there, as **Optic
+  Disc**, so a reader meeting `OD-3 Stage 5` is pointed at the wrong expansion. `PC-x` are at least
+  introduced in context by §0.8. This is the same class as the two cleanups just done but an order of
+  magnitude larger, and it has two possible resolutions — declare the families in the front matter, or
+  strip them from the body — which differ in what the dissertation looks like to a reviewer. **The
+  candidate should decide before submission.**
 - The abstract was checked against this pass and needs no correction: it already carries the current
   structure — H-3 as a separate investigation, Experiment 5 as external clinical performance, eight
   investigations — and its "Structure and length" section deliberately states no counts, so nothing in

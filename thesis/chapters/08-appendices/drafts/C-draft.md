@@ -18,40 +18,40 @@ The diagrams are given as diagram source in Mermaid notation. The source is the 
 
 ```mermaid
 flowchart TB
-  subgraph EXT_IN["External capture"]
-    CAM["Fundus camera<br/>(desk / portable / smartphone-based)"]
-  end
+ subgraph EXT_IN["External capture"]
+ CAM["Fundus camera<br/>(desk / portable / smartphone-based)"]
+ end
 
-  subgraph SYS["Automated DR screening system"]
-    ORCH["Orchestration /<br/>Error-Handling<br/>FR-7"]
-    ING["Ingestion<br/>FR-1, FR-7"]
-    PRE["Preprocessing Engine<br/>FR-2 · 8-stage pipeline<br/>(configurable)"]
-    INF["Inference<br/>FR-3 · 5-class grade"]
-    REP["Decision-Support /<br/>Reporting<br/>FR-4 · grade + overlay"]
-    UI["Clinician Interface<br/>FR-5 · review, override, audit"]
-    DM["Data-Management /<br/>PACS-EHR Integration<br/>FR-6"]
-  end
+ subgraph SYS["Automated DR screening system"]
+ ORCH["Orchestration /<br/>Error-Handling<br/>FR-7"]
+ ING["Ingestion<br/>FR-1, FR-7"]
+ PRE["Preprocessing Engine<br/>FR-2 · 8-stage pipeline<br/>(configurable)"]
+ INF["Inference<br/>FR-3 · 5-class grade"]
+ REP["Decision-Support /<br/>Reporting<br/>FR-4 · grade + overlay"]
+ UI["Clinician Interface<br/>FR-5 · review, override, audit"]
+ DM["Data-Management /<br/>PACS-EHR Integration<br/>FR-6"]
+ end
 
-  subgraph EXT_OUT["Hospital systems"]
-    PACS["PACS"]
-    EHR["EHR"]
-  end
+ subgraph EXT_OUT["Hospital systems"]
+ PACS["PACS"]
+ EHR["EHR"]
+ end
 
-  CAM -->|"image + acquisition metadata"| ING
-  ING -->|"validated image"| PRE
-  PRE -->|"4-channel tensor"| INF
-  INF -->|"grade + class posteriors"| REP
-  REP -->|"grade + attention overlay"| UI
-  UI -->|"clinician disposition"| DM
-  REP -->|"result record"| DM
-  DM <-->|"FHIR / HL7, asynchronous"| PACS
-  DM <-->|"FHIR / HL7, asynchronous"| EHR
+ CAM -->|"image + acquisition metadata"| ING
+ ING -->|"validated image"| PRE
+ PRE -->|"4-channel tensor"| INF
+ INF -->|"grade + class posteriors"| REP
+ REP -->|"grade + attention overlay"| UI
+ UI -->|"clinician disposition"| DM
+ REP -->|"result record"| DM
+ DM <-->|"FHIR / HL7, asynchronous"| PACS
+ DM <-->|"FHIR / HL7, asynchronous"| EHR
 
-  ORCH -.->|"supervises, retries,<br/>routes failures"| ING
-  ORCH -.-> PRE
-  ORCH -.-> INF
-  ORCH -.-> REP
-  ING -.->|"rejected input +<br/>reason"| REP
+ ORCH -.->|"supervises, retries,<br/>routes failures"| ING
+ ORCH -.-> PRE
+ ORCH -.-> INF
+ ORCH -.-> REP
+ ING -.->|"rejected input +<br/>reason"| REP
 ```
 
 The view is to be read against the requirement mapping rather than on its own. Table C.1 restates that mapping so that each module can be checked against the requirement it exists to satisfy.
@@ -76,36 +76,36 @@ Two features of the decomposition are structural rather than incidental. The Pre
 
 ```mermaid
 flowchart LR
-  subgraph PERIPH["Peripheral screening site — resource-limited (OD-6)"]
-    direction TB
-    P_CAM["Fundus camera"]
-    P_NODE["Capture node<br/>no GPU (NFR-1)<br/>&lt; 16 GB RAM (NFR-2)"]
-    P_Q["Local outbound queue<br/>(NFR-4: intermittent link)"]
-    P_CAM --> P_NODE --> P_Q
-  end
+ subgraph PERIPH["Peripheral screening site — resource-limited (OD-6)"]
+ direction TB
+ P_CAM["Fundus camera"]
+ P_NODE["Capture node<br/>no GPU (NFR-1)<br/>&lt; 16 GB RAM (NFR-2)"]
+ P_Q["Local outbound queue<br/>(NFR-4: intermittent link)"]
+ P_CAM --> P_NODE --> P_Q
+ end
 
-  subgraph CENTRE["Reading centre / regional processing node"]
-    direction TB
-    C_ING["Ingestion"]
-    C_PRE["Preprocessing Engine"]
-    C_INF["Inference"]
-    C_REP["Decision-Support / Reporting"]
-    C_UI["Clinician review workstation"]
-    C_ING --> C_PRE --> C_INF --> C_REP --> C_UI
-  end
+ subgraph CENTRE["Reading centre / regional processing node"]
+ direction TB
+ C_ING["Ingestion"]
+ C_PRE["Preprocessing Engine"]
+ C_INF["Inference"]
+ C_REP["Decision-Support / Reporting"]
+ C_UI["Clinician review workstation"]
+ C_ING --> C_PRE --> C_INF --> C_REP --> C_UI
+ end
 
-  subgraph HOSP["Hospital information systems"]
-    direction TB
-    H_PACS["PACS"]
-    H_EHR["EHR"]
-  end
+ subgraph HOSP["Hospital information systems"]
+ direction TB
+ H_PACS["PACS"]
+ H_EHR["EHR"]
+ end
 
-  P_Q ==>|"store-and-forward<br/>encrypted transfer"| C_ING
-  C_UI ==>|"disposition"| H_EHR
-  C_REP ==>|"study + result"| H_PACS
+ P_Q ==>|"store-and-forward<br/>encrypted transfer"| C_ING
+ C_UI ==>|"disposition"| H_EHR
+ C_REP ==>|"study + result"| H_PACS
 
-  classDef bound fill:none,stroke-dasharray:4 3;
-  class PERIPH,CENTRE,HOSP bound;
+ classDef bound fill:none,stroke-dasharray:4 3;
+ class PERIPH,CENTRE,HOSP bound;
 ```
 
 This is the view in which the non-functional envelope prunes the design. The peripheral site is specified to require neither inference acceleration nor a continuous link: capture and queueing are all that occur there, and the transfer boundary is asynchronous by construction (NFR-4). The alternative topology — inference at the point of capture — is not excluded in principle, but it is not the arrangement specified here, and Chapter 6 selects the store-and-forward form precisely because it is the one that survives the connectivity condition of OD-6.
@@ -116,33 +116,33 @@ This is the view in which the non-functional envelope prunes the design. The per
 
 ```mermaid
 sequenceDiagram
-  autonumber
-  actor OP as Operator
-  participant CAM as Camera
-  participant ING as Ingestion
-  participant PRE as Preprocessing Engine
-  participant INF as Inference
-  participant REP as Reporting
-  actor CLIN as Clinician
-  participant DM as Data-Management
+ autonumber
+ actor OP as Operator
+ participant CAM as Camera
+ participant ING as Ingestion
+ participant PRE as Preprocessing Engine
+ participant INF as Inference
+ participant REP as Reporting
+ actor CLIN as Clinician
+ participant DM as Data-Management
 
-  OP->>CAM: acquire fundus image
-  CAM->>ING: image + acquisition metadata
-  alt input valid
-    ING->>PRE: validated image
-    PRE->>PRE: stages 0-5, 7 (fixed transform)
-    PRE->>INF: 4-channel tensor
-    INF->>REP: five-class grade + posteriors
-    REP->>REP: generate post-hoc attention overlay
-    REP->>CLIN: grade + overlay (decision support)
-    CLIN->>CLIN: interpret#59; may override
-    CLIN->>DM: diagnosis + disposition + rationale
-    DM->>DM: persist record#59; write audit event
-    DM-->>REP: acknowledgement
-  else input rejected (FR-7)
-    ING->>REP: rejection + reason
-    REP->>CLIN: rejection notice, no grade issued
-  end
+ OP->>CAM: acquire fundus image
+ CAM->>ING: image + acquisition metadata
+ alt input valid
+ ING->>PRE: validated image
+ PRE->>PRE: stages 0-5, 7 (fixed transform)
+ PRE->>INF: 4-channel tensor
+ INF->>REP: five-class grade + posteriors
+ REP->>REP: generate post-hoc attention overlay
+ REP->>CLIN: grade + overlay (decision support)
+ CLIN->>CLIN: interpret#59; may override
+ CLIN->>DM: diagnosis + disposition + rationale
+ DM->>DM: persist record#59; write audit event
+ DM-->>REP: acknowledgement
+ else input rejected (FR-7)
+ ING->>REP: rejection + reason
+ REP->>CLIN: rejection notice, no grade issued
+ end
 ```
 
 Two properties of the ordering are the point of the diagram. The clinician's disposition is the **terminal** step: the system produces a grade and an accompanying overlay, and the diagnosis is made by the clinician, who may override the system's output and whose rationale is persisted. The system is decision support within a physician-in-the-loop paradigm and is not a standalone diagnostic instrument. And the attention overlay is generated *post hoc*, after the grade, as an interpretability artefact accompanying it — it indicates regions of high gradient-weighted activation and does not constitute a pixel-level delineation of pathology or a localisation output.
@@ -155,58 +155,58 @@ The rejection branch is drawn because a screening system that fails silently on 
 
 ```mermaid
 erDiagram
-  PATIENT ||--o{ STUDY : "undergoes"
-  STUDY ||--o{ IMAGE : "contains"
-  DEVICE ||--o{ IMAGE : "captured by"
-  IMAGE ||--|| PREPROCESSING_RUN : "transformed by"
-  PREPROCESSING_RUN ||--|| INFERENCE : "feeds"
-  INFERENCE ||--o| OVERLAY : "accompanied by"
-  INFERENCE ||--|| DIAGNOSTIC_RESULT : "proposes"
-  CLINICIAN ||--o{ DIAGNOSTIC_RESULT : "adjudicates"
-  DIAGNOSTIC_RESULT ||--o{ AUDIT_EVENT : "records"
-  PATIENT {
-    id identifier PK "patient-identifying"
-    demographics attributes "patient-identifying"
-  }
-  STUDY {
-    id identifier PK
-    acquisition_context attributes
-  }
-  IMAGE {
-    id identifier PK
-    laterality attribute
-    acquisition_metadata attributes
-  }
-  DEVICE {
-    id identifier PK
-    manufacturer_model attributes
-  }
-  PREPROCESSING_RUN {
-    pipeline_configuration attributes
-    stage_parameters attributes
-  }
-  INFERENCE {
-    backbone_identity attribute
-    grade attribute
-    class_posteriors attributes
-  }
-  OVERLAY {
-    artefact reference "interpretability only"
-  }
-  DIAGNOSTIC_RESULT {
-    proposed_grade attribute
-    clinician_grade attribute
-    override_flag attribute
-    rationale text
-  }
-  CLINICIAN {
-    id identifier PK "identifying"
-  }
-  AUDIT_EVENT {
-    actor attribute
-    action attribute
-    outcome attribute
-  }
+ PATIENT ||--o{ STUDY: "undergoes"
+ STUDY ||--o{ IMAGE: "contains"
+ DEVICE ||--o{ IMAGE: "captured by"
+ IMAGE ||--|| PREPROCESSING_RUN: "transformed by"
+ PREPROCESSING_RUN ||--|| INFERENCE: "feeds"
+ INFERENCE ||--o| OVERLAY: "accompanied by"
+ INFERENCE ||--|| DIAGNOSTIC_RESULT: "proposes"
+ CLINICIAN ||--o{ DIAGNOSTIC_RESULT: "adjudicates"
+ DIAGNOSTIC_RESULT ||--o{ AUDIT_EVENT: "records"
+ PATIENT {
+ id identifier PK "patient-identifying"
+ demographics attributes "patient-identifying"
+ }
+ STUDY {
+ id identifier PK
+ acquisition_context attributes
+ }
+ IMAGE {
+ id identifier PK
+ laterality attribute
+ acquisition_metadata attributes
+ }
+ DEVICE {
+ id identifier PK
+ manufacturer_model attributes
+ }
+ PREPROCESSING_RUN {
+ pipeline_configuration attributes
+ stage_parameters attributes
+ }
+ INFERENCE {
+ backbone_identity attribute
+ grade attribute
+ class_posteriors attributes
+ }
+ OVERLAY {
+ artefact reference "interpretability only"
+ }
+ DIAGNOSTIC_RESULT {
+ proposed_grade attribute
+ clinician_grade attribute
+ override_flag attribute
+ rationale text
+ }
+ CLINICIAN {
+ id identifier PK "identifying"
+ }
+ AUDIT_EVENT {
+ actor attribute
+ action attribute
+ outcome attribute
+ }
 ```
 
 The entities that carry patient or clinician identity are marked, because that is where the security requirement concentrates. Chapter 6 places encryption, authentication, role-based access control, de-identification and audit at the data-management boundary rather than distributing them across the modules, and this model is the reason: the identifying attributes are persisted in exactly the entities that boundary owns. The audit record is modelled as a first-class entity, since an override channel without a durable record of who overrode what is an accountability mechanism only in name.

@@ -385,7 +385,7 @@ The chapters proceed from the problem to the apparatus, from the apparatus to th
 
 Six appendices follow: **A**, the source code of the preprocessing pipeline; **B**, supplementary experimental results and confusion matrices; **C**, the system-architecture diagrams; **D**, the publication and approbation record; **E**, the attention-map gallery; and **F**, supplementary tables for the device-domain evaluation.
 
-The dissertation is set out on 240 pages, and contains 42 tables and 29 figures. The list of references comprises 107 sources.
+The dissertation is set out on 239 pages, and contains 42 tables and 29 figures. The list of references comprises 107 sources.
 
 
 ---
@@ -634,7 +634,7 @@ The single-threshold form is simpler than Equation (2.1) but carries a structura
 
 $$\text{CL}_{\text{DC}} = \min\!\left( \text{clip\_factor} \cdot \frac{A}{256}, \;\; \text{global\_threshold} \cdot A \right), \tag{2.3}$$
 
-where $\texttt{clip\_factor}$ and $\texttt{global\_threshold}$ are tunable hyperparameters (RESEARCH_ARCHITECTURE §3.2; OD-3 Stage 5). The first term is the conventional histogram-relative clip of Equation (2.1) with $L = 256$: it scales the permitted bin height against the uniform per-bin count and governs tiles whose intensities are well spread. The second term, $\texttt{global\_threshold} \cdot A$, is a tile-relative absolute ceiling — a fixed fraction of the entire tile's pixel count, independent of how the intensities are distributed within the tile. Taking the minimum makes the constraints act as a logical conjunction: in a well-spread tile the histogram-relative term is the smaller and binds, delivering ordinary contrast limiting; in a strongly peaked tile, where the histogram-relative term would scale up with a degenerate distribution, the absolute ceiling is the smaller and binds, capping the attainable mapping slope regardless of how concentrated the local histogram is. The dual-constraint rule therefore bounds noise amplification under both regimes that the single-parameter forms handle poorly, which is the analytical rationale for adopting it as the contrast stage. Whether this rationale yields a measurable downstream advantage is a separate, empirical question, addressed by the parameter sweep of Experiment 2 (§4.3.2) and not asserted here.
+where $\texttt{clip\_factor}$ and $\texttt{global\_threshold}$ are tunable hyperparameters (OD-3 Stage 5). The first term is the conventional histogram-relative clip of Equation (2.1) with $L = 256$: it scales the permitted bin height against the uniform per-bin count and governs tiles whose intensities are well spread. The second term, $\texttt{global\_threshold} \cdot A$, is a tile-relative absolute ceiling — a fixed fraction of the entire tile's pixel count, independent of how the intensities are distributed within the tile. Taking the minimum makes the constraints act as a logical conjunction: in a well-spread tile the histogram-relative term is the smaller and binds, delivering ordinary contrast limiting; in a strongly peaked tile, where the histogram-relative term would scale up with a degenerate distribution, the absolute ceiling is the smaller and binds, capping the attainable mapping slope regardless of how concentrated the local histogram is. The dual-constraint rule therefore bounds noise amplification under both regimes that the single-parameter forms handle poorly, which is the analytical rationale for adopting it as the contrast stage. Whether this rationale yields a measurable downstream advantage is a separate, empirical question, addressed by the parameter sweep of Experiment 2 (§4.3.2) and not asserted here.
 
 The remaining specification of the stage follows the operational definition. The dual-constraint clip limit is applied to the L-channel of the LAB color space, over an $8 \times 8$ tile grid, with the clipped histogram excess redistributed and bilinear interpolation across tile boundaries as in the canonical CLAHE algorithm (Zuiderveld, 1994); the operation is applied stochastically during training (with probability 0.8) and deterministically at inference (OD-3 Stage 5). The two hyperparameters $\texttt{clip\_factor}$ and $\texttt{global\_threshold}$ are left free at this stage by design: consistent with the parameter-portability caveat (DGL-5), no specific values are imported from the STARE-derived $T/80$ result or from any external study, and the values used by the pipeline are those selected by independent validation within the dissertation's own experimental framework. The dissertation's contribution at the level of formalization is therefore the dual-constraint rule of Equation (2.3) itself; the prior self-work contributed the single-threshold $T/80$ form of Equation (2.2), which the dual-constraint rule generalizes rather than reuses.
 
@@ -646,7 +646,7 @@ Table 2.1 contrasts the three formulations along the dimensions that matter for 
 |-------------|----------------------|----------------------|--------|--------------------------|
 | Conventional contrast-limiting | $\text{CL}=\beta\cdot A/L$ — bin height clipped at a multiple of the uniform per-bin count (Eq. 2.1) | clip factor $\beta$ (single) | Standard CLAHE; slope-limiting ≡ clipping (Pizer et al., 1987, p. 363) | Uniform proxy $A/L$ misjudges peaked local histograms (large background tiles) |
 | Single-threshold (T/80) | $\text{CL}=T/80$ — clip set directly by one global threshold (Eq. 2.2) | global threshold $T$ (single) | Prior own work on STARE (Sapakova, Yesmukhamedov & Sapakov, 2025) | STARE-optimized; not assumed portable to EyePACS (DGL-5); applied identically to every tile |
-| dual-constraint | $\text{CL}=\min(\text{clip\_factor}\cdot A/256,\ \text{global\_threshold}\cdot A)$ — tighter of histogram-relative and tile-relative cap (Eq. 2.3) | clip\_factor **and** global\_threshold (two) | Dissertation design (OD-3 Stage 5; RESEARCH_ARCHITECTURE §3.2) | Parameters tunable; values validated in Exp 2 (§4.3.2), not assumed portable (DGL-5); not claimed universally optimal (NC-17) |
+| dual-constraint | $\text{CL}=\min(\text{clip\_factor}\cdot A/256,\ \text{global\_threshold}\cdot A)$ — tighter of histogram-relative and tile-relative cap (Eq. 2.3) | clip\_factor **and** global\_threshold (two) | Dissertation design (OD-3 Stage 5) | Parameters tunable; values validated in Exp 2 (§4.3.2), not assumed portable (DGL-5); not claimed universally optimal (NC-17) |
 
 The empirical preprocessing literature reinforces why this parameterization is treated as a quantity to be characterized rather than fixed by assumption. Hayati et al. (2023), in evaluating CLAHE under a uniform configuration across four CNN architectures on APTOS 2019 (binary classification, accuracy-only, no confidence intervals), found the contrast step to help three architectures and degrade a fourth by 12.02 percentage points (pp. 62–64) — direct evidence that the downstream effect of a given clip configuration is contingent on architecture and tuning, and not comparable across differing datasets and tasks (SIR-3). The dual-constraint formulation does not escape this contingency; it exposes two parameters whose joint setting is precisely what Experiment 2 sweeps to identify the sensitivity profile required by H-2.
 
@@ -674,7 +674,7 @@ With the low-level image-operation foundations now in place — contrast enhance
 
 The §2.1 sections established how the preprocessing stages prepare a fundus image — enhancing contrast under a clip-limited adaptive scheme and correcting illumination while conserving the small, low-contrast structures that define the early DR grades. The theoretical development now turns to the model component that consumes that prepared image: the convolutional neural network (CNN), whose feature-extraction operations transform pixel intensities into the representation a classifier acts upon. This section establishes the mechanics of that transformation — convolution, nonlinearity, and pooling, composed into a learned feature hierarchy — and the connectivity innovations that make deep hierarchies trainable, before drawing out why, in the fundus-lesion setting, the design of feature extraction cannot be separated from the preprocessing that precedes it.
 
-The elementary operation of a CNN is convolution: a small bank of learnable filters is convolved across the spatial extent of the input, each filter computing a weighted sum over a local receptive field to produce a feature map. Two properties distinguish this from the dense (fully connected) connectivity of a classical neural network. First, the weights of a filter are shared across all spatial positions, so a feature detector learned in one location is applied everywhere, conferring translation equivariance — a shift in the input produces a corresponding shift in the feature map. Second, because each output unit depends only on a local receptive field rather than the entire input, the parameter count is drastically lower than a dense layer over the same input, which is what makes training on large images tractable. The viability of this design at scale was established by Krizhevsky, Sutskever, and Hinton (2012), whose network of "five convolutional layers ... and three fully-connected layers" with 60 million parameters substantially outperformed prior hand-engineered feature pipelines on ImageNet (reporting top-5 test error of 17.0%); the result is a natural-image benchmark, reported here without confidence intervals or external validation, and is cited for the architectural mechanism it demonstrated rather than for any medical-imaging conclusion.
+The elementary operation of a CNN is convolution: a small bank of learnable filters is convolved across the spatial extent of the input, each filter computing a weighted sum over a local receptive field to produce a feature map. Two properties distinguish this from the dense (fully connected) connectivity of a classical neural network. First, the weights of a filter are shared across all spatial positions, so a feature detector learned in one location is applied everywhere, conferring translation equivariance — a shift in the input produces a corresponding shift in the feature map. Second, because each output unit depends only on a local receptive field rather than the entire input, the parameter count is drastically lower than a dense layer over the same input, which is what makes training on large images tractable. The viability of this design at scale was established by Krizhevsky, Sutskever, and Hinton (2012), whose network of "five convolutional layers... and three fully-connected layers" with 60 million parameters substantially outperformed prior hand-engineered feature pipelines on ImageNet (reporting top-5 test error of 17.0%); the result is a natural-image benchmark, reported here without confidence intervals or external validation, and is cited for the architectural mechanism it demonstrated rather than for any medical-imaging conclusion.
 
 Two further operations complete the elementary feature-extraction block. A pointwise nonlinearity follows each convolution; the rectified linear unit (ReLU), which Krizhevsky et al. (2012) showed lets deep CNNs "train several times faster than their equivalents with tanh units" (Section 3.1), is the standard choice and is the activation used throughout the dissertation's architectures. Pooling — typically max-pooling over small windows with stride — then downsamples each feature map spatially. Pooling serves two purposes: it confers a degree of local translation invariance, so that the presence of a feature matters more than its exact position, and it enlarges the effective receptive field of subsequent layers, allowing them to integrate over wider spatial context. Stacking the convolution → nonlinearity → pooling block repeatedly produces a hierarchy of representations in which early layers respond to low-level structure such as edges and textures and deeper layers compose these into progressively more abstract patterns, as depicted schematically in Figure 2.2.
 
@@ -892,7 +892,7 @@ The greater part of the chapter develops foundations that the empirical chapters
 
 One strand stands apart in epistemic status. The coupled thermal-optical model of fundus tissue in §2.4 is a theoretical, simulation-only contribution concerning the laser-photocoagulation *treatment* of diabetic retinopathy rather than its diagnostic classification. It is qualitative, supported by a single prior publication, and — as emphasized at its presentation — has not been validated against experimental or clinical data; it is a secondary contribution, epistemically independent of the integrated diagnostic system that is the dissertation's central concern, and it is carried forward only as such.
 
-No theoretical strand remains outstanding. The in-domain self-supervised pretraining for retinal imaging (§2.3.3), which underlies the integrated arm's initialization, was the one strand earlier deferred for want of dedicated primary sources; those sources were acquired in the v6.1.0 corpus expansion, and the section has since been written alongside the rest of §2.3. It grounds the ophthalmology-specific initialization of the integrated arm as a representation-learning choice whose efficacy is established empirically in Chapter 4 rather than assumed here. With §2.3.3 in place, Chapter 2 is content-complete: every foundation the experimental chapters require has its theoretical basis established.
+No theoretical strand remains outstanding. The in-domain self-supervised pretraining for retinal imaging (§2.3.3), which underlies the integrated arm's initialization, was the one strand earlier deferred for want of dedicated primary sources; those sources have since been acquired, and the section has been written alongside the rest of §2.3. It grounds the ophthalmology-specific initialization of the integrated arm as a representation-learning choice whose efficacy is established empirically in Chapter 4 rather than assumed here. With §2.3.3 in place, Chapter 2 is content-complete: every foundation the experimental chapters require has its theoretical basis established.
 
 With these foundations established, the dissertation is positioned to specify its methodology. Chapter 3 builds the preprocessing pipeline on the contrast and noise-control theory of §2.1, the ResNet-50 and EfficientNet-B3 architectures on the convolutional theory of §2.2, the pretraining and two-stage fine-tuning protocol on the transfer-learning theory of §2.3, and the multi-metric evaluation framework on the explainability and image-quality theory of §2.5 and §2.6. The epistemic disciplines that have governed this chapter — that Grad-CAM is an interpretability tool and not clinical localization, that preprocessing parameters and transfer are not assumed portable but evaluated, that the integrated pipeline's effect is not attributable to any single factor, and that the primary metrics are the imbalance-aware ones — are carried into that methodology unchanged.
 
@@ -903,7 +903,7 @@ With these foundations established, the dissertation is positioned to specify it
 
 # §3.1.1 Pipeline Stage Specification: 8-Stage System
 
-Chapter 2 supplied the theoretical foundations of every component of the diagnostic framework committed to in Chapter 1 — the contrast and noise-reduction theory behind the enhancement stages, the convolutional and optimization theory behind the classifier, the transfer-learning theory behind its initialization, and the explainability and image-quality theory behind its evaluation. This chapter specifies the methodology those foundations support, beginning with the preprocessing pipeline. The organizing commitment of the specification is the proposition, stated in the central thesis of this work, that the diagnostic model is a two-stage system, `model = preprocessing + CNN`, in which the preprocessing stage is an integral component of the model rather than ancillary data preparation: it defines the feature space available to the convolutional network and therefore co-determines what the network can learn (CENTRAL_THESIS; IT-1). The decision to formalize preprocessing as part of the model is, in the first instance, a conceptual one, motivated by the integrated preprocessing–CNN paradigm (paradigm P2) that this dissertation instantiates; the eight ordered stages set out below are the engineering realization of that commitment.
+Chapter 2 supplied the theoretical foundations of every component of the diagnostic framework committed to in Chapter 1 — the contrast and noise-reduction theory behind the enhancement stages, the convolutional and optimization theory behind the classifier, the transfer-learning theory behind its initialization, and the explainability and image-quality theory behind its evaluation. This chapter specifies the methodology those foundations support, beginning with the preprocessing pipeline. The organizing commitment of the specification is the proposition, stated in the central thesis of this work, that the diagnostic model is a two-stage system, `model = preprocessing + CNN`, in which the preprocessing stage is an integral component of the model rather than ancillary data preparation: it defines the feature space available to the convolutional network and therefore co-determines what the network can learn (IT-1). The decision to formalize preprocessing as part of the model is, in the first instance, a conceptual one, motivated by the integrated preprocessing–CNN paradigm (paradigm P2) that this dissertation instantiates; the eight ordered stages set out below are the engineering realization of that commitment.
 
 This conceptual decision is most clearly seen against the alternative methodological practice it departs from. In the end-to-end paradigm (paradigm P1), of which Gulshan et al. (2016) is taken in this dissertation as the canonical representative, preprocessing is treated as ancillary data preparation: the published methods defer preprocessing details to the supplementary material and locate the methodological emphasis in architecture, data scale, and training protocol (`gulshan-2016.md` §15 *Paradigmatic Role*, §18). This is a description of observable methodological practice, not an attribution of any theoretical claim about preprocessing to those authors (SIR-9). The present work makes the opposite methodological choice: it specifies the pipeline with the same rigor it later applies to the network, places the pipeline under controlled experimental contrast (Experiment 1, §4.2), and decomposes it into ablatable stages (Experiment 2, §4.3). Whether each stage earns its place in that pipeline is an empirical question reserved for those experiments; the task of the present section is to define the construct precisely enough that the question can be asked. The pipeline specified here is the canonical eight-stage configuration of OD-3.
 
@@ -917,7 +917,7 @@ The reliability of the detection step was measured directly, rather than assumed
 
 **Stage 2 — Field-of-view crop and isotropic resize.** Fundus images arrive at heterogeneous resolutions and aspect ratios, with the circular field of view (FOV) framed differently by each camera. Stage 2 detects the image foreground — the illuminated fundus disc — using a foreground-detection procedure rather than a Hough-circle fit, crops to the FOV region, and rescales it isotropically to a 512×512 canvas with centered zero-padding. Isotropy is the operative property: scaling both axes by the same factor preserves the circular geometry of the fundus and the true aspect ratio of lesions, so that a microaneurysm is not stretched into an ellipse by an anisotropic resize. The 512×512 resolution and the centered-padding convention are fixed for every dataset, giving the network a geometrically consistent input frame. The stage is always on [FIG-3.4: Stage 2 — FOV crop + isotropic resize — defense/presentation/assets/preprocessing/13_crop_resize/stage2_fov_crop_resize.png].
 
-**Stage 3 — Field-of-view mask generation.** The centered zero-padding introduced by Stage 2 creates a border of non-fundus pixels whose value carries no retinal information. Stage 3 makes this distinction explicit by generating a binary mask — 1.0 where the pixel is real fundus data, 0.0 where it is padding — and appending it to the image as a fourth input channel. The mask is produced alongside the resized image in Stage 2 and is always on. Carrying the FOV as an explicit channel, rather than leaving the network to infer the fundus boundary from pixel intensities, is one of the named design features of the pipeline (RESEARCH_ARCHITECTURE §10): it lets the downstream flat-field correction (Stage 4) and normalization (Stage 7) operate on genuine retinal pixels only, and gives the network an unambiguous signal of where valid data ends [FIG-3.5: Stage 3 — FOV mask (4th channel) — defense/presentation/assets/preprocessing/14_fov_mask/stage3_fov_mask.png].
+**Stage 3 — Field-of-view mask generation.** The centered zero-padding introduced by Stage 2 creates a border of non-fundus pixels whose value carries no retinal information. Stage 3 makes this distinction explicit by generating a binary mask — 1.0 where the pixel is real fundus data, 0.0 where it is padding — and appending it to the image as a fourth input channel. The mask is produced alongside the resized image in Stage 2 and is always on. Carrying the FOV as an explicit channel, rather than leaving the network to infer the fundus boundary from pixel intensities, is one of the named design features of the pipeline: it lets the downstream flat-field correction (Stage 4) and normalization (Stage 7) operate on genuine retinal pixels only, and gives the network an unambiguous signal of where valid data ends [FIG-3.5: Stage 3 — FOV mask (4th channel) — defense/presentation/assets/preprocessing/14_fov_mask/stage3_fov_mask.png].
 
 **Stage 4 — Flat-field correction.** Fundus images exhibit slowly varying illumination gradients — vignetting and uneven flash coverage — that are unrelated to pathology but compete with the low-contrast microvascular signal the classifier must read. Stage 4 corrects this by subtracting a heavily blurred estimate of the local background and re-centering the intensity range,
 
@@ -961,7 +961,7 @@ With the contrast stage specified as a parameterized, luminance-channel, stochas
 
 # §3.1.3 Augmentation Strategy for Class Imbalance Mitigation
 
-Stage 6 is the only stage of the pipeline applied at training time alone. Where §3.1.2 specified the stochastic application of Stage-5 CLAHE — a transformation present at both training and inference but randomized during training — Stage 6 is bypassed entirely at inference, so that the production transformation a deployed model applies to a new image is fully deterministic. The reason for this asymmetry is methodological hygiene: augmentation deliberately fabricates plausible variants of the training data, and admitting such fabricated variants into validation or test partitions would inflate apparent performance. Augmentation is therefore confined to the training path, and the cross-validation protocol (§3.4.2) further guarantees that no augmented image appears in any evaluation partition (RESEARCH_ARCHITECTURE §9.1). The stage composes three families of perturbation — geometric, photometric–chromatic, and acquisition-variability — applied on-the-fly in that order to the uint8 image before the final normalization of Stage 7, each sub-transform drawing its parameters and its application from independently sampled probabilities [FIG-3.8: Stage 6 — augmentation (rotation, scale, shear, ColorJitter, Gaussian noise, JPEG compression) — defense/presentation/assets/preprocessing/19_aug_rotation/stage6_augmentation.png].
+Stage 6 is the only stage of the pipeline applied at training time alone. Where §3.1.2 specified the stochastic application of Stage-5 CLAHE — a transformation present at both training and inference but randomized during training — Stage 6 is bypassed entirely at inference, so that the production transformation a deployed model applies to a new image is fully deterministic. The reason for this asymmetry is methodological hygiene: augmentation deliberately fabricates plausible variants of the training data, and admitting such fabricated variants into validation or test partitions would inflate apparent performance. Augmentation is therefore confined to the training path, and the cross-validation protocol (§3.4.2) further guarantees that no augmented image appears in any evaluation partition. The stage composes three families of perturbation — geometric, photometric–chromatic, and acquisition-variability — applied on-the-fly in that order to the uint8 image before the final normalization of Stage 7, each sub-transform drawing its parameters and its application from independently sampled probabilities [FIG-3.8: Stage 6 — augmentation (rotation, scale, shear, ColorJitter, Gaussian noise, JPEG compression) — defense/presentation/assets/preprocessing/19_aug_rotation/stage6_augmentation.png].
 
 **Geometric perturbation (unified affine).** The geometric family is a single unified affine transform combining rotation, zoom in the range [0.9, 1.1], and optional shear and stretch (OD-3 Stage 6). Its purpose is to present the network with the range of plausible viewpoint and framing variation that arises across fundus acquisitions without altering diagnostic content. The rotation component is distinctive: its dispersion is not a fixed constant but is adaptive per image, derived from the uncertainty of the optic-disc–fovea detection performed in Stage 1 (§3.1.1). This couples augmentation to the reliability of canonical orientation — an image whose orientation could be normalized confidently is rotated within a tighter band, while one for which Stage 1 fell back to its low-confidence path (fallback dispersion σ = 13.0°) is allowed a wider rotational spread — so that the augmentation does not assert a precision of alignment that the detector did not achieve. Because the affine transform scales the two image axes together, it preserves the circular fundus geometry and the true aspect ratio of lesions, consistent with the isotropy established by Stage 2.
 
@@ -987,7 +987,7 @@ Specifying this contract is itself a methodological act under the integrated-pip
 
 **Label and grade sanity.** The fourth component validates the supplied label against the five-class DR taxonomy (DR 0–4): grades outside the range, or images with missing grades, are flagged for adjudication rather than coerced into a class. This protects the integrity of the evaluation partitions, whose metrics presuppose valid reference labels.
 
-The validity of this protocol is bounded. It was designed against, and is validated only for, the specific Kazakh medical-center clinical data used in this work (60 images, RESEARCH_ARCHITECTURE §2.1.8); generalization of the ingestion protocol to clinical data from other sources, with different export conventions and degradation profiles, would require independent validation and is not claimed here (NC-15). Because that clinical data is held under institutional agreement and is not publicly available, the reproducibility of any result dependent on it is structurally limited (SB-2.2). The protocol does not perform, and makes no claim about, regulatory-grade de-identification or compliance; the handling of patient-identifying information is treated as a system-design concern in §6.4.1, where it is presented as a design specification rather than a certified compliance status (SB-4.2). The protocol is, in sum, a defined and bounded input contract for the model — not a validated general-purpose clinical-image cleaner (CFC-2.4).
+The validity of this protocol is bounded. It was designed against, and is validated only for, the specific Kazakh medical-center clinical data used in this work (60 images); generalization of the ingestion protocol to clinical data from other sources, with different export conventions and degradation profiles, would require independent validation and is not claimed here (NC-15). Because that clinical data is held under institutional agreement and is not publicly available, the reproducibility of any result dependent on it is structurally limited (SB-2.2). The protocol does not perform, and makes no claim about, regulatory-grade de-identification or compliance; the handling of patient-identifying information is treated as a system-design concern in §6.4.1, where it is presented as a design specification rather than a certified compliance status (SB-4.2). The protocol is, in sum, a defined and bounded input contract for the model — not a validated general-purpose clinical-image cleaner (CFC-2.4).
 
 With the ingestion protocol specified, the formalization of the preprocessing pipeline (§3.1) is complete: from the entry conditions for clinical data, through the eight ordered stages, to the four-channel tensor delivered to the network. Section 3.2 turns to the second component of the two-stage model — the convolutional architectures that consume that tensor.
 
@@ -999,11 +999,11 @@ Section 3.1 specified the preprocessing component of the two-stage model and the
 
 **EfficientNet-B3.** The second backbone is EfficientNet-B3, a member of the EfficientNet family introduced by Tan and Le (2019), whose defining element is compound scaling: depth, width, and input resolution are scaled together by a single compound coefficient rather than independently. EfficientNet-B3 represents the compound-scaling family. The two backbones therefore embody two genuinely different design principles for building a deep convolutional feature extractor — residual depth on one hand, balanced compound scaling on the other — which is the property that makes them a useful pair.
 
-**Why two architecture families.** The experimental contrast of Experiment 1 manipulates the preprocessing condition (baseline versus full pipeline) within each backbone: ResNet-50 appears in both the baseline configuration (A) and the integrated configuration (B), and EfficientNet-B3 appears in both the baseline configuration (C) and the integrated configuration (D) (RESEARCH_ARCHITECTURE §5.1). Reading the preprocessing contrast within each fixed backbone, and then asking whether the two backbones agree, is exactly the cross-architecture replication required by the sufficient-validation criterion (EH-4): an effect confirmed for only one architecture would not meet it. A single backbone could not provide this evidence; the pair is the minimum design that can. This is a design rationale for the two-architecture structure, not a claim about either architecture's standing — neither ResNet-50 nor EfficientNet-B3 is asserted to be the globally optimal network for diabetic-retinopathy classification, and no exhaustive search over the architecture space is performed or claimed (SB-3.1, NC-6).
+**Why two architecture families.** The experimental contrast of Experiment 1 manipulates the preprocessing condition (baseline versus full pipeline) within each backbone: ResNet-50 appears in both the baseline configuration (A) and the integrated configuration (B), and EfficientNet-B3 appears in both the baseline configuration (C) and the integrated configuration (D). Reading the preprocessing contrast within each fixed backbone, and then asking whether the two backbones agree, is exactly the cross-architecture replication required by the sufficient-validation criterion (EH-4): an effect confirmed for only one architecture would not meet it. A single backbone could not provide this evidence; the pair is the minimum design that can. This is a design rationale for the two-architecture structure, not a claim about either architecture's standing — neither ResNet-50 nor EfficientNet-B3 is asserted to be the globally optimal network for diabetic-retinopathy classification, and no exhaustive search over the architecture space is performed or claimed (SB-3.1, NC-6).
 
-**Why convolutional, and not a transformer.** The wider landscape includes vision transformers (Dosovitskiy et al., 2021), later EfficientNet variants (Tan and Le, 2021), and CNN–transformer hybrids such as the EfficientNet–Swin combination evaluated on APTOS 2019 by Xu et al. (2024) — cited here only to situate the choice, with no head-to-head comparison implied (SIR-3). The decision to keep both backbones convolutional is deliberate and tied to the causal logic of the study; it is also well-precedented — the landmark automated-DR systems were themselves built on convolutional backbones such as Inception-v3 (Szegedy et al., 2016) — cited here only to situate the choice, not as a comparator (SIR-3). Because the integrated arm of Experiment 1 is initialized from ophthalmology-specific self-supervised pretraining rather than from ImageNet (§3.3.2), keeping the architecture identical across the baseline and integrated arms ensures that the preprocessing-plus-pretraining contrast is not confounded by an architecture change. A transformer backbone would have changed both the architecture and the initialization at once; a CNN-native self-supervised initialization changes only the initialization, preserving the convolutional design across arms (INVARIANTS v6.0.0 §X). The CNN-versus-transformer question is therefore outside the scope of this dissertation's experimental claims.
+**Why convolutional, and not a transformer.** The wider landscape includes vision transformers (Dosovitskiy et al., 2021), later EfficientNet variants (Tan and Le, 2021), and CNN–transformer hybrids such as the EfficientNet–Swin combination evaluated on APTOS 2019 by Xu et al. (2024) — cited here only to situate the choice, with no head-to-head comparison implied (SIR-3). The decision to keep both backbones convolutional is deliberate and tied to the causal logic of the study; it is also well-precedented — the landmark automated-DR systems were themselves built on convolutional backbones such as Inception-v3 (Szegedy et al., 2016) — cited here only to situate the choice, not as a comparator (SIR-3). Because the integrated arm of Experiment 1 is initialized from ophthalmology-specific self-supervised pretraining rather than from ImageNet (§3.3.2), keeping the architecture identical across the baseline and integrated arms ensures that the preprocessing-plus-pretraining contrast is not confounded by an architecture change. A transformer backbone would have changed both the architecture and the initialization at once; a CNN-native self-supervised initialization changes only the initialization, preserving the convolutional design across arms. The CNN-versus-transformer question is therefore outside the scope of this dissertation's experimental claims.
 
-**Input-channel handling.** The two backbones must accept inputs of different channel count across the experimental conditions: three channels in the baseline condition (RGB) and four in the full condition (RGB plus the FOV mask of Stage 3). The first convolutional layer is adapted accordingly. For weights inherited from a three-channel pretraining source, the pretrained weights are copied to the first three input channels and the fourth (mask) channel is initialized from their per-channel mean (the protocol in `experiments/src/models/resnet.py`); because the integrated arm's self-supervised pretraining is performed in-house, however, the encoder can alternatively be pretrained directly on the four-channel tensor, which removes the channel-count mismatch entirely (AOQ-2 simplified, INVARIANTS v6.0.0 §X; RESEARCH_ARCHITECTURE §4.2bis). Either way the FOV-mask stage (Stage 3) is preserved, and the four-channel input contract of OD-3 is maintained.
+**Input-channel handling.** The two backbones must accept inputs of different channel count across the experimental conditions: three channels in the baseline condition (RGB) and four in the full condition (RGB plus the FOV mask of Stage 3). The first convolutional layer is adapted accordingly. For weights inherited from a three-channel pretraining source, the pretrained weights are copied to the first three input channels and the fourth (mask) channel is initialized from their per-channel mean (the protocol in `experiments/src/models/resnet.py`); because the integrated arm's self-supervised pretraining is performed in-house, however, the encoder can alternatively be pretrained directly on the four-channel tensor, which removes the channel-count mismatch entirely (AOQ-2 simplified). Either way the FOV-mask stage (Stage 3) is preserved, and the four-channel input contract of OD-3 is maintained.
 
 **Training configuration and hardware.** Both backbones are trained under the single standardized configuration specified in Table 3.3 and detailed in §3.4.2 and §4.1.3 (Adam, batch size 16, 512×512 input, focal loss, 5-fold patient-level cross-validation, fixed seed). Both backbones rely intrinsically on batch normalization (Ioffe and Szegedy, 2015), whose stabilizing and mildly regularizing effect derives from batch statistics and therefore weakens at the small batch size of sixteen imposed by the memory budget — a caveat carried from §2.2.3. One configuration detail is architecture-specific: mixed-precision (fp16) training is enabled for ResNet-50 but disabled for EfficientNet, for which half-precision produced numerical overflow during training. This is a hardware- and implementation-bound setting, and like all efficiency-related conditions in this work it is bounded to the documented hardware (DGL-2); it does not generalize to other compute contexts without re-evaluation.
 
@@ -1031,13 +1031,13 @@ The candidate's prior transfer-learning work on EfficientNetB0 — which compare
 
 # §3.3.2 Ophthalmology-Specific Self-Supervised Pretraining of the CNN Backbone (integrated Arm)
 
-Section 3.3.1 fixed the structural adaptation — the five-class softmax head — in common across all four configurations of Experiment 1. What distinguishes the configurations is not the head but the *initialization* of the backbone before fine-tuning, and this section specifies that initialization for the integrated arm. In the baseline arm (configurations A and C) the backbone is initialized from ImageNet weights, the standard cross-domain transfer from natural images. In the integrated arm (configurations B and D) the backbone is instead initialized from ophthalmology-specific self-supervised pretraining on an unlabeled retinal fundus corpus, performed on the same ResNet-50 or EfficientNet-B3 architecture used in the baseline arm (RESEARCH_ARCHITECTURE §4.2bis; DGL-6).
+Section 3.3.1 fixed the structural adaptation — the five-class softmax head — in common across all four configurations of Experiment 1. What distinguishes the configurations is not the head but the *initialization* of the backbone before fine-tuning, and this section specifies that initialization for the integrated arm. In the baseline arm (configurations A and C) the backbone is initialized from ImageNet weights, the standard cross-domain transfer from natural images. In the integrated arm (configurations B and D) the backbone is instead initialized from ophthalmology-specific self-supervised pretraining on an unlabeled retinal fundus corpus, performed on the same ResNet-50 or EfficientNet-B3 architecture used in the baseline arm (DGL-6).
 
-**The pretraining protocol.** The integrated-arm initialization is produced by a CNN-compatible domain-adaptive self-supervised learning protocol drawn from the DINO (Caron et al., 2021), BYOL (Grill et al., 2020), SimCLR (Chen et al., 2020), and MoCo (He et al., 2020) family of methods, with the specific protocol selected empirically and recorded once chosen. No diabetic-retinopathy labels are used at any point during this pretraining; the objective is purely representational — to learn, from unlabeled fundus images, features that capture the structure of retinal imagery: vascular topology, optic-disc and macular morphology, retinal texture, illumination variability, and imaging artifacts (RESEARCH_ARCHITECTURE §4.2bis). The resulting weights then initialize the same adapted network that the baseline arm initializes from ImageNet, after which both arms are fine-tuned identically on the labeled DR task (§3.3.3). Because the self-supervised pretraining is performed in-house rather than loaded from an external checkpoint, the encoder can be pretrained directly on the four-channel tensor (RGB plus FOV mask), which removes the input-channel mismatch that a three-channel external checkpoint would create; the copy-and-mean-initialization of the fourth channel described in §3.2.1 remains available as a fallback (AOQ-2 simplified, INVARIANTS v6.0.0 §X).
+**The pretraining protocol.** The integrated-arm initialization is produced by a CNN-compatible domain-adaptive self-supervised learning protocol drawn from the DINO (Caron et al., 2021), BYOL (Grill et al., 2020), SimCLR (Chen et al., 2020), and MoCo (He et al., 2020) family of methods, with the specific protocol selected empirically and recorded once chosen. No diabetic-retinopathy labels are used at any point during this pretraining; the objective is purely representational — to learn, from unlabeled fundus images, features that capture the structure of retinal imagery: vascular topology, optic-disc and macular morphology, retinal texture, illumination variability, and imaging artifacts. The resulting weights then initialize the same adapted network that the baseline arm initializes from ImageNet, after which both arms are fine-tuned identically on the labeled DR task (§3.3.3). Because the self-supervised pretraining is performed in-house rather than loaded from an external checkpoint, the encoder can be pretrained directly on the four-channel tensor (RGB plus FOV mask), which removes the input-channel mismatch that a three-channel external checkpoint would create; the copy-and-mean-initialization of the fourth channel described in §3.2.1 remains available as a fallback (AOQ-2 simplified).
 
-**The pretraining corpus, method, and acceptance gate.** Three operational details of this initialization are fixed (INVARIANTS v6.2.0, SB-2.4 and DGL-6; RESEARCH_ARCHITECTURE §4.2bis). First, the unlabeled pretraining corpus is the EyePACS original "test" split of 53,576 images — a corpus that is *disjoint* from the approximately 35,126 labeled images on which Experiment 1 trains and evaluates (the EyePACS "train" split, five-fold patient-level cross-validation), sharing no image and no patient identifier (SB-2.4). This disjointness is a binding no-pretraining-leakage constraint — analogous to ImageNet being a separate corpus for the baseline arm — and is enforced in the implementation by an explicit disjointness assertion; the pretraining corpus is used for pretraining only and is never folded into the supervised Experiment-1 data. Second, the primary protocol is BYOL (Grill et al., 2020) — negative-free and robust to small batch sizes, hence suited to the single-GPU compute budget — with MoCo, SimSiam, and DINO retained as alternatives; the backbone is pretrained from scratch (random initialization), not from ImageNet, directly on the four-channel tensor. Third, no self-supervised checkpoint is admitted into Experiment 1 until it passes a frozen-backbone *linear-probe acceptance gate*: with the backbone frozen, a single linear head is trained and evaluated on a label-bearing slice of the EyePACS-test corpus and compared against random-initialization and ImageNet-initialization baselines, and the checkpoint is accepted only if, for both backbones, it beats random initialization by a clear margin and is competitive with ImageNet. The labels used by this gate are read only by the gate, never by the self-supervised objective, so the gate introduces no pretext leakage; and the acceptance bar is competitiveness with ImageNet, not superiority over it, consistent with the bounded contribution stated below (the dissertation does not claim that the in-domain initialization outperforms ImageNet). Should the gate fail, a documented fallback initializes the encoder from ImageNet and continues self-supervised training on the fundus corpus — a path that slightly softens the fundus-only contrast and must be flagged if used.
+**The pretraining corpus, method, and acceptance gate.** Three operational details of this initialization are fixed (SB-2.4 and DGL-6). First, the unlabeled pretraining corpus is the EyePACS original "test" split of 53,576 images — a corpus that is *disjoint* from the approximately 35,126 labeled images on which Experiment 1 trains and evaluates (the EyePACS "train" split, five-fold patient-level cross-validation), sharing no image and no patient identifier (SB-2.4). This disjointness is a binding no-pretraining-leakage constraint — analogous to ImageNet being a separate corpus for the baseline arm — and is enforced in the implementation by an explicit disjointness assertion; the pretraining corpus is used for pretraining only and is never folded into the supervised Experiment-1 data. Second, the primary protocol is BYOL (Grill et al., 2020) — negative-free and robust to small batch sizes, hence suited to the single-GPU compute budget — with MoCo, SimSiam, and DINO retained as alternatives; the backbone is pretrained from scratch (random initialization), not from ImageNet, directly on the four-channel tensor. Third, no self-supervised checkpoint is admitted into Experiment 1 until it passes a frozen-backbone *linear-probe acceptance gate*: with the backbone frozen, a single linear head is trained and evaluated on a label-bearing slice of the EyePACS-test corpus and compared against random-initialization and ImageNet-initialization baselines, and the checkpoint is accepted only if, for both backbones, it beats random initialization by a clear margin and is competitive with ImageNet. The labels used by this gate are read only by the gate, never by the self-supervised objective, so the gate introduces no pretext leakage; and the acceptance bar is competitiveness with ImageNet, not superiority over it, consistent with the bounded contribution stated below (the dissertation does not claim that the in-domain initialization outperforms ImageNet). Should the gate fail, a documented fallback initializes the encoder from ImageNet and continues self-supervised training on the fundus corpus — a path that slightly softens the fundus-only contrast and must be flagged if used.
 
-**Why an in-domain, CNN-native initialization.** The design rationale for this choice is to obtain an in-domain initialization without confounding the experiment with an architecture change. A retinal foundation model such as RETFound is published as a ViT-Large vision transformer; initializing the integrated arm from it would change both the architecture and the initialization relative to the baseline arm, so that any observed difference would conflate the preprocessing contribution with an architecture difference. A CNN-native self-supervised initialization changes only the initialization stage and preserves the convolutional backbone across both arms (the reasoning recorded in INVARIANTS v6.0.0 §X, which resolves the earlier open question on backbone architecture in favour of CNN-compatible SSL, restores the 2×2 architecture symmetry across arms, and renders the external foundation-model license question moot). The in-domain initialization is thus the dissertation's own methodological response to a confound, not an adoption of an existing foundation model.
+**Why an in-domain, CNN-native initialization.** The design rationale for this choice is to obtain an in-domain initialization without confounding the experiment with an architecture change. A retinal foundation model such as RETFound is published as a ViT-Large vision transformer; initializing the integrated arm from it would change both the architecture and the initialization relative to the baseline arm, so that any observed difference would conflate the preprocessing contribution with an architecture difference. A CNN-native self-supervised initialization changes only the initialization stage and preserves the convolutional backbone across both arms (the reasoning recorded in the dissertation's governance, which resolves the earlier open question on backbone architecture in favour of CNN-compatible SSL, restores the 2×2 architecture symmetry across arms, and renders the external foundation-model license question moot). The in-domain initialization is thus the dissertation's own methodological response to a confound, not an adoption of an existing foundation model.
 
 **The composite independent variable.** The consequence of this design for the interpretation of Experiment 1 is binding and must be stated before any result is reported. The integrated arm differs from the baseline arm along two axes simultaneously — the preprocessing axis (the full pipeline versus stretch-resize with ImageNet normalization) and the pretraining axis (ophthalmology-specific self-supervised initialization versus ImageNet initialization). The independent variable of Experiment 1 is therefore the composite factor *(preprocessing × pretraining source)*, and any performance difference between the arms reflects the joint contribution of both axes. It follows that the H-1 effect may not be attributed to the preprocessing pipeline alone, nor to the pretraining source alone: claims of the form "the preprocessing pipeline produces the observed improvement" or "preprocessing dominates" are not admissible (CFC-2.8). The only admissible form of the H-1 claim is at the level of the integrated configuration — that the integrated preprocessing-plus-ophthalmology-SSL configuration outperforms the baseline-plus-ImageNet configuration on a given metric by a given margin. Decomposition of the composite effect into separate preprocessing and pretraining contributions would require an additional factorial that is explicitly outside the scope of this dissertation and is named as future work.
 
@@ -1059,7 +1059,7 @@ Fixing the schedule uniformly serves the same purpose as fixing the head uniform
 
 The two-stage schedule of §3.3.3 minimizes a loss function that must be chosen for the structure of the diabetic-retinopathy grading task: a five-class problem whose grades are ordinal and whose training distribution, on EyePACS, is severely imbalanced (SB-2.1). Under an unweighted cross-entropy objective, the gradient signal would be dominated by the majority no-DR (DR 0) class, and the network could minimize the average loss while performing poorly on the rare severe grades that are clinically the most consequential. The loss is therefore specified to counter this directly, and it constitutes the principal of the two design levers the framework uses against class imbalance — the second being the Stage-6 augmentation of §3.1.3.
 
-The training objective is the focal loss (Lin et al., 2017) with an inverse-frequency class weighting (RESEARCH_ARCHITECTURE §4.0):
+The training objective is the focal loss (Lin et al., 2017) with an inverse-frequency class weighting:
 
 $$\text{FL}(p_t) = -\,\alpha_t\,(1 - p_t)^{\gamma}\,\log(p_t),$$
 
@@ -1067,7 +1067,7 @@ where $p_t$ is the model's estimated probability for the true class of an exampl
 
 This loss-side mechanism and the augmentation-side mechanism of §3.1.3 are the two levers by which the framework addresses imbalance (SC-1.4): the loss reshapes the objective surface, while augmentation reshapes the input distribution. Neither is asserted to resolve the imbalance, and the choice is made against a literature in which cost-sensitive learning, although an active direction, remains thinly validated — a systematic review of the field found that only two of one hundred seventy-three surveyed papers were validation studies (Araf et al., 2024), a survey-level observation that frames the design choice without supplying DR-specific evidence for it (SIR-3). The candidate's prior work on imbalanced DR classification (reported in the EfficientNetB0 transfer-learning thread, cited as prior own work and as one thread with its companion publication, SIR-4/SIR-5) similarly motivates rather than validates the present choice, and its EfficientNetB0 findings are not generalized to the present backbones (SIR-7).
 
-The loss is coordinated with the evaluation framework rather than standing alone. Because the DR grades are ordinal, a misclassification by two grades is clinically worse than a misclassification by one, and this ordinal cost is captured at evaluation time by the quadratic-weighted Cohen's κ that the evidence hierarchy places among the primary metrics (EH-1). The weighted loss thus addresses the imbalance during training while the ordinal-sensitive metric penalizes ordinal error during evaluation; both are specified in §3.4.1. The loss is defined per its canonical primary source (Lin et al., 2017), now present in the assembled literature corpus (cited at first mention in §2.2.2), and per the dissertation's governance (RESEARCH_ARCHITECTURE §4.0); since Lin et al. introduced focal loss on the COCO object-detection benchmark rather than on retinal imagery, it is adopted here for its established loss-design rationale rather than as a DR-specific result (SIR-2). With the adaptation, initialization, fine-tuning schedule, and loss now all specified, §3.4 turns to the framework by which the trained models are evaluated.
+The loss is coordinated with the evaluation framework rather than standing alone. Because the DR grades are ordinal, a misclassification by two grades is clinically worse than a misclassification by one, and this ordinal cost is captured at evaluation time by the quadratic-weighted Cohen's κ that the evidence hierarchy places among the primary metrics (EH-1). The weighted loss thus addresses the imbalance during training while the ordinal-sensitive metric penalizes ordinal error during evaluation; both are specified in §3.4.1. The loss is defined per its canonical primary source (Lin et al., 2017), now present in the assembled literature corpus (cited at first mention in §2.2.2), and per the dissertation's governance; since Lin et al. introduced focal loss on the COCO object-detection benchmark rather than on retinal imagery, it is adopted here for its established loss-design rationale rather than as a DR-specific result (SIR-2). With the adaptation, initialization, fine-tuning schedule, and loss now all specified, §3.4 turns to the framework by which the trained models are evaluated.
 
 # §3.4.1 Multi-Metric Assessment Framework
 
@@ -1097,7 +1097,7 @@ The training procedure specified in §3.3 produces a trained model; this section
 
 **Image-quality metrics.** To quantify the effect of preprocessing independently of downstream classification — closing the first link of the causal chain, preprocessing → improved feature visibility — four image-quality metrics are measured at pipeline stages, summarized in Table 3.3. These metrics evaluate the preprocessing stage on its own terms rather than only through the classifier, and one of them, the structural similarity index (after Wang et al., 2004), serves a specific guard role: a high SSIM between the processed and original image confirms that the enhancement stages did not introduce destructive structural artifacts, which is the measurable form of the no-destructive-artifact design objective stated for the pipeline in §3.1.1.
 
-**Table 3.2. Image-quality metrics for preprocessing evaluation (RESEARCH_ARCHITECTURE §3.3).**
+**Table 3.2. Image-quality metrics for preprocessing evaluation.**
 
 | Metric | Measures | Expected effect of preprocessing |
 |--------|----------|----------------------------------|
@@ -1124,15 +1124,15 @@ the symmetric overlap criterion borrowed from object-detection evaluation (Everi
 
 The metrics specified in §3.4.1 are estimates, and an estimate without a quantified uncertainty cannot support the compound dominance and validation criteria the dissertation relies on. This section specifies how the metrics are computed across data partitions, how their uncertainty is quantified, how configurations are compared statistically, and under what reproducibility conditions — the protocols that allow the EH-3 and EH-4 verdicts to rest on quantified evidence rather than on single point estimates.
 
-**Cross-validation and leakage control.** All experiments use five-fold cross-validation with a patient-level stratified split: the data are partitioned into five folds, each fold serving once as the test partition while the remaining four train the model, and the process is repeated across all five folds (RESEARCH_ARCHITECTURE §2.2, §5.0). The split is shown in [FIG-3.13: 5-fold patient-level cross-validation split — defense/presentation/assets/architecture/09_training/cv_5fold.png]. The defining property is that the partition is made at the level of the patient, not the image: no patient's images may appear in both the training and the test partition of any fold. This is not a cosmetic choice. Fundus datasets routinely contain multiple images of the same eye and both eyes of the same patient, which are strongly correlated; splitting at the image level would place correlated images of one patient on both sides of the partition and inflate the apparent test performance by leakage. Patient-level grouping removes that leakage path, and it composes with the train-only status of Stage-6 augmentation (§3.1.3) — no augmented image enters any test partition — so that the test estimate reflects generalization to unseen patients rather than memorization of seen ones. Every primary metric is reported as the mean ± standard deviation across the five folds, so that fold-to-fold variability is visible alongside the central estimate.
+**Cross-validation and leakage control.** All experiments use five-fold cross-validation with a patient-level stratified split: the data are partitioned into five folds, each fold serving once as the test partition while the remaining four train the model, and the process is repeated across all five folds. The split is shown in [FIG-3.13: 5-fold patient-level cross-validation split — defense/presentation/assets/architecture/09_training/cv_5fold.png]. The defining property is that the partition is made at the level of the patient, not the image: no patient's images may appear in both the training and the test partition of any fold. This is not a cosmetic choice. Fundus datasets routinely contain multiple images of the same eye and both eyes of the same patient, which are strongly correlated; splitting at the image level would place correlated images of one patient on both sides of the partition and inflate the apparent test performance by leakage. Patient-level grouping removes that leakage path, and it composes with the train-only status of Stage-6 augmentation (§3.1.3) — no augmented image enters any test partition — so that the test estimate reflects generalization to unseen patients rather than memorization of seen ones. Every primary metric is reported as the mean ± standard deviation across the five folds, so that fold-to-fold variability is visible alongside the central estimate.
 
-**Statistical-test suite.** Differences between configurations are assessed by a suite of tests, each matched to the comparison it serves (RESEARCH_ARCHITECTURE §6.8). The McNemar test is used for paired classification comparison in Experiment 1, where the same test cases are classified by competing configurations. The DeLong test is used to compare ROC-AUC values, in Experiments 1 and 3. Ninety-five-percent confidence intervals are computed by bootstrap resampling with at least one thousand resamples for all experiments, which is the mechanism that attaches an uncertainty interval to every reported metric — and the basis on which a measured difference can be judged to exceed the EH-3 margins rather than to fall within noise. For Experiment 1 a mixed-effects model is fitted across folds with the fold treated as a random effect, separating the configuration effect of interest from fold-level variance. Because Experiments 1 and 2 each make many simultaneous comparisons across configurations and ablation levels, a Bonferroni/Holm multiple-comparison correction is applied to control the family-wise error rate, so that the number of comparisons does not manufacture spurious significance.
+**Statistical-test suite.** Differences between configurations are assessed by a suite of tests, each matched to the comparison it serves. The McNemar test is used for paired classification comparison in Experiment 1, where the same test cases are classified by competing configurations. The DeLong test is used to compare ROC-AUC values, in Experiments 1 and 3. Ninety-five-percent confidence intervals are computed by bootstrap resampling with at least one thousand resamples for all experiments, which is the mechanism that attaches an uncertainty interval to every reported metric — and the basis on which a measured difference can be judged to exceed the EH-3 margins rather than to fall within noise. For Experiment 1 a mixed-effects model is fitted across folds with the fold treated as a random effect, separating the configuration effect of interest from fold-level variance. Because Experiments 1 and 2 each make many simultaneous comparisons across configurations and ablation levels, a Bonferroni/Holm multiple-comparison correction is applied to control the family-wise error rate, so that the number of comparisons does not manufacture spurious significance.
 
 **Relation to the dominance and validation criteria.** These tests are the machinery behind the compound criteria restated in §3.4.1. The empirical-dominance criterion (EH-3) requires a simultaneous weighted-F1 improvement of at least five percentage points, a ROC-AUC improvement of at least 0.02, and no degradation in Cohen's κ; the bootstrap intervals and paired tests are what determine whether an observed difference clears those margins reliably. The sufficient-validation criterion (EH-4) further requires the same direction of effect on at least one external dataset and replication across both architectures; the per-fold, per-architecture, per-dataset estimates produced by this protocol are precisely what that criterion is evaluated against. Both criteria are restated here to fix the role of the statistics; their application to results is reserved for Chapter 4.
 
-**Reproducibility configuration.** All experiments are run under a single standardized training configuration, summarized in Table 3.1, with a fixed random seed and deterministic execution, fixed augmentation parameters, and a fixed learning-rate schedule (RESEARCH_ARCHITECTURE §4.0, §9.3). The optimizer is Adam (Kingma and Ba, 2015), held constant with the other hyperparameters of Table 3.1 so that comparisons isolate the configuration effect rather than tuning differences. Fixing these removes run-to-run nondeterminism as a confound, so that a measured difference between configurations is attributable to the configuration rather than to seed variation.
+**Reproducibility configuration.** All experiments are run under a single standardized training configuration, summarized in Table 3.1, with a fixed random seed and deterministic execution, fixed augmentation parameters, and a fixed learning-rate schedule. The optimizer is Adam (Kingma and Ba, 2015), held constant with the other hyperparameters of Table 3.1 so that comparisons isolate the configuration effect rather than tuning differences. Fixing these removes run-to-run nondeterminism as a confound, so that a measured difference between configurations is attributable to the configuration rather than to seed variation.
 
-**Table 3.3. Standardized training configuration (RESEARCH_ARCHITECTURE §4.0).**
+**Table 3.3. Standardized training configuration.**
 
 | Parameter | Value |
 |-----------|-------|
@@ -1156,7 +1156,7 @@ The four parts compose a complete pipeline from raw image to evaluated predictio
 
 Taken together, these specifications fix the conditions under which the framework is reproducible. The training configuration is standardized and the execution is deterministic under a fixed seed; the data partition is made at the patient level to preclude leakage; the preprocessing parameters are determined by validation within the dissertation's own framework rather than imported from external studies; and every reported metric is to carry a quantified uncertainty. These conditions are what allow a measured difference between configurations to be attributed to the configuration rather than to nuisance variation.
 
-The chapter has also been explicit about what its methodology deliberately bounds, and these commitments constrain how the results of Chapter 4 may be read. The independent variable of the primary experiment is the composite factor of preprocessing and pretraining source, so any observed effect is attributable only to the integrated configuration and never to preprocessing alone (CFC-2.8). The self-supervised initialization of the integrated arm is specified here but has not yet been trained; it is presented as a methodological design and a candidate contribution. The in-domain self-supervised methods it draws on are now represented in the corpus (acquired in the v6.1.0 expansion, and cited in §1.3.2 and §3.3.2), but the specific CNN-native integrated-arm configuration has not been trained and its efficacy remains to be established empirically rather than inherited from those sources. The reliability of the classical optic-disc–fovea detector was measured and reported honestly, including the finding that fovea localization is unreliable, and the pipeline's conservative fallbacks were motivated by that finding rather than concealing it. The CLAHE parameters are not assumed portable across datasets, transfer from any pretraining source is treated as an empirical question rather than a guarantee, no stage configuration is claimed to be universally optimal, and the dependence of some validation on private clinical data limits external reproducibility. These are not deficiencies disguised as caveats but the epistemic discipline that will make the eventual claims defensible. With the model and its evaluation framework so specified and so bounded, the dissertation proceeds to Chapter 4, which establishes the datasets and experimental configuration and then evaluates the hypotheses H-1 through H-7 against the dominance and sufficient-validation criteria defined here.
+The chapter has also been explicit about what its methodology deliberately bounds, and these commitments constrain how the results of Chapter 4 may be read. The independent variable of the primary experiment is the composite factor of preprocessing and pretraining source, so any observed effect is attributable only to the integrated configuration and never to preprocessing alone (CFC-2.8). The self-supervised initialization of the integrated arm is specified here but has not yet been trained; it is presented as a methodological design and a candidate contribution. The in-domain self-supervised methods it draws on are now represented in the corpus (cited in §1.3.2 and §3.3.2), but the specific CNN-native integrated-arm configuration has not been trained and its efficacy remains to be established empirically rather than inherited from those sources. The reliability of the classical optic-disc–fovea detector was measured and reported honestly, including the finding that fovea localization is unreliable, and the pipeline's conservative fallbacks were motivated by that finding rather than concealing it. The CLAHE parameters are not assumed portable across datasets, transfer from any pretraining source is treated as an empirical question rather than a guarantee, no stage configuration is claimed to be universally optimal, and the dependence of some validation on private clinical data limits external reproducibility. These are not deficiencies disguised as caveats but the epistemic discipline that will make the eventual claims defensible. With the model and its evaluation framework so specified and so bounded, the dissertation proceeds to Chapter 4, which establishes the datasets and experimental configuration and then evaluates the hypotheses H-1 through H-7 against the dominance and sufficient-validation criteria defined here.
 
 
 ---
@@ -1169,7 +1169,7 @@ Chapter 3 specified the diagnostic model and its evaluation framework as an obje
 
 The substrate is deliberately not a single corpus. It is a *functionally tiered architecture* of eight datasets, in which membership of a tier is determined by the role a dataset plays in the argument rather than by its size. Four functional tiers are distinguished. The **TRAINING** tier holds a single dataset, EyePACS, which supplies all model fitting and the within-dataset evaluation of Experiments 1 and 2. The **EXTERNAL** tier holds the datasets used to probe behaviour on data the model was never trained on: APTOS 2019, for zero-shot cross-dataset transfer (Experiment 3), and Messidor-2, for the clinical-degradation comparison (Experiment 5). The **CLINICAL** tier holds the two datasets that carry clinically meaningful annotations beyond an image-level grade: IDRiD, whose pixel-level lesion masks make the quantitative explainability analysis of Experiment 4 possible, and a Kazakh medical-centre Clinical set used for qualitative explainability and as the held-out test corpus of Experiment 7. The **DEVICE** tier holds the three datasets — RFMiD, DDR, and ODIR-5K — across which the device domain-shift evaluation of Experiment 6 is performed; its purpose is to expose the model to camera hardware unrepresented in the training set, and the cross-device results it yields are empirical observations of performance variability, not a claim of device certification or regulatory compliance (NC-16). The complete architecture is set out in Table 4.1.
 
-**Table 4.1. Tiered dataset architecture (RESEARCH_ARCHITECTURE §2.1).** Sizes and camera models are dataset attributes as reported by the dataset descriptors; they are not experimental results.
+**Table 4.1. Tiered dataset architecture.** Sizes and camera models are dataset attributes as reported by the dataset descriptors; they are not experimental results.
 
 | Dataset | Tier | Primary role (experiments) | Approx. size | DR taxonomy | Camera model(s) | Public |
 |---------|------|----------------------------|-------------|-------------|-----------------|--------|
@@ -1212,7 +1212,7 @@ The experiments are run on a single consumer-grade graphics processor, an NVIDIA
 
 Every experiment is run under one standardized training configuration, reproduced in Table 4.2 (identical to the configuration introduced as Table 3.1 in §3.4.2). Fixing a single configuration across all experiments is what allows a measured difference between two configurations to be read as an effect of the factor under test rather than of an incidental change in optimizer, schedule, or batch size.
 
-**Table 4.2. Standardized training configuration (RESEARCH_ARCHITECTURE §4.0).**
+**Table 4.2. Standardized training configuration.**
 
 | Parameter | Value |
 |-----------|-------|
@@ -1226,7 +1226,7 @@ Every experiment is run under one standardized training configuration, reproduce
 | Cross-validation | 5-fold, patient-level stratified split |
 | Seed | 42, deterministic = true |
 
-Reproducibility is treated as a property to be engineered rather than assumed, and each control is included for the specific source of variation it removes. Execution is deterministic under a single fixed random seed (42), which removes run-to-run nondeterminism — random initialization, data-ordering, and stochastic-operation variation — as a confound, so that a difference between two runs is attributable to their differing configuration rather than to seed variation. The augmentation parameters and the learning-rate schedule are likewise fixed across runs, removing two further degrees of freedom that could otherwise mask or manufacture an apparent effect (RESEARCH_ARCHITECTURE §9.3). The software stack is pinned — Python 3.11 with PyTorch, Torchvision, OpenCV, NumPy, and Scikit-learn (RESEARCH_ARCHITECTURE §8.5) — and the preprocessing pipeline and training code are versioned and reproduced in Appendix A, so that the transformation applied to every image and the procedure applied to every model are recoverable rather than described only in prose. This disciplined fixing of seed, schedule, augmentation, and code is the same reproducible-configuration practice established in the candidate's prior published work, which the present protocol formalizes and extends to the full multi-dataset architecture (`yesmukhamedov-kbtu.md`, 🔹prior own work; SIR-4).
+Reproducibility is treated as a property to be engineered rather than assumed, and each control is included for the specific source of variation it removes. Execution is deterministic under a single fixed random seed (42), which removes run-to-run nondeterminism — random initialization, data-ordering, and stochastic-operation variation — as a confound, so that a difference between two runs is attributable to their differing configuration rather than to seed variation. The augmentation parameters and the learning-rate schedule are likewise fixed across runs, removing two further degrees of freedom that could otherwise mask or manufacture an apparent effect. The software stack is pinned — Python 3.11 with PyTorch, Torchvision, OpenCV, NumPy, and Scikit-learn — and the preprocessing pipeline and training code are versioned and reproduced in Appendix A, so that the transformation applied to every image and the procedure applied to every model are recoverable rather than described only in prose. This disciplined fixing of seed, schedule, augmentation, and code is the same reproducible-configuration practice established in the candidate's prior published work, which the present protocol formalizes and extends to the full multi-dataset architecture (`yesmukhamedov-kbtu.md`, 🔹prior own work; SIR-4).
 
 Two limits bound the reproducibility this protocol affords, and both are stated rather than deferred. The first is the hardware bound already named: the configuration is reproducible on equivalent hardware, but the efficiency characteristics it exhibits are specific to the documented setup (DGL-2). The second concerns the data. Results that depend on the private Kazakh Clinical set carry a structural reproducibility limit, because that set is held under an institutional data-use agreement and is not publicly available; an external party can reproduce the public-dataset experiments in full but cannot independently re-run the Clinical-dependent evaluations without the data (SB-2.2). With the hardware documented, the training configuration fixed, and the reproducibility conditions and their limits stated, the experimental setup of §4.1 is complete. The datasets, their distribution and partitioning, and the conditions of execution are now defined precisely enough to support the evaluation of H-1 through H-7, which the subsequent sections of this chapter undertake.
 
@@ -1527,7 +1527,7 @@ H-3 holds that the preprocessing pipeline reduces the distributional distance be
 
 The acceptance criterion is a *K*-of-*n* rule over the six corpora, with *K* = 5:
 
-H-3 ⟺ Σ_X PASS_S(d, X) ≥ 5,  X ∈ {APTOS 2019, IDRiD, Messidor-2, DDR, ODIR-5K, RFMiD},
+H-3 ⟺ Σ_X PASS_S(d, X) ≥ 5, X ∈ {APTOS 2019, IDRiD, Messidor-2, DDR, ODIR-5K, RFMiD},
 
 where for each corpus PASS_S(d, X) holds when Δd(X) = d(baseline, X) − d(integrated, X) ≥ MCID_d and the lower bound of the bootstrap confidence interval of Δd exceeds zero. Because d is an unnormalized distance in arbitrary units, no non-zero minimal difference is interpretable for it and MCID_d is set to 0.0; the per-corpus condition therefore reduces to a directional significance test, CI⁻(Δd) > 0. Confidence intervals are computed from 1 000 bootstrap resamples. Two properties of this form should be noted so that the verdict of §4.4.2 can be checked against it. The rule tolerates one dissenting corpus, so a single corpus moving the wrong way would not by itself defeat the hypothesis — a deliberate allowance, given that the corpora differ in ways the transform does not address. And the sign is already normalized by the definition of Δd as a *reduction*, so the ordinary superiority form applies rather than a two-sided test. Neither MCID_d nor K was fixed when the question was first posed; both are assigned at the formalization of the hypothesis, and the sensitivity of the verdict to that assignment is addressed in §4.4.2.
 
@@ -2311,13 +2311,13 @@ Stage 4: Flat-Field Correction.
 Reduces uneven illumination by subtracting a heavily blurred version of the
 image and re-centering at 128:
 
-    corrected = image − GaussianBlur(image, σ) + 128
+ corrected = image − GaussianBlur(image, σ) + 128
 
 A large σ captures only the low-frequency illumination gradient, so the
 subtraction removes broad brightness variation while preserving local vessel
 and lesion detail.
 
-σ is computed adaptively as σ = 0.07 × FOV_diameter.  Correction
+σ is computed adaptively as σ = 0.07 × FOV_diameter. Correction
 is applied only inside the FOV mask (padding pixels are left at zero).
 
 Input/output images are RGB uint8 NumPy arrays.
@@ -2330,42 +2330,42 @@ import numpy as np
 
 
 def apply_flat_field(
-    image: np.ndarray,
-    sigma: float = 45.0,
-    mask: np.ndarray | None = None,
+ image: np.ndarray,
+ sigma: float = 45.0,
+ mask: np.ndarray | None = None,
 ) -> np.ndarray:
-    """
-    Apply flat-field correction to reduce uneven illumination.
+ """
+ Apply flat-field correction to reduce uneven illumination.
 
-    Algorithm::
+ Algorithm::
 
-        blur      = GaussianBlur(image, σ)
-        corrected = image − blur + 128
+ blur = GaussianBlur(image, σ)
+ corrected = image − blur + 128
 
-    When *mask* is provided, correction is applied only inside the mask
-    (``mask > 0``). Padding areas (``mask == 0``) are left at zero.
+ When *mask* is provided, correction is applied only inside the mask
+ (``mask > 0``). Padding areas (``mask == 0``) are left at zero.
 
-    Kernel size is derived automatically from *sigma* (passed as ``(0, 0)``
-    to :func:`cv2.GaussianBlur`).
+ Kernel size is derived automatically from *sigma* (passed as ``(0, 0)``
+ to:func:`cv2.GaussianBlur`).
 
-    Args:
-        image: RGB uint8 NumPy array of shape ``(H, W, 3)``.
-        sigma: Gaussian blur σ controlling the spatial scale of the
-            illumination estimate.
-        mask: Optional binary mask of shape ``(H, W)`` (float32 or uint8).
-            When provided, only pixels where ``mask > 0`` are corrected;
-            padding regions remain zero.
+ Args:
+ image: RGB uint8 NumPy array of shape ``(H, W, 3)``.
+ sigma: Gaussian blur σ controlling the spatial scale of the
+ illumination estimate.
+ mask: Optional binary mask of shape ``(H, W)`` (float32 or uint8).
+ When provided, only pixels where ``mask > 0`` are corrected;
+ padding regions remain zero.
 
-    Returns:
-        Corrected RGB uint8 NumPy array of shape ``(H, W, 3)``.
-    """
-    blur = cv2.GaussianBlur(image, (0, 0), sigma)
-    corrected = image.astype(np.float32) - blur.astype(np.float32) + 128.0
-    corrected = np.clip(corrected, 0, 255).astype(np.uint8)
-    if mask is not None:
-        mask_3ch = np.expand_dims(mask > 0, axis=-1).astype(np.uint8)
-        corrected = corrected * mask_3ch  # zero out padding
-    return corrected
+ Returns:
+ Corrected RGB uint8 NumPy array of shape ``(H, W, 3)``.
+ """
+ blur = cv2.GaussianBlur(image, (0, 0), sigma)
+ corrected = image.astype(np.float32) - blur.astype(np.float32) + 128.0
+ corrected = np.clip(corrected, 0, 255).astype(np.uint8)
+ if mask is not None:
+ mask_3ch = np.expand_dims(mask > 0, axis=-1).astype(np.uint8)
+ corrected = corrected * mask_3ch # zero out padding
+ return corrected
 ```
 
 The remaining modules follow the same conventions established for the codebase — type-hinted signatures, `Args`/`Returns` docstrings, paths resolved from configuration rather than hardcoded, and `pathlib.Path` throughout — and are reproduced in full in the assembled document from the same package. The pipeline lineage descends from the candidate's prior published work on upgraded CLAHE and preprocessing–classification integration (`yesmukhamedov-scopus-q2.md`/`yesmukhamedov-scopus-q3.md`, `yesmukhamedov-kbtu.md`, and the conference paper, 🔹prior own work; SIR-4); the source reproduced here formalizes and consolidates that line into the single versioned eight-stage system specified in Chapter 3. Consistent with the hardware-specific reproducibility bound stated in §4.1.3, the source is reproducible on equivalent hardware, but the computational-efficiency characteristics it exhibits remain specific to the documented setup (DGL-2); no claim of performance, accuracy, or deployment readiness is made by reproducing it. With the source catalogued and a representative module shown to be the real, on-disk implementation, the reproducibility loop opened in §4.1.3 is closed: the fixed configuration (Table 4.2), the documented hardware, and this versioned code together render the experimental pipeline recoverable.
@@ -2565,40 +2565,40 @@ The diagrams are given as diagram source in Mermaid notation. The source is the 
 
 ```mermaid
 flowchart TB
-  subgraph EXT_IN["External capture"]
-    CAM["Fundus camera<br/>(desk / portable / smartphone-based)"]
-  end
+ subgraph EXT_IN["External capture"]
+ CAM["Fundus camera<br/>(desk / portable / smartphone-based)"]
+ end
 
-  subgraph SYS["Automated DR screening system"]
-    ORCH["Orchestration /<br/>Error-Handling<br/>FR-7"]
-    ING["Ingestion<br/>FR-1, FR-7"]
-    PRE["Preprocessing Engine<br/>FR-2 · 8-stage pipeline<br/>(configurable)"]
-    INF["Inference<br/>FR-3 · 5-class grade"]
-    REP["Decision-Support /<br/>Reporting<br/>FR-4 · grade + overlay"]
-    UI["Clinician Interface<br/>FR-5 · review, override, audit"]
-    DM["Data-Management /<br/>PACS-EHR Integration<br/>FR-6"]
-  end
+ subgraph SYS["Automated DR screening system"]
+ ORCH["Orchestration /<br/>Error-Handling<br/>FR-7"]
+ ING["Ingestion<br/>FR-1, FR-7"]
+ PRE["Preprocessing Engine<br/>FR-2 · 8-stage pipeline<br/>(configurable)"]
+ INF["Inference<br/>FR-3 · 5-class grade"]
+ REP["Decision-Support /<br/>Reporting<br/>FR-4 · grade + overlay"]
+ UI["Clinician Interface<br/>FR-5 · review, override, audit"]
+ DM["Data-Management /<br/>PACS-EHR Integration<br/>FR-6"]
+ end
 
-  subgraph EXT_OUT["Hospital systems"]
-    PACS["PACS"]
-    EHR["EHR"]
-  end
+ subgraph EXT_OUT["Hospital systems"]
+ PACS["PACS"]
+ EHR["EHR"]
+ end
 
-  CAM -->|"image + acquisition metadata"| ING
-  ING -->|"validated image"| PRE
-  PRE -->|"4-channel tensor"| INF
-  INF -->|"grade + class posteriors"| REP
-  REP -->|"grade + attention overlay"| UI
-  UI -->|"clinician disposition"| DM
-  REP -->|"result record"| DM
-  DM <-->|"FHIR / HL7, asynchronous"| PACS
-  DM <-->|"FHIR / HL7, asynchronous"| EHR
+ CAM -->|"image + acquisition metadata"| ING
+ ING -->|"validated image"| PRE
+ PRE -->|"4-channel tensor"| INF
+ INF -->|"grade + class posteriors"| REP
+ REP -->|"grade + attention overlay"| UI
+ UI -->|"clinician disposition"| DM
+ REP -->|"result record"| DM
+ DM <-->|"FHIR / HL7, asynchronous"| PACS
+ DM <-->|"FHIR / HL7, asynchronous"| EHR
 
-  ORCH -.->|"supervises, retries,<br/>routes failures"| ING
-  ORCH -.-> PRE
-  ORCH -.-> INF
-  ORCH -.-> REP
-  ING -.->|"rejected input +<br/>reason"| REP
+ ORCH -.->|"supervises, retries,<br/>routes failures"| ING
+ ORCH -.-> PRE
+ ORCH -.-> INF
+ ORCH -.-> REP
+ ING -.->|"rejected input +<br/>reason"| REP
 ```
 
 The view is to be read against the requirement mapping rather than on its own. Table C.1 restates that mapping so that each module can be checked against the requirement it exists to satisfy.
@@ -2623,36 +2623,36 @@ Two features of the decomposition are structural rather than incidental. The Pre
 
 ```mermaid
 flowchart LR
-  subgraph PERIPH["Peripheral screening site — resource-limited (OD-6)"]
-    direction TB
-    P_CAM["Fundus camera"]
-    P_NODE["Capture node<br/>no GPU (NFR-1)<br/>&lt; 16 GB RAM (NFR-2)"]
-    P_Q["Local outbound queue<br/>(NFR-4: intermittent link)"]
-    P_CAM --> P_NODE --> P_Q
-  end
+ subgraph PERIPH["Peripheral screening site — resource-limited (OD-6)"]
+ direction TB
+ P_CAM["Fundus camera"]
+ P_NODE["Capture node<br/>no GPU (NFR-1)<br/>&lt; 16 GB RAM (NFR-2)"]
+ P_Q["Local outbound queue<br/>(NFR-4: intermittent link)"]
+ P_CAM --> P_NODE --> P_Q
+ end
 
-  subgraph CENTRE["Reading centre / regional processing node"]
-    direction TB
-    C_ING["Ingestion"]
-    C_PRE["Preprocessing Engine"]
-    C_INF["Inference"]
-    C_REP["Decision-Support / Reporting"]
-    C_UI["Clinician review workstation"]
-    C_ING --> C_PRE --> C_INF --> C_REP --> C_UI
-  end
+ subgraph CENTRE["Reading centre / regional processing node"]
+ direction TB
+ C_ING["Ingestion"]
+ C_PRE["Preprocessing Engine"]
+ C_INF["Inference"]
+ C_REP["Decision-Support / Reporting"]
+ C_UI["Clinician review workstation"]
+ C_ING --> C_PRE --> C_INF --> C_REP --> C_UI
+ end
 
-  subgraph HOSP["Hospital information systems"]
-    direction TB
-    H_PACS["PACS"]
-    H_EHR["EHR"]
-  end
+ subgraph HOSP["Hospital information systems"]
+ direction TB
+ H_PACS["PACS"]
+ H_EHR["EHR"]
+ end
 
-  P_Q ==>|"store-and-forward<br/>encrypted transfer"| C_ING
-  C_UI ==>|"disposition"| H_EHR
-  C_REP ==>|"study + result"| H_PACS
+ P_Q ==>|"store-and-forward<br/>encrypted transfer"| C_ING
+ C_UI ==>|"disposition"| H_EHR
+ C_REP ==>|"study + result"| H_PACS
 
-  classDef bound fill:none,stroke-dasharray:4 3;
-  class PERIPH,CENTRE,HOSP bound;
+ classDef bound fill:none,stroke-dasharray:4 3;
+ class PERIPH,CENTRE,HOSP bound;
 ```
 
 This is the view in which the non-functional envelope prunes the design. The peripheral site is specified to require neither inference acceleration nor a continuous link: capture and queueing are all that occur there, and the transfer boundary is asynchronous by construction (NFR-4). The alternative topology — inference at the point of capture — is not excluded in principle, but it is not the arrangement specified here, and Chapter 6 selects the store-and-forward form precisely because it is the one that survives the connectivity condition of OD-6.
@@ -2663,33 +2663,33 @@ This is the view in which the non-functional envelope prunes the design. The per
 
 ```mermaid
 sequenceDiagram
-  autonumber
-  actor OP as Operator
-  participant CAM as Camera
-  participant ING as Ingestion
-  participant PRE as Preprocessing Engine
-  participant INF as Inference
-  participant REP as Reporting
-  actor CLIN as Clinician
-  participant DM as Data-Management
+ autonumber
+ actor OP as Operator
+ participant CAM as Camera
+ participant ING as Ingestion
+ participant PRE as Preprocessing Engine
+ participant INF as Inference
+ participant REP as Reporting
+ actor CLIN as Clinician
+ participant DM as Data-Management
 
-  OP->>CAM: acquire fundus image
-  CAM->>ING: image + acquisition metadata
-  alt input valid
-    ING->>PRE: validated image
-    PRE->>PRE: stages 0-5, 7 (fixed transform)
-    PRE->>INF: 4-channel tensor
-    INF->>REP: five-class grade + posteriors
-    REP->>REP: generate post-hoc attention overlay
-    REP->>CLIN: grade + overlay (decision support)
-    CLIN->>CLIN: interpret#59; may override
-    CLIN->>DM: diagnosis + disposition + rationale
-    DM->>DM: persist record#59; write audit event
-    DM-->>REP: acknowledgement
-  else input rejected (FR-7)
-    ING->>REP: rejection + reason
-    REP->>CLIN: rejection notice, no grade issued
-  end
+ OP->>CAM: acquire fundus image
+ CAM->>ING: image + acquisition metadata
+ alt input valid
+ ING->>PRE: validated image
+ PRE->>PRE: stages 0-5, 7 (fixed transform)
+ PRE->>INF: 4-channel tensor
+ INF->>REP: five-class grade + posteriors
+ REP->>REP: generate post-hoc attention overlay
+ REP->>CLIN: grade + overlay (decision support)
+ CLIN->>CLIN: interpret#59; may override
+ CLIN->>DM: diagnosis + disposition + rationale
+ DM->>DM: persist record#59; write audit event
+ DM-->>REP: acknowledgement
+ else input rejected (FR-7)
+ ING->>REP: rejection + reason
+ REP->>CLIN: rejection notice, no grade issued
+ end
 ```
 
 Two properties of the ordering are the point of the diagram. The clinician's disposition is the **terminal** step: the system produces a grade and an accompanying overlay, and the diagnosis is made by the clinician, who may override the system's output and whose rationale is persisted. The system is decision support within a physician-in-the-loop paradigm and is not a standalone diagnostic instrument. And the attention overlay is generated *post hoc*, after the grade, as an interpretability artefact accompanying it — it indicates regions of high gradient-weighted activation and does not constitute a pixel-level delineation of pathology or a localisation output.
@@ -2702,58 +2702,58 @@ The rejection branch is drawn because a screening system that fails silently on 
 
 ```mermaid
 erDiagram
-  PATIENT ||--o{ STUDY : "undergoes"
-  STUDY ||--o{ IMAGE : "contains"
-  DEVICE ||--o{ IMAGE : "captured by"
-  IMAGE ||--|| PREPROCESSING_RUN : "transformed by"
-  PREPROCESSING_RUN ||--|| INFERENCE : "feeds"
-  INFERENCE ||--o| OVERLAY : "accompanied by"
-  INFERENCE ||--|| DIAGNOSTIC_RESULT : "proposes"
-  CLINICIAN ||--o{ DIAGNOSTIC_RESULT : "adjudicates"
-  DIAGNOSTIC_RESULT ||--o{ AUDIT_EVENT : "records"
-  PATIENT {
-    id identifier PK "patient-identifying"
-    demographics attributes "patient-identifying"
-  }
-  STUDY {
-    id identifier PK
-    acquisition_context attributes
-  }
-  IMAGE {
-    id identifier PK
-    laterality attribute
-    acquisition_metadata attributes
-  }
-  DEVICE {
-    id identifier PK
-    manufacturer_model attributes
-  }
-  PREPROCESSING_RUN {
-    pipeline_configuration attributes
-    stage_parameters attributes
-  }
-  INFERENCE {
-    backbone_identity attribute
-    grade attribute
-    class_posteriors attributes
-  }
-  OVERLAY {
-    artefact reference "interpretability only"
-  }
-  DIAGNOSTIC_RESULT {
-    proposed_grade attribute
-    clinician_grade attribute
-    override_flag attribute
-    rationale text
-  }
-  CLINICIAN {
-    id identifier PK "identifying"
-  }
-  AUDIT_EVENT {
-    actor attribute
-    action attribute
-    outcome attribute
-  }
+ PATIENT ||--o{ STUDY: "undergoes"
+ STUDY ||--o{ IMAGE: "contains"
+ DEVICE ||--o{ IMAGE: "captured by"
+ IMAGE ||--|| PREPROCESSING_RUN: "transformed by"
+ PREPROCESSING_RUN ||--|| INFERENCE: "feeds"
+ INFERENCE ||--o| OVERLAY: "accompanied by"
+ INFERENCE ||--|| DIAGNOSTIC_RESULT: "proposes"
+ CLINICIAN ||--o{ DIAGNOSTIC_RESULT: "adjudicates"
+ DIAGNOSTIC_RESULT ||--o{ AUDIT_EVENT: "records"
+ PATIENT {
+ id identifier PK "patient-identifying"
+ demographics attributes "patient-identifying"
+ }
+ STUDY {
+ id identifier PK
+ acquisition_context attributes
+ }
+ IMAGE {
+ id identifier PK
+ laterality attribute
+ acquisition_metadata attributes
+ }
+ DEVICE {
+ id identifier PK
+ manufacturer_model attributes
+ }
+ PREPROCESSING_RUN {
+ pipeline_configuration attributes
+ stage_parameters attributes
+ }
+ INFERENCE {
+ backbone_identity attribute
+ grade attribute
+ class_posteriors attributes
+ }
+ OVERLAY {
+ artefact reference "interpretability only"
+ }
+ DIAGNOSTIC_RESULT {
+ proposed_grade attribute
+ clinician_grade attribute
+ override_flag attribute
+ rationale text
+ }
+ CLINICIAN {
+ id identifier PK "identifying"
+ }
+ AUDIT_EVENT {
+ actor attribute
+ action attribute
+ outcome attribute
+ }
 ```
 
 The entities that carry patient or clinician identity are marked, because that is where the security requirement concentrates. Chapter 6 places encryption, authentication, role-based access control, de-identification and audit at the data-management boundary rather than distributing them across the modules, and this model is the reason: the identifying attributes are persisted in exactly the entities that boundary owns. The audit record is modelled as a first-class entity, since an override channel without a durable record of who overrode what is an accountability mechanism only in name.

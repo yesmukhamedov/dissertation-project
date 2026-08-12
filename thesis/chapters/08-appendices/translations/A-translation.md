@@ -38,13 +38,13 @@ Stage 4: Flat-Field Correction.
 Reduces uneven illumination by subtracting a heavily blurred version of the
 image and re-centering at 128:
 
-    corrected = image − GaussianBlur(image, σ) + 128
+ corrected = image − GaussianBlur(image, σ) + 128
 
 A large σ captures only the low-frequency illumination gradient, so the
 subtraction removes broad brightness variation while preserving local vessel
 and lesion detail.
 
-σ is computed adaptively as σ = 0.07 × FOV_diameter.  Correction
+σ is computed adaptively as σ = 0.07 × FOV_diameter. Correction
 is applied only inside the FOV mask (padding pixels are left at zero).
 
 Input/output images are RGB uint8 NumPy arrays.
@@ -57,42 +57,42 @@ import numpy as np
 
 
 def apply_flat_field(
-    image: np.ndarray,
-    sigma: float = 45.0,
-    mask: np.ndarray | None = None,
+ image: np.ndarray,
+ sigma: float = 45.0,
+ mask: np.ndarray | None = None,
 ) -> np.ndarray:
-    """
-    Apply flat-field correction to reduce uneven illumination.
+ """
+ Apply flat-field correction to reduce uneven illumination.
 
-    Algorithm::
+ Algorithm::
 
-        blur      = GaussianBlur(image, σ)
-        corrected = image − blur + 128
+ blur = GaussianBlur(image, σ)
+ corrected = image − blur + 128
 
-    When *mask* is provided, correction is applied only inside the mask
-    (``mask > 0``). Padding areas (``mask == 0``) are left at zero.
+ When *mask* is provided, correction is applied only inside the mask
+ (``mask > 0``). Padding areas (``mask == 0``) are left at zero.
 
-    Kernel size is derived automatically from *sigma* (passed as ``(0, 0)``
-    to :func:`cv2.GaussianBlur`).
+ Kernel size is derived automatically from *sigma* (passed as ``(0, 0)``
+ to:func:`cv2.GaussianBlur`).
 
-    Args:
-        image: RGB uint8 NumPy array of shape ``(H, W, 3)``.
-        sigma: Gaussian blur σ controlling the spatial scale of the
-            illumination estimate.
-        mask: Optional binary mask of shape ``(H, W)`` (float32 or uint8).
-            When provided, only pixels where ``mask > 0`` are corrected;
-            padding regions remain zero.
+ Args:
+ image: RGB uint8 NumPy array of shape ``(H, W, 3)``.
+ sigma: Gaussian blur σ controlling the spatial scale of the
+ illumination estimate.
+ mask: Optional binary mask of shape ``(H, W)`` (float32 or uint8).
+ When provided, only pixels where ``mask > 0`` are corrected;
+ padding regions remain zero.
 
-    Returns:
-        Corrected RGB uint8 NumPy array of shape ``(H, W, 3)``.
-    """
-    blur = cv2.GaussianBlur(image, (0, 0), sigma)
-    corrected = image.astype(np.float32) - blur.astype(np.float32) + 128.0
-    corrected = np.clip(corrected, 0, 255).astype(np.uint8)
-    if mask is not None:
-        mask_3ch = np.expand_dims(mask > 0, axis=-1).astype(np.uint8)
-        corrected = corrected * mask_3ch  # zero out padding
-    return corrected
+ Returns:
+ Corrected RGB uint8 NumPy array of shape ``(H, W, 3)``.
+ """
+ blur = cv2.GaussianBlur(image, (0, 0), sigma)
+ corrected = image.astype(np.float32) - blur.astype(np.float32) + 128.0
+ corrected = np.clip(corrected, 0, 255).astype(np.uint8)
+ if mask is not None:
+ mask_3ch = np.expand_dims(mask > 0, axis=-1).astype(np.uint8)
+ corrected = corrected * mask_3ch # zero out padding
+ return corrected
 ```
 
 Қалған модульдер код базасы үшін орнықтырылған сол конвенцияларды ұстанады — тип-белгіленген қолтаңбалар, `Args`/`Returns` docstring-тері, қатты-кодталудан гөрі конфигурациядан шешілген жолдар және тұтасымен `pathlib.Path` — әрі жинақталған құжатта сол пакеттен толық қайта беріледі. Pipeline шежіресі кандидаттың жаңартылған CLAHE мен preprocessing–жіктеу интеграциясы бойынша бұрын жарияланған жұмысынан тарайды (`yesmukhamedov-scopus-q2.md`/`yesmukhamedov-scopus-q3.md`, `yesmukhamedov-kbtu.md` және конференция мақаласы, 🔹бұрынғы өз жұмысы; SIR-4); осында қайта берілген бастапқы код сол желіні 3-тарауда көрсетілген жалғыз нұсқаланған сегіз кезеңді жүйеге формализациялайды әрі шоғырландырады. §4.1.3-те айтылған аппаратқа-тән қайта жаңғыртылушылық шегімен үйлесімді, бастапқы код баламалы аппаратта қайта жаңғыртылады, бірақ ол көрсететін есептеу-тиімділігі сипаттары құжатталған орнатуға тән болып қалады (DGL-2); оны қайта беру арқылы ешбір өнімділік, дәлдік немесе орналастыру дайындығы тұжырымы жасалмайды. Бастапқы код каталогталып, репрезентативті модуль нақты, дискідегі жүзеге асыру екені көрсетілген соң, §4.1.3-те ашылған қайта жаңғыртылушылық циклі жабылады: тіркелген конфигурация (4.2-кесте), құжатталған аппарат және осы нұсқаланған код бірге эксперименттік pipeline-ді қалпына келтірілетін етеді.
@@ -101,4 +101,4 @@ def apply_flat_field(
 
 ### Аудармашы ескертуі
 
-Бастапқы черновиктегі **«PART 3: COMPLIANCE CHECKLIST»** (APP-A AVAILABLE, no-invention rule, CENTRAL_THESIS, reproducibility loop, SIR-4, SIR-1, DGL-2, CFC-2.2/2.4/2.5 және т.б. governance кодтарының аудиті) ағылшын тіліндегі мәтіннен алынған дәйексөздерге (verbatim quotes) сүйенеді, сондықтан аудит-артефакт ретінде ағылшын тіліндегі бастапқы файлда (`drafts/A-draft.md`) сақталады және осы аудармада қайталанбайды. Аударма негізгі мәтінді (1-бөлік) және A.1-кестені қамтиды; бастапқы код блогы (`flat_field.py`) дискідегі түпнұсқа ретінде ағылшын тілінде өзгеріссіз сақталады.
+Бастапқы черновиктегі **«PART 3: COMPLIANCE CHECKLIST»** (APP-A AVAILABLE, no-invention rule,, reproducibility loop, SIR-4, SIR-1, DGL-2, CFC-2.2/2.4/2.5 және т.б. governance кодтарының аудиті) ағылшын тіліндегі мәтіннен алынған дәйексөздерге (verbatim quotes) сүйенеді, сондықтан аудит-артефакт ретінде ағылшын тіліндегі бастапқы файлда (`drafts/A-draft.md`) сақталады және осы аудармада қайталанбайды. Аударма негізгі мәтінді (1-бөлік) және A.1-кестені қамтиды; бастапқы код блогы (`flat_field.py`) дискідегі түпнұсқа ретінде ағылшын тілінде өзгеріссіз сақталады.
