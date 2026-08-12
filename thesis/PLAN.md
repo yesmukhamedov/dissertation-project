@@ -807,14 +807,32 @@ forms would otherwise stand side by side in one document. All six diagram captio
 sit directly under their image; none of the old form remains. **The appendix source is unchanged** — the
 relocation happens at conversion, so the Markdown stays readable as authored.
 
+**Resource IDs are out of the text — all 40 occurrences, both editions (2026-08-13).** The mapping was
+not the identity and had to be established case by case:
+
+- **Seven tables were captioned by their asset ID** rather than a number (`**TAB-2.1. …**`). They take
+  their document numbers from order of appearance, which makes Chapter 3 read `TAB-3.2` → Table 3.1,
+  `TAB-3.3` → Table 3.2, `TAB-3.1` → Table 3.3 — and `TAB-3.1` again as **Table 4.2** where §4.1.3
+  repeats it. Chapters 1–5 now number 1.1 / 2.1 / 3.1–3.3 / 4.1–4.28 / 5.1–5.6 with no gap or duplicate.
+- **Sixteen Chapter-4/5 captions already recorded their own mapping** in parentheses (`Table 4.5
+  (TAB-4.3)`), which is where those pairs come from; the parenthetical is dropped.
+- **`TAB-5.4` was cited for figures no table in the manuscript carries.** It is the clinical-metrics
+  table in `results/`, never rendered here. The sensitivity/specificity pairs it was cited for —
+  ≈0.80 at 0.96 in-domain, ≈0.84 at 0.94 zero-shot — are Table 4.10 and Table 4.20 verbatim, so the
+  reference now names those two.
+- **`DIA-6.3` and its a–d suffixes** are governance IDs, not numbered items; dropped from the four
+  Appendix-C captions, and the sentence that introduced the ID now names the reserved diagram in words.
+- Figure and `DIA-6.1` references map to themselves (`FIG-2.2` → Figure 2.2). Kazakh in-text references
+  take the postfix form the translation already uses (`3.2-кестеде`, `2.2-суретте`), which is also what
+  the instruction expects — its own rule for in-text references is lower-case and inflected
+  («в соответствии с рисунком 2»), distinct from the caption form.
+
+Verified after rebuild: **zero IDs in either edition, no dangling table or figure reference, 26 figures
+placed, and §0.16's counts unchanged (42 tables / 29 figures) with both page figures still matching.**
+Only PART 1 of each draft was touched, so the compliance checklists keep their ID references.
+
 **Still open in this section:**
 
-- **Internal resource IDs appear in the reader-facing text — 40 occurrences.** Drafts cross-reference
-  assets in the project's own notation (`TAB-3.3`, `FIG-2.2`, `DIA-6.3a`) and those strings reach the
-  page. **This cannot be fixed by a mechanical rewrite**: of 34 distinct IDs only 14 correspond to a
-  caption of the same number, while `TAB-3.1` for instance is rendered in the document as Table 4.2, so
-  substituting "Table 3.1" would manufacture a dangling reference. Each of the remaining 20 needs a
-  decision about what it actually points at.
 - **Table captions are inconsistent in the Kazakh edition** for the same reason the diagrams were:
   authored captions use the postfix form (`Б.1-кесте`) while converter-driven ones are label-first
   (`Кесте 1.1 – …`). Diagram captions are now uniform; tables are not, and there are dozens of them.

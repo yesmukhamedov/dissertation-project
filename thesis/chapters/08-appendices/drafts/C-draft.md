@@ -6,7 +6,7 @@
 
 ## PART 1: SECTION TEXT
 
-This appendix gives the formal structural views of the screening-system architecture specified in Chapter 6: a component view, a deployment view, a sequence view of one screening episode, and the persisted data model. Together they discharge the diagram reserved as DIA-6.3.
+This appendix gives the formal structural views of the screening-system architecture specified in Chapter 6: a component view, a deployment view, a sequence view of one screening episode, and the persisted data model. Together they discharge the system-architecture diagram reserved in Chapter 6.
 
 What they are should be stated before they are read. Each is a **design specification**. No prototype of this architecture was implemented, no deployment was tested in a clinical setting, and nothing in these diagrams is evidence that the system performs as drawn. Every element is traceable to a statement in Chapter 6; where Chapter 6 does not fix a detail, the detail is omitted here rather than chosen, so the diagrams contain no design decision that the dissertation has not made in prose.
 
@@ -14,7 +14,7 @@ The diagrams are given as diagram source in Mermaid notation. The source is the 
 
 ### C.1 Component view
 
-**Diagram C.1. Module decomposition with provided and required interfaces (DIA-6.3a).**
+**Diagram C.1. Module decomposition with provided and required interfaces.**
 
 ```mermaid
 flowchart TB
@@ -72,7 +72,7 @@ Two features of the decomposition are structural rather than incidental. The Pre
 
 ### C.2 Deployment view
 
-**Diagram C.2. Store-and-forward deployment topology (DIA-6.3b).**
+**Diagram C.2. Store-and-forward deployment topology.**
 
 ```mermaid
 flowchart LR
@@ -112,7 +112,7 @@ This is the view in which the non-functional envelope prunes the design. The per
 
 ### C.3 Sequence view
 
-**Diagram C.3. One screening episode, capture to persisted disposition (DIA-6.3c).**
+**Diagram C.3. One screening episode, capture to persisted disposition.**
 
 ```mermaid
 sequenceDiagram
@@ -151,7 +151,7 @@ The rejection branch is drawn because a screening system that fails silently on 
 
 ### C.4 Data view
 
-**Diagram C.4. Persisted entity model (DIA-6.3d).**
+**Diagram C.4. Persisted entity model.**
 
 ```mermaid
 erDiagram
