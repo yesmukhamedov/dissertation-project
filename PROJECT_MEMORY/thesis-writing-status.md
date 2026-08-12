@@ -1,6 +1,6 @@
 ---
 name: thesis-writing-status
-description: "Dissertation WRITTEN TEXT COMPLETE — Chapters 0–7 + Appendices A–F all APPROVED (98 sections, 101,459 body words). PLAN.md is now a completion board. Remaining: KZ translations (45 of 98 units), citation pass, FIG-3.8/FIG-4.17, EN+KZ re-export, NEW-1 traceability"
+description: "Dissertation COMPLETE and EXPORTED — 98 sections EN + 98 KZ, citations done, assets closed, council-ready GOST docx+pdf built 2026-08-13. Remaining: governance-code decision (356 codes), trim queue, stale abstract/TOC exports, NEW-1 traceability, §2.1.2 locators"
 metadata:
   type: project
 ---
@@ -253,8 +253,39 @@ denominator artefact plus NC-16; §4.9's **E-7 comparable-not-larger** and the u
 and **all eight fences restated in §4.C without softening**. Governance codes, `[VERIFY]` markers,
 formulas and every table value pass through untranslated.
 
-**Still open:** the trim queue, the §0.16 count placeholders (need pagination first), and a full EN+KZ
-re-export — **everything in `defense/docs/` was built from the June 53-section manuscript**.
+## RE-EXPORT DONE 2026-08-13 — the critical path is closed
+
+`defense/docs/` now carries `FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-13` as **docx + pdf**, plus
+`DISSERTATION_{EN,KZ}` (docx) and `FRONT_MATTER_{EN,KZ}` (docx + pdf), all built from the current
+98-section text. **§0.16 is filled and verified: EN 239 pages / KZ 266, 42 tables, 29 figures,
+107 sources** (excluding appendices, which is the volume the council rule measures). Six commits on
+2026-08-12/13 carried it: Mermaid rendering + appendix asset markers → front matter/full build/§0.16 →
+FIG-5.1 closed against the council's own samples → diagram captions below the image, label-first →
+resource IDs replaced by reader-facing references (40 occurrences) → governance document names and
+stray version markers removed (27 + `v6.0.0`/`v6.1.0`).
+
+⚠ `PLAN.md` §11.4 records the §0.16 page fill as **240 EN**, but the assembled manuscript and the
+built document say **239** — one of the two is stale; re-read the count off the final PDF before
+submission.
+
+**Still open after the export:**
+1. ~~The 356 governance codes are undefined for the reader.~~ ✅ **CLOSED 2026-08-13 — declared, not
+   stripped.** All eight families carry a row in `DESIGNATIONS AND ABBREVIATIONS` (EN + KZ), written in
+   the numbered form `SB-n` … `CFC-n`, each saying what the family *is* rather than where it is
+   recorded. The `OD` collision is resolved by putting `OD-n` directly after `OD` (Optic Disc) and
+   stating that the optic disc is never written with a number. **Three further families were removed
+   rather than declared** — `IT-1` ×4, `SC-1.4` ×3, `AOQ-2` ×2, all bare provenance parentheticals, and
+   `(AOQ-2 simplified)` was process history besides; §3.3.1's "the five-class taxonomy of IT-1" was
+   reworded to "the dissertation's five-class taxonomy". Compliance checklists (PART 2/3) keep their
+   code references — only PART 1 was touched. `FR-n`/`NFR-n` stay undeclared by decision: §6.1.1 defines
+   each in its own table where it first appears. See [[manuscript-text-hygiene]].
+2. **Trim queue (§11.3b)** — never run; both editions clear the 300-page rule with room, so it is
+   optional, but any trim moves pagination and therefore §0.16.
+3. **Council deliverables lag the manuscript**: `abstract_{en,kz,ru}.docx/pdf` are **June 18** builds
+   while the Markdown was re-synced 2026-08-11, and the standalone `TABLE_OF_CONTENTS_*` exports are
+   still June (the current contents ships inside `FULL_DISSERTATION_*`). Re-export via the
+   `council-docs` skill. Supervisor/foreign-consultant reviews are June and unchanged in source.
+4. **NEW-1 traceability** and the `TAB-5.2` PC-11 register position — see below.
 
 **Remaining:** (App B/C/E/F now done — historical note: B was bounded by
 unrecorded per-epoch/per-class curves; E is IDRiD-only per G-3; F lacks per-group confusion matrices;

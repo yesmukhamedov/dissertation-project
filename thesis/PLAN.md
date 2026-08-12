@@ -860,17 +860,38 @@ marker — the reader is told when the project's literature corpus was extended 
 say it without the version ("those sources have since been acquired"). **Both editions now render zero
 version markers, zero governance document names and zero resource IDs.**
 
-**Still open in this section — larger than what it replaces:**
+**The governance codes are declared (2026-08-13).** The choice was **declare, not strip**: all eight
+families now carry a row in `DESIGNATIONS AND ABBREVIATIONS`, in both languages, written as `SB-n`,
+`OD-n`, `SIR-n`, `PC-n`, `NC-n`, `EH-n`, `DGL-n`, `CFC-n` — the numbered form, which is how they always
+appear in the text and which is what separates them from ordinary abbreviations. Each row states what
+the family *is* for a reader who has no access to the governance documents (a scope boundary, an
+operational definition, a rule on what may be attributed to a source), not where it is recorded.
 
-- **The governance *codes* are undefined for the reader — 356 occurrences** across eight families
-  (`SB` ×71, `OD` ×66, `SIR` ×54, `PC` ×42, `NC` ×36, `EH` ×34, `DGL` ×33, `CFC` ×13; the 128 `H-x`
-  are hypotheses and are properly introduced in §0.6). **None of the eight is defined in
-  `DESIGNATIONS AND ABBREVIATIONS` or in `DEFINITIONS`** — and `OD` *is* listed there, as **Optic
-  Disc**, so a reader meeting `OD-3 Stage 5` is pointed at the wrong expansion. `PC-x` are at least
-  introduced in context by §0.8. This is the same class as the two cleanups just done but an order of
-  magnitude larger, and it has two possible resolutions — declare the families in the front matter, or
-  strip them from the body — which differ in what the dissertation looks like to a reviewer. **The
-  candidate should decide before submission.**
+**The `OD` collision is resolved by adjacency and by wording.** `OD` (Optic Disc) keeps its row and
+`OD-n` follows it immediately, closing with the distinguishing rule — the optic disc *is never written
+with a number*. A reader meeting `OD-3 Stage 5` now lands on the right row.
+
+**Three further families were found in the same scan and removed instead of declared — 9 occurrences,
+EN and KZ alike.** `IT-1` (×4), `SC-1.4` (×3) and `AOQ-2` (×2) were bare provenance parentheticals of
+exactly the kind the governance-document-name pass removed: the sentence already carried the content.
+`(AOQ-2 simplified)` was also process history — it told the reader an internal amendment question had
+been simplified. One needed rewording rather than deletion: §3.3.1's *"the five-class taxonomy of
+IT-1"* became *"the dissertation's five-class taxonomy"*. Declaring three more families for nine
+provenance markers would have bought the reader nothing. **Only PART 1 of each draft was touched, so
+the compliance checklists keep their code references.**
+
+**Rebuilt and verified.** Assembly (98 sections, no suspect extractions, EN 101,437 / KZ 81,277 body
+words) → citation pass unchanged (107 sources, EN 292 / KZ 267 brackets, BLOCKING 0) → front matter,
+both manuscripts and both `FULL_DISSERTATION` docx + pdf. **Front matter stayed 10 pages EN / 11 KZ,
+and §0.16 needed no correction: appendices still begin on p. 240 EN and p. 267 KZ, so the 239 / 266
+figures the text states are still exact.** Verified in the built documents themselves: all eight
+families present in each edition, zero `IT-`/`SC-`/`AOQ-` codes remaining.
+
+**Still open in this section:**
+
+- `FR-n` and `NFR-n` (118 occurrences) are undeclared in the front matter as well. They differ from the
+  governance codes in that §6.1.1 defines each one in its own tables, on the page where it first
+  appears, so a reader is never left without the expansion — the candidate may still prefer a row each.
 - The abstract was checked against this pass and needs no correction: it already carries the current
   structure — H-3 as a separate investigation, Experiment 5 as external clinical performance, eight
   investigations — and its "Structure and length" section deliberately states no counts, so nothing in

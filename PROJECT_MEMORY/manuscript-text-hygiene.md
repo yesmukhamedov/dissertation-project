@@ -1,6 +1,6 @@
 ---
 name: manuscript-text-hygiene
-description: Internal notation that reached the reader-facing manuscript — what was removed, and the 356 undefined governance codes still open before submission
+description: Internal notation that reached the reader-facing manuscript — resource IDs, governance doc names and version markers removed; the 356 governance codes DECLARED in the abbreviations (2026-08-13)
 metadata:
   type: project
 ---
@@ -27,17 +27,38 @@ in the **v6.1.0** corpus expansion" in §2.C/§3.C, which is process history too
 Note the scrubber in `md2gost.py` only matches V3/V4/V5, so **v6.x passes straight
 through** — see [[strip-version-markers]] and [[no-process-history-in-deliverables]].
 
-## OPEN — decide before submission
+## Governance codes — DECLARED, not stripped (2026-08-13)
 
-**356 governance *codes* remain in the body and none is defined for the reader**:
-`SB` ×71, `OD` ×66, `SIR` ×54, `PC` ×42, `NC` ×36, `EH` ×34, `DGL` ×33, `CFC` ×13.
-(The 128 `H-x` are hypotheses and are properly introduced in §0.6; `PC-x` are at
-least introduced in context by §0.8.) None of the eight families appears in
-`DESIGNATIONS AND ABBREVIATIONS` or in `DEFINITIONS` — and **`OD` is listed there
-as "Optic Disc"**, so a reader meeting `OD-3 Stage 5` is pointed at the wrong
-expansion.
+The fourth class was the 356 codes themselves — `SB` ×71, `OD` ×66, `SIR` ×54,
+`PC` ×42, `NC` ×36, `EH` ×34, `DGL` ×33, `CFC` ×13 — and the resolution chosen was
+**declaration**. All eight families now have a row in `DESIGNATIONS AND
+ABBREVIATIONS`, EN and KZ, in `thesis/output/abbreviations_{en,kz}.md`.
 
-Two resolutions, and they differ in how the dissertation reads to a reviewer:
-declare the families in the front matter, or strip the codes from the body. This
-is the candidate's call. See [[gost-export-toolchain]] for the build that renders
-all of this.
+**Write the family as `SB-n`, not `SB`.** The numbered form is how the codes always
+appear in the text, and it is what makes them read as a system rather than as
+ordinary abbreviations. It is also what resolves the **`OD` collision**: `OD`
+(Optic Disc) keeps its own row and `OD-n` (Operational Definition) sits directly
+after it, closing with the rule that separates them — the optic disc is never
+written with a number.
+
+Each row says what the family **is** for a reader with no access to the governance
+documents (a scope boundary; a rule on what may be attributed to a source), never
+where it is recorded — naming the documents is what the 27-occurrence cleanup above
+removed.
+
+**Three further families were removed instead of declared — 9 occurrences per
+edition.** `IT-1` ×4, `SC-1.4` ×3, `AOQ-2` ×2, all bare provenance parentheticals
+whose sentences already carried the content; `(AOQ-2 simplified)` was process
+history as well. One needed rewording, not deletion: §3.3.1's "the five-class
+taxonomy of IT-1" → "the dissertation's five-class taxonomy". Declaring three more
+families for nine markers would have bought the reader nothing.
+
+**`FR-n`/`NFR-n` (118 occurrences) are deliberately left undeclared** — §6.1.1
+defines each in its own table on the page where it first appears.
+
+**Verify in the built `.docx`, not the Markdown** — the front matter is prepended
+at assembly and the abbreviations table is rendered as a Word table, so a grep over
+`thesis/assembly/*.md` alone does not prove what the reader sees. The rebuild after
+this change moved nothing: front matter stayed 10 pages EN / 11 KZ and §0.16's
+239 / 266 still match (appendices begin p. 240 EN, p. 267 KZ). See
+[[gost-export-toolchain]] for the build that renders all of this.

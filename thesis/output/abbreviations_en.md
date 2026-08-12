@@ -6,13 +6,16 @@
 | AUC | Area Under the Curve |
 | BYOL | Bootstrap Your Own Latent (self-supervised learning method) |
 | CAM | Class Activation Mapping |
+| CFC-n | Claim Formulation Constraint n — a rule governing the form a claim may take; the CFC-2 series enumerates claim types this dissertation forbids itself |
 | CLAHE | Contrast-Limited Adaptive Histogram Equalization |
 | CNN | Convolutional Neural Network |
 | CNR | Contrast-to-Noise Ratio |
 | DDR | Diabetic Retinopathy grading dataset (DDR) |
+| DGL-n | Deployment and Generalization Limitation n — a bound on how far a result may be carried beyond the conditions under which it was obtained |
 | DINO | self-Distillation with No labels (self-supervised learning method) |
 | DR | Diabetic Retinopathy |
 | ECE | Expected Calibration Error |
+| EH-n | Evidence Hierarchy rule n — the ranking of metrics by evidentiary weight, and the criteria a result must meet before it counts as decisive |
 | EHR | Electronic Health Record |
 | EMD | Earth Mover's Distance |
 | EyePACS | Eye Picture Archive Communication System (diabetic-retinopathy dataset) |
@@ -26,16 +29,21 @@
 | LAB | CIELAB colour space |
 | MLP | Multilayer Perceptron |
 | MoCo | Momentum Contrast (self-supervised learning method) |
+| NC-n | Non-Claim n — a statement this dissertation explicitly does not make, recorded so that its results are not read as making it |
 | NPV | Negative Predictive Value |
 | OD | Optic Disc |
+| OD-n | Operational Definition n — the definition by which a term of this dissertation is measured; distinct from OD above, which is never written with a number |
 | ODIR-5K | Ocular Disease Intelligent Recognition dataset (5,000 patients) |
 | PACS | Picture Archiving and Communication System |
+| PC-n | Primary Claim n — a numbered claim of the dissertation's argument, each carrying its evidence and its assessed strength |
 | PPV | Positive Predictive Value |
 | ReLU | Rectified Linear Unit |
 | RFMiD | Retinal Fundus Multi-disease Image Dataset |
 | RIQA | Retinal Image Quality Assessment |
 | ROC | Receiver Operating Characteristic |
+| SB-n | Scope Boundary n — a statement of what lies outside what this dissertation claims |
 | SimCLR | Simple framework for Contrastive Learning of Representations |
+| SIR-n | Source Interpretation Rule n — a rule constraining what may be attributed to a cited source |
 | SSIM | Structural Similarity Index |
 | SSL | Self-Supervised Learning |
 | STARE | Structured Analysis of the Retina (dataset) |
