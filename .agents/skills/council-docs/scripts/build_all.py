@@ -24,6 +24,15 @@ DOCS = {
     "abstract_kz": "Abstract (Kazakh)",
     "supervisor_review_kz": "Supervisor review (Kazakh)",
     "foreign_consultant_review_en": "Foreign consultant review (English)",
+    # Official reviewers' reports (Appendix 3). Two reviewers, and the language
+    # of a report follows the reviewer rather than the defense, so each report
+    # is carried in all three languages until the reviewers are appointed.
+    "official_reviewer_1_review_en": "Official reviewer 1 report (English)",
+    "official_reviewer_1_review_ru": "Official reviewer 1 report (Russian)",
+    "official_reviewer_1_review_kz": "Official reviewer 1 report (Kazakh)",
+    "official_reviewer_2_review_en": "Official reviewer 2 report (English)",
+    "official_reviewer_2_review_ru": "Official reviewer 2 report (Russian)",
+    "official_reviewer_2_review_kz": "Official reviewer 2 report (Kazakh)",
 }
 
 # Stems collected into a sub-folder of the output directory (stem -> sub-folder).
@@ -33,6 +42,12 @@ SUBDIRS = {
     "abstract_kz": "abstracts",
     "supervisor_review_kz": "reviews",
     "foreign_consultant_review_en": "reviews",
+    "official_reviewer_1_review_en": "reviews",
+    "official_reviewer_1_review_ru": "reviews",
+    "official_reviewer_1_review_kz": "reviews",
+    "official_reviewer_2_review_en": "reviews",
+    "official_reviewer_2_review_ru": "reviews",
+    "official_reviewer_2_review_kz": "reviews",
 }
 
 

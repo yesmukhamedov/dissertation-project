@@ -32,6 +32,17 @@ Educational programme: <8D061XX>
    Signature: ___________  Date: "__" ______ 20__
 ```
 
+## What the one real sample looks like
+
+`Образцы документов/авторы/Базарбекова И. М/рецензия.pdf` is titled **«Экспертный Отзыв»** — 2 pages of
+plain prose on the letterhead of the organisation that hosted the clinical data collection (ТОО
+"Universal Brain Center"), signed by its specialist. It has **no headings and no numbered sections**:
+it confirms the data were collected on that organisation's base, that ethics norms and informed consent
+were observed, comments on the method's accuracy from a practitioner's standpoint, and closes on the
+intention to adopt the technology. Treat items 1–6 above as a checklist of what to cover, **not** as
+headings to print.
+
 ## Related
-- [[../15-official-reviewer-report/structure]] — official form (Appendix 3).
+- [[../15-official-reviewer-report/structure]] — official form (Appendix 3); a strictly tabular,
+  9–26-page document — do not confuse the two genres.
 - [[../11-abstract-annotation/structure]] — informal feedback is received on the annotation.

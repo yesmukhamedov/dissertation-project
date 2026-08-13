@@ -49,6 +49,7 @@
 | Сведения о докторанте | [ru/19-сведения-о-докторанте/структура.md](ru/19-сведения-о-докторанте/структура.md) |
 | Явочный лист | [ru/20-явочный-лист/структура.md](ru/20-явочный-лист/структура.md) |
 | Отчёт о работе диссовета | [ru/21-отчет-о-работе-диссовета/структура.md](ru/21-отчет-о-работе-диссовета/структура.md) |
+| Протокол расширенного заседания кафедры (предзащита) | [en/22-extended-meeting-protocol/structure.md](en/22-extended-meeting-protocol/structure.md) — нормы и жанр; бланк-скелет [template.md](en/22-extended-meeting-protocol/template.md), что писать по нашей теме [content-brief.md](en/22-extended-meeting-protocol/content-brief.md), банк вопросов [qa-bank.md](en/22-extended-meeting-protocol/qa-bank.md) |
 
 ### Образовательные программы 8D061
 8D06101 — Интеллектуальные системы · 8D06102 — Компьютерная и программная инженерия ·
@@ -98,13 +99,14 @@ Russian version: **[`ru/`](ru/)** · English version: **[`en/`](en/)**
 | Defense announcement | [en/12-defense-announcement/structure.md](en/12-defense-announcement/structure.md) |
 | Scientific supervisor review | [en/13-supervisor-review/structure.md](en/13-supervisor-review/structure.md) |
 | Foreign consultant review | [en/14-foreign-consultant-review/structure.md](en/14-foreign-consultant-review/structure.md) |
-| Official reviewer report | [en/15-official-reviewer-report/structure.md](en/15-official-reviewer-report/structure.md) |
+| Official reviewer report | [en/15-official-reviewer-report/structure.md](en/15-official-reviewer-report/structure.md) — norms & genre; the blank Appendix-3 form in EN/RU/KZ is [form-blank.md](en/15-official-reviewer-report/form-blank.md), what each row must say for this dissertation is [content-brief.md](en/15-official-reviewer-report/content-brief.md) |
 | Review (free-form) | [en/16-review/structure.md](en/16-review/structure.md) |
 | Ethics committee conclusion | [en/17-ethics-committee-conclusion/structure.md](en/17-ethics-committee-conclusion/structure.md) |
 | List of scientific papers | [en/18-list-of-publications/structure.md](en/18-list-of-publications/structure.md) |
 | Doctoral candidate info | [en/19-doctoral-candidate-info/structure.md](en/19-doctoral-candidate-info/structure.md) |
 | Attendance sheet | [en/20-attendance-sheet/structure.md](en/20-attendance-sheet/structure.md) |
 | Council annual report | [en/21-council-annual-report/structure.md](en/21-council-annual-report/structure.md) |
+| Extended department meeting protocol (pre-defense) | [en/22-extended-meeting-protocol/structure.md](en/22-extended-meeting-protocol/structure.md) — norms & genre; the fill-in skeleton is [template.md](en/22-extended-meeting-protocol/template.md), what each paragraph must say for this dissertation is [content-brief.md](en/22-extended-meeting-protocol/content-brief.md), the question bank is [qa-bank.md](en/22-extended-meeting-protocol/qa-bank.md) |
 
 ### 8D061 educational programmes
 8D06101 — Intelligent Systems · 8D06102 — Computer and Software Engineering ·

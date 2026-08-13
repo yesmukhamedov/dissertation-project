@@ -23,6 +23,11 @@ The conclusion typically reflects:
 
 ## Related documents
 
+- [[../22-extended-meeting-protocol/structure|Extended department meeting protocol]] — the output document
+  of this stage: it records the discussion, both reviewers' reports, the vote and the department's
+  recommendation. Not one of the Statute's appendix forms; its shape comes from house practice.
+  ⚠ The **two reviewers appointed here (§5.2) are not the official reviewers of §6.6** — staff of the
+  candidate's own university are admissible in this role and barred in that one.
 - [[../17-ethics-committee-conclusion/structure|Ethics committee conclusion]] (Appendix 2) — prepared at this stage.
 - [[../13-supervisor-review/structure|Scientific supervisor review]].
 - [[defense-lifecycle]] — the stage's place in the overall route.

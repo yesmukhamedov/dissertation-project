@@ -28,7 +28,7 @@ from pathlib import Path
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT
-from docx.enum.section import WD_SECTION
+from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -38,7 +38,12 @@ FONT_NAME = "Times New Roman"
 FONT_SIZE = 14  # pt
 FIRST_LINE_INDENT_CM = 1.25
 
-_INLINE = re.compile(r"(\*\*.+?\*\*|\*[^*].*?\*|`.+?`|\$[^$\n]+\$)")
+# Width of the text block in mm, kept in step with the page set up by
+# `_configure_page`: portrait A4 gives 210 − 30 − 10 = 170, landscape 257.
+# Read by the signature block, the equation tab stops and the form table.
+_USABLE_MM = 170.0
+
+_INLINE = re.compile(r"(\*\*.+?\*\*|\*[^*].*?\*|`.+?`|\$[^$\n]+\$|<u>.+?</u>)")
 
 # Sentinel standing in for a Markdown hard break while a paragraph is buffered.
 # Chosen from a private-use codepoint so it can never occur in source text.
@@ -156,7 +161,7 @@ def strip_process_metadata(text: str) -> str:
     return "\n".join(out)
 
 
-def _set_cell_font(run, *, bold=False, italic=False) -> None:
+def _set_cell_font(run, *, bold=False, italic=False, underline=False) -> None:
     run.font.name = FONT_NAME
     run.font.size = Pt(FONT_SIZE)
     # Ensure the font also applies to complex-script / Cyrillic ranges.
@@ -169,6 +174,7 @@ def _set_cell_font(run, *, bold=False, italic=False) -> None:
         rfonts.set(qn(attr), FONT_NAME)
     run.bold = bold
     run.italic = italic
+    run.underline = underline
 
 
 # --- LaTeX math rendering -----------------------------------------------------
@@ -350,13 +356,13 @@ def _maybe_paren(group: str) -> list[tuple[str, str]]:
     return runs
 
 
-def _add_math_runs(paragraph, latex: str, *, bold=False, italic=False) -> None:
+def _add_math_runs(paragraph, latex: str, *, bold=False, italic=False, underline=False) -> None:
     """Render a LaTeX math fragment into `paragraph` as formatted runs."""
     for text, script in _tex_runs(latex):
         if not text:
             continue
         r = paragraph.add_run(text)
-        _set_cell_font(r, bold=bold, italic=italic)
+        _set_cell_font(r, bold=bold, italic=italic, underline=underline)
         if script == "sub":
             r.font.subscript = True
         elif script == "sup":
@@ -374,7 +380,7 @@ def _split_tag(latex: str) -> tuple[str, str | None]:
 def _add_equation(doc: Document, latex: str) -> None:
     """Render a display equation centred, with any `\\tag{}` number flush right (GOST)."""
     inner, tag = _split_tag(latex)
-    usable = 170.0  # A4 text width: 210 − 30 (left) − 10 (right) mm
+    usable = _USABLE_MM
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p.paragraph_format.first_line_indent = Mm(0)
@@ -389,25 +395,39 @@ def _add_equation(doc: Document, latex: str) -> None:
         _set_cell_font(p.add_run("\t(" + _tex_plain(tag).strip() + ")"))
 
 
-def _add_runs(paragraph, text: str, *, bold=False, italic=False) -> None:
-    """Add inline-formatted runs (**bold**, *italic*, `code`, `$math$`) to a paragraph."""
+def _add_runs(paragraph, text: str, *, bold=False, italic=False, underline=False) -> None:
+    """Add inline-formatted runs (**bold**, *italic*, `code`, `$math$`, <u>underline</u>).
+
+    `<u>…</u>` exists for the official reviewer's report (Appendix 3), whose form
+    is filled in by **underlining** the chosen answer option inside column 2 —
+    a distinction no other council deliverable needs. The HTML tag is used rather
+    than Markdown `__…__` because the latter collides with identifiers such as
+    `__init__` that occur in the appendix source listings.
+    """
     for token in _INLINE.split(text):
         if not token:
             continue
         if token.startswith("**") and token.endswith("**"):
-            _set_cell_font(paragraph.add_run(token[2:-2]), bold=True, italic=italic)
+            _set_cell_font(paragraph.add_run(token[2:-2]), bold=True, italic=italic,
+                           underline=underline)
+        elif token.startswith("<u>") and token.endswith("</u>"):
+            _set_cell_font(paragraph.add_run(token[3:-4]), bold=bold, italic=italic,
+                           underline=True)
         elif token.startswith("`") and token.endswith("`"):
             r = paragraph.add_run(token[1:-1])
-            _set_cell_font(r, bold=bold, italic=italic)
+            _set_cell_font(r, bold=bold, italic=italic, underline=underline)
             r.font.name = "Consolas"
             r._element.get_or_add_rPr().find(qn("w:rFonts")).set(qn("w:ascii"), "Consolas")
             r._element.get_or_add_rPr().find(qn("w:rFonts")).set(qn("w:hAnsi"), "Consolas")
         elif token.startswith("$") and token.endswith("$") and len(token) >= 2:
-            _add_math_runs(paragraph, token[1:-1], bold=bold, italic=italic)
+            _add_math_runs(paragraph, token[1:-1], bold=bold, italic=italic,
+                           underline=underline)
         elif token.startswith("*") and token.endswith("*"):
-            _set_cell_font(paragraph.add_run(token[1:-1]), bold=bold, italic=True)
+            _set_cell_font(paragraph.add_run(token[1:-1]), bold=bold, italic=True,
+                           underline=underline)
         else:
-            _set_cell_font(paragraph.add_run(token), bold=bold, italic=italic)
+            _set_cell_font(paragraph.add_run(token), bold=bold, italic=italic,
+                           underline=underline)
 
 
 def _configure_styles(doc: Document) -> None:
@@ -421,10 +441,17 @@ def _configure_styles(doc: Document) -> None:
     pf.space_after = Pt(0)
 
 
-def _configure_page(doc: Document) -> None:
+def _configure_page(doc: Document, *, landscape: bool = False) -> None:
+    global _USABLE_MM
+    _USABLE_MM = 257.0 if landscape else 170.0
     for section in doc.sections:
-        section.page_width = Mm(210)
-        section.page_height = Mm(297)
+        if landscape:
+            section.orientation = WD_ORIENT.LANDSCAPE
+            section.page_width = Mm(297)
+            section.page_height = Mm(210)
+        else:
+            section.page_width = Mm(210)
+            section.page_height = Mm(297)
         section.left_margin = Mm(30)
         section.right_margin = Mm(10)
         section.top_margin = Mm(20)
@@ -519,7 +546,7 @@ def _line_block(doc: Document, lines: list[str]):
     aligned rather than justified, and a run of 3+ spaces inside a line becomes a
     right tab stop so the trailing name lands at the right margin.
     """
-    usable = 170.0  # A4 text width: 210 − 30 (left) − 10 (right) mm
+    usable = _USABLE_MM
     for text in lines:
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.LEFT
@@ -545,6 +572,67 @@ def _list_item(doc: Document, marker: str, text: str):
     return p
 
 
+# The official reviewer's report (Appendix 3) is one 13-row form whose four
+# columns carry very unequal loads: a row number, a criterion name, the fixed
+# option list, and the reviewer's own prose. Rendered at equal widths — the
+# python-docx default — the number column is as wide as the argument and the
+# form runs to nearly thirty pages. Proportions below are the form's own, in mm
+# across the 170 mm A4 text block. Recognised by the header signature alone, so
+# no other table in any deliverable can match: the manuscript has no four-column
+# table whose first heading is a number sign.
+_FORM_NUM_HEADS = {"№", "№ п/п", "р/н №"}
+_FORM_CRIT_HEADS = ("criteria", "критерии", "критерийлер")
+# Measured off the samples: the number column is a hair over 3 % of the text
+# block, the criterion name ~17 %, the option list ~25 %, and the reviewer's
+# own argument takes the remaining 55 %.
+_FORM_COL_FRAC = (0.04, 0.17, 0.25, 0.54)
+
+
+def _is_form_table(header: list[str], ncols: int) -> bool:
+    """True for the Appendix-3 reviewer form, recognised by its header alone."""
+    return (
+        ncols == 4
+        and len(header) >= 2
+        and header[0].strip() in _FORM_NUM_HEADS
+        and header[1].strip().lower().startswith(_FORM_CRIT_HEADS)
+    )
+
+
+def _merge_continuation_rows(table, rows: list[list[str]]) -> None:
+    """Merge the cells a continuation row leaves empty into the row above it.
+
+    The real submissions give every numbered sub-criterion — 4.1…4.5, 7.1…7.5,
+    8.1…8.5, 9.1…9.3 — a row of its own, with the criterion number and name
+    spanning them. A row whose first cell is empty is such a continuation, and
+    every empty cell in it belongs to the block started above.
+    """
+    ncols = len(_FORM_COL_FRAC)
+    anchor = {j: 0 for j in range(ncols)}
+    for i in range(1, len(rows)):
+        row = rows[i]
+        cont = not (row[0].strip() if len(row) > 0 else "")
+        for j in range(ncols):
+            cell_text = row[j].strip() if j < len(row) else ""
+            if cont and not cell_text:
+                table.cell(anchor[j], j).merge(table.cell(i, j))
+            else:
+                anchor[j] = i
+
+
+def _apply_form_widths(table, header: list[str], ncols: int) -> None:
+    """Give the Appendix-3 reviewer form its real column proportions."""
+    if not _is_form_table(header, ncols):
+        return
+    table.autofit = False
+    tbl_pr = table._tbl.tblPr
+    layout = OxmlElement("w:tblLayout")
+    layout.set(qn("w:type"), "fixed")
+    tbl_pr.append(layout)
+    for row in table.rows:
+        for cell, frac in zip(row.cells, _FORM_COL_FRAC):
+            cell.width = Mm(_USABLE_MM * frac)
+
+
 def _add_table(doc: Document, rows: list[list[str]]) -> None:
     """Render a Markdown pipe-table as a bordered Word table (TNR, header bold).
 
@@ -558,15 +646,21 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
     table = doc.add_table(rows=len(rows), cols=ncols)
     table.style = "Table Grid"
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    _apply_form_widths(table, rows[0], ncols)
     for i, row in enumerate(rows):
         for j in range(ncols):
             cell = table.cell(i, j)
             cell.paragraphs[0].text = ""  # clear default empty run
-            p = cell.paragraphs[0]
-            p.paragraph_format.first_line_indent = Mm(0)
-            p.paragraph_format.line_spacing = 1.0
             text = row[j] if j < len(row) else ""
-            _add_runs(p, text, bold=(i == 0))
+            # `<br>` opens a new paragraph inside the cell: the form stacks its
+            # answer options one per line, and column 3 numbers its enumerations.
+            for k, part in enumerate(text.split("<br>")):
+                p = cell.paragraphs[0] if k == 0 else cell.add_paragraph()
+                p.paragraph_format.first_line_indent = Mm(0)
+                p.paragraph_format.line_spacing = 1.0
+                _add_runs(p, part.strip(), bold=(i == 0))
+    if _is_form_table(rows[0], ncols):
+        _merge_continuation_rows(table, rows)
     # spacing paragraph after the table
     doc.add_paragraph()
 
@@ -1363,6 +1457,23 @@ def render_into(
     flush_paragraph()
 
 
+def _wants_landscape(text: str) -> bool:
+    """True when the source carries the Appendix-3 reviewer form.
+
+    Every readable submission from this council is typeset landscape — the four
+    columns of the form do not fit a portrait text block — so the orientation
+    follows the form rather than a switch the author has to remember to set.
+    """
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith("|"):
+            continue
+        cells = _parse_table_row(line)
+        if _is_form_table(cells, len(cells)):
+            return True
+    return False
+
+
 def convert(
     md_path: Path,
     docx_path: Path,
@@ -1385,7 +1496,7 @@ def convert(
             base_dir = base_dir.parent
     doc = Document()
     _configure_styles(doc)
-    _configure_page(doc)
+    _configure_page(doc, landscape=_wants_landscape(text))
     render_into(doc, text, lang=lang, base_dir=base_dir)
     _add_page_numbers(doc)
     docx_path.parent.mkdir(parents=True, exist_ok=True)

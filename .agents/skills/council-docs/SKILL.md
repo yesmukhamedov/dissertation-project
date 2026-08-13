@@ -23,6 +23,26 @@ deliverables (output to `defense/docs/`) that satisfy the IITU/HAC GOST formatti
 - Page numbers centered at the bottom; **not printed on the first page**.
 - Justified body text, 1.25 cm first-line indent; bold headings (no dot).
 
+## Inline markup the converter understands
+
+`**bold**`, `*italic*`, `` `code` ``, `$math$`, and `<u>underline</u>`. The last
+exists for the official reviewer's report, whose form is filled in by
+**underlining** the chosen answer option inside column 2 while the unchosen
+options stay visible; the HTML tag is used rather than `__…__` because the
+latter collides with identifiers such as `__init__` in the appendix listings.
+`<br>` inside a table cell opens a new paragraph — the form stacks its answer
+options one per line and numbers its enumerations that way.
+
+Pipe tables render as bordered Word tables with a bold header row. The
+Appendix-3 reviewer form is recognised by its header (`№` / `№ п/п` / `р/н №`
+plus Criteria/Критерии/Критерийлер, four columns) and then gets the layout the
+real submissions use: **landscape** page, column widths 4/17/25/54 % of the text
+block, and **vertical merging** — a row whose first cell is empty continues the
+row above it, so every empty cell in it joins the block started there. That is
+how the numbered sub-criteria (4.1…4.5, 8.1…8.5, 9.1…9.3) and the eleven
+provisions of criterion 7 each get a row of their own. Nothing else in any
+deliverable matches that header, so other tables are untouched.
+
 ## How to run
 
 Requirements: `python-docx` and `docx2pdf` (PDF step drives installed MS Word).
@@ -32,7 +52,7 @@ three abstracts are collected in `defense/docs/abstracts/`, the two reviews in
 `defense/docs/reviews/`:
 
 ```powershell
-python .Codex/skills/council-docs/scripts/build_all.py
+python .claude/skills/council-docs/scripts/build_all.py
 ```
 
 Useful flags:
@@ -44,7 +64,7 @@ Useful flags:
 Single file (any Markdown):
 
 ```powershell
-python .Codex/skills/council-docs/scripts/md2gost.py thesis/output/abstract_en.md --pdf
+python .claude/skills/council-docs/scripts/md2gost.py thesis/output/abstract_en.md --pdf
 ```
 
 ## Source documents
@@ -54,6 +74,11 @@ python .Codex/skills/council-docs/scripts/md2gost.py thesis/output/abstract_en.m
 | `abstract_en` / `abstract_ru` / `abstract_kz` | Trilingual abstract/annotation | 11-abstract-annotation | `defense/docs/abstracts/` |
 | `supervisor_review_kz` | Supervisor (domestic) review | 13-supervisor-review | `defense/docs/reviews/` |
 | `foreign_consultant_review_en` | Foreign consultant review | 14-foreign-consultant-review | `defense/docs/reviews/` |
+| `official_reviewer_{1,2}_review_{en,ru,kz}` | Official reviewers' reports (Appendix 3) | 15-official-reviewer-report | `defense/docs/reviews/` |
+
+Two official reviewers are appointed, and the **language of a report follows the
+reviewer, not the defense**, so all six stems are carried until the reviewers
+are known; build only the two that apply.
 
 The routing lives in `SUBDIRS` in `build_all.py`; `--out DIR` moves the whole
 tree, sub-folders included.
