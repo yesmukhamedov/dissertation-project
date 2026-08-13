@@ -99,11 +99,34 @@ def render_abbrev(md_path: Path, docx_path: Path) -> None:
     print("[docx]", docx_path.name)
 
 
+def latest_manuscript_date() -> str:
+    """Date stamp of the newest rendered manuscript pair in defense/docs/.
+
+    These six files carry no dated input — the stamp is a label only — but a
+    pinned label is worse than no label: rebuilt-today files went out named for
+    a June build, so anyone selecting deliverables by date picked current
+    content under a stale name. The label now follows the manuscript.
+    """
+    docs = ROOT / "defense/docs"
+    dates = sorted(
+        m.group(1)
+        for p in docs.glob("DISSERTATION_EN_GOST_*.docx")
+        if (m := re.search(r"_(\d{4}-\d{2}-\d{2})\.docx$", p.name))
+        and (docs / p.name.replace("_EN_", "_KZ_")).is_file()
+    )
+    if not dates:
+        raise SystemExit(f"no DISSERTATION_{{EN,KZ}}_GOST_*.docx pair in {docs}")
+    return dates[-1]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build GOST front-matter (EN+KZ)")
-    ap.add_argument("--date", default="2026-06-17")
+    ap.add_argument("--date", default=None, help="output date stamp (default: newest manuscript)")
     ap.add_argument("--no-pdf", action="store_true")
     args = ap.parse_args()
+    if args.date is None:
+        args.date = latest_manuscript_date()
+        print(f"[src ] newest manuscript: {args.date}")
 
     src = ROOT / "thesis/output"
     docs = ROOT / "defense/docs"

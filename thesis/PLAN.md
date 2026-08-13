@@ -15,45 +15,49 @@
 
 ---
 
-## CURRENT STATE (verified on disk, 2026-08-12)
+## CURRENT STATE (verified on disk, 2026-08-13)
 
-**The English text is finished.** 98 sections, every one APPROVED, assembled by
-`_assemble_en.py` — **101,459 words of section body** (103,147 by `wc -w` over the whole file, which also
-counts headings and the banner; quote the body figure), no suspect extractions.
-Phases 1 and 2 are closed and nothing in §4–§9 below is outstanding; those tables are now a
-record of what was written, not a queue.
+**The dissertation is written, translated and exported.** 98 sections in each language, every one
+APPROVED; the council-ready pair is `defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-13`
+(`.docx` + `.pdf`). Phases 1–4 are closed and nothing in §4–§9 below is outstanding; those tables are
+now a record of what was written, not a queue.
 
 | Chapter | drafts | reviews | KZ translations |
 |---|---|---|---|
-| 0 Introduction | 16 | 8 (7 + one apparatus block) | **0** |
+| 0 Introduction | 16 | 8 (7 + one apparatus block) | 16 |
 | 1 Problem Domain | 11 | 11 | 11 |
 | 2 Theoretical Foundations | 15 | 15 | 15 |
 | 3 Methodology | 13 | 13 | 13 |
-| 4 Experiments | 20 | 20 | **3 of 20** |
-| 5 Validation | 7 | 7 | **0** |
+| 4 Experiments | 20 | 20 | 20 |
+| 5 Validation | 7 | 7 | 7 |
 | 6 System Architecture | 9 | 9 | 9 |
-| 7 Conclusion | 1 | 1 | **0** |
-| Appendices A–F | 6 | 3 (A, D, BCEF block) | **2 of 6** |
-| **Total** | **98** | — | **53 of 98** |
+| 7 Conclusion | 1 | 1 | 1 |
+| Appendices A–F | 6 | 3 (A, D, BCEF block) | 6 |
+| **Total** | **98** | — | **98 of 98** |
 
-**What remains is completion work in four tracks**, two of which are independent and may run in
-parallel. The full task board is §11; the tracker entries are in §1 Phase 3 / Phase 4.
+**Measured on the current build** (re-derive nothing from these; re-measure after any edit):
+EN **101,437** body words, KZ **81,277**; **107** sources, EN 292 / KZ 267 bracketed citations;
+front matter **10 pages EN / 11 KZ**; appendices begin on **p. 240 EN / p. 267 KZ**, which is what
+makes §0.16's **239 / 266** exact; 42 tables, 29 figures.
+
+**All four completion tracks are closed.** The full record is §11.
 
 1. ~~**Kazakh translation.**~~ ✅ **COMPLETE 2026-08-12 — 98 of 98.** All 45 outstanding units landed
-   in one day. KZ assembly emits **98 sections / 81,438 body words** against the English 98 / 101,575;
-   every chapter is 100 % (Ch 0 16/16, Ch 1 11/11, Ch 2 15/15, Ch 3 13/13, Ch 4 20/20, Ch 5 7/7,
-   Ch 6 9/9, Ch 7 1/1, App 6/6). No suspect extractions, every KZ asset path resolves, citation pass
-   clean in both languages (107 sources, BLOCKING 0).
+   in one day; every chapter is 100 %. No suspect extractions, every KZ asset path resolves.
 2. ~~**Citation conversion.**~~ ✅ **DONE 2026-08-12** — 107 sources, one shared EN/KZ register,
-   BLOCKING 0. Only the trim queue remains of this track. See §11.3.
+   BLOCKING 0. See §11.3.
 3. ~~**Asset defects.**~~ ✅ **ALL CLOSED 2026-08-12** — FIG-1.1, DIA-6.3, FIG-3.8, FIG-4.17, plus two
    placeholder paths that contained a literal ellipsis and resolved to nothing. Every referenced asset
-   path in both manuscripts now resolves, and `ASSET TO BE CREATED` is zero. See §11.2.
-4. **Re-export — NOW THE CRITICAL PATH.** Every `.docx`/`.pdf` in `defense/docs/` was built from the
-   53-section June manuscript. **There is no council-ready file for the current text**, EN or KZ. Two
-   conditions bind the conversion — Appendix C's four Mermaid fences must render, and §0.16's four
-   count placeholders are fillable only after it produces a paginated document, so **§0.16 closes last
-   in both languages**. Full statement in §11.4 and in the critical-path block at the end of §12.
+   path in both manuscripts resolves, and `ASSET TO BE CREATED` is zero. See §11.2.
+4. ~~**Re-export.**~~ ✅ **DONE 2026-08-13.** Both conditions were met — Appendix C's four Mermaid views
+   render as images, and §0.16's counts were read off a paginated document and verified against the
+   rebuild. Six passes followed the first successful build: FIG-5.1, diagram captions, resource IDs,
+   table captions, governance document names, and the governance-code declaration. See §11.4.
+
+**What is left is not writing, and not in `thesis/`.** The council deliverables were brought level with
+the manuscript on 2026-08-13 (§11.6) and the `TAB-5.2` register position is verified closed. What
+remains: **NEW-1 traceability** — the run's raw artifacts are not in `experiments/outputs/` — three
+missing literature cards, and the optional trim queue (§11.3b).
 
 > **`ASSET_INVENTORY.md` is itself partly stale** and must not be used alone to decide what is
 > missing: it still marks App C, App E and App F as `❌ MISSING` when all three are written and
@@ -640,14 +644,15 @@ For **each writable section, in the Phase-1 narrative order** (then Phase-2 orde
 The gate condition ("run only after every section verifies") **is met**: all 98 sections are approved.
 Everything below is what stands between the approved text and a council-ready pair of documents.
 
-**Critical path (2026-08-12): §11.4, the EN + KZ GOST re-export.** Phase 4 is closed and §11.2/§11.3 are
-done, so the conversion is the only large item left. `defense/docs/` still holds nothing but the June
-builds of the 53-section manuscript, so **there is currently no council-ready file for the current text
-in either language**. Two conditions bind that conversion and are set out in full in §11.4: the **four
-Mermaid fences in Appendix C must render**, and the **four §0.16 count placeholders are fillable only
-after the conversion produces a paginated document — so §0.16 closes last, in both languages**. The
-**trim queue (§11.3b)** runs in parallel but must finish *before* the final conversion pass, since a
-trim moves pagination.
+**The critical path is closed (2026-08-13).** §11.1–§11.4 are all done: the manuscript is assembled,
+its assets resolve, its citations are converted, and both language editions are built as GOST `.docx`
+and `.pdf` in `defense/docs/`. What remains is §11.5 and §11.6 — items that do not touch the manuscript
+body — plus the optional trim queue §11.3b.
+
+**One ordering rule survives and binds anything still to come:** a trim, or any other edit to a draft,
+moves pagination, and §0.16 states four counts measured *from* the pagination. So any future body edit
+must be followed by rebuild → re-measure the appendix start page → correct §0.16 if it moved. The
+counts are not decoration; they are a claim about the document that the document itself can falsify.
 
 ### §11.1 Concatenate — ✅ DONE
 
@@ -717,20 +722,35 @@ BLOCKING 0, residual self-citations 0, UNKNOWN 1 (the §0.15 legal-act number �
 > in the §2.1.2 compliance checklist. The arithmetic is forced *if* the PDF has no cover page —
 > **the candidate should confirm before submission.** No claim, quotation or equation was changed.
 
-### §11.3b Trim queue — ⬜ OPEN
+### §11.3b Trim queue — ⬜ OPEN, and **optional by measurement**
 
 Sections at or over their word band: §0.1, §0.2, §0.3, §0.4, §0.6, §0.8, §1.2.2
 (~1,130), §1.3.1 (~1,325), §1.4 (~1,585), §2.2.3 (~915). **Excluded from the trim in every case:** §0.6's
 four mandatory disclosures, §0.8's qualifications, and the §0.3 goal sentence (quoted verbatim in the
 abstract and defence materials).
 
-### §11.4 Convert and re-export — 🟩 IN PROGRESS, **THE CRITICAL PATH**
+**Why it is optional rather than binding:** the council rule is *as a rule* up to 300 pages with
+appendices not counted, and the built documents measure **239 EN / 266 KZ**. Both clear it with room,
+so no trim is forced. Two consequences if one is run anyway: it must be done in **both** languages, or
+the editions diverge in content; and it moves pagination, so §0.16 must be re-measured after
+(see the ordering rule at the head of §11).
 
-**Both manuscript editions now convert cleanly (2026-08-12).** `defense/docs/DISSERTATION_{EN,KZ}_GOST_2026-08-12.docx`
-are built from the current 98-section text, ~18.7 MB each. **Condition 1 is met**: Appendix C's four
-Mermaid views render as embedded images in both languages, verified on the appendix alone before the
-full build, and a diagram that fails to render now exits non-zero instead of shipping as source. Still
-open below: the front-matter bundle, `FULL_DISSERTATION_*`, the PDFs, FIG-5.1, and the §0.16 fill.
+### §11.4 Convert and re-export — ✅ **DONE 2026-08-13**
+
+**The council-ready pair is `defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-13.docx` + `.pdf`**,
+built from the current 98-section text in both languages, with `FRONT_MATTER_{EN,KZ}` and the
+body-only `DISSERTATION_{EN,KZ}` alongside. The build chain, in order, is
+`_assemble_{en,kz}.py` → `_finalize_citations.py` → `build_frontmatter.py` →
+`build_frontmatter_bundle.py` → `build_full_dissertation.py`; the last of these converts the body
+itself, so `md2gost.py` does not need to be run by hand on the manuscript.
+
+**Both binding conditions were met.** Appendix C's four Mermaid views render as embedded images in
+both languages — verified on the appendix alone before the full build, and a diagram that fails to
+render now exits non-zero instead of shipping as source. §0.16's four counts were read off the
+paginated document and verified against the rebuild.
+
+The record of the pass follows: what was found, what was decided and why. It is kept because every
+item is a rule for any future rebuild, not merely history.
 
 **Pagination (first real measurement).** EN **272 pages total, body 220** (appendices from p. 221);
 KZ **301 total, body 247** (appendices from p. 248). Against the council rule — PhD *as a rule* up to
@@ -930,13 +950,55 @@ Remaining alongside this: **§11.3b, the trim queue.** It is independent of the 
 in parallel, but any trim changes word counts and therefore pagination, so **finish the trim before the
 final conversion pass**, not between the conversion and the §0.16 fill.
 
+### §11.6 Council deliverables — ✅ **DONE 2026-08-13**
+
+The manuscript was current; the documents that travel *with* it were not. All of `defense/docs/` now
+carries the `2026-08-13` stamp and current content.
+
+**The trilingual abstract was the item that mattered.** Its `.docx`/`.pdf` were built on 2026-06-18
+from a source re-synced on 2026-08-11, and that sync was substantive: "seven experiments" → **eight
+investigations**; H-3 added as objective, novelty item, result and provision; statements for defence
+**6 → 11 provisions + one observation + an explicit non-claims paragraph**; and the **Vessel Visibility
+Index removed from the methods**, because §4.3.3 excluded it for want of an implementation and a source
+— that one was an *error*, not staleness. Handing the council the June export would have handed it a
+document contradicting the dissertation. Rebuilt through `build_all.py`; verified in the built files:
+all three editions parallel at 93 paragraphs, H-3 present ×4 in each, **VVI absent**, no version marker,
+and no governance code or resource ID anywhere in the abstract.
+
+**Two pinned-date defects fixed in the builders, the same class as the two found during the re-export.**
+`build_frontmatter.py` and `build_toc.py` both hard-coded `--date 2026-06-17`, so files rebuilt today
+went out under a June name — current content wearing a stale label, which is worse than no label,
+because anyone selecting deliverables by date picks the wrong file with no way to tell. Both now
+resolve the newest manuscript pair at run time, as the other two builders already did.
+
+Rebuilt on the corrected stamp: `NORMATIVE_REFERENCES`, `DESIGNATIONS_AND_ABBREVIATIONS` (carrying the
+new governance-code rows), `DEFINITIONS` and `TABLE_OF_CONTENTS`, EN and KZ, `.docx` + `.pdf`. The
+contents resolves every entry but the three front-matter sections, which take their pages in the full
+build — the documented and intended state.
+
+`supervisor_review_kz` and `foreign_consultant_review_en` stay as they are: their sources are unchanged,
+and they are the reviewers' documents, not the candidate's, so they are re-exported only if revised.
+
+**Two things left at the candidate's discretion.** Whether to state the now-known page count in the
+abstract's "Structure and length" section, which deliberately states no counts today; and whether to
+clear the superseded **June-stamped duplicates** out of `defense/docs/` — every one of them is now
+superseded by an `2026-08-13` twin, and the risk they carry is that someone submits one by mistake.
+
 ### §11.5 Open items to close before defence
 
 - **NEW-1 traceability** — the run's raw artifacts are not in `experiments/outputs/`, so numbers are
-  written but not yet traceable to a primary output file. Not a text defect; it is a submission defect.
-- **`results/tables/TAB-5.2_claim_strength.md`** still files the domain-distance result outside the formal
-  PCs, where `ARGUMENT_MAP.md` v7.1.0 carries it as **PC-11**. Substance and strength agree; only the
-  register position differs. §0.8 already submits it as PC-11 — resynchronise the table.
+  written but not yet traceable to a primary output file. Not a text defect; it is a submission defect,
+  and it is the only remaining item that **cannot be closed from `thesis/`**.
+- ~~**`results/tables/TAB-5.2_claim_strength.md`** files the domain-distance result outside the formal
+  PCs.~~ ✅ **Verified closed 2026-08-13** — the table carries **PC-11 as a first-class row**, its
+  "additional empirical results" block no longer holds the domain-distance item, and the summary tallies
+  **8 of 8** empirical primary claims with the register correction recorded in place. Checked downstream
+  in the manuscript too: **Table 5.4 has exactly 11 claim rows — PC-0…PC-2, PC-4…PC-11, no PC-3** — so
+  the deliberate identifier gap is intact and §0.8, §5.2.2 and §7 agree with the table.
+- **§2.1.2 page locators — for the candidate, not for a tool.** The four locators into the candidate's
+  own Scopus article were remapped p. 5 → **83** and p. 9 → **87** on the arithmetic that the card's
+  internal PDF pages 1–10 map onto journal pages 79–88. **That is forced only if the PDF has no cover
+  page.** Confirm against the published article; the box in §11.3 carries the full reasoning.
 - ~~**`ASSET_INVENTORY.md`** marks App C/E/F as `❌ MISSING`~~ — ✅ **closed 2026-08-12.** APP-B/C/E/F and
   DIA-6.3 rows now record written-and-approved status with their bounds (App E is IDRiD-only per G-3;
   App B/F list their stated absences); FIG-1.1's row records the corpus correction.
@@ -950,13 +1012,18 @@ final conversion pass**, not between the conversion and the §0.16 fill.
 - **Phase 1 — CLOSED.** 51 sections + App A + App D, all approved.
 - **Phase 2 — CLOSED.** All eight investigations ran, all seven hypotheses are supported, Ch 4 / Ch 5 /
   Ch 0 / Ch 7 / App B/C/E/F written from `results/`.
-- **English text: 98 sections, 101,575 body words, complete.**
-- **Phase 3 (completion) — NEARLY DONE.** Closed: KZ assembler front matter, **all four asset defects
-  plus two dead ellipsis paths**, the inventory staleness, and **the whole citation pass (107 sources,
-  shared EN/KZ register)**. Still open: the trim queue, the §0.16 counts (which need pagination first),
-  and a full re-export in both languages.
-- **Phase 4 (KZ translation) — ✅ COMPLETE 2026-08-12, 98 of 98** (81,438 KZ body words). Both
-  manuscripts now carry the same 98 sections.
+- **English text: 98 sections, 101,437 body words, complete.**
+- **Phase 3 (completion) — ✅ CLOSED 2026-08-13.** KZ assembler front matter; all four asset defects plus
+  two dead ellipsis paths; the inventory staleness; the citation pass (107 sources, shared EN/KZ
+  register); and the **full GOST re-export in both languages**, including §0.16's counts, FIG-5.1,
+  uniform diagram and table captions, and the removal of resource IDs, governance document names and
+  version markers from the reader-facing text. Only the optional trim queue remains of this phase.
+- **Phase 4 (KZ translation) — ✅ COMPLETE 2026-08-12, 98 of 98** (81,277 KZ body words). Both
+  manuscripts carry the same 98 sections.
+- **Reader-facing notation — ✅ CLOSED 2026-08-13.** The eight governance code families are declared in
+  `DESIGNATIONS AND ABBREVIATIONS` in both languages as `SB-n` … `CFC-n`; `IT-1`, `SC-1.4` and `AOQ-2`
+  were removed as bare provenance markers. Nothing in either edition now names a document, a version or
+  an internal identifier the reader has no access to.
 - **The hard honesty rule stays in force** for every remaining edit: no demo-dashboard preview number is
   ever used as a real result, and `results/` remains the single source of truth for every figure that
   reaches the text (CFC-2.x / SIR-1).
@@ -967,30 +1034,29 @@ final conversion pass**, not between the conversion and the §0.16 fill.
   with CI⁻ below the MCID; H-4/H-6 thresholds cleared by **both** arms; E-7 **comparable, not larger**;
   two camera groupings **are** the external corpora, so not independent replication.
 
-## THE CRITICAL PATH — §11.4, the EN + KZ GOST re-export
+## WHAT REMAINS — no writing, four items, in order
 
-With Phase 4 closed and §11.2/§11.3 done, **the re-export is the critical path and the only large item
-left**. Stated once, in full, because it is what the remaining work is:
+The critical path closed on 2026-08-13 with the council-ready pair in `defense/docs/`. What is left is
+smaller than what it replaces, and only the first item is on anyone's critical path now:
 
-> **`defense/docs/` still holds nothing but the June builds of the 53-section manuscript.** Roughly 45
-> sections of approved text did not exist when those files were made, so **there is currently no
-> council-ready file for the current manuscript in either language**.
+> **1. §11.5 — NEW-1 traceability.** The run's raw artifacts are not in `experiments/outputs/`, so every
+> number in the text is written but not yet traceable to a primary output file. **This is the one
+> remaining item that cannot be closed from `thesis/`** — it needs the experiment artifacts, and it is a
+> submission defect rather than a text defect.
 >
-> **Two conditions bind the conversion.** First, **the four Mermaid fences in Appendix C must render** —
-> Appendix C supplies its four structural views as Mermaid source and states that rendering happens at
-> conversion, so a converter that does not handle fenced Mermaid delivers them as code blocks and
-> Appendix C fails to discharge DIA-6.3. The Kazakh Mermaid source is byte-identical by design, so both
-> editions succeed or fail together; **test it on one appendix before the full build**. Second, **the
-> four §0.16 count placeholders (pages, tables, figures, references) are fillable only after the
-> conversion produces a paginated document — so §0.16 closes last, in both languages**: convert → read
-> off the counts → fill §0.16 EN and KZ → re-convert. The placeholders were left in English in the
-> Kazakh text as well, so one scan finds all eight.
+> **2. §11.5 — three missing literature cards** (#49 RFMiD, #50 DDR, #51 ODIR-5K) and the DDR full-PDF
+> upgrade. Corpus hygiene: the drafts hold these three at index-only camera-attribute level, which is
+> what they claim, so nothing in the text overstates its source — but the bibliography pass is where the
+> gap shows.
 >
-> **Plus the trim queue (§11.3b).** It runs in parallel, but a trim moves word counts and therefore
-> pagination, so **finish it before the final conversion pass** — not between the conversion and the
-> §0.16 fill.
+> **3. §11.3b — the trim queue, optional.** Both editions clear the 300-page rule with room (239 / 266),
+> so no trim is forced. If one is run, it must be run in both languages and §0.16 re-measured after.
 
-**Next action: §11.3b, then §11.4.**
+**Two things for the candidate personally, which no tool can settle:** the §2.1.2 page locators must be
+checked against the published article (§11.5), and the abbreviations' governance-code rows should be
+read once as a reviewer would read them (§11.4).
+
+**Next action: §11.5 — NEW-1, which is the only item on the submission's critical path.**
 
 > **Assembler note (changed 2026-08-12).** `_assemble_kz.py` used to treat a *missing* Chapter-0
 > translation as a hard error, so a partially translated Chapter 0 broke the entire KZ build and made

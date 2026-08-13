@@ -181,11 +181,24 @@ def build(md_path: Path, num, front, out_docx: Path):
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build GOST CONTENTS (EN+KZ) with page numbers")
-    ap.add_argument("--date", default="2026-06-17", help="manuscript/output date stamp")
+    ap.add_argument("--date", default=None, help="manuscript/output date stamp (default: newest)")
     ap.add_argument("--no-pdf", action="store_true")
     args = ap.parse_args()
 
     docs = ROOT / "defense/docs"
+    if args.date is None:
+        # Read the page numbers off the current manuscript, never a pinned build.
+        dates = sorted(
+            m.group(1)
+            for p in docs.glob("DISSERTATION_EN_GOST_*.docx")
+            if (m := re.search(r"_(\d{4}-\d{2}-\d{2})\.docx$", p.name))
+            and (docs / p.name.replace("_EN_", "_KZ_")).is_file()
+        )
+        if not dates:
+            raise SystemExit(f"no DISSERTATION_{{EN,KZ}}_GOST_*.docx pair in {docs}")
+        args.date = dates[-1]
+        print(f"[src ] newest manuscript: {args.date}")
+
     out_dir = ROOT / "thesis/output"
     jobs = [
         ("en", out_dir / "contents_en.md", docs / f"DISSERTATION_EN_GOST_{args.date}.docx",
