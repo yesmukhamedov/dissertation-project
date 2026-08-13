@@ -31,12 +31,13 @@
 > (the DR0 exception has gone). **H-3** — the size of the distance reduction no longer tracks the size
 > of the transfer gain (ρ ≈ 0.49); report direction only.
 >
-> 🔴 **Governance is out of sync with this folder.** `thesis/governance/HYPOTHESIS.md` still states
-> H-7 in the retired degradation form ("the performance degradation Δ = F1_EyePACS_val − F1_external
-> will be statistically smaller for the integrated-preprocessed model"). `results/` now uses the
-> operative External Clinical Performance form. `thesis/` is read-only from here, so **the governance
-> file must be updated by hand before chapter assembly** — otherwise the binding document and the
-> results contradict each other. Same for the H-7 row in `thesis/ASSET_INVENTORY.md`.
+> ✅ **Governance is back in sync — verified 2026-08-13, this flag is discharged.**
+> `thesis/governance/HYPOTHESIS.md` carries H-7 in the operative **External Clinical Performance**
+> form, reformulated in v7.0.0 with the retired Δ_drop form preserved beside it as descriptive only,
+> and the amendment records why the change is not a VCR-3 violation (the *direction* of effect was
+> never contradicted; the metric expressing it was defective). `thesis/ASSET_INVENTORY.md` was
+> reconciled in the same pass and its Exp-5 row reads `h7_supported = true`, **2/2**, with the thin
+> Messidor-2 margin carried. Nothing here contradicts the binding documents any more.
 >
 > ⚠️ **Provenance needs syncing.** The numbers were taken from `VALUES.md`. The raw run artifacts
 > (`summary.json`, `*_results.json`, `metrics.csv`, `predictions.npz`) were **absent from
