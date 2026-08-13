@@ -16,8 +16,9 @@ two-column table, so it is rendered here directly (md2gost only emits bordered
 tables with a bold header row).
 
 Sources : thesis/output/{normative_references,abbreviations,definitions}_{en,kz}.md
-Output  : defense/docs/{NORMATIVE_REFERENCES,DESIGNATIONS_AND_ABBREVIATIONS,
-          DEFINITIONS}_{EN,KZ}_GOST_<date>.docx (+ .pdf)
+Output  : defense/docs/front_matter/{NORMATIVE_REFERENCES,
+          DESIGNATIONS_AND_ABBREVIATIONS,DEFINITIONS}_{EN,KZ}_GOST_<date>.docx
+          (+ .pdf)
 
 Usage:
     python build_frontmatter.py [--date YYYY-MM-DD] [--no-pdf]
@@ -99,14 +100,37 @@ def render_abbrev(md_path: Path, docx_path: Path) -> None:
     print("[docx]", docx_path.name)
 
 
+def latest_manuscript_date() -> str:
+    """Date stamp of the newest rendered manuscript pair in defense/docs/.
+
+    These six files carry no dated input — the stamp is a label only — but a
+    pinned label is worse than no label: rebuilt-today files went out named for
+    a June build, so anyone selecting deliverables by date picked current
+    content under a stale name. The label now follows the manuscript.
+    """
+    docs = ROOT / "defense/docs"
+    dates = sorted(
+        m.group(1)
+        for p in docs.glob("DISSERTATION_EN_GOST_*.docx")
+        if (m := re.search(r"_(\d{4}-\d{2}-\d{2})\.docx$", p.name))
+        and (docs / p.name.replace("_EN_", "_KZ_")).is_file()
+    )
+    if not dates:
+        raise SystemExit(f"no DISSERTATION_{{EN,KZ}}_GOST_*.docx pair in {docs}")
+    return dates[-1]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build GOST front-matter (EN+KZ)")
-    ap.add_argument("--date", default="2026-06-17")
+    ap.add_argument("--date", default=None, help="output date stamp (default: newest manuscript)")
     ap.add_argument("--no-pdf", action="store_true")
     args = ap.parse_args()
+    if args.date is None:
+        args.date = latest_manuscript_date()
+        print(f"[src ] newest manuscript: {args.date}")
 
     src = ROOT / "thesis/output"
-    docs = ROOT / "defense/docs"
+    out_dir = ROOT / "defense/docs/front_matter"
     # (source stem, output name, renderer)
     jobs = [
         ("normative_references_en", "NORMATIVE_REFERENCES_EN", "para"),
@@ -119,7 +143,7 @@ def main() -> None:
     built = []
     for stem, name, kind in jobs:
         md = src / f"{stem}.md"
-        docx = docs / f"{name}_GOST_{args.date}.docx"
+        docx = out_dir / f"{name}_GOST_{args.date}.docx"
         lang = "kz" if stem.endswith("_kz") else "en"
         if kind == "abbrev":
             render_abbrev(md, docx)

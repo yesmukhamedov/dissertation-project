@@ -9,7 +9,7 @@ em-dash placeholder, so the contents stays honest to the current draft.
 
 Outline sources : thesis/output/contents_en.md, thesis/output/contents_kz.md
 Manuscripts     : defense/docs/DISSERTATION_{EN,KZ}_GOST_<date>.docx
-Output          : defense/docs/TABLE_OF_CONTENTS_{EN,KZ}_GOST_<date>.docx (+ .pdf)
+Output          : defense/docs/front_matter/TABLE_OF_CONTENTS_{EN,KZ}_GOST_<date>.docx (+ .pdf)
 
 Usage:
     python build_toc.py [--date YYYY-MM-DD] [--no-pdf]
@@ -43,6 +43,9 @@ INDENT_MM = {1: 0.0, 2: 0.0, 3: 7.0, 4: 14.0}
 _LEADNUM = re.compile(r"^§?\s*(\d+(?:\.[0-9A-Za-z]+)*)")
 _CONCL_EN = re.compile(r"Conclusions to Chapter (\d+)", re.I)
 _CONCL_KZ = re.compile(r"(\d+)-тарау")
+# A Kazakh appendix heading leads with its letter ("А қосымшасы — …"), so it
+# matches none of the `fronts` prefixes.
+_KZ_APPENDIX = re.compile(r"^[А-ЯЁӘҒҚҢӨҰҮҺІ]\s+қосымшасы\b", re.I)
 
 
 # --- page-number extraction from the assembled manuscript ---------------------
@@ -61,7 +64,7 @@ def dump_pages(word, docx_path: Path) -> tuple[dict[str, int], dict[str, int]]:
     doc = _safe(lambda: word.Documents.Open(str(docx_path), ReadOnly=True))
     fronts = (
         "INTRODUCTION", "CONCLUSION", "LIST OF REFERENCES", "REFERENCES",
-        "APPENDIC", "NORMATIVE", "DEFINITION", "DESIGNATION",
+        "APPENDIC", "APPENDIX", "NORMATIVE", "DEFINITION", "DESIGNATION",
         "КІРІСПЕ", "ҚОРЫТЫНДЫ", "ПАЙДАЛАН", "ҚОСЫМША", "НОРМАТИВ",
         "АНЫҚТАМА", "БЕЛГІЛЕУ",
     )
@@ -77,9 +80,15 @@ def dump_pages(word, docx_path: Path) -> tuple[dict[str, int], dict[str, int]]:
             continue
         mm = _LEADNUM.match(t)
         page = int(rng.Information(3))  # wdActiveEndPageNumber
+        cm = _CONCL_EN.search(t) or _CONCL_KZ.match(t)
         if mm:
             num.setdefault(mm.group(1), page)
-        elif any(t.upper().startswith(k) for k in fronts):
+        elif cm:
+            # Chapters 1-3 and 6 head their conclusions "§N.C Conclusions to
+            # Chapter N", but 4 and 5 carry the title alone. Register the same
+            # key either way so the outline entry resolves for all six.
+            num.setdefault(f"{cm.group(1)}.C", page)
+        elif any(t.upper().startswith(k) for k in fronts) or _KZ_APPENDIX.match(t):
             front.setdefault(t.upper(), page)
     _safe(lambda: doc.Close(False))
     return num, front
@@ -99,7 +108,16 @@ def resolve_page(text: str, num, front):
     cm = _CONCL_EN.search(text) or _CONCL_KZ.search(text)
     if cm:
         return num.get(f"{cm.group(1)}.C")
-    return front.get(text.strip().upper())
+    key = text.strip().upper()
+    if key in front:
+        return front[key]
+    # The outline names a section more briefly than the document heads it
+    # ("REFERENCES" vs "LIST OF REFERENCES USED", "APPENDIX A" vs "Appendix A —
+    # Source Code…"), so fall back to matching on whichever is the prefix.
+    for k, page in front.items():
+        if k.startswith(key) or key.startswith(k):
+            return page
+    return None
 
 
 # --- outline parsing + document emission --------------------------------------
@@ -163,17 +181,31 @@ def build(md_path: Path, num, front, out_docx: Path):
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build GOST CONTENTS (EN+KZ) with page numbers")
-    ap.add_argument("--date", default="2026-06-17", help="manuscript/output date stamp")
+    ap.add_argument("--date", default=None, help="manuscript/output date stamp (default: newest)")
     ap.add_argument("--no-pdf", action="store_true")
     args = ap.parse_args()
 
     docs = ROOT / "defense/docs"
-    out_dir = ROOT / "thesis/output"
+    if args.date is None:
+        # Read the page numbers off the current manuscript, never a pinned build.
+        dates = sorted(
+            m.group(1)
+            for p in docs.glob("DISSERTATION_EN_GOST_*.docx")
+            if (m := re.search(r"_(\d{4}-\d{2}-\d{2})\.docx$", p.name))
+            and (docs / p.name.replace("_EN_", "_KZ_")).is_file()
+        )
+        if not dates:
+            raise SystemExit(f"no DISSERTATION_{{EN,KZ}}_GOST_*.docx pair in {docs}")
+        args.date = dates[-1]
+        print(f"[src ] newest manuscript: {args.date}")
+
+    src = ROOT / "thesis/output"
+    front = docs / "front_matter"
     jobs = [
-        ("en", out_dir / "contents_en.md", docs / f"DISSERTATION_EN_GOST_{args.date}.docx",
-         docs / f"TABLE_OF_CONTENTS_EN_GOST_{args.date}.docx"),
-        ("kz", out_dir / "contents_kz.md", docs / f"DISSERTATION_KZ_GOST_{args.date}.docx",
-         docs / f"TABLE_OF_CONTENTS_KZ_GOST_{args.date}.docx"),
+        ("en", src / "contents_en.md", docs / f"DISSERTATION_EN_GOST_{args.date}.docx",
+         front / f"TABLE_OF_CONTENTS_EN_GOST_{args.date}.docx"),
+        ("kz", src / "contents_kz.md", docs / f"DISSERTATION_KZ_GOST_{args.date}.docx",
+         front / f"TABLE_OF_CONTENTS_KZ_GOST_{args.date}.docx"),
     ]
 
     import win32com.client as wc
