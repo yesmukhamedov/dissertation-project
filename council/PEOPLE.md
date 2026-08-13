@@ -19,7 +19,9 @@
 - Degree: **Candidate of Physical and Mathematical Sciences** (к.ф.-м.н. / физика-математика ғылымдарының кандидаты).
 - Title / position: **Associate Professor** (қауымдастырылған профессор / доцент) at IITU.
 - Email: s.sapakova@edu.iitu.kz
-- ⚠️ To reconfirm: candidate listed both "Assistant professor" and "associate professor"; filled as **associate**. Confirm before final signature.
+- Title **CONFIRMED by the candidate** as *associate professor* (reconfirmed 2026-08-13). The earlier
+  "Assistant professor" variant is wrong — do not reintroduce it. Already correct on the title pages
+  (EN/KZ), in the supervisor review and in the front-matter bundle.
 
 ## Foreign scientific consultant
 - **Prof. Dr. Syed Abdul Rahman Al-Haddad** — Professor, Dept. of Computer and Communication

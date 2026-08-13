@@ -40,6 +40,10 @@ FIRST_LINE_INDENT_CM = 1.25
 
 _INLINE = re.compile(r"(\*\*.+?\*\*|\*[^*].*?\*|`.+?`|\$[^$\n]+\$)")
 
+# Sentinel standing in for a Markdown hard break while a paragraph is buffered.
+# Chosen from a private-use codepoint so it can never occur in source text.
+_HARD_BREAK = ""
+
 # --- Version-marker scrubbing -------------------------------------------------
 # Council deliverables are rendered OUTSIDE thesis/ (into defense/docs/). Per the
 # project versioning policy, version markers — including the "V5" proper noun for
@@ -503,6 +507,33 @@ def _note(doc: Document, text: str):
     p.paragraph_format.space_before = Pt(6)
     _add_runs(p, text)
     return p
+
+
+def _line_block(doc: Document, lines: list[str]):
+    """Render hard-broken lines as a signature block: one paragraph per line.
+
+    Council reviews end with a signatory block — position, degree, organisation
+    down the left, the signatory's name flush right — which the real IITU samples
+    set as separate lines rather than as flowing prose. A Markdown hard break
+    (two trailing spaces) opts a block into this shape: no first-line indent, left
+    aligned rather than justified, and a run of 3+ spaces inside a line becomes a
+    right tab stop so the trailing name lands at the right margin.
+    """
+    usable = 170.0  # A4 text width: 210 − 30 (left) − 10 (right) mm
+    for text in lines:
+        p = doc.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p.paragraph_format.first_line_indent = Mm(0)
+        p.paragraph_format.space_after = Pt(0)
+        head, sep, tail = text.partition("   ")
+        if sep and tail.strip():
+            p.paragraph_format.tab_stops.add_tab_stop(Mm(usable), WD_TAB_ALIGNMENT.RIGHT)
+            _add_runs(p, head.strip())
+            _set_cell_font(p.add_run("\t"))
+            _add_runs(p, tail.strip())
+        else:
+            _add_runs(p, text.strip())
+    return None
 
 
 def _list_item(doc: Document, marker: str, text: str):
@@ -1165,8 +1196,14 @@ def render_into(
     def flush_paragraph() -> None:
         if not buf:
             return
+        hard_broken = any(s.endswith(_HARD_BREAK) for s in buf)
         raw = " ".join(buf).strip()
         buf.clear()
+        if hard_broken:
+            # A signature block, not prose: keep the author's line division.
+            parts = [s.strip() for s in raw.split(_HARD_BREAK)]
+            _line_block(doc, [p for p in parts if p])
+            return
         cleaned, regs, standalone = resolve_markers(raw)
         if standalone:
             # Nothing but markers — the Appendix-E plate list, a table caption.
@@ -1190,6 +1227,9 @@ def render_into(
     code_buf: list[str] = []
 
     for raw in lines:
+        # A Markdown hard break (two trailing spaces) is preserved as a sentinel
+        # so flush_paragraph can tell a signature block from flowing prose.
+        hard = raw.rstrip("\n").endswith("  ") and raw.strip() != ""
         line = raw.rstrip()
         stripped = line.strip()
 
@@ -1312,7 +1352,7 @@ def render_into(
                 emit_after(regs)
             continue
 
-        buf.append(stripped)
+        buf.append(stripped + _HARD_BREAK if hard else stripped)
 
     if in_code and code_buf:
         if code_lang.lower() == "mermaid":
