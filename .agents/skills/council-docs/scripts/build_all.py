@@ -1,7 +1,9 @@
 """Build all council deliverables from thesis/output/*.md into GOST .docx + .pdf.
 
 Discovers the known council source documents (abstracts + reviews) under
-thesis/output/ and renders each to <out_dir>/<name>.docx and .pdf.
+thesis/output/ and renders each to <out_dir>/<name>.docx and .pdf. Documents
+listed in SUBDIRS land in a sub-folder of <out_dir> instead (the trilingual
+abstracts are collected in <out_dir>/abstracts/).
 
 Usage:
     python build_all.py [--src DIR] [--out DIR] [--no-pdf] [--only NAME ...]
@@ -24,6 +26,13 @@ DOCS = {
     "foreign_consultant_review_en": "Foreign consultant review (English)",
 }
 
+# Stems collected into a sub-folder of the output directory (stem -> sub-folder).
+SUBDIRS = {
+    "abstract_en": "abstracts",
+    "abstract_ru": "abstracts",
+    "abstract_kz": "abstracts",
+}
+
 
 def main() -> None:
     repo = Path(__file__).resolve().parents[4]
@@ -43,7 +52,7 @@ def main() -> None:
         if not md.exists():
             missing.append(stem)
             continue
-        docx = args.out / f"{stem}.docx"
+        docx = args.out / SUBDIRS.get(stem, "") / f"{stem}.docx"
         md2gost.convert(md, docx)
         print(f"[docx] {DOCS.get(stem, stem):40s} -> {docx}")
         built.append(docx)
@@ -51,8 +60,10 @@ def main() -> None:
     if not args.no_pdf and built:
         from docx2pdf import convert as to_pdf
 
-        # Convert the whole output folder in one Word session (faster, one COM init).
-        to_pdf(str(args.out))
+        # Convert per folder rather than per file (fewer Word round-trips);
+        # docx2pdf does not recurse, so every folder that got a build is listed.
+        for folder in dict.fromkeys(docx.parent for docx in built):
+            to_pdf(str(folder))
         for docx in built:
             print(f"[pdf ] {docx.with_suffix('.pdf')}")
 

@@ -27,7 +27,9 @@ deliverables (output to `defense/docs/`) that satisfy the IITU/HAC GOST formatti
 
 Requirements: `python-docx` and `docx2pdf` (PDF step drives installed MS Word).
 
-Build everything (abstracts EN/RU/KZ + both reviews) to `defense/docs/`:
+Build everything (abstracts EN/RU/KZ + both reviews) to `defense/docs/` — the
+three abstracts are collected in `defense/docs/abstracts/`, the reviews sit at
+the top level:
 
 ```powershell
 python .claude/skills/council-docs/scripts/build_all.py
@@ -47,11 +49,14 @@ python .claude/skills/council-docs/scripts/md2gost.py thesis/output/abstract_en.
 
 ## Source documents
 
-| Stem (in thesis/output/) | Document | Template |
-|---|---|---|
-| `abstract_en` / `abstract_ru` / `abstract_kz` | Trilingual abstract/annotation | 11-abstract-annotation |
-| `supervisor_review_kz` | Supervisor (domestic) review | 13-supervisor-review |
-| `foreign_consultant_review_en` | Foreign consultant review | 14-foreign-consultant-review |
+| Stem (in thesis/output/) | Document | Template | Output |
+|---|---|---|---|
+| `abstract_en` / `abstract_ru` / `abstract_kz` | Trilingual abstract/annotation | 11-abstract-annotation | `defense/docs/abstracts/` |
+| `supervisor_review_kz` | Supervisor (domestic) review | 13-supervisor-review | `defense/docs/` |
+| `foreign_consultant_review_en` | Foreign consultant review | 14-foreign-consultant-review | `defense/docs/` |
+
+The routing lives in `SUBDIRS` in `build_all.py`; `--out DIR` moves the whole
+tree, sub-folder included.
 
 ## Version-marker scrubbing (thesis/ boundary)
 
