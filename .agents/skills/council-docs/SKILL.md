@@ -8,8 +8,26 @@ description: Convert dissertation-council Markdown documents (abstracts, supervi
 Render the council Markdown sources in `thesis/output/` into Word and PDF
 deliverables (output to `defense/docs/`) that satisfy the IITU/HAC GOST formatting rules.
 
+## Metadata registry — the single source of truth
+
+Every name, position, degree, e-mail, ORCID, the department, the programme code
+and name, the dissertation titles (EN/RU/KZ), the volume figures and the
+publication list live in **`council/METADATA.toml`** and nowhere else. Documents
+reproduce those values; they never define their own. `build_title.py` reads the
+registry directly, so the title page cannot drift from the abstracts.
+
+Before and after touching any council document, run the checker — it verifies
+each deliverable against the registry, catches previously fixed wrong forms
+coming back, and lists registry fields still empty with the document each is
+needed for:
+
+```powershell
+python .claude/skills/council-docs/scripts/check_metadata.py
+```
+
 ## Authoritative references (read before editing output)
 
+- Metadata values: `council/METADATA.toml` (human pointer: `council/PEOPLE.md`)
 - Formatting: `council/en/02-formatting/gost-formatting.md`
 - Abstract/annotation structure: `council/en/11-abstract-annotation/structure.md`
 - Supervisor (domestic consultant) review: `council/en/13-supervisor-review/structure.md`

@@ -9,7 +9,9 @@ margins 30/10/20/20 mm) matches every other deliverable.
 
 Required elements follow council/en/10-dissertation/structure.md §3.1.1:
 organization, UDC, full name, title, programme code+name, sought degree,
-scientific consultant, place/year.
+scientific consultant, place/year. Their values are read from the metadata
+registry council/METADATA.toml, so the title page cannot drift away from the
+abstracts and the reviews (it once did: it carried a superseded Kazakh title).
 
 Usage:
     python build_title.py [--date YYYY-MM-DD] [--no-pdf]
@@ -19,6 +21,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import re
+import tomllib
 from pathlib import Path
 
 from docx import Document
@@ -36,61 +39,73 @@ _spec.loader.exec_module(md2gost)
 
 TAB_MM = 170.0  # text-area right edge: A4 210 - left 30 - right 10
 
-# --- field values (canonical; see PROJECT_MEMORY/people-and-identifiers.md) ----
-FIELDS = {
-    "en": {
-        "org": [
-            "International Information Technology University",
-        ],
-        "udc": "UDC: 004.93:617.735",
-        "manuscript": "On manuscript right",
-        "author": "YESMUKHAMEDOV NURMAGANBET SEITKALIULY",
-        "title": "Automated Diabetic Retinopathy Diagnosis via Fundus Image "
-                 "Enhancement and CNN Classification",
-        "programme": "8D06104 – Computer systems and software engineering",
-        "degree": [
-            "Thesis for the degree of doctor of",
-            "Philosophy (PhD)",
-        ],
-        "consultant": [
-            ("Scientific consultant", False),
-            ("Candidate of Phys.-Math. Sciences,", False),
-            ("Associate Professor, International Information Technology University", False),
-            ("Sapakova S.Z.", False),
-            ("", False),
-            ("Foreign consultant", False),
-            ("Professor, Universiti Putra Malaysia", False),
-            ("Al-Haddad S.A.R.", False),
-        ],
-        "place": ["Republic of Kazakhstan", "Almaty, 2026"],
-    },
-    "kz": {
-        "org": [
-            "Халықаралық ақпараттық технологиялар университеті",
-        ],
-        "udc": "ӘОЖ: 004.93:617.735",
-        "manuscript": "Қолжазба құқығында",
-        "author": "ЕСМУХАМЕДОВ НҰРМАҒАНБЕТ СЕЙТҚАЛИҰЛЫ",
-        "title": "Fundus кескіндерін жақсарту және CNN жіктеуі арқылы "
-                 "диабеттік ретинопатияны автоматтандырылған диагностикалау",
-        "programme": "8D06104 – Есептеу техникасы және бағдарламалық жасақтама",
-        "degree": [
-            "Философия докторы (PhD) дәрежесін",
-            "алуға арналған диссертация",
-        ],
-        "consultant": [
-            ("Ғылыми консультанты", False),
-            ("физика-математика ғылымдарының кандидаты,", False),
-            ("қауымдастырылған профессор, Халықаралық ақпараттық технологиялар университеті", False),
-            ("Сапакова С.З.", False),
-            ("", False),
-            ("Шетелдік ғылыми консультанты", False),
-            ("профессор, Universiti Putra Malaysia", False),
-            ("Al-Haddad S.A.R.", False),
-        ],
-        "place": ["Қазақстан Республикасы", "Алматы, 2026"],
-    },
-}
+# --- field values -------------------------------------------------------------
+# Every name, code and title on the page comes from the single registry
+# council/METADATA.toml. Only the layout labels ("Scientific consultant", the
+# degree statement, "On manuscript right") live here, because they are part of
+# the GOST form rather than data about this defense.
+
+
+def _registry() -> dict:
+    with (ROOT / "council/METADATA.toml").open("rb") as fh:
+        return tomllib.load(fh)
+
+
+def _fields(reg: dict) -> dict:
+    org, prog, diss = reg["organization"], reg["programme"], reg["dissertation"]
+    sup, fc = reg["supervisor"], reg["foreign_consultant"]
+    year = diss["year"]
+    return {
+        "en": {
+            "org": [org["name_en"]],
+            "udc": f"UDC: {diss['udc']}",
+            "manuscript": "On manuscript right",
+            "author": reg["candidate"]["name_upper_en"],
+            "title": diss["title_en"],
+            "programme": f"{prog['code']} – {prog['name_en']}",
+            "degree": [
+                "Thesis for the degree of doctor of",
+                "Philosophy (PhD)",
+            ],
+            "consultant": [
+                ("Scientific consultant", False),
+                (f"{sup['degree_en_short']},", False),
+                (f"{sup['title_en']}, {sup['org_en']}", False),
+                (sup["short_en"], False),
+                ("", False),
+                ("Foreign consultant", False),
+                (f"{fc['title_en']}, {fc['org_en']}", False),
+                (fc["short_en"], False),
+            ],
+            "place": [org["country_en"], f"{org['city_en']}, {year}"],
+        },
+        "kz": {
+            "org": [org["name_kz"]],
+            "udc": f"ӘОЖ: {diss['udc']}",
+            "manuscript": "Қолжазба құқығында",
+            "author": reg["candidate"]["name_upper_kz"],
+            "title": diss["title_kz"],
+            "programme": f"{prog['code']} – {prog['name_kz']}",
+            "degree": [
+                "Философия докторы (PhD) дәрежесін",
+                "алуға арналған диссертация",
+            ],
+            "consultant": [
+                ("Ғылыми консультанты", False),
+                (f"{sup['degree_kz']},", False),
+                (f"{sup['title_kz']}, {sup['org_kz']}", False),
+                (sup["short_kz"], False),
+                ("", False),
+                ("Шетелдік ғылыми консультанты", False),
+                (f"{fc['title_kz']}, {fc['org_en']}", False),
+                (fc["short_en"], False),
+            ],
+            "place": [org["country_kz"], f"Алматы, {year}"],
+        },
+    }
+
+
+FIELDS = _fields(_registry())
 
 
 def _centered(doc, text, *, bold=False, size=14, space_before=0, space_after=0):

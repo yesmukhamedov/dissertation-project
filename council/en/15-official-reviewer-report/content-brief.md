@@ -2,7 +2,7 @@
 
 > Companion to [[form-blank]] (the fixed column-2 text) and [[structure]] (genre, deadlines, signature).
 > This file says **what column 3 must actually assert** for
-> «Automated Diabetic Retinopathy Diagnosis via Fundus Image Enhancement and CNN Classification»,
+> «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy»,
 > and which option in column 2 is the honest one to underline.
 >
 > Facts are taken from `results/STATUS.md` (run of record) and `thesis/output/abstract_en.md`.

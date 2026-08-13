@@ -1,43 +1,30 @@
-# People & identifiers — defense council documents
+# People & identifiers — see `METADATA.toml`
 
-> Canonical names and identifiers for all council/defense documents (abstracts, reviews,
-> title pages). Use these EXACT forms. Machine-readable source of truth for Claude:
-> `PROJECT_MEMORY/people-and-identifiers.md`.
+Этот файл больше не хранит значения. Все метаданные защиты — Ф.И.О. и должности
+докторанта, консультантов, официальных рецензентов и состава совета, e-mail, ORCID,
+название организации, кафедры и факультета, код и название ОП, тема диссертации на
+трёх языках, объём тома и список публикаций — живут в одном месте:
 
-## PhD candidate
-| Lang | Full name |
-|------|-----------|
-| EN | Yesmukhamedov Nurmaganbet Seitkaliuly |
-| KZ | Есмухамедов Нұрмағанбет Сейтқалиұлы (gen.: …Сейтқалиұлының) |
-| RU | Есмухамедов Нурмаганбет Сейткалиулы (gen.: Есмухамедова Нурмаганбета Сейткалиулы) |
+**[`council/METADATA.toml`](METADATA.toml)**
 
-- Initials **N.S.** Email: yesmukhamedov009@gmail.com.
-- KZ surname is **Есмухамедов** (with «у»), NOT «Есмұхамедов».
+Почему одним файлом: до этого одни и те же имена и коды лежали копиями в
+`PEOPLE.md`, в `PROJECT_MEMORY/`, в тексте каждого отзыва и внутри `build_title.py`.
+Одна копия разошлась — титульный лист казахского издания нёс редакцию темы, которой
+не было ни в аннотации, ни в одном отзыве.
 
-## Scientific supervisor / domestic consultant
-- **Sapakova Saya Zamanbekovna** / Сапакова Сая Заманбековна (EN=RU form).
-- Degree: **Candidate of Physical and Mathematical Sciences** (к.ф.-м.н. / физика-математика ғылымдарының кандидаты).
-- Title / position: **Associate Professor** (қауымдастырылған профессор / доцент) at IITU.
-- Email: s.sapakova@edu.iitu.kz
-- Title **CONFIRMED by the candidate** as *associate professor* (reconfirmed 2026-08-13). The earlier
-  "Assistant professor" variant is wrong — do not reintroduce it. Already correct on the title pages
-  (EN/KZ), in the supervisor review and in the front-matter bundle.
+## Как этим пользоваться
 
-## Foreign scientific consultant
-- **Prof. Dr. Syed Abdul Rahman Al-Haddad** — Professor, Dept. of Computer and Communication
-  Systems Engineering, Faculty of Engineering, Universiti Putra Malaysia, 43400 UPM Serdang,
-  Selangor, Malaysia. (Also co-author on the NAS-RK self-publication, "Al-Haddad S.A.R.")
+```bash
+# что где разошлось с реестром и какие поля ещё не заполнены
+python .claude/skills/council-docs/scripts/check_metadata.py
+```
 
-## Programme & organization
-- Educational programme (FINAL, confirmed 2026-06-12): **8D06104**
-  - EN: Computer systems and software engineering
-  - RU: Вычислительная техника и программное обеспечение
-  - KZ: Есептеу техникасы және бағдарламалық жасақтама
-- Organization: International Information Technology University (**IITU** / ХАТУ / МУИТ), Almaty.
-- **Language of the defense: KAZAKH.** The Kazakh edition of the dissertation is the defended volume
-  (264 pages); the English edition is a translation of it (238 pages). Consequence for the council
-  documents: **all three abstracts state 264 pages** — an abstract describes the volume being defended,
-  not the edition it is written in. §0.16 inside the English manuscript keeps 238, since there the
-  document describes itself.
-- ⚠️ Do NOT use `defense/presentation/slides/01_TITLE.md` as a source — it is stale (wrong topic,
-  wrong candidate patronymic «Сейсенұлы», wrong supervisor name form «Замaнбекқызы»).
+Проверка сверяет каждый документ (`thesis/output/*.md`, слайды защиты) с реестром,
+ловит возвращение ранее исправленных ошибочных форм и печатает список незаполненных
+полей с указанием, в каком документе каждое понадобится.
+
+Титульный лист (`build_title.py`) читает значения из реестра напрямую — править их
+в скрипте больше не нужно и нельзя.
+
+Нормы, жанр и структура самих документов — в [`en/`](en/) и [`ru/`](ru/); они
+обезличены и значений не содержат.

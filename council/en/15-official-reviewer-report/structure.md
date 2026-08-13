@@ -50,7 +50,7 @@ English (Дауренбаева, Әйтім):
 REVIEW OF THE OFFICIAL REVIEWER
 on the dissertation work of <Surname Name Patronymic>
 on the topic «<Title>»,
-provided for the degree of Doctor of Philosophy (PhD) in the educational program: 8D06104 — Computer systems and software engineering
+provided for the degree of Doctor of Philosophy (PhD) in the educational program: 8D06102 — Computer and Software Engineering
 ```
 
 Russian (Бакирова, Әйтім RU half):
@@ -60,7 +60,7 @@ Russian (Бакирова, Әйтім RU half):
 на диссертационную работу <Фамилия Имя Отчество, род. п.>
 на тему «<Название>»,
 представленную на соискание степени доктора философии (PhD)
-по образовательной программе 8D06104 — «Вычислительная техника и программное обеспечение»
+по образовательной программе 8D06102 — «Компьютерная и программная инженерия»
 ```
 
 ## Table columns

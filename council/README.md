@@ -18,6 +18,12 @@
 
 Русская версия: **[`ru/`](ru/)** · English version: **[`en/`](en/)**
 
+**Метаданные защиты — [`METADATA.toml`](METADATA.toml).** Единственное место, где
+хранятся Ф.И.О., должности, e-mail, ORCID, кафедра, код и название ОП, тема на трёх
+языках, объём тома и список публикаций. Шаблоны ниже обезличены и значений не содержат;
+готовые документы берут их из реестра. Сверка документов с реестром:
+`python .claude/skills/council-docs/scripts/check_metadata.py`.
+
 ### Нормативная база и процесс
 | Файл | О чём |
 |------|-------|
@@ -74,6 +80,13 @@ rather than international/generic templates. These are templates and instruction
 literature cards: structure and content descriptions with no reference to specific authors or topics.
 
 Russian version: **[`ru/`](ru/)** · English version: **[`en/`](en/)**
+
+**Defense metadata — [`METADATA.toml`](METADATA.toml).** The single place holding
+names, positions, e-mail, ORCID, the department, the programme code and name, the
+dissertation titles in three languages, the volume figures and the publication list.
+The templates below stay anonymised; the finished documents draw their values from
+the registry. Verify documents against it:
+`python .claude/skills/council-docs/scripts/check_metadata.py`.
 
 ### Regulatory framework & process
 | File | About |

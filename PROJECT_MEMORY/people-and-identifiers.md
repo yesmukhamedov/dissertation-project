@@ -1,27 +1,41 @@
 ---
 name: people-and-identifiers
-description: "Canonical full names of the PhD candidate, supervisor, foreign consultant (EN/KZ/RU) + programme code, for council documents"
+description: "Все метаданные защиты (Ф.И.О., должности, ОП, тема, e-mail/ORCID, кафедра, публикации) лежат в одном реестре council/METADATA.toml"
 metadata:
   type: project
 ---
 
-Canonical identities for all council/defense documents (abstracts, reviews, title pages). Use these exact forms — earlier drafts used a wrong candidate name ("Nurlan Serikuly"), now corrected. Human-facing copy: `council/PEOPLE.md`.
+**Единственное место, где хранятся метаданные защиты, — `council/METADATA.toml`.**
+Там: Ф.И.О. докторанта / научного консультанта / зарубежного консультанта / двух
+официальных рецензентов / состава диссовета во всех нужных языках и падежах, их
+степени, звания, должности и организации, e-mail и ORCID, название организации,
+кафедры и факультета, код и название ОП, тема диссертации на EN/RU/KZ, ОӘЖ/УДК,
+объём тома, список из 5 публикаций с DOI, а также список запрещённых форм (ранее
+исправленных ошибок) и список ещё не заполненных полей с указанием, где каждое
+понадобится. Значения здесь **не дублируются** — иначе копии снова разойдутся.
 
-**PhD candidate** (this project's author; email yesmukhamedov009@gmail.com):
-- EN: Yesmukhamedov Nurmaganbet Seitkaliuly
-- KZ: Есмухамедов Нұрмағанбет Сейтқалиұлы (genitive: Есмухамедов Нұрмағанбет Сейтқалиұлының)
-- RU: Есмухамедов Нурмаганбет Сейткалиулы (genitive: Есмухамедова Нурмаганбета Сейткалиулы)
-- Initials N.S. (N.=Nurmaganbet, S.=Seitkaliuly). Note KZ surname is "Есмухамедов" (у), not "Есмұхамедов".
+Проверка: `python .claude/skills/council-docs/scripts/check_metadata.py` сверяет
+`thesis/output/*.md` и слайды защиты с реестром. Титульный лист (`build_title.py`)
+читает реестр напрямую. Человеческий указатель — `council/PEOPLE.md`.
 
-**Scientific supervisor / domestic consultant:**
-- EN: Sapakova Saya Zamanbekovna
-- KZ: Сапакова Сая Заманбековна
-- RU: Сапакова Сая Заманбековна
-- Degree: Candidate of Physical and Mathematical Sciences (к.ф.-м.н. / физика-математика ғылымдарының кандидаты). Title: Associate Professor (қауымдастырылған профессор / доцент). Position: Associate Professor at IITU. Email: s.sapakova@edu.iitu.kz. (Position CONFIRMED **associate professor** by candidate 2026-06-18 — the earlier "assistant professor" ambiguity is resolved; use associate professor on the title page and all council docs.)
-- The stale `defense/presentation/slides/01_TITLE.md` shows "PhD, доцент" but is UNTRUSTWORTHY: wrong dissertation topic (laser coagulation), wrong candidate patronymic ("Сейсенұлы" vs canonical Сейтқалиұлы), different supervisor name form ("Замaнбекқызы") — do NOT use it as a source.
+Известные ловушки записаны в самом реестре как комментарии и как `[check.forbidden]`:
+казахская фамилия через «у» (Есмухамедов, не Есмұхамедов), отчество Сейтқалиұлы (не
+Сейсенұлы), звание научного консультанта — associate professor (не assistant), код ОП
+**8D06102 — «Компьютерная и программная инженерия»** (исправлено 2026-08-14 с 8D06104 по указанию
+кандидата: та же ОП, что у Иманкуловой Б.Б. и Бакировой Г.С. — проверено по извещению о защите и
+протоколу кафедры № 17; отдельной докторской ОП «Программная инженерия» в МУИТ нет, это 6B06110 /
+7M06101. Старый код и все три старых названия внесены в `[check.forbidden]`. **Сверить с приказом
+о зачислении** — прежнее значение тоже держалось как подтверждённое кандидатом), английское имя
+вуза — International Information Technology University. Слайды `defense/presentation/slides/01_TITLE.md` и `49_FINAL.md` были
+устаревшими (тема лазерной коагуляции, чужое отчество) и исправлены 2026-08-13; в
+`slide_plan.md` тема тоже обновлена.
 
-**Foreign scientific consultant:**
-- Prof. Dr. Syed Abdul Rahman Al-Haddad — Professor, Department of Computer and Communication Systems Engineering, Faculty of Engineering, Universiti Putra Malaysia, 43400 UPM Serdang, Selangor, Malaysia.
-- He is also a co-author on the candidate's NAS-RK self-publication (Al-Haddad S.A.R.).
+Расхождение, которое этим и вскрылось: титульный лист казахского издания нёс тему
+«Fundus кескіндерін жақсарту және CNN жіктеуі арқылы …», которой не было ни в
+аннотации, ни в одном отзыве. Канон — «Көз түбі кескіндерін жақсарту және CNN арқылы
+жіктеу негізінде диабеттік ретинопатияны автоматтандырылған диагностикалау»; сверить
+с приказом об утверждении темы. Файлы `defense/docs/**` (включая
+`FULL_DISSERTATION_KZ_*`) собраны ДО этой правки — казахский титул в них старый.
 
-Programme (FINAL, candidate-confirmed 2026-06-12): **8D06104** — EN "Computer systems and software engineering" / RU "Вычислительная техника и программное обеспечение" / KZ "Есептеу техникасы және бағдарламалық жасақтама". (Earlier 8D061 then a brief 8D06101 were both wrong; all council docs now carry 8D06104 + matching name per language.) Org: International Information Technology University (IITU / ХАТУ / МУИТ), Almaty. Council document drafts live in `thesis/output/`; built deliverables in `defense/docs/` via [[council-docs-skill]].
+См. [[defense-language-kazakh]], [[official-reviewer-reports]],
+[[extended-meeting-protocol]], [[council-docs-skill]].

@@ -1,6 +1,6 @@
 # ABSTRACT
 
-**of the PhD thesis by Yesmukhamedov Nurmaganbet Seitkaliuly on «Automated Diabetic Retinopathy Diagnosis via Fundus Image Enhancement and CNN Classification», submitted for the degree of Doctor of Philosophy (PhD) in the educational programme (EP) 8D06104 — Computer systems and software engineering**
+**of the PhD thesis by Yesmukhamedov Nurmaganbet Seitkaliuly on «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy», submitted for the degree of Doctor of Philosophy (PhD) in the educational programme (EP) 8D06102 — Computer and Software Engineering**
 
 ---
 

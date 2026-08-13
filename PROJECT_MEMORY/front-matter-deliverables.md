@@ -25,7 +25,7 @@ Daurenbayeva & Tokhtakhunov) and corrected to match the house style — DON'T di
   ST RK 34.014-2002. Intro line "This thesis uses references to the following standards:".
 - **Title page** matches the IITU samples: single org line "International Information
   Technology University" (NO ministry line); `UDC: 004.93:617.735` left / `On manuscript
-  right` right; author CAPS; title; `8D06104 – Computer systems and software engineering`;
+  right` right; author CAPS; title; `8D06102 – Computer and Software Engineering`;
   "Thesis for the degree of doctor of Philosophy (PhD)"; consultant block as
   credentials-then-NAME-last (Scientific consultant → Candidate of Phys.-Math. Sciences,
   Associate Professor, International Information Technology University → Sapakova S.Z.;

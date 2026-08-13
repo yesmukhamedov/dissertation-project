@@ -1,6 +1,6 @@
 # REVIEW
 
-**of the foreign scientific consultant for the dissertation work of Yesmukhamedov Nurmaganbet Seitkaliuly** «Automated Diabetic Retinopathy Diagnosis via Fundus Image Enhancement and CNN Classification», submitted for the degree of Doctor of Philosophy (PhD) on educational program: 8D06104 — Computer systems and software engineering
+**of the foreign scientific consultant for the dissertation work of Yesmukhamedov Nurmaganbet Seitkaliuly** «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy», submitted for the degree of Doctor of Philosophy (PhD) on educational program: 8D06102 — Computer and Software Engineering
 
 ## Relevance of the Research Topic
 
@@ -42,7 +42,7 @@ The candidate further proposes a modular architecture for an automated screening
 
 Throughout our collaboration the doctoral candidate has demonstrated notable growth as a researcher, developing into a mature specialist capable of formulating a research problem independently, of selecting and adapting appropriate methods, and of carrying a complex experimental programme through to completion. He has shown a firm command of modern deep learning methods, of image processing theory and of the apparatus of statistical validation, and he has maintained a standard of scientific honesty in reporting that deserves separate mention. The results of the research have been published in peer-reviewed journals and presented at international conferences, including the 3rd International Workshop on Digital Society in Istanbul, which confirms their recognition by the scientific community.
 
-The dissertation of Yesmukhamedov Nurmaganbet Seitkaliuly makes a significant, original and scientifically substantiated contribution to the field of automated diabetic retinopathy diagnosis. The work meets the academic and methodological requirements for doctoral research and conforms to international standards for the award of a PhD degree. Accordingly, this dissertation is recommended for the awarding of the degree of Doctor of Philosophy (PhD) in the educational program 8D06104 — Computer systems and software engineering.
+The dissertation of Yesmukhamedov Nurmaganbet Seitkaliuly makes a significant, original and scientifically substantiated contribution to the field of automated diabetic retinopathy diagnosis. The work meets the academic and methodological requirements for doctoral research and conforms to international standards for the award of a PhD degree. Accordingly, this dissertation is recommended for the awarding of the degree of Doctor of Philosophy (PhD) in the educational program 8D06102 — Computer and Software Engineering.
 
 Professor,  
 Department of Computer and Communication Systems Engineering,  
