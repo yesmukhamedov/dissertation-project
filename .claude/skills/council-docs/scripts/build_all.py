@@ -3,7 +3,7 @@
 Discovers the known council source documents (abstracts + reviews) under
 thesis/output/ and renders each to <out_dir>/<name>.docx and .pdf. Documents
 listed in SUBDIRS land in a sub-folder of <out_dir> instead (the trilingual
-abstracts are collected in <out_dir>/abstracts/).
+abstracts in <out_dir>/abstracts/, the two reviews in <out_dir>/reviews/).
 
 Usage:
     python build_all.py [--src DIR] [--out DIR] [--no-pdf] [--only NAME ...]
@@ -31,6 +31,8 @@ SUBDIRS = {
     "abstract_en": "abstracts",
     "abstract_ru": "abstracts",
     "abstract_kz": "abstracts",
+    "supervisor_review_kz": "reviews",
+    "foreign_consultant_review_en": "reviews",
 }
 
 

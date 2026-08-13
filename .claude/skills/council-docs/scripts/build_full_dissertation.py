@@ -2,7 +2,7 @@
 new document (EN + KZ) as .docx (+ .pdf), with corrected page numbering.
 
 Combines:
-    defense/docs/FRONT_MATTER_{EN,KZ}_GOST_<date>  (title, contents, normative,
+    defense/docs/front_matter/FRONT_MATTER_{EN,KZ}_GOST_<date>  (title, contents, normative,
         designations & abbreviations, definitions)
     + the manuscript body  thesis/assembly/DISSERTATION_{EN,KZ}_GOST_<date>.md
       (the working title line + STAGE-G note at the top are stripped, so the body
@@ -149,7 +149,7 @@ def main() -> None:
             body_text = strip_body((asm / f"DISSERTATION_{lang.upper()}_GOST_{args.date}.md").read_text(encoding="utf-8"))
 
             # Measure: front-matter page count F + section pages, body section pages.
-            front_docx = docs / f"FRONT_MATTER_{lang.upper()}_GOST_{args.date}.docx"
+            front_docx = docs / "front_matter" / f"FRONT_MATTER_{lang.upper()}_GOST_{args.date}.docx"
             F = page_count(word, front_docx)
             _, fm_front = build_toc.dump_pages(word, front_docx)
 

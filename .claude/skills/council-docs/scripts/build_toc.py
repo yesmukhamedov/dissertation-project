@@ -9,7 +9,7 @@ em-dash placeholder, so the contents stays honest to the current draft.
 
 Outline sources : thesis/output/contents_en.md, thesis/output/contents_kz.md
 Manuscripts     : defense/docs/DISSERTATION_{EN,KZ}_GOST_<date>.docx
-Output          : defense/docs/TABLE_OF_CONTENTS_{EN,KZ}_GOST_<date>.docx (+ .pdf)
+Output          : defense/docs/front_matter/TABLE_OF_CONTENTS_{EN,KZ}_GOST_<date>.docx (+ .pdf)
 
 Usage:
     python build_toc.py [--date YYYY-MM-DD] [--no-pdf]
@@ -199,12 +199,13 @@ def main() -> None:
         args.date = dates[-1]
         print(f"[src ] newest manuscript: {args.date}")
 
-    out_dir = ROOT / "thesis/output"
+    src = ROOT / "thesis/output"
+    front = docs / "front_matter"
     jobs = [
-        ("en", out_dir / "contents_en.md", docs / f"DISSERTATION_EN_GOST_{args.date}.docx",
-         docs / f"TABLE_OF_CONTENTS_EN_GOST_{args.date}.docx"),
-        ("kz", out_dir / "contents_kz.md", docs / f"DISSERTATION_KZ_GOST_{args.date}.docx",
-         docs / f"TABLE_OF_CONTENTS_KZ_GOST_{args.date}.docx"),
+        ("en", src / "contents_en.md", docs / f"DISSERTATION_EN_GOST_{args.date}.docx",
+         front / f"TABLE_OF_CONTENTS_EN_GOST_{args.date}.docx"),
+        ("kz", src / "contents_kz.md", docs / f"DISSERTATION_KZ_GOST_{args.date}.docx",
+         front / f"TABLE_OF_CONTENTS_KZ_GOST_{args.date}.docx"),
     ]
 
     import win32com.client as wc

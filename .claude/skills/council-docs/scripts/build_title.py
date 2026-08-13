@@ -204,10 +204,10 @@ def main() -> None:
         args.date = latest_manuscript_date()
         print(f"[src ] newest manuscript: {args.date}")
 
-    docs = ROOT / "defense/docs"
+    out_dir = ROOT / "defense/docs/front_matter"
     built = []
     for lang in ("en", "kz"):
-        out = docs / f"TITLE_PAGE_{lang.upper()}_GOST_{args.date}.docx"
+        out = out_dir / f"TITLE_PAGE_{lang.upper()}_GOST_{args.date}.docx"
         build(lang, out)
         built.append(out)
 

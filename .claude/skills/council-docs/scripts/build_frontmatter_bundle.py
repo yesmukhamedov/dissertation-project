@@ -15,7 +15,7 @@ em-dash, so the bundle stays honest until final assembly.
 
 Sources : thesis/output/{titlepage,contents,normative_references,abbreviations,
           definitions}_{en,kz}.md  (titlepage values live in build_title.FIELDS)
-Output  : defense/docs/FRONT_MATTER_{EN,KZ}_GOST_<date>.docx (+ .pdf)
+Output  : defense/docs/front_matter/FRONT_MATTER_{EN,KZ}_GOST_<date>.docx (+ .pdf)
 
 Usage:
     python build_frontmatter_bundle.py [--date YYYY-MM-DD] [--no-pdf]
@@ -157,11 +157,12 @@ def main() -> None:
         print(f"[src ] newest manuscript: {args.date}")
 
     docs = ROOT / "defense/docs"
+    fm_dir = docs / "front_matter"
     jobs = [
         ("en", docs / f"DISSERTATION_EN_GOST_{args.date}.docx",
-         docs / f"FRONT_MATTER_EN_GOST_{args.date}.docx"),
+         fm_dir / f"FRONT_MATTER_EN_GOST_{args.date}.docx"),
         ("kz", docs / f"DISSERTATION_KZ_GOST_{args.date}.docx",
-         docs / f"FRONT_MATTER_KZ_GOST_{args.date}.docx"),
+         fm_dir / f"FRONT_MATTER_KZ_GOST_{args.date}.docx"),
     ]
 
     import win32com.client as wc

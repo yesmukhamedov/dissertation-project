@@ -16,8 +16,9 @@ two-column table, so it is rendered here directly (md2gost only emits bordered
 tables with a bold header row).
 
 Sources : thesis/output/{normative_references,abbreviations,definitions}_{en,kz}.md
-Output  : defense/docs/{NORMATIVE_REFERENCES,DESIGNATIONS_AND_ABBREVIATIONS,
-          DEFINITIONS}_{EN,KZ}_GOST_<date>.docx (+ .pdf)
+Output  : defense/docs/front_matter/{NORMATIVE_REFERENCES,
+          DESIGNATIONS_AND_ABBREVIATIONS,DEFINITIONS}_{EN,KZ}_GOST_<date>.docx
+          (+ .pdf)
 
 Usage:
     python build_frontmatter.py [--date YYYY-MM-DD] [--no-pdf]
@@ -129,7 +130,7 @@ def main() -> None:
         print(f"[src ] newest manuscript: {args.date}")
 
     src = ROOT / "thesis/output"
-    docs = ROOT / "defense/docs"
+    out_dir = ROOT / "defense/docs/front_matter"
     # (source stem, output name, renderer)
     jobs = [
         ("normative_references_en", "NORMATIVE_REFERENCES_EN", "para"),
@@ -142,7 +143,7 @@ def main() -> None:
     built = []
     for stem, name, kind in jobs:
         md = src / f"{stem}.md"
-        docx = docs / f"{name}_GOST_{args.date}.docx"
+        docx = out_dir / f"{name}_GOST_{args.date}.docx"
         lang = "kz" if stem.endswith("_kz") else "en"
         if kind == "abbrev":
             render_abbrev(md, docx)

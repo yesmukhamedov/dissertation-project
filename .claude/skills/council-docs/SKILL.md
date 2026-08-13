@@ -28,8 +28,8 @@ deliverables (output to `defense/docs/`) that satisfy the IITU/HAC GOST formatti
 Requirements: `python-docx` and `docx2pdf` (PDF step drives installed MS Word).
 
 Build everything (abstracts EN/RU/KZ + both reviews) to `defense/docs/` — the
-three abstracts are collected in `defense/docs/abstracts/`, the reviews sit at
-the top level:
+three abstracts are collected in `defense/docs/abstracts/`, the two reviews in
+`defense/docs/reviews/`:
 
 ```powershell
 python .claude/skills/council-docs/scripts/build_all.py
@@ -52,11 +52,32 @@ python .claude/skills/council-docs/scripts/md2gost.py thesis/output/abstract_en.
 | Stem (in thesis/output/) | Document | Template | Output |
 |---|---|---|---|
 | `abstract_en` / `abstract_ru` / `abstract_kz` | Trilingual abstract/annotation | 11-abstract-annotation | `defense/docs/abstracts/` |
-| `supervisor_review_kz` | Supervisor (domestic) review | 13-supervisor-review | `defense/docs/` |
-| `foreign_consultant_review_en` | Foreign consultant review | 14-foreign-consultant-review | `defense/docs/` |
+| `supervisor_review_kz` | Supervisor (domestic) review | 13-supervisor-review | `defense/docs/reviews/` |
+| `foreign_consultant_review_en` | Foreign consultant review | 14-foreign-consultant-review | `defense/docs/reviews/` |
 
 The routing lives in `SUBDIRS` in `build_all.py`; `--out DIR` moves the whole
-tree, sub-folder included.
+tree, sub-folders included.
+
+## Layout of `defense/docs/`
+
+The two assembled manuscripts stay at the top level; everything that feeds them
+is grouped beside them:
+
+```
+defense/docs/
+├── DISSERTATION_{EN,KZ}_GOST_<date>.docx/.pdf       manuscript body
+├── FULL_DISSERTATION_{EN,KZ}_GOST_<date>.docx/.pdf  front matter + body
+├── abstracts/     abstract_{en,ru,kz}                       build_all.py
+├── front_matter/  TITLE_PAGE, TABLE_OF_CONTENTS,            build_title.py,
+│                  NORMATIVE_REFERENCES, DEFINITIONS,        build_toc.py,
+│                  DESIGNATIONS_AND_ABBREVIATIONS,           build_frontmatter*.py
+│                  FRONT_MATTER (the assembled bundle)
+└── reviews/       supervisor_review_kz,                     build_all.py
+                   foreign_consultant_review_en
+```
+
+The date-stamp discovery in the builders globs `DISSERTATION_EN_GOST_*.docx` at
+the **top level** of `defense/docs/` — keep the manuscripts there.
 
 ## Version-marker scrubbing (thesis/ boundary)
 
