@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import re
 from pathlib import Path
 
 from docx import Document
@@ -174,11 +175,34 @@ def build(lang: str, out_docx: Path) -> None:
     print("[docx]", out_docx.name)
 
 
+def latest_manuscript_date() -> str:
+    """Date stamp of the newest rendered manuscript pair in defense/docs/.
+
+    The title page carries no dated input — the stamp is a label only — but a
+    pinned label is worse than no label: it is how the other four builders sent
+    current content out under a June name, and it is why this one produced no
+    August file at all while everything beside it was rebuilt.
+    """
+    docs = ROOT / "defense/docs"
+    dates = sorted(
+        m.group(1)
+        for p in docs.glob("DISSERTATION_EN_GOST_*.docx")
+        if (m := re.search(r"_(\d{4}-\d{2}-\d{2})\.docx$", p.name))
+        and (docs / p.name.replace("_EN_", "_KZ_")).is_file()
+    )
+    if not dates:
+        raise SystemExit(f"no DISSERTATION_{{EN,KZ}}_GOST_*.docx pair in {docs}")
+    return dates[-1]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build GOST TITLE PAGE (EN+KZ)")
-    ap.add_argument("--date", default="2026-06-17", help="output date stamp")
+    ap.add_argument("--date", default=None, help="output date stamp (default: newest manuscript)")
     ap.add_argument("--no-pdf", action="store_true")
     args = ap.parse_args()
+    if args.date is None:
+        args.date = latest_manuscript_date()
+        print(f"[src ] newest manuscript: {args.date}")
 
     docs = ROOT / "defense/docs"
     built = []

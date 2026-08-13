@@ -36,9 +36,10 @@ now a record of what was written, not a queue.
 | **Total** | **98** | — | **98 of 98** |
 
 **Measured on the current build** (re-derive nothing from these; re-measure after any edit):
-EN **101,437** body words, KZ **81,277**; **107** sources, EN 292 / KZ 267 bracketed citations;
-front matter **10 pages EN / 11 KZ**; appendices begin on **p. 240 EN / p. 267 KZ**, which is what
-makes §0.16's **239 / 266** exact; 42 tables, 29 figures.
+EN **101,431** body words, KZ **81,273**; **107** sources, EN 292 / KZ 267 bracketed citations;
+front matter **10 pages EN / 11 KZ**; the document runs **285 pages EN / 313 KZ**, and the APPENDICES
+divider opens on **p. 239 EN / p. 265 KZ**, which is what makes §0.16's **238 / 264** exact;
+**42 tables, 26 figures and 2 diagrams** in the body, identical in both editions.
 
 **All four completion tracks are closed.** The full record is §11.
 
@@ -730,7 +731,7 @@ four mandatory disclosures, §0.8's qualifications, and the §0.3 goal sentence 
 abstract and defence materials).
 
 **Why it is optional rather than binding:** the council rule is *as a rule* up to 300 pages with
-appendices not counted, and the built documents measure **239 EN / 266 KZ**. Both clear it with room,
+appendices not counted, and the built documents measure **238 EN / 264 KZ**. Both clear it with room,
 so no trim is forced. Two consequences if one is run anyway: it must be done in **both** languages, or
 the editions diverge in content; and it moves pagination, so §0.16 must be re-measured after
 (see the ordering rule at the head of §11).
@@ -950,6 +951,67 @@ Remaining alongside this: **§11.3b, the trim queue.** It is independent of the 
 in parallel, but any trim changes word counts and therefore pagination, so **finish the trim before the
 final conversion pass**, not between the conversion and the §0.16 fill.
 
+### §11.7 Formatting audit and repair — ✅ **DONE 2026-08-13**
+
+The build of §11.4 was audited against the built `.docx`/`.pdf` rather than against this plan, and it was
+**current with its sources** (newest draft 01:13:14 → assembly 01:13:40 → docx 01:16, tree clean). Five
+defects were found in it, all five fixed, and both editions rebuilt and re-verified.
+
+1. **No structural element began on a new page**, in either edition — GOST 7.32 requires it of the
+   introduction, every chapter, the conclusion, the reference list and every appendix. `Appendix A` began
+   at line 19 of the page that ended the bibliography. Fixed in `md2gost.py` as `_STRUCTURAL`, a
+   **whitelist of element headings rather than a heading level**: every section here (§0.1, §1.1.1, …) is
+   also a level-1 heading, so breaking on the level would have put all 98 on a page of their own. The
+   first heading of a `render_into` call never breaks, or the merged build gains a blank page after the
+   front matter. Now **14 structural elements per edition, every one opening its page**.
+2. **Illustrations were never renumbered, though the tables were.** The body kept asset-ID numbering: a
+   gap (Chapter 4 ran 4.1, 4.2, 4.3 → **4.17**), three numbers each carrying **two captions of different
+   wording**, and an order that was not the reader's (3.14 before 3.2). Fixed by `renumber_assets()`,
+   which numbers **from the text in order of first appearance** and rewrites prose references with the
+   same map — in the converter rather than the drafts, which is what keeps the two editions identical
+   without editing either. Two rules fell out of it and both matter: a marker carrying **no image** is a
+   cross-reference and must not consume a number, and **a figure's identity is its number and its image,
+   not its caption wording** — §3.1.1 and §3.1.3 cite the same Stage-6 plate with different wording, which
+   is exactly how one image became two figures under one number.
+3. **Four internal identifiers survived the hygiene passes** — `RES-VAL`, `RES-NORM` and `LITERATURE_INDEX`
+   ×2 — removed from PART 1 of four drafts and their translations, the checklists untouched as before.
+4. **Two blockquote markers reached the page** as literal `>`, both notes on the reference list. Rendered
+   as notes now; provenance banners are still dropped earlier by vocabulary, so nothing else changed.
+5. **§0.16 was re-measured, and it had been wrong in English** — the reference list's last page *was*
+   p. 240, so 239 undercounted. It now reads **238 EN / 264 KZ**, verified against the APPENDICES divider.
+
+**Two further defects surfaced during the pass and were fixed with it.** The **`APPENDICES` divider sat
+before the reference list**, so the document announced its appendices and then delivered the bibliography:
+`place_references()` anchored on `Appendix A`, which is *inside* the divider, and now anchors on the
+divider where one exists. And **`RES-NORM` was missed in the first edit batch**, caught only by re-scanning
+the assembled manuscript — scan the assembly after an edit pass, never trust the edit list.
+
+**Pagination moved both ways and the net was negative.** The eight body breaks added pages, but collapsing
+the three duplicate plates — all in Chapter 3, all full-width — took that chapter from 44 pages to 39. The
+body fell 240 → 238 while the document grew 282 → 285, the appendices taking the difference.
+
+**§0.16 now states the two illustration series separately** — "42 tables, 26 figures and two diagrams" —
+because they carry distinct caption labels, so a reader counting `Figure N` finds 26 and not 28. The old
+single figure of 29 was neither count: it counted caption *instances*, three of which were one image
+printed twice. This also settles the open question §11.4 left on what the figure count should include.
+
+> ⚠ **Build only from `.claude/skills/council-docs/`.** The tracked `.agents/skills/council-docs/` mirror
+> was last touched 2026-08-03 and has none of the Mermaid rendering, image downscaling or these fixes;
+> building from it would ship Appendix C as source code in an 86 MB file.
+
+**`defense/docs/` now holds current files only.** The 32 June-stamped duplicates §11.6 left to the
+candidate's discretion are removed, each verified against its August twin first — the risk they carried was
+that someone submits one by mistake. Undated files are current too: the three abstracts were rebuilt on
+2026-08-13, and the supervisor and foreign-consultant reviews are the reviewers' documents, re-exported
+only if revised.
+
+**A fifth pinned-date builder was found in the process, and its symptom was the inverse of the other
+four.** `build_title.py` defaulted `--date` to the literal `2026-06-17`, so instead of shipping current
+content under a June name it produced **no August file at all** — leaving the title page as the one
+June-stamped deliverable without a twin, which the cleanup would have deleted outright. It now resolves the
+newest manuscript like the rest, and `TITLE_PAGE_{EN,KZ}_GOST_2026-08-13` is built. **Check the `--date`
+default of any builder added later.**
+
 ### §11.6 Council deliverables — ✅ **DONE 2026-08-13**
 
 The manuscript was current; the documents that travel *with* it were not. All of `defense/docs/` now
@@ -1077,7 +1139,7 @@ smaller than what it replaces, and only the first item is on anyone's critical p
 > what they claim, so nothing in the text overstates its source — but the bibliography pass is where the
 > gap shows.
 >
-> **3. §11.3b — the trim queue, optional.** Both editions clear the 300-page rule with room (239 / 266),
+> **3. §11.3b — the trim queue, optional.** Both editions clear the 300-page rule with room (238 / 264),
 > so no trim is forced. If one is run, it must be run in both languages and §0.16 re-measured after.
 
 **Two things for the candidate personally, which no tool can settle:** the §2.1.2 page locators must be

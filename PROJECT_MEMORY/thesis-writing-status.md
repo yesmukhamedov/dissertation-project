@@ -1,6 +1,6 @@
 ---
 name: thesis-writing-status
-description: "Dissertation COMPLETE and EXPORTED — 98 sections EN + 98 KZ, citations done, assets closed, council-ready GOST docx+pdf built 2026-08-13. Remaining: governance-code decision (356 codes), trim queue, stale abstract/TOC exports, NEW-1 traceability, §2.1.2 locators"
+description: "Dissertation COMPLETE and EXPORTED — 98 sections EN + 98 KZ, citations done, assets closed. BUILD AUDIT 2026-08-13 found 5 formatting defects; ALL FIVE FIXED AND REBUILT the same day (GOST page breaks, figure renumbering, RES-*/LITERATURE_INDEX leftovers, stray `>`, §0.16 re-measured to 238 EN / 264 KZ). Still open: trim queue, NEW-1 traceability, §2.1.2 locators, stale `.agents/` skill mirror"
 metadata:
   type: project
 ---
@@ -265,8 +265,105 @@ resource IDs replaced by reader-facing references (40 occurrences) → governanc
 stray version markers removed (27 + `v6.0.0`/`v6.1.0`).
 
 ⚠ `PLAN.md` §11.4 records the §0.16 page fill as **240 EN**, but the assembled manuscript and the
-built document say **239** — one of the two is stale; re-read the count off the final PDF before
-submission.
+built document say **239** — resolved by the build audit below: **240 is the correct figure**.
+
+## BUILD AUDIT 2026-08-13 — the build is current, five defects are open
+
+**Verified first: the build is not stale.** Newest source under `chapters/` 01:13:14 → assembly
+01:13:40 → `FULL_DISSERTATION_*.docx` 01:16, tree clean. So nothing written since the export is
+missing from it. **Do not rebuild to "refresh" it — rebuild only to fix the items below.**
+
+**What passed** (measured in the built `.docx`/`.pdf`, not taken from `PLAN.md`): 98 sections both
+languages; 67 tables / 95 inline images per edition; **body tables 42, numbered in document order with
+no gap and no duplicate** (the table pass worked); zero `ASSET TO BE CREATED`, zero `[card not found]`,
+zero version markers, zero `[VERIFY]`/`[UNSOURCED CLAIM]`, zero `IT-`/`SC-`/`AOQ-`, zero empty
+parentheses; **8/8 governance families declared** in both editions; 107 sources.
+
+### ✅ ALL FIVE FIXED AND REBUILT 2026-08-13
+
+**Current council-ready pair: `FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-13` — EN 285 pages, KZ 313.**
+Verified in the rebuilt documents: **zero** mid-page structural elements (14 per edition, every one opens
+its page), body illustrations **26 figures + 2 diagrams + 42 tables, identical in both editions, no gap,
+no duplicate, in document order**, zero resource IDs, zero governance document names, zero stray `>`,
+8/8 governance families, 107 sources, and every CONTENTS entry matching its measured page.
+
+**Three fixes live in the converter, not in the text** (`.claude/skills/council-docs/scripts/md2gost.py`),
+which is what keeps EN and KZ identical without editing either:
+- `_STRUCTURAL` — a **whitelist of element headings**, not a heading level. Every section (§0.1, §1.1.1…)
+  is also a level-1 heading here, so breaking on the level would have put all 98 on their own page. The
+  first heading of a `render_into` call never breaks, or the full build would gain a blank page after the
+  front matter.
+- `renumber_assets()` — assigns illustration numbers **from the text, in order of first appearance**, and
+  rewrites prose references (`Figure 3.7`, KZ `3.7-суретте`) with the same map. A marker carrying no image
+  is a cross-reference and must **not** consume a number.
+- `_key()` now identifies a figure by **number + image, not caption wording** — §3.1.1 and §3.1.3 cite the
+  same Stage-6 plate with different wording, which is how one image became two figures under one number.
+- `_note()` — blockquotes render as notes; provenance banners are still dropped earlier by vocabulary.
+
+**Two further defects surfaced and were fixed during the pass:**
+- **The `APPENDICES` divider sat before the reference list**, so the document announced its appendices and
+  then delivered the bibliography. `place_references()` anchored on `Appendix A`, which is *inside* the
+  divider; it now anchors on the divider where one exists. Order is now CONCLUSION → LIST OF REFERENCES →
+  APPENDICES → Appendix A.
+- **`RES-NORM` was missed in the first edit batch** and caught only by re-scanning the assembled
+  manuscript — scan the assembly after the edit, never trust the edit list.
+
+**Pagination moved in both directions and the net was negative**: +8 breaks in the body, but collapsing the
+three duplicate plates (all in Chapter 3, all full-width) took Chapter 3 from 44 pages to 39. §0.16 now
+reads **238 EN / 264 KZ**, verified against the APPENDICES divider at p. 239 / p. 265.
+
+**§0.16 now states the two illustration series separately** — "42 tables, 26 figures and two diagrams" —
+because they carry distinct caption labels, so a reader counting `Figure N` finds 26, not 28. The old
+single figure of 29 counted caption *instances*, three of which were one image printed twice.
+
+**The `.agents/skills/council-docs/` mirror is 10 days stale** (last touched 2026-08-03) and has none of
+the Mermaid rendering, image downscaling or these fixes. It is tracked in git. Building from it would ship
+Appendix C as source code in an 86 MB file. **Build only from `.claude/`.**
+
+**`defense/docs/` holds only current files now (2026-08-13).** All **32** June-stamped duplicates were
+removed once each was verified to have an August twin. What has no date stamp is current too: the three
+abstracts (rebuilt 2026-08-13) and the two reviewers' documents, which are re-exported only if revised.
+
+**`build_title.py` was the FIFTH pinned-date builder** — `--date` defaulted to the literal `2026-06-17`.
+Its symptom was the opposite of the others': instead of shipping current content under a June name, it
+produced **no August file at all**, so the title page was the one June-stamped deliverable with no twin and
+would have been deleted with the rest. Now resolves the newest manuscript like the other four. **If a sixth
+builder appears, check its `--date` default before trusting its output.**
+
+---
+
+Original statement of the five, retained — **1 and 2 both move pagination, so §0.16 is re-measured once,
+after both:**
+
+1. **No page break before any structural element, both editions.** GOST 7.32 requires each of
+   introduction / chapter / conclusion / reference list / appendix to start on a new page. Measured in
+   the EN PDF: `1 PROBLEM` starts at line 29 of p. 31, `2 THEORET` line 21 of p. 57, `3 METHOD` line 17
+   of p. 89, `CONCLUSION` line 19 of p. 228, `LIST OF REFER` line 24 of p. 231, and **all six appendices
+   begin mid-page** (`Appendix A` at line 19 of p. 240, sharing the page with reference #107). KZ is the
+   same — А and Е land at line 1 by luck, Ә/Б/Д/Ж do not. This is a converter-level fix in `md2gost.py`,
+   not a text fix, and it will **add roughly one page per element**.
+2. **Figures were never renumbered; tables were.** The resource-ID pass mapped figures to themselves
+   (`FIG-4.17` → `Figure 4.17`), so the body keeps asset-ID numbering with three visible consequences:
+   **a gap** (Chapter 4 runs 4.1, 4.2, 4.3 → **4.17**, nothing between); **duplicates** — Figures 3.7,
+   3.8 and 3.14 each carry **two captions with different wording under one number**; and **out-of-order
+   appearance** (3.14 before 3.2, 3.10 before 3.3, 2.4 before 2.3, 4.2/4.3 before 4.1). Both editions
+   identically. Renumber by order of appearance as the tables already are, and decide whether a repeated
+   figure keeps one number with one caption or is re-referenced in prose instead.
+3. **Four internal identifiers survived the hygiene passes, per edition** — `RES-VAL` and `RES-NORM`
+   (the ID pass matched `TAB-`/`FIG-`/`DIA-` only) and **`LITERATURE_INDEX` ×2** (`LITERATURE_INDEX
+   note 21` in the §4.1.1 lineage sentence, `note 5` in App D). Same four in EN and KZ.
+4. **Two literal Markdown blockquote markers reach the page, per edition** — both notes attached to the
+   reference list render as `> In order of first appearance …` and `> Note — the candidate's own
+   publications.` (KZ: `> Алғаш кездесу ретімен …`). `md2gost.py` does not consume `>`.
+5. **§0.16 EN is off by one — it should read 240, not 239.** The reference list's last page **is**
+   p. 240; Appendix A merely starts further down that same page. So the dissertation proper occupies
+   240 pages. **KZ is exact**: references end p. 266, `А қосымшасы` opens p. 267, and §0.16 says 266.
+   Recheck both after fixing 1 and 2 — pagination will move.
+
+**One judgement call left to the candidate, not a defect:** §0.16 counts **29 figures**, which is the
+`Figure`-labelled body captions only. The body also carries `Diagram 6.1` and `Diagram 6.2`
+(`Диаграмма` in KZ) as a separate label class, so an illustration count would be 31. Both editions are
+consistent with each other either way.
 
 **Still open after the export:**
 1. ~~The 356 governance codes are undefined for the reader.~~ ✅ **CLOSED 2026-08-13 — declared, not

@@ -366,6 +366,8 @@ hdr_kz = (f"# Диабеттік ретинопатияны автоматтан
 
 # The first appendix heading, in either language.
 _APPENDIX_A = re.compile(r"^#\s+(?:Appendix\s+A\b|А\s+қосымшасы)", re.M)
+# The divider the assembler emits ahead of the appendix chapter.
+_APPENDICES = re.compile(r"^#\s+(?:APPENDICES|ҚОСЫМШАЛАР)\s*$", re.M)
 
 
 def place_references(body: str, block: str) -> str:
@@ -374,8 +376,14 @@ def place_references(body: str, block: str) -> str:
     GOST 7.32-2001 orders the list of sources after the conclusion and before the
     appendices. Appending the block to the assembled text put it after Appendix F,
     which is where it sat in every build so far.
+
+    The anchor is the APPENDICES divider where the assembler emits one, and the
+    first appendix heading otherwise. Anchoring on Appendix A alone was correct
+    only in the second case: with the divider present, the reference list landed
+    *between* the divider and Appendix A, so the document announced its appendices
+    and then delivered the bibliography.
     """
-    m = _APPENDIX_A.search(body)
+    m = _APPENDICES.search(body) or _APPENDIX_A.search(body)
     if not m:
         return body + block
     return body[:m.start()].rstrip() + "\n" + block.rstrip() + "\n\n" + body[m.start():]

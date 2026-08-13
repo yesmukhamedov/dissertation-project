@@ -488,6 +488,23 @@ def _body(doc: Document, text: str):
     return p
 
 
+def _note(doc: Document, text: str):
+    """A blockquote line: a note set apart from the body.
+
+    Genuine notes reach the reader through blockquotes — the two attached to the
+    reference list are the manuscript's only ones — and without a branch of their
+    own the `>` was carried into the document as literal text. Provenance banners
+    never get here: `strip_process_metadata` drops those by vocabulary first.
+    """
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    p.paragraph_format.first_line_indent = Mm(0)
+    p.paragraph_format.left_indent = Mm(FIRST_LINE_INDENT_CM * 10)
+    p.paragraph_format.space_before = Pt(6)
+    _add_runs(p, text)
+    return p
+
+
 def _list_item(doc: Document, marker: str, text: str):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -548,6 +565,31 @@ _HDR = re.compile(r"^(#{1,6})\s+(.*)$")
 _TBL_ROW = re.compile(r"^\s*\|.*\|\s*$")
 _TBL_SEP = re.compile(r"^\s*\|?[\s:|-]*-[\s:|-]*\|?\s*$")
 _FENCE = re.compile(r"^\s*```\s*([A-Za-z0-9_+-]*)")
+
+# --- Structural elements ------------------------------------------------------
+# GOST 7.32 starts each structural element of the work on a new page: the
+# introduction, every numbered section, the conclusion, the list of sources and
+# every appendix. Without this the reader meets "Appendix A" halfway down the
+# page that ends the reference list, and a chapter opening in the middle of the
+# page that closed the one before it.
+#
+# The rule is deliberately a whitelist of element headings rather than "every
+# level-1 heading": in this manuscript EVERY section (§0.1, §1.1.1, …) is also a
+# level-1 heading, so breaking on the level would put all 98 of them on a page of
+# their own. Section headings all begin with "§" and none of the patterns below
+# match one.
+_STRUCTURAL = re.compile(
+    r"^(?:"
+    r"\d+\s+\S"                                   # numbered chapter: "1 PROBLEM DOMAIN …"
+    r"|INTRODUCTION\b|CONCLUSION\b|APPENDICES\b"
+    r"|LIST\s+OF\s+REFERENCES\b"
+    r"|Appendix\s+[A-Z]\b"
+    r"|КІРІСПЕ\b|ҚОРЫТЫНДЫ\b|ҚОСЫМШАЛАР\b"
+    r"|ПАЙДАЛАНЫЛҒАН\s+ӘДЕБИЕТТЕР\s+ТІЗІМІ\b"
+    r"|[А-ЯӘӨҰҮҚҒҢҺ]\s+қосымшасы\b"               # KZ appendix: "А қосымшасы — …"
+    r")",
+    re.IGNORECASE,
+)
 
 # --- Mermaid diagram rendering ------------------------------------------------
 # Appendix C supplies its four structural views (component, deployment, sequence,
@@ -808,6 +850,99 @@ _DASH = re.compile(r"\s+[—–-]\s+")  # caption — target separator (em/en/hy
 _FIG_TICKS = re.compile(r"`(\[(?:FIG|FIGURE|APP|DIA|TAB)-[^\]]*\])`")
 
 
+# --- Illustration renumbering -------------------------------------------------
+# Markers carry the asset ID the draft was written against (`FIG-4.17`), and those
+# IDs are not a document numbering: they have gaps (Chapter 4 ran 4.1, 4.2, 4.3,
+# then 4.17), they repeat (one image cited twice under one number), and they do not
+# follow the order the reader meets the figures in (3.14 before 3.2). GOST numbers
+# illustrations in the order they are first referenced, so the numbers are assigned
+# here, from the text, rather than trusted from the ID.
+#
+# Doing it in the converter rather than in the drafts is what keeps the two
+# editions identical: both carry the same markers in the same order, so both get
+# the same numbers without either being edited.
+#
+# The identity of a figure is its number AND its image — the same image cited
+# twice is one figure and a cross-reference, not two figures.
+_FIG_REF_EN = re.compile(r"\b(Figure|Diagram)\s+([A-Z]?\.?\d+(?:\.\d+)?)\b")
+_FIG_REF_KZ = re.compile(r"\b([А-ЯӘ]?\.?\d+(?:\.\d+)?)-(сурет\w*|диаграмма\w*)")
+_KIND_OF_LABEL = {"figure": "FIG", "diagram": "DIA", "сурет": "FIG", "диаграмма": "DIA"}
+
+
+def _marker_target(body: str) -> str:
+    """The image path a marker points at ('' when it carries none)."""
+    segs = _DASH.split(body.strip())
+    return segs[-1].strip(" `") if len(segs) >= 2 else ""
+
+
+def renumber_assets(text: str) -> str:
+    """Renumber FIG/DIA markers in order of first appearance, prose refs with them.
+
+    Returns the text with every illustration number replaced. TAB markers and
+    appendix-letter-only markers (APP-D) are left alone: table numbers already
+    follow document order, and APP exhibits are sequenced at registration.
+    """
+    # 1. Walk the markers in order, giving each distinct (kind, id, image) the
+    #    next number in its group. A group is the kind plus the chapter or
+    #    appendix letter the number is scoped to, so Chapter 3's figures and
+    #    Appendix E's plates are numbered independently, as they are printed.
+    new_of: dict[tuple[str, str], str] = {}
+    targets: dict[tuple[str, str], str] = {}
+    counters: dict[tuple[str, str], int] = {}
+    for m in _FIG.finditer(text):
+        kind, num = m.group("kind").upper(), m.group("num")
+        if kind == "TAB" or "." not in num:
+            continue
+        target = _marker_target(m.group("body"))
+        # A marker with no image is a cross-reference the prose absorbs, not a
+        # printed figure, so it must not consume a number — otherwise the printed
+        # figures skip one wherever such a marker falls between them.
+        if not re.search(r"\.(png|jpe?g)$", target, re.I):
+            continue
+        group, _, _ = num.partition(".")
+        key = (kind, num)
+        if key in new_of:
+            # Same number, different image = two figures sharing one id. Renumbering
+            # cannot silently merge them, and a prose reference to the id would be
+            # ambiguous, so say so rather than guess.
+            if target and targets.get(key) and target != targets[key]:
+                print(f"[warn] {kind}-{num} carries two different images; "
+                      f"numbering follows the first ({targets[key]})")
+            continue
+        counters[(kind, group)] = counters.get((kind, group), 0) + 1
+        new_of[key] = f"{group}.{counters[(kind, group)]}"
+        targets[key] = target
+
+    if not new_of:
+        return text
+
+    def _sub_marker(m: re.Match) -> str:
+        kind, num = m.group("kind").upper(), m.group("num")
+        new = new_of.get((kind, num))
+        if new is None or new == num:
+            return m.group(0)
+        return m.group(0).replace(f"[{m.group('kind')}-{num}:", f"[{m.group('kind')}-{new}:", 1)
+
+    out = _FIG.sub(_sub_marker, text)
+
+    # 2. The same map applies to references written out in prose. The resource-ID
+    #    pass turned `FIG-2.2` into the words "Figure 2.2", so those numbers are
+    #    now ordinary text and would otherwise still point at the old numbering.
+    def _sub_en(m: re.Match) -> str:
+        kind = _KIND_OF_LABEL[m.group(1).lower()]
+        new = new_of.get((kind, m.group(2)))
+        return f"{m.group(1)} {new}" if new else m.group(0)
+
+    def _sub_kz(m: re.Match) -> str:
+        kind = "FIG" if m.group(2).lower().startswith("сурет") else "DIA"
+        new = new_of.get((kind, m.group(1)))
+        return f"{new}-{m.group(2)}" if new else m.group(0)
+
+    out = _FIG_REF_EN.sub(_sub_en, out)
+    out = _FIG_REF_KZ.sub(_sub_kz, out)
+    return out
+
+
 def _png_size(p: Path):
     """Return (w, h) in pixels for a PNG, else None."""
     try:
@@ -951,13 +1086,20 @@ def render_into(
     labels = _LABELS["kz" if lang == "kz" else "en"]
     if base_dir is None:
         base_dir = Path(".")
-    lines = _relocate_diagram_captions(text.splitlines())
+    start_paras = len(doc.paragraphs)
+    lines = _relocate_diagram_captions(renumber_assets(text).splitlines())
 
     figs: dict[tuple, dict] = {}   # (kind, num, target) -> registration
     seq: dict[tuple, int] = {}     # (kind, num) -> next sequence for letter-only ids
 
     def _key(m: re.Match) -> tuple:
-        return (m.group("kind").upper(), m.group("num"), m.group("body").strip())
+        # A figure is identified by its number and its image, NOT by its caption
+        # wording: §3.1.1 and §3.1.3 cite the same Stage-6 plate with slightly
+        # different wording, and keying on the caption made that one image two
+        # figures printed twice under one number. Markers with no image (a table
+        # caption) keep the body in the key, so they are unaffected.
+        body = m.group("body").strip()
+        return (m.group("kind").upper(), m.group("num"), _marker_target(body) or body)
 
     def _register(m: re.Match) -> dict:
         """Resolve a marker once, assigning its caption number and image."""
@@ -1123,10 +1265,33 @@ def render_into(
             _add_equation(doc, stripped[2:-2])
             continue
 
+        if stripped.startswith(">"):
+            flush_paragraph()
+            flush_table()
+            note = stripped.lstrip(">").strip()
+            if note:
+                cleaned, regs, standalone = resolve_markers(note)
+                if standalone:
+                    for f in regs:
+                        _emit(f, note_missing=f["label"] != labels["TAB"])
+                else:
+                    _note(doc, cleaned)
+                    emit_after(regs)
+            continue
+
         m = _HDR.match(stripped)
         if m:
             flush_paragraph()
-            _heading(doc, m.group(2).strip(), len(m.group(1)))
+            level = len(m.group(1))
+            htext = m.group(2).strip()
+            # A structural element opens a new page — unless it is the first thing
+            # this call renders, where the break would only add a blank page (the
+            # full build already breaks after the front matter).
+            brk = (level == 1 and _STRUCTURAL.match(htext) is not None
+                   and len(doc.paragraphs) > start_paras)
+            p = _heading(doc, htext, level)
+            if brk:
+                p.paragraph_format.page_break_before = True
             continue
 
         # List items carry asset markers too — the Appendix-E plate list and the
