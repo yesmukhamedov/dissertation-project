@@ -32,5 +32,10 @@
   - RU: Вычислительная техника и программное обеспечение
   - KZ: Есептеу техникасы және бағдарламалық жасақтама
 - Organization: International Information Technology University (**IITU** / ХАТУ / МУИТ), Almaty.
+- **Language of the defense: KAZAKH.** The Kazakh edition of the dissertation is the defended volume
+  (264 pages); the English edition is a translation of it (238 pages). Consequence for the council
+  documents: **all three abstracts state 264 pages** — an abstract describes the volume being defended,
+  not the edition it is written in. §0.16 inside the English manuscript keeps 238, since there the
+  document describes itself.
 - ⚠️ Do NOT use `defense/presentation/slides/01_TITLE.md` as a source — it is stale (wrong topic,
   wrong candidate patronymic «Сейсенұлы», wrong supervisor name form «Замaнбекқызы»).

@@ -7,6 +7,8 @@ metadata:
 
 Project skill `council-docs` lives at `.claude/skills/council-docs/` (committed to repo, on drive E:). It converts the council Markdown sources in `thesis/output/` (abstract_en/ru/kz, supervisor_review_kz, foreign_consultant_review_en) into GOST-formatted `.docx` and `.pdf`, output to `defense/docs/`.
 
+**Output routing (2026-08-13):** the three abstracts build into `defense/docs/abstracts/`, the two reviews stay at the top level of `defense/docs/`. Routing lives in the `SUBDIRS` dict in `build_all.py`; `--out DIR` moves the whole tree, sub-folder included. `docx2pdf` does not recurse, so the PDF step converts every folder that received a build, one call per folder.
+
 Toolchain (user chose 2026-06-12): `python-docx` builds the GOST docx (A4, Times New Roman 14, single spacing, margins L30/R10/T20/B20 mm, page numbers bottom-center, no number on page 1); PDF via `docx2pdf` driving installed MS Word (Windows-only step). pandoc/LibreOffice NOT installed.
 
 Run: `python .claude/skills/council-docs/scripts/build_all.py` (flags: `--no-pdf`, `--only <stem>...`, `--out/--src`). Single file: `scripts/md2gost.py FILE.md --pdf`.
