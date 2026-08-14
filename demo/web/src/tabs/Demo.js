@@ -319,66 +319,175 @@ function VisualizationBlock({ caseRef, leftPresent, rightPresent, t }) {
 // ---------------------------------------------------------------------------
 // Main page
 // ---------------------------------------------------------------------------
-// Access-password screen (TASK-Demo §C.2). Shown only when the backend reports
-// `requires_password` and no valid password is held yet. A single input — no
+// Access-code screen (TASK-Demo §C.2). Shown only when the backend reports
+// `requires_password` and no valid code is held yet. A 4-digit PIN — no
 // accounts, no login flow — adequate for a ~15-person academic beta.
+//
+// PIN_LENGTH and the digits-only filter must match the shared secret in
+// `demo/.demo-password` (a 4-digit numeric code). If that secret is ever
+// changed to a different length or to non-numeric characters, this screen can
+// no longer express it — change both together.
+const PIN_LENGTH = 4;
+
 function PasswordGate({ onUnlock, t }) {
-  const [pw, setPw] = useState('');
+  const [pin, setPin] = useState('');
   const [status, setStatus] = useState('idle'); // idle | checking | denied
-  const submit = async () => {
-    if (!pw || status === 'checking') return;
+  const [focused, setFocused] = useState(true);
+  const inputRef = useRef(null);
+  // Guards against re-submitting the same completed PIN (the auto-submit
+  // effect re-runs whenever `status` settles back to idle).
+  const submittedRef = useRef('');
+
+  const submit = async (code) => {
+    if (code.length !== PIN_LENGTH || submittedRef.current === code) return;
+    submittedRef.current = code;
     setStatus('checking');
     try {
-      const ok = await verifyPassword(pw);
+      const ok = await verifyPassword(code);
       if (ok) {
-        setPassword(pw);          // persist for subsequent protected requests
+        setPassword(code);        // persist for subsequent protected requests
         onUnlock();
-      } else {
-        setStatus('denied');
+        return;
       }
     } catch {
-      // Network error reaching the backend — treat as denied but distinct copy.
-      setStatus('denied');
+      // Network error reaching the backend — treated as denied, same copy.
     }
+    setStatus('denied');
+    // Clear the cells so the next attempt starts from empty underscores; the
+    // shake plays on the still-filled cells for one animation frame first.
+    setTimeout(() => {
+      setPin('');
+      submittedRef.current = '';
+      if (inputRef.current) inputRef.current.focus();
+    }, 450);
   };
+
+  // Focus trap. The gate is the only thing on the page, so the caret must never
+  // end up anywhere else: a click on any blank area, or any other element
+  // stealing focus, puts it straight back on the PIN field, and typing works
+  // immediately after the tab regains window focus. `pointerdown` is cancelled
+  // rather than corrected afterwards, so focus never visibly leaves.
+  useEffect(() => {
+    const isSelf = (el) => el && el === inputRef.current;
+    const refocus = () => {
+      const el = inputRef.current;
+      if (el && !el.disabled && document.activeElement !== el) el.focus();
+    };
+    const onPointerDown = (e) => {
+      if (isSelf(e.target)) return;
+      e.preventDefault();
+      refocus();
+    };
+    const onFocusIn = (e) => { if (!isSelf(e.target)) refocus(); };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('focusin', onFocusIn);
+    window.addEventListener('focus', refocus);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('focusin', onFocusIn);
+      window.removeEventListener('focus', refocus);
+    };
+  }, []);
+
+  // The input is `disabled` while a code is being checked, which drops focus.
+  // Take it back the moment the check settles, so a rejected code can be
+  // retyped without clicking anything.
+  useEffect(() => {
+    if (status !== 'checking' && inputRef.current) inputRef.current.focus();
+  }, [status]);
+
+  // Fires the check the moment the last digit lands — no button to press.
+  const onChange = (e) => {
+    const next = e.target.value.replace(/\D/g, '').slice(0, PIN_LENGTH);
+    setPin(next);
+    if (status === 'denied' && next.length < PIN_LENGTH) setStatus('idle');
+    if (next.length === PIN_LENGTH) submit(next);
+  };
+
+  const busy = status === 'checking';
+  const denied = status === 'denied';
+  const cells = Array.from({ length: PIN_LENGTH }, (_, i) => pin[i] || '');
+  // Index of the cell the caret sits on (only while focused and not full).
+  const activeIdx = focused && !busy ? Math.min(pin.length, PIN_LENGTH - 1) : -1;
+
   return (
-    <div style={{ maxWidth: 380, margin: '40px auto', textAlign: 'center' }}>
+    <div style={{ maxWidth: 420, margin: '48px auto', textAlign: 'center' }}>
       <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary,#222)', marginBottom: 6 }}>
         {t('demo.gate.title')}
       </h2>
-      <p style={{ fontSize: 12, color: 'var(--color-text-secondary,#666)', lineHeight: 1.55, marginBottom: 14 }}>
+      <p style={{ fontSize: 12, color: 'var(--color-text-secondary,#666)', lineHeight: 1.55, marginBottom: 26 }}>
         {t('demo.gate.prompt')}
       </p>
-      <input
-        type="password"
-        value={pw}
-        autoFocus
-        onChange={(e) => { setPw(e.target.value); if (status === 'denied') setStatus('idle'); }}
-        onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
-        placeholder={t('demo.gate.placeholder')}
+
+      {/* The cells are pure presentation; a single transparent input laid over
+          them owns the value, so paste, backspace, autofill of an SMS-style
+          one-time code and the mobile numeric keypad all work unchanged. */}
+      <div
+        className={denied ? 'pin-row pin-shake' : 'pin-row'}
+        onClick={() => inputRef.current && inputRef.current.focus()}
         style={{
-          width: '100%', padding: '8px 12px', fontSize: 13, boxSizing: 'border-box',
-          border: `1px solid ${status === 'denied' ? C.red : 'var(--color-border-secondary,#ccc)'}`,
-          borderRadius: 6, marginBottom: 10,
-        }}
-      />
-      <button
-        onClick={submit}
-        disabled={!pw || status === 'checking'}
-        style={{
-          width: '100%', padding: '8px 18px', fontSize: 12, fontWeight: 600,
-          background: (!pw || status === 'checking') ? C.gray : C.teal,
-          color: 'white', border: 'none', borderRadius: 6,
-          cursor: (!pw || status === 'checking') ? 'not-allowed' : 'pointer',
+          position: 'relative', display: 'flex', justifyContent: 'center',
+          gap: 14, marginBottom: 18, cursor: 'text',
         }}
       >
-        {status === 'checking' ? t('demo.gate.checking') : t('demo.gate.submit')}
-      </button>
-      {status === 'denied' && (
-        <div style={{ marginTop: 10, fontSize: 11, color: C.redT }}>
-          {t('demo.gate.denied')}
-        </div>
-      )}
+        {cells.map((d, i) => (
+          <div
+            key={i}
+            style={{
+              width: 54, height: 74, display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'flex-end', userSelect: 'none',
+            }}
+          >
+            <div
+              style={{
+                fontSize: 40, lineHeight: 1, fontWeight: 600, fontVariantNumeric: 'tabular-nums',
+                color: denied ? C.redT : 'var(--color-text-primary,#222)',
+                marginBottom: 12, opacity: d ? 1 : 0,
+                transform: d ? 'translateY(0) scale(1)' : 'translateY(6px) scale(0.9)',
+                transition: 'opacity 120ms ease-out, transform 120ms ease-out',
+              }}
+            >
+              {d || '0'}
+            </div>
+            <div
+              className={i === activeIdx && !d ? 'pin-bar pin-bar-active' : 'pin-bar'}
+              style={{
+                width: '100%', height: 5, borderRadius: 3,
+                background: denied ? C.red : (d || i === activeIdx) ? C.teal : 'var(--color-border-secondary,#ccc)',
+                transition: 'background 150ms ease-out',
+              }}
+            />
+          </div>
+        ))}
+        <input
+          ref={inputRef}
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          autoComplete="one-time-code"
+          maxLength={PIN_LENGTH}
+          value={pin}
+          autoFocus
+          disabled={busy}
+          onChange={onChange}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          aria-label={t('demo.gate.placeholder')}
+          style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%',
+            opacity: 0, border: 'none', background: 'transparent',
+            font: 'inherit', color: 'transparent', caretColor: 'transparent',
+            cursor: 'text', outline: 'none',
+          }}
+        />
+      </div>
+
+      {/* Fixed-height status line so the cells do not jump between states. */}
+      <div style={{ minHeight: 32, fontSize: 11, lineHeight: 1.5 }}>
+        {busy && <span style={{ color: 'var(--color-text-secondary,#666)' }}>{t('demo.gate.checking')}</span>}
+        {denied && <span style={{ color: C.redT }}>{t('demo.gate.denied')}</span>}
+        {!busy && !denied && <span style={{ color: 'var(--color-text-tertiary,#999)' }}>{t('demo.gate.hint')}</span>}
+      </div>
     </div>
   );
 }

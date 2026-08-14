@@ -12,14 +12,18 @@ Human-facing runbook: `demo/RUNBOOK.md`. Launch protocol for sessions: `demo/CLA
 
 | Candidate says | Run |
 |---|---|
-| «запускаем demo локально» | `demo\start-demo.ps1` |
+| **«запусти демо» / «запускаем demo» — no qualifier** | `demo\start-pages-demo.ps1` — **public is the DEFAULT** (corrected 2026-08-14: the candidate expects the Cloudflare tunnel and the agreed fixed https://dr-classification.pages.dev straight away; do not launch local and do not ask which one) |
+| «запускаем demo локально» — **local said explicitly** | `demo\start-demo.ps1` |
 | «запускаем demo публично» | `demo\start-pages-demo.ps1` (background; takes minutes) |
 | «останови demo» | `demo\start-pages-demo.ps1 -Stop` |
 
 Decided and **not to be reopened** unless the candidate raises it: public hosting is
 **Cloudflare Pages + quick tunnel at $0** (chosen 2026-08-03 over paying ~$50 to restore the
 lapsed zone or ~$5-12/yr for a new domain); permanent URL **https://dr-classification.pages.dev**;
-password gate always ON, value read from gitignored `demo/.demo-password`; backend mode `auto`
+password gate always ON, value read from gitignored `demo/.demo-password` — and since 2026-08-14
+that value must stay a **4-digit numeric PIN**: the gate screen (`web/src/tabs/Demo.js`,
+`PasswordGate` + `PIN_LENGTH`) renders four large underscore cells that fill with digits and
+auto-submits on the fourth, so a longer or non-numeric secret becomes unenterable; backend mode `auto`
 = native Windows venv (no WSL on this box); wrangler already logged in, `-AccountId` unneeded.
 Every public launch rebuilds the frontend on purpose — the tunnel URL is baked into the bundle.
 

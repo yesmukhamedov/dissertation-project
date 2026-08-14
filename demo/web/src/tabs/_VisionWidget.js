@@ -56,6 +56,32 @@ function unproject(px, py, sw, sh, flipped, box) {
 
 const LOW_CONF = 0.5; // confidence threshold mirroring the detector fallback gate
 
+// Reserve the space a slot needs even on slides where its content is absent, so
+// stepping through the chain does not make the block (and everything under it)
+// jump. The slot remembers the tallest content it has held; `resetKey` clears
+// that memory when the geometry changes (the block was resized), since a
+// narrower block legitimately needs a different height.
+//
+// Returns [ref for the *content* wrapper, reserved height in px].
+function useReservedSlot(resetKey) {
+  const ref = useRef(null);
+  const [reserved, setReserved] = useState(0);
+  useEffect(() => { setReserved(0); }, [resetKey]);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const measure = () => {
+      const h = el.scrollHeight;
+      if (h > 0) setReserved((prev) => (h > prev ? h : prev));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [resetKey]);
+  return [ref, reserved];
+}
+
 export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState('idle'); // idle | loading | done | error
@@ -74,6 +100,11 @@ export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
   const [boxSize, setBoxSize] = useState(BOX);
   const boxRef = useRef(null);        // detection box (pointer math; mounted on its slide only)
   const frameRef = useRef(null);      // always-mounted slide frame; measured for boxSize
+  // Height-stabilised slots for the two blocks that exist on only some slides:
+  // the detection controls (confidence chip, drag/Save, heatmap toggle) and the
+  // per-stage channel decomposition. Keyed on boxSize so a resize re-measures.
+  const [controlsRef, controlsH] = useReservedSlot(boxSize);
+  const [channelsRef, channelsH] = useReservedSlot(boxSize);
 
   // Track the rendered slide width so markers/overlay scale with the block.
   useEffect(() => {
@@ -393,6 +424,14 @@ export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
         </div>
       )}
 
+      {/* Detection controls — confidence chip, drag/Save, heatmap toggle. They
+          belong to the detection slide only, so the slot keeps their height
+          reserved on every other slide and the chain stops jumping as it is
+          stepped through. The reserve exists only when a detection slide is
+          actually in the chain (i.e. there are markers to control). */}
+      <div style={{ minHeight: markers ? controlsH : 0 }}>
+      <div ref={controlsRef}>
+
       {/* OD–fovea chip — only on the detection slide */}
       {onDetection && (
       <div style={{ marginTop: 12, fontSize: 10, color: 'var(--color-text-secondary,#666)' }}>
@@ -462,32 +501,44 @@ export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
         </div>
       )}
 
+      </div>
+      </div>
+
       {/* Per-stage channel decomposition (R/G/B/FOV) — the "how preprocessing
           helps" panel: it tracks the current stage so stepping through the
           slider shows each method's effect on the individual channels. The final
-          CLAHE stage's channels are the CNN input tensor itself. */}
-      {stageChannels.length > 0 && (
+          CLAHE stage's channels are the CNN input tensor itself.
+          Height-reserved like the controls above: the two slides without a
+          decomposition (detection, FOV mask) keep the space and say why, rather
+          than collapsing the block. */}
+      <div style={{ minHeight: channelsH }}>
+      <div ref={channelsRef}>
         <div style={{ marginTop: 14 }}>
           <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--color-text-secondary,#666)', marginBottom: 6 }}>
             {t('demo.vision.stageChannels')}
-            {curSlide.key === 'clahe' && (
+            {stageChannels.length > 0 && curSlide.key === 'clahe' && (
               <span style={{ fontWeight: 400, color: C.gray }}>{' '}· {t('demo.vision.cnnInputNote')}</span>
             )}
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, width: '100%' }}>
-            {stageChannels.map((ch) => (
-              <div key={ch.key}>
-                <img
-                  src={`data:image/png;base64,${ch.png_b64}`}
-                  alt={ch.caption}
-                  style={{ width: '100%', aspectRatio: '1 / 1', objectFit: 'contain', display: 'block', borderRadius: 4, background: '#000' }}
-                />
-                <div style={{ fontSize: 9, color: C.gray, marginTop: 3, textAlign: 'center' }}>{ch.caption}</div>
-              </div>
-            ))}
-          </div>
+          {stageChannels.length > 0 ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, width: '100%' }}>
+              {stageChannels.map((ch) => (
+                <div key={ch.key}>
+                  <img
+                    src={`data:image/png;base64,${ch.png_b64}`}
+                    alt={ch.caption}
+                    style={{ width: '100%', aspectRatio: '1 / 1', objectFit: 'contain', display: 'block', borderRadius: 4, background: '#000' }}
+                  />
+                  <div style={{ fontSize: 9, color: C.gray, marginTop: 3, textAlign: 'center' }}>{ch.caption}</div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div style={{ fontSize: 10, color: C.gray }}>{t('demo.vision.channelsNA')}</div>
+          )}
         </div>
-      )}
+      </div>
+      </div>
     </div>
   );
 }

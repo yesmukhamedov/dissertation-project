@@ -20,7 +20,7 @@ _PANEL_LABELS: dict[str, str] = {
     "original": "0. Original",
     "canonical_flip": "0. Canonical flip",
     "od_fovea_rotation": "1. OD-fovea rotation",
-    "fov_crop_resize": "2/3. FOV crop + resize",
+    "fov_crop_resize": "2. FOV crop + resize",
     "flat_field": "4. Flat-field",
     "clahe": "5. CLAHE",
 }
@@ -156,6 +156,24 @@ def _stage_channels(disp_rgb: np.ndarray, label: str, mask_u8: np.ndarray) -> li
     ]
 
 
+def _mask_slide(mask_u8: np.ndarray) -> dict:
+    """Build the FOV-mask slide (Stage 3, the 4th input channel).
+
+    Args:
+        mask_u8: The 512² binary FOV mask as uint8 (0/255).
+
+    Returns:
+        A slide dict in the same shape as the per-stage image slides. It carries
+        no ``channels`` — the mask *is* a single channel.
+    """
+    return {
+        "key": "fov_mask",
+        "caption": "3. FOV mask (4th channel)",
+        "png_b64": imaging.png_b64_from_bgr(mask_u8),
+        "channels": [],
+    }
+
+
 def _build_payload(
     engine,
     image_bytes: bytes,
@@ -206,10 +224,15 @@ def _build_payload(
 
     # Per-stage slides for the step-by-step detailed view: each preprocessing
     # stage as its own image (bounded resolution), plus the FOV mask (Stage 3,
-    # the 4th input channel) as a final slide. Each image stage also carries its
+    # the 4th input channel) as its own slide. Each image stage also carries its
     # R/G/B/FOV channel decomposition (``channels``) so the demo can show how a
     # method reshapes the individual channels — the "how preprocessing helps"
     # panel. The final CLAHE stage's channels are the CNN input tensor itself.
+    #
+    # Slide ORDER is the pipeline order: the mask slide is emitted right after
+    # ``fov_crop_resize``, the stage that produces it, so the chain the demo
+    # steps through reads 0 → 5 without a numbering break (it used to be
+    # appended last, landing a "3." slide after "5. CLAHE").
     stage_slides = []
     for label, img in bd["stages"]:
         disp = _fit_max(img)
@@ -219,12 +242,12 @@ def _build_payload(
             "png_b64": imaging.png_b64_from_rgb(disp),
             "channels": _stage_channels(disp, label, mask_u8),
         })
-    stage_slides.append({
-        "key": "fov_mask",
-        "caption": "3. FOV mask (4th channel)",
-        "png_b64": imaging.png_b64_from_bgr(mask_u8),
-        "channels": [],
-    })
+        if label == "fov_crop_resize":
+            stage_slides.append(_mask_slide(mask_u8))
+    # Fallback: if the crop stage is ever absent from the breakdown, the mask
+    # still gets a slide rather than silently disappearing.
+    if not any(s["key"] == "fov_mask" for s in stage_slides):
+        stage_slides.append(_mask_slide(mask_u8))
 
     return {
         "fov_mask_png_b64": imaging.png_b64_from_bgr(mask_u8),  # single-channel → PNG

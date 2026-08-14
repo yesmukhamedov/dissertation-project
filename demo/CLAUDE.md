@@ -11,7 +11,8 @@ alternatives, no re-deriving the architecture.
 
 | The candidate says | Run |
 |---|---|
-| «запускаем demo **локально**» / "run the demo locally" | `powershell -ExecutionPolicy Bypass -File D:\dissertation-project\demo\start-demo.ps1` |
+| «запусти демо» / «запускаем demo» / "launch the demo" — **no qualifier: PUBLIC is the default** | `powershell -ExecutionPolicy Bypass -File D:\dissertation-project\demo\start-pages-demo.ps1` (background) — the candidate expects the Cloudflare tunnel and the agreed fixed https://dr-classification.pages.dev immediately. Do not fall back to the local launcher and do not ask which one (settled 2026-08-14). |
+| «запускаем demo **локально**» / "run the demo locally" — local said **explicitly** | `powershell -ExecutionPolicy Bypass -File D:\dissertation-project\demo\start-demo.ps1` |
 | «запускаем demo **публично**» / "publish the demo" / "share the demo" | `powershell -ExecutionPolicy Bypass -File D:\dissertation-project\demo\start-pages-demo.ps1` |
 | «останови demo» / "stop the demo" | `.\start-pages-demo.ps1 -Stop` (public) or close the two windows (local) |
 
@@ -21,7 +22,9 @@ Public launches take several minutes (model load + CRA build + Pages deploy) —
 **Settled parameters — do not ask about these:**
 
 - **Password.** Always on. Read automatically from `demo/.demo-password` (gitignored); pass
-  `-Password` only if the candidate names a different one in the same breath.
+  `-Password` only if the candidate names a different one in the same breath. It must be a
+  **4-digit numeric PIN** — the gate screen is a four-cell PIN entry (`web/src/tabs/Demo.js`,
+  `PIN_LENGTH`), so any other secret cannot be typed in.
 - **Public hosting = Cloudflare Pages + quick tunnel, $0.** Decided 2026-08-03 after the zone
   `yeskendyr.men` lapsed and Cloudflare quoted ~$50 to restore. Do not re-propose buying a
   domain, restoring that one, or a named tunnel unless the candidate raises it.
