@@ -544,14 +544,17 @@ def _line_block(doc: Document, lines: list[str]):
     set as separate lines rather than as flowing prose. A Markdown hard break
     (two trailing spaces) opts a block into this shape: no first-line indent, left
     aligned rather than justified, and a run of 3+ spaces inside a line becomes a
-    right tab stop so the trailing name lands at the right margin.
+    right tab stop so the trailing name lands at the right margin. The samples
+    always set the block off from the prose above it, so the block opens with a
+    blank line's worth of space while its own lines stay tight together.
     """
     usable = _USABLE_MM
-    for text in lines:
+    for i, text in enumerate(lines):
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.LEFT
         p.paragraph_format.first_line_indent = Mm(0)
         p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.space_before = Pt(14) if i == 0 else Pt(0)
         head, sep, tail = text.partition("   ")
         if sep and tail.strip():
             p.paragraph_format.tab_stops.add_tab_stop(Mm(usable), WD_TAB_ALIGNMENT.RIGHT)

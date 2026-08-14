@@ -42,10 +42,10 @@
 
 ## Conclusion
 
-The presented dissertation for the degree of Doctor of Philosophy (PhD) by Yesmukhamedov Nurmaganbet Seitkaliuly on the topic «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy» is a completed independent piece of scientific research, which meets the requirements of the Rules for awarding degrees, and its author deserves to be petitioned before the Committee for the award of the degree of Doctor of Philosophy (PhD) in the educational program 8D06102 — Computer and Software Engineering.
+The presented dissertation for the degree of Doctor of Philosophy (PhD) by **Yesmukhamedov Nurmaganbet Seitkaliuly** on the topic «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy» is a completed independent piece of scientific research, which meets the requirements of the Rules for awarding degrees, and its author deserves to be petitioned before the Committee for the award of the degree of Doctor of Philosophy (PhD) in the educational program 8D06102 — Computer and Software Engineering.
 
-Official reviewer:
+**Official reviewer:**  
 
 PhD, Associate Professor  
 Research Professor, Department of Mathematical and Computer Modeling  
-International Information Technology University, Almaty   Omarov Batyrkhan Sultanovich
+International Information Technology University, Almaty   **Omarov Batyrkhan Sultanovich**

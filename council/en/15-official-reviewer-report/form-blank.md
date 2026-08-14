@@ -176,17 +176,24 @@ Column 2 is left empty; one or two sentences in column 3.
 ```
 Conclusion
 
-The presented dissertation for the degree of Doctor of Philosophy (PhD) by <Name> on the topic
+The presented dissertation for the degree of Doctor of Philosophy (PhD) by **<Name>** on the topic
 «<Title>», meets the requirements of the Rules, the author deserves to petition the Committee for the
 award of the degree of Doctor of Philosophy (PhD).
 
 
-Official reviewer:
+**Official reviewer:**
 
 <degree, academic title>
 <school / department>
-<organisation, city>                                                            <Full Name>
+<organisation, city>                                                        **<Full Name>**
 ```
+
+Emphasis measured off Бакирова's two reports: `Заключение` is a bold run-in heading at body size
+(no numbering, no dot), the paragraph is justified with the normal 1.25 cm first-line indent and
+runs 4–6 lines, and three items inside it are bold — the **candidate's name** in the paragraph,
+the **`Официальный рецензент:`** line (flush left, no indent), and the **signatory's name** at the
+right margin. A blank line's worth of space sets the signature block off from the prose; the
+converter adds it automatically to the first line of any hard-broken block.
 
 RU first sentence, verbatim from Бакирова:
 
@@ -195,8 +202,8 @@ RU first sentence, verbatim from Бакирова:
 > требованиям «Правил присуждения степеней», а ее автор заслуживает ходатайствовать перед Комитетом о
 > присуждении степени доктора философии (PhD).
 
-**KZ** — the Kazakh sample has **no separate closing paragraph**: the full sentence sits inside row 13
-and the signatory follows the table directly.
+**KZ** — the Kazakh sample (Тоқтарова) carries **no separate closing paragraph**: it puts the whole
+sentence inside row 13 and lets the signatory follow the table directly.
 
 ```
 … Ізденуші <Тегі Аты Әкесінің аты>-ның «<Тақырып>» тақырыбындағы диссертациялық жұмысы жоғары
@@ -211,3 +218,22 @@ and the signatory follows the table directly.
 <бөлім / мектеп>
 <лауазымы, дәрежесі>                                                     <Тегі Аты Әкесінің аты>
 ```
+
+**Our KZ reports follow Бакирова, not Тоқтарова** (decided 2026-08-14). Row 13 carries the one-line
+decision only — as §6.7 and the form itself require, and as every EN/RU sample does — and the
+sentence it used to swallow becomes a `Қорытынды` paragraph after the table, parallel to the EN and
+RU halves and with the same three bold items:
+
+```
+Қорытынды
+
+Философия докторы (PhD) дәрежесін алуға ұсынылған **<Тегі Аты Әкесінің аты, ілік септік>**
+«<Тақырып>» тақырыбындағы диссертациясы «Дәрежелер беру қағидаларының» талаптарына жауап беретін
+аяқталған дербес ғылыми-зерттеу жұмысы болып табылады, ал оның авторы 8D06102 — «Компьютерлік және
+программалық инженерия» білім беру бағдарламасы бойынша философия докторы (PhD) дәрежесін беру
+туралы Комитет алдында өтініш білдіруге лайықты.
+```
+
+Either shape is defensible — both come from real accepted submissions — but one shape across the
+three language versions of the same report is worth more than matching whichever sample happened to
+be in that language.
