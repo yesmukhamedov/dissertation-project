@@ -1,6 +1,6 @@
 # CHAPTER_STATUS — status of the dissertation chapters and what each one needs
 
-Source: `thesis/PLAN.md`, `thesis/outline/TABLE_OF_CONTENTS_EN.md`, the chapter READMEs,
+Source: `thesis/outline/TABLE_OF_CONTENTS_EN.md`, the chapter READMEs,
 `thesis/ASSET_INVENTORY.md`. Workflow for a single section:
 `briefs/ → drafts/ → continuity/ → reviews/ → translations/` (the quintet).
 State of the data — the **2026-08-03** run.
@@ -21,8 +21,10 @@ are unaffected by the change of run.
 
 ## What has NOT been written — Phase 2
 
-There are no placeholder files; the sections have not been created yet. They are held in
-`thesis/PLAN.md` as `⛔ blocked-by <ID>`.
+There are no placeholder files; the sections have not been created yet.
+
+> **Superseded.** This section records the state before the runs. All of Phase 2 has since been
+> written and approved — see the chapter READMEs and `thesis/CLAUDE.md` for the live status.
 
 ### Chapter 4 "Experiments" — §4.2–§4.8 + §4.C
 

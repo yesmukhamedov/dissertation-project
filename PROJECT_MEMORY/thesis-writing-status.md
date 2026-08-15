@@ -5,7 +5,17 @@ metadata:
   type: project
 ---
 
-Consolidates the former `phase1-writing-complete` + `chapter3-methodology-drafted` memories. Live tracker is `thesis/PLAN.md`; supervisor role/protocol in `SUPERVISOR_HANDOFF.md` (kept current). Trust real files (drafts/ + reviews/ §H verdict), not tracker checkboxes — the executor (separate chat) writes faster than PLAN.md updates.
+Consolidates the former `phase1-writing-complete` + `chapter3-methodology-drafted` memories. Supervisor role/protocol in `SUPERVISOR_HANDOFF.md` (kept current). Trust real files (drafts/ + reviews/ §H verdict), not any tracker.
+
+> **`thesis/PLAN.md` was deleted 2026-08-15** (recoverable from git history), after a disk check
+> confirmed every writing phase closed. It had outlived its job: the board tracked drafting, and
+> drafting ended. Two of the three items its closing section still listed as open were checked and
+> found stale or non-binding — the #49/#50/#51 literature cards were written 2026-06-16 (only the
+> optional DDR full-PDF upgrade is left, see [[literature-integrity-flags]]), and the trim queue is
+> optional by measurement (238 EN / 265 KZ against a 300-page rule). The one genuinely open item is
+> **NEW-1**, which lives in [[new1-traceability-scope]] and cannot be closed from `thesis/` at all.
+> Also still on the candidate personally: verify the §2.1.2 page locators (5→83, 9→87) against the
+> published article, and read the governance-code rows in the abbreviations once as a reviewer would.
 
 ## Phase 1 COMPLETE (2026-06-10)
 
