@@ -168,12 +168,19 @@ def load_registry() -> dict:
 
 
 def resolve(reg: dict, path: str) -> str:
-    """Look up a dotted registry path, or `pub:N` for publication N's DOI."""
+    """Look up a dotted registry path, or `pub:N[.field]` for publication N.
+
+    `pub:N` yields the DOI, which is what the document scan compares against;
+    `pub:N.field` reaches any other key of that publication, so a gap such as a
+    missing page range can be tracked in [missing] like any other field.
+    """
     if path.startswith("pub:"):
-        num = int(path.split(":", 1)[1])
+        spec = path.split(":", 1)[1]
+        num_str, _, field = spec.partition(".")
+        num = int(num_str)
         for item in reg["publications"]["items"]:
             if item["num"] == num:
-                return item["doi"]
+                return str(item[field]) if field else item["doi"]
         raise KeyError(f"publication {num} not in registry")
     node = reg
     for part in path.split("."):

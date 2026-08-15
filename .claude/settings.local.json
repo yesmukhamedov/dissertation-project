@@ -668,7 +668,18 @@
       "WebFetch(domain:nic.eu.org)",
       "WebFetch(domain:www.cloudflare.com)",
       "Bash(awk '{printf \"%.1f MB  %s\\\\n\", $1/1048576, $2}')",
-      "Bash(grep -rhoE \"['\\\\\"\\\\`]/\\(images|pipeline|datasets|fundus-examples|results|diagrams|camera|webApp\\)[^'\\\\\"\\\\`]*\" src/)"
+      "Bash(grep -rhoE \"['\\\\\"\\\\`]/\\(images|pipeline|datasets|fundus-examples|results|diagrams|camera|webApp\\)[^'\\\\\"\\\\`]*\" src/)",
+      "Bash(rm -f site_ann/*.pdf site_ann/*.docx)",
+      "Bash(python fetch_announcements.py)",
+      "Bash(python build_index.py)",
+      "Bash(sed -n '/## Состав/,/review_extra/p' ../INDEX.md)",
+      "Bash(awk '/===== PAGE/{p=$3} /[А-Яа-яA-Za-z]{4}/{if\\(!seen[p]++\\) print \"  стр.\"p\": \"substr\\($0,1,90\\)}' bazarbekov/ethics_conclusion.txt)",
+      "Bash(sed -n '/Заключение Локального/,/PAGE 2/p' bazarbekov/ethics_conclusion.txt)",
+      "Bash(python build_all.py --only publications_list_ru)",
+      "Bash(cp /d/dissertation-project/defense/docs/publications/publications_list_ru.pdf __TRACKED_VAR__/pub.pdf)",
+      "Bash(pdftotext -enc UTF-8 -layout __TRACKED_VAR__/pub.pdf __TRACKED_VAR__/pub.txt)",
+      "Bash(sed -n 1,30p __TRACKED_VAR__/pub.txt)",
+      "Bash(sed -n 9,34p __TRACKED_VAR__/pub.txt)"
     ]
   }
 }
