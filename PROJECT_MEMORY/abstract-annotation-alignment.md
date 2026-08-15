@@ -54,7 +54,7 @@ Also: Main results now state the seven hypothesis outcomes with their fences (th
 each was "evaluated"); novelty gained the cumulative-ablation item, the two non-empirical contributions, and
 the SIR-4 lineage on CLAHE; the H-7 margin is given as 0.0041 per §0.8.
 
-**Page figures stated: 264 pp in ALL THREE abstracts**, with 42 tables, 26 figures, 2 diagrams and 107
+**Page figures stated: 265 pp in ALL THREE abstracts** (264 until the 2026-08-14 rebuild; source of record is `council/METADATA.toml`), with 42 tables, 26 figures, 2 diagrams and 107
 sources, all excluding appendices. The defense is held in Kazakh, so the Kazakh edition is the defended
 volume and every abstract cites *its* extent regardless of the abstract's own language — the English one
 included. See [[defense-language-kazakh]] for why §0.16 of the English manuscript still says 238 and must

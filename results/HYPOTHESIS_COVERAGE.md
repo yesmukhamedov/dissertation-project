@@ -4,7 +4,7 @@ A reconciliation of the **literal text** of `thesis/governance/HYPOTHESIS.md` (v
 **2026-08-03** run delivers. The aim is a list of what still has to be run in `experiments/` so that
 `results/` closes the hypotheses as worded, not merely "in spirit".
 
-Updated 2026-08-03. Complements `GAP_ANALYSIS.md` (which reconciles the needs of the
+Updated 2026-08-03. Complements `README.md` (which reconciles the needs of the
 chapters/demo/defense; this one covers the requirements of the hypotheses).
 
 > `thesis/` is read-only. No edits to the text of the hypotheses are proposed here; this file covers
@@ -165,4 +165,4 @@ Without it, the numbers in the chapters will not be traceable to a source.
 
 **G-10** gets verified along the way while closing NEW-1.
 
-After each step — mark it here and in `TODO_BEFORE_WRITING.md`.
+After each step — mark it here and in the `README.md` "Next steps" checklist.

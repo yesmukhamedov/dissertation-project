@@ -3,7 +3,8 @@
 **Document type:** Resource inventory (prerequisite for the chapter-by-chapter writing PLAN)
 **Candidate:** Yesmukhamedov N.S.
 **Compiled:** 2026-06-08
-**Revised:** 2026-08-04 — reconciled against the latest **2026-08-03 experimental run** and against **governance v7.0.0** (H-7 reformulated: *Clinical Degradation Resistance* → *External Clinical Performance*; the Δ_drop form retired to descriptive status).
+**Revised:** 2026-08-15 — §1 brought level with §2, which had been maintained while the summary was not: the appendix rows, the ❌ tally, the writing-order block and the two "until the experiments are run" notes. §2 is the authoritative per-asset status.
+**Previously revised:** 2026-08-04 — reconciled against the latest **2026-08-03 experimental run** and against **governance v7.0.0** (H-7 reformulated: *Clinical Degradation Resistance* → *External Clinical Performance*; the Δ_drop form retired to descriptive status).
 **Scope:** Full monorepo scan (`experiments/`, `demo/`, `defense/`, `thesis/assets/`) reconciled against the required figures/tables derived from `thesis/outline/MASTER_OUTLINE.md`, every chapter `README.md`, `thesis/governance/RESEARCH_ARCHITECTURE.md` (v7.0.0), and `HYPOTHESIS.md` (v7.0.0).
 
 ---
@@ -62,13 +63,22 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 - **✅ AVAILABLE (real, citable):** 33 — unchanged: **preprocessing stage renders, dataset sample images, conceptual/architecture diagrams, the OD/fovea validation, norm-stat artifacts, source code, and publication certificates**.
 - **🟡 RENDERED (provenance pending):** 30 — essentially **every result table and figure for Exp 1–7**, now rendered from the 2026-08-02 run via `results/`. Writable against; not yet citable (see §0).
 - **⏳ PENDING:** 5 — TAB-5.3 (SOTA comparison, literature-bound), FIG-5.4 (PR curves — need `predictions.npz`), App B partial, plus per-group confusion matrices and per-class ROC-AUC that the run did not record.
-- **❌ MISSING (real result):** 10 — clinical (KZ) Grad-CAM gallery (gap G-3), UML diagrams (App C), and the App E/F supplements that depend on them.
+- **❌ MISSING (real result):** 1 — the clinical (KZ) Grad-CAM gallery (gap G-3), which is why H-5 is supported in its quantitative half only and App E is IDRiD-only.
+  > **Corrected 2026-08-15.** This line previously read "10 — … UML diagrams (App C), and the App E/F supplements that depend on them", contradicting §2, where APP-C/E/F and DIA-6.3 have carried ✅ **WRITTEN & APPROVED** since 2026-08-12. Appendix C supplies the four architectural views and discharges DIA-6.3; App E and App F were written and never depended on it. G-3 is the one genuine absence.
 
 **Demo web asset manifest (§4) — files present in `demo/web/public/`:** 471 files. `results/` (33 files: 30 PNG + 3 JSON — **27 PNGs regenerated 2026-08-03** from the current run; 3 pipeline/Grad-CAM illustrations left untouched, see below), `diagrams/` (4), `pipeline/` (430 PNG + 1 helper JSON). The `pipeline/` preprocessing renders are real pipeline outputs. The `results/` figures are **no longer previews** — they are rendered from the run's numbers, subject to the §0 provenance caveat.
 
 **Not regenerated (deliberately):** `results/general/25_pipeline_stages_real.png`, `…/26_bilateral_pair.png`, `results/exp4/27_gradcam_overlay.png`. These are pipeline/Grad-CAM *illustrations* that display no metric from any run, so they are not stale. Their source images (`demo/web/public/fundus-examples/dr04/{right,left}_eye.jpeg`) are absent from this checkout, so they are also not currently reproducible. See `demo/TASK.md` §1.3.
 
 ### 1.3 Implication for writing order
+
+> **Superseded 2026-08-15 — kept as a record of the plan, not as a status.** Everything below
+> was written: 98 sections in each language, all approved, exported to the council-ready GOST
+> pair. Appendix C was written and approved on 2026-08-12, so Chapter 6 has no outstanding
+> blocker; App E and App F are complete, App E bounded to IDRiD by G-3. The live per-chapter
+> status is `thesis/CLAUDE.md`; the live per-asset status is §2 of this document. Two items
+> from "Decisions" below are still open and are stated correctly there: **provenance (NEW-1)**
+> and **G-3**.
 
 **Writable now (no result dependency):**
 - **Chapter 1 (Problem Domain)** — literature review; dataset sample montages available for context.
@@ -85,7 +95,7 @@ consolidated in `results/STATUS.md`; per-experiment tables in `results/tables/`.
 - **Chapter 5 (Validation)** — ✅ §5.2.1/§5.2.2 writable (`results/tables/TAB-5.1`, `TAB-5.2`); §5.3 still needs the literature-side TAB-5.3.
 - **Chapter 0 (§0.8) & Chapter 7 (Conclusion)** — ✅ unblocked; all verdicts are final.
 - **Appendices B, E, F** — data exists; App B needs `predictions.npz` for PR/ROC curves, App E needs G-3, App F needs a per-group confusion-matrix dump.
-- **Appendix C (UML)** — ❌ still missing; asset task, not experiment-gated.
+- **Appendix C (architectural views)** — ✅ written and approved 2026-08-12; discharges DIA-6.3. (Was "❌ still missing" here until 2026-08-15.)
 
 **Decisions:**
 1. **Where H-3 goes — RESOLVED.** H-3 is reinstated as its own section, **§4.4 Domain Distance Reduction Across Six Target Domains**, placed after the stage ablation and before every external-generalization section, because it states the mechanism those sections test the consequences of. Chapter-4 numbering downstream of §4.3 shifts by one: Exp 3 → §4.5, Exp 4 → §4.6, Exp 5 → §4.7, Exp 6 → §4.8, Exp 7 → §4.9. New identifiers **TAB-4.11** and **FIG-4.17** carry its table and figure. The "H-3: DROPPED in V3" record in `thesis/CLAUDE.md` is superseded.
@@ -313,7 +323,7 @@ Complete enumeration of every PNG/JSON under `demo/web/public/results`, `demo/we
 | DEMO-R-33 | `results/general/25_pipeline_stages_real.png` | png | FIG-3.1 | ⏸️ KEPT (pre-run illustration) — no run metric; source image missing |
 | DEMO-R-34 | `results/general/26_bilateral_pair.png` | png | FIG-4.2 | ⏸️ KEPT (pre-run illustration) — no run metric; source image missing |
 
-> Note: `results/exp3/exp3_aptos_transfer.json`, `results/exp5/exp5_degradation.json`, `results/exp7/exp7_small_data.json`, and `results/exp2/exp2_ff_sweep.json` contain dashboard preview numbers; the matching dissertation results remain `❌ MISSING` (§2.4) until the experiments are run.
+> Note (revised 2026-08-15): `results/exp3/exp3_aptos_transfer.json`, `results/exp5/exp5_degradation.json`, `results/exp7/exp7_small_data.json`, and `results/exp2/exp2_ff_sweep.json` were dashboard preview numbers when this list was compiled. **The experiments have since been run**, and these dashboard JSONs were regenerated from the run via `results/`. The provenance caveat in §0 still applies — they are renderings of the run, not primary output files — but they are no longer previews of an unrun experiment.
 
 ### 4.2 `diagrams/` — architecture & pipeline diagrams (4 files)
 
@@ -449,4 +459,4 @@ pipeline/dr04/results/prediction/left.png
 pipeline/dr04/results/prediction/right.png
 ```
 
-> The `pipeline/dr0X/preprocessing/` renders (Stages 0–7) are **real pipeline outputs** and directly back Chapter 3's stage figures. The `pipeline/dr0X/results/` overlays (gradcam/attention/prediction) are dashboard previews; the corresponding quantitative Exp 4 results remain `❌ MISSING` (§2.4).
+> The `pipeline/dr0X/preprocessing/` renders (Stages 0–7) are **real pipeline outputs** and directly back Chapter 3's stage figures. The `pipeline/dr0X/results/` overlays (gradcam/attention/prediction) are dashboard **illustrations** and remain so — they display no measured quantity, and none of them reaches the manuscript. The quantitative Exp 4 results exist: Exp 4 was run, and Appendix E carries the complete 54-plate annotated subset generated from it (revised 2026-08-15).

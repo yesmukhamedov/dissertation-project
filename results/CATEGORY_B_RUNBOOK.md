@@ -68,7 +68,7 @@ python scripts/analyze_exp1_predictions.py \
 
 ## After the tables are obtained — update
 
-- `results/GAP_ANALYSIS.md` (category B → closed), `results/TODO_BEFORE_WRITING.md` (B0–B4).
+- Category B was tracked as closed in `GAP_ANALYSIS.md` and `TODO_BEFORE_WRITING.md`; both were deleted 2026-08-15 (in git history).
 - `results/tables/TAB-5.4_clinical_referable.md` — add the exp1 in-domain rows (B3).
 - `results/tables/TAB-5.2_claim_strength.md` — if DeLong shows ΔAUC to be significant (B vs A / D vs C),
   strengthen the wording about the AUC gain (currently MODERATE, based on the per-fold CIs).

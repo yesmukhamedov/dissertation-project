@@ -35,7 +35,7 @@ State — after the **2026-08-03** run.
 
 1. 🔴 **The 2026-08-03 run artifacts have not been published** into `experiments/outputs/` — every
    script below reads from there and will currently return numbers from the **previous** run. Close
-   this first (item NEW-1 in `GAP_ANALYSIS.md`), otherwise any cross-check is misleading.
+   this first (item NEW-1; see `INTEGRITY_NOTE.md` §1), otherwise any cross-check is misleading.
 2. **An outputs→figures bridge** — there is no script that reads
    `experiments/outputs/exp*/{summary.json, *_results.json, metrics.csv}` and draws
    publication-quality figures. Build one (reusing the palette) to eliminate manual transcription as

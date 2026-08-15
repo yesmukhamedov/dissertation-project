@@ -591,6 +591,14 @@ _FORM_CRIT_HEADS = ("criteria", "критерии", "критерийлер")
 _FORM_COL_FRAC = (0.04, 0.17, 0.25, 0.54)
 
 
+# The list of scientific papers, portrait like every sample of this document.
+# The proportions are set by the longest unbreakable word each column has to
+# hold rather than by its share of the text: column 3 must fit «электронный»
+# and column 6 a surname like «Кожамкулова», or Word hyphenates them mid-word.
+_PUBS_COL_FRAC = (0.045, 0.20, 0.17, 0.275, 0.115, 0.195)
+_PUBS_TITLE_HEADS = ("название труд", "наименование науч")
+
+
 def _is_form_table(header: list[str], ncols: int) -> bool:
     """True for the Appendix-3 reviewer form, recognised by its header alone."""
     return (
@@ -598,6 +606,16 @@ def _is_form_table(header: list[str], ncols: int) -> bool:
         and len(header) >= 2
         and header[0].strip() in _FORM_NUM_HEADS
         and header[1].strip().lower().startswith(_FORM_CRIT_HEADS)
+    )
+
+
+def _is_pubs_table(header: list[str], ncols: int) -> bool:
+    """True for the list-of-scientific-papers table, by its header alone."""
+    return (
+        ncols == 6
+        and len(header) >= 2
+        and header[0].strip() in _FORM_NUM_HEADS
+        and header[1].strip().lower().startswith(_PUBS_TITLE_HEADS)
     )
 
 
@@ -623,8 +641,17 @@ def _merge_continuation_rows(table, rows: list[list[str]]) -> None:
 
 
 def _apply_form_widths(table, header: list[str], ncols: int) -> None:
-    """Give the Appendix-3 reviewer form its real column proportions."""
-    if not _is_form_table(header, ncols):
+    """Give a known council form its real column proportions.
+
+    Word's autofit divides the text block evenly, which squeezes the two columns
+    that carry the prose (the criterion argument; the paper title and imprint)
+    into unreadable ribbons. Both forms are recognised by their header row alone.
+    """
+    if _is_form_table(header, ncols):
+        fracs = _FORM_COL_FRAC
+    elif _is_pubs_table(header, ncols):
+        fracs = _PUBS_COL_FRAC
+    else:
         return
     table.autofit = False
     tbl_pr = table._tbl.tblPr
@@ -632,7 +659,7 @@ def _apply_form_widths(table, header: list[str], ncols: int) -> None:
     layout.set(qn("w:type"), "fixed")
     tbl_pr.append(layout)
     for row in table.rows:
-        for cell, frac in zip(row.cells, _FORM_COL_FRAC):
+        for cell, frac in zip(row.cells, fracs):
             cell.width = Mm(_USABLE_MM * frac)
 
 

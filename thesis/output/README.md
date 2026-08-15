@@ -1,6 +1,23 @@
 # Output Directory
 
-Final deliverable staging area for generated dissertation documents.
+Council deliverables staged as Markdown. These are the **sources**; the GOST `.docx`/`.pdf`
+renderings are built from them by the `council-docs` skill into `defense/docs/`.
 
-- `chapters-en/` — English chapter drafts (.docx)
-- `chapters-kz/` — Kazakh translated chapter drafts (.docx)
+| File(s) | Deliverable |
+|---------|-------------|
+| `abstract_{en,ru,kz}.md` | Trilingual abstract (annotation) |
+| `titlepage_{en,kz}.md` | Title page (reads the metadata registry) |
+| `contents_{en,kz}.md` | Table of contents |
+| `normative_references_{en,kz}.md` | Normative references |
+| `abbreviations_{en,kz}.md` | Designations and abbreviations |
+| `definitions_{en,kz}.md` | Definitions |
+| `supervisor_review_kz.md` | Supervisor's review |
+| `foreign_consultant_review_en.md` | Foreign consultant's review |
+| `official_reviewer_{1,2}_review_{en,ru,kz}.md` | Official reviewers' reports (Appendix 3 form) |
+| `publications_list_ru.md` | List of scientific papers |
+
+The supervisor's and foreign consultant's reviews are the reviewers' own documents and are
+re-exported only when revised.
+
+Volume figures stated in the abstracts come from `council/METADATA.toml`, which is the
+registry of record — do not hand-edit them here.

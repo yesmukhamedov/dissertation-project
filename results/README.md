@@ -42,8 +42,9 @@
 > ⚠️ **Provenance needs syncing.** The numbers were taken from `VALUES.md`. The raw run artifacts
 > (`summary.json`, `*_results.json`, `metrics.csv`, `predictions.npz`) were **absent from
 > `experiments/outputs/`** at the time of the update (the latest files there date from 2026-07-30),
-> and `results/data/*.json` contain numbers from the **previous** run. This must be closed out
-> before the chapters are written — see `data/MANIFEST.md` and `TODO_BEFORE_WRITING.md`.
+> and `results/data/*.json` contain numbers from the **previous** run. **Still open (NEW-1)** — the
+> chapters were written from `results/` regardless, so every number traces here but not yet to a
+> primary output file. See `data/MANIFEST.md`, `INTEGRITY_NOTE.md` §1, and the "Next steps" list below.
 >
 > Note on `VALUES.md` itself: §6.1 (`kowa_idrid`, `topcon_messidor2`) had **not** been regenerated
 > together with §7 and still carried superseded values for the same two measurements. Both rows were
@@ -78,18 +79,16 @@ Fundus Image Enhancement and CNN Classification". Central thesis: **model = prep
 1. **[STATUS.md](STATUS.md)** — status of all experiments + metrics and verdicts of the 2026-08-03 run.
 2. **[INTEGRITY_NOTE.md](INTEGRITY_NOTE.md)** — ⚠️ discrepancy between demo/defense and the real data,
    plus the state of provenance. Mandatory reading before touching any numbers/figures.
-3. **[CHAPTER_STATUS.md](CHAPTER_STATUS.md)** — what has been written in the dissertation, what is
-   unblocked, what each section needs.
-4. **[GAP_ANALYSIS.md](GAP_ANALYSIS.md)** — ✅/⬜ checklist: is everything assembled for the
-   dissertation / presentation / demo; what is missing and how to obtain it.
-5. **[HYPOTHESIS_COVERAGE.md](HYPOTHESIS_COVERAGE.md)** — reconciliation of the letter of
+3. **[CHAPTER_STATUS.md](CHAPTER_STATUS.md)** — which assets each dissertation section draws on.
+   Its readiness verdicts are a pre-run record; the dissertation has since been written in full.
+4. **[HYPOTHESIS_COVERAGE.md](HYPOTHESIS_COVERAGE.md)** — reconciliation of the letter of
    `thesis/governance/HYPOTHESIS.md` with the actual artifacts (gaps G-1…G-12: what the run closed,
    what remains).
-6. **[TOOLING.md](TOOLING.md)** — which metric/statistics/figure scripts to reuse.
-7. **[hypotheses/](hypotheses/)** — verdict cards for each hypothesis (H-1…H-7 + exp7/SSL).
-8. **[findings/](findings/)** — narrative conclusions for each experiment (draft prose for the chapters).
-9. **[tables/](tables/)** — ready-made tables (source for TAB-4.x / TAB-5.x).
-10. **[data/](data/)** — canonical result files (+ [MANIFEST](data/MANIFEST.md)).
+5. **[TOOLING.md](TOOLING.md)** — which metric/statistics/figure scripts to reuse.
+6. **[hypotheses/](hypotheses/)** — verdict cards for each hypothesis (H-1…H-7 + exp7/SSL).
+7. **[findings/](findings/)** — narrative conclusions for each experiment (draft prose for the chapters).
+8. **[tables/](tables/)** — ready-made tables (source for TAB-4.x / TAB-5.x).
+9. **[data/](data/)** — canonical result files (+ [MANIFEST](data/MANIFEST.md)).
     ⚠️ **contain numbers from the previous run** — require re-synchronization.
 
 ## Strategy (after the 2026-08-03 run)
@@ -133,10 +132,14 @@ verdict corrected to CONFIRMED (2/2); the Δ_drop material was demoted to refere
 
 ## Next steps — working checklist
 
-➡️ **[TODO_BEFORE_WRITING.md](TODO_BEFORE_WRITING.md)** — the canonical list. In brief:
+> The former `TODO_BEFORE_WRITING.md` and `GAP_ANALYSIS.md` were deleted on 2026-08-15 (recoverable
+> from git). Both were pre-writing working files, and the writing is finished — 98 sections in each
+> language, exported. Their surviving items are the list below.
 
-- [ ] **Synchronize provenance** — publish the raw artifacts of the 2026-08-03 run into
-      `experiments/outputs/` and update `results/data/*.json`. Blocks carrying numbers into the chapters.
+- [ ] **Synchronize provenance (NEW-1)** — publish the raw artifacts of the 2026-08-03 run into
+      `experiments/outputs/` and update `results/data/*.json`. The chapters were written from this
+      folder, so this no longer blocks writing; it blocks *traceability to a primary output file*,
+      and it must close before the defense.
 - [ ] **G-3** — qualitative Grad-CAM overlays on the clinical (KZ) dataset; the only gap still open
       with respect to the wording of H-5 (`exp4_explainability.py` has no clinical branch).
 - [ ] **Remainder of G-8** — isolate Stage 3 (FOV mask): requires a flag + a 3-channel model variant.

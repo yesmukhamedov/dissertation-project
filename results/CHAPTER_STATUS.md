@@ -1,11 +1,32 @@
-# CHAPTER_STATUS — status of the dissertation chapters and what each one needs
+# CHAPTER_STATUS — historical readiness record (pre-writing)
+
+> ## ⚠️ Read this first — the whole document is superseded (2026-08-15)
+>
+> This was the readiness board used to decide **what could be written next**. The dissertation has
+> since been written in full: **98 sections in each language, all approved and exported.** Nothing
+> below is a live status.
+>
+> Two specific traps if you read on:
+>
+> 1. **The Chapter-4 section numbers are the pre-shift ones.** H-3 was later given its own **§4.4**,
+>    and Exp 3–7 shifted down to §4.5–§4.9. So "§4.4 Exp 3" below is **§4.5** in the manuscript,
+>    "§4.5 Exp 4" is **§4.6**, and so on. The table's undecided-placement note for H-3 is resolved.
+> 2. **"What has NOT been written" is empty in reality.** Every section it lists exists and is
+>    approved.
+>
+> Live sources instead: per-chapter status → `thesis/CLAUDE.md`; per-asset status →
+> `thesis/ASSET_INVENTORY.md` §2; numbers and verdicts → `results/STATUS.md` and `results/tables/`.
+>
+> What is still genuinely open is unchanged and stated correctly below: **G-3** (clinical KZ
+> Grad-CAM overlays were never produced, so H-5 holds in its quantitative half only) and **NEW-1**
+> (the run's raw artifacts are not in `experiments/outputs/`).
 
 Source: `thesis/outline/TABLE_OF_CONTENTS_EN.md`, the chapter READMEs,
 `thesis/ASSET_INVENTORY.md`. Workflow for a single section:
 `briefs/ → drafts/ → continuity/ → reviews/ → translations/` (the quintet).
 State of the data — the **2026-08-03** run.
 
-## What has already been written and approved (Phase 1)
+## What had already been written and approved at the time (Phase 1)
 
 | Chapter | Sections | Status |
 |-------|--------|--------|
@@ -19,12 +40,7 @@ State of the data — the **2026-08-03** run.
 The approved chapters **contain no experimental metrics** (they were written before the runs) → they
 are unaffected by the change of run.
 
-## What has NOT been written — Phase 2
-
-There are no placeholder files; the sections have not been created yet.
-
-> **Superseded.** This section records the state before the runs. All of Phase 2 has since been
-> written and approved — see the chapter READMEs and `thesis/CLAUDE.md` for the live status.
+## What had NOT been written at the time — Phase 2 (all of it has since been written)
 
 ### Chapter 4 "Experiments" — §4.2–§4.8 + §4.C
 

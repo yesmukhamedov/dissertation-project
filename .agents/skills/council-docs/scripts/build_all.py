@@ -33,6 +33,9 @@ DOCS = {
     "official_reviewer_2_review_en": "Official reviewer 2 report (English)",
     "official_reviewer_2_review_ru": "Official reviewer 2 report (Russian)",
     "official_reviewer_2_review_kz": "Official reviewer 2 report (Kazakh)",
+    # The list of scientific papers is Russian in the samples regardless of the
+    # defense language — even the Kazakh-language defenses file it in Russian.
+    "publications_list_ru": "List of scientific papers (Russian)",
 }
 
 # Stems collected into a sub-folder of the output directory (stem -> sub-folder).
@@ -48,6 +51,7 @@ SUBDIRS = {
     "official_reviewer_2_review_en": "reviews",
     "official_reviewer_2_review_ru": "reviews",
     "official_reviewer_2_review_kz": "reviews",
+    "publications_list_ru": "publications",
 }
 
 

@@ -1,11 +1,11 @@
 ---
 name: thesis-writing-status
-description: "Dissertation COMPLETE and EXPORTED — 98 sections EN + 98 KZ, citations done, assets closed. BUILD AUDIT 2026-08-13 found 5 formatting defects; ALL FIVE FIXED AND REBUILT the same day (GOST page breaks, figure renumbering, RES-*/LITERATURE_INDEX leftovers, stray `>`, §0.16 re-measured to 238 EN / 264 KZ). Still open: trim queue, NEW-1 traceability, §2.1.2 locators, stale `.agents/` skill mirror"
+description: "Dissertation COMPLETE and EXPORTED — 98 sections EN + 98 KZ, citations done, assets closed. Council-ready pair is the 2026-08-14 build; volume 238 EN / 265 KZ (the KZ figure was corrected from 264 on 2026-08-14, registry `council/METADATA.toml`). Only NEW-1 traceability is genuinely open; trim queue optional; §2.1.2 locators await the candidate"
 metadata:
   type: project
 ---
 
-Consolidates the former `phase1-writing-complete` + `chapter3-methodology-drafted` memories. Supervisor role/protocol in `SUPERVISOR_HANDOFF.md` (kept current). Trust real files (drafts/ + reviews/ §H verdict), not any tracker.
+Consolidates the former `phase1-writing-complete` + `chapter3-methodology-drafted` memories. Trust real files (drafts/ + reviews/ §H verdict), not any tracker. (`SUPERVISOR_HANDOFF.md`, referenced here until 2026-08-15, is not in the repository.)
 
 > **`thesis/PLAN.md` was deleted 2026-08-15** (recoverable from git history), after a disk check
 > confirmed every writing phase closed. It had outlived its job: the board tracked drafting, and
@@ -320,7 +320,7 @@ which is what keeps EN and KZ identical without editing either:
 
 **Pagination moved in both directions and the net was negative**: +8 breaks in the body, but collapsing the
 three duplicate plates (all in Chapter 3, all full-width) took Chapter 3 from 44 pages to 39. §0.16 now
-reads **238 EN / 264 KZ**, verified against the APPENDICES divider at p. 239 / p. 265.
+read **238 EN / 264 KZ**, verified against the APPENDICES divider at p. 239 / p. 265. **The Kazakh figure was corrected to 265 on 2026-08-14**, when a rebuild grew that edition by one page (divider at p. 266); `council/METADATA.toml` carries `pages_kz = 265` and is the registry of record.
 
 **§0.16 now states the two illustration series separately** — "42 tables, 26 figures and two diagrams" —
 because they carry distinct caption labels, so a reader counting `Figure N` finds 26, not 28. The old
