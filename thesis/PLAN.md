@@ -15,11 +15,11 @@
 
 ---
 
-## CURRENT STATE (verified on disk, 2026-08-13)
+## CURRENT STATE (verified on disk, 2026-08-14)
 
 **The dissertation is written, translated and exported.** 98 sections in each language, every one
-APPROVED; the council-ready pair is `defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-13`
-(`.docx` + `.pdf`). Phases 1–4 are closed and nothing in §4–§9 below is outstanding; those tables are
+APPROVED; the council-ready pair is `defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-14`
+(`.docx` + `.pdf`) — it supersedes the `…_2026-08-13` pair, which is still on disk beside it. Phases 1–4 are closed and nothing in §4–§9 below is outstanding; those tables are
 now a record of what was written, not a queue.
 
 | Chapter | drafts | reviews | KZ translations |
@@ -35,11 +35,20 @@ now a record of what was written, not a queue.
 | Appendices A–F | 6 | 3 (A, D, BCEF block) | 6 |
 | **Total** | **98** | — | **98 of 98** |
 
-**Measured on the current build** (re-derive nothing from these; re-measure after any edit):
-EN **101,431** body words, KZ **81,273**; **107** sources, EN 292 / KZ 267 bracketed citations;
-front matter **10 pages EN / 11 KZ**; the document runs **285 pages EN / 313 KZ**, and the APPENDICES
-divider opens on **p. 239 EN / p. 265 KZ**, which is what makes §0.16's **238 / 264** exact;
+**Measured on the current build** (re-derive nothing from these; re-measure after any edit) —
+**re-measured 2026-08-14 on the `…_2026-08-14` pair**: EN **101,431** body words, KZ **81,273**;
+**107** sources, EN 292 / KZ 267 bracketed citations; front matter **10 pages EN / 12 KZ**; the
+document runs **285 pages EN / 314 KZ**, and the APPENDICES divider opens on **p. 239 EN / p. 266 KZ**,
+which is what makes §0.16's **238 / 265** exact;
 **42 tables, 26 figures and 2 diagrams** in the body, identical in both editions.
+
+> **The Kazakh figures above are corrections, made 2026-08-14.** The pair was rebuilt on 2026-08-14
+> under the 08-13 file names, and that rebuild grew the Kazakh edition by one page while §0.16 kept
+> the earlier 264 — so the volume stated its own length wrongly, and so did all three abstracts and
+> both reviewers' reports, which take the figure from `council/METADATA.toml` (`pages_kz`, now 265;
+> the Kazakh edition is the volume the council measures, which is why the English and Russian
+> abstracts carry the Kazakh figure too). Corrected in eleven source files and rebuilt; verified on
+> the PDFs — EN body 238 with §0.16 stating 238, KZ body 265 with §0.16 stating 265.
 
 **All four completion tracks are closed.** The full record is §11.
 
@@ -297,8 +306,12 @@ missing literature cards, and the optional trim queue (§11.3b).
   no `[card not found]`. **BLOCKING 0 / residual self-citations 0 / UNKNOWN 1** — the single UNKNOWN is
   `(No. 230-VIII of 17 November 2025)`, a legal-act designation in §0.15, correctly not a citation.
 - [ ] ⬜ §11.3b Trim queue (see §11.3 below) — the only part of the citation step still open
-- [ ] ⬜ §11.4 Convert to GOST `.docx`/`.pdf`, EN and KZ — the converter **must render the 4 Mermaid
-  fences** in Appendix C
+- [x] ✅ §11.4 Convert to GOST `.docx`/`.pdf`, EN and KZ — the converter **must render the 4 Mermaid
+  fences** in Appendix C. **Done; the box lagged the work and was corrected 2026-08-14 after checking
+  the build itself rather than the mark.** Verified on the PDFs, not on the record: Appendix C's four
+  views are embedded images in both editions (EN p. 251–254, KZ p. 279–283) with no fence source in
+  the text, and §0.16's counts match each edition's own pagination. The current pair is
+  `…_GOST_2026-08-14`, rebuilt through the same chain after the KZ page-count correction.
 
 ### Phase 4 — Kazakh translation — ✅ COMPLETE 2026-08-12, 98/98
 
@@ -788,6 +801,13 @@ rebuilt document**: the counts are of the dissertation *excluding the appendices
 the council rule measures — **239 pages EN / 266 KZ, 42 tables, 30 figures, 107 sources**. Filling the
 placeholders shortened the Kazakh text by one page, so the first fill drifted −1 and was corrected; both
 editions now state a figure that matches their own pagination exactly.
+
+> **The Kazakh figure drifted a second time, and the lesson is that this check must follow every
+> rebuild — not every edit.** The pair was rebuilt on 2026-08-14 without any text change, and the
+> Kazakh edition grew one page (314 total, divider p. 266, body 265) while §0.16 still said 264.
+> Nothing in the workflow catches this, because the trigger is a rebuild rather than an edit. The
+> figures above are the 08-12 measurement and are superseded by the CURRENT STATE block at the head
+> of this plan; **read the count off the built PDF before submitting, whatever this section says.**
 
 **Three further defects were found and fixed while building the front matter:**
 

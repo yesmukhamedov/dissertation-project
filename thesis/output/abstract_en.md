@@ -158,4 +158,4 @@ The principal results of the dissertation were obtained by the author personally
 
 The dissertation consists of front matter — normative references, definitions, and designations and abbreviations — followed by an introduction, six chapters, a conclusion, a list of references used, and six appendices (A–F): the source code of the preprocessing pipeline, supplementary experimental results and confusion matrices, the system-architecture diagrams, the publication and approbation record, the attention-map gallery, and supplementary tables for the device-domain evaluation.
 
-The dissertation is set out on 264 pages, and contains 42 tables, 26 figures and two diagrams. The list of references comprises 107 sources. The counts are of the dissertation excluding the appendices.
+The dissertation is set out on 265 pages, and contains 42 tables, 26 figures and two diagrams. The list of references comprises 107 sources. The counts are of the dissertation excluding the appendices.
