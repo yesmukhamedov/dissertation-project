@@ -20,6 +20,14 @@ function appendPassword(fd) {
   return fd;
 }
 
+// Attach the open patient case (server/app/cases.py) so the backend files this
+// call's artifacts — stage images, attention map, prediction — into it. Absent
+// or null simply means "don't persist"; the call behaves exactly as before.
+function appendCase(fd, caseId) {
+  if (caseId) fd.append('case_id', caseId);
+  return fd;
+}
+
 // POST /api/auth — validate the shared access password (§C.2). Resolves true
 // when the backend accepts it (or runs with the gate open), false on a 401,
 // and throws only on a network/transport failure so the caller can distinguish
@@ -45,7 +53,7 @@ async function srcToBlob(src) {
 // eyes: [{ eye: 'left'|'right', src: dataURL|publicPath, name }]
 // Returns the raw backend PatientPredictionResponse (snake_case) plus
 // client_latency_ms. Demo.js normalizes it into the simulator's shape.
-export async function predictPatient(eyes) {
+export async function predictPatient(eyes, caseId) {
   if (!API) throw new Error('REACT_APP_API_URL is not set');
   const fd = new FormData();
   for (const e of eyes) {
@@ -53,6 +61,7 @@ export async function predictPatient(eyes) {
     fd.append(e.eye, blob, e.name || `${e.eye}.png`);
   }
   appendPassword(fd);
+  appendCase(fd, caseId);
   const t0 = performance.now();
   const res = await fetch(`${API}/api/predict`, { method: 'POST', body: fd });
   if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
@@ -62,12 +71,13 @@ export async function predictPatient(eyes) {
 }
 
 // POST /api/visualize → { fov_mask_png_b64, preview_png_b64, od_fovea }.
-export async function visualizeImage(src, eye, name) {
+export async function visualizeImage(src, eye, name, caseId) {
   if (!API) throw new Error('REACT_APP_API_URL is not set');
   const fd = new FormData();
   fd.append('image', await srcToBlob(src), name || `${eye}.png`);
   fd.append('eye', eye);
   appendPassword(fd);
+  appendCase(fd, caseId);
   const res = await fetch(`${API}/api/visualize`, { method: 'POST', body: fd });
   if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
   return await res.json();
@@ -80,7 +90,7 @@ export async function visualizeImage(src, eye, name) {
 // centres redefine the rotation, so every downstream stage is recomputed.
 // `od`/`fovea` are [x, y] in the flipped frame; `conf` is { od, fovea }
 // confidence-at-capture (for the feedback store).
-export async function correctOdFovea(src, eye, name, od, fovea, conf = {}) {
+export async function correctOdFovea(src, eye, name, od, fovea, conf = {}, caseId) {
   if (!API) throw new Error('REACT_APP_API_URL is not set');
   const fd = new FormData();
   fd.append('image', await srcToBlob(src), name || `${eye}.png`);
@@ -92,21 +102,110 @@ export async function correctOdFovea(src, eye, name, od, fovea, conf = {}) {
   if (conf.od != null) fd.append('od_confidence', String(conf.od));
   if (conf.fovea != null) fd.append('fovea_confidence', String(conf.fovea));
   appendPassword(fd);
+  appendCase(fd, caseId);
   const res = await fetch(`${API}/api/od_fovea/correct`, { method: 'POST', body: fd });
   if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
   return await res.json();
 }
 
 // POST /api/gradcam → { gradcam_png_b64, attention_overlay_png_b64, target_class }.
-export async function gradcamImage(src, eye, name) {
+export async function gradcamImage(src, eye, name, caseId) {
   if (!API) throw new Error('REACT_APP_API_URL is not set');
   const fd = new FormData();
   fd.append('image', await srcToBlob(src), name || `${eye}.png`);
   fd.append('eye', eye);
   appendPassword(fd);
+  appendCase(fd, caseId);
   const res = await fetch(`${API}/api/gradcam`, { method: 'POST', body: fd });
   if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
   return await res.json();
+}
+
+// POST /api/case/image → { case_id, eye, stored, reason }.
+// Opens the patient case on the first accepted image and files the original
+// into it; the second eye joins the same case by passing its `caseId` back.
+// `checks` is the client-side fundus/laterality result from _analyzeFundus;
+// an image it rejected as non-fundus is refused by the backend (stored:false).
+// Resolves to null on any transport failure — persistence is best-effort and
+// must never stop the clinician from running the model.
+export async function openCaseImage(src, eye, name, checks, caseId, source = 'upload') {
+  if (!API) return null;
+  try {
+    const fd = new FormData();
+    fd.append('image', await srcToBlob(src), name || `${eye}.png`);
+    fd.append('eye', eye);
+    fd.append('source', source);
+    if (checks) {
+      if (checks.isFundus != null) fd.append('is_fundus', String(checks.isFundus));
+      if (checks.laterality) fd.append('laterality', checks.laterality);
+      if (checks.confidence != null) fd.append('laterality_confidence', String(checks.confidence));
+    }
+    appendPassword(fd);
+    appendCase(fd, caseId);
+    const res = await fetch(`${API}/api/case/image`, { method: 'POST', body: fd });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+// POST /api/case/{id}/feedback → { case_id, stored, index }.
+// Persists the ophthalmologist's confirm/reject verdict and corrected grade into
+// the patient case. Resolves to null when there is no case or the call fails —
+// the in-browser relabeling buffer keeps the entry regardless.
+export async function submitCaseFeedback(caseId, entry) {
+  if (!API || !caseId) return null;
+  try {
+    const fd = new FormData();
+    fd.append('verdict', entry.verdict);
+    fd.append('corrected_grade', String(entry.correctedGrade));
+    if (entry.predictedGrade != null) fd.append('predicted_grade', String(entry.predictedGrade));
+    if (entry.confidence != null) fd.append('confidence', String(entry.confidence));
+    if (entry.reviewer) fd.append('reviewer', entry.reviewer);
+    if (entry.notes) fd.append('notes', entry.notes);
+    appendPassword(fd);
+    const res = await fetch(`${API}/api/case/${caseId}/feedback`, { method: 'POST', body: fd });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+// DELETE /api/case/{id}/feedback → { case_id, retracted, verdict, corrected_grade }.
+// Withdraws a verdict the reviewer took back. `index` is the 1-based position in
+// the case; omit it to withdraw the most recent one. Resolves to null on failure.
+export async function retractCaseFeedback(caseId, index) {
+  if (!API || !caseId) return null;
+  try {
+    const pw = getPassword();
+    const params = new URLSearchParams();
+    if (index) params.set('index', String(index));
+    if (pw) params.set('password', pw);
+    const qs = params.toString();
+    const res = await fetch(`${API}/api/case/${caseId}/feedback${qs ? `?${qs}` : ''}`,
+      { method: 'DELETE' });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+// GET /api/cases/stats → counters over every case the backend holds.
+// These come from disk, not from this tab, so they survive a cleared relabeling
+// buffer and a reload. Resolves to null when the backend is unreachable.
+export async function getCaseStats() {
+  if (!API) return null;
+  try {
+    const pw = getPassword();
+    const res = await fetch(`${API}/api/cases/stats${pw ? `?password=${encodeURIComponent(pw)}` : ''}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
 }
 
 // Resolves to the /api/health payload object when the backend is up and the

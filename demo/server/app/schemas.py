@@ -153,6 +153,70 @@ class SelftestResponse(BaseModel):
     details: list[str] = []
 
 
+class CaseImageResponse(BaseModel):
+    """POST /api/case/image payload — the patient case an upload was filed into.
+
+    ``case_id`` is minted on the first accepted image and echoed back by the
+    frontend on every later call for the same patient, so the prediction, the
+    preprocessing cache, the attention maps and the ophthalmologist's verdict all
+    land in one directory. ``stored`` is ``False`` when the image was refused
+    (the client-side fundus check rejected it) or the store could not be written
+    — the demo carries on either way.
+    """
+
+    case_id: str
+    eye: str
+    stored: bool
+    reason: str = ""
+
+
+class CaseFeedbackResponse(BaseModel):
+    """POST /api/case/{case_id}/feedback payload — the persisted verdict.
+
+    ``index`` is the verdict's ordinal within the case (a case can be re-graded).
+    """
+
+    case_id: str
+    stored: bool
+    index: int = 0
+    reason: str = ""
+
+
+class CaseStatsResponse(BaseModel):
+    """GET /api/cases/stats payload — the whole case store in counters.
+
+    Backs the demo's statistics panel, which must survive a cleared browser
+    buffer: these numbers come from the directories on disk, not from the tab.
+    ``agreement`` is the share of verdicts that confirmed the model (``None``
+    until the first verdict); ``grades`` counts reviewed patients per DR grade
+    as the *reviewer* graded them.
+    """
+
+    patients: int
+    images: int
+    predictions: int
+    corrections: int
+    verdicts: int
+    confirmed: int
+    rejected: int
+    reviewed_patients: int
+    agreement: float | None = None
+    grades: list[int] = Field(default_factory=lambda: [0, 0, 0, 0, 0])
+    last_activity_utc: str = ""
+
+
+class CaseFeedbackRetractResponse(BaseModel):
+    """DELETE /api/case/{case_id}/feedback payload — the withdrawn verdict.
+
+    ``retracted`` is ``False`` when the case held no verdict at that position.
+    """
+
+    case_id: str
+    retracted: bool
+    verdict: str = ""
+    corrected_grade: int | None = None
+
+
 class AuthResponse(BaseModel):
     """POST /api/auth payload — password-gate validation (§C.2).
 

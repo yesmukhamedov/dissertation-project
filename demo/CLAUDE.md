@@ -9,6 +9,12 @@ These decisions are settled. When the candidate says "запускаем demo" (
 demo"), run the matching command **immediately** — no clarifying questions, no proposing
 alternatives, no re-deriving the architecture.
 
+**A bare «запусти демо» already means all three parts — frontend AND backend AND the
+Cloudflare tunnel, public.** The candidate should never have to spell that out; if they do
+(«фронт+бэк+тоннель»), it is the same default request, not a new variant. One command
+(`start-pages-demo.ps1`) delivers all three, so never launch the parts separately or ask
+which of them is wanted.
+
 | The candidate says | Run |
 |---|---|
 | «запусти демо» / «запускаем demo» / "launch the demo" — **no qualifier: PUBLIC is the default** | `powershell -ExecutionPolicy Bypass -File D:\dissertation-project\demo\start-pages-demo.ps1` (background) — the candidate expects the Cloudflare tunnel and the agreed fixed https://dr-classification.pages.dev immediately. Do not fall back to the local launcher and do not ask which one (settled 2026-08-14). |
@@ -37,6 +43,45 @@ Public launches take several minutes (model load + CRA build + Pages deploy) —
   `41edab150aea08647c6379508249ffb8`); `-AccountId` is unnecessary. If the token ever expires,
   the candidate must rerun the login interactively — in Git Bash Node is not on PATH, so the
   command is `export PATH="/c/Program Files/nodejs:$PATH" && npx wrangler login`.
+
+## Patient cases — the demo's only persistent state
+
+The demo opens a **patient case** on the backend as soon as the first image that
+passes the client-side fundus check lands in a slot, and everything computed for
+that patient is filed into one directory (`server/app/cases.py`, default
+`server/data/cases/<case_id>/`, gitignored):
+
+| In the case | Written by |
+|---|---|
+| `original/{left,right}.<ext>` — the uploads, byte-for-byte | `POST /api/case/image` |
+| `preprocessing/<eye>/` — one PNG per stage + `input_channels/` (the 4-channel CNN input) | `POST /api/visualize` |
+| `preprocessing/<eye>_corrected_<n>/` — the re-run driven by a clinician OD/fovea correction | `POST /api/od_fovea/correct` |
+| `attention/<eye>_{gradcam,attention_overlay}.png` | `POST /api/gradcam` |
+| `case.json` — the record; `case.txt` — the same, rendered for a human | every write |
+| the ophthalmologist's confirm/reject verdict + corrected grade | `POST /api/case/{id}/feedback` |
+
+The verdict is the point: the confirm/reject control used to live only in browser
+memory, so a disagreement died with the tab. The in-browser relabeling buffer and
+its JSONL export are unchanged — the case store is an addition, not a
+replacement.
+
+**One verdict per prediction.** Once given, the confirm/reject buttons are
+replaced by the standing verdict and an undo, so a result cannot be confirmed
+twice or confirmed and rejected at once. Undo (`DELETE /api/case/{id}/feedback`)
+**removes** the verdict rather than flagging it — one left in place would keep
+being counted and exported. Both writes go through one promise chain in
+`Demo.js`, so an undo clicked before the save lands retracts what that save wrote.
+
+**Statistics come from disk, not the tab.** `GET /api/cases/stats` walks the case
+directories; the panel at the bottom of the relabeling buffer renders it. That is
+deliberate — the buffer is one session's work and is cleared with it, while
+patient/verdict/agreement totals must survive a reload and a cleared buffer.
+
+Two rules when touching this: the store is **best-effort** (a write failure must
+never fail a prediction — see `_case_write` in `main.py`), and `case_id` comes
+from the client, so it is validated against the minted format before it is ever
+turned into a path. The store grows with use and is never pruned — clear old
+cases by hand.
 
 ## Verifying a public launch
 

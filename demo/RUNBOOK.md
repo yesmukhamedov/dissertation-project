@@ -169,3 +169,29 @@ cloudflared tunnel login                                     # once, opens a bro
 JSON does not) and routes DNS. `-InstallService` registers the **connector** as a Windows
 service (elevated shell); the backend and frontend are not services, so after a reboot the
 hostname answers only once you rerun the script to start them.
+
+## Where the demo writes patient data
+
+The backend keeps one folder per patient under `demo/server/data/cases/`
+(gitignored; override with `CASES_DIR`). A case is opened the moment the first
+image that passes the fundus check lands in a slot, and it collects:
+
+```
+case_20260816T101530Z_ab12cd34/
+├── case.txt                     the whole case as readable text
+├── case.json                    the same record, machine-readable
+├── original/right.jpg           the uploads, byte-for-byte
+├── preprocessing/right/         one PNG per pipeline stage
+│   └── input_channels/          the 4 channels the CNN actually receives
+└── attention/right_*.png        Grad-CAM heatmap + attention overlay
+```
+
+`case.txt` is what to open after a session: it lists the input files and their
+checks, the OD/fovea detection, any correction the clinician dragged, the class
+probabilities and per-eye grades, the Grad-CAM statistics, and — the reason the
+folder exists — the ophthalmologist's confirm/reject verdict with the grade they
+consider correct. That verdict used to live only in the browser tab.
+
+These are real fundus images of real people: the folder is gitignored, it is not
+copied by any launcher, and nothing prunes it. A two-eye case is a few MB, so
+clear out old cases by hand before handing the machine on.

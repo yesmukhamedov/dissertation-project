@@ -9,17 +9,20 @@ import { C } from '../data';
 import { Note } from '../components';
 import { gradcamImage } from './_apiPredict';
 
-function EyeGradcam({ eye, src, name, t }) {
+function EyeGradcam({ eye, src, name, caseId, t }) {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState('loading'); // loading | done | error
 
+  // `caseId` is deliberately NOT a dependency: it only tells the backend where to
+  // file the resulting heatmap, so an id arriving late must not re-run Grad-CAM.
   useEffect(() => {
     let alive = true;
     setStatus('loading'); setData(null);
-    gradcamImage(src, eye, name)
+    gradcamImage(src, eye, name, caseId)
       .then((d) => { if (alive) { setData(d); setStatus('done'); } })
       .catch(() => { if (alive) setStatus('error'); });
     return () => { alive = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src, eye, name]);
 
   const label = t(eye === 'left' ? 'demo.leftEye' : 'demo.rightEye');
@@ -65,7 +68,7 @@ function EyeGradcam({ eye, src, name, t }) {
   );
 }
 
-export default function LiveVisualizationBlock({ eyes, t }) {
+export default function LiveVisualizationBlock({ eyes, caseId, t }) {
   // Right eye (OD) first (shown on the left), matching the clinical convention
   // and the upload block order.
   const ordered = [...eyes].sort(
@@ -78,7 +81,7 @@ export default function LiveVisualizationBlock({ eyes, t }) {
       </div>
       <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
         {ordered.map((e) => (
-          <EyeGradcam key={e.eye} eye={e.eye} src={e.src} name={e.name} t={t} />
+          <EyeGradcam key={e.eye} eye={e.eye} src={e.src} name={e.name} caseId={caseId} t={t} />
         ))}
       </div>
       <Note>{t('demo.viz.liveDisclaimer')}</Note>

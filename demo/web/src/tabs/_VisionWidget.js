@@ -82,7 +82,7 @@ function useReservedSlot(resetKey) {
   return [ref, reserved];
 }
 
-export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
+export default function VisionWidget({ src, eye, name, enabled, gt, caseId, t }) {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState('idle'); // idle | loading | done | error
   // Index of the currently shown preprocessing-stage slide (step-by-step view).
@@ -135,9 +135,12 @@ export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
     // mid-restart, momentary network drop). Retry a few times with linear
     // backoff before surfacing "unavailable", so a brief hiccup self-heals
     // instead of pinning the widget to the error state.
+    // `caseId` is deliberately absent from this effect's dependencies: it only
+    // tells the backend which patient case to cache the stages into, so an id
+    // arriving late must not re-run the whole pipeline.
     const MAX_ATTEMPTS = 5;
     const attempt = (n) => {
-      visualizeImage(src, eye, name)
+      visualizeImage(src, eye, name, caseId)
         .then((d) => { if (alive) { setData(d); setStatus('done'); } })
         .catch(() => {
           if (!alive) return;
@@ -150,6 +153,7 @@ export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
     };
     attempt(1);
     return () => { alive = false; if (timer) clearTimeout(timer); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src, eye, name, enabled, retryNonce]);
 
   // Seed the editable centres from the detector payload once it lands.
@@ -302,7 +306,7 @@ export default function VisionWidget({ src, eye, name, enabled, gt, t }) {
     try {
       const resp = await correctOdFovea(src, eye, name, edit.od, edit.fovea, {
         od: odConf, fovea: fvConf,
-      });
+      }, caseId);
       // The correction redefines the rotation, so the server returns a FULL
       // re-run: swap in the recomputed overlay AND every downstream stage so the
       // whole step-by-step view (rotation, crop, flat-field, CLAHE, FOV mask)

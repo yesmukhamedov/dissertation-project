@@ -22,8 +22,11 @@ server/
 │   ├── preprocessing.py   builds the inference pipeline (+ dataset stats)
 │   ├── inference.py       model load + predict (per-eye, worst-eye patient)
 │   ├── gradcam.py         scaffold stub (→ 501) — see TASK-Demo §C.5
+│   ├── cases.py           per-patient case store (originals, stages, verdicts)
+│   ├── corrections.py     OD/fovea clinician-correction store (Phase 3/4)
 │   └── main.py            FastAPI app + endpoints
 ├── checkpoints/           drop config_d_fold0.pt + eyepacs_norm_stats.json here
+├── data/                  runtime state — case folders + corrections (gitignored)
 ├── tests/test_inference.py
 ├── requirements.txt
 └── Dockerfile             HuggingFace Spaces (port 7860)
@@ -35,9 +38,15 @@ server/
 |---|---|---|---|
 | GET  | `/api/health`   | — | `{status, model, checkpoint, checkpoint_loaded, device, version, git_sha, requires_password}` |
 | POST | `/api/auth`     | multipart `password?` | `{ok: true}` (gate open / match) or 401 |
-| POST | `/api/predict`  | multipart `left?`, `right?`, `password?` | patient-level + `per_eye` |
-| POST | `/api/gradcam`  | multipart `image`, `eye`, `password?`, `target_class?` | `{gradcam_png_b64, attention_overlay_png_b64, target_class, rationale, cam_pixel_count, cam_area_frac, cam_region}` |
-| POST | `/api/visualize`| multipart `image`, `eye`, `password?` | `{fov_mask_png_b64, preview_png_b64, od_fovea}` |
+| POST | `/api/predict`  | multipart `left?`, `right?`, `password?`, `case_id?` | patient-level + `per_eye` |
+| POST | `/api/gradcam`  | multipart `image`, `eye`, `password?`, `target_class?`, `case_id?` | `{gradcam_png_b64, attention_overlay_png_b64, target_class, rationale, cam_pixel_count, cam_area_frac, cam_region}` |
+| POST | `/api/visualize`| multipart `image`, `eye`, `password?`, `case_id?` | `{fov_mask_png_b64, preview_png_b64, od_fovea}` |
+| POST | `/api/od_fovea/correct` | multipart `image`, `eye`, `od_x/od_y`, `fovea_x/fovea_y`, `password?`, `case_id?` | corrected `od_fovea` + full pipeline re-run |
+| POST | `/api/case/image` | multipart `image`, `eye`, `case_id?`, `is_fundus?`, `laterality?`, `source?`, `password?` | `{case_id, eye, stored, reason}` |
+| POST | `/api/case/{case_id}/feedback` | multipart `verdict`, `corrected_grade`, `predicted_grade?`, `reviewer?`, `notes?`, `password?` | `{case_id, stored, index}` |
+| DELETE | `/api/case/{case_id}/feedback` | query `index?`, `password?` | `{case_id, retracted, verdict, corrected_grade}` |
+| GET  | `/api/cases/stats` | query `password?` | store-wide counters (patients, runs, verdicts, agreement, grades) |
+| GET  | `/api/case/{case_id}` | query `password?` | the case record (`case.json`) |
 | GET  | `/api/selftest` | query `password?` | per-op pass/fail report |
 
 - **Grad-CAM** is a self-contained torch implementation on EfficientNet's
@@ -52,8 +61,27 @@ server/
   every endpoint except `/api/health`. Unset → gate **open** (local dev).
   `/api/health.requires_password` lets the frontend decide whether to show the
   access screen; `/api/auth` validates the password for that screen.
+- **Patient cases (`app/cases.py`).** The demo opens a case as soon as the first
+  image that passes the client-side fundus check lands in a slot, and passes its
+  `case_id` back on every later call. Everything computed for that patient is
+  then filed under `data/cases/<case_id>/`: the originals byte-for-byte, one PNG
+  per preprocessing stage (plus the final stage's channel split — the 4-channel
+  CNN input), the Grad-CAM heatmap and attention overlay, the prediction, any
+  OD/fovea correction with its own pipeline re-run, and the ophthalmologist's
+  confirm/reject verdict with the corrected grade. `case.json` is the record and
+  `case.txt` is the same thing rendered for a human to read.
+  Every write is best-effort: a failed or absent case never fails a prediction,
+  and an unknown `case_id` is ignored rather than rejected. A case with two eyes
+  is a few MB of PNGs — the store grows with use and is never pruned
+  automatically.
+  A verdict can be **withdrawn** (`DELETE …/feedback`), which drops it from the
+  record entirely rather than flagging it — a retracted verdict left in place
+  would keep being counted in `/api/cases/stats` and exported as a label.
+  `/api/cases/stats` aggregates every case directory, which is what lets the
+  demo show study-wide totals that survive a cleared browser buffer.
 - **Safety limits (§C.4):** ≤ 8 MB/image, MIME ∈ {jpeg,png,webp} (else 415),
-  decoded ≤ 4096×4096; all decoding in-memory (no disk writes).
+  decoded ≤ 4096×4096. Inference itself decodes in memory only; the case store
+  is the one component that writes to disk (`data/`, gitignored).
 
 ## Why two files in `checkpoints/`
 
@@ -114,6 +142,8 @@ a checkpoint (random-init weights still give a valid softmax).
 | `DEMO_PASSWORD` | (unset) | Shared access password; unset = gate open. |
 | `DEMO_VERSION` | `__version__` | Version string in `/api/health`. |
 | `GIT_SHA` | `git rev-parse` | Provenance SHA (best-effort). |
+| `CASES_DIR` | `server/data/cases` | Patient case store (originals, cached stages, attention maps, verdicts). |
+| `OD_FOVEA_CORRECTIONS_DIR` | `server/data/od_fovea_corrections` | OD/fovea correction store feeding the Phase-4 fine-tune. |
 
 ## Status / next
 

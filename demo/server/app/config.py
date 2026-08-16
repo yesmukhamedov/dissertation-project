@@ -60,6 +60,14 @@ class Settings:
             os.getenv("OD_FOVEA_CORRECTIONS_DIR", str(_SERVER_ROOT / "data" / "od_fovea_corrections"))
         )
 
+        # Per-patient case store: one directory per patient holding the original
+        # uploads, the cached preprocessing stages, the attention maps and the
+        # ophthalmologist's verdict (``server/app/cases.py``). Gitignored, same
+        # rationale as the corrections store.
+        self.cases_dir: Path = Path(
+            os.getenv("CASES_DIR", str(_SERVER_ROOT / "data" / "cases"))
+        )
+
     def resolve_device(self) -> str:
         """Resolve ``"auto"`` to ``"cuda"`` when available, else ``"cpu"``."""
         if self.device != "auto":

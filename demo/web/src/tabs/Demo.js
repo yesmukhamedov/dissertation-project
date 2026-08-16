@@ -3,15 +3,25 @@
 // patient, runs the trained model on the backend, and lets the user confirm or
 // reject the result. Confirmed / corrected cases are appended to a local
 // relabeling buffer that can be exported as JSONL for further training.
+//
+// A *patient case* is opened on the backend the moment the first image that
+// passes the fundus check lands in a slot (server/app/cases.py). Its id then
+// rides along on every later call for this patient, so the originals, the cached
+// preprocessing stages, the attention maps, the prediction and — the reason the
+// store exists — the ophthalmologist's verdict all end up in one directory on
+// the server instead of dying with the browser tab.
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { C } from '../data';
-import { Sec, Note } from '../components';
+import { Card, Sec, Note } from '../components';
 import { useLang } from '../i18n';
 import { IDRID_PATIENTS } from './_idridSamples';
 import { matchIdridUpload } from './_idridUpload';
 import { analyzeFundus } from './_analyzeFundus';
-import { predictPatient, getHealth, getPassword, setPassword, verifyPassword } from './_apiPredict';
+import {
+  predictPatient, getHealth, getPassword, setPassword, verifyPassword,
+  openCaseImage, submitCaseFeedback, retractCaseFeedback, getCaseStats,
+} from './_apiPredict';
 import VisionWidget from './_VisionWidget';
 import LiveVisualizationBlock from './_LiveGradcam';
 
@@ -317,6 +327,85 @@ function VisualizationBlock({ caseRef, leftPresent, rightPresent, t }) {
 }
 
 // ---------------------------------------------------------------------------
+// Statistics over the whole case store (GET /api/cases/stats).
+//
+// These counters are computed from the case directories on the server, not from
+// this tab: clearing the relabeling buffer, reloading the page or opening the
+// demo on another machine leaves them intact. The buffer above counts what this
+// session labelled; this counts what the study holds.
+// ---------------------------------------------------------------------------
+function CaseStatsPanel({ stats, t }) {
+  if (!stats) return null;
+  const decided = stats.confirmed + stats.rejected;
+  const agreement = stats.agreement == null ? '—' : `${(stats.agreement * 100).toFixed(0)}%`;
+  // Scale the grade bars to the busiest grade (never divide by zero).
+  const maxGrade = Math.max(1, ...stats.grades);
+  return (
+    <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px solid var(--color-border-tertiary,#eee)' }}>
+      <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-secondary,#666)', marginBottom: 8 }}>
+        {t('demo.stats.title')}
+      </div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <Card
+          label={t('demo.stats.patients')} value={stats.patients} color="teal"
+          sub={`${stats.images} ${t('demo.stats.images')}`}
+        />
+        <Card
+          label={t('demo.stats.runs')} value={stats.predictions} color="blue"
+          sub={`${stats.corrections} ${t('demo.stats.corrections')}`}
+        />
+        <Card
+          label={t('demo.stats.verdicts')} value={stats.verdicts} color="purple"
+          sub={`${stats.reviewed_patients} ${t('demo.stats.reviewed')}`}
+        />
+        <Card
+          label={t('demo.stats.confirmed')} value={stats.confirmed} color="green"
+          sub={`${stats.rejected} ${t('demo.stats.rejected')}`}
+        />
+        <Card
+          label={t('demo.stats.agreement')} value={agreement} color="amber"
+          sub={decided ? `n = ${decided}` : t('demo.stats.noVerdicts')}
+        />
+      </div>
+
+      {/* Reviewed patients per DR grade — the reviewer's grade, not the model's. */}
+      {stats.reviewed_patients > 0 && (
+        <div style={{ marginTop: 12 }}>
+          <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--color-text-secondary,#666)', marginBottom: 5 }}>
+            {t('demo.stats.gradeDist')}
+          </div>
+          {stats.grades.map((n, g) => (
+            <div key={g} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
+              <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#666)', minWidth: 36 }}>
+                {t('demo.gradeShort.' + g)}
+              </div>
+              <div style={{
+                flex: 1, height: 14, background: 'var(--color-background-secondary,#eeede9)',
+                borderRadius: 3, position: 'relative', overflow: 'hidden',
+              }}>
+                <div style={{ width: `${(n / maxGrade) * 100}%`, height: '100%', background: g >= 2 ? C.coral : C.teal, opacity: 0.75 }} />
+                <span style={{
+                  position: 'absolute', right: 5, top: '50%', transform: 'translateY(-50%)',
+                  fontSize: 9, fontWeight: 600, color: 'var(--color-text-primary,#333)',
+                }}>
+                  {n}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {stats.last_activity_utc && (
+        <div style={{ fontSize: 9, color: C.gray, marginTop: 8, fontFamily: 'monospace' }}>
+          {t('demo.stats.lastActivity')}: {new Date(stats.last_activity_utc).toLocaleString()}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Main page
 // ---------------------------------------------------------------------------
 // Access-code screen (TASK-Demo §C.2). Shown only when the backend reports
@@ -500,6 +589,12 @@ export default function Demo() {
   const [result, setResult] = useState(null);
   const [feedbackMode, setFeedbackMode] = useState(null); // 'confirm' | 'reject' | null
   const [correctedGrade, setCorrectedGrade] = useState(0);
+  // The verdict standing on the CURRENT result, or null while it is unreviewed.
+  // One result takes one verdict: while this is set the confirm/reject buttons
+  // give way to "undo", so a prediction can neither be confirmed twice nor be
+  // confirmed and rejected at the same time.
+  // { verdict, correctedGrade, historyId, caseId, index }
+  const [verdictEntry, setVerdictEntry] = useState(null);
   const [toast, setToast] = useState('');
   const [history, setHistory] = useState([]);
   // Tracks the active sample case (from WALKTHROUGH_POOL) so the result
@@ -508,6 +603,26 @@ export default function Demo() {
   // for images that don't have a pre-generated companion under
   // `pipeline/dr0N/results/`.
   const [caseRef, setCaseRef] = useState(null);
+  // Backend patient case (server/app/cases.py). `caseId` drives the UI; the ref
+  // mirrors it for the upload chain below, which must read the freshly minted id
+  // without waiting for a re-render.
+  const [caseId, setCaseId] = useState(null);
+  const caseIdRef = useRef(null);
+  // Serialises case uploads: two eyes dropped in quick succession must join ONE
+  // case, so the second call waits for the first to hand back the minted id
+  // instead of racing it and opening a second directory.
+  const caseChainRef = useRef(Promise.resolve());
+  // Serialises verdict writes for the same reason: an undo clicked before the
+  // save lands must retract the verdict that write produced, not race it.
+  const verdictChainRef = useRef(Promise.resolve());
+  // Store-wide counters for the statistics panel. They come from the case
+  // directories on the server, so clearing the local relabeling buffer (or
+  // reloading, or moving to another machine) does not reset them to zero.
+  const [stats, setStats] = useState(null);
+  const refreshStats = useCallback(() => {
+    getCaseStats().then((s) => { if (s) setStats(s); }).catch(() => { /* offline */ });
+  }, []);
+  useEffect(() => { refreshStats(); }, [refreshStats]);
   // Backend health. `health` is the /api/health payload (or null when the
   // backend is unreachable). `healthChecked` flips once the probe resolves.
   const [health, setHealth] = useState(null);
@@ -580,14 +695,57 @@ export default function Demo() {
     }
   }, [detailEyes, detailEye]);
 
+  // Close the current patient case. The next accepted image opens a fresh one —
+  // a reset means a new patient, and their images must not land in the previous
+  // patient's directory.
+  const closeCase = () => {
+    caseIdRef.current = null;
+    setCaseId(null);
+  };
+
+  // File one image into the patient case, opening the case on the first accepted
+  // image. An image the client-side check rejected as non-fundus is deliberately
+  // not filed — the store holds patients, not stray files. Failures are silent:
+  // persistence must never stand between the clinician and the model.
+  const fileIntoCase = (img, eye) => {
+    if (!img || !img.src) return;
+    if (img.checks && img.checks.isFundus === false) return;
+    const source = img.fromUpload === false ? 'sample' : 'upload';
+    caseChainRef.current = caseChainRef.current
+      .then(() => openCaseImage(img.src, eye, img.name, img.checks, caseIdRef.current, source))
+      .then((res) => {
+        if (res && res.case_id) {
+          const opened = res.case_id !== caseIdRef.current;
+          caseIdRef.current = res.case_id;
+          setCaseId(res.case_id);
+          if (opened) refreshStats();   // a new patient joined the store
+        }
+      })
+      .catch(() => { /* best-effort */ });
+  };
+
+  // Drop the review state attached to the current result. Called wherever that
+  // result itself goes stale (new run, new images, reset): a verdict belongs to
+  // one prediction and must never carry over to the next.
+  const clearReview = () => {
+    setFeedbackMode(null);
+    setVerdictEntry(null);
+  };
+
   // Swap the two slots — used by the wrong-slot warning chip. Both images
   // (with their attached `checks`) move to the opposite slot; the laterality
   // check then re-evaluates against the new slot and the warning clears.
   const swapSlots = () => {
-    setLeftImg(rightImg);
-    setRightImg(leftImg);
+    const nextLeft = rightImg;
+    const nextRight = leftImg;
+    setLeftImg(nextLeft);
+    setRightImg(nextRight);
     setResult(null);
-    setFeedbackMode(null);
+    clearReview();
+    // The swap corrects the laterality, so re-file both originals under their
+    // new eyes — otherwise the case keeps each image on the wrong side.
+    fileIntoCase(nextRight, 'right');
+    fileIntoCase(nextLeft, 'left');
   };
 
   const reset = (keepHistory = true) => {
@@ -595,8 +753,9 @@ export default function Demo() {
     setRightImg(null);
     setCaseRef(null);
     setResult(null);
-    setFeedbackMode(null);
+    clearReview();
     setCorrectedGrade(0);
+    closeCase();
     if (!keepHistory) setHistory([]);
   };
 
@@ -611,9 +770,12 @@ export default function Demo() {
     }
     setRunning(true);
     setResult(null);
-    setFeedbackMode(null);
+    clearReview();
     try {
-      const r = await predictPatient(eyes);
+      // Let a just-dropped image finish opening its case, so the run is filed
+      // into it rather than lost to a race with the upload.
+      await caseChainRef.current;
+      const r = await predictPatient(eyes, caseIdRef.current);
       setResult(normalizeApiResult(r, eyes));
     } catch (e) {
       console.error(e);
@@ -628,8 +790,9 @@ export default function Demo() {
   // file against IDRiD localization ground truth by filename (IDRiD_NNN); if it
   // matches, we attach the `gt` payload so the preprocessing/centre overlay
   // renders for it (the overlay only shows for GT-backed images).
-  const handlePick = (setImg) => (img) => {
+  const handlePick = (setImg, eye) => (img) => {
     setImg(img);
+    fileIntoCase(img, eye);
     if (img && img.fromUpload) {
       setCaseRef(null);
       matchIdridUpload(img.name, img.src).then((gt) => {
@@ -644,6 +807,9 @@ export default function Demo() {
   // GT markers VisionWidget overlays directly. If the IDRiD manifest is empty
   // (prep script not yet run), fall back to a walkthrough bilateral case.
   const loadRandomSample = () => {
+    // A drawn sample is a different patient — close the case the previous images
+    // belonged to so the new pair opens its own.
+    closeCase();
     const patient = pickRandomIdridPatient();
     if (patient) {
       // Insert the random patient's images as PLAIN images — no ground-truth
@@ -651,38 +817,92 @@ export default function Demo() {
       // like an uploaded snapshot (the detector finds OD/fovea, the clinician
       // can drag-correct, and DR is graded the same way). We deliberately drop
       // the IDRiD helper data (centres, FOV mask) so nothing is pre-supplied.
-      setLeftImg({ src: process.env.PUBLIC_URL + '/' + patient.left.image, name: patient.left.id, fromUpload: false });
-      setRightImg({ src: process.env.PUBLIC_URL + '/' + patient.right.image, name: patient.right.id, fromUpload: false });
+      const left = { src: process.env.PUBLIC_URL + '/' + patient.left.image, name: patient.left.id, fromUpload: false };
+      const right = { src: process.env.PUBLIC_URL + '/' + patient.right.image, name: patient.right.id, fromUpload: false };
+      setLeftImg(left);
+      setRightImg(right);
       setCaseRef(null); // IDRiD samples have no pre-rendered explainability assets
+      fileIntoCase(right, 'right');
+      fileIntoCase(left, 'left');
     } else {
       const w = pickRandomWalkthrough(WALKTHROUGH_POOL);
       if (!w) return;
-      setLeftImg({  src: process.env.PUBLIC_URL + '/' + w.left,  name: w.left,  fromUpload: false });
-      setRightImg({ src: process.env.PUBLIC_URL + '/' + w.right, name: w.right, fromUpload: false });
+      const left = { src: process.env.PUBLIC_URL + '/' + w.left, name: w.left, fromUpload: false };
+      const right = { src: process.env.PUBLIC_URL + '/' + w.right, name: w.right, fromUpload: false };
+      setLeftImg(left);
+      setRightImg(right);
       setCaseRef(w);
+      fileIntoCase(right, 'right');
+      fileIntoCase(left, 'left');
     }
     setResult(null);
-    setFeedbackMode(null);
+    clearReview();
   };
 
   const submitFeedback = (verdict) => {
-    if (!result) return;
+    // A result takes exactly one verdict: the buttons are replaced by "undo"
+    // once it is given, and this guard closes the gap for a double click.
+    if (!result || verdictEntry) return;
+    const corrected = verdict === 'confirmed' ? result.pred : correctedGrade;
     const entry = {
       id: Date.now(),
       timestamp: new Date().toISOString(),
+      case_id: caseIdRef.current || null,
       images: eyes.map(e => ({ eye: e.eye, source: e.name })),
       predicted: result.pred,
       confidence: Number(result.confidence.toFixed(4)),
       probs: result.probs.map(p => Number(p.toFixed(4))),
       verdict,
-      corrected_grade: verdict === 'confirmed' ? result.pred : correctedGrade,
+      corrected_grade: corrected,
       latency_ms: result.latencyMs,
       model: 'config-D (pipeline + EfficientNet-B3)',
     };
     setHistory(h => [entry, ...h]);
+    setVerdictEntry({
+      verdict, correctedGrade: corrected, historyId: entry.id,
+      caseId: caseIdRef.current, index: 0,
+    });
+    setFeedbackMode(null);
     setToast(t('demo.thanks'));
     setTimeout(() => setToast(''), 2500);
+
+    // Durable copy: the verdict is what the case store exists for. The local
+    // buffer above is kept either way — it is what the Export button reads.
+    // The index that comes back is the one an undo withdraws.
+    verdictChainRef.current = verdictChainRef.current
+      .then(() => submitCaseFeedback(caseIdRef.current, {
+        verdict,
+        correctedGrade: corrected,
+        predictedGrade: result.pred,
+        confidence: result.confidence,
+      }))
+      .then((saved) => {
+        if (saved && saved.index) {
+          setVerdictEntry(v => (v && v.historyId === entry.id ? { ...v, index: saved.index } : v));
+        }
+        refreshStats();
+      })
+      .catch(() => { /* best-effort */ });
+  };
+
+  // Take a verdict back: the buttons return, the buffer row goes, and the
+  // verdict is withdrawn from the case on the server — an undone verdict must
+  // leave nothing behind to be counted in the statistics or exported as a label.
+  // Queued behind the save so an immediate undo retracts the verdict that save
+  // wrote; with no index yet, the server withdraws the case's latest, which is
+  // the one just written.
+  const undoVerdict = () => {
+    const given = verdictEntry;
+    if (!given) return;
+    setVerdictEntry(null);
     setFeedbackMode(null);
+    setCorrectedGrade(0);
+    setHistory(h => h.filter(x => x.id !== given.historyId));
+    if (!given.caseId) return;
+    verdictChainRef.current = verdictChainRef.current
+      .then(() => retractCaseFeedback(given.caseId, given.index || undefined))
+      .then(() => refreshStats())
+      .catch(() => { /* best-effort */ });
   };
 
   const exportJsonl = () => {
@@ -777,8 +997,8 @@ export default function Demo() {
             label={t('demo.rightEye')}
             eye="right"
             image={rightImg}
-            onPick={handlePick(setRightImg)}
-            onClear={() => { setRightImg(null); setCaseRef(null); setResult(null); setFeedbackMode(null); }}
+            onPick={handlePick(setRightImg, 'right')}
+            onClear={() => { setRightImg(null); setCaseRef(null); setResult(null); clearReview(); }}
             onSwap={swapSlots}
             t={t}
           />
@@ -786,8 +1006,8 @@ export default function Demo() {
             label={t('demo.leftEye')}
             eye="left"
             image={leftImg}
-            onPick={handlePick(setLeftImg)}
-            onClear={() => { setLeftImg(null); setCaseRef(null); setResult(null); setFeedbackMode(null); }}
+            onPick={handlePick(setLeftImg, 'left')}
+            onClear={() => { setLeftImg(null); setCaseRef(null); setResult(null); clearReview(); }}
             onSwap={swapSlots}
             t={t}
           />
@@ -898,6 +1118,7 @@ export default function Demo() {
                         name={img.name}
                         enabled={liveVisuals}
                         gt={img.gt}
+                        caseId={caseId}
                         t={t}
                       />
                     )}
@@ -1002,7 +1223,7 @@ export default function Demo() {
               Live (from the checkpoint) for custom uploads when the real model
               is active; pre-rendered walkthrough assets otherwise. */}
           {apiReady && caseRef === null && eyes.length > 0 ? (
-            <LiveVisualizationBlock eyes={eyes} t={t} />
+            <LiveVisualizationBlock eyes={eyes} caseId={caseId} t={t} />
           ) : (
             <VisualizationBlock
               caseRef={caseRef}
@@ -1017,29 +1238,66 @@ export default function Demo() {
       {/* Feedback section */}
       {result && (
         <Sec title={t('demo.feedbackSection')} note={t('demo.feedbackHint')}>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-            <button
-              onClick={() => { setFeedbackMode('confirm'); submitFeedback('confirmed'); }}
-              style={{
-                padding: '8px 16px', fontSize: 12, fontWeight: 600,
-                background: C.green, color: 'white', border: 'none',
-                borderRadius: 6, cursor: 'pointer',
-              }}
-            >
-              ✓ {t('demo.confirm')}
-            </button>
-            <button
-              onClick={() => setFeedbackMode('reject')}
-              style={{
-                padding: '8px 16px', fontSize: 12, fontWeight: 600,
-                background: 'white', color: C.red,
-                border: `1px solid ${C.red}`, borderRadius: 6, cursor: 'pointer',
-              }}
-            >
-              ✕ {t('demo.reject')}
-            </button>
-          </div>
-          {feedbackMode === 'reject' && (
+          {/* One verdict per prediction. Until it is given, the two buttons; once
+              it is, they give way to the standing verdict and a single "undo",
+              so the same result cannot be confirmed twice — or confirmed and
+              rejected at once. */}
+          {verdictEntry ? (
+            <div style={{
+              display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center',
+              padding: '10px 14px', borderRadius: 8,
+              background: verdictEntry.verdict === 'confirmed' ? C.greenBg : C.redBg,
+              border: `1px solid ${verdictEntry.verdict === 'confirmed' ? C.green : C.red}`,
+            }}>
+              <div style={{ flex: 1, minWidth: 180 }}>
+                <div style={{
+                  fontSize: 12, fontWeight: 700,
+                  color: verdictEntry.verdict === 'confirmed' ? C.greenT : C.redT,
+                }}>
+                  {verdictEntry.verdict === 'confirmed' ? '✓' : '✕'}{' '}
+                  {t('demo.verdictGiven.' + verdictEntry.verdict)}
+                </div>
+                <div style={{ fontSize: 11, color: 'var(--color-text-secondary,#555)', marginTop: 3 }}>
+                  {t('demo.recordedGrade')}: <strong>{t('demo.grade.' + verdictEntry.correctedGrade)}</strong>
+                </div>
+              </div>
+              <button
+                onClick={undoVerdict}
+                style={{
+                  padding: '7px 14px', fontSize: 11, fontWeight: 600,
+                  background: 'transparent', color: 'var(--color-text-secondary,#555)',
+                  border: '1px solid var(--color-border-secondary,#bbb)',
+                  borderRadius: 6, cursor: 'pointer',
+                }}
+              >
+                ↺ {t('demo.undoVerdict')}
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+              <button
+                onClick={() => { setFeedbackMode('confirm'); submitFeedback('confirmed'); }}
+                style={{
+                  padding: '8px 16px', fontSize: 12, fontWeight: 600,
+                  background: C.green, color: 'white', border: 'none',
+                  borderRadius: 6, cursor: 'pointer',
+                }}
+              >
+                ✓ {t('demo.confirm')}
+              </button>
+              <button
+                onClick={() => setFeedbackMode('reject')}
+                style={{
+                  padding: '8px 16px', fontSize: 12, fontWeight: 600,
+                  background: 'white', color: C.red,
+                  border: `1px solid ${C.red}`, borderRadius: 6, cursor: 'pointer',
+                }}
+              >
+                ✕ {t('demo.reject')}
+              </button>
+            </div>
+          )}
+          {!verdictEntry && feedbackMode === 'reject' && (
             <div style={{
               marginTop: 12, padding: 12, borderRadius: 8,
               background: C.redBg, border: `1px solid ${C.red}`,
@@ -1075,6 +1333,13 @@ export default function Demo() {
               background: C.greenBg, color: C.greenT, fontSize: 11, fontWeight: 600,
             }}>
               ✓ {toast}
+            </div>
+          )}
+          {/* Where this patient's artifacts live on the server. Shown only when a
+              case was actually opened (backend reachable, images accepted). */}
+          {caseId && (
+            <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#777)', marginTop: 10, lineHeight: 1.5 }}>
+              {t('demo.case.stored').replace('{id}', caseId)}
             </div>
           )}
         </Sec>
@@ -1150,6 +1415,10 @@ export default function Demo() {
             </table>
           </div>
         )}
+
+        {/* Store-wide statistics. The buffer above is this session's work and is
+            cleared with it; these numbers come from the server and stay. */}
+        <CaseStatsPanel stats={stats} t={t} />
       </Sec>
 
       {/* Provenance string (TASK-Demo D.7) — what the committee can quote. */}

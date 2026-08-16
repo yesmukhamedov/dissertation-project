@@ -101,11 +101,15 @@ python run_experiment.py exp1 --config configs/default.yaml
 python run_experiment.py exp2 --config configs/default.yaml
 ```
 
-Demo — one-shot launchers, see `demo/CLAUDE.md` for the settled launch protocol:
+Demo — one-shot launchers. Full settled protocol: `demo/CLAUDE.md`.
+
+**«запусти демо» with no qualifier means: frontend + backend + Cloudflare tunnel, publicly, right now.**
+Run `demo\start-pages-demo.ps1` immediately (background, takes minutes) — do NOT ask which launcher,
+do NOT propose the local one, do NOT re-derive the architecture. Only «локально» selects `start-demo.ps1`.
 
 ```powershell
-demo\start-demo.ps1         # local:  backend :8000 + dashboard :3000
-demo\start-pages-demo.ps1   # public: https://dr-classification.pages.dev + GPU tunnel
+demo\start-pages-demo.ps1   # DEFAULT: public — https://dr-classification.pages.dev + GPU tunnel
+demo\start-demo.ps1         # only on explicit "локально": backend :8000 + dashboard :3000
 demo\start-pages-demo.ps1 -Stop
 ```
 

@@ -28,6 +28,11 @@ venv/
 kaggle.json
 **/kaggle.json
 
+# Приватный спутник реестра метаданных совета: банковские реквизиты зарубежного
+# консультанта и прочие персональные данные третьих лиц. Публичный реестр —
+# council/METADATA.toml — остаётся в git.
+council/METADATA.private.toml
+
 # Cloudflare tunnel credentials (cert.pem / <tunnel-uuid>.json). Only the
 # generated demo/cloudflared/config.yml.example is tracked.
 .cloudflared/
@@ -43,3 +48,8 @@ defense/docs/.print_cache/
 # Intermediate bodies written by build_full_dissertation.py, and Word scratch files
 thesis/assembly/_tmp_body/
 *.tmp
+
+# Runtime state written by the demo backend: patient case folders (originals,
+# cached preprocessing, attention maps, verdicts) and the OD/fovea correction
+# store. Real fundus images of real people — never commit them.
+demo/server/data/
