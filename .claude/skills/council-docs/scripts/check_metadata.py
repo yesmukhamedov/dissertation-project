@@ -108,7 +108,7 @@ REQUIRED: dict[str, list[str]] = {
     "thesis/output/official_reviewer_1_review_kz.md": [
         "candidate.name_kz_gen", "dissertation.title_kz",
         "programme.code", "programme.name_kz",
-        "official_reviewer_1.short_kz", "official_reviewer_1.degree_kz",
+        "official_reviewer_1.name_kz", "official_reviewer_1.degree_kz",
         "official_reviewer_1.title_kz", "official_reviewer_1.department_kz",
         "official_reviewer_1.org_kz",
     ],
@@ -129,7 +129,7 @@ REQUIRED: dict[str, list[str]] = {
     "thesis/output/official_reviewer_2_review_kz.md": [
         "candidate.name_kz_gen", "dissertation.title_kz",
         "programme.code", "programme.name_kz",
-        "official_reviewer_2.short_kz", "official_reviewer_2.degree_kz",
+        "official_reviewer_2.name_kz", "official_reviewer_2.degree_kz",
         "official_reviewer_2.title_kz", "official_reviewer_2.department_kz",
         "official_reviewer_2.org_kz",
     ],
