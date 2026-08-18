@@ -1,0 +1,732 @@
+[
+ {
+  "id": "B01",
+  "title": "Opening",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "demo open in Lite mode, top of the page, nothing loaded yet.",
+  "hold": 1.0,
+  "start": 0.0,
+  "end": 14.25,
+  "cues": [
+   {
+    "start": 1.0,
+    "end": 5.5,
+    "text": "Dear Professor Al-Haddad — the demonstration you asked for."
+   },
+   {
+    "start": 5.75,
+    "end": 9.25,
+    "text": "No sound: the captions are the commentary."
+   },
+   {
+    "start": 9.5,
+    "end": 14.0,
+    "text": "First the eight-stage pipeline, then the Grad-CAM maps."
+   }
+  ]
+ },
+ {
+  "id": "B02",
+  "title": "The two views",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "point at the Lite / Full switch in the top bar, do not click it yet.",
+  "hold": 1.0,
+  "start": 14.25,
+  "end": 21.5,
+  "cues": [
+   {
+    "start": 15.25,
+    "end": 21.25,
+    "text": "This is Lite mode — the clinician's screen. The research view comes later."
+   }
+  ]
+ },
+ {
+  "id": "B03",
+  "title": "Loading the patient",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "drop `294_right.jpeg` into the right-eye slot, then `294_left.jpeg` into the left-eye slot.",
+  "hold": 6.0,
+  "start": 21.5,
+  "end": 41.25,
+  "cues": [
+   {
+    "start": 27.5,
+    "end": 31.5,
+    "text": "One patient, both eyes, uploaded as ordinary files."
+   },
+   {
+    "start": 31.75,
+    "end": 36.25,
+    "text": "EyePACS case 294 - proliferative retinopathy in both eyes."
+   },
+   {
+    "start": 36.5,
+    "end": 41.0,
+    "text": "The system is not told that grade. We compare against it."
+   }
+  ]
+ },
+ {
+  "id": "B04",
+  "title": "The case opens",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "let the two thumbnails settle; the case note appears under the slots.",
+  "hold": 2.0,
+  "start": 41.25,
+  "end": 50.5,
+  "cues": [
+   {
+    "start": 43.25,
+    "end": 50.25,
+    "text": "Each image is checked to be a fundus photograph, then a patient case opens on the server."
+   }
+  ]
+ },
+ {
+  "id": "B05",
+  "title": "Entering the pipeline",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "on the left-eye card, click \"Show preprocessing stages\".",
+  "hold": 3.0,
+  "start": 50.5,
+  "end": 58.25,
+  "cues": [
+   {
+    "start": 53.5,
+    "end": 58.0,
+    "text": "Every stage can now be inspected one by one, on this eye."
+   }
+  ]
+ },
+ {
+  "id": "B06",
+  "title": "Stage 0 — original",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "stop on slide \"0. Original\".",
+  "hold": 1.0,
+  "start": 58.25,
+  "end": 64.5,
+  "cues": [
+   {
+    "start": 59.25,
+    "end": 64.25,
+    "text": "The image as it left the camera: a left eye, disc on the left."
+   }
+  ]
+ },
+ {
+  "id": "B07",
+  "title": "Stage 0 — canonical flip",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click ▸ to \"0. Canonical flip\". Step back and forward once so the mirroring is visible.",
+  "hold": 2.0,
+  "start": 64.5,
+  "end": 76.5,
+  "cues": [
+   {
+    "start": 66.5,
+    "end": 71.0,
+    "text": "Stage 0 mirrors every left eye into right-eye orientation."
+   },
+   {
+    "start": 71.25,
+    "end": 76.25,
+    "text": "After it, the optic disc sits on the same side in every image."
+   }
+  ]
+ },
+ {
+  "id": "B08",
+  "title": "OD and fovea detection",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click ▸ to the \"OD · fovea detection\" slide. Show the confidence chip; toggle the probability heat map on and off; drag the fovea marker slightly, then undo the drag (do not save).",
+  "hold": 3.0,
+  "start": 76.5,
+  "end": 95.25,
+  "cues": [
+   {
+    "start": 79.5,
+    "end": 84.5,
+    "text": "A trained heat-map detector finds the optic disc and the fovea."
+   },
+   {
+    "start": 84.75,
+    "end": 89.25,
+    "text": "It reports its confidence and can show its probability map."
+   },
+   {
+    "start": 89.5,
+    "end": 95.0,
+    "text": "A clinician who disagrees drags the markers; the pipeline re-runs."
+   }
+  ]
+ },
+ {
+  "id": "B09",
+  "title": "Stage 1 — rotation",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click ▸ to \"1. OD-fovea rotation\".",
+  "hold": 2.0,
+  "start": 95.25,
+  "end": 105.75,
+  "cues": [
+   {
+    "start": 97.25,
+    "end": 101.25,
+    "text": "Stage 1 rotates the disc-to-fovea axis horizontal."
+   },
+   {
+    "start": 101.5,
+    "end": 105.5,
+    "text": "Camera tilt stops being a difference between images."
+   }
+  ]
+ },
+ {
+  "id": "B10",
+  "title": "Stage 2 — FOV crop and resize",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click ▸ to \"2. FOV crop + resize\".",
+  "hold": 2.0,
+  "start": 105.75,
+  "end": 116.75,
+  "cues": [
+   {
+    "start": 107.75,
+    "end": 112.25,
+    "text": "Stage 2 crops the field of view and resizes to 512 by 512."
+   },
+   {
+    "start": 112.5,
+    "end": 116.5,
+    "text": "The resize is isotropic — nothing is stretched."
+   }
+  ]
+ },
+ {
+  "id": "B11",
+  "title": "Stage 3 — FOV mask",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click ▸ to \"3. FOV mask\".",
+  "hold": 2.0,
+  "start": 116.75,
+  "end": 127.75,
+  "cues": [
+   {
+    "start": 118.75,
+    "end": 122.75,
+    "text": "Stage 3 builds a binary mask of the field of view."
+   },
+   {
+    "start": 123.0,
+    "end": 127.5,
+    "text": "The mask becomes the fourth input channel of the network."
+   }
+  ]
+ },
+ {
+  "id": "B12",
+  "title": "Stage 4 — flat-field",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click ▸ to \"4. Flat-field\". Step back to Stage 2 and forward again once.",
+  "hold": 3.0,
+  "start": 127.75,
+  "end": 139.75,
+  "cues": [
+   {
+    "start": 130.75,
+    "end": 134.75,
+    "text": "Stage 4 removes the camera's illumination gradient."
+   },
+   {
+    "start": 135.0,
+    "end": 139.5,
+    "text": "The dark corners lift; lesions stop competing with shading."
+   }
+  ]
+ },
+ {
+  "id": "B13",
+  "title": "Stage 5 — CLAHE",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click ▸ to \"5. CLAHE\". Step back and forward once.",
+  "hold": 3.0,
+  "start": 139.75,
+  "end": 158.0,
+  "cues": [
+   {
+    "start": 142.75,
+    "end": 147.25,
+    "text": "Stage 5 is dual-constraint CLAHE on the lightness channel."
+   },
+   {
+    "start": 147.5,
+    "end": 152.5,
+    "text": "The second constraint keeps the optic disc from burning out."
+   },
+   {
+    "start": 152.75,
+    "end": 157.75,
+    "text": "These two photometric stages carry 41 % of the measured gain."
+   }
+  ]
+ },
+ {
+  "id": "B14",
+  "title": "What the network receives",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "scroll to the channel row under the CLAHE slide — R, G, B, FOV.",
+  "hold": 2.0,
+  "start": 158.0,
+  "end": 168.5,
+  "cues": [
+   {
+    "start": 160.0,
+    "end": 164.5,
+    "text": "The channels of the final stage are the CNN input itself."
+   },
+   {
+    "start": 164.75,
+    "end": 168.25,
+    "text": "Red, green, blue — and the field-of-view mask."
+   }
+  ]
+ },
+ {
+  "id": "B15",
+  "title": "The two stages you cannot see here",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "stay on the same screen.",
+  "hold": 1.0,
+  "start": 168.5,
+  "end": 180.0,
+  "cues": [
+   {
+    "start": 169.5,
+    "end": 175.0,
+    "text": "Two stages are absent by design: augmentation runs only in training,"
+   },
+   {
+    "start": 175.25,
+    "end": 179.75,
+    "text": "and Stage 7 is the normalisation that produces the tensor."
+   }
+  ]
+ },
+ {
+  "id": "B16",
+  "title": "Inference",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click \"Run inference\"; wait for the result card.",
+  "hold": 5.0,
+  "start": 180.0,
+  "end": 196.0,
+  "cues": [
+   {
+    "start": 185.0,
+    "end": 190.0,
+    "text": "The classifier: EfficientNet-B3, five grades, four channels."
+   },
+   {
+    "start": 190.25,
+    "end": 195.75,
+    "text": "Patient grade, class probabilities, referable flag, measured latency."
+   }
+  ]
+ },
+ {
+  "id": "B17",
+  "title": "Per eye",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "point at the per-eye panel.",
+  "hold": 1.0,
+  "start": 196.0,
+  "end": 202.75,
+  "cues": [
+   {
+    "start": 197.0,
+    "end": 202.5,
+    "text": "Each eye is graded on its own; either eye can make a patient referable."
+   }
+  ]
+ },
+ {
+  "id": "B18",
+  "title": "Grad-CAM",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "scroll to the attention overlays; let both eyes finish rendering.",
+  "hold": 6.0,
+  "start": 202.75,
+  "end": 223.5,
+  "cues": [
+   {
+    "start": 208.75,
+    "end": 213.75,
+    "text": "Grad-CAM, computed live from the model checkpoint, for each eye."
+   },
+   {
+    "start": 214.0,
+    "end": 219.0,
+    "text": "Attention gathers on the affected periphery, away from disc and vessels."
+   },
+   {
+    "start": 219.25,
+    "end": 223.25,
+    "text": "The line below it is generated from the map geometry."
+   }
+  ]
+ },
+ {
+  "id": "B19",
+  "title": "The limit of that claim",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "point at the note under the overlays.",
+  "hold": 1.0,
+  "start": 223.5,
+  "end": 234.5,
+  "cues": [
+   {
+    "start": 224.5,
+    "end": 230.0,
+    "text": "This is attention alignment, not clinical localisation of pathology."
+   },
+   {
+    "start": 230.25,
+    "end": 234.25,
+    "text": "An interpretability tool, never a diagnostic output."
+   }
+  ]
+ },
+ {
+  "id": "B20",
+  "title": "The ophthalmologist agrees",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click \"Confirm prediction\"; the standing verdict replaces the buttons.",
+  "hold": 3.0,
+  "start": 234.5,
+  "end": 248.0,
+  "cues": [
+   {
+    "start": 237.5,
+    "end": 243.0,
+    "text": "Here the model's grade matches the dataset's, and the reviewer confirms it."
+   },
+   {
+    "start": 243.25,
+    "end": 247.75,
+    "text": "One verdict per prediction, with an undo."
+   }
+  ]
+ },
+ {
+  "id": "B21",
+  "title": "The ophthalmologist disagrees",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "click undo; then \"Reject — provide correct grade\", choose a different grade, click \"Add to training buffer\".",
+  "hold": 5.0,
+  "start": 248.0,
+  "end": 263.5,
+  "cues": [
+   {
+    "start": 253.0,
+    "end": 258.0,
+    "text": "A disagreement is recorded the same way, with the correct grade."
+   },
+   {
+    "start": 258.25,
+    "end": 263.25,
+    "text": "It is stored in the patient case and in a buffer for retraining."
+   }
+  ]
+ },
+ {
+  "id": "B22",
+  "title": "What survives the session",
+  "part": "PART 1 — Lite mode (what a clinician sees)",
+  "do": "scroll to the relabeling buffer and the statistics panel; hover \"Export JSONL\" without clicking.",
+  "hold": 2.0,
+  "start": 263.5,
+  "end": 272.75,
+  "cues": [
+   {
+    "start": 265.5,
+    "end": 272.5,
+    "text": "The buffer exports as JSONL; the totals are read from disk, so a disagreement survives a reload."
+   }
+  ]
+ },
+ {
+  "id": "B23",
+  "title": "Switching",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "click the switch to Full; the sidebar appears.",
+  "hold": 3.0,
+  "start": 272.75,
+  "end": 280.5,
+  "cues": [
+   {
+    "start": 275.75,
+    "end": 280.25,
+    "text": "The same page in Full mode: everything behind the demo."
+   }
+  ]
+ },
+ {
+  "id": "B24",
+  "title": "Overview",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Overview tab; scroll slowly once.",
+  "hold": 2.0,
+  "start": 280.5,
+  "end": 293.5,
+  "cues": [
+   {
+    "start": 282.5,
+    "end": 288.0,
+    "text": "The claim of the work: the model is preprocessing plus the network."
+   },
+   {
+    "start": 288.25,
+    "end": 293.25,
+    "text": "The pipeline is a component of it, not preparation of the data."
+   }
+  ]
+ },
+ {
+  "id": "B25",
+  "title": "Pipeline",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Model → Pipeline; scroll through the stage diagram to the end.",
+  "hold": 3.0,
+  "start": 293.5,
+  "end": 312.25,
+  "cues": [
+   {
+    "start": 296.5,
+    "end": 301.5,
+    "text": "All eight stages, including the two the live strip cannot show."
+   },
+   {
+    "start": 301.75,
+    "end": 307.25,
+    "text": "Stage 6 — affine, colour jitter, noise, JPEG — training time only."
+   },
+   {
+    "start": 307.5,
+    "end": 312.0,
+    "text": "Stage 7 — dataset-specific normalisation into the tensor."
+   }
+  ]
+ },
+ {
+  "id": "B26",
+  "title": "Architecture and explainability",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Model → Architecture, stop on the 4-channel stem; then Model → Explainability.",
+  "hold": 3.0,
+  "start": 312.25,
+  "end": 325.25,
+  "cues": [
+   {
+    "start": 315.25,
+    "end": 320.25,
+    "text": "The only change to the backbone is a fourth channel in the stem."
+   },
+   {
+    "start": 320.5,
+    "end": 325.0,
+    "text": "And this is how the attention maps are produced and scored."
+   }
+  ]
+ },
+ {
+  "id": "B27",
+  "title": "Datasets",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Datasets; scroll once.",
+  "hold": 2.0,
+  "start": 325.25,
+  "end": 334.0,
+  "cues": [
+   {
+    "start": 327.25,
+    "end": 333.75,
+    "text": "Eight datasets: EyePACS for training, the rest for transfer and external clinics."
+   }
+  ]
+ },
+ {
+  "id": "B28",
+  "title": "Experiment 1",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Exp 1 (H-1): Factorial; stop on the A–D table.",
+  "hold": 3.0,
+  "start": 334.0,
+  "end": 355.25,
+  "cues": [
+   {
+    "start": 337.0,
+    "end": 342.5,
+    "text": "Two backbones by two arms, 35,126 images, five-fold cross-validation."
+   },
+   {
+    "start": 342.75,
+    "end": 348.25,
+    "text": "Weighted F1 rises from 0.754 to 0.819 — the same on both backbones."
+   },
+   {
+    "start": 348.5,
+    "end": 355.0,
+    "text": "The arms differ in pipeline and initialisation, so the gain is the configuration's."
+   }
+  ]
+ },
+ {
+  "id": "B29",
+  "title": "Experiment 2",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Exp 2 (H-2): Ablation; stop on the cumulative chart, then the per-stage contributions.",
+  "hold": 3.0,
+  "start": 355.25,
+  "end": 373.5,
+  "cues": [
+   {
+    "start": 358.25,
+    "end": 363.75,
+    "text": "Experiment 2 adds the stages one at a time, under one initialisation."
+   },
+   {
+    "start": 364.0,
+    "end": 369.5,
+    "text": "Each contributes significantly; together they reproduce the whole gain."
+   },
+   {
+    "start": 369.75,
+    "end": 373.25,
+    "text": "Flat-field and CLAHE lead — that is the 41 %."
+   }
+  ]
+ },
+ {
+  "id": "B30",
+  "title": "Experiment 4 — explainability",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Exp 4 (H-5): Explainability; stop on the ALO table.",
+  "hold": 3.0,
+  "start": 373.5,
+  "end": 388.0,
+  "cues": [
+   {
+    "start": 376.5,
+    "end": 382.0,
+    "text": "The attention claim, measured on 54 IDRiD images with lesion masks."
+   },
+   {
+    "start": 382.25,
+    "end": 387.75,
+    "text": "Overlap rises for all four lesion types; every interval excludes zero."
+   }
+  ]
+ },
+ {
+  "id": "B31",
+  "title": "Transfer and external clinics",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Exp 3 (H-4): APTOS, then Exp 5 (H-4/H-7): Transfer.",
+  "hold": 3.0,
+  "start": 388.0,
+  "end": 400.5,
+  "cues": [
+   {
+    "start": 391.0,
+    "end": 396.0,
+    "text": "Zero-shot transfer to APTOS, then two external clinical sets."
+   },
+   {
+    "start": 396.25,
+    "end": 400.25,
+    "text": "Plus 6.9 points on IDRiD, plus 5.4 on Messidor-2."
+   }
+  ]
+ },
+ {
+  "id": "B32",
+  "title": "Devices and small data",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Exp 6 (H-6): Devices, then Exp 7: Small Data.",
+  "hold": 3.0,
+  "start": 400.5,
+  "end": 413.0,
+  "cues": [
+   {
+    "start": 403.5,
+    "end": 408.5,
+    "text": "Across five camera groups the spread between devices narrows."
+   },
+   {
+    "start": 408.75,
+    "end": 412.75,
+    "text": "On a small clinical set the pipeline still wins."
+   }
+  ]
+ },
+ {
+  "id": "B33",
+  "title": "Results",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Results → Main Metrics, then Statistical Tests.",
+  "hold": 3.0,
+  "start": 413.0,
+  "end": 421.75,
+  "cues": [
+   {
+    "start": 416.0,
+    "end": 421.5,
+    "text": "The headline metrics, and the tests behind them: DeLong, McNemar, Holm."
+   }
+  ]
+ },
+ {
+  "id": "B34",
+  "title": "The cost",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "Validation → Computational.",
+  "hold": 2.0,
+  "start": 421.75,
+  "end": 432.75,
+  "cues": [
+   {
+    "start": 423.75,
+    "end": 428.75,
+    "text": "The fourth channel costs under 1 % in FLOPs and 24 megabytes."
+   },
+   {
+    "start": 429.0,
+    "end": 432.5,
+    "text": "The pipeline is a cheap prior."
+   }
+  ]
+ },
+ {
+  "id": "B35",
+  "title": "Closing",
+  "part": "PART 2 — Full mode (the research view)",
+  "do": "back to Overview, then to the Lite demo screen.",
+  "hold": 2.0,
+  "start": 432.75,
+  "end": 443.75,
+  "cues": [
+   {
+    "start": 434.75,
+    "end": 439.75,
+    "text": "The demo is online; I will keep the backend running to suit you."
+   },
+   {
+    "start": 440.0,
+    "end": 443.5,
+    "text": "Thank you for your time and for your review."
+   }
+  ]
+ }
+]

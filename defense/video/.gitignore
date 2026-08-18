@@ -1,0 +1,16 @@
+# Recording artifacts — large and regenerable from storyboard_en.md + record_demo.js.
+# The deliverable travels as a mail attachment / OneDrive link, not through git.
+recording/
+*.webm
+*.mp4
+*.wav
+
+# Synthesised speech cache (one directory per engine) and its measurements.
+.narration*/
+speech.json
+
+# The covering letter quotes the live demo access code, which is kept out of the
+# repository the same way `demo/.demo-password` is.
+email_to_al-haddad.txt
+
+__pycache__/
