@@ -136,7 +136,7 @@
 
 4. Yesmukhamedov N.S., Sapakova S.Z., Kozhamkulova Zh.Zh., Daniyarova D.R., Armankyzy R. Methods for preprocessing and analysis of fundus images for diabetic retinopathy detection // Қазақстан-Британ техникалық университетінің Хабаршысы. — 2025. — № 4(75). — Т. 22. — Б. 119–130. https://doi.org/10.55452/1998-6688-2025-22-4-119-130
 
-5. Sapakova S.Z., Daniyarova D.R., Yesmukhamedov N.S., Armankyzy R., Yemberdiyeva A.B., Kaldybaeva A.S. Mathematical modeling of laser exposure on fundus tissues in the treatment of diabetic retinopathy // КазУТБ Хабаршысы. — 2024. — Т. 2, № 27-740. https://doi.org/10.58805/kazutb.v.2.27-740
+5. Sapakova S.Z., Daniyarova D.R., Yesmukhamedov N.S., Armankyzy R., Yemberdiyeva A.B., Kaldybaeva A.S. Mathematical modeling of laser exposure on fundus tissues in the treatment of diabetic retinopathy // КазУТБ Хабаршысы. — 2025. — Т. 2, № 27-740. https://doi.org/10.58805/kazutb.v.2.27-740
 
 ## Жұмыстың негізгі мазмұны
 

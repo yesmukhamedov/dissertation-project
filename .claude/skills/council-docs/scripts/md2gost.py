@@ -536,7 +536,15 @@ def _note(doc: Document, text: str):
     return p
 
 
-def _line_block(doc: Document, lines: list[str]):
+def _page_break(doc: Document) -> None:
+    """Start a new page, without leaving a stray empty paragraph on the old one."""
+    p = doc.add_paragraph()
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(0)
+    p.paragraph_format.page_break_before = True
+
+
+def _line_block(doc: Document, lines: list[str], *, center: bool = False):
     """Render hard-broken lines as a signature block: one paragraph per line.
 
     Council reviews end with a signatory block — position, degree, organisation
@@ -547,16 +555,23 @@ def _line_block(doc: Document, lines: list[str]):
     right tab stop so the trailing name lands at the right margin. The samples
     always set the block off from the prose above it, so the block opens with a
     blank line's worth of space while its own lines stay tight together.
+
+    `center` switches the block to the masthead shape instead — every line
+    centred, no right tab. The list of scientific papers opens with three such
+    lines (post, programme, candidate in the genitive) under its title, and as a
+    justified body paragraph they read as prose rather than as a heading.
     """
     usable = _USABLE_MM
     for i, text in enumerate(lines):
         p = doc.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p.alignment = (WD_ALIGN_PARAGRAPH.CENTER if center
+                       else WD_ALIGN_PARAGRAPH.LEFT)
         p.paragraph_format.first_line_indent = Mm(0)
         p.paragraph_format.space_after = Pt(0)
-        p.paragraph_format.space_before = Pt(14) if i == 0 else Pt(0)
+        p.paragraph_format.space_before = Pt(0) if center else (
+            Pt(14) if i == 0 else Pt(0))
         head, sep, tail = text.partition("   ")
-        if sep and tail.strip():
+        if sep and tail.strip() and not center:
             p.paragraph_format.tab_stops.add_tab_stop(Mm(usable), WD_TAB_ALIGNMENT.RIGHT)
             _add_runs(p, head.strip())
             _set_cell_font(p.add_run("\t"))
@@ -593,9 +608,14 @@ _FORM_COL_FRAC = (0.04, 0.17, 0.25, 0.54)
 
 # The list of scientific papers, portrait like every sample of this document.
 # The proportions are set by the longest unbreakable word each column has to
-# hold rather than by its share of the text: column 3 must fit «электронный»
-# and column 6 a surname like «Кожамкулова», or Word hyphenates them mid-word.
-_PUBS_COL_FRAC = (0.045, 0.20, 0.17, 0.275, 0.115, 0.195)
+# hold rather than by its share of the text — «Наименование», «электронный»,
+# «Международный», «Объем,», «Кожамкулова» — or Word hyphenates them mid-word.
+# Each column's floor is that word's measured width in Times New Roman 14 pt
+# plus the 3.8 mm of cell padding; the six floors come to 169 mm, and the 88 mm
+# the landscape text block has left over goes to the three columns that carry
+# prose — the imprint column first, then the title, then the co-authors.
+# Re-measure (PIL.ImageFont.getlength on times.ttf) before changing a heading.
+_PUBS_COL_FRAC = (0.035, 0.246, 0.125, 0.337, 0.079, 0.178)
 _PUBS_TITLE_HEADS = ("название труд", "наименование науч")
 
 
@@ -663,6 +683,38 @@ def _apply_form_widths(table, header: list[str], ncols: int) -> None:
             cell.width = Mm(_USABLE_MM * frac)
 
 
+def _banner_rows(rows: list[list[str]], ncols: int) -> set[int]:
+    """Indices of the group-heading rows of a list-of-scientific-papers table.
+
+    Every sample list from this council carries its group headings — WoS/Scopus,
+    KKSON, conference proceedings, copyright certificates — as a banner row
+    *inside* the grid, spanning all six columns, rather than as a paragraph
+    between separate tables. A banner is written in Markdown as a row whose only
+    non-empty cell is the title column; nothing else in these tables leaves the
+    number column empty, so the shape is unambiguous.
+    """
+    out: set[int] = set()
+    for i in range(1, len(rows)):
+        row = rows[i]
+        cells = [(row[j].strip() if j < len(row) else "") for j in range(ncols)]
+        if not cells[0] and sum(1 for c in cells if c) == 1:
+            out.add(i)
+    return out
+
+
+def _set_banner(table, i: int, ncols: int, text: str) -> None:
+    """Merge row `i` into one centred, bold cell carrying `text`."""
+    merged = table.cell(i, 0).merge(table.cell(i, ncols - 1))
+    for extra in list(merged.paragraphs[1:]):
+        extra._element.getparent().remove(extra._element)
+    p = merged.paragraphs[0]
+    p.text = ""
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.first_line_indent = Mm(0)
+    p.paragraph_format.line_spacing = 1.0
+    _add_runs(p, text, bold=True)
+
+
 def _add_table(doc: Document, rows: list[list[str]]) -> None:
     """Render a Markdown pipe-table as a bordered Word table (TNR, header bold).
 
@@ -677,7 +729,10 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
     table.style = "Table Grid"
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     _apply_form_widths(table, rows[0], ncols)
+    banners = _banner_rows(rows, ncols) if _is_pubs_table(rows[0], ncols) else set()
     for i, row in enumerate(rows):
+        if i in banners:
+            continue
         for j in range(ncols):
             cell = table.cell(i, j)
             cell.paragraphs[0].text = ""  # clear default empty run
@@ -689,6 +744,9 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
                 p.paragraph_format.first_line_indent = Mm(0)
                 p.paragraph_format.line_spacing = 1.0
                 _add_runs(p, part.strip(), bold=(i == 0))
+    for i in sorted(banners):
+        _set_banner(table, i, ncols,
+                    next(c.strip() for c in rows[i] if c.strip()))
     if _is_form_table(rows[0], ncols):
         _merge_continuation_rows(table, rows)
     # spacing paragraph after the table
@@ -1316,6 +1374,13 @@ def render_into(
                 _emit(f)
 
     buf: list[str] = []
+    # `<!-- center -->` on its own line centres the block that follows it; see
+    # _line_block. It is consumed by whichever block flushes next.
+    pending_center = [False]
+
+    def take_center() -> bool:
+        was, pending_center[0] = pending_center[0], False
+        return was
 
     def flush_paragraph() -> None:
         if not buf:
@@ -1326,7 +1391,7 @@ def render_into(
         if hard_broken:
             # A signature block, not prose: keep the author's line division.
             parts = [s.strip() for s in raw.split(_HARD_BREAK)]
-            _line_block(doc, [p for p in parts if p])
+            _line_block(doc, [p for p in parts if p], center=take_center())
             return
         cleaned, regs, standalone = resolve_markers(raw)
         if standalone:
@@ -1414,6 +1479,20 @@ def render_into(
             _add_runs(c, stripped[len(_CAPTION_TOKEN):])
             continue
 
+        # Two comment directives. Both exist for the list of scientific papers:
+        # the samples give every publication group a page of its own ending in
+        # the two signatures, and centre the three masthead lines under the
+        # title. Any other document is free to ignore them.
+        if stripped == "<!-- pagebreak -->":
+            flush_paragraph()
+            flush_table()
+            _page_break(doc)
+            continue
+        if stripped == "<!-- center -->":
+            flush_paragraph()
+            pending_center[0] = True
+            continue
+
         if not stripped:
             flush_paragraph()
             continue
@@ -1488,18 +1567,21 @@ def render_into(
 
 
 def _wants_landscape(text: str) -> bool:
-    """True when the source carries the Appendix-3 reviewer form.
+    """True when the source carries the Appendix-3 reviewer form or a papers list.
 
     Every readable submission from this council is typeset landscape — the four
     columns of the form do not fit a portrait text block — so the orientation
     follows the form rather than a switch the author has to remember to set.
+    The list of scientific papers is landscape by the candidate's decision: the
+    samples are split 11 portrait to 5 landscape, but its six columns, four of
+    them prose, read as ribbons on a portrait page.
     """
     for line in text.splitlines():
         line = line.strip()
         if not line.startswith("|"):
             continue
         cells = _parse_table_row(line)
-        if _is_form_table(cells, len(cells)):
+        if _is_form_table(cells, len(cells)) or _is_pubs_table(cells, len(cells)):
             return True
     return False
 

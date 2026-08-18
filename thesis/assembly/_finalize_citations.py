@@ -136,7 +136,7 @@ K2C = {
 #     Table D.1), so they resolve on the full-join key before any fallback.
 #   * 2.4.1 cites the laser-modelling work by venue rather than by author, in
 #     both languages ("the modeling study reported in the Herald of KazUTB,
-#     2024"); "kazutb|2024" catches it through resolve()'s single-surname tier.
+#     2025"); "kazutb|2025" catches it through resolve()'s single-surname tier.
 # scopus-q2 and scopus-q3 are two literature cards for ONE article, exactly as
 # 0.12 discloses ("five distinct works, not six"), so both map to one entry.
 SELF_K2C = {
@@ -152,8 +152,8 @@ SELF_K2C = {
  # is only ever cited with its full author list, which resolves first.
  "sapakova|2025": "yesmukhamedov-scopus-q2.md",
  "sapakova-yesmukhamedov-sapakov-yemberdiyeva-kozhamkulova|2025": "yesmukhamedov-conf.md",
- "sapakova-daniyarova-yesmukhamedov-armankyzy-emberdieva-kaldybaeva|2024": "yesmukhamedov-kazutb.md",
- "kazutb|2024": "yesmukhamedov-kazutb.md",
+ "sapakova-daniyarova-yesmukhamedov-armankyzy-emberdieva-kaldybaeva|2025": "yesmukhamedov-kazutb.md",
+ "kazutb|2025": "yesmukhamedov-kazutb.md",
 }
 K2C.update(SELF_K2C)
 SELF_SUR = {"yesmukhamedov", "sapakova", "sapakov", "kazutb"}  # candidate's own work -> keep author-year

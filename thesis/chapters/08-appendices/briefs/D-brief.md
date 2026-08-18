@@ -57,7 +57,7 @@
 | Source | Role | Specific Content |
 |--------|------|------------------|
 | #19 `yesmukhamedov-conf.md` 🔹SELF | publication entry (SIR-4) | Sapakova, Yesmukhamedov et al. (2025), *Procedia Computer Science* 272, 496–501, DOI 10.1016/j.procs.2025.10.237 (DS 2025, Istanbul) → `SCOPUS_CONF.png` |
-| #20 `yesmukhamedov-kazutb.md` 🔹SELF | publication entry (SIR-4) | Sapakova et al. (2024), *Vestnik KazUTB* 2(27-740), DOI 10.58805/kazutb.v.2.27-740 → `KAZTBU.png` |
+| #20 `yesmukhamedov-kazutb.md` 🔹SELF | publication entry (SIR-4) | Sapakova et al. (2025), *Vestnik KazUTB* 2(27-740), DOI 10.58805/kazutb.v.2.27-740 → `KAZTBU.png` |
 | #21 `yesmukhamedov-kbtu.md` 🔹SELF | publication entry (SIR-4) | Yesmukhamedov et al. (2025), *Herald of KBTU* 4(75), DOI 10.55452/1998-6688-2025-22-4-119-130 → `KBTU.png` |
 | #22 `yesmukhamedov-nan-rk.md` 🔹SELF | publication entry (SIR-4) | Yesmukhamedov, Sapakova, Al-Haddad, Daniyarova (2025), *News of NAS RK, Phys.-Math. Series* 2(354), 74–91, DOI 10.32014/2025.2518-1726.345 → `AKADEMY.png` |
 | #23 `yesmukhamedov-scopus-q2.md` 🔹SELF | publication entry (SIR-4/SIR-5) | duplicate card of the EEJET article; ID anomaly `LC-AlTimemy-2021` flagged |

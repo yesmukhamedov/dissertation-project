@@ -78,6 +78,12 @@ REQUIRED: dict[str, list[str]] = {
         "programme.code", "programme.name_kz",
         "pub:1", "pub:2", "pub:3", "pub:4", "pub:5",
     ],
+    "thesis/output/publications_list_ru.md": [
+        "candidate.position_ru_gen", "candidate.name_ru_gen", "candidate.short_ru",
+        "programme.code", "programme.name_ru",
+        "organization.academic_secretary_short_ru",
+        "pub:1", "pub:2", "pub:3", "pub:4", "pub:5",
+    ],
     "thesis/output/supervisor_review_kz.md": [
         "candidate.name_kz_gen", "dissertation.title_kz",
         "programme.code", "programme.name_kz",

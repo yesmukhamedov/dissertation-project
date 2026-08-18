@@ -132,7 +132,7 @@ The main results of the dissertation are published in 5 scientific works, includ
 
 4. Yesmukhamedov N.S., Sapakova S.Z., Kozhamkulova Zh.Zh., Daniyarova D.R., Armankyzy R. Methods for preprocessing and analysis of fundus images for diabetic retinopathy detection // Herald of the Kazakh-British Technical University. — 2025. — No. 4(75). — Vol. 22. — P. 119–130. https://doi.org/10.55452/1998-6688-2025-22-4-119-130
 
-5. Sapakova S.Z., Daniyarova D.R., Yesmukhamedov N.S., Armankyzy R., Yemberdiyeva A.B., Kaldybaeva A.S. Mathematical modeling of laser exposure on fundus tissues in the treatment of diabetic retinopathy // Herald of KazUTB. — 2024. — Vol. 2, No. 27-740. https://doi.org/10.58805/kazutb.v.2.27-740
+5. Sapakova S.Z., Daniyarova D.R., Yesmukhamedov N.S., Armankyzy R., Yemberdiyeva A.B., Kaldybaeva A.S. Mathematical modeling of laser exposure on fundus tissues in the treatment of diabetic retinopathy // Herald of KazUTB. — 2025. — Vol. 2, No. 27-740. https://doi.org/10.58805/kazutb.v.2.27-740
 
 ## Main content of the work
 
