@@ -33,6 +33,10 @@ DOCS = {
     "official_reviewer_2_review_en": "Official reviewer 2 report (English)",
     "official_reviewer_2_review_ru": "Official reviewer 2 report (Russian)",
     "official_reviewer_2_review_kz": "Official reviewer 2 report (Kazakh)",
+    # Same report re-issued for the appointed reviewer, filed without a number.
+    "official_reviewer_review_en": "Official reviewer report (English)",
+    "official_reviewer_review_ru": "Official reviewer report (Russian)",
+    "official_reviewer_review_kz": "Official reviewer report (Kazakh)",
     # The list of scientific papers is Russian in the samples regardless of the
     # defense language — even the Kazakh-language defenses file it in Russian.
     "publications_list_ru": "List of scientific papers (Russian)",
@@ -51,6 +55,9 @@ SUBDIRS = {
     "official_reviewer_2_review_en": "reviews",
     "official_reviewer_2_review_ru": "reviews",
     "official_reviewer_2_review_kz": "reviews",
+    "official_reviewer_review_en": "reviews",
+    "official_reviewer_review_ru": "reviews",
+    "official_reviewer_review_kz": "reviews",
     "publications_list_ru": "publications",
 }
 
