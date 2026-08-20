@@ -1,6 +1,30 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 7.1.2 | **Date:** 2026-08-12
+**Version:** 7.2.0 | **Date:** 2026-08-20
+
+## v7.2.0 Sync Scope — restructuring to the council's measured norms (one boundary amended)
+
+The volume is being rebuilt to the shape measured across all 16 dissertations published by this
+council (`council/en/10-dissertation/peer-norms.md`): four chapters, two numbering levels, and
+about 28,000 words of main text against the 101,459 it carried. One binding is amended and nothing
+is reversed. **MINOR** per VERSIONING_POLICY §4.
+
+| File | Was | Now | What changed |
+|---|---|---|---|
+| `INVARIANTS.md` | 7.0.0 | **7.1.0** | SB-4.1 amended — a deployed demonstrator exists; SB-4.2/4.3 stand. Chapter references renumbered for four chapters. |
+| `outline/MASTER_OUTLINE.md` | 7.1.0 | **8.0.0** | Rewritten as the structural specification of the four-chapter volume; superseded planning lists removed. |
+| `outline/TABLE_OF_CONTENTS_EN.md` | 7.1.0 | **8.0.0** | Four chapters, 24 second-level subsections, no codes in headings. |
+| `outline/TABLE_OF_CONTENTS_KZ.md` | 7.1.0 | **8.0.0** | Same, plus appendix lettering А, Ә, Б, В, Г. |
+| `outline/REWRITE_MAP.md` | — | **new** | All 98 drafted sections mapped to destination or CUT, with word budgets. |
+
+**Pending in this line, not yet done:** the body itself (Phase 2), the Kazakh edition (Phase 4),
+the trilingual annotation (Phase 5), and the abbreviations list, from which the governance codes
+must be removed once they no longer appear in the text. `HYPOTHESIS.md`, `ARGUMENT_MAP.md`,
+`CONTRIBUTIONS.md`, `CENTRAL_THESIS.md`, `CORE_OBJECTIVE.md` and `RESEARCH_ARCHITECTURE.md` are
+**unaffected** — they define what may be claimed, and the restructuring changes where a claim is
+made, not what it is.
+
+---
 
 ## v7.1.2 Sync Scope — register repair + chapter currency (no new binding)
 

@@ -6,6 +6,22 @@ The versioning scheme is defined in [VERSIONING_POLICY.md](VERSIONING_POLICY.md)
 
 ---
 
+## v7.2.0 — 2026-08-20
+
+**Restructuring to the council's observed norms, and one scope boundary corrected to match fact (MINOR).**
+
+`council/` gained `en/10-dissertation/peer-norms.md`, measured across all 16 dissertations this council has published. It converts the Instruction's ceilings into the genre's actual shape, and the assembled volume missed it on almost every axis: 101,459 words of main text against a corpus median of 22,700; six chapters where the median is four, three of them in roles no sample uses; a fourth numbering level that occurs in none of the 16; 610 section signs and about 350 internal codes where the corpus prints zero of each; and centred headings where 0 of 16 centre them.
+
+- **`INVARIANTS.md` 7.0.0 → 7.1.0.** **SB-4.1 amended**: the clause asserted that no prototype implementation was available, which was written before the demonstrator existed and had become false. It now records that a working demonstrator is deployed and performs inference on submitted images, bounded on both sides — it establishes realizability and operating behaviour, and is evidence for no diagnostic claim. **SB-4.2 and SB-4.3 unchanged.** Chapter and section references renumbered for the four-chapter volume. No hypothesis, forbidden claim or non-claim is touched.
+- **`outline/MASTER_OUTLINE.md` 7.1.0 → 8.0.0.** Rewritten as a structural specification of the four-chapter volume: what each chapter contains, and which scope boundary and forbidden claim bind where. The superseded Novelty and Provisions planning lists are removed rather than carried marked-superseded for a third version.
+- **`outline/TABLE_OF_CONTENTS_{EN,KZ}.md` 7.1.0 → 8.0.0.** Four chapters, two numbering levels, 24 second-level subsections, plain noun-phrase titles, no code in any heading. Kazakh appendices re-lettered **А, Ә, Б, В, Г** — the previous list omitted Ә, which the one Kazakh-language sample with appendices keeps as its second letter.
+- **`outline/REWRITE_MAP.md` — new.** The binding contract for the rewrite: all 98 drafted sections mapped to a destination subsection or to CUT, with word budgets summing to the target. Two sections are cut, each with its reason recorded.
+- **Appendix D deleted** — a table of the candidate's publications and six screenshots of indexing databases. Neither appears in any of the 16, and the contents had promised something else entirely (implementation acts and certificates, which do not exist). The publication record keeps its two proper carriers, the Introduction's approbation rubric and the separate List of scientific papers.
+
+**Not a governance change, recorded for traceability.** `thesis/scripts/conformance.py` turns the peer-norms measurements into a gate over the assembled manuscript; `md2gost.py` now sets numbered headings at the paragraph indent rather than centred, and `table_continuations.py` announces every table that breaks across a page, which none of the volume's 42 tables did.
+
+---
+
 ## v7.1.1 — 2026-08-11
 
 **Downstream currency pass (PATCH — documentation sync only; no binding created, reversed or reinterpreted).** Four governance and planning documents that had fallen behind the INVARIANTS v7.0.0 / HYPOTHESIS v7.1.0 line are brought current, and one register position is corrected. Every change tracks a decision already ratified.
