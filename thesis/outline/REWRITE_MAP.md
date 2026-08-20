@@ -121,12 +121,18 @@ experiments chapter, and statistical validation lives inside the results.
 | **3.2 Effect of the pipeline on accuracy** | 1,500 | `4.2.1` Factorial design · `4.2.2` Training dynamics · `4.2.3` Quantitative comparison | 1,948 · 1,926 · 2,692 |
 | **3.3 Stage ablation and parameter sensitivity** | 1,600 | `4.3.1` Cumulative ablation · `4.3.2` CLAHE threshold sweep · `4.3.3` Flat-field sigma sweep | 2,300 · 2,232 · 2,169 |
 | **3.4 Domain distance in feature space** | 1,000 | `4.4.1` Measurement protocol · `4.4.2` Results and interpretive limits | 1,861 · 2,571 |
-| **3.5 Cross-dataset and external transfer** | 1,500 | `4.5.1`+`4.5.2` APTOS transfer · `4.7` IDRiD and Messidor-2 · `4.8` DDR, ODIR-5K, RFMiD — **three studies running one protocol three times, written once with three sets of results** | 1,447 · 1,395 · 1,745 · 1,713 |
+| **3.5 Cross-dataset and external transfer** | 1,800 | `4.5.1`+`4.5.2` APTOS transfer · `4.7` IDRiD and Messidor-2 · `4.8` DDR, ODIR-5K, RFMiD — **three studies running one protocol three times, written once with three sets of results** | 1,447 · 1,395 · 1,745 · 1,713 |
 | **3.6 Attention maps and lesion agreement** | 1,100 | `4.6.1` Generation protocol · `4.6.2` ALO and IoU against IDRiD masks · `4.6.3` Per-image consistency · `5.1` Explainability results | 1,574 · 1,685 · 1,421 · 2,117 |
 | **3.7 Training on small clinical samples** | 600 | `4.9` Small-data training | 1,515 |
 | **3.8 Statistical validation and comparative analysis** | 1,200 | `5.2.1` Bootstrap and mixed-effects · `5.2.2` Claim-strength classification · `5.3.1` Published systems · `5.3.2` Performance–complexity | 2,042 · 2,347 · 2,072 · 1,485 |
 | **3.9 Limitations and boundary conditions** | 600 | `5.4` | 2,110 |
 | *Conclusions on section 3* | 400 | `4.C` + `5.C` merged | 2,430 · 1,282 |
+
+**3.5 goes back up to 1,800, and the 300 it lent 3.3 is found elsewhere.** Merging the three
+external evaluations removes the repeated protocol but not the three acceptance criteria, the
+three verdicts, or the algebra of the degradation defect, which is developed once here and
+referred back to twice. The chapter is expected to land near 10,600 rather than 10,100; against
+a main-text band whose upper bound is 31,000 words that is headroom the volume has.
 
 **Section 3.9 shrinks, and for a reason worth recording.** With the internal codes gone, each
 section states its own bounds in prose where it previously carried a reference — the composite
