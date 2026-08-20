@@ -1,12 +1,12 @@
 # Stage-G citation conversion — FINAL resolution & QA (2026-08-20)
 
-Sources: `DISSERTATION_EN_partial_2026-08-20.md` + **none** — no `DISSERTATION_KZ_partial_2026-08-20.md`, so the Kazakh volume was not converted on this run.
-Outputs: `DISSERTATION_EN_GOST_2026-08-20.md`.
+Sources: `DISSERTATION_EN_partial_2026-08-20.md` + `DISSERTATION_KZ_partial_2026-08-20.md`.
+Outputs: `DISSERTATION_EN_GOST_2026-08-20.md`, `DISSERTATION_KZ_GOST_2026-08-20.md`.
 Numbering assigned ONCE by first appearance in EN, reused verbatim in KZ (rule #7).
 
 ## Summary
 - External sources numbered: **99**  |  Highest [N]: **99**
-- Bracketed citations placed — EN: **133** | KZ: **0**
+- Bracketed citations placed — EN: **133** | KZ: **133**
 - Residual *resolvable* author-year (BLOCKING) — EN: **0** | KZ: **0**
 - Left as author-year by policy — self EN/KZ: **0/0** ; App-D EN/KZ: **0/0**
 - UNKNOWN author-year (needs a card or is non-citation prose) — EN: **0** | KZ: **0**

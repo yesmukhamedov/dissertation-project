@@ -8,7 +8,7 @@
 
 ## PART 1: SECTION TEXT
 
-### E.1 What this gallery is, and how it must be read
+### D.1 What this gallery is, and how it must be read
 
 The reading rule comes before the plates, because a gallery of attention maps is more persuasive
 than it is probative and the distinction matters here.
@@ -29,7 +29,7 @@ this appendix has not thereby checked that result, and a reader who wishes to ch
 section 3.6 and Appendix B rather than these pages. The gallery exists so that the material behind
 the measurement can be inspected, not so that the measurement can be re-made by eye.
 
-### E.2 Composition, and why the gallery is exhaustive
+### D.2 Composition, and why the gallery is exhaustive
 
 The gallery reproduces **all 54 plates of the annotated subset, the entire subset and not a
 selection**. Each plate pairs the same fundus image under both configurations, the baseline arm on
@@ -40,7 +40,7 @@ the result it accompanies, and no reader can detect the selection from inside th
 Reproducing the subset entire removes that possibility: whatever the plates show, favourable or
 otherwise, they show for every image on which the measurement was made.
 
-### E.3 The subset, and what bounds it
+### D.3 The subset, and what bounds it
 
 Of the 516 images in the annotated corpus, 54 carry pixel-level lesion annotation and constitute the
 subset on which the explainability measurement was performed. Availability differs by lesion type,
@@ -58,7 +58,7 @@ The evidence in this appendix rests on a single annotated corpus and on the mode
 cross-validation fold. Neither the corpus nor the fold is varied anywhere in the explainability
 analysis, and no between-fold variation is available for it.
 
-### E.4 Plate index
+### D.4 Plate index
 
 The plates follow in identifier order. Each is resolved to its image during document conversion.
 
@@ -117,7 +117,7 @@ The plates follow in identifier order. Each is resolved to its image during docu
 - `[FIG-D.53: Paired attention overlay, IDRiD_053, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_053_comparison.png]`
 - `[FIG-D.54: Paired attention overlay, IDRiD_054, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_054_comparison.png]`
 
-### E.5 What is absent, and what follows from it
+### D.5 What is absent, and what follows from it
 
 The hypothesis under which these plates were produced contemplates two halves: a quantitative
 comparison against pixel-level annotation, and a qualitative examination of overlays on the clinical

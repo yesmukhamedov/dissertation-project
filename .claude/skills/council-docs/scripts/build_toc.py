@@ -40,9 +40,14 @@ TAB_MM = 170.0  # text-area right edge: A4 210 - left 30 - right 10
 DASH = "—"
 INDENT_MM = {1: 0.0, 2: 0.0, 3: 7.0, 4: 14.0}
 
-_LEADNUM = re.compile(r"^§?\s*(\d+(?:\.[0-9A-Za-z]+)*)")
+# The number must be a token of its own. Without the lookahead the Kazakh
+# conclusion heading "1-бөлім бойынша қорытындылар" reads as section "1" and
+# silently takes chapter 1's opening page instead of its own.
+_LEADNUM = re.compile(r"^§?\s*(\d+(?:\.[0-9A-Za-z]+)*)(?=\s|$)")
 _CONCL_EN = re.compile(r"Conclusions to Chapter (\d+)", re.I)
-_CONCL_KZ = re.compile(r"(\d+)-тарау")
+# The six-chapter tree headed these "N-тарау"; the four-chapter tree says
+# "N-бөлім". Both are carried so an older manuscript still resolves.
+_CONCL_KZ = re.compile(r"(\d+)-(?:тарау|бөлім)")
 # A Kazakh appendix heading leads with its letter ("А қосымшасы — …"), so it
 # matches none of the `fronts` prefixes.
 _KZ_APPENDIX = re.compile(r"^[А-ЯЁӘҒҚҢӨҰҮҺІ]\s+қосымшасы\b", re.I)

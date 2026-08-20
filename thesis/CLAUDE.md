@@ -98,8 +98,17 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 **The volume was restructured from six chapters to four** and rewritten against the norms measured
 across the 16 dissertations this council has published (`council/en/10-dissertation/peer-norms.md`).
 Main text 31,258 words, 24 second-level subsections, 19 tables, 16 figures, five appendices, 99
-sources. The gate is `scripts/conformance.py`; it passes 15 of 16 over the assembled manuscript, and
-a chapter is not finished until it does.
+sources. The gate is `scripts/conformance.py`; it passes 15 of 16 over each assembled manuscript,
+and a chapter is not finished until it does. The two editions fail different checks: English on
+main-text words (258 over the ceiling), Kazakh on em dashes — 16.3 per 1,000 words against a norm
+of 0.7, which is the Kazakh copula dash ("X — Y") and grammatically obligatory, so the norm itself
+is what needs deciding.
+
+The GOST export was run on 2026-08-20 and the council pair is
+`defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-20.{docx,pdf}` — **145 pages EN / 157 KZ**,
+105 and 117 of them ahead of the appendices. Each edition's Introduction states its own page count.
+Rebuild it with the eight builders in `.claude/skills/council-docs/scripts/`, in the order recorded
+in `PROJECT_MEMORY/gost-export-toolchain.md`.
 
 - 00-introduction: written last, as the map requires. One continuous section, eleven bold run-in
   rubrics, unnumbered and not listed in the contents. No hypothesis rubric and no separate

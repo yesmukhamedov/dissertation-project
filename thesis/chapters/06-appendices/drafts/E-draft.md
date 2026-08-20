@@ -25,7 +25,7 @@ A fourth condition applies to the whole: none of what follows constitutes device
 regulatory compliance, or a claim of device-agnostic deployment readiness. These are empirical
 observations of cross-device performance variability and nothing more.
 
-### F.1 Group composition
+### E.1 Group composition
 
 **Table E.1 – Group sizes and per-group class sizes.**
 
@@ -41,7 +41,7 @@ The imbalance of the training corpus reproduces within every group, DR0 being th
 everywhere and DR4 the smallest. Per-class figures in section E.5 must be read against these counts,
 and the DR3 and DR4 columns rest on tens rather than hundreds of images.
 
-### F.2 Weighted F1 and retention ratio by group
+### E.2 Weighted F1 and retention ratio by group
 
 The retention ratio is the group's weighted F1 divided by the same arm's in-domain weighted F1; the
 floor against which it was assessed is 0.7.
@@ -62,7 +62,7 @@ Absolute weighted F1 is higher under the integrated configuration on every group
 interval excluding zero. The floor is cleared by both configurations on all five groups, so, as
 section 3.5 states, it does not discriminate between them.
 
-### F.3 ROC-AUC and Cohen's κ by group
+### E.3 ROC-AUC and Cohen's κ by group
 
 **Table E.3 – Threshold-independent performance and ordinal agreement by group.**
 
@@ -74,7 +74,7 @@ section 3.5 states, it does not discriminate between them.
 | topcon_messidor2 | 0.8407 | 0.8729 | +0.0322 | [+0.0183, +0.0421] | 0.7152 | 0.7886 |
 | mixed_rfmid | 0.7884 | 0.8516 | +0.0632 | [+0.0478, +0.0882] | 0.6254 | 0.7408 |
 
-### F.4 Referable-DR AUC by group
+### E.4 Referable-DR AUC by group
 
 **Table E.4 – Binary referable-DR ROC-AUC (grade ≥ 2) by group.**
 
@@ -86,7 +86,7 @@ section 3.5 states, it does not discriminate between them.
 | topcon_messidor2 | 0.9064 | 0.9459 |
 | mixed_rfmid | 0.8553 | 0.9114 |
 
-### F.5 Per-class F1 by group
+### E.5 Per-class F1 by group
 
 **Table E.5 – Per-class F1 by group, baseline efficient.**
 
@@ -115,7 +115,7 @@ every group: DR0 easiest, then DR2, DR4, DR3, with DR1 hardest everywhere. Mild 
 disease remains the weakest class under every camera grouping and in both arms; the integrated
 configuration mitigates that weakness without removing it.
 
-### F.6 Between-class dispersion
+### E.6 Between-class dispersion
 
 **Table E.7 – Span of per-class F1 across the five groups (maximum − minimum), by class.**
 
@@ -131,7 +131,7 @@ The contraction of the between-group span holds on every one of the five grades,
 pathological ones, and is the same levelling visible in the aggregate figures of section E.7,
 resolved by class.
 
-### F.7 Between-group dispersion
+### E.7 Between-group dispersion
 
 **Table E.8 – Dispersion of performance across the five camera groups.**
 
@@ -145,7 +145,7 @@ such: the dispersion of performance across camera groupings falls by roughly a f
 weighted F1 and 3.1 on ROC-AUC, with both intervals excluding zero. The range contracts rather than
 shifting, the largest gain falling on the grouping where the baseline was weakest.
 
-### F.8 The retention ratio and why it moves against the absolute figures
+### E.8 The retention ratio and why it moves against the absolute figures
 
 Table E.2 contains an apparent inconsistency that is worth stating plainly rather than leaving to be
 noticed. On two groupings, `mixed_ddr` and `topcon_messidor2`, the retention ratio is marginally
@@ -166,7 +166,7 @@ therefore penalises a configuration for its in-domain strength. The observation 
 It explains the shape of a column in Table E.2; it does not rehabilitate any result, and no claim in
 this dissertation is strengthened by it.
 
-### F.9 What this appendix does not contain
+### E.9 What this appendix does not contain
 
 **Per-group confusion matrices were not recorded.** The run's data carry per-class F1 by group, which section E.5 reproduces, but not the full confusion structure within each group. The consequence is the one stated in section 3.5 and again in section 3.9. It is not possible to say whether the *composition* of errors differs between camera groupings, or whether a grouping's weakness on a given grade arises from confusion with the adjacent grade or with a distant one. That the aggregate performance levels across groupings is established; that the error structure levels with it is not, and remains an open question that closing would require only an additional export rather than any new training.
 

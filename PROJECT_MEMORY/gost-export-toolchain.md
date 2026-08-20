@@ -1,6 +1,6 @@
 ---
 name: gost-export-toolchain
-description: What md2gost.py can now render (Mermaid, appendix-letter markers, print-resolution images), what the export needs installed, and the three defects the first real re-export uncovered
+description: What md2gost.py can now render (Mermaid, appendix-letter markers, print-resolution images), what the export needs installed, the run order of the eight builders, and the five defects the two real re-exports uncovered
 metadata:
   type: project
 ---
@@ -46,3 +46,27 @@ cut the body at `^# 1 `, which would have dropped all sixteen §0.x sections now
 that the Introduction is assembled ahead of Chapter 1 — the same defect class as
 citation defect #2. Both now resolve the newest pair at run time, and the body
 starts at the Introduction where one exists. See [[thesis-writing-status]].
+
+**The four-chapter export (2026-08-20) sprang two more, both in the CONTENTS and
+both silent** — the page numbers looked plausible, so only reading the assembled
+contents back out of the .docx caught them. See [[four-chapter-rewrite]].
+
+1. **Kazakh chapter conclusions took the chapter's opening page.** `build_toc.py`
+   keyed a heading by its leading number, and `1-бөлім бойынша қорытындылар`
+   leads with `1`, so it collided with chapter 1 and inherited page 18 instead of
+   its own 31. Two causes, both fixed: `_LEADNUM` now requires the number to be a
+   token of its own (`(?=\s|$)`), and `_CONCL_KZ` matches `N-бөлім` as well as the
+   six-chapter tree's `N-тарау`. English escaped only by accident — "Conclusions
+   on section 1" has no leading digit and fell through to the front-matter map.
+2. **The contents listed DEFINITIONS before DESIGNATIONS AND ABBREVIATIONS**,
+   while the bundle renders them the other way round (the house order verified
+   against the IITU samples), so the page column ran 4, 7, 5. Fixed in the
+   sources `thesis/output/contents_{en,kz}.md`, not in the builder.
+
+Run order for a full re-export, each step feeding the next:
+`_assemble_{en,kz}.py` → `_finalize_citations.py` → `md2gost.py` per language into
+`defense/docs/DISSERTATION_{EN,KZ}_GOST_<date>.docx` → `build_title.py` →
+`build_frontmatter.py` → `build_toc.py --date <date>` → `build_frontmatter_bundle.py`
+→ `build_full_dissertation.py`. Use the system interpreter
+`C:\Users\PC\AppData\Local\Programs\Python\Python313\python.exe` — the shell's
+default `python` is the demo venv, which has neither `python-docx` nor `pywin32`.
