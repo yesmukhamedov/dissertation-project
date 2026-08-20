@@ -21,13 +21,13 @@ text that replaces it.
 | New unit | Sources | Source words | Budget | Written |
 |---|---:|---:|---:|---:|
 | Introduction | 16 | 10,003 | 1,900 | **2,483** |
-| 1 Automated diabetic retinopathy screening | 12 | 13,143 | **4,000** | **4,436** |
-| 2 Methodology of the integrated pipeline | 26 | 27,281 | **6,000** | **7,481** |
-| 3 Experimental results | 30 | 51,232 | **11,900** | **11,949** |
-| 4 The screening system | 9 | 8,238 | **3,700** | **3,139** |
-| Conclusion | 1 | 1,616 | 900 | **1,349** |
-| **Main text** | **94** | **111,513** | **28,400** | **30,837** |
-| Appendices (not in the declared volume) | 6 → 5 | 8,705 | ≈ 6,000 | **3,864** |
+| 1 Automated diabetic retinopathy screening | 12 | 13,143 | **4,000** | **4,609** |
+| 2 Methodology of the integrated pipeline | 26 | 27,281 | **6,000** | **7,528** |
+| 3 Experimental results | 30 | 51,232 | **11,900** | **11,956** |
+| 4 The screening system | 9 | 8,238 | **3,700** | **3,168** |
+| Conclusion | 1 | 1,616 | 900 | **1,253** |
+| **Main text** | **94** | **111,513** | **28,400** | **30,997** |
+| Appendices (not in the declared volume) | 6 → 5 | 8,705 | ≈ 6,000 | **3,775** |
 
 **Reconciled after Chapter 3 was written.** The evidence chapter came in at 11,941 against a planned
 10,100. Its ten subsections compress 51,232 words at 4.3 to 1, the same ratio as everywhere else, so
@@ -39,15 +39,20 @@ the main-text total is unchanged at 28,400. Resulting chapter sizes are roughly 
 pages against a corpus range of 3 to 54 with a median of 16.5: the results chapter sits high in that
 range, which is where a chapter carrying the contribution belongs.
 
-**Closed at 30,837 words.** The main text finished 2,437 over the 28,400 target, at 3.6 to 1 rather
-than the planned 3.9. The overrun is distributed rather than local: the methodology chapter took
-1,481 of it and the introduction 583, and only the system chapter came in under. It is accepted
-rather than trimmed because 30,837 sits inside the corpus band, which tops out at 31,000, and
-because the alternative is thinning arguments that are already at two or three sentences a
-paragraph. The gate over the assembled manuscript passes all sixteen checks at this length; the
-figure to watch is the band ceiling, and there is 163 words of room against it.
+**Closed at 30,997 words, against a ceiling of 31,000.** The main text finished 2,597 over the
+28,400 target, at 3.6 to 1 rather than the planned 3.9. The overrun is distributed rather than
+local: the methodology chapter took 1,528 of it and the introduction 583, and only the system
+chapter came in under. It is accepted rather than trimmed further because 30,997 sits inside the
+corpus band, and because the alternative is thinning arguments that are already at two or three
+sentences a paragraph.
 
-The appendices came in at 3,864 against ≈ 6,000. The estimate was made before the requirement
+**Three words of headroom is the operating condition from here.** Restoring the attribution the
+compression had dropped cost 408 words, and paying for it took four compressions: the conclusion's
+open-question enumeration, section 1.2's duplicated position statement, section 2.1's denoising
+rationale, and section 1.1's laser-model assumptions. Nothing further can be added to the main text
+without something else coming out, and the gate is what says which.
+
+The appendices came in at 3,775 against ≈ 6,000. The estimate was made before the requirement
 tables were dropped from the system chapter, which took the requirement mapping of Appendix C with
 them, and before the publication appendix was deleted. Appendices are optional in the genre — 6 of
 16 have none — so the shortfall is not a gap to fill.
@@ -242,6 +247,12 @@ Measured by `thesis/scripts/conformance.py`; a chapter is not finished until it 
    Hypotheses become prose: "the first hypothesis holds that…". The governance apparatus stays
    authoritative in `thesis/governance/`; it no longer reaches the page.
 4. **No editorial residue** — no `[VERIFY]`, `TODO`, `TBD`.
+4a. **Every claim taken from a source names it.** The corpus prints bare `[12]`; drafts carry the
+   working author-year form and the citation pass converts it. Compression is what put this rule
+   here: the first pass carried 17 of the superseded tree's 183 citations across, leaving a body
+   that cited 12 sources and a reference list that needed 100 to 150. Restoring them was a separate
+   pass over every section, which is the expensive way to do it. A printed `[12]` is one word, so
+   `conformance.py` counts a working citation as one word rather than as the four it is written as.
 5. **Em dashes out** (10.3 per 1,000 words → ≤ 0.7). The parenthetical aside is what holds our
    sentences at 30 words; removing it does much of the compression by itself.
 6. **Bold ≤ 1% of words.** Emphasis by sentence construction, not typography.

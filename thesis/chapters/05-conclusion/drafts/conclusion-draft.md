@@ -8,9 +8,9 @@ This dissertation set out to establish whether the preparation of a fundus image
 convolutional network belongs to the specification of the diagnostic model or beside it.
 
 The question is not rhetorical. If the transform applied before the first convolution determines the
-feature space the network operates in, then a model reported without that transform specified has not
-been fully described, and a comparison between two such models is a comparison between partly unknown
-systems.
+feature space the network operates in, then a model reported without that transform specified has
+not been fully described, and a comparison between two such models is a comparison between partly
+unknown systems.
 
 The work therefore specified an eight-stage pipeline as a binding part of the model and placed the
 resulting configuration under controlled contrast against an equivalent configuration lacking it. It
@@ -31,16 +31,17 @@ into groups with the two photometric stages leading. That is a grouping and not 
 adjacent ranks lie within noise. Both photometric parameters have interior optima confirmed on
 held-out data.
 
-The distance between the training distribution and each of six target distributions fell, without any
-target statistic entering the transform, so the mechanism the argument postulates was measured rather
-than inferred. The magnitude of that reduction does not track the magnitude of the corresponding
-performance gain, and no argument here rests on such a correspondence.
+The distance between the training distribution and each of six target distributions fell, without
+any target statistic entering the transform, so the mechanism the argument postulates was measured
+rather than inferred. The magnitude of that reduction does not track the magnitude of the
+corresponding performance gain, and no argument here rests on such a correspondence.
 
-Competence transferred to every external corpus examined, with the integrated configuration higher on
-each. Two of the criteria were cleared by both configurations, so there the evidence lies in the
+Competence transferred to every external corpus examined, with the integrated configuration higher
+on each. Two of the criteria were cleared by both configurations, so there the evidence lies in the
 comparison and not in the criterion. On the external clinical corpora the claim is about absolute
-performance and not about resistance to degradation, since relative to their own in-domain levels the
-two configurations declined almost identically, and the margin on the second is four thousandths.
+performance and not about resistance to degradation, since relative to their own in-domain levels
+the two configurations declined almost identically, and the margin on the second is four
+thousandths.
 
 Attention overlapped expert-annotated lesions more under the integrated configuration on all four
 annotated types and on both measures. What that establishes is alignment between model evidence and
@@ -71,9 +72,8 @@ counts as a fair comparison. It is a methodological position rather than an empi
 the results are consistent with it under the conditions tested rather than establishing it
 universally.
 
-The engineering contribution is the pipeline as a specified and reproducible object: geometry-preserving
-resize, the explicit mask as an input channel, illumination correction scaled to per-image geometry,
-normalisation from valid fundus pixels, and canonical orientation with adaptive augmentation.
+The engineering contribution is the pipeline as a specified and reproducible object, whose parameter
+values were fixed on particular corpora and should be re-established rather than inherited.
 
 The metrological contributions are two. An asymmetric measure of overlap between model attention and
 expert annotation, whose asymmetry is argued from what is clinically meaningful rather than adopted
@@ -88,43 +88,39 @@ analysis holds wherever those measures are used; it is descriptive, and it rehab
 of this work.
 
 One outcome that ran against expectation is recorded here rather than omitted. Label-free
-self-supervised initialisation trained from scratch on the in-domain corpus failed the frozen-backbone
-acceptance gate, across several protocols of the same family and without improvement from longer
-training, and was therefore not admitted.
+self-supervised initialisation trained from scratch on the in-domain corpus failed the
+frozen-backbone acceptance gate, across several protocols of the same family and without improvement
+from longer training, and was therefore not admitted.
 
 The initialisation ultimately used was selected by that gate rather than assumed. The gate exists
 precisely so that an initialisation may fail it, and a conclusion reporting only the branch that
 succeeded would misrepresent the record.
 
-The limitations are set out in full where each arose. They concern what was measured and what was
-not; the corpora, devices and populations the evidence reaches; the instruments' own interpretive
-limits; the design's confounds and the single-fold evaluations that carry no between-fold variance;
-and the reproducibility of one experiment whose corpus cannot be redistributed. None is softened
-here and none is added.
+The limitations are set out in full where each arose, and none is softened here or added to. They
+concern what was measured and what was not, the corpora and populations the evidence reaches, the
+instruments' interpretive limits, the design's confounds, and one corpus that cannot be
+redistributed.
 
-Eight questions remain open, and they are worth stating in the order of what closing them would cost.
-Four could be answered without training a new model. Whether the attention alignment demonstrated on
-annotated public data also holds on the clinical corpus, and whether attention is consistent across
-corpora, both need only overlays and a comparison protocol. What the mask channel contributes in
-isolation needs one further ablation level, since the present one introduces it jointly with the
-crop. And what an end-to-end system costs needs the preprocessing stages themselves timed, the
-present analysis having measured only the network.
+Eight questions remain open, ordered by what closing them would cost. Four need no new model:
+whether the attention alignment holds on the clinical corpus, whether attention is consistent across
+corpora, what the mask channel contributes in isolation, and what an end-to-end system costs once
+the preprocessing stages are themselves timed.
 
-Three would require new experiments or new data. Whether the two photometric parameters interact
-needs a joint sweep rather than two independent ones. Whether the composition of errors differs
-across camera groupings needs per-grouping confusion matrices. And whether any of this holds beyond
-the corpora and devices used here needs independent validation this work does not provide.
+Three need new experiments or new data: whether the two photometric parameters interact, whether the
+composition of errors differs across camera groupings, and whether any of this holds beyond the
+corpora and devices used here.
 
 The eighth is of a different kind and no measurement can close it. Each of the differenced and
-ratio-based transfer measures examined here penalises a configuration for its own in-domain strength,
-so whether they should serve as criteria of external quality at all is a question about what the
-field should measure. It is answered by argument or not at all.
+ratio-based transfer measures examined here penalises a configuration for its own in-domain
+strength, so whether they should serve as criteria of external quality at all is a question about
+what the field should measure. It is answered by argument or not at all.
 
 The position this dissertation ends on can be stated briefly and checked against the record. Under
 matched conditions, on eight corpora spanning four camera manufacturers, an integrated
 preprocessing-classification configuration outperformed an equivalent configuration without the
-pipeline, consistently and in every regime examined. The mechanism proposed to explain that advantage
-was measured directly rather than inferred, and the advantage decomposes across the pipeline's stages.
+pipeline, consistently and in every regime examined. The mechanism proposed to explain that
+advantage was measured directly rather than inferred, and the advantage decomposes across the
+pipeline's stages.
 
 The work does not show that this configuration is clinically valid, deployable, certifiable, or
 better than any published system, and it does not show that these results hold beyond the conditions

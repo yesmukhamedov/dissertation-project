@@ -397,23 +397,26 @@ figures. The list of references comprises 107 sources.
 ## 1.1 Diabetic retinopathy and screening demand
 
 Diabetic retinopathy is a chronic complication of diabetes mellitus and one of the principal causes
-of preventable vision loss among working-age adults. Narrative reviews of its pathophysiology report
-a pooled prevalence of any retinopathy near a third of diabetic populations worldwide. Both figures
-are third-party clinical context, inherited from the primary studies those reviews cite.
+of preventable vision loss among working-age adults. Narrative reviews of its pathophysiology
+(Kusuhara et al., 2018; Morya et al., 2024) report a pooled prevalence of any retinopathy near a
+third of diabetic populations worldwide. Both figures are third-party clinical context, inherited
+from the primary studies those reviews cite.
 
 Its importance for an automated screening system lies not only in its frequency but in the fact that
 its severity is defined by a discrete, ordered set of structural changes visible on the fundus.
 
 The classical account of the underlying process is microvascular. Sustained hyperglycaemia drives
-injury in the retinal capillary bed, with pericyte dropout identified as a consensus mechanism for
-breakdown of the inner blood-retina barrier. The consequences are increased permeability, capillary
-non-perfusion and progressive ischaemia, culminating in pathological neovascularisation.
+injury in the retinal capillary bed, with pericyte dropout identified by Kusuhara et al. (2018) as a
+consensus mechanism for breakdown of the inner blood-retina barrier. The consequences are increased
+permeability, capillary non-perfusion and progressive ischaemia, culminating in pathological
+neovascularisation.
 
 These are the reviews' synthesis of the field rather than settled fact: their authors note that the
 cellular mechanisms are not fully determined, since animal models reproduce only limited aspects of
-early disease. The account is also incomplete. Several reviews characterise the disease as combining
-microvascular damage, inflammation and neurodegeneration, and report that neurodegeneration may
-precede the vascular changes traditionally regarded as its defining signs.
+early disease. The account is also incomplete. Wang and Lo (2018) and Gettinger et al. (2025)
+characterise the disease as combining microvascular damage, inflammation and neurodegeneration, and
+report that neurodegeneration may precede the vascular changes traditionally regarded as its
+defining signs.
 
 That distinction matters for an imaging-based classifier. Fundus photography renders the
 microvascular manifestations, so a model graded against the standard clinical scale necessarily
@@ -425,18 +428,19 @@ smallest are microaneurysms, followed by intraretinal haemorrhages as those vess
 and protein exudation produces hard exudates and focal ischaemia produces cotton-wool spots.
 
 As the microvasculature deteriorates further, microvascular abnormalities and venous beading appear,
-and in the proliferative phase fragile new vessels supervene and risk vitreous haemorrhage.
-Overlaid on that severity axis, and independent of it, is macular oedema.
+and in the proliferative phase fragile new vessels supervene and risk vitreous haemorrhage. Overlaid
+on that severity axis, and independent of it, is macular oedema, which Wang and Lo (2018) record as
+the principal indication for first-line anti-VEGF therapy.
 
 For a classifier these lesions are the operative image features, and their salience is uneven. The
 microaneurysms and small haemorrhages defining the earliest and most screening-critical grades are
-small, low-contrast structures, whereas the neovascular and exudative changes of advanced disease are
-comparatively conspicuous.
+small, low-contrast structures, whereas the neovascular and exudative changes of advanced disease
+are comparatively conspicuous.
 
-The clinical scale partitions this burden into severity classes. Modern screening uses an ordinal
-scale of five levels, from no apparent retinopathy through mild, moderate and severe
-non-proliferative disease to proliferative disease, and that taxonomy is the classification target
-throughout this work.
+The clinical scale partitions this burden into severity classes. As summarised by Morya et al.
+(2024), modern screening uses an ordinal scale of five levels, from no apparent retinopathy through
+mild, moderate and severe non-proliferative disease to proliferative disease, and that taxonomy is
+the classification target throughout this work.
 
 Two properties of it carry directly into the design of an automated grader. The scale is ordinal, so
 the clinical cost of a misclassification scales with the distance between predicted and true grade:
@@ -450,30 +454,33 @@ handful of microaneurysms occupying a few pixels.
 
 [FIG-1.1: Representative fundus images across the five grades, illustration only — defense/figures/figures_mine/fig1_1_dr_grades_idrid.png]
 
-Early detection is clinically decisive because the disease is treatable in its earlier grades, and
-the therapeutic window exists only if it is identified while still subtle. Because those grades are
-frequently asymptomatic, detection depends not on patient-initiated presentation but on systematic,
-repeated screening of the whole diabetic population.
+Early detection is clinically decisive because the disease is treatable in its earlier grades, as
+reported by Kesharwani et al. (2021) and Wang and Lo (2018), and the therapeutic window exists only
+if it is identified while still subtle. Because those grades are frequently asymptomatic, detection
+depends not on patient-initiated presentation but on systematic, repeated screening of the whole
+diabetic population.
 
-That the required screening is not being delivered is visible in observed compliance, reported at
-between a third and a half of patients for recommended annual examination. The shortfall is not
-primarily one of willingness but of access and capacity, and it is most acute where specialist
-infrastructure is thinnest.
+That the required screening is not being delivered is visible in observed compliance, which Morya et
+al. (2024) put at between a third and a half of patients for recommended annual examination. The
+shortfall is not primarily one of willingness but of access and capacity, and it is most acute where
+specialist infrastructure is thinnest.
 
-The constraint is structural rather than incidental. In the national context this work addresses,
-roughly 1,200 ophthalmologists serve the entire population, about 40 per cent of residents live in
-rural areas, and an estimated 70 per cent of those have limited access to specialised eye care.
+The constraint is structural rather than incidental. The candidate's prior work (Yesmukhamedov et
+al., 2025) characterises the national context this work addresses. Roughly 1,200 ophthalmologists
+serve the entire population, about 40 per cent of residents live in rural areas, and an estimated 70
+per cent of those have limited access to specialised eye care.
 
 Its analytical significance is that manual grading scales linearly with specialist time. A fixed and
-geographically concentrated supply of graders cannot meet a demand distributed across a large, partly
-rural population, so increasing coverage by adding specialists is not a near-term option. The binding
-question becomes whether the grading step can be partly automated.
+geographically concentrated supply of graders cannot meet a demand distributed across a large,
+partly rural population, so increasing coverage by adding specialists is not a near-term option. The
+binding question becomes whether the grading step can be partly automated.
 
-Deployed automated systems and national screening programmes demonstrate that this is a real
-capability, and that must be acknowledged rather than dismissed. But each of those results was
-achieved under its own population, device and regulatory conditions. None is a result of this work,
-and their portability to resource-limited, device-heterogeneous settings is not entailed by their
-success elsewhere. That portability is the open problem.
+Deployed automated systems, relayed by Morya et al. (2024), and the national screening programme
+reported by Yesmukhamedov et al. (2025) demonstrate that this is a real capability, and that must be
+acknowledged rather than dismissed. But each of those results was achieved under its own population,
+device and regulatory conditions. None is a result of this work, and their portability to
+resource-limited, device-heterogeneous settings is not entailed by their success elsewhere. That
+portability is the open problem.
 
 Two boundary conditions follow. The operative deployment context is a resource-limited environment,
 defined here by at least two of: no acceleration available for inference, memory below sixteen
@@ -496,18 +503,16 @@ tissue heats rapidly through high near-surface absorption while deeper layers he
 comparatively stable temperature. No damage thresholds or error margins were reported.
 
 The limits of the model determine how it may be used. It has not been validated against experimental
-or clinical measurement, so it is not an experimentally validated clinical model and supports no
-clinical-grade claim.
+or clinical measurement, so it supports no clinical-grade claim.
 
-Its assumptions bound its scope. Tissue properties are static during exposure, so the changes
-coagulation itself induces are neglected; each layer is homogeneous; and the beam profile is fixed,
-omitting scattering. The conduction equation also carries no perfusion term, although convective heat
-removal by blood flow is physiologically significant in this vascular tissue. The evidence base is a
-single publication co-authored by the candidate.
+Its assumptions bound its scope. Tissue properties are static during exposure, each layer is
+homogeneous, the beam profile is fixed, and the conduction equation carries no perfusion term,
+although convective heat removal by blood flow is significant in this vascular tissue. The evidence
+base is a single publication co-authored by the candidate.
 
-The model concerns the physics of treatment and is independent of the diagnostic system that is this
-work's central concern. It is included because grading serves referral and referral serves therapy,
-and it bears on how laser parameters shape the thermal field rather than on any diagnostic claim.
+The model concerns the physics of treatment and is independent of the diagnostic system at this
+work's centre. It is included because grading serves referral and referral serves therapy, and it
+bears on how laser parameters shape the thermal field rather than on any diagnostic claim.
 
 ## 1.2 Fundus image quality and variability
 
@@ -517,13 +522,14 @@ ideally. Image quality here is not an aesthetic property but the measurable capa
 support automated detection of the features relevant to staging.
 
 Degradation is correspondingly any acquisition-side phenomenon that erodes that capacity, and the
-phenomena that do so are neither random nor diagnostically neutral. They fall on four axes.
+phenomena that do so are neither random nor diagnostically neutral. They fall on four axes, the same
+factors Shen et al. (2020) model explicitly to drive a dedicated fundus-enhancement network.
 
-The first is optical. Defocus and motion blur both act as low-pass filters, attenuating precisely the
-high-frequency content that distinguishes fine retinal structure from background. Because the
+The first is optical. Defocus and motion blur both act as low-pass filters, attenuating precisely
+the high-frequency content that distinguishes fine retinal structure from background. Because the
 earliest lesions occupy only a few pixels, even mild blur can render them indistinguishable from the
-surrounding capillary bed. This is not a uniform loss of fidelity but a selective erasure of the most
-screening-critical signal.
+surrounding capillary bed. This is not a uniform loss of fidelity but a selective erasure of the
+most screening-critical signal.
 
 The second is photometric. Fundus photography illuminates a curved, semi-reflective interior surface
 through a small pupil, so illumination is rarely uniform: vignetting, central reflex and shading
@@ -531,22 +537,22 @@ gradients impose large low-frequency variations unrelated to pathology, compound
 and low global contrast.
 
 The diagnostic consequence is twofold. Uneven illumination can mask genuine lesions in shadowed
-regions, and it can also mimic pathology, since a bright shading artefact is locally
-indistinguishable from a hard exudate and a dark gradient from a haemorrhage. Photometric degradation
-therefore threatens sensitivity and specificity alike, through structured spatially correlated
-distortion rather than additive noise.
+regions, and it can also mimic pathology, a bright shading artefact being locally indistinguishable
+from a hard exudate and a dark gradient from a haemorrhage. It therefore threatens sensitivity and
+specificity alike.
 
 The third is geometric. Off-axis capture, misalignment, truncation of the circular field and
-variation in magnification all change where structures appear and how large they are without changing
-the anatomy. The natural landmarks that anchor lesion localisation may sit at inconsistent positions,
-and a truncated field may exclude peripheral lesions altogether. This axis is the least visible to a
-human reader, who compensates effortlessly, and the most disruptive to a model that has not been
-normalised against it.
+variation in magnification all change where structures appear and how large they are without
+changing the anatomy. The natural landmarks that anchor lesion localisation may sit at inconsistent
+positions, and a truncated field may exclude peripheral lesions altogether. This axis is the least
+visible to a human reader, who compensates effortlessly, and the most disruptive to a model that has
+not been normalised against it.
 
 The fourth is patient- and media-related. Adequate imaging needs a sufficiently dilated pupil and
 clear optical media, both frequently compromised in the population screening targets. Its
-distinguishing feature is that its causes lie partly in the patient rather than the instrument, so it
-cannot be eliminated by better camera engineering and will persist in any real screening population.
+distinguishing feature is that its causes lie partly in the patient rather than the instrument, so
+it cannot be eliminated by better camera engineering and will persist in any real screening
+population.
 
 These axes are not independent of the deployment context. Each is aggravated in portable,
 non-specialist settings: handheld optics are smaller and less stable, non-specialist operators are
@@ -561,62 +567,69 @@ rather than recovering their signal, which lowers effective coverage where re-ac
 and sub-threshold degradation that passes the gate still erodes the small-lesion signal.
 
 The measured evidence supports a more precise position than the taxonomy alone. Holding architecture
-fixed and varying only quality, a re-annotation of nearly twenty-nine thousand images into three
-quality levels found detection accuracy falling monotonically as quality declined. That is the
-cleanest available statement of the relationship, but its scope is bounded: one source corpus, an
-internal split, no external validation and no intervals.
+fixed and varying only quality, Fu et al. (2020) re-annotated nearly twenty-nine thousand images
+into three quality levels and found detection accuracy falling monotonically as quality declined.
+Zago et al. (2018) report the same link holding across databases, and the production system of Dai
+et al. (2021) places an explicit quality stage ahead of grading. That is the cleanest available
+statement of the relationship, but its scope is bounded: one source corpus, an internal split, no
+external validation and no intervals.
 
-A second line treats quality as the parsimonious explanation for differences between corpora. One
-study reported a substantially higher area under the curve on one external corpus than on another and
-attributed the gap to gradability rather than to superior generalisation, roughly all of the first
-corpus being gradable against about three-quarters of the second.
+A second line treats quality as the parsimonious explanation for differences between corpora.
+Rakhlin (2017) reported a substantially higher area under the curve on one external corpus than on
+another and attributed the gap to gradability rather than to superior generalisation, roughly all of
+the first corpus being gradable against about three-quarters of the second.
 
 The strongest evidence that data conditions can rival architecture comes from holding the
-architecture identical across sources. A reproduction of a landmark pipeline on public data obtained
-an area under the curve of 0.951 on one test corpus and 0.853 on another, the same network and the
-same procedure, with a gap traceable to provenance and labelling rather than model design.
+architecture identical across sources. Voets et al. (2019) reproduced the pipeline of Gulshan et al.
+(2016) on public data. They obtained an area under the curve of 0.951 on one test corpus and 0.853
+on another, the same network and the same procedure, with a gap traceable to provenance and
+labelling rather than model design.
 
-That same study supplies the first of two nuances preventing an over-strong reading. Excluding the
-roughly one image in five it judged ungradable did not significantly change performance. If quality
-were a simple monotone lever, removing the worst images should have helped, and that it did not
-indicates the relationship operates at the level of fine signal preservation rather than coarse
+Voets et al. (2019) supply the first of two nuances preventing an over-strong reading. Excluding the
+roughly one image in five they judged ungradable did not significantly change performance. If
+quality were a simple monotone lever, removing the worst images should have helped, and that it did
+not indicates the relationship operates at the level of fine signal preservation rather than coarse
 inclusion.
 
-A field study reinforces the cost of gating from the deployment side, finding across eleven clinics
-that automatic rejection of field-captured images reduced coverage and disrupted workflow. That is a
-socio-technical observation rather than an accuracy measurement.
+Beede et al. (2020) reinforce the cost of gating from the deployment side, finding across eleven
+clinics that automatic rejection of field-captured images reduced coverage and disrupted workflow.
+That is a socio-technical observation rather than an accuracy measurement.
 
-The second nuance concerns task dependence. In one benchmark, automated quality assessment itself
-reached agreement its authors characterised as insufficient for clinically feasible screening, while
-the team that won the grading sub-challenge did so with minimal preprocessing, relying on training
-strategy instead. Preprocessing is necessary but not sufficient, and its marginal payoff depends on
-what the rest of the pipeline already does.
+The second nuance concerns task dependence. In the benchmark reported by Liu et al. (2022),
+automated quality assessment itself reached agreement its authors characterised as insufficient for
+clinically feasible screening, while the team that won the grading sub-challenge did so with minimal
+preprocessing, relying on training strategy instead. Preprocessing is necessary but not sufficient,
+and its marginal payoff depends on what the rest of the pipeline already does.
+
+The candidate's prior work adds a further point, reported as previously published: enhancement
+preprocessing raised validation accuracy from 71 to 86 per cent on a small custom network (Sapakova,
+Yesmukhamedov and Sapakov, 2025). It rests on one small architecture and is not generalisable to the
+wider class without explicit comparison.
 
 Read together, the evidence converges on a position rather than a slogan. Quality and provenance are
-measured, first-order determinants of performance, occasionally rivalling architecture; yet
-performance is not reliably recovered by discarding poor images, and the benefit of preprocessing is
-task- and pipeline-dependent.
+measured, first-order determinants of performance, occasionally rivalling architecture, yet
+performance is not reliably recovered by discarding poor images. That is what motivates conditioning
+images in, by normalising geometry, illumination and contrast as part of the model, rather than
+gating them out. It licenses no universal claim that preprocessing improves performance on every
+corpus.
 
-That reasoning motivates the design choice this work makes: to condition images in by normalising
-geometry, illumination and contrast as part of the model, rather than to gate images out or to assume
-any enhancement guarantees a gain. It licenses no universal claim that preprocessing improves
-performance on every corpus.
-
-One source of this variation is not random at all. Cameras differ along reproducible axes: colour
-rendition, because illumination spectra and sensor processing are not standardised; illumination
-geometry, which sets the vignetting pattern of a given optical design; field angle; and sensor
-resolution and optics, which set the finest detail recoverable.
+One source of this variation is not random at all. Cameras differ along reproducible axes. Colour
+rendition varies because illumination spectra and sensor processing are not standardised;
+illumination geometry sets the vignetting pattern of a given optical design; and field angle, sensor
+resolution and optics together set the finest detail recoverable.
 
 None of these is a transient capture error. Each is a stable property of the camera model, so two
 cameras imaging the same retina yield images differing in consistent, predictable ways, and the
 appearance statistics a model learns are partly entangled with the device that produced its training
 images.
 
-That is the situation the literature studies as domain shift. A general survey of the field notes
-that most statistical learning rests on an over-simplified assumption that source and target data are
-identically distributed, and that a learner trained only on source data typically suffers significant
-drops on an out-of-distribution target. A camera defines a domain, and a model trained on one
-camera's distribution is exactly that learner with respect to another.
+That is the situation the literature studies as domain shift. Zhou et al. (2022), surveying the
+field, note that most statistical learning rests on an over-simplified assumption that source and
+target data are identically distributed, and that a learner trained only on source data typically
+suffers significant drops on an out-of-distribution target. Wang and Deng (2018) organise the
+mitigations into discrepancy-based, adversarial and reconstruction-based families. A camera defines
+a domain, and a model trained on one camera's distribution is exactly that learner with respect to
+another.
 
 [FIG-1.2: The corpora and the camera hardware they span — defense/presentation/assets/datasets/27_overview/cross_dataset_comparison.png]
 
@@ -627,72 +640,86 @@ device signatures and render the problem moot.
 
 The objection is only partly correct. Standardisation can narrow colour and illumination differences
 but cannot provably erase shift living in resolution, optics and field angle, and whether the
-residual still degrades classification is an empirical question rather than one settled by assertion.
-That is why the second response is an explicit controlled evaluation across camera groups, which this
-section motivates without pre-judging.
+residual still degrades classification is an empirical question rather than one settled by
+assertion. That is why the second response is an explicit controlled evaluation across camera
+groups, which this section motivates without pre-judging.
 
-A boundary must be drawn around what such an evaluation can establish. Demonstrating that a model
-maintains or loses performance across camera groups is an empirical observation of cross-device
-behaviour. It is not a certification of device-agnostic readiness, nor regulatory compliance for use
-with any instrument.
+What such an evaluation establishes is bounded. Maintained or lost performance across camera groups
+is an empirical observation of cross-device behaviour, and neither a certification of
+device-agnostic readiness nor regulatory compliance for use with any instrument.
 
 ## 1.3 Convolutional networks for retinal images
 
 The learning machinery of automated retinal grading is the convolutional network, and the field's
 use of it has followed a recognisable arc. Early systems adapted general-purpose architectures
-developed for natural-image benchmarks, and the landmark demonstrations of expert-comparable grading
-were built on such backbones rather than on retina-specific designs.
+developed for natural-image benchmarks (Krizhevsky et al., 2012; Simonyan and Zisserman, 2015;
+Szegedy et al., 2015), and the landmark demonstrations of expert-comparable grading (Gulshan et al.,
+2016) were built on such backbones rather than on retina-specific designs. Litjens et al. (2017)
+survey the same movement across medical imaging more broadly.
 
-Two connectivity innovations made the depth those architectures rely on trainable. Residual learning
-reformulates each block to learn a residual function relative to its input through identity
-shortcuts, and dense connectivity concatenates the outputs of all preceding layers, each addressing
-the degradation that otherwise sets in as depth increases. They are not ranked against one another
-here; both established the vocabulary from which retinal work draws.
+Two connectivity innovations made the depth those architectures rely on trainable. He et al. (2016)
+reformulate each block to learn a residual function relative to its input through identity
+shortcuts, and Huang et al. (2017) concatenate the outputs of all preceding layers, each addressing
+the degradation that otherwise sets in as depth increases. Tan and Le (2019) then scale depth, width
+and resolution jointly. These are not ranked against one another here; each established the
+vocabulary from which retinal work draws, and two of them supply this work's backbones.
 
-More recent work has added transformer and hybrid designs to that landscape. They are noted to
-situate the choice made in this work rather than to compare against, since no head-to-head evaluation
-of architecture families is undertaken here.
+Applied to retinopathy, the family performs strongly but heterogeneously, across tasks, corpora and
+validation protocols that do not align (Pratt et al., 2016; Gargeya and Leng, 2017; Quellec et al.,
+2017; Arora et al., 2024; Sharma et al., 2025). The heterogeneity is the analytically important
+fact: these figures establish that the architecture class is capable, not that any configuration is
+best. The same backbones transfer to adjacent tasks and modalities without those results being
+fundus grading (Esteva et al., 2017; Burlina et al., 2017; Khosravi et al., 2025).
 
-A second strand concerns how such a network is initialised. Labelled retinal data are scarce relative
-to the size of modern architectures, so almost all systems begin from weights learned elsewhere,
-overwhelmingly on natural images. That practice is effective enough to be near-universal, and its
-theoretical basis is that early convolutional features are largely generic and transfer across visual
-domains while later features become progressively task-specific.
+More recent work has added transformer and hybrid designs to that landscape (Dosovitskiy et al.,
+2021; Liu et al., 2021; Xu et al., 2024; Goh et al., 2024; Gonzalez-Diaz et al., 2024; Geetha and
+Hema, 2026). They are noted to situate the choice made in this work rather than to compare against,
+since no head-to-head evaluation of architecture families is undertaken here.
 
-The strand that matters for this work asks whether in-domain initialisation does better. Evidence
-exists that self-supervised pretraining on retinal images yields generalisable retinal
-representations, and that in-domain medical pretraining can exceed natural-image transfer on other
-modalities.
+A second strand concerns how such a network is initialised. Labelled retinal data are scarce
+relative to the size of modern architectures, so almost all systems begin from weights learned
+elsewhere, overwhelmingly on natural images. That practice is effective enough to be near-universal
+(Pan and Yang, 2010; Kornblith et al., 2019), and Cheplygina et al. (2018) give its basis: early
+convolutional features are largely generic and transfer across visual domains, while later features
+become progressively task-specific.
+
+The strand that matters for this work asks whether in-domain initialisation does better. Zhou et al.
+(2023) report that self-supervised pretraining on retinal images yields generalisable retinal
+representations, and Azizi et al. (2021) that in-domain medical pretraining can exceed natural-image
+transfer on other modalities.
 
 Those results establish the credibility of the direction without settling the specific question. The
 retinal evidence was obtained with a transformer backbone and the cross-modality evidence outside
-fundus photography, so neither evaluates a convolutional backbone pretrained in domain, which is what
-the present design requires and what chapter 2 specifies.
+fundus photography, so neither evaluates a convolutional backbone pretrained in domain, which is
+what the present design requires and what chapter 2 specifies.
 
 A related question is how much of a pretrained network to adapt. The practical choice lies between
 freezing the feature extractor and training only a new head, and progressively unfreezing the upper
-layers, and the literature reports the second to be generally the stronger where data permit. That is
-a training-method finding rather than a hypothesis this work tests.
+layers, and Saxena et al. (2020) report the second to be generally the stronger where data permit.
+That is a training-method finding rather than a hypothesis this work tests.
 
 The third strand is explainability, and it entered retinal work for a practical reason. A screening
 tool whose output cannot be inspected is difficult to place in a workflow where a clinician retains
-responsibility for the decision, so methods that indicate where in an image a network's evidence lies
-have been widely adopted.
+responsibility for the decision, so methods that indicate where in an image a network's evidence
+lies have been widely adopted.
 
-The dominant family projects class evidence back onto the final convolutional activations. Its
-gradient-based form applies to essentially any convolutional architecture without retraining, which
-is why it became the default, and later refinements alter how the gradients are weighted.
+The dominant family projects class evidence back onto the final convolutional activations (Zhou et
+al., 2016). The gradient-based form of Selvaraju et al. (2017) applies to essentially any
+convolutional architecture without retraining, which is why it became the default, and the
+refinement of Chattopadhyay et al. (2018) alters how the gradients are weighted. Model-agnostic
+alternatives exist (Ribeiro et al., 2016; Lundberg and Lee, 2017).
 
-The field's use of these maps has been uneven in one respect that matters. Overlap between an
-attention map and an expert annotation is regularly presented as though it demonstrated that a model
-had located pathology, whereas the map indicates where class-discriminative activation concentrates
-and nothing stronger. This work holds to the weaker reading throughout, and chapter 2 fixes it as a
-property of the instrument.
+The field's use of these maps has been uneven in one respect that matters, and the reviews of Samek
+et al. (2017) and Tjoa and Guan (2020) note it. Overlap between an attention map and an expert
+annotation is regularly presented as though it demonstrated that a model had located pathology,
+whereas the map indicates where class-discriminative activation concentrates and nothing stronger.
+This work holds to the weaker reading throughout, and chapter 2 fixes it as a property of the
+instrument.
 
 Beyond visualisation, the field has also pursued explicit lesion segmentation, and one result from
-that line bears directly on the argument here. A network designed with a single pooling stage
-specifically to preserve small-lesion features, supplemented with attention and dilated convolutions,
-still segmented microaneurysms weakly, a result its authors report themselves.
+that line bears directly on the argument here. Wan et al. (2021) designed a network with a single
+pooling stage specifically to preserve small-lesion features, supplemented with attention and
+dilated convolutions, and still segmented microaneurysms weakly, a result they report themselves.
 
 The lesson is not about that architecture. It is that increasing architectural sophistication does
 not by itself resolve the detection of small, low-contrast lesions, which is the burden this work
@@ -709,15 +736,18 @@ what a critical reading of that record reveals. The purpose is not to rank those
 position this work as their competitor, but to locate beneath an impressive performance record a
 consistent methodological pattern.
 
-That the field has produced high-performing systems is not in dispute. The landmark demonstration
-that a deep network could detect referable disease at expert-comparable levels reported areas under
-the curve above 0.99 on two clinical validation sets, and autonomous systems have since reached
-regulatory clearance on prospective multi-site trials.
+That the field has produced high-performing systems is not in dispute. Gulshan et al. (2016)
+demonstrated that a deep network could detect referable disease at expert-comparable levels,
+reporting areas under the curve above 0.99 on two clinical validation sets, and the system of
+Abramoff et al. (2018) reached regulatory clearance on a prospective multi-site trial.
 
-The literature has also matured well beyond single-site internal validation, with multiethnic
-external cohorts, cross-population validation in sub-Saharan Africa, multicentre validation across
-tens of thousands of images, and prospective evaluation inside a national screening programme.
-Table 1.1 sets out that landscape with the properties that determine what each figure means.
+The literature has also matured well beyond single-site internal validation, with the multiethnic
+external cohorts of Ting et al. (2017), cross-population validation in sub-Saharan Africa (Bellemo
+et al., 2019), multicentre validation across tens of thousands of images (Zhang et al., 2022), and
+prospective evaluation inside a national screening programme (Ruamviboonsuk et al., 2022). Ting et
+al. (2019) and Senapati et al. (2024) review the field as a whole, and Wewetzer et al. (2021) pool
+ten primary-care studies. Table 1.1 sets out that landscape with the properties that determine what
+each figure means.
 
 **Table 1.1 – Reported automated screening systems, with the conditions that bound each figure.**
 
@@ -735,13 +765,14 @@ Table 1.1 sets out that landscape with the properties that determine what each f
 | Wewetzer et al. (2021) | Referable, pooled | Ten primary-care studies | Summary ROC-AUC 0.9543 | Meta-analysis | Pools heterogeneous studies |
 
 The first conclusion is that these numbers cannot be lined up as a ranking. The endpoints differ,
-from binary referable disease through four-class grading to vision-threatening disease, and so do the
-corpora, populations, camera hardware and reference standards.
+from binary referable disease through four-class grading to vision-threatening disease, and so do
+the corpora, populations, camera hardware and reference standards.
 
 A higher figure on a private single-country cohort says little about performance on a different
-distribution, and comparing such figures across studies would violate the metric discipline this work
-maintains throughout. That non-comparability is itself part of the gap: the field lacks a controlled,
-common-protocol basis on which the contribution of any individual design choice can be read off.
+distribution, and comparing such figures across studies would violate the metric discipline this
+work maintains throughout. That non-comparability is itself part of the gap: the field lacks a
+controlled, common-protocol basis on which the contribution of any individual design choice can be
+read off.
 
 The second conclusion concerns what these reports contain. Several defer their preprocessing to
 supplementary material or omit it entirely, and none of the deployment reports isolates the
@@ -753,10 +784,11 @@ results cannot be decomposed, so the comparison could not be made controlled eve
 and corpora were aligned.
 
 The deployment landscape compounds these limitations differently. A comparison of nine existing
-ophthalmic systems in the candidate's prior work found the deployed tools typically narrow or
-constrained: limited to one disease, requiring advanced imaging equipment, or dependent on continuous
-connectivity. Commercial systems are predominantly binary and opaque, and some high-performing models
-operate on other modalities entirely and are outside this work's scope.
+ophthalmic systems in the candidate's prior work (Yesmukhamedov et al., 2025) found the deployed
+tools typically narrow or constrained: limited to one disease, requiring advanced imaging equipment,
+or dependent on continuous connectivity. Commercial systems are predominantly binary and opaque, and
+some high-performing models, such as that of Ryu et al. (2021), operate on other modalities entirely
+and are outside this work's scope.
 
 Transparent, five-class, device-robust systems whose preprocessing is fully specified and evaluated
 are scarce.
@@ -773,33 +805,34 @@ and not a need for another high single-corpus figure, is what gives this work it
 
 ## 1.5 Problem statement and research direction
 
-The preceding sections converge on a problem that can now be stated precisely. Screening must operate
-at population scale, on images whose quality and device of origin vary systematically, and against a
-target, the small faint lesions of early disease, that is most vulnerable to exactly those variations.
+The preceding sections converge on a problem that can now be stated precisely. Screening must
+operate at population scale, on images whose quality and device of origin vary systematically, and
+against a target, the small faint lesions of early disease, that is most vulnerable to exactly those
+variations.
 
 The field meanwhile has produced accurate and in some cases prospectively validated systems while
 treating preprocessing as ancillary data preparation: under-reported in the main text of landmark
-studies, omitted from several deployment reports, and rarely isolated or formalised as a component of
-the model.
+studies (Gulshan et al., 2016; Voets et al., 2019), omitted from several deployment reports, and
+rarely isolated or formalised as a component of the model. The review of Senapati et al. (2024)
+surveys the same record without reporting such an isolation.
 
-The gap is therefore not a deficit of accuracy but a deficit of method. The contribution of
-preprocessing to automated grading has not been formalised and evaluated as an integral part of the
-model under controlled, transparent, multi-corpus conditions.
+The gap is therefore not a deficit of accuracy but a deficit of method: the contribution of
+preprocessing has not been formalised and evaluated as an integral part of the model under
+controlled, transparent, multi-corpus conditions.
 
-The research problem follows directly. It is how image preprocessing can be formalised as an integral
-component of a convolutional grading model rather than treated as separable and optional preparation.
-And it is how that contribution can be evaluated under controlled conditions representative of the
-resource-limited environments in which screening must be delivered.
+The research problem follows directly. It is how image preprocessing can be formalised as an
+integral component of a convolutional grading model rather than treated as separable and optional
+preparation. And it is how that contribution can be evaluated under controlled conditions
+representative of the resource-limited environments in which screening must be delivered.
 
-The problem has a conceptual dimension and an empirical one. Conceptually it requires reframing
-preprocessing from auxiliary preparation to an integral model component; empirically it requires a
-study design in which that reframing can be tested rather than assumed.
+The problem is at once conceptual and empirical: it requires reframing preprocessing as an integral
+model component, and a study design in which that reframing can be tested rather than assumed.
 
 The response, stated here as objective rather than as result, is to develop and experimentally
 validate an integrated enhancement and classification framework for multi-stage grading. Its
 preprocessing is an ordered eight-stage pipeline applied together with a classifier and treated, for
-evaluation, as a single model. That integration is the conceptual contribution: the pipeline is not a
-preface to the model but part of it, defining the feature space the classifier operates on.
+evaluation, as a single model. That integration is the conceptual contribution: the pipeline is not
+a preface to the model but part of it, defining the feature space the classifier operates on.
 
 Because the framework is the object of study, the problem decomposes into bounded hypotheses, each
 testing one facet under matched conditions. The first concerns whether the full pipeline paired with
@@ -807,21 +840,21 @@ in-domain pretraining outperforms a baseline of minimal preprocessing with conve
 initialisation on the primary corpus.
 
 It is essential to the honesty of the design to record that its two arms differ along two axes at
-once, so any observed effect is the joint contribution of the integrated configuration and may not be
-attributed to preprocessing in isolation.
+once, so any observed effect is the joint contribution of the integrated configuration and may not
+be attributed to preprocessing in isolation.
 
 The remaining hypotheses probe distinct properties: component ablation and parameter sensitivity;
 reduction of distributional distance between the training corpus and target corpora; cross-corpus
 transferability; alignment between model attention and annotated lesions; robustness across imaging
 devices; and performance on external clinical corpora. Each is bounded to its corpora, architectures
-and tested ranges, and each is held to explicit evidence criteria rather than to an informal sense of
-improvement.
+and tested ranges, and each is held to explicit evidence criteria rather than to an informal sense
+of improvement.
 
 Two boundaries define what this formulation does and does not commit the work to. The aim is
 formalisation and controlled evaluation, not competition: no named system is a target and no
 head-to-head comparison is undertaken. The contribution is the controlled, transparent test of
-preprocessing as an integral component, and it stands whatever the direction of the result, since the
-hypotheses are falsifiable and a null or contrary finding is to be reported as such rather than
+preprocessing as an integral component, and it stands whatever the direction of the result, since
+the hypotheses are falsifiable and a null or contrary finding is to be reported as such rather than
 silently revised.
 
 The scope is bounded throughout to five-class grading on fundus photography, to the specified family
@@ -838,19 +871,18 @@ boundaries rest on lesions occupying a few pixels, and the clinical cost of a mi
 the distance between the assigned and true grade. Grading serves referral, and referral serves
 therapy, which is where the physics of laser coagulation enters as bounded theoretical context.
 
-Screening must therefore be systematic and repeated, against a specialist supply that cannot scale to
-meet it. Automation is a workload-reduction mechanism operating under a clinician who retains
+Screening must therefore be systematic and repeated, against a specialist supply that cannot scale
+to meet it. Automation is a workload-reduction mechanism operating under a clinician who retains
 responsibility for the decision, not a replacement for one.
 
 Image quality is not an aesthetic property but the capacity of an image to support automated
-detection, and degradation is target-correlated: across four axes it preferentially attacks the small
-faint features that define the earliest grades. One component of that variation is not random at all
-but a stable property of the camera, which makes it an instance of domain shift.
+detection, and degradation is target-correlated: across four axes it preferentially attacks the
+small faint features that define the earliest grades. One component of that variation is not random
+at all but a stable property of the camera, which makes it an instance of domain shift.
 
-The measured evidence supports a precise position rather than a slogan. Quality and provenance are
-first-order determinants of performance, occasionally rivalling architecture, yet performance is not
-recovered by discarding poor images, and the benefit of preprocessing depends on what the rest of the
-pipeline already does.
+Quality and provenance are first-order determinants of performance, occasionally rivalling
+architecture, yet performance is not recovered by discarding poor images, and the benefit of
+preprocessing depends on what the rest of the pipeline already does.
 
 The learning machinery is mature and well characterised, with open questions at its initialisation
 and its interpretation but no limiting deficit. The existing systems are in many cases accurate and
@@ -876,8 +908,8 @@ can learn.
 That commitment is most clearly seen against the practice it departs from. In the end-to-end
 approach, preprocessing is treated as data preparation: published methods defer its details to
 supplementary material and locate the methodological emphasis in architecture, data scale and
-training protocol. This describes observable practice and attributes no theoretical position to any
-author.
+training protocol (Gulshan et al., 2016; Senapati et al., 2024). This describes observable practice
+and attributes no theoretical position to any author.
 
 The present work makes the opposite choice. It specifies the pipeline with the rigour later applied
 to the network, places it under controlled experimental contrast, and decomposes it into ablatable
@@ -905,10 +937,10 @@ transformation is deterministic. The sequence is shown in
 
 Four of the stages carry design decisions that need their reasons stated.
 
-The canonical flip removes a known geometric symmetry. Fundus images of the two eyes are
-approximate mirror images, with the optic disc temporal to the macula in each, and normalising that
-away spends the network's capacity on disease-relevant variation instead. It also gives the rotation
-stage a consistent starting orientation.
+The canonical flip removes a known geometric symmetry. Fundus images of the two eyes are approximate
+mirror images, with the optic disc temporal to the macula in each, and normalising that away spends
+the network's capacity on disease-relevant variation instead. It also gives the rotation stage a
+consistent starting orientation.
 
 Rotation normalisation detects two anatomical landmarks with a heatmap-regression network, a U-Net
 encoder with a differentiable spatial-to-numerical head, and rotates the image so that the
@@ -974,10 +1006,10 @@ narrow band and each applied independently, so a given image receives an arbitra
 than all four. The bands are narrow by design, because fundus colour and contrast carry diagnostic
 signal and the perturbation must stay within plausible acquisition variation.
 
-The third family degrades rather than reshapes, adding low-probability sensor noise and lossy
-recompression, the two ways real fundus images are most commonly degraded between capture and
-storage. Both probabilities are kept low: the objective is that the network see occasional degraded
-examples, not that it train predominantly on corrupted data.
+The third family degrades rather than reshapes (Cubuk et al., 2020), adding low-probability sensor
+noise and lossy recompression, the two ways real fundus images are most commonly degraded between
+capture and storage. Both probabilities are kept low: the objective is that the network see
+occasional degraded examples, not that it train predominantly on corrupted data.
 
 Augmentation serves two purposes at once. It enlarges the effective training distribution against
 overfitting, and it is one of two levers against the severe class skew of the training corpus,
@@ -992,9 +1024,9 @@ any published system.
 
 [FIG-2.5: The model as a composition of preprocessing and classifier — defense/figures/figures_mine/fig4_flowchart.png]
 
-That the full configuration is the one specified here does not entail that it is universally optimal.
-The marginal value of each stage, and the possibility that some stage is redundant for a given
-architecture, is exactly what the ablation is designed to test.
+That the full configuration is the one specified here does not entail that it is universally
+optimal. The marginal value of each stage, and the possibility that some stage is redundant for a
+given architecture, is exactly what the ablation is designed to test.
 
 The eight stages assume a well-formed input: a single-eye colour photograph with a recoverable field
 of view, a known laterality and a valid grade. Public research corpora largely satisfy that by
@@ -1009,8 +1041,8 @@ recovered, rather than passing them silently into stages that would then operate
 content.
 
 Laterality reconciliation supplies the signal the flip requires, from export metadata where present
-and a heuristic otherwise, recording a low-confidence determination as such rather than asserting it.
-Patient identifiers are reconciled at the same point, since identity must survive inconsistent
+and a heuristic otherwise, recording a low-confidence determination as such rather than asserting
+it. Patient identifiers are reconciled at the same point, since identity must survive inconsistent
 filenames if the partition is to prevent leakage, and grades outside the taxonomy are flagged for
 adjudication rather than coerced into a class.
 
@@ -1021,41 +1053,38 @@ compliance claim. It is a defined input contract for the model, not a general-pu
 cleaner.
 
 One low-level operation is deliberately absent. Contrast enhancement and noise reduction stand in
-tension, since amplifying local contrast amplifies noise while suppressing noise blurs the
-structures enhancement exists to reveal, and that tension is acute here because the features
-deciding the early grades are themselves small and faint.
+tension: amplifying local contrast amplifies noise, while suppressing noise blurs the small faint
+structures that decide the early grades.
 
 The edge-preserving filtering literature resolves the tension in principle by making smoothing
-content-adaptive. Bilateral filtering weights the average by photometric similarity as well as
-spatial proximity, so pixels across an intensity boundary do not bleed into one another; non-local
-means generalises similarity from the neighbourhood to patch self-similarity across the image. Both
-are presented through derivation and qualitative examples without medical-imaging evaluation, so
-they are cited for the principle and not for any downstream gain.
+content-adaptive. Bilateral filtering (Tomasi and Manduchi, 1998) weights the average by photometric
+similarity as well as spatial proximity, so pixels across an intensity boundary do not bleed into
+one another; non-local means (Buades et al., 2011) generalises similarity from the neighbourhood to
+patch self-similarity across the image. Both are presented through derivation and qualitative
+examples without medical-imaging evaluation, so they are cited for the principle and not for any
+downstream gain.
 
-The pipeline adopts neither as an explicit stage. Inserting a dedicated denoiser carries the risk it
-exists to mitigate, that aggressive smoothing erases the faint lesions distinguishing the early
-grades, and that risk is least acceptable where screening value is highest. Noise is managed instead
-by the clip rule, which caps the attainable mapping slope where noise would be magnified, and by the
-upstream illumination correction. The principle is honoured as a design constraint rather than
-implemented as a component, which is a rationale and not a claim of superiority over a
-denoising-augmented pipeline.
+The pipeline adopts neither as an explicit stage, because a dedicated denoiser carries the very risk
+it exists to mitigate, and that risk is least acceptable where screening value is highest. Noise is
+managed instead by the clip rule, which caps the attainable mapping slope where noise would be
+magnified, and by the upstream illumination correction. That is a rationale, not a claim of
+superiority over a denoising-augmented pipeline.
 
-The pipeline develops a lineage in the candidate's earlier published work, where conventional
-preprocessing raised validation accuracy substantially with a small convolutional network and an
-upgraded equalisation variant was studied on a different retinal database, into a formalised
-eight-stage, four-channel construct. Figures from that earlier work are not transferable to the
-present context and are not carried over.
+The pipeline develops a lineage in the candidate's earlier published work (Sapakova et al., 2025;
+Yesmukhamedov and Sapakov, 2025), where conventional preprocessing raised validation accuracy
+substantially with a small convolutional network and an upgraded equalisation variant was studied on
+a different retinal database, into a formalised eight-stage, four-channel construct. Figures from
+that earlier work are not transferable to the present context and are not carried over.
 
 The wider literature motivates the standardisation objective without establishing it. Cross-corpus
-studies report performance varying between fundus sources processed as an exogenous step, and
-benchmark studies report that image quality bears on grading reliability. Enhancement studies report
-that contrast operations can help or, for one architecture, harm classification depending on the
-corpus and the tuning, so the context is consistent at the level of motivation and not of
-transferable numbers.
+studies report performance varying between fundus sources processed as an exogenous step (Saxena et
+al., 2020), benchmark studies report that image quality bears on grading reliability (Fu et al.,
+2020; Liu et al., 2022), and enhancement studies report contrast operations helping or, for one
+architecture, harming classification (Hayati et al., 2023; Shaout and Han, 2025).
 
 The objective the pipeline serves, reducing variability across devices and acquisition conditions
-while preserving diagnostically relevant features, is a design objective stated here and not a
-demonstrated result. Its evaluation belongs to the experiments.
+while preserving diagnostically relevant features, is therefore stated here as a design objective
+and not a demonstrated result. Its evaluation belongs to the experiments.
 
 ## 2.2 Formalisation of the clip limit
 
@@ -1063,17 +1092,18 @@ The contrast stage rests on a lineage of three operations, and each step of it e
 specific failure of the one before. Setting the lineage out is what makes the final form's single
 governing parameter visible.
 
-Histogram equalisation redistributes intensities so the resulting histogram is approximately
-uniform, mapping each intensity through the cumulative distribution of the image. Densely populated
-intensities are spread apart, expanding the range in which most of the information lies.
+Histogram equalisation (Pizer et al., 1987) redistributes intensities so the resulting histogram is
+approximately uniform, mapping each intensity through the cumulative distribution of the image.
+Densely populated intensities are spread apart, expanding the range in which most of the information
+lies.
 
 Its limitation for fundus imagery follows from its globality. One mapping is derived from a single
 image-wide histogram, which for a circular fundus photograph is dominated by the large near-uniform
 dark region outside the field of view. The mapping that best equalises that histogram is not the one
 that best resolves a cluster of microaneurysms occupying a few pixels in one quadrant.
 
-Adaptive equalisation repairs the locality deficit by computing a separate mapping for each tile of a
-partition, so the transformation at a location reflects that location's statistics. It recovers
+Adaptive equalisation repairs the locality deficit by computing a separate mapping for each tile of
+a partition, so the transformation at a location reflects that location's statistics. It recovers
 exactly the local contrast the global method discards, at a characteristic cost.
 
 In a nearly homogeneous tile the local histogram is concentrated in a narrow band, and equalising it
@@ -1081,33 +1111,34 @@ produces a mapping with a very steep slope over that band. A steep mapping ampli
 differences indiscriminately, so whatever sensor and quantisation noise is present in an otherwise
 featureless region is amplified along with any signal.
 
-The resolution is the equivalence established in the foundational study of the method: limiting the
-slope of the mapping is equivalent to clipping the height of the histogram. Truncating the local
-histogram at a maximum count before the cumulative mapping is formed, and redistributing the excess,
-bounds the attainable slope and with it the noise amplification.
+The resolution is the equivalence established by Zuiderveld (1994): limiting the slope of the
+mapping is equivalent to clipping the height of the histogram. Truncating the local histogram at a
+maximum count before the cumulative mapping is formed, and redistributing the excess, bounds the
+attainable slope and with it the noise amplification.
 
 The clip limit is therefore the governing control of the method, setting the trade-off between
-contrast gain and noise suppression. That study also observed that appropriate clipping levels vary
-across imaging modalities and acquisition conditions, which is the first appearance of a caveat that
-recurs throughout this work: clip values are optimised for particular image distributions and are
-not asserted to be portable.
+contrast gain and noise suppression. Pizer et al. (1987) also observed that appropriate clipping
+levels vary across imaging modalities and acquisition conditions, which is the first appearance of a
+caveat that recurs throughout this work: clip values are optimised for particular image
+distributions and are not asserted to be portable.
 
 What that lineage leaves open is the rule by which the clip limit is set. Three formulations are
 relevant, and the third is the one the pipeline adopts.
 
-In the conventional formulation the limit is set relative to the height a tile's histogram would have
-if its intensities were uniform. For a tile of area A over L levels the uniform count is A over L,
-and the limit truncates each bin at a multiple of it, the multiplier being the clip factor. A clip
-factor of one clips to the uniform height, and larger values permit proportionally more amplification
-before clipping engages.
+In the conventional formulation the limit is set relative to the height a tile's histogram would
+have if its intensities were uniform. For a tile of area A over L levels the uniform count is A over
+L, and the limit truncates each bin at a multiple of it, the multiplier being the clip factor. A
+clip factor of one clips to the uniform height, and larger values permit proportionally more
+amplification before clipping engages.
 
 That form makes the clip factor's role explicit: it scales the permitted bin height against the
 uniform per-bin count, which is an accurate proxy for the average occupied-bin height only when a
 tile's intensities are spread across most of the levels.
 
-The candidate's prior work replaced the derived clip with a single controllable global threshold,
-setting the limit directly as a scalar. That form was reported to improve the distinctiveness of
-fine vessels and was integrated with a fine-tuned residual network on a small retinal database.
+The candidate's prior work (Yesmukhamedov and Sapakov, 2025) replaced the derived clip with a single
+controllable global threshold, setting the limit directly as a scalar. That form was reported to
+improve the distinctiveness of fine vessels and was integrated with a fine-tuned residual network on
+a small retinal database.
 
 Three constraints govern how that result enters here. It is prior own work, cited as a published
 precursor and not as independent evidence, and the two literature records drawn from it describe one
@@ -1137,9 +1168,9 @@ peaked tile, where that term would scale up with a degenerate distribution, the 
 smaller and binds, capping the attainable slope however concentrated the local histogram is.
 
 The rule therefore bounds noise amplification under both regimes the single-parameter forms handle
-poorly, which is the analytical rationale for adopting it. Whether that rationale yields a measurable
-downstream advantage is a separate, empirical question, addressed by the parameter sweep and not
-asserted here.
+poorly, which is the analytical rationale for adopting it. Whether that rationale yields a
+measurable downstream advantage is a separate, empirical question, addressed by the parameter sweep
+and not asserted here.
 
 [FIG-2.6: Global equalisation, adaptive equalisation and the contrast-limited form — defense/figures/figures_mine/fig2_1_clahe_lineage.png]
 
@@ -1151,20 +1182,22 @@ asserted here.
 | Single threshold | A scalar set directly | Global threshold | Prior own work on a different corpus | Applied identically to every tile; corpus-optimised |
 | Dual constraint | The tighter of a histogram-relative and a tile-relative cap | Clip factor and global threshold | This work | Parameters validated here, not assumed portable |
 
-The remainder of the stage follows the specification. The rule is applied to the luminance channel of
-a perceptual colour space over an eight-by-eight tile grid, with the clipped excess redistributed and
-bilinear interpolation across tile boundaries, stochastically during training and deterministically
-at inference.
+The remainder of the stage follows the specification. The rule is applied to the luminance channel
+of a perceptual colour space over an eight-by-eight tile grid, with the clipped excess redistributed
+and bilinear interpolation across tile boundaries, stochastically during training and
+deterministically at inference.
 
 The two parameters are left free at this point by design. No values are imported from the prior
 single-threshold result or from any external study, and those used are the ones selected by
 independent validation within this work's own framework. The formalisation contribution is the
-dual-constraint rule itself, which generalises the single-threshold precursor rather than reusing it.
+dual-constraint rule itself, which generalises the single-threshold precursor rather than reusing
+it.
 
 The empirical literature reinforces why this parameterisation is treated as a quantity to be
-characterised rather than fixed by assumption. One study evaluating contrast-limited equalisation
-under a uniform configuration across four architectures found it helped three and degraded the fourth
-by twelve percentage points, which its authors attributed to the absence of per-architecture tuning.
+characterised rather than fixed by assumption. Hayati et al. (2023), evaluating contrast-limited
+equalisation under a uniform configuration across four architectures, found it helped three and
+degraded the fourth by twelve percentage points, which they attributed to the absence of
+per-architecture tuning.
 
 That is direct evidence that the downstream effect of a given clip configuration is contingent on
 architecture and tuning. The dual-constraint formulation does not escape the contingency; it exposes
@@ -1184,7 +1217,7 @@ hierarchy in which early layers respond to edges and textures and deeper layers 
 more abstract patterns.
 
 Expressive power grows with depth, but beyond a point accuracy saturates and then degrades, an
-optimisation failure rather than overfitting. Residual learning resolves it by reformulating each
+optimisation failure rather than overfitting. He et al. (2016) resolve it by reformulating each
 block to learn a residual function with reference to its input, through identity shortcuts that add
 neither parameters nor computation.
 
@@ -1193,10 +1226,10 @@ The pooling that gives a network its invariance and receptive-field growth does 
 spatial resolution, and the features most vulnerable to that loss are the smallest: the
 microaneurysms and fine vascular changes distinguishing the early, screening-critical grades.
 
-The point is made by a lesion-segmentation network designed with a single pooling stage precisely to
-preserve small-lesion features, supplemented with attention and dilated convolutions. Its
-microaneurysm segmentation was nonetheless weak, a result its authors flag themselves, on small
-corpora without confidence intervals or cross-corpus transfer.
+The point is made by the lesion-segmentation network of Wan et al. (2021), designed with a single
+pooling stage precisely to preserve small-lesion features and supplemented with attention and
+dilated convolutions. Its microaneurysm segmentation was nonetheless weak, a result its authors flag
+themselves, on small corpora without confidence intervals or cross-corpus transfer.
 
 The lesson is analytical rather than architectural. Increasing architectural sophistication does not
 by itself resolve the detection of small, low-contrast lesions, which is exactly the burden the
@@ -1204,14 +1237,15 @@ preprocessing stages are designed to share. That is one concrete expression of t
 preprocessing plus network, the two addressing the problem jointly.
 
 Two backbones are used throughout, drawn from distinct families. The first is the fifty-layer
-instance of the residual architecture, whose defining element is the identity shortcut. The second is
-a member of the compound-scaling family, in which depth, width and input resolution are scaled
-together by a single coefficient rather than independently.
+instance of the residual architecture of He et al. (2016), whose defining element is the identity
+shortcut. The second is a member of the compound-scaling family of Tan and Le (2019), in which
+depth, width and input resolution are scaled together by a single coefficient rather than
+independently.
 
 They therefore embody two genuinely different principles for building a deep feature extractor, and
-that is the property making them a useful pair. Using two rather than one is methodological and not a
-search for the best network: it is what allows an effect observed under the preprocessing contrast to
-be tested for replication across architecture families.
+that is the property making them a useful pair. Using two rather than one is methodological and not
+a search for the best network: it is what allows an effect observed under the preprocessing contrast
+to be tested for replication across architecture families.
 
 Reading the contrast within each fixed backbone, and then asking whether the two agree, is exactly
 the cross-architecture replication the sufficient-validation criterion requires. An effect confirmed
@@ -1221,16 +1255,17 @@ space is performed or claimed.
 
 Keeping both backbones convolutional is tied to the causal logic of the study. A transformer would
 have changed the architecture and the initialisation at once, whereas an in-domain initialisation of
-the same convolutional design changes only the initialisation, so the contrast is not confounded. The
-question of convolutional against transformer architectures is outside the scope of this work's
-claims, and the wider landscape is cited only to situate the choice.
+the same convolutional design changes only the initialisation, so the contrast is not confounded.
+The question of convolutional against transformer architectures is outside the scope of this work's
+claims, and the wider landscape (Dosovitskiy et al., 2021; Xu et al., 2024) is cited only to situate
+the choice.
 
 The two backbones must accept inputs of different channel count across conditions, three in the
 baseline and four in the full pipeline. The first convolutional layer is adapted accordingly: where
-weights are inherited from a three-channel source they are copied to the first three channels and the
-fourth is initialised from their per-channel mean. Because the in-domain pretraining is performed in
-house, the encoder can alternatively be pretrained directly on the four-channel tensor, which removes
-the mismatch entirely.
+weights are inherited from a three-channel source they are copied to the first three channels and
+the fourth is initialised from their per-channel mean. Because the in-domain pretraining is
+performed in house, the encoder can alternatively be pretrained directly on the four-channel tensor,
+which removes the mismatch entirely.
 
 The pretraining-task classification head is replaced by one producing a five-way distribution over
 the grades, retaining the convolutional feature extractor. What is fixed here is the output
@@ -1247,16 +1282,17 @@ replication meaningful. The replication question asks whether the same direction
 for both backbones, and it is well posed only if both are adapted to the task in the same way.
 
 Regularisation operates at three levels and all three are used. At the level of the weights, dropout
-prevents units from co-adapting into fragile jointly tuned detectors, and batch normalisation
-stabilises optimisation while conferring a mild regularising effect through the noise of batch
-statistics. That effect weakens as the batch shrinks, which is a real caveat at the batch size of
-sixteen the memory budget imposes.
+(Srivastava et al., 2014) prevents units from co-adapting into fragile jointly tuned detectors, and
+batch normalisation (Ioffe and Szegedy, 2015) stabilises optimisation while conferring a mild
+regularising effect through the noise of batch statistics. That effect weakens as the batch shrinks,
+which is a real caveat at the batch size of sixteen the memory budget imposes.
 
 At the level of the training process, early stopping halts training once a validation measure ceases
 to improve and the learning rate is reduced when it plateaus; at the level of the data, augmentation
-acts as specified in section 2.1. None is claimed to prevent overfitting: each is a contributing
-control whose effect is empirical, and the candidate's earlier work found these measures reduced but
-did not eliminate the gap between training and held-out performance.
+acts as specified in section 2.1 (Shorten and Khoshgoftaar, 2019). None is claimed to prevent
+overfitting: each is a contributing control whose effect is empirical, and the candidate's earlier
+work found these measures reduced but did not eliminate the gap between training and held-out
+performance.
 
 One configuration detail is architecture-specific. Mixed-precision training is enabled for the
 residual backbone and disabled for the compound-scaled one, where half precision produced numerical
@@ -1273,8 +1309,8 @@ used is a distinct and larger member.
 
 What distinguishes the two arms of the factorial is not the head but the initialisation of the
 backbone before fine-tuning. The baseline arm starts from weights learned on natural images, the
-standard cross-domain transfer. The integrated arm starts from in-domain pretraining on an unlabelled
-retinal corpus, performed on the same architecture.
+standard cross-domain transfer. The integrated arm starts from in-domain pretraining on an
+unlabelled retinal corpus, performed on the same architecture.
 
 That in-domain initialisation uses no grading labels at any point. The objective is purely
 representational: to learn from unlabelled fundus images the structure of retinal imagery, its
@@ -1289,26 +1325,30 @@ three-channel external checkpoint would create.
 Three operational details are fixed. The unlabelled pretraining corpus is the held-out split of
 53,576 images, disjoint from the labelled corpus on which the experiment trains and evaluates,
 sharing no image and no patient identifier. That disjointness is a binding no-leakage constraint,
-analogous to the separateness of the natural-image corpus for the baseline arm, and is enforced by an
-explicit assertion in the implementation.
+analogous to the separateness of the natural-image corpus for the baseline arm, and is enforced by
+an explicit assertion in the implementation.
 
-The primary protocol is negative-free and robust to small batches, which suits a single-device
-compute budget, with three alternatives retained. And no checkpoint is admitted until it passes a
-frozen-backbone acceptance gate.
+The primary protocol is the negative-free objective of Grill et al. (2020), robust to small batches
+and so suited to a single-device compute budget, with the alternatives of He et al. (2020), Chen et
+al. (2020), Chen and He (2021) and Caron et al. (2021) retained; Arrieta et al. (2022) apply the
+family to this disease. And no checkpoint is admitted until it passes a frozen-backbone acceptance
+gate.
 
-That gate trains a single linear head on a label-bearing slice with the backbone frozen, and compares
-it against random and natural-image initialisation. The labels it reads are read only by the gate and
-never by the pretraining objective, so it introduces no leakage into the pretext task.
+That gate trains a single linear head on a label-bearing slice with the backbone frozen, and
+compares it against random and natural-image initialisation. The labels it reads are read only by
+the gate and never by the pretraining objective, so it introduces no leakage into the pretext task.
 
-The acceptance bar is competitiveness with the natural-image initialisation, not superiority over it.
-This work does not claim that the in-domain initialisation outperforms the conventional one, and the
-bar is set to match the claim. Should the gate fail, a documented fallback initialises the encoder
-from natural images and continues in-domain training, a path that softens the contrast and must be
-flagged wherever it is used.
+The acceptance bar is competitiveness with the natural-image initialisation, not superiority over
+it. This work does not claim that the in-domain initialisation outperforms the conventional one, and
+the bar is set to match the claim. Should the gate fail, a documented fallback initialises the
+encoder from natural images and continues in-domain training, a path that softens the contrast and
+must be flagged wherever it is used.
 
 The rationale for a convolution-native in-domain initialisation is to obtain domain-specific weights
-without confounding the experiment with an architecture change. A published retinal foundation model
-is a vision transformer, so initialising from it would change both the architecture and the
+without confounding the experiment with an architecture change. Adapting representations across a
+distribution gap by adversarial alignment (Ganin et al., 2016) is a different response to the same
+gap and is not the one taken here. The published retinal foundation model of Zhou et al. (2023) is a
+vision transformer, so initialising from it would change both the architecture and the
 initialisation relative to the baseline arm, and any observed difference would conflate the
 preprocessing contribution with an architectural one.
 
@@ -1323,43 +1363,45 @@ contribution.
 
 It follows that the effect may not be attributed to preprocessing alone, nor to the initialisation
 alone. The only admissible form of the claim is at the level of the configuration: that the
-integrated configuration outperforms the baseline configuration on a given measure by a given margin.
-Decomposing the composite into separate contributions would require a further factorial, which is
-outside the scope of this work and is named as further work.
+integrated configuration outperforms the baseline configuration on a given measure by a given
+margin. Decomposing the composite into separate contributions would require a further factorial,
+which is outside the scope of this work and is named as further work.
 
-The literature status of this choice needs stating plainly. Evidence exists that in-domain
-self-supervised pretraining on retinal images yields generalisable representations, and that
-in-domain medical pretraining can exceed natural-image transfer. Those sources establish the
-credibility of the direction.
+The literature status of this choice needs stating plainly. Zhou et al. (2023) report that in-domain
+self-supervised pretraining on retinal images yields generalisable representations, and Azizi et al.
+(2021) that in-domain medical pretraining can exceed natural-image transfer; Shurrab and Duwairi
+(2022) survey the family. Those sources establish the credibility of the direction.
 
 What they do not establish is the specific configuration adopted here. The retinal evidence was
 obtained with a transformer backbone and the medical evidence with non-fundus modalities, whereas
 this work holds a convolutional backbone fixed and pretrains it on a four-channel tensor, a
 configuration none of them evaluates. The initialisation is accordingly presented as a candidate
-methodological contribution whose efficacy is established empirically, not as a result inherited from
-the literature.
+methodological contribution whose efficacy is established empirically, not as a result inherited
+from the literature.
 
-Once adapted and initialised, the network is trained by a two-stage schedule that addresses a tension
-inherent in fine-tuning a pretrained backbone with a freshly initialised head.
+Once adapted and initialised, the network is trained by a two-stage schedule that addresses a
+tension inherent in fine-tuning a pretrained backbone with a freshly initialised head.
 
 In the first stage the backbone is frozen and only the new head is trained. With the feature
 extractor held fixed, the head learns to map established features to the grades without the large,
-poorly conditioned gradients of an untrained head propagating back into and disrupting the pretrained
-weights.
+poorly conditioned gradients of an untrained head propagating back into and disrupting the
+pretrained weights.
 
 In the second stage the upper layers are progressively unfrozen and trained jointly with the head.
-The higher-level features are the most task-specific and therefore the most likely to benefit from
-adaptation, while the lower, more generic layers are adapted conservatively or left fixed.
+As Yosinski et al. (2014) show, the higher-level features are the most task-specific and therefore
+the most likely to benefit from adaptation, while the lower, more generic layers are adapted
+conservatively or left fixed.
 
 That ordering is grounded in the candidate's prior transfer-learning work, which compared a
 frozen-feature configuration against a progressively fine-tuned one and found the latter stronger.
 Two qualifications govern the use of that record: it was obtained with a small member of one
-architecture family and is not generalised to the present backbones, and it motivates the choice of a
-progressive schedule rather than establishing its outcome for them.
+architecture family and is not generalised to the present backbones, and it motivates the choice of
+a progressive schedule rather than establishing its outcome for them.
 
-The comparison of frozen against progressive fine-tuning is a training-method decision here and not a
-hypothesis under test. The earlier hypothesis concerning fine-tuning strategy was withdrawn, and none
-is reinstated: the schedule is simply fixed as the method by which every configuration is trained.
+The comparison of frozen against progressive fine-tuning is a training-method decision here and not
+a hypothesis under test. The earlier hypothesis concerning fine-tuning strategy was withdrawn, and
+none is reinstated: the schedule is simply fixed as the method by which every configuration is
+trained.
 
 Fixing it uniformly serves the same purpose as fixing the head uniformly. The protocol is applied
 identically to both backbones and to both arms, so the training procedure is not a source of
@@ -1371,21 +1413,23 @@ severely imbalanced training distribution. Under an unweighted objective the gra
 dominated by the majority grade, and the network could minimise the average loss while performing
 poorly on the rare severe grades that are clinically the most consequential.
 
-The objective is a focal loss with inverse-frequency class weighting, and two mechanisms act together
-in it. The focal modulating factor down-weights examples already classified confidently and
+The objective is the focal loss of Lin et al. (2017) with inverse-frequency class weighting, an
+alternative to the effective-number reweighting of Cui et al. (2019), and two mechanisms act
+together in it. The focal modulating factor down-weights examples already classified confidently and
 correctly, redirecting emphasis toward hard and misclassified ones. The class weight is the inverse
 frequency of each grade, so rare grades contribute in proportion to their scarcity rather than being
 swamped.
 
 The focal term therefore addresses the imbalance between easy and hard examples, and the weighting
-the imbalance between class frequencies; the two are complementary. Together with the augmentation of
-section 2.1 they are the two levers the framework uses against imbalance, the loss reshaping the
+the imbalance between class frequencies; the two are complementary. Together with the augmentation
+of section 2.1 they are the two levers the framework uses against imbalance, the loss reshaping the
 objective surface and augmentation the input distribution.
 
 Neither is asserted to resolve the imbalance. The choice is made against a literature in which
-cost-sensitive learning, though an active direction, remains thinly validated: a systematic review of
-the field found only two of one hundred and seventy-three surveyed papers to be validation studies.
-That observation frames the design choice without supplying evidence specific to this task.
+cost-sensitive learning, though an active direction, remains thinly validated: the systematic review
+of Araf et al. (2024) found only two of one hundred and seventy-three surveyed papers to be
+validation studies. Buda et al. (2018) reach a comparable reading of imbalance remedies. That
+observation frames the design choice without supplying evidence specific to this task.
 
 ## 2.5 Explainability and quality metrics
 
@@ -1393,21 +1437,22 @@ A classifier outputs a grade, but a screening tool is more usable if it can indi
 image its evidence for that grade lies. This section formalises the family of methods used for that
 purpose, and fixes from the outset the limit on what they establish.
 
-The lineage begins with class activation mapping. Where the final feature maps are reduced by global
-average pooling before the classification layer, the learned weight connecting a map to a class can
-be projected back onto that map's activations, indicating the importance of each location for that
-class. It requires the network to be built with that pooling stage, and its weakly supervised
-localisation remained substantially worse than fully supervised localisation.
+The lineage begins with the class activation mapping of Zhou et al. (2016). Where the final feature
+maps are reduced by global average pooling before the classification layer, the learned weight
+connecting a map to a class can be projected back onto that map's activations, indicating the
+importance of each location for that class. It requires the network to be built with that pooling
+stage, and its weakly supervised localisation remained substantially worse than fully supervised
+localisation.
 
-The gradient-based generalisation removes the architectural constraint by replacing those weights
-with gradients. A map's importance is the spatial average of the gradient of the class score with
-respect to its activations, and the result is a weighted combination of feature maps passed through a
-rectifier that keeps only features exerting a positive influence.
+The gradient-based generalisation of Selvaraju et al. (2017) removes the architectural constraint by
+replacing those weights with gradients. A map's importance is the spatial average of the gradient of
+the class score with respect to its activations, and the result is a weighted combination of feature
+maps passed through a rectifier that keeps only features exerting a positive influence.
 
 Because the weights come from backpropagation rather than a particular pooling structure, the method
-applies to essentially any convolutional architecture without retraining. A later refinement derives
-pixel-wise weights from higher-order terms; the choice among variants here is a methodological
-decision, not a superiority claim.
+applies to essentially any convolutional architecture without retraining. The later refinement of
+Chattopadhyay et al. (2018) derives pixel-wise weights from higher-order terms; the choice among
+variants here is a methodological decision, not a superiority claim.
 
 [FIG-2.7: Gradient-weighted combination of final-layer feature maps — defense/figures/figures_mine/fig2_3_gradcam.png]
 
@@ -1423,8 +1468,8 @@ regard as relevant.
 
 Three properties bound that judgment. The first is resolution: apparent boundaries are approximate,
 so the smallest decisive lesions may be correctly attended without being precisely delimited. The
-absence of a sharply lesion-shaped activation is not evidence that a lesion was missed, and a diffuse
-activation is not evidence of imprecise reasoning.
+absence of a sharply lesion-shaped activation is not evidence that a lesion was missed, and a
+diffuse activation is not evidence of imprecise reasoning.
 
 The second is method and layer dependence. The map depends on which layer's activations are used and
 on how gradients are weighted, and the refinement noted above shows the weighting materially changes
@@ -1437,13 +1482,15 @@ a network may attend to context co-occurring with disease, or to structures whos
 correlates with grade for non-causal reasons.
 
 When a map overlaps a clinician-annotated lesion, that overlap is evidence the attention is directed
-toward clinically relevant structures, not proof that the model has localised pathology. These limits
-do not diminish the usefulness of attention maps; they fix the register in which they are useful.
+toward clinically relevant structures, not proof that the model has localised pathology. These
+limits do not diminish the usefulness of attention maps; they fix the register in which they are
+useful.
 
 Turning plausibility into a quantity requires an explicit overlap measure, and two are used. The
 first, primary, references only the annotated lesion area and measures how much of it the attention
-covers. The second is symmetric, charging its denominator for attention spilling beyond the lesion as
-well as for lesion the attention fails to cover.
+covers. The second is the symmetric intersection-over-union of Everingham et al. (2010), charging
+its denominator for attention spilling beyond the lesion as well as for lesion the attention fails
+to cover; Rezatofighi et al. (2019) analyse its behaviour.
 
 The choice of the first as primary follows from the nature of the maps. A map is coarse and
 class-discriminative, so its thresholded region tends by construction to extend beyond the boundary
@@ -1457,12 +1504,12 @@ localisation failure of the model. Neither is a detection benchmark, and borrowi
 object detection must not import a detection reading.
 
 Metrics of a second kind measure a property of the image after preprocessing, independently of any
-classifier. The motivation is intrinsic to treating preprocessing as a model component: if it is part
-of the model rather than incidental preparation, its effect ought to be observable directly on the
-image it produces and not only inferred from downstream accuracy.
+classifier. The motivation is intrinsic to treating preprocessing as a model component: if it is
+part of the model rather than incidental preparation, its effect ought to be observable directly on
+the image it produces and not only inferred from downstream accuracy.
 
-There is also a methodological reason. Because the two arms differ along more than one axis, a change
-in classification performance cannot be attributed to preprocessing in isolation, whereas an
+There is also a methodological reason. Because the two arms differ along more than one axis, a
+change in classification performance cannot be attributed to preprocessing in isolation, whereas an
 image-level measure isolates what the stages do to the image.
 
 Three are used. The contrast-to-noise ratio quantifies how well relevant structures stand out from
@@ -1476,22 +1523,22 @@ one. It is a guard: enhancement can be carried too far, introducing artefacts or
 and a metric that only rewarded contrast would not detect such damage.
 
 A fourth measure named in ancillary materials, a vessel-visibility index, is not used. It has no
-implementation in this work and therefore no computational source, and it is excluded on that
-ground rather than reported as unavailable.
+implementation in this work and therefore no computational source, and it is excluded on that ground
+rather than reported as unavailable.
 
 The evidentiary standing of these measures is supplementary. They describe what preprocessing does
 to the image and support interpretation of the pipeline's behaviour, but they cannot independently
 establish or refute the diagnostic hypotheses, which rest on the classification measures.
 
 Their literature grounding is thin and general rather than specific to this disease, and that is
-acknowledged rather than concealed. Structural similarity derives from a general image-quality
-benchmark with no retinal application in its source, and the contrast measure has no dedicated
-primary source and is defined operationally here. They are used as established image-analysis tools,
-not as validated measures for this task.
+acknowledged rather than concealed. Structural similarity derives from the general image-quality
+benchmark of Wang et al. (2004), with no retinal application in its source, and the contrast measure
+has no dedicated primary source and is defined operationally here. They are used as established
+image-analysis tools, not as validated measures for this task.
 
-Calibration measures are sometimes grouped with these but are distinct. They quantify the reliability
-of predicted probabilities, which is a property of the classifier, and belong with the diagnostic
-measures of the next section.
+Calibration measures are sometimes grouped with these but are distinct. They quantify the
+reliability of predicted probabilities, which is a property of the classifier, and belong with the
+diagnostic measures of the next section.
 
 ## 2.6 Evaluation and statistical protocol
 
@@ -1501,8 +1548,8 @@ healthy grade, and under such imbalance overall accuracy is inflated by majority
 and is uninformative about the rare severe grades that matter most clinically.
 
 The framework therefore ranks its measures by evidentiary weight and requires the strongest evidence
-to rest on those most robust to imbalance. Table 2.3 gives the ordering and the thresholds at which a
-configuration is deemed effective.
+to rest on those most robust to imbalance. Table 2.3 gives the ordering and the thresholds at which
+a configuration is deemed effective.
 
 **Table 2.3 – Evaluation measures by evidentiary weight, with the effectiveness thresholds.**
 
@@ -1535,24 +1582,24 @@ figures reported in that work on small corpora are explicitly not transferable.
 
 A qualification applies to every measure in the table. Each is computed against the reference grades
 supplied with the corpus, and the reliability of those grades is itself an evaluation variable.
-Grader variability can materially shift apparent performance, and adjudicated reference standards
-reduce but do not eliminate it. This work inherits the public corpora's labels and their
-reference-standard limitations.
+Grader variability can materially shift apparent performance (Krause et al., 2018), and adjudicated
+reference standards reduce but do not eliminate it. This work inherits the public corpora's labels
+and their reference-standard limitations.
 
 The secondary measures are reported for completeness and cannot independently establish or refute a
 hypothesis. Per-class precision and recall are informative but unstable for the minority severe
-grades, and macro averages are reported beside the weighted ones to expose any divergence. Training-set
-measures serve only to diagnose overfitting, operationalised as a gap above fifteen percentage points
-on any primary measure.
+grades, and macro averages are reported beside the weighted ones to expose any divergence.
+Training-set measures serve only to diagnose overfitting, operationalised as a gap above fifteen
+percentage points on any primary measure.
 
-Reporting these beside the primary measures guards against a configuration appearing effective on the
-weighted aggregate while failing on a minority grade.
+Reporting these beside the primary measures guards against a configuration appearing effective on
+the weighted aggregate while failing on a minority grade.
 
 For the screening analyses, sensitivity, specificity and both predictive values are reported at the
-referral threshold. Calibration is assessed by the expected calibration error and the Brier score,
-which quantify whether predicted probabilities match observed frequencies. Calibration is an
-empirical diagnostic property only; it does not establish the clinical reliability of those
-probabilities, and no such claim is made.
+referral threshold. Calibration is assessed by the expected calibration error and the Brier score
+(Guo et al., 2017), which quantify whether predicted probabilities match observed frequencies.
+Calibration is an empirical diagnostic property only; it does not establish the clinical reliability
+of those probabilities, and no such claim is made.
 
 Cross-corpus transfer is measured by the fraction of in-domain performance retained under the same
 trained model without retraining, which is the quantity the pre-specified transfer criterion is
@@ -1567,9 +1614,9 @@ The conjunction is what gives the criterion its force. A criterion satisfiable b
 could be satisfied by a change that merely trades discrimination against agreement, and the ordinal
 structure of the grade scale makes that trade easy to achieve inadvertently.
 
-An estimate without a quantified uncertainty cannot support compound criteria of that kind, so the
-protocol specifies how the measures are computed across partitions and how their uncertainty is
-quantified.
+Optimisation is by the adaptive-moment method of Kingma and Ba (2015) throughout. An estimate
+without a quantified uncertainty cannot support compound criteria of that kind, so the protocol
+specifies how the measures are computed across partitions and how their uncertainty is quantified.
 
 Every experiment uses five-fold cross-validation with a patient-level stratified split. The defining
 property is that the partition is made at the level of the patient and not the image: no patient's
@@ -1580,10 +1627,10 @@ eyes of one patient, which are strongly correlated, and an image-level split wou
 images of one patient on both sides of the partition and inflate the apparent test performance by
 leakage.
 
-Patient-level grouping removes that path, and it composes with the train-only status of augmentation,
-so no augmented image enters any test partition. Every primary measure is reported as the mean and
-standard deviation across the five folds, so fold-to-fold variability is visible beside the central
-estimate.
+Patient-level grouping removes that path, and it composes with the train-only status of
+augmentation, so no augmented image enters any test partition. Every primary measure is reported as
+the mean and standard deviation across the five folds, so fold-to-fold variability is visible beside
+the central estimate.
 
 Differences between configurations are assessed by a suite of tests, each matched to the comparison
 it serves. A paired test on identical cases compares classifications directly; a paired test for
@@ -1597,8 +1644,8 @@ simultaneous comparisons, a correction for multiple comparisons is applied withi
 number of comparisons does not manufacture significance.
 
 Reproducibility is engineered rather than assumed. Every experiment runs under one standardised
-configuration with a fixed random seed and deterministic execution, fixed augmentation parameters and
-a fixed learning-rate schedule, with the optimiser and remaining hyperparameters held constant.
+configuration with a fixed random seed and deterministic execution, fixed augmentation parameters
+and a fixed learning-rate schedule, with the optimiser and remaining hyperparameters held constant.
 
 Fixing these removes run-to-run nondeterminism as a confound, so a measured difference between
 configurations is attributable to the configuration rather than to seed variation. What that
@@ -1664,8 +1711,8 @@ without any retraining. The clinical group holds the two corpora that carry anno
 image-level grade, and the device group holds three corpora acquired on cameras absent from
 training.
 
-IDRiD supplies pixel-level lesion masks, which is what makes a quantitative comparison between
-model attention and expert annotation possible. The Kazakh clinical set of 60 images serves as the
+IDRiD supplies pixel-level lesion masks, which is what makes a quantitative comparison between model
+attention and expert annotation possible. The Kazakh clinical set of 60 images serves as the
 held-out test corpus of the small-sample experiment. Table 3.1 sets out the full architecture.
 
 **Table 3.1 – Functional grouping of the experimental corpora.**
@@ -1686,8 +1733,9 @@ documented by Cuadros and Bresnick (2009), whose telemedicine descriptor establi
 grading and the Canon nonmydriatic acquisition; the labelled count is an attribute of the Kaggle
 partition rather than a figure those authors report.
 
-IDRiD is documented by Porwal et al. (2018): 516 images from a single Indian clinic on a single
-camera, 81 of them carrying masks for four lesion types. That single-centre, single-camera
+Messidor-2 is documented by Decenciere et al. (2014) and the device corpora by Liu et al. (2022)
+among others. IDRiD is documented by Porwal et al. (2018): 516 images from a single Indian clinic on
+a single camera, 81 of them carrying masks for four lesion types. That single-centre, single-camera
 provenance is a limitation inherited by every result derived from the corpus, and it travels with
 each of them.
 
@@ -1703,8 +1751,8 @@ a discipline observed throughout. Any comparison drawn across corpora carries wi
 differences in equipment, population, grading protocol and taxonomy that separate them.
 
 The EyePACS grade distribution is severely imbalanced, and the imbalance is structural rather than
-incidental. It concentrates in the grade for no apparent retinopathy and falls away steeply, so
-that the severe and proliferative grades are represented by comparatively few images. This is the
+incidental. It concentrates in the grade for no apparent retinopathy and falls away steeply, so that
+the severe and proliferative grades are represented by comparatively few images. This is the
 ordinary profile of a screening corpus, and its shape is shown in
 [FIG-3.1: EyePACS class distribution across DR grades 0 to 4 — defense/presentation/assets/datasets/27_overview/12_dataset_class_distribution.png].
 
@@ -1713,22 +1761,22 @@ not lead with accuracy, which a classifier can raise simply by favouring the maj
 primary measures are therefore the weighted F1-score and the quadratic-weighted kappa, which
 penalises errors across several severity steps more heavily than adjacent-grade confusions.
 
-It is also why the objective is the inverse-frequency-weighted focal loss of section 2.4 rather
-than unweighted cross-entropy, and why the train-only augmentation of section 2.1 raises the
-effective variety of minority-grade examples without touching the test distribution.
+It is also why the objective is the inverse-frequency-weighted focal loss of section 2.4 rather than
+unweighted cross-entropy, and why the train-only augmentation of section 2.1 raises the effective
+variety of minority-grade examples without touching the test distribution.
 
-Taxonomic heterogeneity imposes a second obligation. The grading schemes must be harmonised onto
-the five-class scale before any corpus can be compared with another, and both conventions governing
-that mapping are documented rather than assumed.
+Taxonomic heterogeneity imposes a second obligation. The grading schemes must be harmonised onto the
+five-class scale before any corpus can be compared with another, and both conventions governing that
+mapping are documented rather than assumed.
 
-The multi-disease device corpora are reduced to their retinopathy content, with other disease
-labels excluded or mapped to a non-retinopathy category. Where a referable axis is used, its
-correspondence to the five grades is stated, so that a cross-corpus comparison carries its
-taxonomic context rather than presupposing label equivalence.
+The multi-disease device corpora are reduced to their retinopathy content, with other disease labels
+excluded or mapped to a non-retinopathy category. Where a referable axis is used, its correspondence
+to the five grades is stated, so that a cross-corpus comparison carries its taxonomic context rather
+than presupposing label equivalence.
 
 Partitioning follows one protocol applied uniformly. Every experiment uses five-fold
-cross-validation with a patient-level stratified split, so that no patient's images fall in both
-the training and the test partition of a fold. That closes the leakage path opened by correlated
+cross-validation with a patient-level stratified split, so that no patient's images fall in both the
+training and the test partition of a fold. That closes the leakage path opened by correlated
 bilateral and repeat acquisitions.
 
 Stratifying by grade preserves the class proportions across folds, so the rare severe grades appear
@@ -1740,9 +1788,9 @@ class-distribution statistic, so stratification there proceeds from the labels a
 an external distributional reference.
 
 The experiments ran on one consumer graphics processor, an NVIDIA RTX 3060 with 12 GB of memory,
-under a fixed software environment. This is the documented setup, not a generalisable
-specification: any statement about training time or inference throughput is bounded to it and does
-not transfer to substantially different hardware without re-evaluation.
+under a fixed software environment. This is the documented setup, not a generalisable specification:
+any statement about training time or inference throughput is bounded to it and does not transfer to
+substantially different hardware without re-evaluation.
 
 The memory bound is a design parameter rather than a caveat added afterwards. A batch of sixteen at
 512 by 512 follows directly from 12 GB, and mixed precision was enabled for ResNet-50 but disabled
@@ -1774,9 +1822,9 @@ The software stack is pinned and the pipeline and training code are reproduced i
 that the transformation applied to each image is recoverable rather than merely described.
 
 Two limits bound what this affords. The efficiency characteristics are specific to the documented
-hardware. And results depending on the Kazakh clinical set carry a structural reproducibility
-limit, because that corpus is held under an institutional agreement and is not public: an external
-party can repeat every public-corpus experiment but cannot re-run those.
+hardware. And results depending on the Kazakh clinical set carry a structural reproducibility limit,
+because that corpus is held under an institutional agreement and is not public: an external party
+can repeat every public-corpus experiment but cannot re-run those.
 
 ## 3.2 Effect of the pipeline on accuracy
 
@@ -2953,8 +3001,8 @@ between-fold variance, and one depends on a corpus that cannot be redistributed.
 
 ## 4.1 System architecture and modules
 
-The preceding chapters treated the model as an object of measurement. This chapter turns to the model
-as a component of a system, and describes the screening system built around it.
+The preceding chapters treated the model as an object of measurement. This chapter turns to the
+model as a component of a system, and describes the screening system built around it.
 
 The epistemic standing of the chapter must be fixed before anything is described. A working
 demonstrator of the architecture is deployed and performs inference on submitted images. What it
@@ -2963,11 +3011,11 @@ about clinical performance in service: no clinical deployment testing has been c
 result of the demonstrator is evidence for any diagnostic claim, every such claim resting on the
 experiments of chapter 3.
 
-The architecture is not introduced here for the first time. Prior work by the candidate proposed a
-modular system for ophthalmological screening, decomposing it into components for image capture,
-processing, recognition, diagnosis, reporting, user interaction, data storage and error handling.
-That publication presented the architecture as a design and reported neither an implementation nor
-any validation of it.
+The architecture is not introduced here for the first time. Prior work by the candidate
+(Yesmukhamedov et al., 2025) proposed a modular system for ophthalmological screening, decomposing
+it into components for image capture, processing, recognition, diagnosis, reporting, user
+interaction, data storage and error handling. That publication presented the architecture as a
+design and reported neither an implementation nor any validation of it.
 
 The present chapter extends that design in two ways. It binds the components to the model fixed in
 chapter 2, and it describes the parts that were subsequently built, distinguishing them throughout
@@ -2986,21 +3034,21 @@ operator adjustments to landmark placement. A security module gates access, and 
 verifies on startup that the deployed pipeline reproduces expected outputs.
 
 The interface exposes that decomposition directly. Beyond a health check and an authentication call,
-it offers prediction, attention mapping, per-stage visualisation, landmark correction, case creation,
-per-case feedback, aggregate case statistics, case retrieval and self-test. Each endpoint corresponds
-to a module, so the boundary a reader sees in the architecture is the boundary the running system
-has.
+it offers prediction, attention mapping, per-stage visualisation, landmark correction, case
+creation, per-case feedback, aggregate case statistics, case retrieval and self-test. Each endpoint
+corresponds to a module, so the boundary a reader sees in the architecture is the boundary the
+running system has.
 
 [FIG-4.1: The system as built, service and client — defense/figures/figures_mine/fig5_architecture_artistic.png]
 
 That correspondence was a design decision rather than an accident of implementation. A component
 decomposition that does not survive contact with the interface is a diagram rather than an
-architecture, and keeping the two aligned is what makes the built system checkable against the design
-it came from.
+architecture, and keeping the two aligned is what makes the built system checkable against the
+design it came from.
 
 Three properties of the realisation follow from the environment the system is intended for. The
-client is a static bundle, so it can be served from any host and cached, and it holds no model and no
-patient data. The service is stateless between requests except for the case store, which is a
+client is a static bundle, so it can be served from any host and cached, and it holds no model and
+no patient data. The service is stateless between requests except for the case store, which is a
 directory on disk rather than a database, so the system carries no server dependency beyond a file
 system.
 
@@ -3010,10 +3058,10 @@ changing. That is the property that matters for a setting where connectivity is 
 where the machine holding the accelerator may not be the machine an operator sits at.
 
 Two integration surfaces of the original design remain specification and are not built. Linking
-persisted records to hospital information systems through imaging and record-exchange interfaces is
-described in the prior design and is not realised in the demonstrator, which stores its records
-locally in its own format. Nothing in this chapter should be read as reporting an integration that
-exists.
+persisted records to hospital information systems through the imaging and record-exchange interfaces
+surveyed by Nandal (2024) is described in the prior design and is not realised in the demonstrator,
+which stores its records locally in its own format. Nothing in this chapter should be read as
+reporting an integration that exists.
 
 The non-functional envelope is the deployment context defined in chapter 1: a setting characterised
 by at least two of no acceleration available for inference, memory below sixteen gigabytes,
@@ -3021,15 +3069,16 @@ throughput constrained by a clinical workflow, and connectivity insufficient for
 reliance.
 
 The demonstrator meets that envelope only in part, and the part it does not meet should be stated
-here rather than left for a reader to infer. It runs its model on an accelerator. The measurements of
-chapter 3 show the inference-side cost of the integrated configuration to be negligible relative to
-its baseline, but they were made on that accelerator, and no measurement of the system on hardware
-without one exists.
+here rather than left for a reader to infer. It runs its model on an accelerator. The measurements
+of chapter 3 show the inference-side cost of the integrated configuration to be negligible relative
+to its baseline, but they were made on that accelerator, and no measurement of the system on
+hardware without one exists.
 
 What the demonstrator does establish about the envelope is narrower and still worth stating. The
 client imposes no computational requirement beyond a browser, the service holds one model in memory
-at a time, and the separation of the two means the accelerator need not be present where the operator
-is. Those are architectural properties, demonstrated by the running system, not performance claims.
+at a time, and the separation of the two means the accelerator need not be present where the
+operator is. Those are architectural properties, demonstrated by the running system, not performance
+claims.
 
 ## 4.2 Preprocessing and inference services
 
@@ -3121,16 +3170,16 @@ makes the model's first half inspectable rather than implicit.
 [FIG-4.2: The operator interface, with the per-stage view and the graded result — defense/figures/figures_mine/fig10_webapp_screenshot_1.png]
 
 The interface then asks for something the model cannot supply. For each prediction the operator can
-record a verdict, and that verdict is the ophthalmologist's own reading rather than an agreement flag
-on the model's.
+record a verdict, and that verdict is the ophthalmologist's own reading rather than an agreement
+flag on the model's.
 
 Exactly one verdict is held per prediction. The controls that offer a verdict are replaced by a
-cancellation once one is recorded, and cancelling removes it, so the record cannot accumulate several
-readings of one prediction or silently overwrite an earlier one.
+cancellation once one is recorded, and cancelling removes it, so the record cannot accumulate
+several readings of one prediction or silently overwrite an earlier one.
 
 Each submission opens a record for the patient. The record holds the original images, the output of
-every preprocessing stage, the input channels the classifier received, the attention map, the model's
-grade and the operator's verdict, in a directory of files rather than an opaque store.
+every preprocessing stage, the input channels the classifier received, the attention map, the
+model's grade and the operator's verdict, in a directory of files rather than an opaque store.
 
 The design of that record follows from what it is for. A screening record that keeps only the grade
 cannot afterwards answer why the grade was given, and one that keeps only the original image cannot
@@ -3143,8 +3192,8 @@ buffer was cleared, and the disk-backed form survives that. Records are written 
 failure to persist one does not fail the prediction.
 
 The interface also accepts a correction the model's own components cannot make. Where the landmark
-detector of chapter 2 has placed the optic disc or the fovea imprecisely, an operator can drag either
-to its correct position, and the correction is stored.
+detector of chapter 2 has placed the optic disc or the fovea imprecisely, an operator can drag
+either to its correct position, and the correction is stored.
 
 Those corrections feed an offline loop rather than the running model. They are exported with
 duplicates removed and any image belonging to a test partition filtered out, then used to fine-tune
@@ -3156,24 +3205,26 @@ rather than from the current detector stops successive rounds from drifting; fil
 stops operator corrections from leaking evaluation data into training; and the acceptance gate stops
 a round of corrections from degrading a detector that was working.
 
-The loop is built and has not been exercised on real corrections. What exists is the mechanism, not a
-demonstration that operator corrections improve the detector, and no such improvement is claimed.
+The loop is built and has not been exercised on real corrections. What exists is the mechanism, not
+a demonstration that operator corrections improve the detector, and no such improvement is claimed.
 
-Two capabilities the original design describes remain specification. Support for portable and
-smartphone-based capture, and operation within a distributed telemedicine service linked to a
-national health platform, are described there and are not realised here.
+Two capabilities the original design (Yesmukhamedov et al., 2025) describes remain specification.
+Support for portable and smartphone-based capture, and operation within a distributed telemedicine
+service linked to a national health platform, are described there and are not realised here. Both
+are established modes of delivery in the wider record (Bellemo et al., 2019; Ting et al., 2019;
+Morya et al., 2024).
 
-What the built system does bear on is the first of them, indirectly and only architecturally. Because
-the client is a static bundle holding no model, and the service can run wherever an accelerator is
-available, the operator's device does not need to be the machine that computes. That is a property of
-the deployment shape rather than a demonstration that the system works from a handheld camera in a
-rural clinic, which was not tested.
+What the built system does bear on is the first of them, indirectly and only architecturally.
+Because the client is a static bundle holding no model, and the service can run wherever an
+accelerator is available, the operator's device does not need to be the machine that computes. That
+is a property of the deployment shape rather than a demonstration that the system works from a
+handheld camera in a rural clinic, which was not tested.
 
 The workflow the interface implements is accordingly narrow and honest about its boundaries. Images
 are submitted, transformed visibly, graded, explained in a bounded register, judged by a clinician
 whose judgment is recorded, and kept in a form that can be reconstructed. Everything beyond that,
-including every claim about how the workflow performs in a clinic, is outside what has been built and
-outside what is claimed.
+including every claim about how the workflow performs in a clinic, is outside what has been built
+and outside what is claimed.
 
 ## 4.4 Deployment and data protection
 
@@ -3189,10 +3240,10 @@ Those are the properties of a demonstrator rather than of a clinical deployment,
 chapter suggests otherwise. A system handling patient data in service would require identity,
 authorisation and access logging, none of which is built.
 
-The data-protection framing of the original design is a design specification and not a certified
-compliance status. That distinction binds every statement in this section: describing a protocol
-aligned to a regulatory regime is not the same as having been assessed against it, and no assessment
-has been undertaken.
+The data-protection framing of the original design (Yesmukhamedov et al., 2025) is a design
+specification and not a certified compliance status. That distinction binds every statement in this
+section: describing a protocol aligned to a regulatory regime is not the same as having been
+assessed against it, and no assessment has been undertaken.
 
 What the built system does with data can nonetheless be described exactly. Records are written to a
 directory on the machine running the service and hold real images. They are not de-identified to any
@@ -3205,22 +3256,23 @@ design and are not implemented. Nothing enforces a retention period, and deletio
 operation rather than a governed one.
 
 Stating this is not a concession but the substance of the section. A screening system's data
-handling is where a design specification most easily passes for an implementation, and the difference
-between the two is exactly what a reader of a system chapter needs.
+handling is where a design specification most easily passes for an implementation, and the
+difference between the two is exactly what a reader of a system chapter needs.
 
 Applicability to the national healthcare infrastructure this work is directed at is bounded by the
 absence of field testing there. The infrastructure prerequisites the original design acknowledged,
 investment in diagnostic equipment, adaptation to local data, national standards development and
-specialist training, are unchanged by anything demonstrated here.
+specialist training, are unchanged by anything demonstrated here. Beede et al. (2020) document what
+such prerequisites cost a deployment that lacks them.
 
 Deployment outcomes projected for that setting in prior work are third-party projections cited as
 context. They are not results of this research, and no figure of that kind appears anywhere in this
 dissertation as a finding.
 
-What the deployment does establish is architectural and modest. A screening client can be delivered to
-an operator's browser with no local installation and no model on their device, while inference runs on
-a machine that need not be in the same building. The whole arrangement can be stood up without a
-hosted server. In a setting where connectivity is intermittent and specialist hardware is
+What the deployment does establish is architectural and modest. A screening client can be delivered
+to an operator's browser with no local installation and no model on their device, while inference
+runs on a machine that need not be in the same building. The whole arrangement can be stood up
+without a hosted server. In a setting where connectivity is intermittent and specialist hardware is
 concentrated, that shape is the relevant one, and demonstrating that it works is what this chapter
 claims.
 
@@ -3266,9 +3318,9 @@ This dissertation set out to establish whether the preparation of a fundus image
 convolutional network belongs to the specification of the diagnostic model or beside it.
 
 The question is not rhetorical. If the transform applied before the first convolution determines the
-feature space the network operates in, then a model reported without that transform specified has not
-been fully described, and a comparison between two such models is a comparison between partly unknown
-systems.
+feature space the network operates in, then a model reported without that transform specified has
+not been fully described, and a comparison between two such models is a comparison between partly
+unknown systems.
 
 The work therefore specified an eight-stage pipeline as a binding part of the model and placed the
 resulting configuration under controlled contrast against an equivalent configuration lacking it. It
@@ -3289,16 +3341,17 @@ into groups with the two photometric stages leading. That is a grouping and not 
 adjacent ranks lie within noise. Both photometric parameters have interior optima confirmed on
 held-out data.
 
-The distance between the training distribution and each of six target distributions fell, without any
-target statistic entering the transform, so the mechanism the argument postulates was measured rather
-than inferred. The magnitude of that reduction does not track the magnitude of the corresponding
-performance gain, and no argument here rests on such a correspondence.
+The distance between the training distribution and each of six target distributions fell, without
+any target statistic entering the transform, so the mechanism the argument postulates was measured
+rather than inferred. The magnitude of that reduction does not track the magnitude of the
+corresponding performance gain, and no argument here rests on such a correspondence.
 
-Competence transferred to every external corpus examined, with the integrated configuration higher on
-each. Two of the criteria were cleared by both configurations, so there the evidence lies in the
+Competence transferred to every external corpus examined, with the integrated configuration higher
+on each. Two of the criteria were cleared by both configurations, so there the evidence lies in the
 comparison and not in the criterion. On the external clinical corpora the claim is about absolute
-performance and not about resistance to degradation, since relative to their own in-domain levels the
-two configurations declined almost identically, and the margin on the second is four thousandths.
+performance and not about resistance to degradation, since relative to their own in-domain levels
+the two configurations declined almost identically, and the margin on the second is four
+thousandths.
 
 Attention overlapped expert-annotated lesions more under the integrated configuration on all four
 annotated types and on both measures. What that establishes is alignment between model evidence and
@@ -3329,9 +3382,8 @@ counts as a fair comparison. It is a methodological position rather than an empi
 the results are consistent with it under the conditions tested rather than establishing it
 universally.
 
-The engineering contribution is the pipeline as a specified and reproducible object: geometry-preserving
-resize, the explicit mask as an input channel, illumination correction scaled to per-image geometry,
-normalisation from valid fundus pixels, and canonical orientation with adaptive augmentation.
+The engineering contribution is the pipeline as a specified and reproducible object, whose parameter
+values were fixed on particular corpora and should be re-established rather than inherited.
 
 The metrological contributions are two. An asymmetric measure of overlap between model attention and
 expert annotation, whose asymmetry is argued from what is clinically meaningful rather than adopted
@@ -3346,43 +3398,39 @@ analysis holds wherever those measures are used; it is descriptive, and it rehab
 of this work.
 
 One outcome that ran against expectation is recorded here rather than omitted. Label-free
-self-supervised initialisation trained from scratch on the in-domain corpus failed the frozen-backbone
-acceptance gate, across several protocols of the same family and without improvement from longer
-training, and was therefore not admitted.
+self-supervised initialisation trained from scratch on the in-domain corpus failed the
+frozen-backbone acceptance gate, across several protocols of the same family and without improvement
+from longer training, and was therefore not admitted.
 
 The initialisation ultimately used was selected by that gate rather than assumed. The gate exists
 precisely so that an initialisation may fail it, and a conclusion reporting only the branch that
 succeeded would misrepresent the record.
 
-The limitations are set out in full where each arose. They concern what was measured and what was
-not; the corpora, devices and populations the evidence reaches; the instruments' own interpretive
-limits; the design's confounds and the single-fold evaluations that carry no between-fold variance;
-and the reproducibility of one experiment whose corpus cannot be redistributed. None is softened
-here and none is added.
+The limitations are set out in full where each arose, and none is softened here or added to. They
+concern what was measured and what was not, the corpora and populations the evidence reaches, the
+instruments' interpretive limits, the design's confounds, and one corpus that cannot be
+redistributed.
 
-Eight questions remain open, and they are worth stating in the order of what closing them would cost.
-Four could be answered without training a new model. Whether the attention alignment demonstrated on
-annotated public data also holds on the clinical corpus, and whether attention is consistent across
-corpora, both need only overlays and a comparison protocol. What the mask channel contributes in
-isolation needs one further ablation level, since the present one introduces it jointly with the
-crop. And what an end-to-end system costs needs the preprocessing stages themselves timed, the
-present analysis having measured only the network.
+Eight questions remain open, ordered by what closing them would cost. Four need no new model:
+whether the attention alignment holds on the clinical corpus, whether attention is consistent across
+corpora, what the mask channel contributes in isolation, and what an end-to-end system costs once
+the preprocessing stages are themselves timed.
 
-Three would require new experiments or new data. Whether the two photometric parameters interact
-needs a joint sweep rather than two independent ones. Whether the composition of errors differs
-across camera groupings needs per-grouping confusion matrices. And whether any of this holds beyond
-the corpora and devices used here needs independent validation this work does not provide.
+Three need new experiments or new data: whether the two photometric parameters interact, whether the
+composition of errors differs across camera groupings, and whether any of this holds beyond the
+corpora and devices used here.
 
 The eighth is of a different kind and no measurement can close it. Each of the differenced and
-ratio-based transfer measures examined here penalises a configuration for its own in-domain strength,
-so whether they should serve as criteria of external quality at all is a question about what the
-field should measure. It is answered by argument or not at all.
+ratio-based transfer measures examined here penalises a configuration for its own in-domain
+strength, so whether they should serve as criteria of external quality at all is a question about
+what the field should measure. It is answered by argument or not at all.
 
 The position this dissertation ends on can be stated briefly and checked against the record. Under
 matched conditions, on eight corpora spanning four camera manufacturers, an integrated
 preprocessing-classification configuration outperformed an equivalent configuration without the
-pipeline, consistently and in every regime examined. The mechanism proposed to explain that advantage
-was measured directly rather than inferred, and the advantage decomposes across the pipeline's stages.
+pipeline, consistently and in every regime examined. The mechanism proposed to explain that
+advantage was measured directly rather than inferred, and the advantage decomposes across the
+pipeline's stages.
 
 The work does not show that this configuration is clinically valid, deployable, certifiable, or
 better than any published system, and it does not show that these results hold beyond the conditions
@@ -3394,15 +3442,36 @@ they are not incidental to it: a claim narrow enough to be checked is the only k
 
 # APPENDICES
 
-# Appendix A — Source code of the preprocessing pipeline
+# Appendix A – Source code of the preprocessing pipeline
 
-Section 3.1 undertook to reproduce the preprocessing and training code here, so that the transformation applied to every image is recoverable as source rather than described only in prose. This appendix discharges that undertaking. Its inclusion is not incidental documentation: under the central thesis of this work — that the model is the composition of preprocessing and the convolutional network, with the eight-stage pipeline an integral model component rather than ancillary data preparation — the preprocessing source *is* part of the model specification. Reproducing it is what makes that thesis auditable rather than merely asserted.
+Section 3.1 undertook to reproduce the preprocessing and training code here, so that the
+transformation applied to every image is recoverable as source rather than described only in prose.
+This appendix discharges that undertaking. Its inclusion is not incidental documentation. Under the
+central thesis of this work, that the model is the composition of preprocessing and the
+convolutional network, the preprocessing source is part of the model specification. Reproducing it
+is what makes that thesis auditable rather than merely asserted.
 
-The code is organized as a Python package under `experiments/src/`. The preprocessing stack lives in the canonical package `experiments/src/preprocessing/`, whose public interface is exported from `experiments/src/preprocessing/__init__.py` and whose orchestrator, `PreprocessingPipeline` in `experiments/src/preprocessing/pipeline.py`, chains the eight stages in the fixed order specified in chapter 2. The remaining apparatus required to reproduce the experiments is distributed across sibling subpackages of `experiments/src/`: `data/` (dataset loaders, the patient-level stratified k-fold splitter, unified augmentation, and label harmonization), `models/` (the ResNet-50 and EfficientNet factories and the two-stage fine-tuning utility), `training/` (the training loop, focal loss with inverse-frequency weights, and checkpoint management), `evaluation/` (metrics, calibration, and statistical tests), `explainability/` (Grad-CAM, IoU/ALO, and overlay rendering), `experiments/` (the seven experiment drivers), and `utils/` (YAML configuration handling, the reproducibility seed utility, and image-quality metrics). The catalogue below is confined to the preprocessing package, which implements the model component that distinguishes this work; the wider tree is named here only so that the reproduction is locatable in full.
+The code is organized as a Python package under `experiments/src/`. The preprocessing stack lives in
+`experiments/src/preprocessing/`, whose public interface is exported from its `__init__.py` and
+whose orchestrator, `PreprocessingPipeline` in `pipeline.py`, chains the eight stages in the order
+specified in chapter 2.
 
-Table A.1 maps each pipeline stage of chapter 2 to the module that implements it. Every path is given relative to the repository root and corresponds to a file present in the versioned source tree.
+The remaining apparatus is distributed across sibling subpackages. `data/` holds the dataset
+loaders, the patient-level stratified splitter, unified augmentation and label harmonization;
+`models/` the two backbone factories and the two-stage fine-tuning utility; `training/` the training
+loop, the weighted focal loss and checkpoint management.
 
-**Table A.1. Pipeline stage → implementing module (`experiments/src/preprocessing/`).**
+`evaluation/` holds the metrics, calibration and statistical tests, `explainability/` the attention
+maps and overlay rendering, `experiments/` the experiment drivers, and `utils/` the configuration
+handling, the reproducibility seed utility and the image-quality metrics. The catalogue below is
+confined to the preprocessing package; the wider tree is named only so the reproduction is locatable
+in full.
+
+Table A.1 maps each pipeline stage of chapter 2 to the module that implements it. Every path is
+given relative to the repository root and corresponds to a file present in the versioned source
+tree.
+
+**Table A.1 – Pipeline stage → implementing module (`experiments/src/preprocessing/`).**
 
 | Stage | Description (chapter 2) | Implementing module |
 |-------|--------------------|---------------------|
@@ -3417,9 +3486,19 @@ Table A.1 maps each pipeline stage of chapter 2 to the module that implements it
 | — | Configuration surface (baseline vs full-pipeline presets) | `config.py` (`PreprocessingConfig`, `PIPELINE_PRESETS`) |
 | — | Stage orchestration (fixed execution order) | `pipeline.py` (`PreprocessingPipeline`) |
 
-Stage 5 is implemented by more than one module because the pipeline ships with a polar variant of the dual-constraint CLAHE as its current default (`polar_clahe.py`), alongside the rectilinear tile-based formulation (`upgraded_clahe.py`); both are present in the versioned source and are reproduced as catalogued. Stages 0–5 and 7 are applied identically at training and inference, except that the Stage 5 contrast enhancement is stochastic at training time; Stage 6 augmentation is applied only during training and is inserted before the Stage 7 normalization so that it operates on `uint8` images. The baseline configuration (Configs A and C) bypasses Stages 0–6 in favour of a simple stretch-resize to 512×512 followed by ImageNet normalization on three channels, selected through the configuration preset rather than by editing the pipeline; the full pipeline (Configs B and D) runs all eight stages and emits four channels (RGB plus the FOV mask).
+Stage 5 is implemented by more than one module because the pipeline ships with a polar variant of
+the dual-constraint CLAHE as its current default (`polar_clahe.py`), alongside the rectilinear
+tile-based formulation (`upgraded_clahe.py`); both are present in the versioned source and are
+reproduced as catalogued. Stages 0 to 5 and 7 are applied identically at training and inference,
+except that the Stage 5 contrast enhancement is stochastic at training time. Stage 6 augmentation is
+applied only during training, and is inserted before the Stage 7 normalization so that it operates
+on `uint8` images. The baseline arm bypasses Stages 0 to 6 in favour of a stretch-resize to 512x512
+followed by generic normalization on three channels, selected through the configuration preset
+rather than by editing the pipeline. The integrated arm runs all eight stages and emits four
+channels, the three colour channels plus the field-of-view mask.
 
-To establish that this catalogue reproduces real source rather than a paraphrase of it, the Stage 4 flat-field module is reproduced verbatim from `experiments/src/preprocessing/flat_field.py`:
+To establish that this catalogue reproduces real source rather than a paraphrase of it, the Stage 4
+flat-field module is reproduced verbatim from `experiments/src/preprocessing/flat_field.py`:
 
 ```python
 """
@@ -3484,19 +3563,41 @@ def apply_flat_field(
  return corrected
 ```
 
-The remaining modules follow the same conventions established for the codebase — type-hinted signatures, `Args`/`Returns` docstrings, paths resolved from configuration rather than hardcoded, and `pathlib.Path` throughout — and are reproduced in full in the assembled document from the same package. The pipeline lineage descends from the candidate's prior published work on contrast enhancement and on preprocessing–classification integration, cited throughout as prior own work; the source reproduced here consolidates that line into the single versioned eight-stage system specified in chapter 2. Consistent with the hardware-specific reproducibility bound stated in section 3.1, the source is reproducible on equivalent hardware, but the computational-efficiency characteristics it exhibits remain specific to the documented setup; no claim of performance, accuracy, or deployment readiness is made by reproducing it. With the source catalogued and a representative module shown to be the real, on-disk implementation, the reproducibility loop opened in section 3.1 is closed: the fixed configuration of Table 3.2, the documented hardware, and this versioned code together render the experimental pipeline recoverable.
+The remaining modules follow the same conventions: type-hinted signatures, `Args`/`Returns`
+docstrings, paths resolved from configuration rather than hardcoded, and `pathlib.Path` throughout.
+They are reproduced in full from the same package.
 
-# Appendix B — Supplementary results and confusion matrices
+The pipeline lineage descends from the candidate's prior published work on contrast enhancement and
+on preprocessing-classification integration, cited throughout as prior own work. The source
+reproduced here consolidates that line into the single versioned eight-stage system specified in
+chapter 2.
 
-This appendix records the decomposition behind the aggregate figures reported in chapter 3: per-class performance, the full structure of the confusion matrices, calibration, convergence, and interval estimates. Its purpose is auditability — a reader who wishes to check how an aggregate figure arises, or where the residual error lies, should not have to take the summary on trust.
+The source is reproducible on equivalent hardware, but the computational-efficiency characteristics
+it exhibits remain specific to the documented setup, and no claim of performance, accuracy or
+deployment readiness is made by reproducing it. With the source catalogued and one module shown to
+be the real on-disk implementation, the reproducibility loop opened in section 3.1 closes: the fixed
+configuration of Table 3.2, the documented hardware and this versioned code together render the
+experimental pipeline recoverable.
 
-Two conditions govern the reading of everything below. First, the grade distribution of the training corpus is severely imbalanced: of 35,126 images, 25,810 are grade DR0, 2,443 DR1, 5,292 DR2, 873 DR3 and 708 DR4. Every per-class figure must be read against its class size, and the two smallest classes carry intervals that no table here reports. Second, per-class metrics are supplementary in this dissertation's evidence hierarchy: they inform the reading of the primary metrics and cannot independently establish or refute a hypothesis.
+# Appendix B – Supplementary results and confusion matrices
+
+This appendix records the decomposition behind the aggregate figures reported in chapter 3:
+per-class performance, the full structure of the confusion matrices, calibration, convergence, and
+interval estimates. Its purpose is auditability. A reader who wishes to check how an aggregate
+figure arises, or where the residual error lies, should not have to take the summary on trust.
+
+Two conditions govern the reading of everything below. First, the grade distribution of the training
+corpus is severely imbalanced: of 35,126 images, 25,810 are grade DR0, 2,443 DR1, 5,292 DR2, 873 DR3
+and 708 DR4. Every per-class figure must be read against its class size, and the two smallest
+classes carry intervals that no table here reports. Second, per-class metrics are supplementary in
+this dissertation's evidence hierarchy: they inform the reading of the primary metrics and cannot
+independently establish or refute a hypothesis.
 
 ### B.1 Per-class performance on the training corpus
 
 Per-class F1, precision and recall on the pooled validation folds, all four configurations.
 
-**Table B.1. Per-class F1, precision and recall on the training corpus (n = 35,126).**
+**Table B.1 – Per-class F1, precision and recall on the training corpus (n = 35,126).**
 
 | Arm | Measure | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -3513,13 +3614,16 @@ Per-class F1, precision and recall on the pooled validation folds, all four conf
 | | precision | 0.9503 | 0.1818 | 0.7244 | 0.2539 | 0.5732 | |
 | | recall | 0.9170 | 0.2747 | 0.6051 | 0.4250 | 0.5254 | |
 
-The macro-average gain (+0.104 and +0.106) exceeds the weighted-average gain reported in section 3.2, which is the arithmetic expression of the observation made there: the advantage falls disproportionately on the minority grades. DR1 remains the weakest class in every configuration, and it is also the class on which the relative gain is largest.
+The macro-average gain (+0.104 and +0.106) exceeds the weighted-average gain reported in section
+3.2, which is the arithmetic expression of the observation made there: the advantage falls
+disproportionately on the minority grades. DR1 remains the weakest class in every configuration, and
+it is also the class on which the relative gain is largest.
 
 ### B.2 Confusion matrices on the training corpus
 
 Rows are the reference grade, columns the predicted grade.
 
-**Table B.2. Confusion matrix, baseline residual.**
+**Table B.2 – Confusion matrix, baseline residual.**
 
 | true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---:|---:|---:|---:|---:|
@@ -3529,7 +3633,7 @@ Rows are the reference grade, columns the predicted grade.
 | DR3 | 46 | 117 | 294 | 262 | 154 |
 | DR4 | 17 | 42 | 107 | 269 | 273 |
 
-**Table B.3. Confusion matrix, integrated residual.**
+**Table B.3 – Confusion matrix, integrated residual.**
 
 | true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---:|---:|---:|---:|---:|
@@ -3539,7 +3643,7 @@ Rows are the reference grade, columns the predicted grade.
 | DR3 | 11 | 53 | 263 | 374 | 172 |
 | DR4 | 2 | 11 | 55 | 272 | 368 |
 
-**Table B.4. Confusion matrix, baseline efficient.**
+**Table B.4 – Confusion matrix, baseline efficient.**
 
 | true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---:|---:|---:|---:|---:|
@@ -3549,7 +3653,7 @@ Rows are the reference grade, columns the predicted grade.
 | DR3 | 45 | 116 | 300 | 257 | 155 |
 | DR4 | 16 | 40 | 105 | 271 | 276 |
 
-**Table B.5. Confusion matrix, integrated efficient.**
+**Table B.5 – Confusion matrix, integrated efficient.**
 
 | true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---:|---:|---:|---:|---:|
@@ -3559,11 +3663,17 @@ Rows are the reference grade, columns the predicted grade.
 | DR3 | 10 | 52 | 267 | 371 | 173 |
 | DR4 | 2 | 10 | 53 | 271 | 372 |
 
-Two structural features of these matrices are visible directly and are what the κ figures in section 3.2 reflect. The diagonal grows at every grade under the integrated configuration. And the cells distant from the diagonal empty: the DR0 to DR4 cell falls from 26 to 4 on the residual backbone and from 23 to 4 on the compound-scaled one, while the mass of DR0 → DR1 confusions falls by roughly a thousand instances. Because quadratic-weighted κ penalises misgrading in proportion to ordinal distance, the emptying of the distant cells contributes to the κ gain out of proportion to the number of images involved.
+Two structural features of these matrices are visible directly and are what the κ figures in section
+3.2 reflect. The diagonal grows at every grade under the integrated configuration. And the cells
+distant from the diagonal empty. The DR0 to DR4 cell falls from 26 to 4 on the residual backbone and
+from 23 to 4 on the compound-scaled one, while the mass of DR0 to DR1 confusions falls by roughly a
+thousand instances. Because quadratic-weighted κ penalises misgrading in proportion to ordinal
+distance, the emptying of the distant cells contributes to the κ gain out of proportion to the
+number of images involved.
 
 ### B.3 Confusion matrices on the external public corpus
 
-**Table B.6. Confusion matrix, baseline efficient, external public corpus (n = 3,662).**
+**Table B.6 – Confusion matrix, baseline efficient, external public corpus (n = 3,662).**
 
 | true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---:|---:|---:|---:|---:|
@@ -3573,7 +3683,7 @@ Two structural features of these matrices are visible directly and are what the 
 | DR3 | 10 | 24 | 62 | 64 | 33 |
 | DR4 | 6 | 15 | 42 | 108 | 124 |
 
-**Table B.7. Confusion matrix, integrated efficient, external public corpus.**
+**Table B.7 – Confusion matrix, integrated efficient, external public corpus.**
 
 | true \ pred | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---:|---:|---:|---:|---:|
@@ -3583,18 +3693,20 @@ Two structural features of these matrices are visible directly and are what the 
 | DR3 | 1 | 10 | 56 | 87 | 39 |
 | DR4 | 0 | 3 | 20 | 112 | 160 |
 
-**Table B.8. Per-class F1 on the external public corpus.**
+**Table B.8 – Per-class F1 on the external public corpus.**
 
 | Arm | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |---|---:|---:|---:|---:|---:|---:|
 | Baseline, efficient | 0.8554 | 0.1395 | 0.5747 | 0.2438 | 0.5113 | 0.4649 |
 | Integrated, efficient | 0.9152 | 0.2720 | 0.6931 | 0.3252 | 0.6275 | 0.5666 |
 
-The pattern of section B.2 reproduces under transfer: the diagonal grows at every grade, the distant cells empty, and the residual error concentrates on the DR3 ↔ DR4 boundary, which remains the hardest distinction in both configurations.
+The pattern of section B.2 reproduces under transfer: the diagonal grows at every grade, the distant
+cells empty, and the residual error concentrates on the DR3 ↔ DR4 boundary, which remains the
+hardest distinction in both configurations.
 
 ### B.4 Calibration
 
-**Table B.9. Expected calibration error and Brier score on the training corpus.**
+**Table B.9 – Expected calibration error and Brier score on the training corpus.**
 
 | Configuration | ECE | Brier |
 |---|---:|---:|
@@ -3603,13 +3715,15 @@ The pattern of section B.2 reproduces under transfer: the diagonal grows at ever
 | Baseline, efficient | 0.0691 | 0.0715 |
 | Integrated, efficient | 0.0402 | 0.0598 |
 
-Calibration is an empirical property of the predicted probabilities. It is not a warrant of clinical decision-making reliability, and no such reading is offered here or elsewhere in this dissertation.
+Calibration is an empirical property of the predicted probabilities. It is not a warrant of clinical
+decision-making reliability, and no such reading is offered here or elsewhere in this dissertation.
 
 ### B.5 Convergence and overfitting
 
-Best epoch is the epoch of maximum validation weighted F1 within each fold; the losses are those at the best epoch.
+Best epoch is the epoch of maximum validation weighted F1 within each fold; the losses are those at
+the best epoch.
 
-**Table B.10. Per-fold convergence on the training corpus.**
+**Table B.10 – Per-fold convergence on the training corpus.**
 
 | Configuration | Best epoch per fold | Train loss | Validation loss | Gap (val − train) |
 |---|---|---:|---:|---:|
@@ -3618,13 +3732,20 @@ Best epoch is the epoch of maximum validation weighted F1 within each fold; the 
 | Baseline, efficient | 15, 17, 14, 16, 15 | 0.102 | 0.156 | 0.054 |
 | Integrated, efficient | 8, 9, 7, 9, 8 | 0.131 | 0.153 | 0.022 |
 
-The joint signature discussed in section 3.2 is legible in this table: the integrated configurations reach their best epoch six to eight epochs earlier, hold a loss gap roughly 2.5 times smaller, and do so with a *higher* training loss at a comparable validation loss. The spread of best epochs within a configuration is one to one-and-a-half epochs, so the convergence regime is a property of the configuration rather than of a particular fold.
+The joint signature discussed in section 3.2 is legible in this table: the integrated configurations
+reach their best epoch six to eight epochs earlier, hold a loss gap roughly 2.5 times smaller, and
+do so with a *higher* training loss at a comparable validation loss. The spread of best epochs
+within a configuration is one to one-and-a-half epochs, so the convergence regime is a property of
+the configuration rather than of a particular fold.
 
 ### B.6 Interval estimates
 
-Two intervals are reported and they quantify different things. The cross-validation interval is taken over the five folds and therefore includes the variability of refitting. The per-instance bootstrap interval resamples the evaluation set under a fixed fitted model and therefore quantifies evaluation-corpus sampling alone.
+Two intervals are reported and they quantify different things. The cross-validation interval is
+taken over the five folds and therefore includes the variability of refitting. The per-instance
+bootstrap interval resamples the evaluation set under a fixed fitted model and therefore quantifies
+evaluation-corpus sampling alone.
 
-**Table B.11. Between-fold cross-validation intervals (95 %, t, df = 4).**
+**Table B.11 – Between-fold cross-validation intervals (95 %, t, df = 4).**
 
 | Configuration | Weighted F1 (mean ± sd) | wF1 95 % CI | ROC-AUC 95 % CI | κ 95 % CI | Accuracy 95 % CI |
 |---|---|---|---|---|---|
@@ -3633,7 +3754,7 @@ Two intervals are reported and they quantify different things. The cross-validat
 | Baseline, efficient | 0.7538 ± 0.0120 | [0.7389, 0.7687] | [0.8024, 0.8396] | [0.7058, 0.7878] | [0.7037, 0.7509] |
 | Integrated, efficient | 0.8193 ± 0.0100 | [0.8069, 0.8317] | [0.8421, 0.8719] | [0.8236, 0.8906] | [0.7853, 0.8251] |
 
-**Table B.12. Per-instance bootstrap intervals, weighted F1 (1,000 resamples).**
+**Table B.12 – Per-instance bootstrap intervals, weighted F1 (1,000 resamples).**
 
 | Configuration | Mean | 95 % CI | sd |
 |---|---:|---|---:|
@@ -3642,13 +3763,15 @@ Two intervals are reported and they quantify different things. The cross-validat
 | Baseline, efficient | 0.7538 | [0.7504, 0.7596] | 0.0023 |
 | Integrated, efficient | 0.8193 | [0.8143, 0.8225] | 0.0021 |
 
-The bootstrap and cross-validation means agree to the fourth decimal place. As section 3.8 notes, the marginal separation of intervals is weaker evidence than the paired tests reported there, and it is recorded here as description rather than as a test.
+The bootstrap and cross-validation means agree to the fourth decimal place. As section 3.8 notes,
+the marginal separation of intervals is weaker evidence than the paired tests reported there, and it
+is recorded here as description rather than as a test.
 
 ### B.7 Referable-DR screening metrics, in-domain
 
 Referable DR is the grade ≥ 2 threshold.
 
-**Table B.13. In-domain referable-disease metrics (n = 35,126).**
+**Table B.13 – In-domain referable-disease metrics (n = 35,126).**
 
 | Configuration | Sensitivity | Specificity | PPV | NPV | Referable ROC-AUC |
 |---|---:|---:|---:|---:|---:|
@@ -3657,33 +3780,46 @@ Referable DR is the grade ≥ 2 threshold.
 | Baseline, efficient | 0.6891 | 0.9455 | 0.7545 | 0.9259 | 0.8680 |
 | Integrated, efficient | 0.8007 | 0.9636 | 0.8427 | 0.9521 | 0.9100 |
 
-Sensitivity and specificity rise together, which is the observation section 3.2 reports as a shift of the discrimination curve rather than a movement along it.
+Sensitivity and specificity rise together, which is the observation section 3.2 reports as a shift
+of the discrimination curve rather than a movement along it.
 
 ### B.8 What this appendix does not contain
 
-Three sets of material that an appendix of this kind would ordinarily carry are absent, and the reason differs in each case.
+Three sets of material that an appendix of this kind would ordinarily carry are absent, and the
+reason differs in each case.
 
 **Per-epoch training and validation curves.** The per-epoch trajectories were not retained; only the best epoch and the losses at that epoch survive, and they are given in Table B.10. The convergence claim of section 3.2 rests on that table and on nothing finer, and the figure originally reserved for the full trajectories is accordingly not cited anywhere in the dissertation.
 
 **Per-class ROC and precision–recall curves.** These require per-sample predicted probabilities. Per-sample prediction dumps were not saved, so the curves cannot be produced from the available record. The threshold-independent evidence in this dissertation is therefore confined to the aggregate and referable ROC-AUC figures reported above and in chapter 3.
 
-**Per-camera-group confusion matrices.** These were not recorded; only per-class F1 by group is available, and it is given in Appendix E. The consequence is stated in section 3.5 and in section 3.9: the *composition* of errors across camera groupings could not be examined, and the question of whether it differs between groups remains open.
+**Per-camera-group confusion matrices.** These were not recorded; only per-class F1 by group is available, and it is given in Appendix E. The consequence is stated in section 3.5 and in section 3.9. The *composition* of errors across camera groupings could not be examined, and whether it differs between groups remains open.
 
-None of these absences affects the direction or the interval of any difference reported in chapter 3. Each of them limits the resolution at which that difference can be inspected, and each is recorded as an open item rather than a closed one.
+None of these absences affects the direction or the interval of any difference reported in chapter
+3. Each of them limits the resolution at which that difference can be inspected, and each is
+recorded as an open item rather than a closed one.
 
-# Appendix C — System architecture diagrams
+# Appendix C – System architecture diagrams
 
-This appendix gives the formal structural views of the screening-system architecture described in chapter 4: a component view, a deployment view, a sequence view of one screening episode, and the persisted data model. Together they discharge the system-architecture diagram reserved there.
+This appendix gives the formal structural views of the screening-system architecture described in
+chapter 4: a component view, a deployment view, a sequence view of one screening episode, and the
+persisted data model. Together they discharge the system-architecture diagram reserved there.
 
-What they are should be stated before they are read. Each is a **design specification**, and the design is realised only in part. A working demonstrator exists and performs inference on submitted images, and Table C.1 marks which of the modules drawn here it realises. Everything else on these pages is specified rather than built.
+What they are should be stated before they are read. Each is a **design specification**, and the
+design is realised only in part. A working demonstrator exists and performs inference on submitted
+images, and Table C.1 marks which of the modules drawn here it realises. Everything else on these
+pages is specified rather than built.
 
-No deployment of this architecture was tested in a clinical setting, and nothing in these diagrams is evidence that the system performs as drawn. Every element is traceable to a statement in chapter 4; where that chapter does not fix a detail, the detail is omitted here rather than chosen, so the diagrams contain no design decision that the dissertation has not made in prose.
+No deployment of this architecture was tested in a clinical setting, and nothing in these diagrams
+is evidence that the system performs as drawn. Every element is traceable to a statement in chapter
+4; where that chapter does not fix a detail, the detail is omitted here rather than chosen, so the
+diagrams contain no design decision that the dissertation has not made in prose.
 
-The diagrams are given as diagram source in Mermaid notation. The source is the definition of the diagram; rendering to an image is performed during document conversion.
+The diagrams are given as diagram source in Mermaid notation. The source is the definition of the
+diagram; rendering to an image is performed during document conversion.
 
 ### C.1 Component view
 
-**Diagram C.1. Module decomposition with provided and required interfaces.**
+**Diagram C.1 – Module decomposition with provided and required interfaces.**
 
 ```mermaid
 flowchart TB
@@ -3723,9 +3859,11 @@ flowchart TB
  ING -.->|"rejected input +<br/>reason"| REP
 ```
 
-The view is to be read against Table C.1 rather than on its own. The table names what each module does and says whether the demonstrator realises it, so that no reader takes a drawn box for a built one.
+The view is to be read against Table C.1 rather than on its own. The table names what each module
+does and says whether the demonstrator realises it, so that no reader takes a drawn box for a built
+one.
 
-**Table C.1. Module, function, and whether the demonstrator realises it.**
+**Table C.1 – Module, function, and whether the demonstrator realises it.**
 
 | Module | Function | In the demonstrator | Described in |
 |---|---|---|---|
@@ -3738,11 +3876,16 @@ The view is to be read against Table C.1 rather than on its own. The table names
 | Orchestration / Error-Handling | Routes failures and verifies the pipeline at startup | Built | section 4.2 |
 | Identity and access control | Per-user identity, roles, access logging | Specification | section 4.4 |
 
-Two features of the decomposition are structural rather than incidental. The Preprocessing Engine is a first-class module on the inference path, not a data-preparation utility outside the system boundary, which is the architectural expression of the dissertation's central position. And the rejected-input path from Ingestion to Reporting is drawn explicitly, because malformed, low-quality or out-of-contract input must be handled without silent failure, so a rejection is a reported outcome rather than an absent result.
+Two features of the decomposition are structural rather than incidental. The Preprocessing Engine is
+a first-class module on the inference path, not a data-preparation utility outside the system
+boundary, which is the architectural expression of the dissertation's central position. And the
+rejected-input path from Ingestion to Reporting is drawn explicitly, because malformed, low-quality
+or out-of-contract input must be handled without silent failure, so a rejection is a reported
+outcome rather than an absent result.
 
 ### C.2 Deployment view
 
-**Diagram C.2. Store-and-forward deployment topology.**
+**Diagram C.2 – Store-and-forward deployment topology.**
 
 ```mermaid
 flowchart LR
@@ -3778,13 +3921,20 @@ flowchart LR
  class PERIPH,CENTRE,HOSP bound;
 ```
 
-This is the view in which the deployment envelope prunes the design. The peripheral site is specified to require neither inference acceleration nor a continuous link: capture and queueing are all that occur there, and the transfer boundary is asynchronous by construction. Inference at the point of capture is not excluded in principle, but it is not the arrangement specified here, and the store-and-forward form is chosen because it is the one that survives intermittent connectivity.
+This is the view in which the deployment envelope prunes the design. The peripheral site is
+specified to require neither inference acceleration nor a continuous link: capture and queueing are
+all that occur there, and the transfer boundary is asynchronous by construction. Inference at the
+point of capture is not excluded in principle, but it is not the arrangement specified here, and the
+store-and-forward form is chosen because it is the one that survives intermittent connectivity.
 
-What the demonstrator realises of this view is the separation and not the topology. Its client is a static bundle holding no model, and its service runs where an accelerator is available, so the machine an operator sits at need not be the machine that computes. The peripheral queue and both links to hospital systems are drawn here and are not built.
+What the demonstrator realises of this view is the separation and not the topology. Its client is a
+static bundle holding no model, and its service runs where an accelerator is available, so the
+machine an operator sits at need not be the machine that computes. The peripheral queue and both
+links to hospital systems are drawn here and are not built.
 
 ### C.3 Sequence view
 
-**Diagram C.3. One screening episode, capture to persisted disposition.**
+**Diagram C.3 – One screening episode, capture to persisted disposition.**
 
 ```mermaid
 sequenceDiagram
@@ -3817,13 +3967,21 @@ sequenceDiagram
  end
 ```
 
-Two properties of the ordering are the point of the diagram. The clinician's disposition is the **terminal** step: the system produces a grade and an accompanying overlay, and the diagnosis is made by the clinician, who may override the system's output and whose rationale is persisted. The system is decision support within a physician-in-the-loop paradigm and is not a standalone diagnostic instrument. And the attention overlay is generated *post hoc*, after the grade, as an interpretability artefact accompanying it — it indicates regions of high gradient-weighted activation and does not constitute a pixel-level delineation of pathology or a localisation output.
+Two properties of the ordering are the point of the diagram. The clinician's disposition is the
+**terminal** step: the system produces a grade and an accompanying overlay, and the diagnosis is
+made by the clinician, who may override the system's output and whose rationale is persisted. The
+system is decision support within a physician-in-the-loop paradigm and is not a standalone
+diagnostic instrument. And the attention overlay is generated *post hoc*, after the grade, as an
+interpretability artefact accompanying it. It indicates regions of high gradient-weighted activation
+and does not constitute a pixel-level delineation of pathology or a localisation output.
 
-The rejection branch is drawn because a screening system that fails silently on unusable input is a different and more dangerous system than one that reports the failure. The demonstrator behaves in the second way, applying the ingestion protocol of chapter 2.
+The rejection branch is drawn because a screening system that fails silently on unusable input is a
+different and more dangerous system than one that reports the failure. The demonstrator behaves in
+the second way, applying the ingestion protocol of chapter 2.
 
 ### C.4 Data view
 
-**Diagram C.4. Persisted entity model.**
+**Diagram C.4 – Persisted entity model.**
 
 ```mermaid
 erDiagram
@@ -3881,110 +4039,162 @@ erDiagram
  }
 ```
 
-The entities that carry patient or clinician identity are marked, because that is where the security requirement concentrates. The design places encryption, authentication, role-based access control, de-identification and audit at the data-management boundary rather than distributing them across the modules, and this model is the reason: the identifying attributes are persisted in exactly the entities that boundary owns. The audit record is modelled as a first-class entity, since an override channel without a durable record of who overrode what is an accountability mechanism only in name.
+The entities that carry patient or clinician identity are marked, because that is where the security
+requirement concentrates. The design places encryption, authentication, role-based access control,
+de-identification and audit at the data-management boundary rather than distributing them across the
+modules, and this model is the reason: the identifying attributes are persisted in exactly the
+entities that boundary owns. The audit record is modelled as a first-class entity, since an override
+channel without a durable record of who overrode what is an accountability mechanism only in name.
 
-The security provisions these entities imply are **GDPR/HIPAA-aligned by design**. They are not a certified compliance status, no conformity assessment was performed, and no statute is asserted to be satisfied by this model.
+The security provisions these entities imply are **GDPR/HIPAA-aligned by design**. They are not a
+certified compliance status, no conformity assessment was performed, and no statute is asserted to
+be satisfied by this model.
 
 ### Status of these diagrams
 
-Each of the four views elaborates the decomposition of section 4.1, and each is traceable to it through Table C.1. None of them is evidence about behaviour. The demonstrator shows that the modules marked as built can be built and what they do in operation; it shows nothing about how well they do it. No field testing was conducted in any clinical setting, and no diagram here carries a claim about latency, throughput, reliability in service, clinical utility or regulatory status.
+Each of the four views elaborates the decomposition of section 4.1, and each is traceable to it
+through Table C.1. None of them is evidence about behaviour. The demonstrator shows that the modules
+marked as built can be built and what they do in operation; it shows nothing about how well they do
+it. No field testing was conducted in any clinical setting, and no diagram here carries a claim
+about latency, throughput, reliability in service, clinical utility or regulatory status.
 
-# Appendix D — Attention-map gallery
+# Appendix D – Attention-map gallery
 
 ### E.1 What this gallery is, and how it must be read
 
-The reading rule comes before the plates, because a gallery of attention maps is more persuasive than it is probative and the distinction matters here.
+The reading rule comes before the plates, because a gallery of attention maps is more persuasive
+than it is probative and the distinction matters here.
 
-A gradient-weighted class activation map indicates where activation in the final convolutional layer is high, weighted by its gradient with respect to the predicted class. It is a post-hoc interpretability instrument. **It is not a delineation of pathology.** A plate in which the attention region overlaps an annotated lesion does not show that the model detected that lesion, does not show that the model reasoned from it, and does not constitute clinical localisation. What such an overlap can support is a claim about *alignment* between model evidence and expert annotation — and even that is a claim about the aggregate, not about any individual image.
+A gradient-weighted class activation map indicates where activation in the final convolutional layer
+is high, weighted by its gradient with respect to the predicted class. It is a post-hoc
+interpretability instrument. **It is not a delineation of pathology.** A plate in which the
+attention region overlaps an annotated lesion does not show that the model detected that lesion,
+does not show that the model reasoned from it, and does not constitute clinical localisation. What
+such an overlap can support is a claim about *alignment* between model evidence and expert
+annotation, and even that is a claim about the aggregate rather than about any individual image.
 
-It follows that **these plates are illustration and carry no measurement**. The measurement is the one reported in section 3.6: Attention–Lesion Overlap as the primary quantity and Intersection-over-Union as the secondary, computed per lesion type over the whole annotated subset with interval estimates and a threshold sweep. A reader who forms an impression from the images in this appendix has not thereby checked that result, and a reader who wishes to check it should read section 3.6 and Appendix B rather than these pages. The gallery exists so that the material behind the measurement can be inspected, not so that the measurement can be re-made by eye.
+It follows that **these plates are illustration and carry no measurement**. The measurement is the
+one reported in section 3.6: Attention–Lesion Overlap as the primary quantity and
+Intersection-over-Union as the secondary, computed per lesion type over the whole annotated subset
+with interval estimates and a threshold sweep. A reader who forms an impression from the images in
+this appendix has not thereby checked that result, and a reader who wishes to check it should read
+section 3.6 and Appendix B rather than these pages. The gallery exists so that the material behind
+the measurement can be inspected, not so that the measurement can be re-made by eye.
 
 ### E.2 Composition, and why the gallery is exhaustive
 
-The gallery reproduces **all 54 plates of the annotated subset — the entire subset, not a selection**. Each plate pairs the same fundus image under both configurations, the baseline arm on the left and the integrated arm on the right, against the expert pixel-level annotation.
+The gallery reproduces **all 54 plates of the annotated subset, the entire subset and not a
+selection**. Each plate pairs the same fundus image under both configurations, the baseline arm on
+the left and the integrated arm on the right, against the expert pixel-level annotation.
 
-Exhaustiveness is the point rather than a convenience. A gallery that selects its plates can flatter the result it accompanies, and no reader can detect the selection from inside the gallery. Reproducing the subset entire removes that possibility: whatever the plates show, favourable or otherwise, they show for every image on which the measurement was made.
+Exhaustiveness is the point rather than a convenience. A gallery that selects its plates can flatter
+the result it accompanies, and no reader can detect the selection from inside the gallery.
+Reproducing the subset entire removes that possibility: whatever the plates show, favourable or
+otherwise, they show for every image on which the measurement was made.
 
 ### E.3 The subset, and what bounds it
 
-Of the 516 images in the annotated corpus, 54 carry pixel-level lesion annotation and constitute the subset on which the explainability measurement was performed. Availability differs by lesion type — 54, 53, 54 and 26 images respectively for the four annotated types — so the per-type figure for the least-represented type rests on roughly half the images of the others and is correspondingly the least stable of the four.
+Of the 516 images in the annotated corpus, 54 carry pixel-level lesion annotation and constitute the
+subset on which the explainability measurement was performed. Availability differs by lesion type,
+at 54, 53, 54 and 26 images respectively for the four annotated types. The per-type figure for the
+least-represented type therefore rests on roughly half the images of the others and is the least
+stable of the four.
 
-One further property of the subset is recorded here because it affects what the plates show. On 6 of the 54 images neither configuration's attention meets the annotation at the operating threshold, leaving 48 informative pairs. **Those 6 plates are included in the gallery, not dropped.** Removing them would convert the gallery into a selection of exactly the kind section D.2 refuses, and their presence is part of what the reader is entitled to see.
+One further property of the subset is recorded here because it affects what the plates show. On 6 of
+the 54 images neither configuration's attention meets the annotation at the operating threshold,
+leaving 48 informative pairs. **Those 6 plates are included in the gallery, not dropped.** Removing
+them would convert the gallery into a selection of exactly the kind section D.2 refuses, and their
+presence is part of what the reader is entitled to see.
 
-The evidence in this appendix rests on a single annotated corpus and on the models of a single cross-validation fold. Neither the corpus nor the fold is varied anywhere in the explainability analysis, and no between-fold variation is available for it.
+The evidence in this appendix rests on a single annotated corpus and on the models of a single
+cross-validation fold. Neither the corpus nor the fold is varied anywhere in the explainability
+analysis, and no between-fold variation is available for it.
 
 ### E.4 Plate index
 
 The plates follow in identifier order. Each is resolved to its image during document conversion.
 
-- `[FIG-D.1: Paired attention overlay, IDRiD_001 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_001_comparison.png]`
-- `[FIG-D.2: Paired attention overlay, IDRiD_002 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_002_comparison.png]`
-- `[FIG-D.3: Paired attention overlay, IDRiD_003 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_003_comparison.png]`
-- `[FIG-D.4: Paired attention overlay, IDRiD_004 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_004_comparison.png]`
-- `[FIG-D.5: Paired attention overlay, IDRiD_005 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_005_comparison.png]`
-- `[FIG-D.6: Paired attention overlay, IDRiD_006 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_006_comparison.png]`
-- `[FIG-D.7: Paired attention overlay, IDRiD_007 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_007_comparison.png]`
-- `[FIG-D.8: Paired attention overlay, IDRiD_008 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_008_comparison.png]`
-- `[FIG-D.9: Paired attention overlay, IDRiD_009 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_009_comparison.png]`
-- `[FIG-D.10: Paired attention overlay, IDRiD_010 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_010_comparison.png]`
-- `[FIG-D.11: Paired attention overlay, IDRiD_011 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_011_comparison.png]`
-- `[FIG-D.12: Paired attention overlay, IDRiD_012 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_012_comparison.png]`
-- `[FIG-D.13: Paired attention overlay, IDRiD_013 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_013_comparison.png]`
-- `[FIG-D.14: Paired attention overlay, IDRiD_014 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_014_comparison.png]`
-- `[FIG-D.15: Paired attention overlay, IDRiD_015 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_015_comparison.png]`
-- `[FIG-D.16: Paired attention overlay, IDRiD_016 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_016_comparison.png]`
-- `[FIG-D.17: Paired attention overlay, IDRiD_017 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_017_comparison.png]`
-- `[FIG-D.18: Paired attention overlay, IDRiD_018 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_018_comparison.png]`
-- `[FIG-D.19: Paired attention overlay, IDRiD_019 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_019_comparison.png]`
-- `[FIG-D.20: Paired attention overlay, IDRiD_020 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_020_comparison.png]`
-- `[FIG-D.21: Paired attention overlay, IDRiD_021 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_021_comparison.png]`
-- `[FIG-D.22: Paired attention overlay, IDRiD_022 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_022_comparison.png]`
-- `[FIG-D.23: Paired attention overlay, IDRiD_023 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_023_comparison.png]`
-- `[FIG-D.24: Paired attention overlay, IDRiD_024 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_024_comparison.png]`
-- `[FIG-D.25: Paired attention overlay, IDRiD_025 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_025_comparison.png]`
-- `[FIG-D.26: Paired attention overlay, IDRiD_026 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_026_comparison.png]`
-- `[FIG-D.27: Paired attention overlay, IDRiD_027 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_027_comparison.png]`
-- `[FIG-D.28: Paired attention overlay, IDRiD_028 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_028_comparison.png]`
-- `[FIG-D.29: Paired attention overlay, IDRiD_029 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_029_comparison.png]`
-- `[FIG-D.30: Paired attention overlay, IDRiD_030 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_030_comparison.png]`
-- `[FIG-D.31: Paired attention overlay, IDRiD_031 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_031_comparison.png]`
-- `[FIG-D.32: Paired attention overlay, IDRiD_032 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_032_comparison.png]`
-- `[FIG-D.33: Paired attention overlay, IDRiD_033 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_033_comparison.png]`
-- `[FIG-D.34: Paired attention overlay, IDRiD_034 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_034_comparison.png]`
-- `[FIG-D.35: Paired attention overlay, IDRiD_035 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_035_comparison.png]`
-- `[FIG-D.36: Paired attention overlay, IDRiD_036 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_036_comparison.png]`
-- `[FIG-D.37: Paired attention overlay, IDRiD_037 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_037_comparison.png]`
-- `[FIG-D.38: Paired attention overlay, IDRiD_038 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_038_comparison.png]`
-- `[FIG-D.39: Paired attention overlay, IDRiD_039 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_039_comparison.png]`
-- `[FIG-D.40: Paired attention overlay, IDRiD_040 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_040_comparison.png]`
-- `[FIG-D.41: Paired attention overlay, IDRiD_041 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_041_comparison.png]`
-- `[FIG-D.42: Paired attention overlay, IDRiD_042 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_042_comparison.png]`
-- `[FIG-D.43: Paired attention overlay, IDRiD_043 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_043_comparison.png]`
-- `[FIG-D.44: Paired attention overlay, IDRiD_044 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_044_comparison.png]`
-- `[FIG-D.45: Paired attention overlay, IDRiD_045 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_045_comparison.png]`
-- `[FIG-D.46: Paired attention overlay, IDRiD_046 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_046_comparison.png]`
-- `[FIG-D.47: Paired attention overlay, IDRiD_047 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_047_comparison.png]`
-- `[FIG-D.48: Paired attention overlay, IDRiD_048 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_048_comparison.png]`
-- `[FIG-D.49: Paired attention overlay, IDRiD_049 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_049_comparison.png]`
-- `[FIG-D.50: Paired attention overlay, IDRiD_050 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_050_comparison.png]`
-- `[FIG-D.51: Paired attention overlay, IDRiD_051 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_051_comparison.png]`
-- `[FIG-D.52: Paired attention overlay, IDRiD_052 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_052_comparison.png]`
-- `[FIG-D.53: Paired attention overlay, IDRiD_053 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_053_comparison.png]`
-- `[FIG-D.54: Paired attention overlay, IDRiD_054 — baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_054_comparison.png]`
+- `[FIG-D.1: Paired attention overlay, IDRiD_001, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_001_comparison.png]`
+- `[FIG-D.2: Paired attention overlay, IDRiD_002, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_002_comparison.png]`
+- `[FIG-D.3: Paired attention overlay, IDRiD_003, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_003_comparison.png]`
+- `[FIG-D.4: Paired attention overlay, IDRiD_004, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_004_comparison.png]`
+- `[FIG-D.5: Paired attention overlay, IDRiD_005, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_005_comparison.png]`
+- `[FIG-D.6: Paired attention overlay, IDRiD_006, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_006_comparison.png]`
+- `[FIG-D.7: Paired attention overlay, IDRiD_007, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_007_comparison.png]`
+- `[FIG-D.8: Paired attention overlay, IDRiD_008, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_008_comparison.png]`
+- `[FIG-D.9: Paired attention overlay, IDRiD_009, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_009_comparison.png]`
+- `[FIG-D.10: Paired attention overlay, IDRiD_010, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_010_comparison.png]`
+- `[FIG-D.11: Paired attention overlay, IDRiD_011, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_011_comparison.png]`
+- `[FIG-D.12: Paired attention overlay, IDRiD_012, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_012_comparison.png]`
+- `[FIG-D.13: Paired attention overlay, IDRiD_013, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_013_comparison.png]`
+- `[FIG-D.14: Paired attention overlay, IDRiD_014, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_014_comparison.png]`
+- `[FIG-D.15: Paired attention overlay, IDRiD_015, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_015_comparison.png]`
+- `[FIG-D.16: Paired attention overlay, IDRiD_016, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_016_comparison.png]`
+- `[FIG-D.17: Paired attention overlay, IDRiD_017, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_017_comparison.png]`
+- `[FIG-D.18: Paired attention overlay, IDRiD_018, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_018_comparison.png]`
+- `[FIG-D.19: Paired attention overlay, IDRiD_019, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_019_comparison.png]`
+- `[FIG-D.20: Paired attention overlay, IDRiD_020, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_020_comparison.png]`
+- `[FIG-D.21: Paired attention overlay, IDRiD_021, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_021_comparison.png]`
+- `[FIG-D.22: Paired attention overlay, IDRiD_022, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_022_comparison.png]`
+- `[FIG-D.23: Paired attention overlay, IDRiD_023, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_023_comparison.png]`
+- `[FIG-D.24: Paired attention overlay, IDRiD_024, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_024_comparison.png]`
+- `[FIG-D.25: Paired attention overlay, IDRiD_025, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_025_comparison.png]`
+- `[FIG-D.26: Paired attention overlay, IDRiD_026, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_026_comparison.png]`
+- `[FIG-D.27: Paired attention overlay, IDRiD_027, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_027_comparison.png]`
+- `[FIG-D.28: Paired attention overlay, IDRiD_028, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_028_comparison.png]`
+- `[FIG-D.29: Paired attention overlay, IDRiD_029, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_029_comparison.png]`
+- `[FIG-D.30: Paired attention overlay, IDRiD_030, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_030_comparison.png]`
+- `[FIG-D.31: Paired attention overlay, IDRiD_031, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_031_comparison.png]`
+- `[FIG-D.32: Paired attention overlay, IDRiD_032, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_032_comparison.png]`
+- `[FIG-D.33: Paired attention overlay, IDRiD_033, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_033_comparison.png]`
+- `[FIG-D.34: Paired attention overlay, IDRiD_034, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_034_comparison.png]`
+- `[FIG-D.35: Paired attention overlay, IDRiD_035, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_035_comparison.png]`
+- `[FIG-D.36: Paired attention overlay, IDRiD_036, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_036_comparison.png]`
+- `[FIG-D.37: Paired attention overlay, IDRiD_037, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_037_comparison.png]`
+- `[FIG-D.38: Paired attention overlay, IDRiD_038, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_038_comparison.png]`
+- `[FIG-D.39: Paired attention overlay, IDRiD_039, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_039_comparison.png]`
+- `[FIG-D.40: Paired attention overlay, IDRiD_040, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_040_comparison.png]`
+- `[FIG-D.41: Paired attention overlay, IDRiD_041, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_041_comparison.png]`
+- `[FIG-D.42: Paired attention overlay, IDRiD_042, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_042_comparison.png]`
+- `[FIG-D.43: Paired attention overlay, IDRiD_043, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_043_comparison.png]`
+- `[FIG-D.44: Paired attention overlay, IDRiD_044, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_044_comparison.png]`
+- `[FIG-D.45: Paired attention overlay, IDRiD_045, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_045_comparison.png]`
+- `[FIG-D.46: Paired attention overlay, IDRiD_046, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_046_comparison.png]`
+- `[FIG-D.47: Paired attention overlay, IDRiD_047, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_047_comparison.png]`
+- `[FIG-D.48: Paired attention overlay, IDRiD_048, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_048_comparison.png]`
+- `[FIG-D.49: Paired attention overlay, IDRiD_049, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_049_comparison.png]`
+- `[FIG-D.50: Paired attention overlay, IDRiD_050, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_050_comparison.png]`
+- `[FIG-D.51: Paired attention overlay, IDRiD_051, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_051_comparison.png]`
+- `[FIG-D.52: Paired attention overlay, IDRiD_052, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_052_comparison.png]`
+- `[FIG-D.53: Paired attention overlay, IDRiD_053, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_053_comparison.png]`
+- `[FIG-D.54: Paired attention overlay, IDRiD_054, baseline (left) and integrated (right) against the expert annotation — experiments/outputs/exp4/gradcam_maskset/IDRiD_054_comparison.png]`
 
 ### E.5 What is absent, and what follows from it
 
-The hypothesis under which these plates were produced contemplates two halves: a quantitative comparison against pixel-level annotation, and a qualitative examination of overlays on the clinical corpus. **The second half was not carried out.** The clinical overlays were never produced, and this appendix is therefore confined to the annotated public corpus.
+The hypothesis under which these plates were produced contemplates two halves: a quantitative
+comparison against pixel-level annotation, and a qualitative examination of overlays on the clinical
+corpus. **The second half was not carried out.** The clinical overlays were never produced, and this
+appendix is therefore confined to the annotated public corpus.
 
-Four consequences follow, and they are the same four recorded in section 3.6. The explainability evidence of this dissertation rests on one public corpus. This appendix is limited to that corpus and contains no clinical plate. Closing the gap would require no retraining of any model — only the generation of the overlays and their review by a qualified reader. And the gap is an **absence rather than a negative result**: nothing was examined on the clinical corpus and found wanting; the examination was not performed, and no inference about what it would have shown is available in either direction.
+Four consequences follow, and they are the same four recorded in section 3.6. The explainability
+evidence of this dissertation rests on one public corpus. This appendix is limited to that corpus
+and contains no clinical plate. Closing the gap would require no retraining of any model, only the
+generation of the overlays and their review by a qualified reader. And the gap is an **absence
+rather than a negative result**: nothing was examined on the clinical corpus and found wanting; the
+examination was not performed, and no inference about what it would have shown is available in
+either direction.
 
-Accordingly, the claim these plates accompany is supported in its quantitative half only, within the boundary that separates alignment from localisation, on one annotated corpus and one fold.
+Accordingly, the claim these plates accompany is supported in its quantitative half only, within the
+boundary that separates alignment from localisation, on one annotated corpus and one fold.
 
-# Appendix E — Device domain-shift supplementary tables
+# Appendix E – Device domain-shift supplementary tables
 
-This appendix records the per-group evidence behind the camera-grouping evaluation at the resolution the run's data support, including the per-class decomposition that section 3.5 summarises but does not display.
+This appendix records the per-group evidence behind the camera-grouping evaluation at the resolution
+the run's data support, including the per-class decomposition that section 3.5 summarises but does
+not display.
 
-Three conditions govern every table below and are stated before the first of them, because without them five rows read as five independent observations and they are not.
+Three conditions govern every table below and are stated before the first of them, because without
+them five rows read as five independent observations and they are not.
 
 **Two of the five groupings are the external clinical corpora.** The Kowa grouping is the first of those corpora and the Topcon grouping the second. Their values, differences and intervals coincide with the external clinical evaluation character for character, by construction rather than by replication. They are not independent evidence, and any count of "five groupings" should be read with that in mind.
 
@@ -3992,11 +4202,13 @@ Three conditions govern every table below and are stated before the first of the
 
 **The evaluation uses the models of a single cross-validation fold.** The dispersion reported in section E.7 is therefore *between groups*, not between folds, and no between-fold variance is available for any figure in this appendix.
 
-A fourth condition applies to the whole: none of what follows constitutes device certification, regulatory compliance, or a claim of device-agnostic deployment readiness. These are empirical observations of cross-device performance variability and nothing more.
+A fourth condition applies to the whole: none of what follows constitutes device certification,
+regulatory compliance, or a claim of device-agnostic deployment readiness. These are empirical
+observations of cross-device performance variability and nothing more.
 
 ### F.1 Group composition
 
-**Table E.1. Group sizes and per-group class sizes.**
+**Table E.1 – Group sizes and per-group class sizes.**
 
 | Camera group | n | DR0 | DR1 | DR2 | DR3 | DR4 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -4006,13 +4218,16 @@ A fourth condition applies to the whole: none of what follows constitutes device
 | topcon_messidor2 | 1,744 | 723 | 201 | 548 | 152 | 120 |
 | mixed_rfmid | 640 | 268 | 71 | 197 | 60 | 44 |
 
-The imbalance of the training corpus reproduces within every group: DR0 is the largest class everywhere and DR4 the smallest, so per-class figures in section E.5 must be read against these counts, and the DR3 and DR4 columns in particular rest on tens rather than hundreds of images.
+The imbalance of the training corpus reproduces within every group, DR0 being the largest class
+everywhere and DR4 the smallest. Per-class figures in section E.5 must be read against these counts,
+and the DR3 and DR4 columns rest on tens rather than hundreds of images.
 
 ### F.2 Weighted F1 and retention ratio by group
 
-The retention ratio is the group's weighted F1 divided by the same arm's in-domain weighted F1; the floor against which it was assessed is 0.7.
+The retention ratio is the group's weighted F1 divided by the same arm's in-domain weighted F1; the
+floor against which it was assessed is 0.7.
 
-**Table E.2. Weighted F1 by camera group, both configurations.**
+**Table E.2 – Weighted F1 by camera group, both configurations.**
 
 | Camera group | wF1 (C) | wF1 (D) | Δ | 95 % CI (Δ) | ratio (C) | ratio (D) | ≥ 0.7 (C / D) |
 |---|---:|---:|---:|---|---:|---:|:--:|
@@ -4024,11 +4239,13 @@ The retention ratio is the group's weighted F1 divided by the same arm's in-doma
 
 Configurations: C = baseline + EfficientNet-B3; D = integrated + EfficientNet-B3.
 
-Absolute weighted F1 is higher under the integrated configuration on every group, with every interval excluding zero. The floor is cleared by both configurations on all five groups, so — as section 3.5 states — the floor does not discriminate between them.
+Absolute weighted F1 is higher under the integrated configuration on every group, with every
+interval excluding zero. The floor is cleared by both configurations on all five groups, so, as
+section 3.5 states, it does not discriminate between them.
 
 ### F.3 ROC-AUC and Cohen's κ by group
 
-**Table E.3. Threshold-independent performance and ordinal agreement by group.**
+**Table E.3 – Threshold-independent performance and ordinal agreement by group.**
 
 | Camera group | AUC (C) | AUC (D) | Δ AUC | 95 % CI (Δ) | κ (C) | κ (D) |
 |---|---:|---:|---:|---|---:|---:|
@@ -4040,7 +4257,7 @@ Absolute weighted F1 is higher under the integrated configuration on every group
 
 ### F.4 Referable-DR AUC by group
 
-**Table E.4. Binary referable-DR ROC-AUC (grade ≥ 2) by group.**
+**Table E.4 – Binary referable-DR ROC-AUC (grade ≥ 2) by group.**
 
 | Camera group | Referable AUC (C) | Referable AUC (D) |
 |---|---:|---:|
@@ -4052,7 +4269,7 @@ Absolute weighted F1 is higher under the integrated configuration on every group
 
 ### F.5 Per-class F1 by group
 
-**Table E.5. Per-class F1 by group — configuration C (baseline).**
+**Table E.5 – Per-class F1 by group, baseline efficient.**
 
 | Camera group | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -4062,7 +4279,7 @@ Absolute weighted F1 is higher under the integrated configuration on every group
 | topcon_messidor2 | 0.8652 | 0.2309 | 0.5628 | 0.3266 | 0.5475 | 0.5066 |
 | mixed_rfmid | 0.7356 | 0.2001 | 0.5035 | 0.2705 | 0.4771 | 0.4374 |
 
-**Table E.6. Per-class F1 by group — configuration D (integrated).**
+**Table E.6 – Per-class F1 by group, integrated efficient.**
 
 | Camera group | DR0 | DR1 | DR2 | DR3 | DR4 | macro-F1 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -4072,11 +4289,16 @@ Absolute weighted F1 is higher under the integrated configuration on every group
 | topcon_messidor2 | 0.8927 | 0.3037 | 0.6277 | 0.4163 | 0.6142 | 0.5709 |
 | mixed_rfmid | 0.8193 | 0.2726 | 0.6245 | 0.4042 | 0.5619 | 0.5365 |
 
-Two observations are legible from the pair of tables and neither goes beyond what section 3.5 established. The integrated configuration is higher in every one of the twenty-five cells, without exception. And the difficulty ordering of the classes is identical in both configurations and in every group — DR0 easiest, then DR2, DR4, DR3, with DR1 hardest everywhere. Mild non-proliferative disease remains the weakest class under every camera grouping and in both arms; the integrated configuration mitigates that weakness without removing it.
+Two observations are legible from the pair of tables and neither goes beyond what section 3.5
+established. The integrated configuration is higher in every one of the twenty-five cells, without
+exception. And the difficulty ordering of the classes is identical in both configurations and in
+every group: DR0 easiest, then DR2, DR4, DR3, with DR1 hardest everywhere. Mild non-proliferative
+disease remains the weakest class under every camera grouping and in both arms; the integrated
+configuration mitigates that weakness without removing it.
 
 ### F.6 Between-class dispersion
 
-**Table E.7. Span of per-class F1 across the five groups (maximum − minimum), by class.**
+**Table E.7 – Span of per-class F1 across the five groups (maximum − minimum), by class.**
 
 | Class | Span (C) | Span (D) |
 |---|---:|---:|
@@ -4086,29 +4308,49 @@ Two observations are legible from the pair of tables and neither goes beyond wha
 | DR3 | 0.0663 | 0.0428 |
 | DR4 | 0.1109 | 0.0794 |
 
-The contraction of the between-group span holds on every one of the five grades, not only on the pathological ones — the same levelling visible in the aggregate figures of section E.7, resolved by class.
+The contraction of the between-group span holds on every one of the five grades, not only on the
+pathological ones, and is the same levelling visible in the aggregate figures of section E.7,
+resolved by class.
 
 ### F.7 Between-group dispersion
 
-**Table E.8. Dispersion of performance across the five camera groups.**
+**Table E.8 – Dispersion of performance across the five camera groups.**
 
 | Quantity | C | D | Δ (D − C) | 95 % CI (Δ) | CI excludes zero |
 |---|---:|---:|---:|---|:--:|
 | Standard deviation of weighted F1 | 0.0306 | 0.0130 | −0.0176 | [−0.0253, −0.0062] | ✓ |
 | Standard deviation of ROC-AUC | 0.0214 | 0.0070 | −0.0144 | [−0.0233, −0.0072] | ✓ |
 
-This is the substantive result of the camera-grouping evaluation, and section 3.5 reports it as such: the dispersion of performance across camera groupings falls by roughly a factor of 2.4 on weighted F1 and 3.1 on ROC-AUC, with both intervals excluding zero. The range contracts rather than shifting — the largest gain falls on the grouping where the baseline was weakest.
+This is the substantive result of the camera-grouping evaluation, and section 3.5 reports it as
+such: the dispersion of performance across camera groupings falls by roughly a factor of 2.4 on
+weighted F1 and 3.1 on ROC-AUC, with both intervals excluding zero. The range contracts rather than
+shifting, the largest gain falling on the grouping where the baseline was weakest.
 
 ### F.8 The retention ratio and why it moves against the absolute figures
 
-Table E.2 contains an apparent inconsistency that is worth stating plainly rather than leaving to be noticed. On two groupings — `mixed_ddr` and `topcon_messidor2` — the retention ratio is marginally *lower* for the integrated configuration than for the baseline, while its absolute weighted F1 is higher on both.
+Table E.2 contains an apparent inconsistency that is worth stating plainly rather than leaving to be
+noticed. On two groupings, `mixed_ddr` and `topcon_messidor2`, the retention ratio is marginally
+*lower* for the integrated configuration than for the baseline, while its absolute weighted F1 is
+higher on both.
 
-The explanation is arithmetic, not empirical. The ratio divides a group's performance by the *same arm's* in-domain performance, and the integrated arm's in-domain figure is the higher of the two. Its denominator is therefore larger, and a group must gain proportionally more merely to hold its ratio constant. The two groupings where the ratio dips are precisely those where the baseline was already strongest and the absolute gain smallest.
+The explanation is arithmetic, not empirical. The ratio divides a group's performance by the *same
+arm's* in-domain performance, and the integrated arm's in-domain figure is the higher of the two.
+Its denominator is therefore larger, and a group must gain proportionally more merely to hold its
+ratio constant. The two groupings where the ratio dips are precisely those where the baseline was
+already strongest and the absolute gain smallest.
 
-This is one instance of a defect that recurs across three measures in this dissertation and is set out in section 3.9: the retention ratio here, the generalisation ratio of section 3.5, and the degradation form in which the external clinical hypothesis was originally expressed. Each normalises or differences an arm's external performance against that same arm's in-domain performance, and each therefore penalises a configuration for its in-domain strength. The observation is **descriptive**. It explains the shape of a column in Table E.2; it does not rehabilitate any result, and no claim in this dissertation is strengthened by it.
+This is one instance of a defect that recurs across three measures in this dissertation and is set
+out in section 3.9: the retention ratio here, the generalisation ratio of section 3.5, and the
+degradation form in which the external clinical hypothesis was originally expressed. Each normalises
+or differences an arm's external performance against that same arm's in-domain performance, and each
+therefore penalises a configuration for its in-domain strength. The observation is **descriptive**.
+It explains the shape of a column in Table E.2; it does not rehabilitate any result, and no claim in
+this dissertation is strengthened by it.
 
 ### F.9 What this appendix does not contain
 
-**Per-group confusion matrices were not recorded.** The run's data carry per-class F1 by group, which section E.5 reproduces, but not the full confusion structure within each group. The consequence is the one stated in section 3.5 and again in section 3.9: it is not possible to say whether the *composition* of errors differs between camera groupings — whether, for instance, a grouping's weakness on a given grade arises from confusion with the adjacent grade or with a distant one. That the aggregate performance levels across groupings is established; that the error structure levels with it is not, and remains an open question that closing would require only an additional export rather than any new training.
+**Per-group confusion matrices were not recorded.** The run's data carry per-class F1 by group, which section E.5 reproduces, but not the full confusion structure within each group. The consequence is the one stated in section 3.5 and again in section 3.9. It is not possible to say whether the *composition* of errors differs between camera groupings, or whether a grouping's weakness on a given grade arises from confusion with the adjacent grade or with a distant one. That the aggregate performance levels across groupings is established; that the error structure levels with it is not, and remains an open question that closing would require only an additional export rather than any new training.
 
-None of what this appendix contains supports a claim of device compatibility, device certification or regulatory compliance, and none of it extends to camera models not represented in the corpora above.
+None of what this appendix contains supports a claim of device compatibility, device certification
+or regulatory compliance, and none of it extends to camera models not represented in the corpora
+above.

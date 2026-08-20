@@ -104,8 +104,30 @@ class Check:
         return f"  [{mark}] {self.name:<34} {str(self.value):>12}   norm: {self.norm}"
 
 
+# A working author-year citation is one printed word. Drafts carry citations as
+# `Gulshan et al. (2016)` or `(Zhou et al., 2022; Wang and Deng, 2018)`, and the
+# citation pass replaces each with a bare `[12]` before the volume is typeset.
+# Counting the working form makes every length metric measure text that is never
+# printed — a sentence carrying four citations reads 12 words longer than the one
+# the reader gets — so each is collapsed to a single token first.
+# Narrative first: `Gulshan et al. (2016)` is one citation, and matching the
+# parenthetical half on its own would leave the author phrase behind as prose.
+_CITE_NARR = re.compile(
+    r"\b[A-Z][A-Za-z'’\-]+"
+    r"(?:\s+(?:and|&)\s+[A-Z][A-Za-z'’\-]+)?"
+    r"(?:\s+et\s+al\.)?\s+\((?:19|20)\d{2}[a-z]?\)"
+)
+_CITE_PAREN = re.compile(r"\(\s*[^()]*?(?:19|20)\d{2}[a-z]?\s*(?:[;,][^()]*?)?\)")
+
+
+def _collapse_citations(text: str) -> str:
+    """Each working citation as the single `[N]` token it becomes in print."""
+    text = _CITE_NARR.sub("[CITE]", text)
+    return _CITE_PAREN.sub("[CITE]", text)
+
+
 def _words(text: str) -> int:
-    return len(text.split())
+    return len(_collapse_citations(text).split())
 
 
 def split_sections(md: str) -> tuple[list[str], list[tuple[int, str]]]:
