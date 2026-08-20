@@ -61,6 +61,13 @@ _EDITORIAL = re.compile(r"\[VERIFY\b|\bTODO\b|\bTBD\b|\bFIXME\b")
 # cannot resolve is printed verbatim, which is how a marker reaches the PDF.
 _ASSET_MARKER = re.compile(r"\[(?:TAB|FIG)-[\w.]+")
 
+# The whole bracketed span. md2gost replaces an inline marker with a
+# cross-reference ("Figure 3.1") and emits the image after the paragraph, so
+# for measurement the marker stands for two printed words, not for its own
+# caption text and file path. Counting those would inflate the word count and
+# charge the prose for a dash that never reaches the page.
+_ASSET_SPAN = re.compile(r"\[(?:TAB|FIG)-[^\]]*\]")
+
 # A sentence ends at . ! ? followed by whitespace and something that starts a new
 # sentence. Decimal numbers, "e.g." and initials would otherwise each end one, so
 # the split refuses to break after a digit or a single capital.
@@ -138,7 +145,7 @@ def prose_paragraphs(main_lines: list[str]) -> list[str]:
                 or re.match(r"^[-*+]\s|^\d+[.)]\s", s)):
             flush()
             continue
-        buf.append(s)
+        buf.append(_ASSET_SPAN.sub("Figure 0.0", s))
     flush()
     return paras
 
@@ -178,8 +185,11 @@ def analyse(md_path: Path, lang: str) -> list[Check]:
 
     para_words = [_words(p) for p in paras] or [0]
     sent_words = [_words(s) for s in sents] or [0]
-    bold_words = sum(_words(m) for m in _BOLD.findall(main))
-    em_dashes = main.count("—")
+    # Over prose only: captions and asset markers are not running text, and both
+    # may legitimately carry bold and a dash.
+    prose = "\n".join(paras)
+    bold_words = sum(_words(m) for m in _BOLD.findall(prose))
+    em_dashes = prose.count("—")
 
     # Headings inside the main text only — the appendices carry their own scheme.
     main_headings = [h for h in
@@ -249,6 +259,84 @@ def analyse(md_path: Path, lang: str) -> list[Check]:
     return checks
 
 
+# --- Per-section mode ---------------------------------------------------------
+# A chapter is rewritten one subsection at a time, and a defect is cheapest to see
+# in the section that carries it. This mode measures a single draft's PART-1 body
+# against the same norms, so a section can be signed off before the next is begun.
+_PART1 = re.compile(r"^##\s+PART 1\b", re.IGNORECASE)
+_PART_END = re.compile(r"^(##\s+PART [23]\b|###\s+Word count\b|###\s+Norm compliance\b)",
+                       re.IGNORECASE)
+
+
+def section_body(path: Path) -> list[str]:
+    """The PART-1 body lines of a draft, as the assembler would extract them."""
+    lines = path.read_text(encoding="utf-8").splitlines()
+    start = next((i + 1 for i, l in enumerate(lines) if _PART1.match(l)), 0)
+    out = []
+    for l in lines[start:]:
+        if _PART_END.match(l):
+            break
+        out.append(l)
+    return out
+
+
+def _em_dash_captions(lines: list[str]) -> int:
+    """Captions that separate label from title with an em dash instead of an en dash."""
+    return sum(
+        1 for l in lines
+        if (_TABLE_CAPTION.match(l.strip()) or _FIGURE_CAPTION.match(l.strip()))
+        and "—" in l.split("**")[1] if l.count("**") >= 2
+    )
+
+
+def analyse_section(path: Path, budget: int | None) -> list[Check]:
+    body_lines = section_body(path)
+    body = "\n".join(body_lines)
+    paras = prose_paragraphs(body_lines)
+    sents = sentences(paras)
+    words = sum(_words(p) for p in paras)
+    para_words = [_words(p) for p in paras] or [0]
+    sent_words = [_words(s) for s in sents] or [0]
+    prose = "\n".join(paras)
+    bold_words = sum(_words(m) for m in _BOLD.findall(prose))
+    em = prose.count("—")
+    headings = [l for l in body_lines if _HEADING.match(l)]
+    depth = 0
+    for h in headings:
+        m = _NUMBERED.match(_HEADING.match(h).group(2))
+        if m:
+            depth = max(depth, m.group(1).count(".") + 1)
+
+    checks = [
+        Check("prose words", words,
+              budget is None or abs(words - budget) <= max(60, budget * 0.15),
+              f"{budget} ± 15%" if budget else "no budget given"),
+        Check("median words / paragraph", round(statistics.median(para_words), 1),
+              statistics.median(para_words) <= 60, "<= 60 (corpus median 36)"),
+        Check("longest paragraph", max(para_words),
+              max(para_words) <= 173, "<= 173 (corpus 99th percentile)"),
+        Check("median words / sentence", round(statistics.median(sent_words), 1),
+              statistics.median(sent_words) <= 25, "<= 25 (corpus median 18)"),
+        Check("longest sentence", max(sent_words),
+              max(sent_words) <= 45, "<= 45"),
+        Check("section signs", body.count("§"), body.count("§") == 0, "0"),
+        Check("internal codes", len(_INTERNAL_CODE.findall(body)),
+              not _INTERNAL_CODE.search(body), "0"),
+        Check("editorial markers", len(_EDITORIAL.findall(body)),
+              not _EDITORIAL.search(body), "0"),
+        Check("em dashes", em, em == 0, "0 (<= 0.7 per 1,000 words)"),
+        Check("bold share of words", f"{bold_words / max(words, 1) * 100:.2f}%",
+              bold_words / max(words, 1) <= 0.014, "<= 1.4%"),
+        Check("max heading depth", depth, depth <= 3, "<= 3"),
+        Check("tables", sum(1 for l in body_lines if _TABLE_CAPTION.match(l.strip())),
+              True, "informational — <= 20 in the body overall"),
+        Check("captions using an em dash", _em_dash_captions(body_lines),
+              _em_dash_captions(body_lines) == 0,
+              "0 — the corpus dash in a caption is the en dash"),
+    ]
+    return checks
+
+
 def newest(lang: str) -> Path:
     files = sorted(ASSEMBLY.glob(f"DISSERTATION_{lang.upper()}_GOST_*.md"))
     if not files:
@@ -260,7 +348,22 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("path", nargs="?", type=Path, help="manuscript .md (default: newest pair)")
     ap.add_argument("--lang", choices=["en", "kz"], help="restrict to one edition")
+    ap.add_argument("--section", action="store_true",
+                    help="measure one draft's PART-1 body instead of a whole manuscript")
+    ap.add_argument("--budget", type=int, default=None,
+                    help="word budget for --section, from outline/REWRITE_MAP.md")
     args = ap.parse_args()
+
+    if args.section:
+        if not args.path:
+            raise SystemExit("--section needs a draft path")
+        print(f"\n{args.path.name}")
+        checks = analyse_section(args.path, args.budget)
+        for c in checks:
+            print(c.line())
+        n_bad = sum(1 for c in checks if not c.ok)
+        print(f"  {len(checks) - n_bad}/{len(checks)} pass")
+        sys.exit(1 if n_bad else 0)
 
     if args.path:
         targets = [(args.path, args.lang or ("kz" if "_KZ_" in args.path.name else "en"))]

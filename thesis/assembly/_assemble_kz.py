@@ -61,51 +61,26 @@ FRONT_MATTER = [
     "abbreviations_kz.md",
 ]
 
-# Chapter dir -> TOC chapter heading (KZ), in manuscript order.
+# Chapter dir -> TOC chapter heading, in manuscript order.
+# Four chapters, in the order review -> methods -> experiments -> system, which is
+# the shape 15 of 16 dissertations published by this council use. The superseded
+# six-chapter tree is kept under chapters/_superseded/ and is not assembled.
 CHAPTERS = [
     ("00-introduction", "КІРІСПЕ"),
-    ("01-problem-domain",
-     "1 ДИАБЕТТІК РЕТИНОПАТИЯНЫ АВТОМАТТАНДЫРЫЛҒАН ДИАГНОСТИКАЛАУДЫҢ "
-     "ПРОБЛЕМАЛЫҚ САЛАСЫН ТАЛДАУ ЖӘНЕ ҚАЗІРГІ ЖАЙ-КҮЙІ"),
-    ("02-theoretical-foundations",
-     "2 FUNDUS IMAGE ТАЛДАУЫ ҮШІН IMAGE PREPROCESSING ЖӘНЕ DEEP LEARNING "
-     "ТЕОРИЯЛЫҚ НЕГІЗДЕРІ"),
-    ("03-methodology",
-     "3 ИНТЕГРАЦИЯЛАНҒАН PREPROCESSING-CNN PIPELINE ЖОБАЛАУ ӘДІСТЕМЕСІ"),
-    ("04-experiments",
-     "4 ЭКСПЕРИМЕНТТІК ЗЕРТТЕУ — PREPROCESSING-ТІҢ CNN ДИАГНОСТИКАЛЫҚ "
-     "ӨНІМДІЛІГІНЕ ӘСЕРІ"),
-    ("05-validation",
-     "5 СЕНІМДІЛІКТІ ВАЛИДАЦИЯЛАУ ЖӘНЕ САЛЫСТЫРМАЛЫ ТАЛДАУ"),
-    ("06-system-architecture",
-     "6 РЕСУРСТАРЫ ШЕКТЕУЛІ ОРТАҒА АРНАЛҒАН DR АВТОМАТТАНДЫРЫЛҒАН СКРИНИНГ "
-     "ЖҮЙЕСІНІҢ АРХИТЕКТУРАСЫ"),
-    ("07-conclusion", "ҚОРЫТЫНДЫ"),
-    ("08-appendices", "ҚОСЫМШАЛАР"),
+    ("01-review", "1 ДИАБЕТТІК РЕТИНОПАТИЯНЫҢ АВТОМАТТАНДЫРЫЛҒАН СКРИНИНГІ"),
+    ("02-methodology", "2 ИНТЕГРАЦИЯЛАНҒАН КОНВЕЙЕР ӘДІСНАМАСЫ"),
+    ("03-experiments", "3 ЭКСПЕРИМЕНТ НӘТИЖЕЛЕРІ"),
+    ("04-system", "4 СКРИНИНГ ЖҮЙЕСІ"),
+    ("05-conclusion", "ҚОРЫТЫНДЫ"),
+    ("06-appendices", "ҚОСЫМШАЛАР"),
 ]
 
 # Chapters whose manuscript order is NOT the numeric order of their section
-# identifiers. Values are section ids in outline/TABLE_OF_CONTENTS_KZ.md order.
-ORDER_OVERRIDE = {
-    "00-introduction": [
-        "0.1",   # Зерттеу тақырыбының өзектілігі
-        "0.3",   # Зерттеу мақсаты
-        "0.4",   # Зерттеу міндеттері
-        "0.5",   # Зерттеу нысаны мен пәні
-        "0.6",   # Зерттеу гипотезасы
-        "0.2",   # Ғылыми жаңалығы
-        "0.8",   # Қорғауға ұсынылатын тұжырымдар
-        "0.7",   # Әдіснамалық негізі
-        "0.9",   # Теориялық маңыздылығы
-        "0.10",  # Практикалық маңыздылығы
-        "0.13",  # Нәтижелердің сенімділігі
-        "0.14",  # Эмпирикалық (эксперименттік) базасы
-        "0.11",  # Зерттеу нәтижелерінің апробациясы
-        "0.15",  # Ғылыми бағдарламалармен байланысы
-        "0.12",  # Жарияланымдар
-        "0.16",  # Диссертацияның құрылымы мен көлемі
-    ],
-}
+# identifiers. The Introduction is now a single continuous section with bold
+# run-in rubrics, so it no longer needs an order override; none of the four body
+# chapters does either, because their identifiers sort into manuscript order.
+# The dict is kept so a future exception has somewhere to go.
+ORDER_OVERRIDE: dict[str, list[str]] = {}
 
 # body ends at the translator note or a PART-2/PART-3 style block
 BODY_END = re.compile(r"^(### Аудармашы ескертуі|## 2-БӨЛІК|## PART [23]\b|## 3-БӨЛІК)", re.I)

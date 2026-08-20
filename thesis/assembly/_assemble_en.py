@@ -53,48 +53,25 @@ FRONT_MATTER = [
 ]
 
 # Chapter dir -> TOC chapter heading, in manuscript order.
+# Four chapters, in the order review -> methods -> experiments -> system, which is
+# the shape 15 of 16 dissertations published by this council use. The superseded
+# six-chapter tree is kept under chapters/_superseded/ and is not assembled.
 CHAPTERS = [
     ("00-introduction", "INTRODUCTION"),
-    ("01-problem-domain",
-     "1 PROBLEM DOMAIN ANALYSIS AND CURRENT STATE OF AUTOMATED DIABETIC RETINOPATHY DIAGNOSIS"),
-    ("02-theoretical-foundations",
-     "2 THEORETICAL FOUNDATIONS OF IMAGE PREPROCESSING AND DEEP LEARNING FOR FUNDUS IMAGE ANALYSIS"),
-    ("03-methodology",
-     "3 METHODOLOGY OF INTEGRATED PREPROCESSING-CNN PIPELINE DESIGN"),
-    ("04-experiments",
-     "4 EXPERIMENTAL RESEARCH — PREPROCESSING IMPACT ON CNN DIAGNOSTIC PERFORMANCE"),
-    ("05-validation",
-     "5 RELIABILITY VALIDATION AND COMPARATIVE ANALYSIS"),
-    ("06-system-architecture",
-     "6 ARCHITECTURE OF AN AUTOMATED DR SCREENING SYSTEM FOR RESOURCE-LIMITED ENVIRONMENTS"),
-    ("07-conclusion", "CONCLUSION"),
-    ("08-appendices", "APPENDICES"),
+    ("01-review", "1 AUTOMATED DIABETIC RETINOPATHY SCREENING"),
+    ("02-methodology", "2 METHODOLOGY OF THE INTEGRATED PIPELINE"),
+    ("03-experiments", "3 EXPERIMENTAL RESULTS"),
+    ("04-system", "4 THE SCREENING SYSTEM"),
+    ("05-conclusion", "CONCLUSION"),
+    ("06-appendices", "APPENDICES"),
 ]
 
 # Chapters whose manuscript order is NOT the numeric order of their section
-# identifiers. Values are section ids (the '<id>-draft.md' stem) in TOC order.
-ORDER_OVERRIDE = {
-    # outline/TABLE_OF_CONTENTS_EN.md order. Identifiers are stable and are
-    # what governance references; §0.8 = Provisions Submitted for Defence.
-    "00-introduction": [
-        "0.1",   # Relevance of the Research
-        "0.3",   # Research Goal
-        "0.4",   # Research Objectives
-        "0.5",   # Object and Subject of Research
-        "0.6",   # Research Hypothesis
-        "0.2",   # Scientific Novelty
-        "0.8",   # Provisions Submitted for Defence
-        "0.7",   # Methodological Basis
-        "0.9",   # Theoretical Significance
-        "0.10",  # Practical Significance
-        "0.13",  # Reliability of the Results
-        "0.14",  # Empirical (Experimental) Basis
-        "0.11",  # Approbation of Research Results
-        "0.15",  # Connection with Scientific Programmes
-        "0.12",  # Publications
-        "0.16",  # Structure and Length of the Dissertation
-    ],
-}
+# identifiers. The Introduction is now a single continuous section with bold
+# run-in rubrics, so it no longer needs an order override; none of the four body
+# chapters does either, because their identifiers sort into manuscript order.
+# The dict is kept so a future exception has somewhere to go.
+ORDER_OVERRIDE: dict[str, list[str]] = {}
 
 BODY_END = re.compile(r"^(## PART [23]\b|### Word count\b|## ⚠ PHASE-3 OBLIGATION\b)", re.I)
 PART1_HDR = re.compile(r"^## PART 1\b", re.I)
