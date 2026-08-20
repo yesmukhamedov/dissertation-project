@@ -18,16 +18,26 @@ text that replaces it.
 
 ## Totals
 
-| New unit | Sources | Source words | Budget |
-|---|---:|---:|---:|
-| Introduction | 16 | 10,003 | 1,900 |
-| 1 Automated diabetic retinopathy screening | 12 | 13,143 | 4,500 |
-| 2 Methodology of the integrated pipeline | 26 | 27,281 | 6,500 |
-| 3 Experimental results | 30 | 51,232 | 10,100 |
-| 4 The screening system | 9 | 8,238 | 4,500 |
-| Conclusion | 1 | 1,616 | 900 |
-| **Main text** | **94** | **111,513** | **28,400** |
-| Appendices (not in the declared volume) | 6 → 5 | 8,705 | ≈ 6,000 |
+| New unit | Sources | Source words | Budget | Written |
+|---|---:|---:|---:|---:|
+| Introduction | 16 | 10,003 | 1,900 | — |
+| 1 Automated diabetic retinopathy screening | 12 | 13,143 | **4,000** | — |
+| 2 Methodology of the integrated pipeline | 26 | 27,281 | **6,000** | — |
+| 3 Experimental results | 30 | 51,232 | **11,900** | **11,941** |
+| 4 The screening system | 9 | 8,238 | **3,700** | — |
+| Conclusion | 1 | 1,616 | 900 | — |
+| **Main text** | **94** | **111,513** | **28,400** | |
+| Appendices (not in the declared volume) | 6 → 5 | 8,705 | ≈ 6,000 | — |
+
+**Reconciled after Chapter 3 was written.** The evidence chapter came in at 11,941 against a planned
+10,100. Its ten subsections compress 51,232 words at 4.3 to 1, the same ratio as everywhere else, so
+the overrun is in the plan rather than in the writing: 10,100 was too little for eight investigations,
+three acceptance criteria that do not discriminate, a recurring measurement defect developed
+algebraically, and the statistical audit. Rather than thin the evidence, the 1,800 comes from the
+three chapters the corpus keeps shortest — the review, the methodology and the system chapter — and
+the main-text total is unchanged at 28,400. Resulting chapter sizes are roughly 16, 24, 47 and 15
+pages against a corpus range of 3 to 54 with a median of 16.5: the results chapter sits high in that
+range, which is where a chapter carrying the contribution belongs.
 
 Compression is ≈ 4:1 and is achieved on the paragraph, not by dropping findings: the corpus
 paragraph is 36 words and ours is 115, the corpus sentence 18 and ours 30. A paragraph rewritten to
@@ -117,16 +127,16 @@ experiments chapter, and statistical validation lives inside the results.
 
 | New subsection | Budget | Sources | Words |
 |---|---:|---|---:|
-| **3.1 Datasets and experimental configuration** | 900 | `4.1.1` Dataset architecture · `4.1.2` Class distribution and partitioning · `4.1.3` Hardware and reproducibility | 1,473 · 920 · 809 |
+| **3.1 Datasets and experimental configuration** | 1,000 | `4.1.1` Dataset architecture · `4.1.2` Class distribution and partitioning · `4.1.3` Hardware and reproducibility | 1,473 · 920 · 809 |
 | **3.2 Effect of the pipeline on accuracy** | 1,500 | `4.2.1` Factorial design · `4.2.2` Training dynamics · `4.2.3` Quantitative comparison | 1,948 · 1,926 · 2,692 |
-| **3.3 Stage ablation and parameter sensitivity** | 1,600 | `4.3.1` Cumulative ablation · `4.3.2` CLAHE threshold sweep · `4.3.3` Flat-field sigma sweep | 2,300 · 2,232 · 2,169 |
-| **3.4 Domain distance in feature space** | 1,000 | `4.4.1` Measurement protocol · `4.4.2` Results and interpretive limits | 1,861 · 2,571 |
+| **3.3 Stage ablation and parameter sensitivity** | 1,650 | `4.3.1` Cumulative ablation · `4.3.2` CLAHE threshold sweep · `4.3.3` Flat-field sigma sweep | 2,300 · 2,232 · 2,169 |
+| **3.4 Domain distance in feature space** | 1,050 | `4.4.1` Measurement protocol · `4.4.2` Results and interpretive limits | 1,861 · 2,571 |
 | **3.5 Cross-dataset and external transfer** | 1,800 | `4.5.1`+`4.5.2` APTOS transfer · `4.7` IDRiD and Messidor-2 · `4.8` DDR, ODIR-5K, RFMiD — **three studies running one protocol three times, written once with three sets of results** | 1,447 · 1,395 · 1,745 · 1,713 |
-| **3.6 Attention maps and lesion agreement** | 1,100 | `4.6.1` Generation protocol · `4.6.2` ALO and IoU against IDRiD masks · `4.6.3` Per-image consistency · `5.1` Explainability results | 1,574 · 1,685 · 1,421 · 2,117 |
-| **3.7 Training on small clinical samples** | 600 | `4.9` Small-data training | 1,515 |
-| **3.8 Statistical validation and comparative analysis** | 1,200 | `5.2.1` Bootstrap and mixed-effects · `5.2.2` Claim-strength classification · `5.3.1` Published systems · `5.3.2` Performance–complexity | 2,042 · 2,347 · 2,072 · 1,485 |
-| **3.9 Limitations and boundary conditions** | 600 | `5.4` | 2,110 |
-| *Conclusions on section 3* | 400 | `4.C` + `5.C` merged | 2,430 · 1,282 |
+| **3.6 Attention maps and lesion agreement** | 1,350 | `4.6.1` Generation protocol · `4.6.2` ALO and IoU against IDRiD masks · `4.6.3` Per-image consistency · `5.1` Explainability results | 1,574 · 1,685 · 1,421 · 2,117 |
+| **3.7 Training on small clinical samples** | 675 | `4.9` Small-data training | 1,515 |
+| **3.8 Statistical validation and comparative analysis** | 1,650 | `5.2.1` Bootstrap and mixed-effects · `5.2.2` Claim-strength classification · `5.3.1` Published systems · `5.3.2` Performance–complexity | 2,042 · 2,347 · 2,072 · 1,485 |
+| **3.9 Limitations and boundary conditions** | 750 | `5.4` | 2,110 |
+| *Conclusions on section 3* | 500 | `4.C` + `5.C` merged | 2,430 · 1,282 |
 
 **3.5 goes back up to 1,800, and the 300 it lent 3.3 is found elsewhere.** Merging the three
 external evaluations removes the repeated protocol but not the three acceptance criteria, the
