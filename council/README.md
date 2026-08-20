@@ -43,7 +43,7 @@
 ### Шаблоны документов
 | Документ | Файл |
 |----------|------|
-| Диссертация | [ru/10-диссертация/структура.md](ru/10-диссертация/структура.md) |
+| Диссертация | [ru/10-диссертация/структура.md](ru/10-диссертация/структура.md) — обязательные элементы; измеренные по 16 образцам нормы объёма и числа слов, архитектуры глав, глубины заголовков, рубрик введения, длины абзаца и предложения, оформления (без §) и приложений: [нормы-по-образцам.md](ru/10-диссертация/нормы-по-образцам.md) |
 | Автореферат / аннотация | [ru/11-автореферат-аннотация/структура.md](ru/11-автореферат-аннотация/структура.md) |
 | Объявление о защите | [ru/12-объявление-извещение/структура.md](ru/12-объявление-извещение/структура.md) |
 | Отзыв научного консультанта | [ru/13-отзыв-научного-консультанта/структура.md](ru/13-отзыв-научного-консультанта/структура.md) |
@@ -107,7 +107,7 @@ the registry. Verify documents against it:
 ### Document templates
 | Document | File |
 |----------|------|
-| Dissertation | [en/10-dissertation/structure.md](en/10-dissertation/structure.md) |
+| Dissertation | [en/10-dissertation/structure.md](en/10-dissertation/structure.md) — mandatory elements; measured norms across the 16 samples — volume and word count, chapter architecture, heading depth, Introduction rubrics, paragraph/sentence length, typography (no §), appendices: [peer-norms.md](en/10-dissertation/peer-norms.md) |
 | Abstract / annotation | [en/11-abstract-annotation/structure.md](en/11-abstract-annotation/structure.md) |
 | Defense announcement | [en/12-defense-announcement/structure.md](en/12-defense-announcement/structure.md) |
 | Scientific supervisor review | [en/13-supervisor-review/structure.md](en/13-supervisor-review/structure.md) |

@@ -4,6 +4,10 @@
 > prepared independently (with a scientific consultant) under an educational programme of field 8D061.
 > **Formatting:** strictly per [[../02-formatting/gost-formatting|GOST 7.32-2001 / 7.1-2003]]
 > (up to 300 pp., font size 14, single spacing, margins 30/20/10/20 mm).
+> **Volume in practice:** the 300-page figure is a ceiling, not a target — works actually defended at
+> this council run **86–153 pp.** (median 104.5), of which ≈ 70–100 pp. are main text. Before writing
+> or trimming, read [[peer-norms]]: it also records what the 16 published samples do and do not put
+> in the appendices.
 
 ## Content requirement (§3.1.1 of the Instruction)
 
@@ -25,6 +29,10 @@ specific scientific direction.
 8. **Conclusion** — see below.
 9. **List of references used** — in order of appearance, per GOST 7.1-2003.
 10. **Appendices** — implementation acts, certificates, listings, additional data.
+    Optional in practice (present in 10 of 16 samples). Reprints of the candidate's own articles and
+    screenshots of indexing databases are **not** appendix material at this council — see
+    [[peer-norms]] §4; the publication record is carried by the Introduction and by the separate
+    [[../18-list-of-publications/structure|List of scientific papers]].
 
 ## Content of the "Introduction" (§5.6)
 
@@ -54,6 +62,11 @@ The introduction must reflect:
 - assessment of the scientific level of the work compared with the best achievements in the field.
 
 ## Skeleton (to fill in)
+
+> The skeleton below is the Instruction's normative list. For how it is actually realised —
+> 3–7 chapters (median 4) in the order review → methods/model → development → experiments,
+> two levels of numbering, ≈5-word subsection titles, per-chapter conclusions, and an Introduction
+> whose rubrics are merged down to 8–11 — see [[peer-norms]] §4–§6.
 
 ```
 TITLE PAGE
@@ -86,6 +99,7 @@ APPENDICES (implementation acts, certificates, ...)
 ```
 
 ## Related
+- [[peer-norms]] — measured volume, structure and appendix norms across all 16 published samples.
 - [[../11-abstract-annotation/structure]] — a concise account of the dissertation.
 - [[../02-formatting/gost-formatting]] — formatting rules.
 - [[../00-regulatory-framework/publication-requirements]] — publication minimum.
