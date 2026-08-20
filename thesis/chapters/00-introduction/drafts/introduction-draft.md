@@ -244,7 +244,7 @@ confusion matrices, the system architecture diagrams, the attention-map gallery,
 tables for the device evaluation.
 
 The dissertation is set out on 116 pages, excluding the appendices, and contains 19 tables and 16
-figures. The list of references comprises 107 sources.
+figures. The list of references comprises 99 sources.
 
 ---
 

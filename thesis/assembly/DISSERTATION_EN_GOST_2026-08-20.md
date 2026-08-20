@@ -1,151 +1,6 @@
-# Automated Diabetic Retinopathy Diagnosis via Fundus Image Enhancement and CNN Classification
+# Automated Diabetic Retinopathy Diagnosis — EN manuscript with GOST [N] citations
 
-> **Intermediate EN assembly — 2026-08-20.** Concatenation of PART 1 draft bodies in Table-of-Contents order, preceded by the three front-matter units authored in `thesis/output/`. Four chapters, review to system, with five appendices. Working author-year citations are unconverted (GOST `[N]` is a deferred single pass). Compliance checklists, draft headers, and word-count blocks are excluded. **NOT the final bound thesis:** figure and table markers are unresolved, and the page, figure, table and source counts declared in the Introduction's closing rubric are set from the exported volume rather than from this file.
-
-
----
-
-# NORMATIVE REFERENCES
-
-This thesis uses references to the following standards:
-
-Instructions for the preparation of a thesis and an abstract, Higher Attestation Commission of the Ministry of Education and Science of the Republic of Kazakhstan dated September 28, 2004 No. 377-3y.
-
-GOST 7.32-2001. Report on research work. Structure and design rules.
-
-GOST 7.1-2003. Bibliographic record. Bibliographic description. General requirements and rules of compilation.
-
-ST RK 34.005-2002. Information Technology. Basic terms and definitions (first edition).
-
-ST RK 34.015-2002. Information Technology. Set of standards for automated systems. Terms of reference for creating an IS (first edition).
-
-ST RK 34.027-2006. Information Technologies. Classification of software tools (first edition).
-
-ST RK 34.014-2002. Information Technology. A set of standards for automated systems. Automated systems. Terms and definitions.
-
-
----
-
-# DEFINITIONS
-
-**Architectural complexity** — the capacity of a CNN as defined by the number of convolutional layers, total trainable-parameter count, filter-size range, and the presence or absence of regularization components (batch normalization, dropout).
-
-**Baseline (baseline arm)** — the reference configuration of Experiment 1: stretch-resize to 512×512 followed by ImageNet normalization, producing a 3-channel tensor with no field-of-view mask and no preprocessing stages; the backbone is initialized from ImageNet.
-
-**CLAHE (Contrast-Limited Adaptive Histogram Equalization)** — an adaptive contrast-enhancement method operating on local image tiles with a clip limit that bounds contrast amplification; applied in the pipeline to the LAB L-channel under a dual-constraint clip limit (Stage 5).
-
-**Composite independent variable** — the combined manipulated factor of Experiment 1 (H-1), in which the full-pipeline arm differs from baseline jointly along the preprocessing axis (eight-stage pipeline vs. stretch-resize + ImageNet normalize) and the pretraining axis (ophthalmology-specific self-supervised pretraining vs. ImageNet).
-
-**Convolutional Neural Network (CNN)** — a neural architecture comprising convolutional and pooling layers for feature extraction and fully connected layers for classification; the classification backbone operating on preprocessed fundus images for five-class DR staging.
-
-**Cross-validation** — a validation strategy using 5-fold patient-level stratified splitting; for each fold, four folds serve as training data and one as test data, with no patient's images appearing in both partitions; metrics are reported as mean ± standard deviation across folds.
-
-**Data augmentation** — image transformations (unified affine, ColorJitter [brightness/contrast/saturation/hue], Gaussian noise, JPEG compression) applied to the training data to increase variability and improve generalization; the train-only Stage 6 of the pipeline.
-
-**Dataset-specific normalization** — channel-wise normalization (Stage 7) using mean and standard deviation computed from the training split of the primary dataset rather than ImageNet statistics; the normalization of the full pipeline.
-
-**Diabetic retinopathy (DR)** — a microvascular complication of diabetes mellitus and a leading cause of preventable vision loss, graded in five severity stages (0 — none, 1 — mild, 2 — moderate, 3 — severe, 4 — proliferative).
-
-**Diagnostic effectiveness** — the joint performance profile on four primary metrics (accuracy, weighted F1-score, ROC-AUC, and Cohen's Kappa with quadratic weights) computed on the held-out test partition.
-
-**Domain shift** — the distributional difference between training data and target deployment data arising from differences in imaging equipment, patient populations, or acquisition protocols.
-
-**Field-of-view (FOV) mask** — a binary spatial mask (1.0 = real fundus data, 0.0 = zero-padding) generated at Stage 3 and appended as the 4th input channel, allowing the CNN to distinguish genuine retinal pixels from padded background.
-
-**Flat-field correction (adaptive)** — Gaussian-blur subtraction with adaptive σ = 0.07·D (D = FOV diameter), applied inside the FOV mask to normalize uneven illumination while preserving local contrast; Stage 4 of the pipeline.
-
-**Fundus image** — a retinal photograph acquired by fundoscopy; the exclusive imaging modality of the dissertation and the input to the preprocessing pipeline and the CNN classifier.
-
-**Generalization (cross-database)** — the ratio of test-set F1-score on a secondary dataset to test-set F1-score on the primary dataset under the same trained model without retraining; the generalization ratio G = F1_external / F1_EyePACS.
-
-**Grad-CAM (Gradient-weighted Class Activation Mapping)** — an explainability method producing class-discriminative localization maps from a gradient-weighted combination of final convolutional feature maps; an interpretability tool, not a clinical localization of pathology.
-
-**Image quality** — the measurable capacity of a fundus image to support automated detection of microvascular features relevant to DR staging, assessed through downstream classification performance rather than a subjective visual score.
-
-**Integrated pipeline dominance (H-1)** — the primary hypothesis that the integrated full-pipeline configuration outperforms the baseline as a unitary system, validated when the empirical dominance criterion (≥ 5 pp weighted-F1 gain, ≥ 0.02 ROC-AUC gain, no Cohen's Kappa degradation) is satisfied.
-
-**Ophthalmology-specific self-supervised pretraining** — self-supervised pretraining of the CNN backbone on an unlabeled retinal fundus corpus (no DR labels), used as the full-pipeline-arm initialization; learns fundus-domain representations directly on the 4-channel pipeline tensor.
-
-**Physician-in-the-loop** — a design paradigm in which the clinician acts not merely as a consumer of AI outputs but as a tuner and auditor who interprets results and adjusts the system; the proposed system is a decision-support tool within this paradigm.
-
-**Preprocessing pipeline** — the canonical ordered eight-stage sequence (Stages 0–7) applied to fundus images prior to CNN input; the full pipeline applies all eight stages, producing a 4-channel tensor (RGB + FOV mask).
-
-**Resource-limited environment** — a deployment context characterized by at least two of: absence of GPU acceleration; available RAM below 16 GB; batch-processing-time constraints; network connectivity precluding continuous cloud-API reliance.
-
-**Transfer learning** — the reuse and adaptation of pretrained network weights to the fundus-image domain; under H-1 the initialization source is slaved to the arm (ImageNet for baseline, ophthalmology-specific SSL for the full pipeline).
-
-**Weighted loss function** — a cross-entropy loss with class-specific weights addressing class imbalance and exploiting the ordinal structure of the five-class DR grading.
-
-
----
-
-# DESIGNATIONS AND ABBREVIATIONS
-
-| AI | Artificial Intelligence |
-| ALO | Attention–Lesion Overlap (explainability metric) |
-| APTOS | Asia Pacific Tele-Ophthalmology Society (2019 Blindness Detection dataset) |
-| AUC | Area Under the Curve |
-| BYOL | Bootstrap Your Own Latent (self-supervised learning method) |
-| CAM | Class Activation Mapping |
-| CFC-n | Claim Formulation Constraint n — a rule governing the form a claim may take; the CFC-2 series enumerates claim types this dissertation forbids itself |
-| CLAHE | Contrast-Limited Adaptive Histogram Equalization |
-| CNN | Convolutional Neural Network |
-| CNR | Contrast-to-Noise Ratio |
-| DDR | Diabetic Retinopathy grading dataset (DDR) |
-| DGL-n | Deployment and Generalization Limitation n — a bound on how far a result may be carried beyond the conditions under which it was obtained |
-| DINO | self-Distillation with No labels (self-supervised learning method) |
-| DR | Diabetic Retinopathy |
-| ECE | Expected Calibration Error |
-| EH-n | Evidence Hierarchy rule n — the ranking of metrics by evidentiary weight, and the criteria a result must meet before it counts as decisive |
-| EHR | Electronic Health Record |
-| EMD | Earth Mover's Distance |
-| EyePACS | Eye Picture Archive Communication System (diabetic-retinopathy dataset) |
-| FOV | Field of View |
-| GDPR | General Data Protection Regulation |
-| Grad-CAM | Gradient-weighted Class Activation Mapping |
-| HIPAA | Health Insurance Portability and Accountability Act |
-| IDRiD | Indian Diabetic Retinopathy Image Dataset |
-| IoU | Intersection over Union |
-| KL | Kullback–Leibler divergence |
-| LAB | CIELAB colour space |
-| MLP | Multilayer Perceptron |
-| MoCo | Momentum Contrast (self-supervised learning method) |
-| NC-n | Non-Claim n — a statement this dissertation explicitly does not make, recorded so that its results are not read as making it |
-| NPV | Negative Predictive Value |
-| OD | Optic Disc |
-| OD-n | Operational Definition n — the definition by which a term of this dissertation is measured; distinct from OD above, which is never written with a number |
-| ODIR-5K | Ocular Disease Intelligent Recognition dataset (5,000 patients) |
-| PACS | Picture Archiving and Communication System |
-| PC-n | Primary Claim n — a numbered claim of the dissertation's argument, each carrying its evidence and its assessed strength |
-| PPV | Positive Predictive Value |
-| ReLU | Rectified Linear Unit |
-| RFMiD | Retinal Fundus Multi-disease Image Dataset |
-| RIQA | Retinal Image Quality Assessment |
-| ROC | Receiver Operating Characteristic |
-| SB-n | Scope Boundary n — a statement of what lies outside what this dissertation claims |
-| SimCLR | Simple framework for Contrastive Learning of Representations |
-| SIR-n | Source Interpretation Rule n — a rule constraining what may be attributed to a cited source |
-| SSIM | Structural Similarity Index |
-| SSL | Self-Supervised Learning |
-| STARE | Structured Analysis of the Retina (dataset) |
-| UML | Unified Modeling Language |
-| VRAM | Video Random-Access Memory |
-| VVI | Vessel Visibility Index |
-| WSL | Windows Subsystem for Linux |
-| XAI | Explainable Artificial Intelligence |
-| D | Field-of-view diameter, in pixels |
-| CL | Clip limit of the CLAHE transform |
-| F1 | F1-score (harmonic mean of precision and recall) |
-| G | Generalization ratio, G = F1_external / F1_EyePACS |
-| T | Global threshold of the dual-constraint CLAHE (T/80 formulation) |
-| α | Class-weight parameter of the Focal Loss (inverse-frequency) |
-| γ | Focusing parameter of the Focal Loss (γ = 2) |
-| κ | Cohen's Kappa with quadratic weights |
-| σ | Standard deviation of the Gaussian kernel in flat-field correction, σ = 0.07·D |
-| ΔF1 | Cross-dataset F1 drop, ΔF1 = F1_EyePACS − F1_external |
-
-
----
+> **STAGE-G (final pass) — 2026-08-20.** Working author-year citations converted to numbered `[N]` (GOST 7.32-2001 §6.11, by first appearance). 99 external sources numbered [1]–[99]. Numbers are shared with the Kazakh manuscript (language invariance). Run over the complete 98-section manuscript, Introduction included.
 
 # INTRODUCTION
 
@@ -398,7 +253,7 @@ figures. The list of references comprises 99 sources.
 
 Diabetic retinopathy is a chronic complication of diabetes mellitus and one of the principal causes
 of preventable vision loss among working-age adults. Narrative reviews of its pathophysiology
-(Kusuhara et al., 2018; Morya et al., 2024) report a pooled prevalence of any retinopathy near a
+[1, 2] report a pooled prevalence of any retinopathy near a
 third of diabetic populations worldwide. Both figures are third-party clinical context, inherited
 from the primary studies those reviews cite.
 
@@ -406,14 +261,14 @@ Its importance for an automated screening system lies not only in its frequency 
 its severity is defined by a discrete, ordered set of structural changes visible on the fundus.
 
 The classical account of the underlying process is microvascular. Sustained hyperglycaemia drives
-injury in the retinal capillary bed, with pericyte dropout identified by Kusuhara et al. (2018) as a
+injury in the retinal capillary bed, with pericyte dropout identified by Kusuhara et al. [1] as a
 consensus mechanism for breakdown of the inner blood-retina barrier. The consequences are increased
 permeability, capillary non-perfusion and progressive ischaemia, culminating in pathological
 neovascularisation.
 
 These are the reviews' synthesis of the field rather than settled fact: their authors note that the
 cellular mechanisms are not fully determined, since animal models reproduce only limited aspects of
-early disease. The account is also incomplete. Wang and Lo (2018) and Gettinger et al. (2025)
+early disease. The account is also incomplete. Wang and Lo [3] and Gettinger et al. [4]
 characterise the disease as combining microvascular damage, inflammation and neurodegeneration, and
 report that neurodegeneration may precede the vascular changes traditionally regarded as its
 defining signs.
@@ -429,7 +284,7 @@ and protein exudation produces hard exudates and focal ischaemia produces cotton
 
 As the microvasculature deteriorates further, microvascular abnormalities and venous beading appear,
 and in the proliferative phase fragile new vessels supervene and risk vitreous haemorrhage. Overlaid
-on that severity axis, and independent of it, is macular oedema, which Wang and Lo (2018) record as
+on that severity axis, and independent of it, is macular oedema, which Wang and Lo [3] record as
 the principal indication for first-line anti-VEGF therapy.
 
 For a classifier these lesions are the operative image features, and their salience is uneven. The
@@ -437,8 +292,7 @@ microaneurysms and small haemorrhages defining the earliest and most screening-c
 small, low-contrast structures, whereas the neovascular and exudative changes of advanced disease
 are comparatively conspicuous.
 
-The clinical scale partitions this burden into severity classes. As summarised by Morya et al.
-(2024), modern screening uses an ordinal scale of five levels, from no apparent retinopathy through
+The clinical scale partitions this burden into severity classes. As summarised by Morya et al. [2], modern screening uses an ordinal scale of five levels, from no apparent retinopathy through
 mild, moderate and severe non-proliferative disease to proliferative disease, and that taxonomy is
 the classification target throughout this work.
 
@@ -455,18 +309,17 @@ handful of microaneurysms occupying a few pixels.
 [FIG-1.1: Representative fundus images across the five grades, illustration only — defense/figures/figures_mine/fig1_1_dr_grades_idrid.png]
 
 Early detection is clinically decisive because the disease is treatable in its earlier grades, as
-reported by Kesharwani et al. (2021) and Wang and Lo (2018), and the therapeutic window exists only
+reported by Kesharwani et al. [5] and Wang and Lo [3], and the therapeutic window exists only
 if it is identified while still subtle. Because those grades are frequently asymptomatic, detection
 depends not on patient-initiated presentation but on systematic, repeated screening of the whole
 diabetic population.
 
 That the required screening is not being delivered is visible in observed compliance, which Morya et
-al. (2024) put at between a third and a half of patients for recommended annual examination. The
+al. [2] put at between a third and a half of patients for recommended annual examination. The
 shortfall is not primarily one of willingness but of access and capacity, and it is most acute where
 specialist infrastructure is thinnest.
 
-The constraint is structural rather than incidental. The candidate's prior work (Yesmukhamedov et
-al., 2025) characterises the national context this work addresses. Roughly 1,200 ophthalmologists
+The constraint is structural rather than incidental. The candidate's prior work [6] characterises the national context this work addresses. Roughly 1,200 ophthalmologists
 serve the entire population, about 40 per cent of residents live in rural areas, and an estimated 70
 per cent of those have limited access to specialised eye care.
 
@@ -475,8 +328,8 @@ geographically concentrated supply of graders cannot meet a demand distributed a
 partly rural population, so increasing coverage by adding specialists is not a near-term option. The
 binding question becomes whether the grading step can be partly automated.
 
-Deployed automated systems, relayed by Morya et al. (2024), and the national screening programme
-reported by Yesmukhamedov et al. (2025) demonstrate that this is a real capability, and that must be
+Deployed automated systems, relayed by Morya et al. [2], and the national screening programme
+reported by Yesmukhamedov et al. [6] demonstrate that this is a real capability, and that must be
 acknowledged rather than dismissed. But each of those results was achieved under its own population,
 device and regulatory conditions. None is a result of this work, and their portability to
 resource-limited, device-heterogeneous settings is not entailed by their success elsewhere. That
@@ -523,7 +376,7 @@ support automated detection of the features relevant to staging.
 
 Degradation is correspondingly any acquisition-side phenomenon that erodes that capacity, and the
 phenomena that do so are neither random nor diagnostically neutral. They fall on four axes, the same
-factors Shen et al. (2020) model explicitly to drive a dedicated fundus-enhancement network.
+factors Shen et al. [7] model explicitly to drive a dedicated fundus-enhancement network.
 
 The first is optical. Defocus and motion blur both act as low-pass filters, attenuating precisely
 the high-frequency content that distinguishes fine retinal structure from background. Because the
@@ -567,43 +420,41 @@ rather than recovering their signal, which lowers effective coverage where re-ac
 and sub-threshold degradation that passes the gate still erodes the small-lesion signal.
 
 The measured evidence supports a more precise position than the taxonomy alone. Holding architecture
-fixed and varying only quality, Fu et al. (2020) re-annotated nearly twenty-nine thousand images
+fixed and varying only quality, Fu et al. [8] re-annotated nearly twenty-nine thousand images
 into three quality levels and found detection accuracy falling monotonically as quality declined.
-Zago et al. (2018) report the same link holding across databases, and the production system of Dai
-et al. (2021) places an explicit quality stage ahead of grading. That is the cleanest available
+Zago et al. [9] report the same link holding across databases, and the production system of Dai
+et al. [10] places an explicit quality stage ahead of grading. That is the cleanest available
 statement of the relationship, but its scope is bounded: one source corpus, an internal split, no
 external validation and no intervals.
 
 A second line treats quality as the parsimonious explanation for differences between corpora.
-Rakhlin (2017) reported a substantially higher area under the curve on one external corpus than on
+Rakhlin [11] reported a substantially higher area under the curve on one external corpus than on
 another and attributed the gap to gradability rather than to superior generalisation, roughly all of
 the first corpus being gradable against about three-quarters of the second.
 
 The strongest evidence that data conditions can rival architecture comes from holding the
-architecture identical across sources. Voets et al. (2019) reproduced the pipeline of Gulshan et al.
-(2016) on public data. They obtained an area under the curve of 0.951 on one test corpus and 0.853
+architecture identical across sources. Voets et al. [12] reproduced the pipeline of Gulshan et al. [13] on public data. They obtained an area under the curve of 0.951 on one test corpus and 0.853
 on another, the same network and the same procedure, with a gap traceable to provenance and
 labelling rather than model design.
 
-Voets et al. (2019) supply the first of two nuances preventing an over-strong reading. Excluding the
+Voets et al. [12] supply the first of two nuances preventing an over-strong reading. Excluding the
 roughly one image in five they judged ungradable did not significantly change performance. If
 quality were a simple monotone lever, removing the worst images should have helped, and that it did
 not indicates the relationship operates at the level of fine signal preservation rather than coarse
 inclusion.
 
-Beede et al. (2020) reinforce the cost of gating from the deployment side, finding across eleven
+Beede et al. [14] reinforce the cost of gating from the deployment side, finding across eleven
 clinics that automatic rejection of field-captured images reduced coverage and disrupted workflow.
 That is a socio-technical observation rather than an accuracy measurement.
 
-The second nuance concerns task dependence. In the benchmark reported by Liu et al. (2022),
+The second nuance concerns task dependence. In the benchmark reported by Liu et al. [15],
 automated quality assessment itself reached agreement its authors characterised as insufficient for
 clinically feasible screening, while the team that won the grading sub-challenge did so with minimal
 preprocessing, relying on training strategy instead. Preprocessing is necessary but not sufficient,
 and its marginal payoff depends on what the rest of the pipeline already does.
 
 The candidate's prior work adds a further point, reported as previously published: enhancement
-preprocessing raised validation accuracy from 71 to 86 per cent on a small custom network (Sapakova,
-Yesmukhamedov and Sapakov, 2025). It rests on one small architecture and is not generalisable to the
+preprocessing raised validation accuracy from 71 to 86 per cent on a small custom network [16]. It rests on one small architecture and is not generalisable to the
 wider class without explicit comparison.
 
 Read together, the evidence converges on a position rather than a slogan. Quality and provenance are
@@ -623,10 +474,10 @@ cameras imaging the same retina yield images differing in consistent, predictabl
 appearance statistics a model learns are partly entangled with the device that produced its training
 images.
 
-That is the situation the literature studies as domain shift. Zhou et al. (2022), surveying the
+That is the situation the literature studies as domain shift. Zhou et al. [17], surveying the
 field, note that most statistical learning rests on an over-simplified assumption that source and
 target data are identically distributed, and that a learner trained only on source data typically
-suffers significant drops on an out-of-distribution target. Wang and Deng (2018) organise the
+suffers significant drops on an out-of-distribution target. Wang and Deng [18] organise the
 mitigations into discrepancy-based, adversarial and reconstruction-based families. A camera defines
 a domain, and a model trained on one camera's distribution is exactly that learner with respect to
 another.
@@ -652,40 +503,34 @@ device-agnostic readiness nor regulatory compliance for use with any instrument.
 
 The learning machinery of automated retinal grading is the convolutional network, and the field's
 use of it has followed a recognisable arc. Early systems adapted general-purpose architectures
-developed for natural-image benchmarks (Krizhevsky et al., 2012; Simonyan and Zisserman, 2015;
-Szegedy et al., 2015), and the landmark demonstrations of expert-comparable grading (Gulshan et al.,
-2016) were built on such backbones rather than on retina-specific designs. Litjens et al. (2017)
+developed for natural-image benchmarks [19, 20, 21, 22], and the landmark demonstrations of expert-comparable grading [13] were built on such backbones rather than on retina-specific designs. Litjens et al. [23]
 survey the same movement across medical imaging more broadly.
 
-Two connectivity innovations made the depth those architectures rely on trainable. He et al. (2016)
+Two connectivity innovations made the depth those architectures rely on trainable. He et al. [24]
 reformulate each block to learn a residual function relative to its input through identity
-shortcuts, and Huang et al. (2017) concatenate the outputs of all preceding layers, each addressing
-the degradation that otherwise sets in as depth increases. Tan and Le (2019) then scale depth, width
+shortcuts, and Huang et al. [25] concatenate the outputs of all preceding layers, each addressing
+the degradation that otherwise sets in as depth increases. Tan and Le [26] then scale depth, width
 and resolution jointly. These are not ranked against one another here; each established the
 vocabulary from which retinal work draws, and two of them supply this work's backbones.
 
 Applied to retinopathy, the family performs strongly but heterogeneously, across tasks, corpora and
-validation protocols that do not align (Pratt et al., 2016; Gargeya and Leng, 2017; Quellec et al.,
-2017; Arora et al., 2024; Sharma et al., 2025). The heterogeneity is the analytically important
+validation protocols that do not align [27, 28, 29, 30, 31]. The heterogeneity is the analytically important
 fact: these figures establish that the architecture class is capable, not that any configuration is
 best. The same backbones transfer to adjacent tasks and modalities without those results being
-fundus grading (Esteva et al., 2017; Burlina et al., 2017; Khosravi et al., 2025).
+fundus grading [32, 33, 34].
 
-More recent work has added transformer and hybrid designs to that landscape (Dosovitskiy et al.,
-2021; Liu et al., 2021; Xu et al., 2024; Goh et al., 2024; Gonzalez-Diaz et al., 2024; Geetha and
-Hema, 2026). They are noted to situate the choice made in this work rather than to compare against,
+More recent work has added transformer and hybrid designs to that landscape [35, 36, 37, 38, 39, 40]. They are noted to situate the choice made in this work rather than to compare against,
 since no head-to-head evaluation of architecture families is undertaken here.
 
 A second strand concerns how such a network is initialised. Labelled retinal data are scarce
 relative to the size of modern architectures, so almost all systems begin from weights learned
 elsewhere, overwhelmingly on natural images. That practice is effective enough to be near-universal
-(Pan and Yang, 2010; Kornblith et al., 2019), and Cheplygina et al. (2018) give its basis: early
+[41, 42], and Cheplygina et al. [43] give its basis: early
 convolutional features are largely generic and transfer across visual domains, while later features
 become progressively task-specific.
 
-The strand that matters for this work asks whether in-domain initialisation does better. Zhou et al.
-(2023) report that self-supervised pretraining on retinal images yields generalisable retinal
-representations, and Azizi et al. (2021) that in-domain medical pretraining can exceed natural-image
+The strand that matters for this work asks whether in-domain initialisation does better. Zhou et al. [44] report that self-supervised pretraining on retinal images yields generalisable retinal
+representations, and Azizi et al. [45] that in-domain medical pretraining can exceed natural-image
 transfer on other modalities.
 
 Those results establish the credibility of the direction without settling the specific question. The
@@ -695,7 +540,7 @@ what the present design requires and what chapter 2 specifies.
 
 A related question is how much of a pretrained network to adapt. The practical choice lies between
 freezing the feature extractor and training only a new head, and progressively unfreezing the upper
-layers, and Saxena et al. (2020) report the second to be generally the stronger where data permit.
+layers, and Saxena et al. [46] report the second to be generally the stronger where data permit.
 That is a training-method finding rather than a hypothesis this work tests.
 
 The third strand is explainability, and it entered retinal work for a practical reason. A screening
@@ -703,21 +548,20 @@ tool whose output cannot be inspected is difficult to place in a workflow where 
 responsibility for the decision, so methods that indicate where in an image a network's evidence
 lies have been widely adopted.
 
-The dominant family projects class evidence back onto the final convolutional activations (Zhou et
-al., 2016). The gradient-based form of Selvaraju et al. (2017) applies to essentially any
+The dominant family projects class evidence back onto the final convolutional activations [47]. The gradient-based form of Selvaraju et al. [48] applies to essentially any
 convolutional architecture without retraining, which is why it became the default, and the
-refinement of Chattopadhyay et al. (2018) alters how the gradients are weighted. Model-agnostic
-alternatives exist (Ribeiro et al., 2016; Lundberg and Lee, 2017).
+refinement of Chattopadhyay et al. [49] alters how the gradients are weighted. Model-agnostic
+alternatives exist [50, 51].
 
 The field's use of these maps has been uneven in one respect that matters, and the reviews of Samek
-et al. (2017) and Tjoa and Guan (2020) note it. Overlap between an attention map and an expert
+et al. [52] and Tjoa and Guan [53] note it. Overlap between an attention map and an expert
 annotation is regularly presented as though it demonstrated that a model had located pathology,
 whereas the map indicates where class-discriminative activation concentrates and nothing stronger.
 This work holds to the weaker reading throughout, and chapter 2 fixes it as a property of the
 instrument.
 
 Beyond visualisation, the field has also pursued explicit lesion segmentation, and one result from
-that line bears directly on the argument here. Wan et al. (2021) designed a network with a single
+that line bears directly on the argument here. Wan et al. [54] designed a network with a single
 pooling stage specifically to preserve small-lesion features, supplemented with attention and
 dilated convolutions, and still segmented microaneurysms weakly, a result they report themselves.
 
@@ -736,16 +580,15 @@ what a critical reading of that record reveals. The purpose is not to rank those
 position this work as their competitor, but to locate beneath an impressive performance record a
 consistent methodological pattern.
 
-That the field has produced high-performing systems is not in dispute. Gulshan et al. (2016)
+That the field has produced high-performing systems is not in dispute. Gulshan et al. [13]
 demonstrated that a deep network could detect referable disease at expert-comparable levels,
 reporting areas under the curve above 0.99 on two clinical validation sets, and the system of
-Abramoff et al. (2018) reached regulatory clearance on a prospective multi-site trial.
+Abramoff et al. [55] reached regulatory clearance on a prospective multi-site trial.
 
 The literature has also matured well beyond single-site internal validation, with the multiethnic
-external cohorts of Ting et al. (2017), cross-population validation in sub-Saharan Africa (Bellemo
-et al., 2019), multicentre validation across tens of thousands of images (Zhang et al., 2022), and
-prospective evaluation inside a national screening programme (Ruamviboonsuk et al., 2022). Ting et
-al. (2019) and Senapati et al. (2024) review the field as a whole, and Wewetzer et al. (2021) pool
+external cohorts of Ting et al. [56], cross-population validation in sub-Saharan Africa [57], multicentre validation across tens of thousands of images [58], and
+prospective evaluation inside a national screening programme [59]. Ting et
+al. [60] and Senapati et al. [61] review the field as a whole, and Wewetzer et al. [62] pool
 ten primary-care studies. Table 1.1 sets out that landscape with the properties that determine what
 each figure means.
 
@@ -753,16 +596,16 @@ each figure means.
 
 | Study or system | Task | Corpus and population | Reported metric | Validation | Limitation |
 |---|---|---|---|---|---|
-| Gulshan et al. (2016) | Binary referable | Private development; two retrospective validation sets | ROC-AUC 0.991 and 0.990 | Dual external | Preprocessing deferred to the supplement |
-| Abràmoff et al. (2018) | Binary, autonomous | 900 patients, ten primary-care sites | Sensitivity 87.2%, specificity 90.7% | Prospective pivotal | No preprocessing ablation, no public benchmark |
-| Ting et al. (2017) | Referable | Private, plus ten multiethnic sets | ROC-AUC 0.936; external 0.889–0.983 | Multiethnic external | Private development data |
-| Bellemo et al. (2019) | Referable | 4,504 images, Zambia | ROC-AUC 0.973 | Cross-population | Single-country cohort |
-| Zhang et al. (2022) | Referable | 83,465 images, four centres | AUROC 0.9848 per patient | Multicentre | One country; preprocessing not reported |
-| Ruamviboonsuk et al. (2022) | Vision-threatening | 7,651 patients, nine sites | Accuracy 94.7%, sensitivity 91.4% | Prospective, national programme | Architecture and preprocessing opaque |
-| Sánchez-Gutiérrez et al. (2022) | Referable | Private, Spain | ROC-AUC 0.988 | Clinical validation | Private data |
-| Baget-Bernaldiz et al. (2021) | Four-class | Private, plus one public set | ROC-AUC 0.988 and 0.968 | External | Single-population development |
-| Saxena et al. (2020) | Binary | Public development, two public test sets | ROC-AUC 0.958 and 0.92 | Cross-corpus | Binary task; preprocessing exogenous |
-| Wewetzer et al. (2021) | Referable, pooled | Ten primary-care studies | Summary ROC-AUC 0.9543 | Meta-analysis | Pools heterogeneous studies |
+| Gulshan et al. [13] | Binary referable | Private development; two retrospective validation sets | ROC-AUC 0.991 and 0.990 | Dual external | Preprocessing deferred to the supplement |
+| Abràmoff et al. [55] | Binary, autonomous | 900 patients, ten primary-care sites | Sensitivity 87.2%, specificity 90.7% | Prospective pivotal | No preprocessing ablation, no public benchmark |
+| Ting et al. [56] | Referable | Private, plus ten multiethnic sets | ROC-AUC 0.936; external 0.889–0.983 | Multiethnic external | Private development data |
+| Bellemo et al. [57] | Referable | 4,504 images, Zambia | ROC-AUC 0.973 | Cross-population | Single-country cohort |
+| Zhang et al. [58] | Referable | 83,465 images, four centres | AUROC 0.9848 per patient | Multicentre | One country; preprocessing not reported |
+| Ruamviboonsuk et al. [59] | Vision-threatening | 7,651 patients, nine sites | Accuracy 94.7%, sensitivity 91.4% | Prospective, national programme | Architecture and preprocessing opaque |
+| Sánchez-Gutiérrez et al. [63] | Referable | Private, Spain | ROC-AUC 0.988 | Clinical validation | Private data |
+| Baget-Bernaldiz et al. [64] | Four-class | Private, plus one public set | ROC-AUC 0.988 and 0.968 | External | Single-population development |
+| Saxena et al. [46] | Binary | Public development, two public test sets | ROC-AUC 0.958 and 0.92 | Cross-corpus | Binary task; preprocessing exogenous |
+| Wewetzer et al. [62] | Referable, pooled | Ten primary-care studies | Summary ROC-AUC 0.9543 | Meta-analysis | Pools heterogeneous studies |
 
 The first conclusion is that these numbers cannot be lined up as a ranking. The endpoints differ,
 from binary referable disease through four-class grading to vision-threatening disease, and so do
@@ -784,10 +627,10 @@ results cannot be decomposed, so the comparison could not be made controlled eve
 and corpora were aligned.
 
 The deployment landscape compounds these limitations differently. A comparison of nine existing
-ophthalmic systems in the candidate's prior work (Yesmukhamedov et al., 2025) found the deployed
+ophthalmic systems in the candidate's prior work [6] found the deployed
 tools typically narrow or constrained: limited to one disease, requiring advanced imaging equipment,
 or dependent on continuous connectivity. Commercial systems are predominantly binary and opaque, and
-some high-performing models, such as that of Ryu et al. (2021), operate on other modalities entirely
+some high-performing models, such as that of Ryu et al. [65], operate on other modalities entirely
 and are outside this work's scope.
 
 Transparent, five-class, device-robust systems whose preprocessing is fully specified and evaluated
@@ -812,8 +655,8 @@ variations.
 
 The field meanwhile has produced accurate and in some cases prospectively validated systems while
 treating preprocessing as ancillary data preparation: under-reported in the main text of landmark
-studies (Gulshan et al., 2016; Voets et al., 2019), omitted from several deployment reports, and
-rarely isolated or formalised as a component of the model. The review of Senapati et al. (2024)
+studies [12, 13], omitted from several deployment reports, and
+rarely isolated or formalised as a component of the model. The review of Senapati et al. [61]
 surveys the same record without reporting such an isolation.
 
 The gap is therefore not a deficit of accuracy but a deficit of method: the contribution of
@@ -908,7 +751,7 @@ can learn.
 That commitment is most clearly seen against the practice it departs from. In the end-to-end
 approach, preprocessing is treated as data preparation: published methods defer its details to
 supplementary material and locate the methodological emphasis in architecture, data scale and
-training protocol (Gulshan et al., 2016; Senapati et al., 2024). This describes observable practice
+training protocol [13, 61]. This describes observable practice
 and attributes no theoretical position to any author.
 
 The present work makes the opposite choice. It specifies the pipeline with the rigour later applied
@@ -1006,7 +849,7 @@ narrow band and each applied independently, so a given image receives an arbitra
 than all four. The bands are narrow by design, because fundus colour and contrast carry diagnostic
 signal and the perturbation must stay within plausible acquisition variation.
 
-The third family degrades rather than reshapes (Cubuk et al., 2020), adding low-probability sensor
+The third family degrades rather than reshapes [66], adding low-probability sensor
 noise and lossy recompression, the two ways real fundus images are most commonly degraded between
 capture and storage. Both probabilities are kept low: the objective is that the network see
 occasional degraded examples, not that it train predominantly on corrupted data.
@@ -1057,9 +900,9 @@ tension: amplifying local contrast amplifies noise, while suppressing noise blur
 structures that decide the early grades.
 
 The edge-preserving filtering literature resolves the tension in principle by making smoothing
-content-adaptive. Bilateral filtering (Tomasi and Manduchi, 1998) weights the average by photometric
+content-adaptive. Bilateral filtering [67] weights the average by photometric
 similarity as well as spatial proximity, so pixels across an intensity boundary do not bleed into
-one another; non-local means (Buades et al., 2011) generalises similarity from the neighbourhood to
+one another; non-local means [68] generalises similarity from the neighbourhood to
 patch self-similarity across the image. Both are presented through derivation and qualitative
 examples without medical-imaging evaluation, so they are cited for the principle and not for any
 downstream gain.
@@ -1070,17 +913,14 @@ managed instead by the clip rule, which caps the attainable mapping slope where 
 magnified, and by the upstream illumination correction. That is a rationale, not a claim of
 superiority over a denoising-augmented pipeline.
 
-The pipeline develops a lineage in the candidate's earlier published work (Sapakova et al., 2025;
-Yesmukhamedov and Sapakov, 2025), where conventional preprocessing raised validation accuracy
+The pipeline develops a lineage in the candidate's earlier published work [16], where conventional preprocessing raised validation accuracy
 substantially with a small convolutional network and an upgraded equalisation variant was studied on
 a different retinal database, into a formalised eight-stage, four-channel construct. Figures from
 that earlier work are not transferable to the present context and are not carried over.
 
 The wider literature motivates the standardisation objective without establishing it. Cross-corpus
-studies report performance varying between fundus sources processed as an exogenous step (Saxena et
-al., 2020), benchmark studies report that image quality bears on grading reliability (Fu et al.,
-2020; Liu et al., 2022), and enhancement studies report contrast operations helping or, for one
-architecture, harming classification (Hayati et al., 2023; Shaout and Han, 2025).
+studies report performance varying between fundus sources processed as an exogenous step [46], benchmark studies report that image quality bears on grading reliability [8, 15], and enhancement studies report contrast operations helping or, for one
+architecture, harming classification [69, 70].
 
 The objective the pipeline serves, reducing variability across devices and acquisition conditions
 while preserving diagnostically relevant features, is therefore stated here as a design objective
@@ -1092,7 +932,7 @@ The contrast stage rests on a lineage of three operations, and each step of it e
 specific failure of the one before. Setting the lineage out is what makes the final form's single
 governing parameter visible.
 
-Histogram equalisation (Pizer et al., 1987) redistributes intensities so the resulting histogram is
+Histogram equalisation [71] redistributes intensities so the resulting histogram is
 approximately uniform, mapping each intensity through the cumulative distribution of the image.
 Densely populated intensities are spread apart, expanding the range in which most of the information
 lies.
@@ -1111,13 +951,13 @@ produces a mapping with a very steep slope over that band. A steep mapping ampli
 differences indiscriminately, so whatever sensor and quantisation noise is present in an otherwise
 featureless region is amplified along with any signal.
 
-The resolution is the equivalence established by Zuiderveld (1994): limiting the slope of the
+The resolution is the equivalence established by Zuiderveld [72]: limiting the slope of the
 mapping is equivalent to clipping the height of the histogram. Truncating the local histogram at a
 maximum count before the cumulative mapping is formed, and redistributing the excess, bounds the
 attainable slope and with it the noise amplification.
 
 The clip limit is therefore the governing control of the method, setting the trade-off between
-contrast gain and noise suppression. Pizer et al. (1987) also observed that appropriate clipping
+contrast gain and noise suppression. Pizer et al. [71] also observed that appropriate clipping
 levels vary across imaging modalities and acquisition conditions, which is the first appearance of a
 caveat that recurs throughout this work: clip values are optimised for particular image
 distributions and are not asserted to be portable.
@@ -1135,7 +975,7 @@ That form makes the clip factor's role explicit: it scales the permitted bin hei
 uniform per-bin count, which is an accurate proxy for the average occupied-bin height only when a
 tile's intensities are spread across most of the levels.
 
-The candidate's prior work (Yesmukhamedov and Sapakov, 2025) replaced the derived clip with a single
+The candidate's prior work [16] replaced the derived clip with a single
 controllable global threshold, setting the limit directly as a scalar. That form was reported to
 improve the distinctiveness of fine vessels and was integrated with a fine-tuned residual network on
 a small retinal database.
@@ -1194,7 +1034,7 @@ dual-constraint rule itself, which generalises the single-threshold precursor ra
 it.
 
 The empirical literature reinforces why this parameterisation is treated as a quantity to be
-characterised rather than fixed by assumption. Hayati et al. (2023), evaluating contrast-limited
+characterised rather than fixed by assumption. Hayati et al. [69], evaluating contrast-limited
 equalisation under a uniform configuration across four architectures, found it helped three and
 degraded the fourth by twelve percentage points, which they attributed to the absence of
 per-architecture tuning.
@@ -1217,7 +1057,7 @@ hierarchy in which early layers respond to edges and textures and deeper layers 
 more abstract patterns.
 
 Expressive power grows with depth, but beyond a point accuracy saturates and then degrades, an
-optimisation failure rather than overfitting. He et al. (2016) resolve it by reformulating each
+optimisation failure rather than overfitting. He et al. [24] resolve it by reformulating each
 block to learn a residual function with reference to its input, through identity shortcuts that add
 neither parameters nor computation.
 
@@ -1226,7 +1066,7 @@ The pooling that gives a network its invariance and receptive-field growth does 
 spatial resolution, and the features most vulnerable to that loss are the smallest: the
 microaneurysms and fine vascular changes distinguishing the early, screening-critical grades.
 
-The point is made by the lesion-segmentation network of Wan et al. (2021), designed with a single
+The point is made by the lesion-segmentation network of Wan et al. [54], designed with a single
 pooling stage precisely to preserve small-lesion features and supplemented with attention and
 dilated convolutions. Its microaneurysm segmentation was nonetheless weak, a result its authors flag
 themselves, on small corpora without confidence intervals or cross-corpus transfer.
@@ -1237,8 +1077,8 @@ preprocessing stages are designed to share. That is one concrete expression of t
 preprocessing plus network, the two addressing the problem jointly.
 
 Two backbones are used throughout, drawn from distinct families. The first is the fifty-layer
-instance of the residual architecture of He et al. (2016), whose defining element is the identity
-shortcut. The second is a member of the compound-scaling family of Tan and Le (2019), in which
+instance of the residual architecture of He et al. [24], whose defining element is the identity
+shortcut. The second is a member of the compound-scaling family of Tan and Le [26], in which
 depth, width and input resolution are scaled together by a single coefficient rather than
 independently.
 
@@ -1257,7 +1097,7 @@ Keeping both backbones convolutional is tied to the causal logic of the study. A
 have changed the architecture and the initialisation at once, whereas an in-domain initialisation of
 the same convolutional design changes only the initialisation, so the contrast is not confounded.
 The question of convolutional against transformer architectures is outside the scope of this work's
-claims, and the wider landscape (Dosovitskiy et al., 2021; Xu et al., 2024) is cited only to situate
+claims, and the wider landscape [35, 37] is cited only to situate
 the choice.
 
 The two backbones must accept inputs of different channel count across conditions, three in the
@@ -1282,14 +1122,14 @@ replication meaningful. The replication question asks whether the same direction
 for both backbones, and it is well posed only if both are adapted to the task in the same way.
 
 Regularisation operates at three levels and all three are used. At the level of the weights, dropout
-(Srivastava et al., 2014) prevents units from co-adapting into fragile jointly tuned detectors, and
-batch normalisation (Ioffe and Szegedy, 2015) stabilises optimisation while conferring a mild
+[73] prevents units from co-adapting into fragile jointly tuned detectors, and
+batch normalisation [74] stabilises optimisation while conferring a mild
 regularising effect through the noise of batch statistics. That effect weakens as the batch shrinks,
 which is a real caveat at the batch size of sixteen the memory budget imposes.
 
 At the level of the training process, early stopping halts training once a validation measure ceases
 to improve and the learning rate is reduced when it plateaus; at the level of the data, augmentation
-acts as specified in section 2.1 (Shorten and Khoshgoftaar, 2019). None is claimed to prevent
+acts as specified in section 2.1 [75]. None is claimed to prevent
 overfitting: each is a contributing control whose effect is empirical, and the candidate's earlier
 work found these measures reduced but did not eliminate the gap between training and held-out
 performance.
@@ -1328,9 +1168,9 @@ sharing no image and no patient identifier. That disjointness is a binding no-le
 analogous to the separateness of the natural-image corpus for the baseline arm, and is enforced by
 an explicit assertion in the implementation.
 
-The primary protocol is the negative-free objective of Grill et al. (2020), robust to small batches
-and so suited to a single-device compute budget, with the alternatives of He et al. (2020), Chen et
-al. (2020), Chen and He (2021) and Caron et al. (2021) retained; Arrieta et al. (2022) apply the
+The primary protocol is the negative-free objective of Grill et al. [76], robust to small batches
+and so suited to a single-device compute budget, with the alternatives of He et al. [77], Chen et
+al. [78], Chen and He [79] and Caron et al. [80] retained; Arrieta et al. [81] apply the
 family to this disease. And no checkpoint is admitted until it passes a frozen-backbone acceptance
 gate.
 
@@ -1346,8 +1186,8 @@ must be flagged wherever it is used.
 
 The rationale for a convolution-native in-domain initialisation is to obtain domain-specific weights
 without confounding the experiment with an architecture change. Adapting representations across a
-distribution gap by adversarial alignment (Ganin et al., 2016) is a different response to the same
-gap and is not the one taken here. The published retinal foundation model of Zhou et al. (2023) is a
+distribution gap by adversarial alignment [82] is a different response to the same
+gap and is not the one taken here. The published retinal foundation model of Zhou et al. [44] is a
 vision transformer, so initialising from it would change both the architecture and the
 initialisation relative to the baseline arm, and any observed difference would conflate the
 preprocessing contribution with an architectural one.
@@ -1367,10 +1207,8 @@ integrated configuration outperforms the baseline configuration on a given measu
 margin. Decomposing the composite into separate contributions would require a further factorial,
 which is outside the scope of this work and is named as further work.
 
-The literature status of this choice needs stating plainly. Zhou et al. (2023) report that in-domain
-self-supervised pretraining on retinal images yields generalisable representations, and Azizi et al.
-(2021) that in-domain medical pretraining can exceed natural-image transfer; Shurrab and Duwairi
-(2022) survey the family. Those sources establish the credibility of the direction.
+The literature status of this choice needs stating plainly. Zhou et al. [44] report that in-domain
+self-supervised pretraining on retinal images yields generalisable representations, and Azizi et al. [45] that in-domain medical pretraining can exceed natural-image transfer; Shurrab and Duwairi [83] survey the family. Those sources establish the credibility of the direction.
 
 What they do not establish is the specific configuration adopted here. The retinal evidence was
 obtained with a transformer backbone and the medical evidence with non-fundus modalities, whereas
@@ -1388,7 +1226,7 @@ poorly conditioned gradients of an untrained head propagating back into and disr
 pretrained weights.
 
 In the second stage the upper layers are progressively unfrozen and trained jointly with the head.
-As Yosinski et al. (2014) show, the higher-level features are the most task-specific and therefore
+As Yosinski et al. [84] show, the higher-level features are the most task-specific and therefore
 the most likely to benefit from adaptation, while the lower, more generic layers are adapted
 conservatively or left fixed.
 
@@ -1413,8 +1251,8 @@ severely imbalanced training distribution. Under an unweighted objective the gra
 dominated by the majority grade, and the network could minimise the average loss while performing
 poorly on the rare severe grades that are clinically the most consequential.
 
-The objective is the focal loss of Lin et al. (2017) with inverse-frequency class weighting, an
-alternative to the effective-number reweighting of Cui et al. (2019), and two mechanisms act
+The objective is the focal loss of Lin et al. [85] with inverse-frequency class weighting, an
+alternative to the effective-number reweighting of Cui et al. [86], and two mechanisms act
 together in it. The focal modulating factor down-weights examples already classified confidently and
 correctly, redirecting emphasis toward hard and misclassified ones. The class weight is the inverse
 frequency of each grade, so rare grades contribute in proportion to their scarcity rather than being
@@ -1427,8 +1265,8 @@ objective surface and augmentation the input distribution.
 
 Neither is asserted to resolve the imbalance. The choice is made against a literature in which
 cost-sensitive learning, though an active direction, remains thinly validated: the systematic review
-of Araf et al. (2024) found only two of one hundred and seventy-three surveyed papers to be
-validation studies. Buda et al. (2018) reach a comparable reading of imbalance remedies. That
+of Araf et al. [87] found only two of one hundred and seventy-three surveyed papers to be
+validation studies. Buda et al. [88] reach a comparable reading of imbalance remedies. That
 observation frames the design choice without supplying evidence specific to this task.
 
 ## 2.5 Explainability and quality metrics
@@ -1437,21 +1275,21 @@ A classifier outputs a grade, but a screening tool is more usable if it can indi
 image its evidence for that grade lies. This section formalises the family of methods used for that
 purpose, and fixes from the outset the limit on what they establish.
 
-The lineage begins with the class activation mapping of Zhou et al. (2016). Where the final feature
+The lineage begins with the class activation mapping of Zhou et al. [47]. Where the final feature
 maps are reduced by global average pooling before the classification layer, the learned weight
 connecting a map to a class can be projected back onto that map's activations, indicating the
 importance of each location for that class. It requires the network to be built with that pooling
 stage, and its weakly supervised localisation remained substantially worse than fully supervised
 localisation.
 
-The gradient-based generalisation of Selvaraju et al. (2017) removes the architectural constraint by
+The gradient-based generalisation of Selvaraju et al. [48] removes the architectural constraint by
 replacing those weights with gradients. A map's importance is the spatial average of the gradient of
 the class score with respect to its activations, and the result is a weighted combination of feature
 maps passed through a rectifier that keeps only features exerting a positive influence.
 
 Because the weights come from backpropagation rather than a particular pooling structure, the method
 applies to essentially any convolutional architecture without retraining. The later refinement of
-Chattopadhyay et al. (2018) derives pixel-wise weights from higher-order terms; the choice among
+Chattopadhyay et al. [49] derives pixel-wise weights from higher-order terms; the choice among
 variants here is a methodological decision, not a superiority claim.
 
 [FIG-2.7: Gradient-weighted combination of final-layer feature maps — defense/figures/figures_mine/fig2_3_gradcam.png]
@@ -1488,9 +1326,9 @@ useful.
 
 Turning plausibility into a quantity requires an explicit overlap measure, and two are used. The
 first, primary, references only the annotated lesion area and measures how much of it the attention
-covers. The second is the symmetric intersection-over-union of Everingham et al. (2010), charging
+covers. The second is the symmetric intersection-over-union of Everingham et al. [89], charging
 its denominator for attention spilling beyond the lesion as well as for lesion the attention fails
-to cover; Rezatofighi et al. (2019) analyse its behaviour.
+to cover; Rezatofighi et al. [90] analyse its behaviour.
 
 The choice of the first as primary follows from the nature of the maps. A map is coarse and
 class-discriminative, so its thresholded region tends by construction to extend beyond the boundary
@@ -1532,7 +1370,7 @@ establish or refute the diagnostic hypotheses, which rest on the classification 
 
 Their literature grounding is thin and general rather than specific to this disease, and that is
 acknowledged rather than concealed. Structural similarity derives from the general image-quality
-benchmark of Wang et al. (2004), with no retinal application in its source, and the contrast measure
+benchmark of Wang et al. [91], with no retinal application in its source, and the contrast measure
 has no dedicated primary source and is defined operationally here. They are used as established
 image-analysis tools, not as validated measures for this task.
 
@@ -1582,7 +1420,7 @@ figures reported in that work on small corpora are explicitly not transferable.
 
 A qualification applies to every measure in the table. Each is computed against the reference grades
 supplied with the corpus, and the reliability of those grades is itself an evaluation variable.
-Grader variability can materially shift apparent performance (Krause et al., 2018), and adjudicated
+Grader variability can materially shift apparent performance [92], and adjudicated
 reference standards reduce but do not eliminate it. This work inherits the public corpora's labels
 and their reference-standard limitations.
 
@@ -1597,7 +1435,7 @@ the weighted aggregate while failing on a minority grade.
 
 For the screening analyses, sensitivity, specificity and both predictive values are reported at the
 referral threshold. Calibration is assessed by the expected calibration error and the Brier score
-(Guo et al., 2017), which quantify whether predicted probabilities match observed frequencies.
+[93], which quantify whether predicted probabilities match observed frequencies.
 Calibration is an empirical diagnostic property only; it does not establish the clinical reliability
 of those probabilities, and no such claim is made.
 
@@ -1614,7 +1452,7 @@ The conjunction is what gives the criterion its force. A criterion satisfiable b
 could be satisfied by a change that merely trades discrimination against agreement, and the ordinal
 structure of the grade scale makes that trade easy to achieve inadvertently.
 
-Optimisation is by the adaptive-moment method of Kingma and Ba (2015) throughout. An estimate
+Optimisation is by the adaptive-moment method of Kingma and Ba [94] throughout. An estimate
 without a quantified uncertainty cannot support compound criteria of that kind, so the protocol
 specifies how the measures are computed across partitions and how their uncertainty is quantified.
 
@@ -1729,12 +1567,12 @@ held-out test corpus of the small-sample experiment. Table 3.1 sets out the full
 | RFMiD | Device | Acquisition-hardware shift | ~3,200 | Multi-disease, DR subset | Topcon, Kowa |
 
 Sizes and camera models are attributes reported by the corpus descriptors, not results. EyePACS is
-documented by Cuadros and Bresnick (2009), whose telemedicine descriptor establishes the ICDR
+documented by Cuadros and Bresnick [95], whose telemedicine descriptor establishes the ICDR
 grading and the Canon nonmydriatic acquisition; the labelled count is an attribute of the Kaggle
 partition rather than a figure those authors report.
 
-Messidor-2 is documented by Decenciere et al. (2014) and the device corpora by Liu et al. (2022)
-among others. IDRiD is documented by Porwal et al. (2018): 516 images from a single Indian clinic on
+Messidor-2 is documented by Decenciere et al. [96] and the device corpora by Liu et al. [15]
+among others. IDRiD is documented by Porwal et al. [97]: 516 images from a single Indian clinic on
 a single camera, 81 of them carrying masks for four lesion types. That single-centre, single-camera
 provenance is a limitation inherited by every result derived from the corpus, and it travels with
 each of them.
@@ -2780,14 +2618,14 @@ or evaluated on these corpora, and the quantity each reports is not the quantity
 
 | Study or system | Task as defined | Corpus | Reference standard | Value |
 |---|---|---|---|---|
-| Gulshan et al. (2016) | Binary, referable | Private training; two retrospective validation sets | Ophthalmologist panel | ROC-AUC 0.991 and 0.990 |
-| Ting et al. (2017) | Binary, referable | National programme, ten external cohorts | Masked retinal specialist | ROC-AUC 0.936 |
-| Abràmoff et al. (2018) | Binary, autonomous referral | Prospective, 900 patients, ten sites | Reading-centre grading | Sensitivity 87.2%, specificity 90.7% |
-| Zhang et al. (2022) | Binary, referable, patient level | 83,465 images, four centres, private | Specialist consensus | ROC-AUC 0.9848 |
-| Ruamviboonsuk et al. (2022) | Binary, vision-threatening | Prospective deployment, nine sites | Adjudicated specialists | Sensitivity 91.4%, specificity 95.4% |
-| De Fauw et al. (2018) | Referral from optical coherence tomography | Private | Referral consensus | Different modality |
-| Rakhlin (2017) | Binary, referable | EyePACS training, two public test sets | Public dataset labels | ROC-AUC 0.967 and 0.923 |
-| Wewetzer et al. (2021) | Meta-analysis, primary care | Heterogeneous, pooled | Study-dependent | Summary ROC-AUC 0.9543 |
+| Gulshan et al. [13] | Binary, referable | Private training; two retrospective validation sets | Ophthalmologist panel | ROC-AUC 0.991 and 0.990 |
+| Ting et al. [56] | Binary, referable | National programme, ten external cohorts | Masked retinal specialist | ROC-AUC 0.936 |
+| Abràmoff et al. [55] | Binary, autonomous referral | Prospective, 900 patients, ten sites | Reading-centre grading | Sensitivity 87.2%, specificity 90.7% |
+| Zhang et al. [58] | Binary, referable, patient level | 83,465 images, four centres, private | Specialist consensus | ROC-AUC 0.9848 |
+| Ruamviboonsuk et al. [59] | Binary, vision-threatening | Prospective deployment, nine sites | Adjudicated specialists | Sensitivity 91.4%, specificity 95.4% |
+| De Fauw et al. [98] | Referral from optical coherence tomography | Private | Referral consensus | Different modality |
+| Rakhlin [11] | Binary, referable | EyePACS training, two public test sets | Public dataset labels | ROC-AUC 0.967 and 0.923 |
+| Wewetzer et al. [62] | Meta-analysis, primary care | Heterogeneous, pooled | Study-dependent | Summary ROC-AUC 0.9543 |
 | This work | Five-class ordinal grading | EyePACS, patient-level folds; external corpora zero-shot | Public dataset labels | Reported in sections 3.2 to 3.7 |
 
 The table is read along its axes of difference rather than down a column, and there are four. Every
@@ -3012,7 +2850,7 @@ result of the demonstrator is evidence for any diagnostic claim, every such clai
 experiments of chapter 3.
 
 The architecture is not introduced here for the first time. Prior work by the candidate
-(Yesmukhamedov et al., 2025) proposed a modular system for ophthalmological screening, decomposing
+[6] proposed a modular system for ophthalmological screening, decomposing
 it into components for image capture, processing, recognition, diagnosis, reporting, user
 interaction, data storage and error handling. That publication presented the architecture as a
 design and reported neither an implementation nor any validation of it.
@@ -3059,7 +2897,7 @@ where the machine holding the accelerator may not be the machine an operator sit
 
 Two integration surfaces of the original design remain specification and are not built. Linking
 persisted records to hospital information systems through the imaging and record-exchange interfaces
-surveyed by Nandal (2024) is described in the prior design and is not realised in the demonstrator,
+surveyed by Nandal [99] is described in the prior design and is not realised in the demonstrator,
 which stores its records locally in its own format. Nothing in this chapter should be read as
 reporting an integration that exists.
 
@@ -3208,11 +3046,10 @@ a round of corrections from degrading a detector that was working.
 The loop is built and has not been exercised on real corrections. What exists is the mechanism, not
 a demonstration that operator corrections improve the detector, and no such improvement is claimed.
 
-Two capabilities the original design (Yesmukhamedov et al., 2025) describes remain specification.
+Two capabilities the original design [6] describes remain specification.
 Support for portable and smartphone-based capture, and operation within a distributed telemedicine
 service linked to a national health platform, are described there and are not realised here. Both
-are established modes of delivery in the wider record (Bellemo et al., 2019; Ting et al., 2019;
-Morya et al., 2024).
+are established modes of delivery in the wider record [2, 57, 60].
 
 What the built system does bear on is the first of them, indirectly and only architecturally.
 Because the client is a static bundle holding no model, and the service can run wherever an
@@ -3240,7 +3077,7 @@ Those are the properties of a demonstrator rather than of a clinical deployment,
 chapter suggests otherwise. A system handling patient data in service would require identity,
 authorisation and access logging, none of which is built.
 
-The data-protection framing of the original design (Yesmukhamedov et al., 2025) is a design
+The data-protection framing of the original design [6] is a design
 specification and not a certified compliance status. That distinction binds every statement in this
 section: describing a protocol aligned to a regulatory regime is not the same as having been
 assessed against it, and no assessment has been undertaken.
@@ -3262,7 +3099,7 @@ difference between the two is exactly what a reader of a system chapter needs.
 Applicability to the national healthcare infrastructure this work is directed at is bounded by the
 absence of field testing there. The infrastructure prerequisites the original design acknowledged,
 investment in diagnostic equipment, adaptation to local data, national standards development and
-specialist training, are unchanged by anything demonstrated here. Beede et al. (2020) document what
+specialist training, are unchanged by anything demonstrated here. Beede et al. [14] document what
 such prerequisites cost a deployment that lacks them.
 
 Deployment outcomes projected for that setting in prior work are third-party projections cited as
@@ -3439,6 +3276,115 @@ they are not incidental to it: a claim narrow enough to be checked is the only k
 
 
 ---
+
+
+---
+
+# LIST OF REFERENCES USED
+
+> In order of first appearance (GOST 7.32-2001, section 6.11), described per GOST 7.1-2003 from the bibliographic field of each literature card.
+
+1 Kusuhara S. Pathophysiology of diabetic retinopathy: The old and the new / S. Kusuhara, Y. Fukushima, S. Ogura [et al.] // Diabetes & Metabolism Journal. – 2018. – Vol. 42, No. 5. – P. 364–376. – DOI: 10.4093/dmj.2018.0182.
+2 Morya A. K. Diabetic retinopathy: A review on its pathophysiology and novel treatment modalities / A. K. Morya, P. V. Ramesh, P. Nishant [et al.] // World Journal of Methodology. – 2024. – Vol. 14, No. 4. – Art. No. 95881. – DOI: 10.5662/wjm.v14.i4.95881.
+3 Wang W. Diabetic retinopathy: Pathophysiology and treatments / W. Wang, A. C. Y. Lo // International Journal of Molecular Sciences. – 2018. – Vol. 19, No. 6. – Art. No. 1816. – DOI: 10.3390/ijms19061816.
+4 Gettinger K. Diabetic retinopathy, a comprehensive overview on pathophysiology and relevant experimental models / K. Gettinger, D. Lee, Y. Tomita [et al.] // International Journal of Molecular Sciences. – 2025. – Vol. 26. – Art. No. 9882. – DOI: 10.3390/ijms26209882.
+5 Kesharwani D. A review of diabetic retinopathy–Pathophysiology, clinical presentation, and management / D. Kesharwani, S. Parashar, J. Varghese [et al.] // Journal of Pharmaceutical Research International. – 2021. – Vol. 33, No. 60B. – P. 698–704. – DOI: 10.9734/JPRI/2021/v33i60B34668.
+6 Yesmukhamedov N. S. Development of an information system architecture for healthcare institutions using artificial intelligence / N. S. Yesmukhamedov, S. Sapakova, S. A. R. Al-Haddad [et al.] // News of the National Academy of Sciences of the Republic of Kazakhstan. Physico-Mathematical Series. – 2025. – No. 2 (354). – P. 74–91. – DOI: 10.32014/2025.2518-1726.345.
+7 Shen Z. Modeling and Enhancing Low-Quality Retinal Fundus Images / Z. Shen, H. Fu, J. Shen [et al.] // IEEE Transactions on Medical Imaging. – 2020. – Vol. 40, No. 3. – P. 996–1006. – arXiv:2005.05594.
+8 Fu H. Evaluation of Retinal Image Quality Assessment Networks in Different Color-spaces / H. Fu, B. Wang, J. Shen [et al.] // arXiv preprint. – 2020. – arXiv:1907.05345v4.
+9 Zago G. T. Retinal image quality assessment using deep learning / G. T. Zago, R. V. Andreão, B. Dorizzi [et al.] // Computers in Biology and Medicine. – 2018. – Vol. 103. – P. 64–70.
+10 Dai L. A deep learning system for detecting diabetic retinopathy across the disease spectrum / L. Dai, L. Wu, H. Li [et al.] // Nature Communications. – 2021. – Vol. 12. – Art. No. 3242.
+11 Rakhlin A. Diabetic retinopathy detection through integration of deep learning classification framework / A. Rakhlin // bioRxiv preprint. – 2017. – DOI: 10.1101/225508.
+12 Voets M. Reproduction study using public data of: Development and validation of a deep learning algorithm for detection of diabetic retinopathy in retinal fundus photographs / M. Voets, K. Møllersen, L. A. Bongo // PLoS ONE. – 2019. – Vol. 14, No. 6. – Art. No. e0217541.
+13 Gulshan V. Development and validation of a deep learning algorithm for detection of diabetic retinopathy in retinal fundus photographs / V. Gulshan, L. Peng, M. Coram [et al.] // JAMA. – 2016. – Vol. 316, No. 22. – P. 2402–2410.
+14 Beede E. A Human-Centered Evaluation of a Deep Learning System Deployed in Clinics for the Detection of Diabetic Retinopathy / E. Beede, E. Baylor, F. Hersch [et al.] // Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems (CHI '20). – 2020. – P. 1–12.
+15 Liu R. DeepDRiD: Diabetic Retinopathy–Grading and Image Quality Estimation Challenge / R. Liu, X. Wang, Q. Wu [et al.] // Patterns. – 2022. – Vol. 3, No. 6. – Art. No. 100512. – DOI: 10.1016/j.patter.2022.100512.
+16 Sapakova S. Development of an image quality enhancement approach for diabetic retinopathy diagnosis / S. Sapakova, N. Yesmukhamedov, A. Sapakov // Eastern-European Journal of Enterprise Technologies. – 2025. – Vol. 4, No. 9 (136). – P. 79–88. – DOI: 10.15587/1729-4061.2025.335570.
+17 Zhou K. Domain Generalization: A Survey / K. Zhou, Z. Liu, Y. Qiao [et al.] // IEEE Transactions on Pattern Analysis and Machine Intelligence. – 2023. – Vol. 45, No. 4. – P. 4396–4415. – DOI: 10.1109/TPAMI.2022.3195549.
+18 Wang M. Deep visual domain adaptation: A survey / M. Wang, W. Deng // Neurocomputing. – 2018. – Vol. 312. – P. 135–153.
+19 Krizhevsky A. ImageNet Classification with Deep Convolutional Neural Networks / A. Krizhevsky, I. Sutskever, G. E. Hinton // Advances in Neural Information Processing Systems 25 (NeurIPS 2012). – 2012.
+20 Simonyan K. Very Deep Convolutional Networks for Large-Scale Image Recognition / K. Simonyan, A. Zisserman // Proceedings of the 3rd International Conference on Learning Representations (ICLR). – 2015. – arXiv:1409.1556.
+21 Szegedy C. Going Deeper with Convolutions / C. Szegedy, W. Liu, Y. Jia [et al.] // Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). – 2015. – P. 1–9. – arXiv:1409.4842.
+22 Szegedy C. Rethinking the Inception Architecture for Computer Vision / C. Szegedy, V. Vanhoucke, S. Ioffe [et al.] // Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). – 2016. – P. 2818–2826. – arXiv:1512.00567.
+23 Litjens G. A survey on deep learning in medical image analysis / G. Litjens, T. Kooi, B. E. Bejnordi [et al.] // Medical Image Analysis. – 2017. – Vol. 42. – P. 60–88. – arXiv:1702.05747.
+24 He K. Deep residual learning for image recognition / K. He, X. Zhang, S. Ren [et al.] // Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR 2016). – IEEE, 2016. – P. 770–778.
+25 Huang G. Densely Connected Convolutional Networks / G. Huang, Z. Liu, L. van der Maaten [et al.] // Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). – 2017. – P. 2261–2269.
+26 Tan M. EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks / M. Tan, Q. V. Le // Proceedings of the 36th International Conference on Machine Learning (ICML 2019). – PMLR, 2019. – Vol. 97.
+27 Pratt H. Convolutional neural networks for diabetic retinopathy / H. Pratt, F. Coenen, D. M. Broadbent [et al.] // Procedia Computer Science. – 2016. – Vol. 90. – P. 200–205.
+28 Gargeya R. Automated Identification of Diabetic Retinopathy Using Deep Learning / R. Gargeya, T. Leng // Ophthalmology. – 2017. – Vol. 124, No. 7. – P. 962–969.
+29 Quellec G. Deep image mining for diabetic retinopathy screening / G. Quellec, K. Charrière, Y. Boudi [et al.] // Medical Image Analysis. – 2017. – Vol. 39. – P. 178–193. – arXiv:1610.07086.
+30 Arora L. Ensemble deep learning and EfficientNet for accurate diagnosis of diabetic retinopathy / L. Arora, S. K. Singh, S. Kumar [et al.] // Scientific Reports. – 2024. – Vol. 14. – Art. No. 30554. – DOI: 10.1038/s41598-024-81132-4.
+31 Sharma V. Transforming retinal diagnostics: Advanced detection of diabetic retinopathy using vision transformers and capsule networks / V. Sharma, Rishu, V. Kukreja [et al.] // Journal of Computer Science. – 2025. – Vol. 21, No. 2. – P. 304–321. – DOI: 10.3844/jcssp.2025.304.321.
+32 Esteva A. Dermatologist-level classification of skin cancer with deep neural networks / A. Esteva, B. Kuprel, R. A. Novoa [et al.] // Nature. – 2017. – Vol. 542, No. 7639. – P. 115–118.
+33 Burlina P. M. Automated Grading of Age-Related Macular Degeneration From Color Fundus Images Using Deep Convolutional Neural Networks / P. M. Burlina, N. Joshi, M. Pekala [et al.] // JAMA Ophthalmology. – 2017. – Vol. 135, No. 11. – P. 1170–1176.
+34 Khosravi P. External validation of deep learning models for classifying etiology of retinal hemorrhage using diverse fundus photography datasets / P. Khosravi, N. A. Huck, K. Shahraki [et al.] // Bioengineering. – 2025. – Vol. 12, No. 1. – Art. No. 20. – DOI: 10.3390/bioengineering12010020.
+35 Dosovitskiy A. An image is worth 16×16 words: Transformers for image recognition at scale / A. Dosovitskiy, L. Beyer, A. Kolesnikov [et al.] // International Conference on Learning Representations (ICLR 2021). – 2021.
+36 Liu Z. Swin Transformer: Hierarchical Vision Transformer using Shifted Windows / Z. Liu, Y. Lin, Y. Cao [et al.] // Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV). – 2021. – P. 10012–10022. – arXiv:2103.14030.
+37 Xu H. A hybrid neural network approach for classifying diabetic retinopathy subtypes / H. Xu, X. Shao, D. Fang [et al.] // Frontiers in Medicine. – 2024. – Vol. 10. – Art. No. 1293019. – DOI: 10.3389/fmed.2023.1293019.
+38 Goh J. H. L. Comparative analysis of vision transformers and conventional convolutional neural networks in detecting referable diabetic retinopathy / J. H. L. Goh, E. Ang, S. Srinivasan [et al.] // Ophthalmology Science. – 2024. – Vol. 4, No. 6. – Art. No. 100552.
+39 González-Díaz J. E. Use of Vision Transformers in Ophthalmology for Early Detection of Age-Related Macular Degeneration (AMD): A Comparative Analysis / J. E. González-Díaz, A. J. Reyes-Delgado, J. L. Sánchez-Cervantes [et al.] // Preprints.org. – 2024. – Art. No. 20241101740. – DOI: 10.20944/preprints202411.1740.v1.
+40 Geetha T. Deep learning-based joint analysis of diabetic retinopathy and glaucoma in retinal fundus images / T. Geetha, C. Hema // Scientific Reports. – 2026. – Vol. 16. – Art. No. 3133. – DOI: 10.1038/s41598-025-32991-y.
+41 Pan S. J. A Survey on Transfer Learning / S. J. Pan, Q. Yang // IEEE Transactions on Knowledge and Data Engineering. – 2010. – Vol. 22, No. 10. – P. 1345–1359.
+42 Kornblith S. Do Better ImageNet Models Transfer Better? / S. Kornblith, J. Shlens, Q. V. Le // Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2019). – IEEE/CVF, 2019. – P. 2661–2671.
+43 Cheplygina V. Not-so-supervised: A survey of semi-supervised, multi-instance, and transfer learning in medical image analysis / V. Cheplygina, M. de Bruijne, J. P. W. Pluim // Medical Image Analysis. – 2019. – Vol. 54. – P. 280–296. – DOI: 10.1016/j.media.2019.03.009.
+44 Zhou Y. A foundation model for generalizable disease detection from retinal images / Y. Zhou, M. A. Chia, S. K. Wagner [et al.] // Nature. – 2023. – Vol. 622, No. 7981. – P. 156–163.
+45 Azizi S. Big Self-Supervised Models Advance Medical Image Classification / S. Azizi, B. Mustafa, F. Ryan [et al.] // Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV). – 2021. – arXiv:2101.05224.
+46 Saxena G. Improved and robust deep learning agent for preliminary detection of diabetic retinopathy using public datasets / G. Saxena, D. K. Verma, A. Paraye [et al.] // Intelligence-Based Medicine. – 2020. – Vol. 3–4. – Art. No. 100022.
+47 Zhou B. Learning Deep Features for Discriminative Localization / B. Zhou, A. Khosla, A. Lapedriza [et al.] // Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR 2016). – 2016. – P. 2921–2929.
+48 Selvaraju R. R. Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization / R. R. Selvaraju, M. Cogswell, A. Das [et al.] // Proceedings of the IEEE International Conference on Computer Vision (ICCV). – 2017. – P. 618–626.
+49 Chattopadhyay A. Grad-CAM++: Improved visual explanations for deep convolutional networks / A. Chattopadhyay, A. Sarkar, P. Howlader [et al.] // arXiv preprint. – 2018. – arXiv:1710.11063.
+50 Ribeiro M. T. “Why Should I Trust You?”: Explaining the Predictions of Any Classifier / M. T. Ribeiro, S. Singh, C. Guestrin // Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD 2016). – New York : ACM, 2016. – P. 1135–1144.
+51 Lundberg S. M. A Unified Approach to Interpreting Model Predictions / S. M. Lundberg, S.-I. Lee // Proceedings of the 31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, California, USA. – 2017. – arXiv:1705.07874v2.
+52 Samek W. Explainable artificial intelligence: Understanding, visualizing and interpreting deep learning models / W. Samek, T. Wiegand, K.-R. Müller // arXiv preprint. – 2017. – arXiv:1708.08296.
+53 Tjoa E. A Survey on Explainable Artificial Intelligence (XAI): towards Medical XAI / E. Tjoa, C. Guan // arXiv preprint. – 2020. – arXiv:1907.07374v5.
+54 Wan C. EAD-Net: A novel lesion segmentation method in diabetic retinopathy using neural networks / C. Wan, Y. Chen, H. Li [et al.] // Disease Markers. – 2021. – Vol. 2021. – Art. No. 6482665. – DOI: 10.1155/2021/6482665.
+55 Abràmoff M. D. Pivotal trial of an autonomous AI-based diagnostic system for detection of diabetic retinopathy in primary care offices / M. D. Abràmoff, P. T. Lavin, M. Birch [et al.] // npj Digital Medicine. – 2018. – Vol. 1. – Art. No. 39. – DOI: 10.1038/s41746-018-0040-6.
+56 Ting D. S. W. Development and validation of a deep learning system for diabetic retinopathy and related eye diseases using retinal images from multiethnic populations with diabetes / D. S. W. Ting, C. Y.-L. Cheung, G. Lim [et al.] // JAMA. – 2017. – Vol. 318, No. 22. – P. 2211–2223.
+57 Bellemo V. Artificial intelligence using deep learning to screen for referable and vision-threatening diabetic retinopathy in Africa: a clinical validation study / V. Bellemo, Z. W. Lim, G. Lim [et al.] // The Lancet Digital Health. – 2019. – Vol. 1, No. 1. – P. e35–e44.
+58 Zhang G. Automated multidimensional deep learning platform for referable diabetic retinopathy detection: A multicentre, retrospective study / G. Zhang, J.-W. Lin, J. Wang [et al.] // BMJ Open. – 2022. – Vol. 12. – Art. No. e060155. – DOI: 10.1136/bmjopen-2021-060155.
+59 Ruamviboonsuk P. Real-time diabetic retinopathy screening by deep learning in a multisite national screening programme: A prospective interventional cohort study / P. Ruamviboonsuk, R. Tiwari, R. Sayres [et al.] // The Lancet Digital Health. – 2022. – Vol. 4, No. 4. – P. e235–e244.
+60 Ting D. S. W. Deep learning in ophthalmology: The technical and clinical considerations / D. S. W. Ting, L. Peng, A. V. Varadarajan [et al.] // Progress in Retinal and Eye Research. – 2019. – Vol. 72. – Art. No. 100759.
+61 Senapati A. Artificial intelligence for diabetic retinopathy detection: A systematic review / A. Senapati, H. K. Tripathy, V. Sharma [et al.] // Informatics in Medicine Unlocked. – 2024. – Vol. 45. – Art. No. 101445. – DOI: 10.1016/j.imu.2024.101445.
+62 Wewetzer L. Diagnostic performance of deep-learning-based screening methods for diabetic retinopathy in primary care–A meta-analysis / L. Wewetzer, L. A. Held, J. Steinhäuser // PLoS ONE. – 2021. – Vol. 16, No. 8. – Art. No. e0255034. – DOI: 10.1371/journal.pone.0255034.
+63 Sánchez-Gutiérrez V. Performance of a deep learning system for detection of referable diabetic retinopathy in real clinical settings / V. Sánchez-Gutiérrez, P. Hernández-Martínez, F. J. Muñoz-Negrete [et al.] // arXiv preprint. – 2022. – arXiv:2205.05554v1.
+64 Baget-Bernaldiz M. Testing a deep learning algorithm for detection of diabetic retinopathy in a Spanish diabetic population and with MESSIDOR database / M. Baget-Bernaldiz, P. Romero-Aroca, E. Santos-Blanco [et al.] // Diagnostics. – 2021. – Vol. 11, No. 8. – Art. No. 1385.
+65 Ryu G. A deep learning model for identifying diabetic retinopathy using optical coherence tomography angiography / G. Ryu, K. Lee, D. Park [et al.] // Scientific Reports. – 2021. – Vol. 11. – Art. No. 23024. – DOI: 10.1038/s41598-021-02479-6.
+66 Cubuk E. D. RandAugment: Practical automated data augmentation with a reduced search space / E. D. Cubuk, B. Zoph, J. Shlens [et al.] // Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW). – 2020. – P. 702–703. – arXiv:1909.13719.
+67 Tomasi C. Bilateral filtering for gray and color images / C. Tomasi, R. Manduchi // Proceedings of the 1998 IEEE International Conference on Computer Vision (ICCV), Bombay, India. – IEEE, 1998.
+68 Buades A. Non-Local Means Denoising / A. Buades, B. Coll, J.-M. Morel // Image Processing On Line. – 2011. – Vol. 1. – P. 208–212. – DOI: 10.5201/ipol.2011.bcm_nlm.
+69 Hayati M. Impact of CLAHE-based image enhancement for diabetic retinopathy classification through deep learning / M. Hayati, K. Muchtar, Roslidar [et al.] // Procedia Computer Science. – 2023. – Vol. 216. – P. 57–66.
+70 Shaout A. A novel retinal image contrast enhancement – Fuzzy-based method / A. Shaout, J. Han // arXiv preprint. – 2025. – arXiv:2502.17850v2.
+71 Pizer S. M. Adaptive histogram equalization and its variations / S. M. Pizer, E. P. Amburn, J. D. Austin [et al.] // Computer Vision, Graphics, and Image Processing. – Academic Press, 1987. – Vol. 39, No. 3. – P. 355–368.
+72 Zuiderveld K. Contrast Limited Adaptive Histogram Equalization / K. Zuiderveld // Graphics Gems IV / ed. by P. S. Heckbert. – Academic Press, 1994. – P. 474–485.
+73 Srivastava N. Dropout: A Simple Way to Prevent Neural Networks from Overfitting / N. Srivastava, G. Hinton, A. Krizhevsky [et al.] // Journal of Machine Learning Research. – 2014. – Vol. 15, No. 56. – P. 1929–1958.
+74 Ioffe S. Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift / S. Ioffe, C. Szegedy // Proceedings of the 32nd International Conference on Machine Learning (ICML). – 2015. – P. 448–456. – arXiv:1502.03167.
+75 Shorten C. A survey on Image Data Augmentation for Deep Learning / C. Shorten, T. M. Khoshgoftaar // Journal of Big Data. – 2019. – Vol. 6, No. 1. – Art. No. 60.
+76 Grill J.-B. Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning / J.-B. Grill, F. Strub, F. Altché [et al.] // Advances in Neural Information Processing Systems (NeurIPS). – 2020. – Vol. 33. – P. 21271–21284. – arXiv:2006.07733.
+77 He K. Momentum Contrast for Unsupervised Visual Representation Learning / K. He, H. Fan, Y. Wu [et al.] // Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). – 2020. – P. 9729–9738. – arXiv:1911.05722.
+78 Chen T. A Simple Framework for Contrastive Learning of Visual Representations / T. Chen, S. Kornblith, M. Norouzi [et al.] // Proceedings of the 37th International Conference on Machine Learning (ICML). – 2020. – P. 1597–1607. – arXiv:2002.05709.
+79 Chen X. Exploring Simple Siamese Representation Learning / X. Chen, K. He // Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). – 2021. – P. 15750–15758. – arXiv:2011.10566.
+80 Caron M. Emerging Properties in Self-Supervised Vision Transformers / M. Caron, H. Touvron, I. Misra [et al.] // Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV). – 2021. – P. 9650–9660. – arXiv:2104.14294.
+81 Arrieta J. Deep semi-supervised and self-supervised learning for diabetic retinopathy detection / J. Arrieta, O. J. Perdomo, F. A. González // arXiv preprint. – 2022. – arXiv:2208.02408v1.
+82 Ganin Y. Domain-adversarial training of neural networks / Y. Ganin, E. Ustinova, H. Ajakan [et al.] // Journal of Machine Learning Research. – 2016. – Vol. 17, No. 59. – P. 1–35.
+83 Shurrab S. Self-supervised learning methods and applications in medical imaging analysis: a survey / S. Shurrab, R. Duwairi // PeerJ Computer Science. – 2022. – Vol. 8. – Art. No. e1045.
+84 Yosinski J. How transferable are features in deep neural networks? / J. Yosinski, J. Clune, Y. Bengio [et al.] // Advances in Neural Information Processing Systems (NeurIPS/NIPS 2014). – 2014.
+85 Lin T.-Y. Focal Loss for Dense Object Detection / T.-Y. Lin, P. Goyal, R. Girshick [et al.] // Proceedings of the IEEE International Conference on Computer Vision (ICCV). – 2017. – P. 2980–2988. – arXiv:1708.02002.
+86 Cui Y. Class-Balanced Loss Based on Effective Number of Samples / Y. Cui, M. Jia, T.-Y. Lin [et al.] // Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). – 2019. – P. 9268–9277. – arXiv:1901.05555.
+87 Araf I. Cost-sensitive learning for imbalanced medical data: a review / I. Araf, A. Idri, I. Chairi // Artificial Intelligence Review. – 2024. – Vol. 57. – Art. No. 80. – DOI: 10.1007/s10462-023-10652-8.
+88 Buda M. A systematic study of the class imbalance problem in convolutional neural networks / M. Buda, A. Maki, M. A. Mazurowski // Neural Networks. – 2018. – Vol. 106. – P. 249–259. – arXiv:1710.05381.
+89 Everingham M. The PASCAL Visual Object Classes (VOC) Challenge / M. Everingham, L. Van Gool, C. K. I. Williams [et al.] // International Journal of Computer Vision. – 2010. – Vol. 88, No. 2. – P. 303–338. – DOI: 10.1007/s11263-009-0275-4.
+90 Rezatofighi H. Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression / H. Rezatofighi, N. Tsoi, J. Gwak [et al.] // arXiv preprint. – 2019. – arXiv:1902.09630.
+91 Wang Z. Image Quality Assessment: From Error Visibility to Structural Similarity / Z. Wang, A. C. Bovik, H. R. Sheikh [et al.] // IEEE Transactions on Image Processing. – 2004. – Vol. 13, No. 4. – P. 600–612.
+92 Krause J. Grader Variability and the Importance of Reference Standards for Evaluating Machine Learning Models for Diabetic Retinopathy / J. Krause, V. Gulshan, E. Rahimy [et al.] // Ophthalmology. – 2018. – Vol. 125, No. 8. – P. 1264–1272. – arXiv:1710.01711.
+93 Guo C. On Calibration of Modern Neural Networks / C. Guo, G. Pleiss, Y. Sun [et al.] // Proceedings of the 34th International Conference on Machine Learning (ICML), PMLR 70. – 2017. – P. 1321–1330. – arXiv:1706.04599.
+94 Kingma D. P. Adam: A Method for Stochastic Optimization / D. P. Kingma, J. Ba // Proceedings of the 3rd International Conference on Learning Representations (ICLR). – 2015. – arXiv:1412.6980.
+95 Cuadros J. EyePACS: An Adaptable Telemedicine System for Diabetic Retinopathy Screening / J. Cuadros, G. Bresnick // Journal of Diabetes Science and Technology. – 2009. – Vol. 3, No. 3. – P. 509–516.
+96 Decencière E. Feedback on a Publicly Distributed Image Database: The Messidor Database / E. Decencière, X. Zhang, G. Cazuguel [et al.] // Image Analysis & Stereology. – 2014. – Vol. 33, No. 3. – P. 231–234.
+97 Porwal P. Indian Diabetic Retinopathy Image Dataset (IDRiD): A database for diabetic retinopathy screening research / P. Porwal, S. Pachade, R. Kamble [et al.] // Data. – 2018. – Vol. 3, No. 3. – Art. No. 25. – DOI: 10.3390/data3030025.
+98 De Fauw J. Clinically applicable deep learning for diagnosis and referral in retinal disease / J. De Fauw, J. R. Ledsam, B. Romera-Paredes [et al.] // Nature Medicine. – 2018. – Vol. 24, No. 9. – P. 1342–1350.
+99 Nandal A. Optimizing interoperability in healthcare: AI-driven HL7 and FHIR implementations for seamless data exchange / A. Nandal // Journal of International Crisis and Risk Communication Research. – 2024. – Vol. 7, No. S1. – P. 70–76.
+
+> **Note — the candidate's own publications.** The candidate's prior works cited in the running text are numbered in this list on the same terms as every other source, as GOST requires; the full record of the candidate's publications on the topic is the separate list of scientific works. The framing that identifies each as prior own work is carried by the prose that introduces it and is unaffected by the numbering. Two literature records describe one and the same article, so they take a single number and are never read as two confirmations.
 
 # APPENDICES
 

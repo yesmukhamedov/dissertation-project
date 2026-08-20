@@ -97,9 +97,9 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 
 **The volume was restructured from six chapters to four** and rewritten against the norms measured
 across the 16 dissertations this council has published (`council/en/10-dissertation/peer-norms.md`).
-Main text 30,997 words, 24 second-level subsections, 19 tables, 16 figures, five appendices. The
-gate is `scripts/conformance.py`; it passes 16 of 16 over the assembled manuscript, and a chapter is
-not finished until it does.
+Main text 31,258 words, 24 second-level subsections, 19 tables, 16 figures, five appendices, 99
+sources. The gate is `scripts/conformance.py`; it passes 15 of 16 over the assembled manuscript, and
+a chapter is not finished until it does.
 
 - 00-introduction: written last, as the map requires. One continuous section, eleven bold run-in
   rubrics, unnumbered and not listed in the contents. No hypothesis rubric and no separate
@@ -110,10 +110,14 @@ not finished until it does.
   gallery · E device supplementary tables. Kazakh lettering А, Ә, Б, В, Г. The old publication
   appendix is deleted: reprints and indexing screenshots appear in none of the 16.
 
-**Two things bind anything written from here.** The main text has three words of headroom against
-the corpus ceiling of 31,000, so nothing enters the body without something else leaving it. And
-every claim taken from a source names it — the compression pass dropped 90 per cent of the
-attribution once already, and restoring it was a separate pass over every section.
+**Two things bind anything written from here.** The main text is **258 words over** the corpus
+ceiling of 31,000, so anything entering the body has to displace more than itself. The three words
+of headroom this file used to record were an artefact of the gate: it modelled a printed citation as
+one word, but a narrative citation keeps its author phrase and prints as four (`Gulshan et al.
+[13]`), so the volume was 261 words longer than measured all along. The gate now counts the printed
+form, and `conformance.py` is where to look for what to cut. And every claim taken from a source
+names it — the compression pass dropped 90 per cent of the attribution once already, and restoring
+it was a separate pass over every section.
 
 Kazakh translations of the new tree are not yet written. The superseded volume's are under
 `chapters/_superseded/**/translations/`; the new `translations/` directories are empty, and

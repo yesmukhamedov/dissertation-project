@@ -104,25 +104,29 @@ class Check:
         return f"  [{mark}] {self.name:<34} {str(self.value):>12}   norm: {self.norm}"
 
 
-# A working author-year citation is one printed word. Drafts carry citations as
-# `Gulshan et al. (2016)` or `(Zhou et al., 2022; Wang and Deng, 2018)`, and the
-# citation pass replaces each with a bare `[12]` before the volume is typeset.
-# Counting the working form makes every length metric measure text that is never
-# printed — a sentence carrying four citations reads 12 words longer than the one
-# the reader gets — so each is collapsed to a single token first.
-# Narrative first: `Gulshan et al. (2016)` is one citation, and matching the
-# parenthetical half on its own would leave the author phrase behind as prose.
+# Drafts carry citations as `Gulshan et al. (2016)` or `(Zhou et al., 2022; Wang
+# and Deng, 2018)`, and the citation pass (thesis/prompts/citation-assembly.md,
+# step 4) converts them before the volume is typeset. Counting the working form
+# measures text that is never printed, so each is rewritten here into the form
+# the reader gets.
+#
+# The two forms do NOT converge on one token, and treating them as if they did
+# understated the volume by 261 words — enough to report a manuscript inside the
+# corpus cap that is over it once the citations are in print. A parenthetical
+# collapses to a bare `[12]`, however many sources it names; a narrative citation
+# KEEPS its author phrase as the sentence subject and only the year becomes the
+# bracket, so `Gulshan et al. (2016)` prints as four words, not one.
 _CITE_NARR = re.compile(
-    r"\b[A-Z][A-Za-z'’\-]+"
+    r"\b([A-Z][A-Za-z'’\-]+"
     r"(?:\s+(?:and|&)\s+[A-Z][A-Za-z'’\-]+)?"
-    r"(?:\s+et\s+al\.)?\s+\((?:19|20)\d{2}[a-z]?\)"
+    r"(?:\s+et\s+al\.)?)\s+\((?:19|20)\d{2}[a-z]?\)"
 )
 _CITE_PAREN = re.compile(r"\(\s*[^()]*?(?:19|20)\d{2}[a-z]?\s*(?:[;,][^()]*?)?\)")
 
 
 def _collapse_citations(text: str) -> str:
-    """Each working citation as the single `[N]` token it becomes in print."""
-    text = _CITE_NARR.sub("[CITE]", text)
+    """Every working citation in the shape the printed volume gives it."""
+    text = _CITE_NARR.sub(r"\1 [CITE]", text)
     return _CITE_PAREN.sub("[CITE]", text)
 
 

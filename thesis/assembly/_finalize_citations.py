@@ -39,8 +39,19 @@ def latest(prefix: str) -> Path:
 
 
 SRC_EN = latest("DISSERTATION_EN")
-SRC_KZ = latest("DISSERTATION_KZ")
+
+# The Kazakh manuscript is converted with the SAME numbers, but only when it is
+# a translation of the SAME English tree. The four-chapter rewrite left
+# chapters/**/translations/ empty, so the newest KZ partial is still the
+# six-chapter volume: converting it here would have produced a Kazakh thesis
+# whose [N] point into an English list built from different chapters. Pairing on
+# the date suffix is the cheap check that they are the same tree.
+_STAMP = SRC_EN.stem.rsplit("_", 1)[-1]
+_KZ = HERE / f"DISSERTATION_KZ_partial_{_STAMP}.md"
+SRC_KZ = _KZ if _KZ.exists() else None
+
 BIB = HERE / "_card_bib.tsv"
+GOST = HERE / "_card_gost.tsv"
 OUT_EN = HERE / f"DISSERTATION_EN_GOST_{date.today()}.md"
 OUT_KZ = HERE / f"DISSERTATION_KZ_GOST_{date.today()}.md"
 OUT_QA = HERE / f"_citation_resolution_final_{date.today()}.md"
@@ -145,6 +156,15 @@ SELF_K2C = {
  "yesmukhamedov-sapakova-haddad-daniyarova|2025": "yesmukhamedov-nan-rk.md",
  "yesmukhamedov-sapakova-kozhamkulova-daniyarova-armankyzy|2025": "yesmukhamedov-kbtu.md",
  "sapakova-yesmukhamedov-sapakov|2025": "yesmukhamedov-scopus-q2.md",
+ # The four-chapter rewrite renders the same EEJET article by two of its three
+ # authors, in 2.1 ("conventional preprocessing raised validation accuracy ...
+ # an upgraded equalisation variant ... on a different retinal database") and in
+ # 2.2 ("replaced the derived clip with a single controllable global threshold
+ # ... the two literature records drawn from it describe one" article). Both
+ # passages descend from superseded 3.1.1 / 2.1.2, which cite the EEJET work.
+ # Without this key the pair resolves on the first surname alone to the NAS RK
+ # article, which has no Sapakov among its authors and no CLAHE result in it.
+ "yesmukhamedov-sapakov|2025": "yesmukhamedov-scopus-q2.md",
  # 2.2.2 cites the same article in the short form "Sapakova et al., 2025", in a
  # pair the draft itself calls "a single prior-work thread"; 1.2.2 attributes
  # that experiment (APTOS 2019, ROC-AUC 0.9638) to the EEJET article. Safe as a
@@ -293,9 +313,20 @@ def repl_paren(m):
         if not v:
             leftovers.append(part.strip()); continue
         pg = PAGE.search(part)
-        nums.append(value_to_nums(v) + (", " + pg.group(1).strip() if pg else ""))
+        entry = value_to_nums(v) + (", " + pg.group(1).strip() if pg else "")
+        if entry not in nums:
+            # One source cited twice at one point - the rewrite names the EEJET
+            # article by two different author sets in 2.1 - is one reference,
+            # not "[16, 16]". Collapsing here is also what SIR-5 requires: two
+            # cards describing one article may not read as two confirmations.
+            nums.append(entry)
     if not nums:
         return m.group(0)
+    # Ascending inside one bracket (step 4 of the protocol). Reading order is
+    # not ascending whenever a source cited here appeared earlier in the volume:
+    # "(Gulshan et al., 2016; Voets et al., 2019)" is [12, 13] by number and
+    # [13, 12] by the order the sentence names them.
+    nums.sort(key=lambda s: int(re.match(r"\d+", s).group(0)))
     out = "[" + ", ".join(nums) + "]"
     if leftovers:
         out += " (" + "; ".join(leftovers) + ")"
@@ -307,17 +338,33 @@ def convert(body):
 
 
 conv_en = convert(body_en)
-head_kz, body_kz = split_body(SRC_KZ)
-conv_kz = convert(body_kz)
+conv_kz = convert(split_body(SRC_KZ)[1]) if SRC_KZ else None
 
 # ---------- reference list (cards in [N] order) ----------
-bib = {}
+# Described per GOST 7.1-2003 (`_card_gost.tsv`, built by `_gost_bib.py` from the
+# cards' APA-7 field). The APA strings remain the fallback so a card added to
+# `_card_bib.tsv` and not yet converted still yields a visible, if unformatted,
+# entry rather than "[card not found]"; the QA report names any such entry.
+gost_bib, apa_bib, external = {}, {}, set()
+for ln in GOST.read_text(encoding="utf-8").splitlines():
+    p = ln.split("\t")
+    if len(p) >= 2:
+        gost_bib[p[0]] = p[1]
+        if len(p) >= 3 and p[2].strip() == "#pinned-external":
+            external.add(p[0])
 for ln in BIB.read_text(encoding="utf-8").splitlines():
     p = ln.split("\t")
     if len(p) >= 2:
-        bib[p[0]] = re.sub(r"\[https?://[^\]]+\]\([^)]+\)", lambda x: x.group(0).split("]")[0][1:], p[1])
+        apa_bib[p[0]] = re.sub(r"\[https?://[^\]]+\]\([^)]+\)",
+                               lambda x: x.group(0).split("]")[0][1:], p[1])
 inv = {v: k for k, v in cardN.items()}
-refs = [f"{n}. {re.sub(r'[*]', '', bib.get(inv[n], '[card not found]'))}" for n in range(1, N + 1)]
+undescribed = [inv[n] for n in range(1, N + 1) if inv[n] not in gost_bib]
+# "Arabic numerals WITHOUT a trailing dot" (GOST 7.32-2001, 6.11; step 5 of the
+# protocol; and 16 of 16 samples). Every build so far emitted "1." — which
+# md2gost also reads as a Markdown ordered list and re-renders with its own
+# marker, so the dot survived into the printed volume.
+refs = [f"{n} {re.sub(r'[*]', '', gost_bib.get(inv[n], apa_bib.get(inv[n], '[card not found]')))}"
+        for n in range(1, N + 1)]
 
 # ---------- exhaustive QA: every remaining author-year token ----------
 def residual(conv):
@@ -339,18 +386,25 @@ def residual(conv):
     return blocking, selfk, appdk, unknown
 
 
+# The note is printed matter, so it obeys the printed-matter rules: no section
+# sign, no governance code, no cross-reference to a rubric the four-chapter
+# volume no longer numbers. It also no longer claims that all five of the
+# candidate's works appear here — a list of references used holds the works the
+# running text cites, and this volume cites two of them.
 SELF_NOTE_EN = (
-    "\n\n> **Note — the candidate's own publications.** The five works of the candidate are numbered "
-    "in this list on the same terms as every other source, as GOST requires. The SIR-4 framing that "
-    "identifies them as prior own work is carried by the prose that introduces each one and is "
-    "unaffected by the numbering. The two Scopus literature cards record **one** article, per §0.12 "
-    "(five distinct works, not six), and so take a single number.\n")
+    "\n\n> **Note — the candidate's own publications.** The candidate's prior works cited in the "
+    "running text are numbered in this list on the same terms as every other source, as GOST "
+    "requires; the full record of the candidate's publications on the topic is the separate list of "
+    "scientific works. The framing that identifies each as prior own work is carried by the prose "
+    "that introduces it and is unaffected by the numbering. Two literature records describe one and "
+    "the same article, so they take a single number and are never read as two confirmations.\n")
 SELF_NOTE_KZ = (
-    "\n\n> **Ескерту — кандидаттың жеке жарияланымдары.** Кандидаттың бес жұмысы бұл тізімде GOST "
-    "талабына сай басқа кез келген дереккөзбен бірдей негізде нөмірленген. Оларды кандидаттың "
-    "алдыңғы жеке жұмысы ретінде сипаттайтын SIR-4 тұжырымдамасы әрқайсысын енгізетін мәтінде "
-    "сақталған және нөмірлеу оған әсер етпейді. Екі Scopus әдебиет карточкасы **бір** мақаланы "
-    "тіркейді (§0.12 — алты емес, бес түрлі жұмыс), сондықтан бір нөмір алады.\n")
+    "\n\n> **Ескерту — кандидаттың жеке жарияланымдары.** Мәтінде дәйексөз келтірілген кандидаттың "
+    "алдыңғы жұмыстары бұл тізімде GOST талабына сай басқа кез келген дереккөзбен бірдей негізде "
+    "нөмірленген; кандидаттың тақырып бойынша жарияланымдарының толық тізбесі — жеке ғылыми "
+    "еңбектер тізімі. Әрқайсысын алдыңғы жеке жұмыс ретінде сипаттайтын тұжырым оны енгізетін "
+    "мәтінде сақталған және нөмірлеу оған әсер етпейді. Екі әдебиет жазбасы бір мақаланы "
+    "сипаттайды, сондықтан бір нөмір алады және екі бөлек растау ретінде оқылмайды.\n")
 
 hdr_en = (f"# Automated Diabetic Retinopathy Diagnosis — EN manuscript with GOST [N] citations\n\n"
           f"> **STAGE-G (final pass) — {date.today()}.** Working author-year citations converted to "
@@ -391,42 +445,70 @@ def place_references(body: str, block: str) -> str:
 
 REFS_EN = (
     "\n\n---\n\n# LIST OF REFERENCES USED\n\n"
-    "> In order of first appearance (GOST 7.32-2001 §6.11). Entries derived from the literature "
-    "cards; GOST 7.1-2003 punctuation refinement is the final typesetting step.\n\n"
+    "> In order of first appearance (GOST 7.32-2001, section 6.11), described per GOST 7.1-2003 "
+    "from the bibliographic field of each literature card.\n\n"
     + "\n".join(refs) + SELF_NOTE_EN
 )
 REFS_KZ = (
     "\n\n---\n\n# ПАЙДАЛАНЫЛҒАН ӘДЕБИЕТТЕР ТІЗІМІ\n\n"
-    "> Алғаш кездесу ретімен (GOST 7.32-2001 §6.11). Дереккөздер тізімі ағылшын тіліндегі мәтінмен "
-    "бірдей нөмірленген (тіл-инварианттылық).\n\n"
+    "> Алғаш кездесу ретімен (GOST 7.32-2001, 6.11-тармақ), GOST 7.1-2003 бойынша сипатталған. "
+    "Дереккөздер тізімі ағылшын тіліндегі мәтінмен бірдей нөмірленген (тіл-инварианттылық).\n\n"
     + "\n".join(refs) + SELF_NOTE_KZ
 )
 
 OUT_EN.write_text(hdr_en + "\n" + place_references(conv_en, REFS_EN), encoding="utf-8")
-OUT_KZ.write_text(hdr_kz + "\n" + place_references(conv_kz, REFS_KZ), encoding="utf-8")
+if conv_kz is not None:
+    OUT_KZ.write_text(hdr_kz + "\n" + place_references(conv_kz, REFS_KZ), encoding="utf-8")
 
 # ---------- QA report ----------
 b_en, s_en, a_en, u_en = residual(conv_en)
-b_kz, s_kz, a_kz, u_kz = residual(conv_kz)
 n_en = len(re.findall(r"\[\d+(?:,[^\]]*)?\]", conv_en))
-n_kz = len(re.findall(r"\[\d+(?:,[^\]]*)?\]", conv_kz))
+if conv_kz is not None:
+    b_kz, s_kz, a_kz, u_kz = residual(conv_kz)
+    n_kz = len(re.findall(r"\[\d+(?:,[^\]]*)?\]", conv_kz))
+else:
+    b_kz = s_kz = a_kz = u_kz = []
+    n_kz = 0
+
+kz_line = (f"`{SRC_KZ.name}`" if SRC_KZ else
+           f"**none** — no `DISSERTATION_KZ_partial_{_STAMP}.md`, so the Kazakh volume was "
+           f"not converted on this run")
 
 q = [f"# Stage-G citation conversion — FINAL resolution & QA ({date.today()})\n",
-     f"Sources: `{SRC_EN.name}` + `{SRC_KZ.name}`.  Outputs: `{OUT_EN.name}`, `{OUT_KZ.name}`.",
+     f"Sources: `{SRC_EN.name}` + {kz_line}.",
+     f"Outputs: `{OUT_EN.name}`" + (f", `{OUT_KZ.name}`" if SRC_KZ else "") + ".",
      "Numbering assigned ONCE by first appearance in EN, reused verbatim in KZ (rule #7).\n",
      "## Summary",
      f"- External sources numbered: **{N}**  |  Highest [N]: **{N}**",
      f"- Bracketed citations placed — EN: **{n_en}** | KZ: **{n_kz}**",
      f"- Residual *resolvable* author-year (BLOCKING) — EN: **{len(b_en)}** | KZ: **{len(b_kz)}**",
      f"- Left as author-year by policy — self EN/KZ: **{len(s_en)}/{len(s_kz)}** ; App-D EN/KZ: **{len(a_en)}/{len(a_kz)}**",
-     f"- UNKNOWN author-year (needs a card or is non-citation prose) — EN: **{len(u_en)}** | KZ: **{len(u_kz)}**\n",
+     f"- UNKNOWN author-year (needs a card or is non-citation prose) — EN: **{len(u_en)}** | KZ: **{len(u_kz)}**",
+     f"- Numbered sources with no GOST description (falling back to APA): **{len(undescribed)}**"
+     + (f" ({', '.join(undescribed)})" if undescribed else "") + "\n",
      "## BLOCKING — resolvable but still author-year (must be 0)",
      "### EN"] + ([f"- {t}: `{s}`" for t, s in b_en] or ["- none"]) + ["### KZ"] + ([f"- {t}: `{s}`" for t, s in b_kz] or ["- none"])
 q += ["\n## UNKNOWN author-year (review — uncarded source or false positive)", "### EN"]
 q += ([f"- {t}: `{s}`" for t, s in sorted(set(u_en))] or ["- none"])
 q += ["### KZ"] + ([f"- {t}: `{s}`" for t, s in sorted(set(u_kz))] or ["- none"])
 q += ["\n## Self-citations left author-year (policy) — distinct surface forms",
-      "### EN"] + sorted({s for _, s in s_en}) + ["### KZ"] + sorted({s for _, s in s_kz})
+      "### EN"] + (sorted({s for _, s in s_en}) or ["- none"]) + ["### KZ"] + (sorted({s for _, s in s_kz}) or ["- none"])
+q += ["\n## Entries completed against the published record",
+      "The literature card for each of these names no publication venue, so the description could",
+      "not be derived from the card alone (protocol rule 3 forbids inventing the missing area). The",
+      "venue, volume and pages were taken from the published article; where the version of record",
+      "postdates the card, the entry carries the published year and the in-text number is unaffected."]
+q += [f"- [{cardN[c]}] `{c}`" for c in sorted(external, key=lambda c: cardN.get(c, 0))
+      if c in cardN] or ["- none"]
+
+carded = set(apa_bib) - {"wikipedia-clahe.md"}
+uncited = sorted(carded - set(cardN))
+q += ["\n## Carded but not cited (informational)",
+      f"Cards in the corpus that the four-chapter volume never cites: **{len(uncited)}** of "
+      f"{len(carded)}. Expected — the rewrite compressed six chapters into four — and allowed: a",
+      "list of references used holds the sources the running text uses, not the corpus behind it.",
+      ", ".join(uncited) or "none"]
+
 q.append("\n## Reference list (in order of appearance)")
 q += refs
 OUT_QA.write_text("\n".join(q), encoding="utf-8")
@@ -436,7 +518,8 @@ try:
 except Exception:
     pass
 print(f"WROTE {OUT_EN.name}  (brackets: {n_en})")
-print(f"WROTE {OUT_KZ.name}  (brackets: {n_kz})")
+print(f"WROTE {OUT_KZ.name}  (brackets: {n_kz})" if SRC_KZ else
+      f"SKIPPED KZ — no DISSERTATION_KZ_partial_{_STAMP}.md")
 print(f"WROTE {OUT_QA.name}")
 print(f"External sources numbered: {N}")
 print(f"BLOCKING  EN={len(b_en)}  KZ={len(b_kz)}   UNKNOWN  EN={len(u_en)}  KZ={len(u_kz)}")
