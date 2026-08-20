@@ -1,6 +1,6 @@
 ---
 name: abstract-annotation-alignment
-description: thesis/output abstracts (EN/RU/KZ) restructured to match REAL IITU peer authorefarat samples (not just the council template)
+description: thesis/output abstracts (EN/RU/KZ) restructured to real IITU peer samples, and resynced 2026-08-20 to the four-chapter volume (117 pp / 19 tables / 16 figures / 99 sources)
 metadata:
   type: project
 ---
@@ -67,3 +67,44 @@ the cap** — any future addition there must be paid for by a cut. Enrichment th
 in this note so it is not re-attempted blindly): the expanded five-part theoretical significance, the
 four-part practical significance with the ingestion protocol and the disowned national projections, and the
 "principal finding is consistency" closing paragraph from §7.
+
+## Resync to the four-chapter volume — 2026-08-20
+
+All three abstracts were brought level with the rewritten volume ([[four-chapter-rewrite]]).
+Seven classes of desync were closed, at identical positions in EN/RU/KZ:
+
+1. **Volume figures** — 265 pp / 42 tables / 26 figures / 2 diagrams / 107 sources →
+   **117 pp / 19 tables / 16 figures / 99 sources**, diagrams dropped (the four structural
+   views live in an appendix and the counts exclude appendices). The Kazakh figure still
+   governs all three abstracts, per [[defense-language-kazakh]]; registry `council/METADATA.toml`.
+2. **Objectives** — six, one per old chapter → **four**, mirroring the introduction.
+3. **Main content of the work** — six chapter paragraphs → **four**, titled from
+   `outline/TABLE_OF_CONTENTS_{EN,KZ}.md` (RU titles translated to match).
+4. **Structure rubric** — six chapters and six appendices (A–F) → four chapters and five
+   appendices; EN «A–E», KZ «А, Ә, Б, В, Г», RU unlettered (Russian letters would clash with Ә).
+5. **The publication/approbation appendix no longer exists** — both pointers to «Appendix D»
+   removed (Practical significance, Approbation); the five works stay listed in Publications.
+6. **«No prototype was implemented» is now false** — SB-4.1 was amended in INVARIANTS v7.1.0
+   and Chapter 4 describes a **deployed working demonstrator**. Fixed in four places per
+   language (novelty 12, main result 9, provision 11, Practical significance), each keeping
+   the bound: it establishes realisability and operating behaviour, is evidence for no
+   diagnostic claim, and the deployment-oriented parts remain specification.
+7. **Governance codes H-1…H-7 removed** (24 per language) — the rewritten volume carries
+   **zero** of them (the hypothesis rubric was dissolved as having no corpus precedent), so
+   each «(H-5)» pointed at nothing a council reader could find. The outcomes and their
+   qualifications stay; only the labels went. **P1/P2 were kept** — the abstract defines
+   those itself, so they are not dangling; removing them is available but was not done.
+
+Also KZ only: **«біріктірілген» → «интеграцияланған»** throughout (26 occurrences) — the
+translated volume settled on the latter for the integrated arm, and keeps «біріктірілген»
+for its other sense, *pooled* (pooled folds).
+
+**The 15-page cap still binds and is still met**: rebuilt EN 13 / RU 15 / KZ 15 pp
+(5241 / 4652 / 4427 words) via `build_all.py --only abstract_en abstract_ru abstract_kz`,
+run under **system Python 3.13**, not the demo venv. `check_metadata.py` reports nothing new.
+
+⚠ **The same desync is still open in the council reviews**: both official reviewers reports
+(six files) and the supervisor review describe a six-chapter volume of 265 pp with 42 tables,
+26 figures and 107 sources, and reason chapter by chapter over the old structure — a rewrite,
+not a numeric patch. The foreign consultant review is **signed and dispatched**
+([[foreign-consultant-dispatch]]) and must not be re-edited.
