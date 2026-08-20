@@ -119,9 +119,15 @@ form, and `conformance.py` is where to look for what to cut. And every claim tak
 names it — the compression pass dropped 90 per cent of the attribution once already, and restoring
 it was a separate pass over every section.
 
-Kazakh translations of the new tree are not yet written. The superseded volume's are under
-`chapters/_superseded/**/translations/`; the new `translations/` directories are empty, and
-`assembly/_assemble_kz.py` reads those.
+Kazakh translations of the new tree are written: 35 files under `chapters/**/translations/`, one per
+draft, assembled by `assembly/_assemble_kz.py` (35,514 PART-1 words, no suspect extractions).
+Terminology follows `outline/TABLE_OF_CONTENTS_KZ.md` rather than the superseded tree — the
+preprocessing pipeline is "алдын ала өңдеу конвейері", not the Latin "pipeline" the old volume kept,
+and the arms are "базалық / интеграцияланған конфигурация". Numbers keep the old Kazakh volume's
+conventions: decimal point, space as thousands separator. Citations stay in working author-year form
+with Kazakh connectors (`және әріптестері`, `пен/мен/бен`), which `_finalize_citations.py` already
+parses: a run over both partials converts 133 brackets in each and reports no blocking or unknown
+resolutions. Mermaid diagram source is left in English, as the superseded Kazakh volume left it.
 
 Experimental chapters are written from `results/` (`findings/`, `tables/`, `hypotheses/`), which is the
 single source of truth for every number and verdict. Where an earlier draft conflicts with `results/`,
