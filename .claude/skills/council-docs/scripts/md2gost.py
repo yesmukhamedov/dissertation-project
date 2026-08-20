@@ -495,12 +495,28 @@ def _add_hrule(doc: Document) -> None:
     p_pr.append(p_bdr)
 
 
+# A heading that opens with a section number — "1 ", "2.3 ", "4.1.2 " — or with
+# the manuscript's legacy section sign. GOST 7.32 6.4 sets such headings "with a
+# paragraph indent", and the measured corpus agrees without exception: across
+# 750+ numbered headings in the 16 dissertations this council has published,
+# NONE is centred. Structural-element headings (INTRODUCTION, CONCLUSION, the
+# reference list, each appendix) are the other case and stay centred, which is
+# what the same clause requires of them. See
+# council/en/10-dissertation/peer-norms.md section 8.
+_NUMBERED_HEADING = re.compile(r"^\s*(?:§\s*)?\d+(?:\.\d+)*\.?\s+\S")
+
+
 def _heading(doc: Document, text: str, level: int):
     p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt(12 if level <= 2 else 6)
     p.paragraph_format.space_after = Pt(6)
     p.paragraph_format.keep_with_next = True
-    if level == 1:
+    if _NUMBERED_HEADING.match(text):
+        # Numbered section heading: paragraph indent, left, body size.
+        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p.paragraph_format.first_line_indent = Mm(FIRST_LINE_INDENT_CM * 10)
+        _add_runs(p, text, bold=True, italic=(level >= 4))
+    elif level == 1:
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         _add_runs(p, text, bold=True)
         for r in p.runs:
@@ -715,6 +731,31 @@ def _set_banner(table, i: int, ncols: int, text: str) -> None:
     _add_runs(p, text, bold=True)
 
 
+def _repeat_header_row(table) -> None:
+    """Mark row 0 as a header row, so Word repeats it on every page the table spans.
+
+    GOST requires a table broken across a page to be readable on the continued
+    part: the column heads are repeated (or renumbered) and the break is
+    announced by a "Continuation of table N" line. Ten of the sixteen published
+    samples carry that line; none leaves a headless ribbon of cells at the top of
+    a page, which is what this document did at 42 tables and 0 continuations.
+
+    This function supplies the repeated head — the announcing line is added after
+    pagination is known, by `add_table_continuations` in `table_continuations.py`.
+    """
+    if not table.rows:
+        return
+    tr_pr = table.rows[0]._tr.get_or_add_trPr()
+    if tr_pr.find(qn("w:tblHeader")) is None:
+        tr_pr.append(OxmlElement("w:tblHeader"))
+    # A single row must not itself straddle the break, or the repeated head
+    # lands above a half-row.
+    for row in table.rows:
+        rpr = row._tr.get_or_add_trPr()
+        if rpr.find(qn("w:cantSplit")) is None:
+            rpr.append(OxmlElement("w:cantSplit"))
+
+
 def _add_table(doc: Document, rows: list[list[str]]) -> None:
     """Render a Markdown pipe-table as a bordered Word table (TNR, header bold).
 
@@ -749,6 +790,7 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
                     next(c.strip() for c in rows[i] if c.strip()))
     if _is_form_table(rows[0], ncols):
         _merge_continuation_rows(table, rows)
+    _repeat_header_row(table)
     # spacing paragraph after the table
     doc.add_paragraph()
 

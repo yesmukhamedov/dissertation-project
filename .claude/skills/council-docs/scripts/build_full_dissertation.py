@@ -49,6 +49,7 @@ build_title = _load("build_title")
 build_toc = _load("build_toc")
 build_frontmatter = _load("build_frontmatter")
 bundle = _load("build_frontmatter_bundle")
+table_cont = _load("table_continuations")
 
 _CH1 = re.compile(r"^#\s+1\s")
 # The Introduction heading, in either language. The body starts here when Chapter 0
@@ -158,6 +159,10 @@ def main() -> None:
             body_md.write_text(body_text, encoding="utf-8")
             body_docx = tmp / f"body_{lang}.docx"
             md2gost.convert(body_md, body_docx, base_dir=ROOT)
+            # Continuation lines are added BEFORE the pages are read: each one is a
+            # paragraph, so measuring first would hand the contents page numbers the
+            # finished document does not have.
+            n_cont = table_cont.apply(word, body_docx, lang=lang)
             body_num, body_front = build_toc.dump_pages(word, body_docx)
 
             # Clean heading keys have no tab; contents-entry keys ("TEXT\tPAGE")
@@ -170,8 +175,13 @@ def main() -> None:
 
             out = docs / f"FULL_DISSERTATION_{lang.upper()}_GOST_{args.date}.docx"
             assemble(lang, body_text, merged_num, merged_front, out)
+            # The same pass on the merged document. The body sits behind F front-matter
+            # pages, but every chapter opens on a fresh page, so the breaks inside a
+            # chapter — and therefore the splits — fall exactly where they did above.
+            n_cont_full = table_cont.apply(word, out, lang=lang)
             built.append(out)
-            print(f"   [{lang}] front-matter pages F={F}; body starts on page {F + 1}")
+            print(f"   [{lang}] front-matter pages F={F}; body starts on page {F + 1}; "
+                  f"table continuations {n_cont_full} (body pass {n_cont})")
     finally:
         try:
             word.Quit()
