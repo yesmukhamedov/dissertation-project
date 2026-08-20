@@ -68,10 +68,21 @@ _ASSET_MARKER = re.compile(r"\[(?:TAB|FIG)-[\w.]+")
 # charge the prose for a dash that never reaches the page.
 _ASSET_SPAN = re.compile(r"\[(?:TAB|FIG)-[^\]]*\]")
 
-# A sentence ends at . ! ? followed by whitespace and something that starts a new
-# sentence. Decimal numbers, "e.g." and initials would otherwise each end one, so
-# the split refuses to break after a digit or a single capital.
-_SENTENCE_SPLIT = re.compile(r"(?<![0-9])(?<![A-ZА-ЯӘ])[.!?]+[)\"'»]?\s+(?=[^a-zа-яәөұүқғңһ])")
+# A sentence ends at . ! ? followed by whitespace and a capital letter.
+#
+# Two earlier guards were wrong and both inflated the measurement. Refusing to
+# break after a digit was meant to protect decimals, but a decimal has no
+# whitespace after its point, so the trailing `\s+` already protects it; what the
+# guard actually did was weld every sentence ending in a number onto the next one
+# ("… gave p = 0.0056. The corresponding z values …" measured as one 56-word
+# sentence). And refusing to break after any capital was meant to protect
+# initials, but it also welded every sentence ending in EyePACS, IDRiD or CNN.
+# The initials case is handled by requiring the capital to be a lone one, and a
+# new sentence is required to open with a capital rather than merely with a
+# non-lowercase character, which keeps "Porwal et al. (2018)" whole.
+_SENTENCE_SPLIT = re.compile(
+    r"(?<!\s[A-Z])[.!?]+[)\"'»]?\s+(?=[A-ZА-ЯӘӨҰҮҚҒҢҺ])"
+)
 
 
 @dataclass
@@ -337,6 +348,31 @@ def analyse_section(path: Path, budget: int | None) -> list[Check]:
     return checks
 
 
+def show_offenders(path: Path, sent_max: int = 45, para_max: int = 100) -> None:
+    """Print the sentences and paragraphs a rewrite still has to bring down.
+
+    A failing median says a section is out of register; it does not say where. This
+    names the units to fix, which is the whole difference between a gate and a
+    diagnostic.
+    """
+    paras = prose_paragraphs(section_body(path))
+    long_s = [(len(x.split()), x) for x in sentences(paras) if len(x.split()) > sent_max]
+    long_p = [(len(x.split()), x) for x in paras if len(x.split()) > para_max]
+    if long_s:
+        print()
+        print(f"  sentences over {sent_max} words:")
+        for n, x in sorted(long_s, reverse=True):
+            print(f"    [{n}] {x}")
+    if long_p:
+        print()
+        print(f"  paragraphs over {para_max} words:")
+        for n, x in sorted(long_p, reverse=True):
+            print(f"    [{n}] {x[:160]}…")
+    if not long_s and not long_p:
+        print()
+        print("  nothing over the per-unit limits.")
+
+
 def newest(lang: str) -> Path:
     files = sorted(ASSEMBLY.glob(f"DISSERTATION_{lang.upper()}_GOST_*.md"))
     if not files:
@@ -352,6 +388,8 @@ def main() -> None:
                     help="measure one draft's PART-1 body instead of a whole manuscript")
     ap.add_argument("--budget", type=int, default=None,
                     help="word budget for --section, from outline/REWRITE_MAP.md")
+    ap.add_argument("--show", action="store_true",
+                    help="with --section, print the sentences and paragraphs that miss the norm")
     args = ap.parse_args()
 
     if args.section:
@@ -363,6 +401,8 @@ def main() -> None:
             print(c.line())
         n_bad = sum(1 for c in checks if not c.ok)
         print(f"  {len(checks) - n_bad}/{len(checks)} pass")
+        if args.show:
+            show_offenders(args.path)
         sys.exit(1 if n_bad else 0)
 
     if args.path:
