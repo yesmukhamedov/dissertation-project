@@ -46,7 +46,7 @@ publications · Connection with state programmes · Structure and volume of the 
 
 ## 2.1 Preprocessing pipeline formalisation
 
-## 2.2 Contrast enhancement and flat-field correction
+## 2.2 Formalisation of the clip limit
 
 ## 2.3 Classification architectures and adaptation
 

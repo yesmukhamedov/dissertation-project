@@ -119,7 +119,7 @@ gathered into a chapter of its own.
 - **2.1 Preprocessing pipeline formalisation** — the eight stages, stage by stage; the augmentation
   strategy; the external ingestion protocol; spatial filtering and noise reduction. **NC-15 binds**:
   the ingestion protocol is validated only on the named clinical corpus.
-- **2.2 Contrast enhancement and flat-field correction** — histogram equalisation, the
+- **2.2 Formalisation of the clip limit** — histogram equalisation, the
   dual-constraint clip limit formalised, and the modified algorithm as implemented. Theory and
   method are one subsection here because separately they state the same thing twice.
 - **2.3 Classification architectures and adaptation** — the two backbones, convolution and pooling,
