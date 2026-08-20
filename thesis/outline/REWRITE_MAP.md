@@ -20,14 +20,14 @@ text that replaces it.
 
 | New unit | Sources | Source words | Budget | Written |
 |---|---:|---:|---:|---:|
-| Introduction | 16 | 10,003 | 1,900 | — |
-| 1 Automated diabetic retinopathy screening | 12 | 13,143 | **4,000** | — |
-| 2 Methodology of the integrated pipeline | 26 | 27,281 | **6,000** | — |
-| 3 Experimental results | 30 | 51,232 | **11,900** | **11,941** |
-| 4 The screening system | 9 | 8,238 | **3,700** | — |
-| Conclusion | 1 | 1,616 | 900 | — |
-| **Main text** | **94** | **111,513** | **28,400** | |
-| Appendices (not in the declared volume) | 6 → 5 | 8,705 | ≈ 6,000 | — |
+| Introduction | 16 | 10,003 | 1,900 | **2,483** |
+| 1 Automated diabetic retinopathy screening | 12 | 13,143 | **4,000** | **4,436** |
+| 2 Methodology of the integrated pipeline | 26 | 27,281 | **6,000** | **7,481** |
+| 3 Experimental results | 30 | 51,232 | **11,900** | **11,949** |
+| 4 The screening system | 9 | 8,238 | **3,700** | **3,139** |
+| Conclusion | 1 | 1,616 | 900 | **1,349** |
+| **Main text** | **94** | **111,513** | **28,400** | **30,837** |
+| Appendices (not in the declared volume) | 6 → 5 | 8,705 | ≈ 6,000 | **3,864** |
 
 **Reconciled after Chapter 3 was written.** The evidence chapter came in at 11,941 against a planned
 10,100. Its ten subsections compress 51,232 words at 4.3 to 1, the same ratio as everywhere else, so
@@ -38,6 +38,19 @@ three chapters the corpus keeps shortest — the review, the methodology and the
 the main-text total is unchanged at 28,400. Resulting chapter sizes are roughly 16, 24, 47 and 15
 pages against a corpus range of 3 to 54 with a median of 16.5: the results chapter sits high in that
 range, which is where a chapter carrying the contribution belongs.
+
+**Closed at 30,837 words.** The main text finished 2,437 over the 28,400 target, at 3.6 to 1 rather
+than the planned 3.9. The overrun is distributed rather than local: the methodology chapter took
+1,481 of it and the introduction 583, and only the system chapter came in under. It is accepted
+rather than trimmed because 30,837 sits inside the corpus band, which tops out at 31,000, and
+because the alternative is thinning arguments that are already at two or three sentences a
+paragraph. The gate over the assembled manuscript passes all sixteen checks at this length; the
+figure to watch is the band ceiling, and there is 163 words of room against it.
+
+The appendices came in at 3,864 against ≈ 6,000. The estimate was made before the requirement
+tables were dropped from the system chapter, which took the requirement mapping of Appendix C with
+them, and before the publication appendix was deleted. Appendices are optional in the genre — 6 of
+16 have none — so the shortfall is not a gap to fill.
 
 Compression is ≈ 4:1 and is achieved on the paragraph, not by dropping findings: the corpus
 paragraph is 36 words and ours is 115, the corpus sentence 18 and ours 30. A paragraph rewritten to

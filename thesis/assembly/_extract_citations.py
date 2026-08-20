@@ -7,13 +7,14 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-SRC = Path(__file__).resolve().parent / "DISSERTATION_EN_partial_2026-06-16.md"
+SRC = max(Path(__file__).resolve().parent.glob("DISSERTATION_EN_partial_*.md"),
+          key=lambda q: q.stem)
 OUT = Path(__file__).resolve().parent / "_citations_extracted.txt"
 text = SRC.read_text(encoding="utf-8")
 
 # Scan running text only: start at the first chapter heading (drops the leading
 # metadata blockquote, which else yields a false '(... 2026-...)' token).
-ci = text.find("# 1 PROBLEM DOMAIN")
+ci = text.find("# 1 AUTOMATED DIABETIC RETINOPATHY SCREENING")
 if ci > 0:
     text = text[ci:]
 

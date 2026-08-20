@@ -161,16 +161,15 @@ def main():
                "Enhancement and CNN Classification")
     out.append("")
     out.append(f"> **Intermediate EN assembly — {date.today()}.** Concatenation of "
-               "approved PART 1 draft bodies in Table-of-Contents order, preceded by "
-               "the three front-matter units authored in `thesis/output/`. Working "
+               "PART 1 draft bodies in Table-of-Contents order, preceded by the "
+               "three front-matter units authored in `thesis/output/`. Four "
+               "chapters, review to system, with five appendices. Working "
                "author-year citations are unconverted (GOST `[N]` is a deferred "
-               "single Stage-G pass). Compliance checklists, draft headers, and "
-               "word-count blocks are excluded. **NOT the final bound thesis:** "
-               "figure and table placeholders are unresolved, four assets are "
-               "outstanding (FIG-1.1 path, FIG-3.8 regeneration, FIG-4.17, the "
-               "§6.1.2 DIA-6.3 wording), and the four count placeholders in §0.16 "
-               "are unfilled. All 98 sections, Appendices A-F included, are written "
-               "and approved.")
+               "single pass). Compliance checklists, draft headers, and word-count "
+               "blocks are excluded. **NOT the final bound thesis:** figure and "
+               "table markers are unresolved, and the page, figure, table and "
+               "source counts declared in the Introduction's closing rubric are "
+               "set from the exported volume rather than from this file.")
     out.append("")
 
     # ---- front matter -----------------------------------------------------

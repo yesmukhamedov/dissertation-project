@@ -32,9 +32,16 @@ ASSEMBLY = ROOT / "thesis" / "assembly"
 # The corpus measures "main text" as Introduction → the last page before the
 # reference list; the reference list and the appendices are counted separately
 # and the appendices do not enter the declared volume at all.
+#
+# The appendices heading ends the main text as surely as the reference list does.
+# It has to be listed, because the intermediate assembly carries no reference list
+# — citations are resolved in a later pass — and without it the appendices were
+# counted into the volume, failing the word and table gates on a manuscript that
+# passes both.
 _MAIN_START = re.compile(r"^#+\s+(?:INTRODUCTION|КІРІСПЕ)\s*$", re.IGNORECASE)
 _MAIN_END = re.compile(
-    r"^#+\s+(?:LIST\s+OF\s+REFERENCES|ПАЙДАЛАНЫЛҒАН\s+ӘДЕБИЕТТЕР)", re.IGNORECASE
+    r"^#+\s+(?:LIST\s+OF\s+REFERENCES|ПАЙДАЛАНЫЛҒАН\s+ӘДЕБИЕТТЕР"
+    r"|APPENDICES|APPENDIX\b|ҚОСЫМШАЛАР)", re.IGNORECASE
 )
 
 _HEADING = re.compile(r"^(#+)\s+(.*?)\s*$")
@@ -162,27 +169,57 @@ def prose_paragraphs(main_lines: list[str]) -> list[str]:
 
 
 def sentences(paragraphs: list[str]) -> list[str]:
+    """Split into sentences, with emphasis markers removed first.
+
+    The Introduction's rubrics are bold run-in headings — `**Relevance.** The …` —
+    and the closing `**` sits between the full stop and the space, so the splitter
+    saw no sentence boundary and measured the rubric and its first sentence as one.
+    The markers are not printed, so they are removed before splitting. Bold share
+    is measured separately, on the unstripped prose, and is unaffected.
+    """
     out: list[str] = []
     for p in paragraphs:
+        p = p.replace("**", "").replace("__", "")
         out.extend(s for s in (x.strip() for x in _SENTENCE_SPLIT.split(p)) if s)
     return out
 
 
 def contents_entries(lang: str) -> list[str] | None:
-    """Heading texts promised by the contents file, or None if it cannot be read."""
+    """Main-text heading texts promised by the contents, or None if unreadable.
+
+    Scoped to the main text on the same boundaries the body is, because that is
+    what it is compared against: the front matter above the Introduction, the
+    reference list and the appendices are structural elements the body scan stops
+    at, and leaving them in the promise makes nine entries permanently unmatched.
+    """
     path = ROOT / "thesis" / "output" / f"contents_{lang}.md"
     if not path.is_file():
         return None
     entries: list[str] = []
+    started = False
     for ln in path.read_text(encoding="utf-8").splitlines():
-        s = ln.strip().lstrip("-*").strip()
-        if not s or s.startswith("#") or s.startswith("|"):
+        s = ln.strip()
+        # Numbered subsections are heading lines, not bullets, and they are the
+        # entries this check exists for: the promise the body has to keep. Only
+        # the document title (a single '# ') is skipped.
+        if s.startswith("##"):
+            s = s.lstrip("#").strip()
+        elif s.startswith("#"):
+            continue
+        s = s.lstrip("-*").strip()
+        if not s or s.startswith("|"):
             continue
         s = re.sub(r"\s*\.{2,}\s*\d+\s*$", "", s)      # dot leaders + page number
         s = re.sub(r"\s*\t\s*\d+\s*$", "", s)
         s = s.strip("* ").strip()
-        if s:
-            entries.append(s)
+        if not s:
+            continue
+        if not started:
+            started = bool(_MAIN_START.match(f"# {s}"))
+            continue
+        if _MAIN_END.match(f"# {s}"):
+            break
+        entries.append(s)
     return entries or None
 
 
