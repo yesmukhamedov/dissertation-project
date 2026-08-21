@@ -386,26 +386,6 @@ def residual(conv):
     return blocking, selfk, appdk, unknown
 
 
-# The note is printed matter, so it obeys the printed-matter rules: no section
-# sign, no governance code, no cross-reference to a rubric the four-chapter
-# volume no longer numbers. It also no longer claims that all five of the
-# candidate's works appear here — a list of references used holds the works the
-# running text cites, and this volume cites two of them.
-SELF_NOTE_EN = (
-    "\n\n> **Note — the candidate's own publications.** The candidate's prior works cited in the "
-    "running text are numbered in this list on the same terms as every other source, as GOST "
-    "requires; the full record of the candidate's publications on the topic is the separate list of "
-    "scientific works. The framing that identifies each as prior own work is carried by the prose "
-    "that introduces it and is unaffected by the numbering. Two literature records describe one and "
-    "the same article, so they take a single number and are never read as two confirmations.\n")
-SELF_NOTE_KZ = (
-    "\n\n> **Ескерту — кандидаттың жеке жарияланымдары.** Мәтінде дәйексөз келтірілген кандидаттың "
-    "алдыңғы жұмыстары бұл тізімде GOST талабына сай басқа кез келген дереккөзбен бірдей негізде "
-    "нөмірленген; кандидаттың тақырып бойынша жарияланымдарының толық тізбесі — жеке ғылыми "
-    "еңбектер тізімі. Әрқайсысын алдыңғы жеке жұмыс ретінде сипаттайтын тұжырым оны енгізетін "
-    "мәтінде сақталған және нөмірлеу оған әсер етпейді. Екі әдебиет жазбасы бір мақаланы "
-    "сипаттайды, сондықтан бір нөмір алады және екі бөлек растау ретінде оқылмайды.\n")
-
 hdr_en = (f"# Automated Diabetic Retinopathy Diagnosis — EN manuscript with GOST [N] citations\n\n"
           f"> **STAGE-G (final pass) — {date.today()}.** Working author-year citations converted to "
           f"numbered `[N]` (GOST 7.32-2001 §6.11, by first appearance). {N} external sources numbered "
@@ -436,25 +416,33 @@ def place_references(body: str, block: str) -> str:
     only in the second case: with the divider present, the reference list landed
     *between* the divider and Appendix A, so the document announced its appendices
     and then delivered the bibliography.
+
+    The divider the assembler emitted ahead of the appendices is now left standing
+    ahead of the reference list, which takes that slot, and a fresh one is emitted
+    ahead of the appendices. Before this the block brought a --- of its own and
+    landed directly after the assembler's, so the reference list opened under a
+    double rule and the appendices under none.
     """
     m = _APPENDICES.search(body) or _APPENDIX_A.search(body)
     if not m:
         return body + block
-    return body[:m.start()].rstrip() + "\n" + block.rstrip() + "\n\n" + body[m.start():]
+    return (body[:m.start()].rstrip() + "\n" + block.rstrip()
+            + "\n\n---\n\n" + body[m.start():])
 
 
-REFS_EN = (
-    "\n\n---\n\n# LIST OF REFERENCES USED\n\n"
-    "> In order of first appearance (GOST 7.32-2001, section 6.11), described per GOST 7.1-2003 "
-    "from the bibliographic field of each literature card.\n\n"
-    + "\n".join(refs) + SELF_NOTE_EN
-)
-REFS_KZ = (
-    "\n\n---\n\n# ПАЙДАЛАНЫЛҒАН ӘДЕБИЕТТЕР ТІЗІМІ\n\n"
-    "> Алғаш кездесу ретімен (GOST 7.32-2001, 6.11-тармақ), GOST 7.1-2003 бойынша сипатталған. "
-    "Дереккөздер тізімі ағылшын тіліндегі мәтінмен бірдей нөмірленген (тіл-инварианттылық).\n\n"
-    + "\n".join(refs) + SELF_NOTE_KZ
-)
+# Entries are separated by a BLANK line, not a single newline. A single newline
+# is a Markdown soft break, so md2gost buffered all 99 entries into ONE justified
+# paragraph of 22,522 characters: the printed list was a wall of running text in
+# which the numbers 1…99 sat inside the line as ordinary words. Every one of the
+# 16 dissertations published by this council sets one source per paragraph.
+#
+# No explanatory blockquote under the heading and no closing note either: the
+# corpus has neither, and "literature card" is internal machinery that peer-norms
+# section 8 keeps off the printed page. The block carries no --- rule of its own;
+# place_references() re-emits the assembler's chapter divider ahead of the
+# appendices, so exactly one rule precedes each of the two structural elements.
+REFS_EN = "\n\n# LIST OF REFERENCES USED\n\n" + "\n\n".join(refs)
+REFS_KZ = "\n\n# ПАЙДАЛАНЫЛҒАН ӘДЕБИЕТТЕР ТІЗІМІ\n\n" + "\n\n".join(refs)
 
 OUT_EN.write_text(hdr_en + "\n" + place_references(conv_en, REFS_EN), encoding="utf-8")
 if conv_kz is not None:

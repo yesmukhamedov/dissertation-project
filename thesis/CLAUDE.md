@@ -97,16 +97,19 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 
 **The volume was restructured from six chapters to four** and rewritten against the norms measured
 across the 16 dissertations this council has published (`council/en/10-dissertation/peer-norms.md`).
-Main text 31,258 words, 24 second-level subsections, 19 tables, 16 figures, five appendices, 99
-sources. The gate is `scripts/conformance.py`; it passes 15 of 16 over each assembled manuscript,
-and a chapter is not finished until it does. The two editions fail different checks: English on
-main-text words (258 over the ceiling), Kazakh on em dashes — 16.3 per 1,000 words against a norm
-of 0.7, which is the Kazakh copula dash ("X — Y") and grammatically obligatory, so the norm itself
-is what needs deciding.
+Main text 31,263 words, 24 second-level subsections, 19 tables, 16 figures, five appendices, 102
+sources. The gate is `scripts/conformance.py`, and a chapter is not finished until it passes.
+Kazakh — the defended edition — passes 16 of 16; English passes 15, failing only on main-text
+words (263 over the ceiling). The Kazakh em-dash failure this file used to record is closed: the
+copula is written with the short dash the corpus uses, and the check now reads 0.0 per 1,000 words.
 
-The GOST export was run on 2026-08-20 and the council pair is
-`defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-20.{docx,pdf}` — **145 pages EN / 157 KZ**,
-105 and 117 of them ahead of the appendices. Each edition's Introduction states its own page count.
+The GOST export was run on 2026-08-21 and the council pair is
+`defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-21.{docx,pdf}` — **146 pages EN / 157 KZ**,
+107 and 118 of them ahead of the appendices. Each edition's Introduction states its own page count,
+so the counts and the export are a fixed point: change one and the other has to be re-measured.
+The umbrella `APPENDICES`/`ҚОСЫМШАЛАР` divider is no longer assembled — it was the one top-level
+heading with no body of its own and printed as a lone word on a blank page — so the appendices
+open straight at Appendix A, and the main text is bounded by that heading rather than by a divider.
 Rebuild it with the eight builders in `.claude/skills/council-docs/scripts/`, in the order recorded
 in `PROJECT_MEMORY/gost-export-toolchain.md`.
 
@@ -119,7 +122,7 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
   gallery · E device supplementary tables. Kazakh lettering А, Ә, Б, В, Г. The old publication
   appendix is deleted: reprints and indexing screenshots appear in none of the 16.
 
-**Two things bind anything written from here.** The main text is **258 words over** the corpus
+**Two things bind anything written from here.** The main text is **263 words over** the corpus
 ceiling of 31,000, so anything entering the body has to displace more than itself. The three words
 of headroom this file used to record were an artefact of the gate: it modelled a printed citation as
 one word, but a narrative citation keeps its author phrase and prints as four (`Gulshan et al.

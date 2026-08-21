@@ -31,3 +31,54 @@ The conclusion typically reflects:
 - [[../17-ethics-committee-conclusion/structure|Ethics committee conclusion]] (Appendix 2) — prepared at this stage.
 - [[../13-supervisor-review/structure|Scientific supervisor review]].
 - [[defense-lifecycle]] — the stage's place in the overall route.
+
+---
+
+## House procedure per the GD-01 Guide
+
+Source: [[../00-regulatory-framework/candidate-guide]], section 3. These are the concrete
+requirements of IITU on top of §5 of the Statute.
+
+### Documents to be filed with the Office beforehand
+
+To confirm readiness for the extended meeting the candidate must submit to the Office of
+Postgraduate Education:
+
+1. **List of scientific works, Form 2.3**, certified by the **academic secretary of the University**
+   (Appendix 1 of the Guide) — see [[../18-list-of-publications/structure]].
+2. **Originals of the domestic and foreign scientific consultants' reviews**, certified at their
+   place of work. Filed **before** the extended meeting. If the foreign consultant's review is in
+   a language other than the language of defense, a **notarized translation** into the language of
+   defense is required.
+3. **Annotation of the dissertation in Kazakh, Russian and English** — **no more than 5 pages each**.
+
+### Reviewers, quorum, decision
+
+- **No later than 1 (one) month before** the extended meeting, the chair appoints **at least 2
+  reviewers** holding an academic degree and matching the candidate's research profile. After the
+  appointment the candidate sends them the dissertation.
+- **Quorum: at least 2/3** of the graduating department's members. Also invited: the reviewers,
+  the scientific consultants, members of the dissertation council and/or the scientific and
+  technical council, representatives of adjacent departments and units of the University, of
+  research and other organizations, and practitioners (for applied dissertations).
+- The recommendation for defense is adopted by a **simple majority** of votes.
+- The dissertation is **not** recommended for defense if it fails paras. **4, 5 and/or 6** of the
+  Rules for Awarding Degrees.
+- Remarks and recommendations made at the meeting are taken into account by the candidate and,
+  where necessary, incorporated into the text **before** the dissertation goes to the council.
+- If the scientific consultants are absent, their reviews are **read out** by the chair or the
+  secretary of the extended meeting.
+
+### Certifying the protocol
+
+The protocol of the extended meeting with the conclusion recommending the dissertation for defense
+is **signed** by the chair of the extended meeting and the secretary, **certified** by the Director
+of the Office, **approved** by the Vice-Rector for Research, and **sealed** with the official
+(coat-of-arms) seal at the University chancellery.
+
+### Before submitting to the council
+
+The candidate must **obtain or verify the UDC index** at the **National Library of the Republic of
+Kazakhstan** before the dissertation is submitted to the dissertation council.
+
+Next stage: [[application-to-council]].

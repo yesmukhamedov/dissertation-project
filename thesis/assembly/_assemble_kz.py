@@ -72,7 +72,11 @@ CHAPTERS = [
     ("03-experiments", "3 ЭКСПЕРИМЕНТ НӘТИЖЕЛЕРІ"),
     ("04-system", "4 СКРИНИНГ ЖҮЙЕСІ"),
     ("05-conclusion", "ҚОРЫТЫНДЫ"),
-    ("06-appendices", "ҚОСЫМШАЛАР"),
+    # No umbrella heading: an "APPENDICES"/"ҚОСЫМШАЛАР" divider is the only
+    # top-level heading with no body of its own, so it printed as a lone word on
+    # an otherwise blank page, and contents_*.md lists the appendices
+    # individually with no such entry. The appendices open straight at Appendix A.
+    ("06-appendices", None),
 ]
 
 # Chapters whose manuscript order is NOT the numeric order of their section
@@ -207,8 +211,9 @@ def main():
         if not files:
             continue
         out.append("\n---\n")
-        out.append(f"# {heading}")
-        out.append("")
+        if heading:
+            out.append(f"# {heading}")
+            out.append("")
         for f in files:
             title, text, words = extract(f)
             total_words += words

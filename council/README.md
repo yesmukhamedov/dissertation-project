@@ -27,6 +27,8 @@
 ### Нормативная база и процесс
 | Файл | О чём |
 |------|-------|
+| [ru/00-нормативная-база/путеводитель-соискателя.md](ru/00-нормативная-база/путеводитель-соискателя.md) | **Путеводитель GD-01** — сроки, комплекты документов, приложения 1–3 |
+| [ru/00-нормативная-база/использование-ии.md](ru/00-нормативная-база/использование-ии.md) | **Использование ИИ** — п. 5/5-2/6-1/7 Правил №127, проверка НЦГНТЭ, что раскрывать |
 | [ru/00-нормативная-база/законы-и-положения.md](ru/00-нормативная-база/законы-и-положения.md) | Законы, приказы, стандарты, органы |
 | [ru/00-нормативная-база/положение-о-диссовете.md](ru/00-нормативная-база/положение-о-диссовете.md) | Положение Р-39 (11 разделов + 5 форм) |
 | [ru/00-нормативная-база/состав-диссовета.md](ru/00-нормативная-база/состав-диссовета.md) | Роли и нормы формирования совета |
@@ -38,6 +40,9 @@
 | [ru/01-процесс-защиты/онлайн-заседание.md](ru/01-процесс-защиты/онлайн-заседание.md) | Дистанционная защита (видеоконференция) |
 | [ru/01-процесс-защиты/голосование-и-апелляция.md](ru/01-процесс-защиты/голосование-и-апелляция.md) | Голосование ≥3/4, апелляция |
 | [ru/01-процесс-защиты/материалы-на-сайте.md](ru/01-процесс-защиты/материалы-на-сайте.md) | Публикуемые материалы (§6.9) |
+| [ru/01-процесс-защиты/переутверждение-research-proposal.md](ru/01-процесс-защиты/переутверждение-research-proposal.md) | Переутверждение Research Proposal (>3 лет после обучения) |
+| [ru/01-процесс-защиты/подача-заявления-в-диссовет.md](ru/01-процесс-защиты/подача-заявления-в-диссовет.md) | Комплект из 10 документов, заявление от руки, сроки, проверка на плагиат и ИИ |
+| [ru/01-процесс-защиты/после-защиты-аттестационное-дело.md](ru/01-процесс-защиты/после-защиты-аттестационное-дело.md) | Регистрация в НЦГНТЭ (7 дн.), аттестационное дело (30 дн., 9 позиций) |
 | [ru/02-оформление/оформление-по-госту.md](ru/02-оформление/оформление-по-госту.md) | ГОСТ: поля, шрифт, объём |
 
 ### Шаблоны документов
@@ -91,6 +96,8 @@ the registry. Verify documents against it:
 ### Regulatory framework & process
 | File | About |
 |------|-------|
+| [en/00-regulatory-framework/candidate-guide.md](en/00-regulatory-framework/candidate-guide.md) | **GD-01 Candidate's Guide** — deadlines, document sets, Appendices 1–3 |
+| [en/00-regulatory-framework/ai-usage.md](en/00-regulatory-framework/ai-usage.md) | **AI usage** — paras. 5/5-2/6-1/7 of Rules No. 127, the NCSTE check, what to disclose |
 | [en/00-regulatory-framework/laws-and-regulations.md](en/00-regulatory-framework/laws-and-regulations.md) | Laws, orders, standards, bodies |
 | [en/00-regulatory-framework/council-statute.md](en/00-regulatory-framework/council-statute.md) | Statute R-39 (11 sections + 5 forms) |
 | [en/00-regulatory-framework/council-composition.md](en/00-regulatory-framework/council-composition.md) | Roles and formation rules |
@@ -102,6 +109,9 @@ the registry. Verify documents against it:
 | [en/01-defense-process/online-session.md](en/01-defense-process/online-session.md) | Remote defense (videoconference) |
 | [en/01-defense-process/voting-and-appeal.md](en/01-defense-process/voting-and-appeal.md) | Voting ≥3/4, appeal |
 | [en/01-defense-process/materials-published-online.md](en/01-defense-process/materials-published-online.md) | Published materials (§6.9) |
+| [en/01-defense-process/research-proposal-reapproval.md](en/01-defense-process/research-proposal-reapproval.md) | Research Proposal re-approval (>3 years after coursework) |
+| [en/01-defense-process/application-to-council.md](en/01-defense-process/application-to-council.md) | 10-item document set, handwritten application, deadlines, plagiarism & AI check |
+| [en/01-defense-process/post-defense-attestation-case.md](en/01-defense-process/post-defense-attestation-case.md) | NCSTE registration (7 d.), attestation case (30 d., 9 items) |
 | [en/02-formatting/gost-formatting.md](en/02-formatting/gost-formatting.md) | GOST: margins, font, length |
 
 ### Document templates

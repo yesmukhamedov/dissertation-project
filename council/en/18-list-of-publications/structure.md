@@ -1,7 +1,13 @@
-# Template: List of scientific papers
+# Template: List of scientific papers (Form 2.3)
 
 > **Purpose:** the list of the candidate's publications on the dissertation topic; published online.
-> **Signed by:** the Candidate + the Academic secretary of the Academic Council.
+> **Official name of the form — "Form 2.3"** (Appendix 1 of the GD-01 Guide,
+> [[../00-regulatory-framework/candidate-guide]]); full title — "List of scientific works and
+> inventions of a PhD doctoral candidate under educational programme «___»".
+> **Signed by:** the Candidate + the academic secretary of the **University** Academic Council
+> (not of the dissertation council). The certified copy is filed with the Office **before the
+> extended department meeting** ([[../01-defense-process/preliminary-review]]); published online
+> in both `doc` **and** `pdf`.
 > Composition requirements — see [[../00-regulatory-framework/publication-requirements]].
 
 ## Header

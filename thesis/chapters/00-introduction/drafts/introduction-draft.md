@@ -203,9 +203,13 @@ corpus that cannot be redistributed.
 **Approbation of results and publications.** The components of this research were disseminated
 progressively before being integrated here. The work was reported at the 3rd International Workshop
 on Digital Society, held in Istanbul in October 2025. The main results are published in five
-peer-reviewed works: one article in a journal indexed by Scopus and Web of Science, one paper in
-Scopus-indexed conference proceedings, and three articles in journals recommended by the national
-committee for quality assurance in science and higher education.
+peer-reviewed works: one article in a journal indexed by Scopus and Web of Science (Sapakova,
+Yesmukhamedov and Sapakov, 2025), one paper in Scopus-indexed conference proceedings (Sapakova,
+Yesmukhamedov, Sapakov, Yemberdiyeva and Kozhamkulova, 2025), and three articles in journals
+recommended by the national committee for quality assurance in science and higher education
+(Yesmukhamedov, Sapakova, Al-Haddad and Daniyarova, 2025; Yesmukhamedov, Sapakova, Kozhamkulova,
+Daniyarova and Armankyzy, 2025; Sapakova, Daniyarova, Yesmukhamedov, Armankyzy, Emberdieva and
+Kaldybaeva, 2025).
 
 All five are co-authored and are treated throughout as prior own work. Publications reporting the
 same experimental material are never cited as independent corroboration of one another, and the
@@ -243,8 +247,8 @@ Five appendices follow: the source code of the preprocessing pipeline, supplemen
 confusion matrices, the system architecture diagrams, the attention-map gallery, and supplementary
 tables for the device evaluation.
 
-The dissertation is set out on 105 pages, excluding the appendices, and contains 19 tables and 16
-figures. The list of references comprises 99 sources.
+The dissertation is set out on 107 pages, excluding the appendices, and contains 19 tables and 16
+figures. The list of references comprises 102 sources.
 
 ---
 

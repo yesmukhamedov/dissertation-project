@@ -1,6 +1,6 @@
 ---
 name: abstract-annotation-alignment
-description: thesis/output abstracts (EN/RU/KZ) restructured to real IITU peer samples, and resynced 2026-08-20 to the four-chapter volume (117 pp / 19 tables / 16 figures / 99 sources)
+description: thesis/output abstracts (EN/RU/KZ) restructured to real IITU peer samples, resynced 2026-08-21 to the rebuilt volume (118 pp / 19 tables / 16 figures / 102 sources); two conflicting page caps apply to the abstract itself
 metadata:
   type: project
 ---
@@ -108,3 +108,18 @@ run under **system Python 3.13**, not the demo venv. `check_metadata.py` reports
 26 figures and 107 sources, and reason chapter by chapter over the old structure — a rewrite,
 not a numeric patch. The foreign consultant review is **signed and dispatched**
 ([[foreign-consultant-dispatch]]) and must not be re-edited.
+*(Closed 2026-08-20 — the nine reviewer files were patched, not rewritten; see
+[[four-chapter-rewrite]].)*
+
+## Resync to the rebuilt volume — 2026-08-21
+
+Numeric patch only, at the same single line in each language: **117 pp → 118**, **99 sources →
+102** (the introduction now cites the candidate's five own publications, and three cards entered
+the reference list). Tables 19, figures 16 and the four diagrams are unchanged. The same two
+figures were patched in the nine official-reviewer files and in `council/METADATA.toml`.
+
+⚠ **A second, much stricter page cap surfaced with the GD-01 guide** — the annotation filed with
+the Office and with the council is capped at **5 pages per language**, against the 15 of §6.9 that
+these abstracts were written to. Ours are EN 13 / RU 15 / KZ 15 and do not meet it. Whether the two
+caps govern the same document is unresolved — see [[annotation-page-cap-conflict]] before editing
+these files for length again.

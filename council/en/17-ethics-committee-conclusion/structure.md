@@ -40,7 +40,7 @@ external one takes its own submission cycle.
                   ҚОРЫТЫНДЫСЫ
 ```
 
-## The form (9 rows)
+## The form (12 rows since 2026)
 
 Row wording verbatim from the samples. Column 1 is the row number, column 2 the item, column 3 the
 answer.
@@ -56,6 +56,9 @@ answer.
 | 7 | Нарушения в процессе планирования, оценки, отбора и проведения научных исследований | Ғылыми зерттеулерді жоспарлау, бағалау, іріктеу және жүргізу процесіндегі бұзушылықтар |
 | 8 | Нарушения в процессе распространения результатов научных исследований | Ғылыми зерттеу нәтижелерін тарату процесіндегі бұзушылықтар |
 | 9 | Каким образом проводилась защита прав, безопасности и благополучия объектов исследования (в случае наличия объектов живой природы и среды обитания) | Зерттеу объектілерінің (тірі табиғат және тіршілік ету аймағы болған жағдайда) құқықтарын, қауіпсіздігін және әл-ауқатын қорғау қалай жүзеге асырылды |
+| 10 | **Отсутствие или наличие фактов использования технологий искусственного интеллекта при подготовке диссертационного исследования** | **Диссертациялық зерттеуді дайындау кезінде жасанды интеллект технологияларын пайдалану фактілерінің болуы немесе болмауы** |
+| 11 | Номер одобрения | Мақұлдау нөмірі |
+| 12 | Дата одобрения исследования | Зерттеуді мақұлдау күні |
 
 ### Rows 4, 5 and 6 carry real content
 
@@ -63,6 +66,26 @@ Row 4 is not just the title — it also carries the **order number and approval 
 (`«<тема>» (приказ №5/1-Р от 20.12.2019 г.)`); Базарбеков's says `(переутверждение)` where the topic
 was re-approved. Row 5 lists **both** consultants with degree, position, organisation and
 citizenship. Row 6 is a 2–6 line description of what was actually studied, not a one-word answer.
+
+### Rows 10–12 are new — the AI disclosure
+
+⚠ The approved Appendix 4 form of the Model Statute still prints **9 rows**, but the text of the
+Model Statute (rev. 23.06.2026) requires the conclusion to state the **absence or presence of facts
+of AI use — on the basis of the candidate's own statement**.
+
+Only **1 of 16** samples has these rows: **Базарбеков** (2026, Computer Engineering, 8D06102 — our
+department and programme). His entries:
+
+| Row | Entry |
+|-----|-------|
+| 10 | `Технологии ИИ использовались исключительно для языковой и стилистической корректуры текстов.` |
+| 11 | `IRB-A1961` |
+| 12 | `26.02.2026` |
+
+The 15 pre-2026 samples stop at row 9. **Target the 12-row form.** Note the genre of row 10 in the
+one sample we have: a narrow, concrete scope of use, no enumeration of tools.
+
+Full norm on AI — [[../00-regulatory-framework/ai-usage]].
 
 ### Rows 7 and 8 are the only tick-box rows
 

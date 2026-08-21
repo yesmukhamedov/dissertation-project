@@ -1,6 +1,9 @@
 # Template: Information on the doctoral candidate (Appendix 5)
 
-> **Purpose:** the officially approved form (Appendix 5 of the Statute on the council).
+> **Purpose:** the officially approved form (Appendix 5 of the Statute on the council;
+> **Appendix 3 of the GD-01 Guide** — [[../00-regulatory-framework/candidate-guide]];
+> the table content is identical, only the appendix number differs).
+> Item 9 of the **attestation case** ([[../01-defense-process/post-defense-attestation-case]]).
 > Read out by the academic secretary at the defense (see [[../01-defense-process/session-procedure]], item 2).
 > **Signed by:** the academic secretary + seal.
 > Accompanied by a **3×4 photograph**.

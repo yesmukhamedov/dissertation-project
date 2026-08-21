@@ -41,7 +41,11 @@ ASSEMBLY = ROOT / "thesis" / "assembly"
 _MAIN_START = re.compile(r"^#+\s+(?:INTRODUCTION|КІРІСПЕ)\s*$", re.IGNORECASE)
 _MAIN_END = re.compile(
     r"^#+\s+(?:LIST\s+OF\s+REFERENCES|ПАЙДАЛАНЫЛҒАН\s+ӘДЕБИЕТТЕР"
-    r"|APPENDICES|APPENDIX\b|ҚОСЫМШАЛАР)", re.IGNORECASE
+    r"|APPENDICES|APPENDIX\b|ҚОСЫМШАЛАР"
+    # The umbrella "APPENDICES"/"ҚОСЫМШАЛАР" divider was dropped from the
+    # manuscript (it rendered as a lone word on a blank page), so the KZ
+    # appendices now open at "А қосымшасы"; match that form too.
+    r"|\S+\s+ҚОСЫМШАСЫ\b)", re.IGNORECASE
 )
 
 _HEADING = re.compile(r"^(#+)\s+(.*?)\s*$")
