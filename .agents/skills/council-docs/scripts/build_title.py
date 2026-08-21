@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import importlib.util
+import os
 import re
 import tomllib
 from pathlib import Path
@@ -108,21 +109,161 @@ def _fields(reg: dict) -> dict:
 FIELDS = _fields(_registry())
 
 
-def _centered(doc, text, *, bold=False, size=14, space_before=0, space_after=0):
+# --- one-page fitting ---------------------------------------------------------
+# The frame is fixed (A4 minus the GOST margins) but the content is data: the
+# Kazakh title wraps to three lines where the English one takes two, and the
+# consultant block wraps differently again in each language. Hard-coded blank-line
+# gaps could not hold that — they pushed "Алматы, 2026" off the Kazakh title page
+# onto a second page. So the gaps are computed: every line is measured, the
+# leftover height is handed to the gaps, and the place/year block is pushed to the
+# bottom of the page, the way it sits in the council sample title pages.
+
+PT_PER_MM = 72.0 / 25.4
+BODY_H_PT = (297 - 20 - 20) * PT_PER_MM   # A4 height minus top/bottom margins
+TEXT_W_PT = 170.0 * PT_PER_MM             # text column: 210 - 30 - 10
+CONSULT_INDENT_MM = 85.0                  # consultant block sits in the right half
+LINE_FACTOR = 1.15                        # Word single spacing, Times New Roman
+BODY_PT = 14                              # Normal style size
+GAP_PT = BODY_PT * LINE_FACTOR            # height of one blank paragraph
+# One blank line held back from the budget: the wrap is measured here from the
+# Times New Roman metrics, and Word is entitled to break one line differently.
+# A spare line absorbs exactly that, and the slack costs nothing on the page.
+SAFETY_PT = GAP_PT
+
+# Preferred blank-line gaps, in source order:
+#   0 after the UDC line, 1 before the title, 2 before the degree statement,
+#   3 before the consultant block, 4 before place/year.
+# Gap 4 is elastic — it takes whatever height is left over — and the rest shrink
+# proportionally only when the page cannot hold them.
+GAPS = (7, 4, 1, 3, 6)
+
+_FONTS = {False: "times.ttf", True: "timesbd.ttf"}
+_font_cache: dict[tuple[str, int], object] = {}
+
+
+def _font(size_pt: int, bold: bool):
+    """Times New Roman at 4× scale (integer sizes measure more precisely)."""
+    key = (_FONTS[bold], size_pt)
+    if key not in _font_cache:
+        from PIL import ImageFont
+        _font_cache[key] = ImageFont.truetype(
+            str(Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts" / _FONTS[bold]),
+            size_pt * 4,
+        )
+    return _font_cache[key]
+
+
+def _wrapped_lines(text: str, size_pt: int, bold: bool, width_pt: float) -> int:
+    """Number of lines `text` occupies in a `width_pt`-wide column (greedy wrap)."""
+    words = text.split()
+    if not words:
+        return 1
+    f = _font(size_pt, bold)
+    space = f.getlength(" ") / 4.0
+    lines, cur = 1, f.getlength(words[0]) / 4.0
+    for w in words[1:]:
+        ww = f.getlength(w) / 4.0
+        if cur + space + ww > width_pt:
+            lines, cur = lines + 1, ww
+        else:
+            cur += space + ww
+    return lines
+
+
+def _para(text, *, bold=False, size=BODY_PT, align="center", before=0, after=0,
+          indent_mm=0.0, tab=None) -> dict:
+    return {"text": text, "bold": bold, "size": size, "align": align,
+            "before": before, "after": after, "indent_mm": indent_mm, "tab": tab}
+
+
+def _layout(lang: str) -> list[dict]:
+    """The title page as an ordered list of paragraphs and gap slots.
+
+    One description, consumed twice — measured by `_solve_gaps` and rendered by
+    `populate` — so the measurement can never drift from what is written out.
+    """
+    f = FIELDS[lang]
+    items: list[dict] = []
+
+    # Organization block (top, centered). Not bold: the council sample title
+    # pages carry it in the regular face, and the university name is not a
+    # heading here.
+    items += [_para(line, after=2) for line in f["org"]]
+
+    # UDC (left) / "as a manuscript" (right) on one line
+    items.append(_para(f["udc"], align="left", before=18, tab=f["manuscript"]))
+
+    items.append({"gap": 0})
+    items.append(_para(f["author"], bold=True))
+
+    items.append({"gap": 1})
+    items.append(_para(f["title"], bold=True, size=16, after=6))
+    items.append(_para(f["programme"], before=12))
+
+    items.append({"gap": 2})
+    items += [_para(line) for line in f["degree"]]
+
+    items.append({"gap": 3})
+    items += [_para(text, bold=bold, align="left", indent_mm=CONSULT_INDENT_MM)
+              for text, bold in f["consultant"]]
+
+    items.append({"gap": 4})
+    items += [_para(line) for line in f["place"]]
+    return items
+
+
+def _height(item: dict) -> float:
+    width = TEXT_W_PT - item["indent_mm"] * PT_PER_MM
+    lines = _wrapped_lines(item["text"], item["size"], item["bold"], width)
+    return lines * item["size"] * LINE_FACTOR + item["before"] + item["after"]
+
+
+def _solve_gaps(items: list[dict]) -> list[int]:
+    """Blank lines per gap slot so the whole page fits on one page.
+
+    With room to spare the last gap absorbs the slack, seating place/year at the
+    foot of the page; when the text is too tall for the preferred gaps, all five
+    shrink proportionally (largest remainder), never below zero.
+    """
+    fixed = sum(_height(i) for i in items if "gap" not in i)
+    budget = int((BODY_H_PT - SAFETY_PT - fixed) // GAP_PT)
+    if budget <= 0:
+        return [0] * len(GAPS)
+    head = sum(GAPS[:-1])
+    if budget > head:
+        return [*GAPS[:-1], budget - head]
+    # Proportional shrink, largest remainder first.
+    total = sum(GAPS)
+    exact = [g * budget / total for g in GAPS]
+    gaps = [int(e) for e in exact]
+    for idx in sorted(range(len(GAPS)), key=lambda i: exact[i] - gaps[i], reverse=True):
+        if sum(gaps) >= budget:
+            break
+        gaps[idx] += 1
+    return gaps
+
+
+def _emit(doc, item: dict) -> None:
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.alignment = (WD_ALIGN_PARAGRAPH.CENTER if item["align"] == "center"
+                   else WD_ALIGN_PARAGRAPH.LEFT)
     pf = p.paragraph_format
     pf.first_line_indent = Mm(0)
+    pf.left_indent = Mm(item["indent_mm"])
     pf.line_spacing = 1.0
-    pf.space_before = Pt(space_before)
-    pf.space_after = Pt(space_after)
-    r = p.add_run(text)
-    md2gost._set_cell_font(r, bold=bold)
-    r.font.size = Pt(size)
-    return p
+    pf.space_before = Pt(item["before"])
+    pf.space_after = Pt(item["after"])
+    if item["tab"] is not None:
+        pf.tab_stops.add_tab_stop(Mm(TAB_MM), WD_TAB_ALIGNMENT.RIGHT)
+    if item["text"]:
+        r = p.add_run(item["text"])
+        md2gost._set_cell_font(r, bold=item["bold"])
+        r.font.size = Pt(item["size"])
+    if item["tab"] is not None:
+        md2gost._set_cell_font(p.add_run("	" + item["tab"]))
 
 
-def _gap(doc, n):
+def _gap(doc, n: int) -> None:
     for _ in range(n):
         p = doc.add_paragraph()
         p.paragraph_format.line_spacing = 1.0
@@ -135,49 +276,13 @@ def populate(doc, lang: str) -> None:
     Used both by `build()` (standalone title page) and by the front-matter
     bundle, which composes the title page as the first page of one document.
     """
-    f = FIELDS[lang]
-
-    # Organization block (top, centered, bold)
-    for line in f["org"]:
-        _centered(doc, line, bold=True, size=14, space_after=2)
-
-    # UDC (left) / "as a manuscript" (right) on one line
-    p = doc.add_paragraph()
-    p.paragraph_format.first_line_indent = Mm(0)
-    p.paragraph_format.line_spacing = 1.0
-    p.paragraph_format.space_before = Pt(18)
-    p.paragraph_format.tab_stops.add_tab_stop(Mm(TAB_MM), WD_TAB_ALIGNMENT.RIGHT)
-    md2gost._set_cell_font(p.add_run(f["udc"]))
-    md2gost._set_cell_font(p.add_run("\t" + f["manuscript"]))
-
-    _gap(doc, 7)
-    _centered(doc, f["author"], bold=True, size=14)
-
-    _gap(doc, 4)
-    _centered(doc, f["title"], bold=True, size=16, space_after=6)
-    _centered(doc, f["programme"], bold=False, size=14, space_before=12)
-
-    _gap(doc, 1)
-    for line in f["degree"]:
-        _centered(doc, line, bold=False, size=14)
-
-    # Consultant block — left-aligned, shifted into the right half of the page
-    _gap(doc, 3)
-    for text, bold in f["consultant"]:
-        p = doc.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
-        pf = p.paragraph_format
-        pf.left_indent = Mm(85)
-        pf.first_line_indent = Mm(0)
-        pf.line_spacing = 1.0
-        pf.space_after = Pt(0)
-        if text:
-            md2gost._set_cell_font(p.add_run(text), bold=bold)
-
-    # Place / year — centered, near the bottom
-    _gap(doc, 6)
-    for line in f["place"]:
-        _centered(doc, line, bold=False, size=14)
+    items = _layout(lang)
+    gaps = _solve_gaps(items)
+    for item in items:
+        if "gap" in item:
+            _gap(doc, gaps[item["gap"]])
+        else:
+            _emit(doc, item)
 
 
 def build(lang: str, out_docx: Path) -> None:
