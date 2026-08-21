@@ -44,7 +44,9 @@ _MAIN_END = re.compile(
     r"|APPENDICES|APPENDIX\b|ҚОСЫМШАЛАР"
     # The umbrella "APPENDICES"/"ҚОСЫМШАЛАР" divider was dropped from the
     # manuscript (it rendered as a lone word on a blank page), so the KZ
-    # appendices now open at "А қосымшасы"; match that form too.
+    # appendices open at their first appendix heading; match that form too —
+    # "ҚОСЫМША А" as the corpus sets it, and the superseded "А қосымшасы".
+    r"|ҚОСЫМША\s+[А-ЯЁӘҒҚҢӨҰҮҺІ]\b"
     r"|\S+\s+ҚОСЫМШАСЫ\b)", re.IGNORECASE
 )
 
@@ -287,8 +289,16 @@ def analyse(md_path: Path, lang: str) -> list[Check]:
     tables = sum(1 for ln in main_lines if _TABLE_CAPTION.match(ln.strip()))
 
     checks = [
+        # The ceiling was the corpus maximum (31,000, rounded from Наименко's
+        # 30,9xx). It is raised to 31,500 by decision of the candidate: the
+        # English edition measures 31,263 — 263 words over — and the volume
+        # actually defended is the Kazakh one, which sits at 25,157. The corpus
+        # range in the label stays what it is; the norm is now deliberately a
+        # little wider than it, and the label says so rather than implying the
+        # corpus reaches 31,500.
         Check("main-text words", total_words,
-              22_000 <= total_words <= 31_000, "22,000–31,000 (corpus 15,200–31,000)"),
+              22_000 <= total_words <= 31_500,
+              "22,000–31,500 (corpus 15,200–31,000)"),
         Check("median words / paragraph", round(statistics.median(para_words), 1),
               statistics.median(para_words) <= 60, "<= 60 (corpus median 36)"),
         Check("median words / sentence", round(statistics.median(sent_words), 1),

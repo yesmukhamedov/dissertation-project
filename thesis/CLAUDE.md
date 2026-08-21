@@ -104,7 +104,7 @@ words (263 over the ceiling). The Kazakh em-dash failure this file used to recor
 copula is written with the short dash the corpus uses, and the check now reads 0.0 per 1,000 words.
 
 The GOST export was run on 2026-08-21 and the council pair is
-`defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-21.{docx,pdf}` — **146 pages EN / 157 KZ**,
+`defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-21.{docx,pdf}` — **146 pages EN / 158 KZ**,
 107 and 118 of them ahead of the appendices. Each edition's Introduction states its own page count,
 so the counts and the export are a fixed point: change one and the other has to be re-measured.
 The umbrella `APPENDICES`/`ҚОСЫМШАЛАР` divider is no longer assembled — it was the one top-level

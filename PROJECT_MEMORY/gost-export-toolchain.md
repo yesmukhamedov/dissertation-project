@@ -93,6 +93,28 @@ between builds, never alongside one.
 **There is no umbrella `APPENDICES` / `ҚОСЫМШАЛАР` heading any more** (2026-08-21). It was the
 only top-level heading with no body of its own and printed as a lone word on a blank page, so
 `_assemble_{en,kz}.py` now takes `None` for that chapter's heading and the appendices open at
-`Appendix A` / `А қосымшасы`. `conformance.py` learned the Kazakh `<letter> ҚОСЫМШАСЫ` form as
-a main-text terminator; anything else that keyed off the divider has to be checked against the
-first appendix heading instead.
+their own first heading — since the same day `APPENDIX A – <title>` / `ҚОСЫМША А – <атауы>`,
+the Kazakh word order having flipped from `А қосымшасы`. `conformance.py` learned the Kazakh
+appendix heading as a main-text terminator; anything else that keyed off the divider has to be
+checked against the first appendix heading instead.
+
+**An appendix heading prints as TWO centred lines, and the dash never prints.** Designation
+alone (`ҚОСЫМША А` / `APPENDIX A`), the appendix's own title on the line beneath. That is what
+GOST 7.32 6.14 asks and what the corpus does without exception: of the 16 council volumes, 11
+carry appendices and **all 11 set them that way** — the only one-line headings anywhere are the
+five single-page image appendices of one submission, whose own multi-page appendices are
+two-line like everybody else's. The dash belongs in the СОДЕРЖАНИЕ, where every sample that
+titles its appendices at all writes `ҚОСЫМША А - <название> … <стр.>`.
+
+The manuscript still authors the pair as ONE Markdown heading (`# ҚОСЫМША А – <атауы>`), because
+that line is the appendix's identity for `build_toc.py`, `_finalize_citations.place_references`
+and `conformance.py`; `_APPENDIX_HEADING` in `md2gost.py` splits it at render time and hangs the
+page break on the designation. Registering the split in the sources instead would have cost all
+three lookups. `thesis/output/contents_{en,kz}.md` carry the titles since 2026-08-21 — before
+that the contents listed bare `А ҚОСЫМШАСЫ` with no title while the body had the title, exactly
+backwards from the corpus.
+
+**A Markdown `---` prints as a black rule across the page** — `md2gost.py` turns it into a
+paragraph with a bottom border. The assemblers used it as an internal separator, so every part
+of the volume ended on a stripe until 2026-08-21. Fixed at the source; run
+`thesis/scripts/check_rules.py` after an export to keep it fixed. See [[export-hrule-stripes]].

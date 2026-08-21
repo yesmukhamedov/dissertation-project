@@ -398,8 +398,11 @@ hdr_kz = (f"# Диабеттік ретинопатияны автоматтан
           f"дереккөз [1]–[{N}] болып нөмірленді. Нөмірлер ағылшын тіліндегі мәтінмен ортақ "
           f"(тіл-инварианттылық).\n")
 
-# The first appendix heading, in either language.
-_APPENDIX_A = re.compile(r"^#\s+(?:Appendix\s+A\b|А\s+қосымшасы)", re.M)
+# The first appendix heading, in either language. The corpus form leads with the
+# word ("APPENDIX A" / "ҚОСЫМША А"); the superseded letter-first Kazakh form is
+# kept so an older assembly still anchors.
+_APPENDIX_A = re.compile(
+    r"^#\s+(?:APPENDIX\s+A\b|ҚОСЫМША\s+А\b|А\s+қосымшасы)", re.M | re.I)
 # The divider the assembler emits ahead of the appendix chapter.
 _APPENDICES = re.compile(r"^#\s+(?:APPENDICES|ҚОСЫМШАЛАР)\s*$", re.M)
 
@@ -417,17 +420,16 @@ def place_references(body: str, block: str) -> str:
     *between* the divider and Appendix A, so the document announced its appendices
     and then delivered the bibliography.
 
-    The divider the assembler emitted ahead of the appendices is now left standing
-    ahead of the reference list, which takes that slot, and a fresh one is emitted
-    ahead of the appendices. Before this the block brought a --- of its own and
-    landed directly after the assembler's, so the reference list opened under a
-    double rule and the appendices under none.
+    Structural elements are separated by a blank line only. A Markdown "---"
+    reaches md2gost as a real bottom-bordered paragraph and prints as a black rule
+    across the page; every "# " heading already opens a page of its own, so the
+    rule bought nothing and left a stripe at the foot of the preceding part.
     """
     m = _APPENDICES.search(body) or _APPENDIX_A.search(body)
     if not m:
         return body + block
     return (body[:m.start()].rstrip() + "\n" + block.rstrip()
-            + "\n\n---\n\n" + body[m.start():])
+            + "\n\n" + body[m.start():])
 
 
 # Entries are separated by a BLANK line, not a single newline. A single newline
@@ -438,9 +440,8 @@ def place_references(body: str, block: str) -> str:
 #
 # No explanatory blockquote under the heading and no closing note either: the
 # corpus has neither, and "literature card" is internal machinery that peer-norms
-# section 8 keeps off the printed page. The block carries no --- rule of its own;
-# place_references() re-emits the assembler's chapter divider ahead of the
-# appendices, so exactly one rule precedes each of the two structural elements.
+# section 8 keeps off the printed page. The block carries no --- rule of its own,
+# and none is emitted ahead of the appendices either: see place_references().
 REFS_EN = "\n\n# LIST OF REFERENCES USED\n\n" + "\n\n".join(refs)
 REFS_KZ = "\n\n# ПАЙДАЛАНЫЛҒАН ӘДЕБИЕТТЕР ТІЗІМІ\n\n" + "\n\n".join(refs)
 

@@ -74,12 +74,12 @@
 
 ## LIST OF REFERENCES USED
 
-## APPENDIX A
+## APPENDIX A – Source code of the preprocessing pipeline
 
-## APPENDIX B
+## APPENDIX B – Supplementary results and confusion matrices
 
-## APPENDIX C
+## APPENDIX C – System architecture diagrams
 
-## APPENDIX D
+## APPENDIX D – Attention-map gallery
 
-## APPENDIX E
+## APPENDIX E – Device domain-shift supplementary tables

@@ -245,8 +245,6 @@ The dissertation is set out on 107 pages, excluding the appendices, and contains
 figures. The list of references comprises 102 sources.
 
 
----
-
 # 1 AUTOMATED DIABETIC RETINOPATHY SCREENING
 
 ## 1.1 Diabetic retinopathy and screening demand
@@ -736,8 +734,6 @@ What the field has not done is formalise preprocessing as an integral model comp
 full, and evaluate its contribution under controlled conditions. That gap is methodological rather
 than a performance deficit, and it is the gap the following chapters address.
 
-
----
 
 # 2 METHODOLOGY OF THE INTEGRATED PIPELINE
 
@@ -1528,8 +1524,6 @@ Nothing in this chapter is a result. The pipeline's objective, the clip rule's r
 expected direction of every image-quality measure and the value of the in-domain initialisation are
 all stated as design intent, and each is tested in the chapter that follows.
 
-
----
 
 # 3 EXPERIMENTAL RESULTS
 
@@ -2833,8 +2827,6 @@ confusion matrices were not recorded. Several evaluations used a single fold and
 between-fold variance, and one depends on a corpus that cannot be redistributed.
 
 
----
-
 # 4 THE SCREENING SYSTEM
 
 ## 4.1 System architecture and modules
@@ -3147,8 +3139,6 @@ specialist hardware is concentrated. No clinical deployment testing has been con
 diagnostic claim rests on anything in this chapter.
 
 
----
-
 # CONCLUSION
 
 This dissertation set out to establish whether the preparation of a fundus image before it reaches a
@@ -3273,9 +3263,6 @@ The work does not show that this configuration is clinically valid, deployable, 
 better than any published system, and it does not show that these results hold beyond the conditions
 under which they were obtained. Those are the boundaries within which the contribution stands, and
 they are not incidental to it: a claim narrow enough to be checked is the only kind worth defending.
-
-
----
 
 
 # LIST OF REFERENCES USED
@@ -3484,9 +3471,7 @@ they are not incidental to it: a claim narrow enough to be checked is the only k
 
 102 Nandal A. Optimizing interoperability in healthcare: AI-driven HL7 and FHIR implementations for seamless data exchange / A. Nandal // Journal of International Crisis and Risk Communication Research. – 2024. – Vol. 7, No. S1. – P. 70–76. – DOI: 10.63278/jicrcr.vi.3169.
 
----
-
-# Appendix A – Source code of the preprocessing pipeline
+# APPENDIX A – Source code of the preprocessing pipeline
 
 Section 3.1 undertook to reproduce the preprocessing and training code here, so that the
 transformation applied to every image is recoverable as source rather than described only in prose.
@@ -3623,7 +3608,7 @@ be the real on-disk implementation, the reproducibility loop opened in section 3
 configuration of Table 3.2, the documented hardware and this versioned code together render the
 experimental pipeline recoverable.
 
-# Appendix B – Supplementary results and confusion matrices
+# APPENDIX B – Supplementary results and confusion matrices
 
 This appendix records the decomposition behind the aggregate figures reported in chapter 3:
 per-class performance, the full structure of the confusion matrices, calibration, convergence, and
@@ -3842,7 +3827,7 @@ None of these absences affects the direction or the interval of any difference r
 3. Each of them limits the resolution at which that difference can be inspected, and each is
 recorded as an open item rather than a closed one.
 
-# Appendix C – System architecture diagrams
+# APPENDIX C – System architecture diagrams
 
 This appendix gives the formal structural views of the screening-system architecture described in
 chapter 4: a component view, a deployment view, a sequence view of one screening episode, and the
@@ -4102,7 +4087,7 @@ marked as built can be built and what they do in operation; it shows nothing abo
 it. No field testing was conducted in any clinical setting, and no diagram here carries a claim
 about latency, throughput, reliability in service, clinical utility or regulatory status.
 
-# Appendix D – Attention-map gallery
+# APPENDIX D – Attention-map gallery
 
 ### D.1 What this gallery is, and how it must be read
 
@@ -4231,7 +4216,7 @@ either direction.
 Accordingly, the claim these plates accompany is supported in its quantitative half only, within the
 boundary that separates alignment from localisation, on one annotated corpus and one fold.
 
-# Appendix E – Device domain-shift supplementary tables
+# APPENDIX E – Device domain-shift supplementary tables
 
 This appendix records the per-group evidence behind the camera-grouping evaluation at the resolution
 the run's data support, including the per-class decomposition that section 3.5 summarises but does

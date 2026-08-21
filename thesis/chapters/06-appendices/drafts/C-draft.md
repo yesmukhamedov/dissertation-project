@@ -2,7 +2,7 @@
 > section signs and internal codes removed and cross-references renumbered to the
 > four-chapter body. Transcription content is unchanged. Provenance: `outline/REWRITE_MAP.md`.
 
-# Appendix C – System architecture diagrams
+# APPENDIX C – System architecture diagrams
 
 ---
 

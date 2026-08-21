@@ -198,7 +198,7 @@ def main():
         if not fm.exists():
             suspect.append((fname, "MISSING front-matter file"))
             continue
-        out.append("\n---\n")
+        out.append("")  # blank separator only: "---" prints as a rule in the export
         out.append(fm.read_text(encoding="utf-8").strip())
         out.append("")
 
@@ -210,7 +210,7 @@ def main():
         files = ordered_files(cdir, d)
         if not files:
             continue
-        out.append("\n---\n")
+        out.append("")  # blank separator only: "---" prints as a rule in the export
         if heading:
             out.append(f"# {heading}")
             out.append("")

@@ -505,8 +505,38 @@ def _add_hrule(doc: Document) -> None:
 # council/en/10-dissertation/peer-norms.md section 8.
 _NUMBERED_HEADING = re.compile(r"^\s*(?:§\s*)?\d+(?:\.\d+)*\.?\s+\S")
 
+# An appendix opens on two centred lines, never on one joined by a dash: the
+# designation alone ("APPENDIX A" / "ҚОСЫМША А"), then the appendix's own title
+# beneath it. GOST 7.32 6.14 sets it that way and the corpus is unanimous —
+# eleven of the sixteen dissertations this council has published carry
+# appendices, and all eleven use the two-line form. (The only one-line headings
+# anywhere are the five single-page image appendices of one submission, whose
+# own multi-page appendices are two-line like everybody else's.)
+#
+# The manuscript still authors the pair as ONE Markdown heading, because that
+# line is the appendix's identity everywhere else — the contents lookup in
+# build_toc.py, the cross-reference resolver and conformance.py all key off it.
+# The split is a rendering decision and lives here.
+_APPENDIX_HEADING = re.compile(
+    r"^(?P<desig>(?:APPENDIX|ҚОСЫМША|ПРИЛОЖЕНИЕ)\s+[A-ZА-ЯЁӘҒҚҢӨҰҮҺІ])"
+    r"(?:\s*[–—-]\s*(?P<title>\S.*?))?\s*$",
+    re.IGNORECASE,
+)
+
 
 def _heading(doc: Document, text: str, level: int):
+    am = _APPENDIX_HEADING.match(text) if level == 1 else None
+    if am is not None and am.group("title"):
+        # Designation line first, the appendix's own title on a line of its own.
+        p = _heading(doc, am.group("desig").strip(), 1)
+        t = doc.add_paragraph()
+        t.paragraph_format.space_before = Pt(0)
+        t.paragraph_format.space_after = Pt(12)
+        t.paragraph_format.keep_with_next = True
+        t.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        _add_runs(t, am.group("title").strip(), bold=True)
+        return p  # the caller hangs the page break on the designation
+
     p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt(12 if level <= 2 else 6)
     p.paragraph_format.space_after = Pt(6)
@@ -841,7 +871,8 @@ _STRUCTURAL = re.compile(
     r"|Appendix\s+[A-Z]\b"
     r"|КІРІСПЕ\b|ҚОРЫТЫНДЫ\b|ҚОСЫМШАЛАР\b"
     r"|ПАЙДАЛАНЫЛҒАН\s+ӘДЕБИЕТТЕР\s+ТІЗІМІ\b"
-    r"|[А-ЯӘӨҰҮҚҒҢҺ]\s+қосымшасы\b"               # KZ appendix: "А қосымшасы — …"
+    r"|ҚОСЫМША\s+[А-ЯЁӘҒҚҢӨҰҮҺІ]\b"                # KZ appendix: "ҚОСЫМША А – …"
+    r"|[А-ЯӘӨҰҮҚҒҢҺ]\s+қосымшасы\b"               # legacy KZ form: "А қосымшасы — …"
     r")",
     re.IGNORECASE,
 )

@@ -2,7 +2,7 @@
 > section signs and internal codes removed and cross-references renumbered to the
 > four-chapter body. Transcription content is unchanged. Provenance: `outline/REWRITE_MAP.md`.
 
-# Appendix D – Attention-map gallery
+# APPENDIX D – Attention-map gallery
 
 ---
 

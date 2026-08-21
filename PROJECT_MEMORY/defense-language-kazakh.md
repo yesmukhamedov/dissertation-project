@@ -19,7 +19,7 @@ Two consequences, both already applied and neither to be "corrected" back:
 
    > **History: 264 → 265 on 2026-08-14 → 117 on 2026-08-20 → 118 on 2026-08-21.** The registry of
    > record is `council/METADATA.toml` (`pages_kz = 118`, `pages_en = 107`, both excluding
-   > appendices; with appendices the exported volumes run 157 KZ / 146 EN) — take it from there,
+   > appendices; with appendices the exported volumes run 158 KZ / 146 EN) — take it from there,
    > never from an older document.
 
 2. **The manuscript states each edition's own count — EN 107, KZ 118 — and that is correct as it
