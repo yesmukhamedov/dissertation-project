@@ -208,6 +208,24 @@ export async function getCaseStats() {
   }
 }
 
+// GET /api/cases/verdicts → the relabeling buffer, rebuilt from the verdicts on
+// disk (newest first). Same rationale as getCaseStats: the buffer used to live
+// only in this tab, so a reload emptied it while the verdicts themselves sat
+// safely in the case store. Resolves to null when the backend is unreachable.
+export async function getCaseVerdicts(limit = 200) {
+  if (!API) return null;
+  try {
+    const pw = getPassword();
+    const qs = new URLSearchParams({ limit: String(limit) });
+    if (pw) qs.set('password', pw);
+    const res = await fetch(`${API}/api/cases/verdicts?${qs.toString()}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
 // Resolves to the /api/health payload object when the backend is up and the
 // checkpoint is loaded, or null otherwise (never throws).
 export async function getHealth() {

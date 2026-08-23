@@ -150,6 +150,6 @@ The principal results of the dissertation were obtained by the author personally
 
 ## Structure and length of the dissertation
 
-The dissertation consists of front matter — normative references, definitions, and designations and abbreviations — followed by an introduction, four chapters, a conclusion, a list of references used, and five appendices (A–E): the source code of the preprocessing pipeline, supplementary experimental results and confusion matrices, the system-architecture diagrams, the attention-map gallery, and supplementary tables for the device-domain evaluation.
+The dissertation consists of front matter — normative references, definitions, and designations and abbreviations — followed by an introduction, four chapters, a conclusion, a list of references used, and five appendices (A–E): the source code of the preprocessing pipeline, supplementary experimental results and confusion matrices, the system architecture with the working demonstrator, the attention-map gallery, and supplementary tables for the device-domain evaluation.
 
 The dissertation is set out on 118 pages, and contains 19 tables and 16 figures. The list of references comprises 102 sources. The counts are of the dissertation excluding the appendices.

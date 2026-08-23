@@ -205,6 +205,41 @@ class CaseStatsResponse(BaseModel):
     last_activity_utc: str = ""
 
 
+class VerdictEntry(BaseModel):
+    """One relabeling-buffer row, rebuilt from a verdict in the case store.
+
+    Mirrors the row the demo used to hold only in browser memory, so the buffer
+    and its JSONL export are the same whether they were accumulated in the tab
+    or read back from disk after a reload.
+    """
+
+    id: str
+    index: int = 0
+    case_id: str = ""
+    timestamp: str = ""
+    images: list[dict] = Field(default_factory=list)
+    predicted: int | None = None
+    confidence: float | None = None
+    probs: list[float] = Field(default_factory=list)
+    verdict: str = ""
+    corrected_grade: int | None = None
+    latency_ms: int | None = None
+    model: str = ""
+    reviewer: str | None = None
+    notes: str | None = None
+
+
+class CaseVerdictsResponse(BaseModel):
+    """GET /api/cases/verdicts payload — the relabeling buffer from disk.
+
+    ``total`` counts every verdict the store holds; ``entries`` is the newest
+    ``limit`` of them.
+    """
+
+    entries: list[VerdictEntry] = Field(default_factory=list)
+    total: int = 0
+
+
 class CaseFeedbackRetractResponse(BaseModel):
     """DELETE /api/case/{case_id}/feedback payload — the withdrawn verdict.
 

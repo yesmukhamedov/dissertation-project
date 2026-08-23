@@ -61,9 +61,7 @@ that patient is filed into one directory (`server/app/cases.py`, default
 | the ophthalmologist's confirm/reject verdict + corrected grade | `POST /api/case/{id}/feedback` |
 
 The verdict is the point: the confirm/reject control used to live only in browser
-memory, so a disagreement died with the tab. The in-browser relabeling buffer and
-its JSONL export are unchanged — the case store is an addition, not a
-replacement.
+memory, so a disagreement died with the tab.
 
 **One verdict per prediction.** Once given, the confirm/reject buttons are
 replaced by the standing verdict and an undo, so a result cannot be confirmed
@@ -72,10 +70,20 @@ twice or confirmed and rejected at once. Undo (`DELETE /api/case/{id}/feedback`)
 being counted and exported. Both writes go through one promise chain in
 `Demo.js`, so an undo clicked before the save lands retracts what that save wrote.
 
-**Statistics come from disk, not the tab.** `GET /api/cases/stats` walks the case
-directories; the panel at the bottom of the relabeling buffer renders it. That is
-deliberate — the buffer is one session's work and is cleared with it, while
-patient/verdict/agreement totals must survive a reload and a cleared buffer.
+**Both panels come from disk, not the tab.** `GET /api/cases/stats` walks the case
+directories for the *Study totals* counters (patients, verdicts, agreement, reviewed
+patients per grade); `GET /api/cases/verdicts` rebuilds the *relabeling buffer* itself
+from every verdict in the store, newest first, in the exact row shape the JSONL export
+writes. Neither survives on browser state, so a reload — or a different machine on the
+same backend — shows the same rows and the same totals.
+
+Consequences, all deliberate: the buffer has **no "clear" button** (the rows are the
+study's verdict log; a local wipe would only hide rows that return on the next reload —
+withdraw one at a time with *Undo verdict*), and both fetches are gated on `authed`
+rather than on mount, because a fetch fired before the PIN is accepted comes back 401
+and would leave both panels empty for the rest of the session. A verdict the store never
+received (its writes are best-effort) stays in the buffer as a local row until it can be
+filed.
 
 Two rules when touching this: the store is **best-effort** (a write failure must
 never fail a prediction — see `_case_write` in `main.py`), and `case_id` comes

@@ -2,15 +2,17 @@
 > section signs and internal codes removed and cross-references renumbered to the
 > four-chapter body. Transcription content is unchanged. Provenance: `outline/REWRITE_MAP.md`.
 
-# APPENDIX C – System architecture diagrams
+# APPENDIX C – System architecture and the working demonstrator
 
 ---
 
 ## PART 1: SECTION TEXT
 
-This appendix gives the formal structural views of the screening-system architecture described in
-chapter 4: a component view, a deployment view, a sequence view of one screening episode, and the
-persisted data model. Together they discharge the system-architecture diagram reserved there.
+This appendix has two halves. The first gives the formal structural views of the screening-system
+architecture described in chapter 4: a component view, a deployment view, a sequence view of one
+screening episode, and the persisted data model. Together they discharge the system-architecture
+diagram reserved there. The second shows the working demonstrator in operation, so that the modules
+Table C.1 marks as built can be seen doing what the table says they do.
 
 What they are should be stated before they are read. Each is a **design specification**, and the
 design is realised only in part. A working demonstrator exists and performs inference on submitted
@@ -258,12 +260,51 @@ The security provisions these entities imply are **GDPR/HIPAA-aligned by design*
 certified compliance status, no conformity assessment was performed, and no statute is asserted to
 be satisfied by this model.
 
-### Status of these diagrams
+### C.5 The demonstrator in operation
 
-Each of the four views elaborates the decomposition of section 4.1, and each is traceable to it
-through Table C.1. None of them is evidence about behaviour. The demonstrator shows that the modules
-marked as built can be built and what they do in operation; it shows nothing about how well they do
-it. No field testing was conducted in any clinical setting, and no diagram here carries a claim
-about latency, throughput, reliability in service, clinical utility or regulatory status.
+The three figures that follow are of the demonstrator rather than of the design. They are here
+because Table C.1 marks seven modules as built, and a table asserting it is worth less than the
+system doing it. Each is a capture of the client described in section 4.3, driving the inference
+service of section 4.2.
+
+**[FIG-C.1: The submission view, with a patient's two eyes accepted for grading and the preprocessing
+stages exposed beneath them — defense/figures/1.png]**
+
+Figure C.1 shows the Ingestion and Preprocessing Engine rows of Table C.1 in operation. Two images
+are submitted as one patient, right eye and left, and the panel beneath them steps through the stages
+of the pipeline for a selected eye, naming the channels each stage yields. The transform is therefore
+inspectable rather than implicit, which is the architectural position of this dissertation carried
+into the interface: preprocessing is part of the model and is shown as such, not hidden as
+preparation of the data.
+
+**[FIG-C.2: The result view, with the patient-level grade, the posterior over the five grades, the
+per-eye predictions and the review controls — defense/figures/2.png]**
+
+Figure C.2 shows the Inference and Decision-Support rows. The system returns a five-class grade at
+the level of the patient, with the posterior over all five grades, the referable determination and
+the per-eye predictions beneath it. The visualisation panel states its own limit — interpretability
+evidence, not clinical lesion localisation — and in this capture reports no overlay available, the
+attention map being generated from the checkpoint only when the service can produce one. The controls
+that follow put a verdict on the prediction to the clinician, which is the physician-in-the-loop
+ordering of Diagram C.3 in its realised form.
+
+**[FIG-C.3: The view after a recorded verdict, with the persisted case, the relabelling buffer and the
+totals read back from the case store — defense/figures/3.png]**
+
+Figure C.3 shows the Clinician Interface and Data-Management rows. A verdict is persisted against the
+case on the server and appended to a relabelling buffer that can be exported for retraining, and the
+totals beneath are read from the case store rather than from the browser session. This is the audit
+channel of Diagram C.4 in the form it was built: a local case store, with the links to hospital
+imaging and record systems still specification.
+
+### Status of these views
+
+Each of the four diagrams elaborates the decomposition of section 4.1, and each is traceable to it
+through Table C.1. None of them is evidence about behaviour. The three figures establish that the
+modules marked as built exist and what they do in operation, and nothing beyond that: they are not a
+measurement, no latency, throughput or reliability figure may be read from them, and the case counts
+visible in them are from a development session rather than from use. No field testing was conducted
+in any clinical setting, and nothing in this appendix carries a claim about reliability in service,
+clinical utility or regulatory status.
 
 ---

@@ -260,6 +260,27 @@ export default function VisionWidget({ src, eye, name, enabled, gt, caseId, t })
   // bottom — stepping through stages reveals how each method reshapes the
   // channels. Empty for the detection slide and the standalone FOV-mask slide.
   const stageChannels = curSlide && Array.isArray(curSlide.channels) ? curSlide.channels : [];
+  // The stage chain and the 4-channel decomposition both come from the backend.
+  // On the GT path the loading/error early-returns above are skipped (markers
+  // render from ground truth alone), so a visualize call that is still in
+  // flight — or that failed, or a backend that is unreachable — used to leave
+  // the step-by-step view and the channel row SILENTLY empty, as if the
+  // pipeline had been removed. Say what is actually happening instead.
+  const stagesMissing = stages.length === 0;
+  const stagesLoading = stagesMissing && enabled && status === 'loading';
+  const stagesFailed = stagesMissing && !stagesLoading;
+  const stagesNotice = stagesLoading ? (
+    <div style={{ fontSize: 10, color: C.gray }}>{t('demo.vision.loading')}</div>
+  ) : stagesFailed ? (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 10, color: C.amberT }}>{t('demo.vision.unavailable')}</span>
+      {enabled && (
+        <button onClick={() => setRetryNonce((n) => n + 1)} style={chipBtn}>
+          {t('demo.vision.retry')}
+        </button>
+      )}
+    </div>
+  ) : null;
   const odHeat = od.od_heatmap_png_b64 ? `data:image/png;base64,${od.od_heatmap_png_b64}` : null;
   const fvHeat = od.fovea_heatmap_png_b64 ? `data:image/png;base64,${od.fovea_heatmap_png_b64}` : null;
   const hasHeat = !gt && (odHeat || fvHeat);
@@ -376,11 +397,15 @@ export default function VisionWidget({ src, eye, name, enabled, gt, caseId, t })
           slide (inserted just before the rotation stage); the rest are the
           per-stage preprocessing images. Detection/confidence controls sit
           BELOW the slider. */}
-      {slides.length > 0 && (
+      {(slides.length > 0 || stagesNotice) && (
         <div>
           <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--color-text-secondary,#666)', marginBottom: 6 }}>
             {t('demo.vision.stagesHeading')}
           </div>
+          {/* Backend hasn't delivered the chain (loading / failed / offline). */}
+          {stagesNotice}
+          {slides.length > 0 && (
+          <>
           {/* Navigation */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6, width: '100%' }}>
             <button
@@ -425,6 +450,8 @@ export default function VisionWidget({ src, eye, name, enabled, gt, caseId, t })
               />
             )}
           </div>
+          </>
+          )}
         </div>
       )}
 
@@ -537,6 +564,10 @@ export default function VisionWidget({ src, eye, name, enabled, gt, caseId, t })
                 </div>
               ))}
             </div>
+          ) : stagesNotice ? (
+            // No decomposition because the backend never delivered the stages —
+            // the "this step marks geometry" copy below would be a lie here.
+            stagesNotice
           ) : (
             <div style={{ fontSize: 10, color: C.gray }}>{t('demo.vision.channelsNA')}</div>
           )}

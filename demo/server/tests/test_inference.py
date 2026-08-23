@@ -291,6 +291,43 @@ def test_case_stats_aggregate_the_store(
     assert stats["last_activity_utc"]
 
 
+def test_case_verdicts_rebuild_the_relabeling_buffer(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path
+) -> None:
+    """The buffer is read back from the store, so a reload cannot empty it."""
+    from server.app import config, main
+
+    monkeypatch.setattr(config.settings, "cases_dir", tmp_path)
+    monkeypatch.setattr(main.settings, "cases_dir", tmp_path)
+
+    empty = client.get("/api/cases/verdicts").json()
+    assert empty["entries"] == [] and empty["total"] == 0
+
+    image = _synthetic_fundus()
+    case_id = client.post(
+        "/api/case/image", data={"eye": "right"},
+        files={"image": ("right.png", image, "image/png")},
+    ).json()["case_id"]
+    client.post("/api/predict", data={"case_id": case_id},
+                files={"right": ("right.png", image, "image/png")})
+    client.post(f"/api/case/{case_id}/feedback",
+                data={"verdict": "rejected", "corrected_grade": "3"})
+
+    payload = client.get("/api/cases/verdicts").json()
+    assert payload["total"] == 1
+    row = payload["entries"][0]
+    # The row carries what the buffer table shows and the JSONL export writes.
+    assert row["id"] == f"{case_id}#1" and row["case_id"] == case_id
+    assert row["verdict"] == "rejected" and row["corrected_grade"] == 3
+    assert row["predicted"] is not None and len(row["probs"]) == 5
+    assert row["images"] == [{"eye": "right", "source": "right.png"}]
+    assert row["timestamp"]
+
+    # A withdrawn verdict leaves the buffer as well — it is the same record.
+    client.request("DELETE", f"/api/case/{case_id}/feedback")
+    assert client.get("/api/cases/verdicts").json()["total"] == 0
+
+
 def test_case_refuses_a_non_fundus_image(
     client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path
 ) -> None:

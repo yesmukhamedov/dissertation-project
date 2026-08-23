@@ -78,7 +78,7 @@
 
 ## APPENDIX B – Supplementary results and confusion matrices
 
-## APPENDIX C – System architecture diagrams
+## APPENDIX C – System architecture and the working demonstrator
 
 ## APPENDIX D – Attention-map gallery
 

@@ -106,6 +106,6 @@ publications · Connection with state programmes · Structure and volume of the 
 
 - APPENDIX A – Source code of the preprocessing pipeline
 - APPENDIX B – Supplementary results and confusion matrices
-- APPENDIX C – System architecture diagrams
+- APPENDIX C – System architecture and the working demonstrator
 - APPENDIX D – Attention-map gallery
 - APPENDIX E – Device domain-shift supplementary tables

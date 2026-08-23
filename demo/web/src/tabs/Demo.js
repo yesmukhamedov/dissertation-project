@@ -21,6 +21,7 @@ import { analyzeFundus } from './_analyzeFundus';
 import {
   predictPatient, getHealth, getPassword, setPassword, verifyPassword,
   openCaseImage, submitCaseFeedback, retractCaseFeedback, getCaseStats,
+  getCaseVerdicts,
 } from './_apiPredict';
 import VisionWidget from './_VisionWidget';
 import LiveVisualizationBlock from './_LiveGradcam';
@@ -596,6 +597,10 @@ export default function Demo() {
   // { verdict, correctedGrade, historyId, caseId, index }
   const [verdictEntry, setVerdictEntry] = useState(null);
   const [toast, setToast] = useState('');
+  // Relabeling buffer. Rebuilt from the verdicts in the case store on load (see
+  // `refreshBuffer`), so it survives a reload the same way the study totals do
+  // instead of emptying with the tab. A verdict given while the case store was
+  // unreachable stays as a local row (`local: true`) until it can be filed.
   const [history, setHistory] = useState([]);
   // Tracks the active sample case (from WALKTHROUGH_POOL) so the result
   // panel can show pre-generated Grad-CAM + attention overlay. Any manual
@@ -616,13 +621,27 @@ export default function Demo() {
   // save lands must retract the verdict that write produced, not race it.
   const verdictChainRef = useRef(Promise.resolve());
   // Store-wide counters for the statistics panel. They come from the case
-  // directories on the server, so clearing the local relabeling buffer (or
-  // reloading, or moving to another machine) does not reset them to zero.
+  // directories on the server, so reloading (or moving to another machine)
+  // does not reset them to zero.
   const [stats, setStats] = useState(null);
   const refreshStats = useCallback(() => {
     getCaseStats().then((s) => { if (s) setStats(s); }).catch(() => { /* offline */ });
   }, []);
-  useEffect(() => { refreshStats(); }, [refreshStats]);
+  // Pull the relabeling buffer back from the case store. Rows the store already
+  // holds replace their local counterparts; a row it never received (its writes
+  // are best-effort) is kept, so a verdict is never silently dropped from the
+  // buffer just because filing it failed.
+  const refreshBuffer = useCallback(() => {
+    getCaseVerdicts().then((payload) => {
+      if (!payload || !Array.isArray(payload.entries)) return;
+      const rows = payload.entries;
+      const filed = new Set(rows.map(r => `${r.case_id}#${r.index}`));
+      setHistory((prev) => {
+        const unfiled = prev.filter(h => h.local && !filed.has(`${h.case_id}#${h.index}`));
+        return [...rows, ...unfiled].sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1));
+      });
+    }).catch(() => { /* offline */ });
+  }, []);
   // Backend health. `health` is the /api/health payload (or null when the
   // backend is unreachable). `healthChecked` flips once the probe resolves.
   const [health, setHealth] = useState(null);
@@ -661,6 +680,15 @@ export default function Demo() {
     });
     return () => { alive = false; };
   }, []);
+  // Both panels read the case store, which is behind the password gate, so they
+  // are pulled once the demo is unlocked rather than on mount — a fetch fired
+  // before the PIN is accepted comes back 401 and would leave the totals and the
+  // buffer empty for the rest of the session.
+  useEffect(() => {
+    if (!authed) return;
+    refreshStats();
+    refreshBuffer();
+  }, [authed, refreshStats, refreshBuffer]);
   // Real model is usable only when the backend is up AND a real checkpoint is
   // loaded (a boot without a checkpoint runs on random weights — meaningless).
   const apiReady = !!(health && health.checkpoint_loaded);
@@ -748,7 +776,10 @@ export default function Demo() {
     fileIntoCase(nextLeft, 'left');
   };
 
-  const reset = (keepHistory = true) => {
+  // Clear the workspace for the next patient. The buffer is deliberately not
+  // touched: it is the study's verdict log now, read back from the case store,
+  // so emptying it here would only hide rows that return on the next reload.
+  const reset = () => {
     setLeftImg(null);
     setRightImg(null);
     setCaseRef(null);
@@ -756,7 +787,6 @@ export default function Demo() {
     clearReview();
     setCorrectedGrade(0);
     closeCase();
-    if (!keepHistory) setHistory([]);
   };
 
   const handleRun = async () => {
@@ -856,6 +886,9 @@ export default function Demo() {
       corrected_grade: corrected,
       latency_ms: result.latencyMs,
       model: 'config-D (pipeline + EfficientNet-B3)',
+      // Local until the case store confirms it. `refreshBuffer` replaces a filed
+      // row with the store's copy and keeps an unfiled one.
+      local: true,
     };
     setHistory(h => [entry, ...h]);
     setVerdictEntry({
@@ -879,8 +912,12 @@ export default function Demo() {
       .then((saved) => {
         if (saved && saved.index) {
           setVerdictEntry(v => (v && v.historyId === entry.id ? { ...v, index: saved.index } : v));
+          // Stamp the store's ordinal onto the local row so the refresh below
+          // recognises it as filed and swaps in the store's own copy.
+          setHistory(h => h.map(x => (x.id === entry.id ? { ...x, index: saved.index } : x)));
         }
         refreshStats();
+        refreshBuffer();
       })
       .catch(() => { /* best-effort */ });
   };
@@ -897,17 +934,25 @@ export default function Demo() {
     setVerdictEntry(null);
     setFeedbackMode(null);
     setCorrectedGrade(0);
-    setHistory(h => h.filter(x => x.id !== given.historyId));
+    // Drop the row by its local id, and by its position in the store as well —
+    // once `refreshBuffer` has swapped in the store's copy the local id is gone.
+    setHistory(h => h.filter(x => (
+      x.id !== given.historyId
+      && !(given.caseId && given.index && x.case_id === given.caseId && x.index === given.index)
+    )));
     if (!given.caseId) return;
     verdictChainRef.current = verdictChainRef.current
       .then(() => retractCaseFeedback(given.caseId, given.index || undefined))
-      .then(() => refreshStats())
+      .then(() => { refreshStats(); refreshBuffer(); })
       .catch(() => { /* best-effort */ });
   };
 
   const exportJsonl = () => {
     if (history.length === 0) return;
-    const jsonl = history.map(h => JSON.stringify(h)).join('\n');
+    // `local` is bookkeeping for the reconciliation above, not part of the label.
+    const jsonl = history
+      .map(({ local, ...row }) => JSON.stringify(row))
+      .join('\n');
     const blob = new Blob([jsonl], { type: 'application/x-ndjson' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1360,18 +1405,12 @@ export default function Demo() {
           >
             ⬇ {t('demo.export')}
           </button>
-          <button
-            onClick={() => setHistory([])}
-            disabled={history.length === 0}
-            style={{
-              padding: '6px 12px', fontSize: 11,
-              background: 'white', color: history.length === 0 ? C.gray : C.red,
-              border: `1px solid ${history.length === 0 ? C.gray : C.red}`,
-              borderRadius: 4, cursor: history.length === 0 ? 'not-allowed' : 'pointer',
-            }}
-          >
-            {t('demo.clearAll')}
-          </button>
+        </div>
+        {/* The buffer is no longer this tab's scratch list, so say where the rows
+            come from — and that a row is withdrawn one verdict at a time (Undo
+            on the result), never by wiping the block. */}
+        <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#777)', marginBottom: 10 }}>
+          {t('demo.historySource')}
         </div>
         {history.length === 0 ? (
           <Note>{t('demo.historyEmpty')}</Note>
@@ -1430,7 +1469,7 @@ export default function Demo() {
       )}
 
       <div style={{ marginTop: 14 }}>
-        <button onClick={() => reset(true)} style={{
+        <button onClick={() => reset()} style={{
           fontSize: 10, padding: '4px 10px', background: 'transparent',
           color: 'var(--color-text-secondary,#666)',
           border: '1px solid var(--color-border-secondary,#ccc)',

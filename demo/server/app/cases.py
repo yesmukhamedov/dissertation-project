@@ -665,6 +665,89 @@ def collect_stats(base_dir: Path) -> dict:
     return stats
 
 
+def _verdict_row(record: dict, verdict: dict) -> dict:
+    """Render one stored verdict as a relabeling-buffer row.
+
+    The row carries exactly what the demo's buffer table shows and its JSONL
+    export writes, so a buffer rebuilt from the store is indistinguishable from
+    one the tab accumulated itself.
+
+    Args:
+        record: The case record the verdict belongs to.
+        verdict: One entry of ``record["feedback"]``.
+
+    Returns:
+        A buffer-row dict (``id``, ``timestamp``, ``images``, ``predicted``,
+        ``confidence``, ``probs``, ``verdict``, ``corrected_grade``…).
+    """
+    case_id = record.get("case_id", "")
+    index = verdict.get("index", 0)
+    # Probabilities and latency belong to the run the verdict judged. Only the
+    # grade and confidence are stored on the verdict itself, so take the rest
+    # from the case's most recent run — the one on screen when it was given.
+    runs = record.get("predictions") or []
+    run = runs[-1] if runs else {}
+    images = [
+        {"eye": entry.get("eye", eye), "source": entry.get("filename", "")}
+        for eye, entry in (record.get("images") or {}).items()
+    ]
+    predicted = verdict.get("predicted_grade")
+    if predicted is None:
+        predicted = run.get("pred")
+    confidence = verdict.get("confidence")
+    if confidence is None:
+        confidence = run.get("confidence")
+    return {
+        "id": f"{case_id}#{index}",
+        "index": index,
+        "case_id": case_id,
+        "timestamp": verdict.get("recorded_utc", ""),
+        "images": images,
+        "predicted": predicted,
+        "confidence": confidence,
+        "probs": run.get("probs") or [],
+        "verdict": verdict.get("verdict", ""),
+        "corrected_grade": verdict.get("corrected_grade"),
+        "latency_ms": run.get("latency_ms"),
+        "model": (record.get("model") or {}).get("model", ""),
+        "reviewer": verdict.get("reviewer"),
+        "notes": verdict.get("notes"),
+    }
+
+
+def collect_verdicts(base_dir: Path, limit: int = 200) -> dict:
+    """Rebuild the relabeling buffer from every verdict in the store.
+
+    The buffer used to live only in the tab, so a reload emptied it while the
+    verdicts themselves sat safely on disk. This reads them back, newest first,
+    so the buffer survives a refresh exactly as the study totals do.
+
+    Args:
+        base_dir: Root of the case store.
+        limit: Maximum rows to return (newest kept).
+
+    Returns:
+        ``{"entries": [...], "total": n}`` — ``total`` counts every verdict in
+        the store, which may exceed the rows returned.
+    """
+    rows: list[dict] = []
+    if not base_dir.is_dir():
+        return {"entries": [], "total": 0}
+
+    for directory in base_dir.iterdir():
+        if not directory.is_dir() or not is_valid_case_id(directory.name):
+            continue
+        try:
+            record = _read_record(directory)
+        except (OSError, ValueError):
+            continue  # same rule as collect_stats: skip, never fail the whole list
+        for verdict in record.get("feedback") or []:
+            rows.append(_verdict_row(record, verdict))
+
+    rows.sort(key=lambda r: r["timestamp"], reverse=True)
+    return {"entries": rows[:max(0, limit)], "total": len(rows)}
+
+
 # ---------------------------------------------------------------------------
 # Human-readable report
 # ---------------------------------------------------------------------------

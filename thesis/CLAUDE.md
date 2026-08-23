@@ -116,20 +116,40 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
 - 00-introduction: written last, as the map requires. One continuous section, eleven bold run-in
   rubrics, unnumbered and not listed in the contents. No hypothesis rubric and no separate
   empirical-basis rubric: neither has a precedent in the corpus, and both are dissolved into prose.
+  **Re-aligned to the corpus on 2026-08-22** against `D:/dissertation_council/temp/` (the sixteen
+  introductions and `АНАЛИЗ_ВВЕДЕНИЙ.md`): the provisions and novelty rubrics carried **no digits at
+  all** where the corpus median is 5.0 and 1.8 per 1,000 characters, so every provision now states
+  the effect size its criterion was fixed on, from `results/`. The evidential bounds moved to the
+  reliability rubric — the corpus hedges a provision in 1 of 16, and the provisions now read as
+  assertions with nothing dropped. A personal-contribution sentence was added (all five publications
+  are co-authored, the candidate is not first author on two, and 3 of 16 give the statement its own
+  rubric); the publications gained journal, volume, pages and indexing status, which took them from
+  the thinnest record in the corpus to its norm and resolved all five to `[1]`–`[5]`; and the chapter
+  overview roughly doubled, against a corpus median of 14.1 per cent of the introduction. The
+  additions were paid for inside the introduction, out of the four rubrics measured furthest above
+  the corpus — novelty, provisions, framework, significance — so the volume did not grow.
 - 01-review → 05-conclusion: written in the order 3 → 2 → 1 → 4 → introduction → conclusion, so the
   chapter carrying the results fixed the register and the table budget for the rest.
-- 06-appendices: A source code · B supplementary results · C architecture diagrams · D attention-map
-  gallery · E device supplementary tables. Kazakh lettering А, Ә, Б, В, Г. The old publication
-  appendix is deleted: reprints and indexing screenshots appear in none of the 16.
+- 06-appendices: A source code · B supplementary results · C system architecture **and the working
+  demonstrator** · D attention-map plates · E device supplementary tables. Kazakh lettering
+  А, Ә, Б, В, Г. The old publication appendix is deleted: reprints and indexing screenshots appear
+  in none of the 16. **Reworked 2026-08-22** against `D:/dissertation_council/temp/АНАЛИЗ_ПРИЛОЖЕНИЙ.md`
+  (10 of the 16 have appendices at all; 5–28 pages; the median single appendix is **one** page):
+  Appendix D went from 54 plates to **four** (IDRiD_007, 017, 020, 050) and its exhaustiveness
+  argument was replaced by a declared selection, and Appendix C gained **C.5**, three screenshots of
+  the demonstrator (`defense/figures/1–3.png`) — the corpus's "screenshots of the delivered system"
+  type, which 3 of the 10 use. The block fell from 39/40 pages to 29/30. ⚠ The Kazakh figure markers
+  keep Latin letters (`FIG-D.n`, `FIG-C.n`), so appendix В prints "Сурет D.1": `md2gost._FIG` matches
+  `[A-Za-z]` only and a Cyrillic letter in a marker would print raw.
 
-**Two things bind anything written from here.** The main text is **263 words over** the corpus
-ceiling of 31,000, so anything entering the body has to displace more than itself. The three words
-of headroom this file used to record were an artefact of the gate: it modelled a printed citation as
-one word, but a narrative citation keeps its author phrase and prints as four (`Gulshan et al.
-[13]`), so the volume was 261 words longer than measured all along. The gate now counts the printed
-form, and `conformance.py` is where to look for what to cut. And every claim taken from a source
-names it — the compression pass dropped 90 per cent of the attribution once already, and restoring
-it was a separate pass over every section.
+**Two things bind anything written from here.** The gate ceiling is **31,500** words of main text
+(raised from 31,000 by the candidate on 2026-08-21) and the English edition stands at **31,489** —
+**11 words of headroom**, so anything entering the body has to displace very nearly itself.
+`conformance.py` counts a printed citation the way it prints: a parenthetical collapses to `[12]`,
+but a narrative citation keeps its author phrase and prints as four words (`Gulshan et al. [13]`).
+It is where to look for what to cut. And every claim taken from a source names it — the compression
+pass dropped 90 per cent of the attribution once already, and restoring it was a separate pass over
+every section.
 
 Kazakh translations of the new tree are written: 35 files under `chapters/**/translations/`, one per
 draft, assembled by `assembly/_assemble_kz.py` (35,514 PART-1 words, no suspect extractions).

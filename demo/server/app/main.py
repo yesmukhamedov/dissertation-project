@@ -24,6 +24,7 @@ from .schemas import (
     CaseFeedbackRetractResponse,
     CaseImageResponse,
     CaseStatsResponse,
+    CaseVerdictsResponse,
     GradcamResponse,
     HealthResponse,
     ODFoveaCorrectionResponse,
@@ -491,6 +492,21 @@ async def case_stats(password: str | None = Query(default=None)) -> CaseStatsRes
     """
     _require_password(password)
     return CaseStatsResponse(**cases_mod.collect_stats(settings.cases_dir))
+
+
+@app.get("/api/cases/verdicts", response_model=CaseVerdictsResponse)
+async def case_verdicts(
+    password: str | None = Query(default=None),
+    limit: int = Query(default=200, ge=1, le=2000),
+) -> CaseVerdictsResponse:
+    """Every verdict in the store as relabeling-buffer rows, newest first.
+
+    The buffer is rebuilt from here on load, so it survives a reload and a
+    different machine on the same backend — the same rule the study totals
+    already follow.
+    """
+    _require_password(password)
+    return CaseVerdictsResponse(**cases_mod.collect_verdicts(settings.cases_dir, limit))
 
 
 @app.get("/api/case/{case_id}")
