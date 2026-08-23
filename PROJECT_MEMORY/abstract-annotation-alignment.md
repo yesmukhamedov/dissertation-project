@@ -1,6 +1,6 @@
 ---
 name: abstract-annotation-alignment
-description: thesis/output abstracts (EN/RU/KZ) restructured to real IITU peer samples, resynced 2026-08-21 to the rebuilt volume (118 pp / 19 tables / 16 figures / 102 sources); two conflicting page caps apply to the abstract itself
+description: thesis/output abstracts (EN/RU/KZ) rewritten 2026-08-23 to the measured corpus genre — run-in rubrics, flowing prose, EN 7 / RU 8 / KZ 8 pp; content current against the rebuilt volume (113 pp / 19 tables / 16 figures / 102 sources)
 metadata:
   type: project
 ---
@@ -31,7 +31,8 @@ President's Address «Kazakhstan in the Era of AI» 8 Sep 2025, Law «On AI» No
 Law «On Science» art. 20); "Author's personal contribution" section; "General characteristics" lead
 para. KZ terminology fixed: Latin "pipeline" → "конвейер" (correct case forms; sentence-start caps).
 
-OUTSTANDING: Scopus **percentile** (have Q3 only). Build via [[council-docs-skill]] → `defense/docs/abstracts/`.
+Build via [[council-docs-skill]] → `defense/docs/abstracts/`. (The Scopus percentile, outstanding
+here for months, was closed on 2026-08-23 — see the last section.)
 NOTE: `defense/docs/**/*.docx` lock if open in Word — close before rebuild.
 
 ## Currency pass against the finished manuscript — 2026-08-13
@@ -123,3 +124,145 @@ the Office and with the council is capped at **5 pages per language**, against t
 these abstracts were written to. Ours are EN 13 / RU 15 / KZ 15 and do not meet it. Whether the two
 caps govern the same document is unresolved — see [[annotation-page-cap-conflict]] before editing
 these files for length again.
+
+## Currency pass — 2026-08-23 (after the v7.2.1 rebuild)
+
+Checked against `council/METADATA.toml`, `outline/TABLE_OF_CONTENTS_{EN,KZ}.md` and the
+council structure spec. **Current and needing nothing**: the volume figures (113 pp / 19 tables /
+16 figures / 102 sources, Kazakh edition, per [[defense-language-kazakh]]), the topic on all three
+languages, the programme code 8D06102, the four chapter titles, the five appendices with the Kazakh
+letters А, Ә, Б, В, Г, the five publications, and the built `.docx`/`.pdf` in
+`defense/docs/abstracts/` (rebuilt with the volume in v7.2.1). `check_metadata.py` clean.
+
+**Two things had fallen behind and were fixed:**
+
+1. **The Scopus percentile was missing.** `council/en/11-abstract-annotation/structure.md` asks for
+   quartile *and* percentile; the abstracts gave «Q3» alone, although the percentile was researched
+   and written into the registry (`percentile = "42"`, CiteScore 2025 = 2,5, Computer Science
+   Applications #590/1022) and into the nine official-reviewer files. Added in both places per
+   language — the Publications summary line and entry 1 of the works list — in the reviewer files'
+   own wording, incl. the Kazakh house form «42-перцентиль», «… санатында».
+2. **The Kazakh register repair of v7.2.1 never reached `abstract_kz.md`.** That pass covered the
+   35 translation sources only; the abstract still carried **13 mid-sentence «, сондықтан»** in
+   4 431 words — the volume's whole ceiling (12) in a text a sixth its length — and **zero**
+   sentence-initial connectives, i.e. every causal join was the English «…, so …» comma. Ten were
+   moved to the causal suffix (-дықтан/-діктен/-тықтан), three became new sentences opening on
+   Сондықтан / Демек / Осылайша. `conformance.kazakh_register()` now passes all three checks on the
+   abstract (0 calques, 0 mid-sentence, top connective 33 %).
+   ⚠ The gate runs over the volume, **not** over `thesis/output/` — the council documents are outside
+   its scope, so a volume-wide register or notation repair has to be applied to them by hand.
+
+Rebuilt via [[council-docs-skill]] (`build_all.py --only abstract_en abstract_ru abstract_kz`,
+system Python 3.13). **Page counts did not move: EN 13 / RU 15 / KZ 15** — the additions fit inside
+the existing pages, so the 15-page cap did not have to be paid for by a cut. The 5-vs-15-page
+conflict of [[annotation-page-cap-conflict]] remains open and untouched.
+
+
+## Rewritten to the corpus genre — 2026-08-23
+
+`D:/dissertation_council/temp/АНАЛИЗ_АННОТАЦИЙ.md` measured all seventeen candidates'
+abstracts on three languages (we are **A17**). It settles what the genre is, and we were
+outside it on two axes at once.
+
+**The genre.** An abstract in this council is not a one-page summary but a **shortened
+introduction**: the same rubrics with **bold run-in lead-ins**, in flowing prose. Nobody has
+standalone subheadings, numbered rubrics, tables or figures — enumerations run **inline**
+inside the paragraph («Задачи исследования: 1. … 2. …»), publication lists included.
+Median 18,315 characters, 16 rubrics, **6–8 pages**; Times New Roman 14 pt, single spacing,
+justified, first-line indent 10–12.5 mm, bold 2.2–10.2 % of characters.
+
+**Where we stood.** Ours was **39,269 chars / 15 pages** — the largest of the seventeen by
+35 % over the next (A11, 29,032) and more than double the median — and built from `##`
+headings plus real numbered lists, so it printed subheadings on their own lines and measured
+a 7.0 mm indent (the hanging indent of list items, not the body indent). The rubric **set**
+was never the problem: we are the only candidate with all fourteen mandatory rubrics present
+and our order already mirrors A15. §8 of the analysis put the divergence in two rubrics —
+**положения 10.1× the corpus median, новизна 7.6×** — written as long qualified formulations
+where the corpus writes a terse list.
+
+**What was done.** All three languages rewritten as run-in rubrics in flowing prose, keeping
+the 20-rubric set and order, enumerations inline, no `---` rule. Result: **EN 22.6k / RU 22.2k
+/ KZ 22.1k chars, EN 7 / RU 8 / KZ 8 pages** — inside the corpus band (A13 is 22,663 / 8 pp)
+and at its modal page count, with the three versions within 3 % of each other (corpus norm
+±10 %). Built docx measure bold 3.8–3.9 %, indent 1.25 cm, and **no all-bold own-line
+paragraph except the title block** — which is exactly the corpus form.
+
+**How the qualifications survived the cut.** The bounds attached to each provision are binding
+(INVARIANTS CFC-2.8, SB-4.x, DGL-4) and could not simply be deleted to reach corpus length.
+They did not need to be: **the introduction had already solved this** on 2026-08-22 — the
+corpus hedges a provision in 1 of 16, so the volume's provisions became assertions carrying
+their effect sizes and the bounds moved to the reliability rubric ([[peer-intro-norms]]). The
+abstract now mirrors that: provisions state the numbers (6.54/6.55 pp wF1, 0.032/0.036 AUC,
+0.11 κ, ablation 0.7538→0.8193, distance 0.070–0.093, G 0.898 vs 0.858, +0.069/+0.054 vs
+MCID 0.050, ALO 0.099–0.129 at p ≤ 0.0148), and **Достоверность carries three general and
+four provision-specific qualifications plus the «не выносятся на защиту» list**. Nothing was
+dropped; CFC-2.8's "the configuration as a whole, not preprocessing alone" is verbatim in all
+three languages.
+
+⚠ Two things to know before touching these again. The abstract is **not** in
+`conformance.py`'s scope — the gate reads the volume only — so the Kazakh register checks and
+anything else volume-wide has to be run against `thesis/output/` by hand; they pass here
+(0 calques, 0 mid-sentence «сондықтан», top connective 33 %). And the GD-01 five-page cap of
+[[annotation-page-cap-conflict]] is now **much closer but still not met** — 7/8/8 against 5;
+the corpus itself does not meet it either (only A01, A12 and A16 are at 4 pages), which is
+evidence that the 15-page reading of §6.9 is the operative one.
+
+### Вёрстка титульного блока и списка публикаций — 2026-08-23
+
+Две вещи, которые разбор по рубрикам показать не мог (`Аннотация_по_рубрикам.txt` склеивает
+абзацы — по нему список публикаций выглядит идущим внутри абзаца). Сняты с самих PDF образцов
+через `pymupdf`, по x-координатам строк:
+
+1. **Титульный блок центрируется целиком.** У Бакировой, Дауренбаевой, Мырзакерімовой каждая
+   строка блока — «АННОТАЦИЯ», ФИО, тема в кавычках, формула степени, шифр ОП — центрирована
+   и полужирная, без абзацного отступа; Word переносит блок сам. У нас дескриптор шёл обычным
+   абзацем по ширине с отступом 1,25 см.
+2. **Каждая публикация — отдельный абзац с номером.** У Әйтім рубрика «Публикации.» — проза,
+   затем отдельный абзац «Результаты… представлены в следующих публикациях:», затем по абзацу
+   на работу: первая строка с обычным абзацным отступом (100,4 pt при поле 72), продолжение
+   вровень с полем, по ширине. **Это не список с висячим отступом**, который даёт
+   `md2gost._list_item` (−7 мм).
+
+`md2gost.py` получил под это два расширения (обе копии, `.claude/` и `.agents/`):
+`_body(..., center=True)` и директива **`<!-- runlist -->`**, после которой нумерованный блок
+печатается обычными абзацами с номером внутри текста. Директива `<!-- center -->` теперь
+действует и на обычный абзац, а не только на блок с жёсткими переносами (её прежнее
+применение — шапка списка научных трудов — идёт через `_line_block` и не затронуто, проверено
+пересборкой). Объём не сдвинулся: **EN 7 / RU 8 / KZ 8**.
+
+### Титульный блок переносится вручную, а не Word'ом — 2026-08-24
+
+Уточнение к пункту 1 выше: «Word переносит блок сам» верно только для кириллицы. Замеры
+шестнадцати английских аннотаций архива (`Образцы документов/авторы/*/Abstract*eng*.pdf`,
+x-координаты строк через `pymupdf`) показывают ширины строк шапки 281–466 pt при полосе
+471–485 pt, с разбросом внутри блока до 170 pt (Бакирова: 301/290/403/459). Такой рваный край
+автоматическим переносом не получается — образцы **набирают шапку жёсткими переносами** по
+смыслу: ФИО / часть темы / часть темы + «submitted» / формула степени / шифр ОП.
+
+У нас RU и KZ выглядели правильно случайно: длинные кириллические слова сами оставляли рваный
+край. **EN давал 473.8 / 470.5 / 470.7 / 472.6 pt при полосе 485** — все строки в пределах 15 pt
+от полей, и блок читался как обычный абзац по ширине, а не как заголовок. Исправлено 2026-08-24:
+`abstract_en.md` набран пятью строками с жёсткими переносами (две концевых пробела), каждая в
+своём `**…**`, под той же директивой `<!-- center -->` — она уводит блок в
+`md2gost._line_block(center=True)`. Ширины стали 402/428/439/381/372 pt. Объём не сдвинулся
+(7 страниц), текст, кроме мест переноса, не менялся. RU/KZ не трогали.
+
+Тем же замером снят второй параметр шапки: **от последней её строки до первой строки текста
+у образцов ровно два интерлиньяжа** — 31.8–32.4 pt при TNR 14 pt и одинарном интервале, то есть
+одна пустая строка, у семи из восьми англоязычных образцов с текстовым слоем (у Дауренбаевой две).
+У нас было 16.1 pt, то есть без отбивки. `md2gost` теперь закрывает центрированную шапку пустым
+абзацем (`_blank_line`) на обоих путях — и `_line_block(center=True)`, и `_body(center=True)`, —
+так что отбивка одинакова на всех трёх языках; замер после пересборки 32.2–32.3 pt. Объём не
+сдвинулся (EN 7 / RU 8 / KZ 8), в RU и KZ одна строка переехала через границу страницы, текст
+не менялся. Та же директива стоит в `publications_list_ru.md`, поэтому шапка списка научных
+трудов тоже получила отбивку (16.6 → 32.8 pt, по-прежнему 3 страницы) — у единственного образца
+списка с текстовым слоем (Тохтахунов) там тоже разрыв.
+
+⚠ Побочное: разбиение темы жёстким переносом рвёт её на два `**…**`-спана, и
+`check_metadata.normalise()` переставал находить `dissertation.title_en` в исходнике. Функция
+теперь снимает `**` перед сравнением (обе копии скилла) — разметка не должна прятать значение
+реестра; заодно перестаёт прятаться и запрещённая форма, разорванная жирным.
+
+⚠ **`docx2pdf` конвертирует папку целиком.** Пересборка одного отзыва перештамповала все PDF в
+`defense/docs/reviews/`, включая подписанный и отправленный отзыв зарубежного консультанта;
+восстановлено через `git checkout`. Собирая один документ, проверяй `git status` после.

@@ -165,6 +165,12 @@ def normalise(text: str) -> str:
     """Fold typography that legitimately varies between documents."""
     text = text.translate(_DASHES).translate(_QUOTES)
     text = text.replace(" ", " ").replace(" ", " ").replace("﻿", "")
+    # Emphasis markers are markup, not text. A registry value may be split by
+    # them in the source — the abstract masthead sets each of its centred lines
+    # bold on its own, so the topic runs across two `**...**` spans — and the
+    # value is still carried correctly. Dropping them also stops a forbidden
+    # form from hiding behind a bold run in the middle of a word.
+    text = text.replace("**", "")
     return re.sub(r"\s+", " ", text)
 
 

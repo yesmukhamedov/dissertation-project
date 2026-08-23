@@ -557,11 +557,41 @@ def _heading(doc: Document, text: str, level: int):
     return p
 
 
-def _body(doc: Document, text: str):
+def _blank_line(doc: Document) -> None:
+    """One empty line, closing a centred masthead off from the prose below it.
+
+    The corpus sets the masthead off by exactly one empty line: from the last
+    masthead line to the first body line measures two line heights — 31.8-32.4 pt
+    at Times New Roman 14 pt single spacing — in seven of the eight sample
+    abstracts that carry a text layer (the eighth, Daurenbayeva, leaves two).
+    The samples got that by pressing Enter, and an empty paragraph reproduces it
+    exactly, where paragraph spacing would have to guess the line height.
+    """
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    p.paragraph_format.first_line_indent = Mm(FIRST_LINE_INDENT_CM * 10)
+    p.paragraph_format.first_line_indent = Mm(0)
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(0)
+
+
+def _body(doc: Document, text: str, *, center: bool = False):
+    """A body paragraph: justified, first line indented.
+
+    `center` is the masthead shape of an abstract. Every sample opens with the
+    same block — АННОТАЦИЯ over the candidate, the topic in quotation marks and
+    the programme — set centred and unindented, closed by an empty line. As
+    justified body text the block reads as prose instead of as a title, which is
+    the one place the export diverged from the corpus.
+    """
+    p = doc.add_paragraph()
+    if center:
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.first_line_indent = Mm(0)
+    else:
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        p.paragraph_format.first_line_indent = Mm(FIRST_LINE_INDENT_CM * 10)
     _add_runs(p, text)
+    if center:
+        _blank_line(doc)
     return p
 
 
@@ -603,9 +633,13 @@ def _line_block(doc: Document, lines: list[str], *, center: bool = False):
     blank line's worth of space while its own lines stay tight together.
 
     `center` switches the block to the masthead shape instead — every line
-    centred, no right tab. The list of scientific papers opens with three such
-    lines (post, programme, candidate in the genitive) under its title, and as a
-    justified body paragraph they read as prose rather than as a heading.
+    centred, no right tab, and one empty line closing the block. The list of
+    scientific papers opens with three such lines (post, programme, candidate in
+    the genitive) under its title, and as a justified body paragraph they read as
+    prose rather than as a heading. An abstract masthead comes through here too
+    when its lines are hard-broken: English wraps to fill the measure, so the
+    block has to be broken by hand to read as a title at all — see
+    PROJECT_MEMORY/abstract-annotation-alignment.md.
     """
     usable = _USABLE_MM
     for i, text in enumerate(lines):
@@ -624,6 +658,8 @@ def _line_block(doc: Document, lines: list[str], *, center: bool = False):
             _add_runs(p, tail.strip())
         else:
             _add_runs(p, text.strip())
+    if center:
+        _blank_line(doc)
     return None
 
 
@@ -1482,6 +1518,12 @@ def render_into(
     # `<!-- center -->` on its own line centres the block that follows it; see
     # _line_block. It is consumed by whichever block flushes next.
     pending_center = [False]
+    # `<!-- runlist -->` sets the numbered block that follows as ordinary body
+    # paragraphs, the number run into the text. Every abstract in the corpus
+    # that carries its publication list sets it that way — one indented,
+    # justified paragraph per work — rather than as a hanging-indent list.
+    # It stays in force until a line that is neither blank nor numbered.
+    pending_runlist = [False]
 
     def take_center() -> bool:
         was, pending_center[0] = pending_center[0], False
@@ -1506,7 +1548,7 @@ def render_into(
             for f in regs:
                 _emit(f, note_missing=f["label"] != labels["TAB"])
             return
-        _body(doc, cleaned)
+        _body(doc, cleaned, center=take_center())
         emit_after(regs)
 
     tbl_buf: list[list[str]] = []
@@ -1597,6 +1639,10 @@ def render_into(
             flush_paragraph()
             pending_center[0] = True
             continue
+        if stripped == "<!-- runlist -->":
+            flush_paragraph()
+            pending_runlist[0] = True
+            continue
 
         if not stripped:
             flush_paragraph()
@@ -1655,10 +1701,15 @@ def render_into(
             if standalone:
                 for f in regs:
                     _emit(f, note_missing=f["label"] != labels["TAB"])
+            elif pending_runlist[0]:
+                _body(doc, f"{marker} {cleaned}")
+                emit_after(regs)
             else:
                 _list_item(doc, marker, cleaned)
                 emit_after(regs)
             continue
+        if stripped and pending_runlist[0]:
+            pending_runlist[0] = False
 
         buf.append(stripped + _HARD_BREAK if hard else stripped)
 
