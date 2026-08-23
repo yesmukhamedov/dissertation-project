@@ -46,6 +46,6 @@ The presented dissertation for the degree of Doctor of Philosophy (PhD) by **Yes
 
 **Official reviewer:**  
 
-PhD, Assistant Professor  
+PhD, Associate Professor  
 Head of the Department of Computer Engineering  
 International Information Technology University, Almaty   **Chinibayeva Tolganay Temirbolatkyzy**
