@@ -30,7 +30,7 @@ ST RK 34.014-2002. Information Technology. A set of standards for automated syst
 
 **CLAHE (Contrast-Limited Adaptive Histogram Equalization)** — an adaptive contrast-enhancement method operating on local image tiles with a clip limit that bounds contrast amplification; applied in the pipeline to the LAB L-channel under a dual-constraint clip limit (Stage 5).
 
-**Composite independent variable** — the combined manipulated factor of Experiment 1 (H-1), in which the full-pipeline arm differs from baseline jointly along the preprocessing axis (eight-stage pipeline vs. stretch-resize + ImageNet normalize) and the pretraining axis (ophthalmology-specific self-supervised pretraining vs. ImageNet).
+**Composite independent variable** — the combined manipulated factor of Experiment 1, in which the full-pipeline arm differs from baseline jointly along the preprocessing axis (eight-stage pipeline vs. stretch-resize + ImageNet normalize) and the pretraining axis (ophthalmology-specific self-supervised pretraining vs. ImageNet).
 
 **Convolutional Neural Network (CNN)** — a neural architecture comprising convolutional and pooling layers for feature extraction and fully connected layers for classification; the classification backbone operating on preprocessed fundus images for five-class DR staging.
 
@@ -58,7 +58,7 @@ ST RK 34.014-2002. Information Technology. A set of standards for automated syst
 
 **Image quality** — the measurable capacity of a fundus image to support automated detection of microvascular features relevant to DR staging, assessed through downstream classification performance rather than a subjective visual score.
 
-**Integrated pipeline dominance (H-1)** — the primary hypothesis that the integrated full-pipeline configuration outperforms the baseline as a unitary system, validated when the empirical dominance criterion (≥ 5 pp weighted-F1 gain, ≥ 0.02 ROC-AUC gain, no Cohen's Kappa degradation) is satisfied.
+**Integrated pipeline dominance** — the primary hypothesis that the integrated full-pipeline configuration outperforms the baseline as a unitary system, validated when the empirical dominance criterion (≥ 5 pp weighted-F1 gain, ≥ 0.02 ROC-AUC gain, no Cohen's Kappa degradation) is satisfied.
 
 **Ophthalmology-specific self-supervised pretraining** — self-supervised pretraining of the CNN backbone on an unlabeled retinal fundus corpus (no DR labels), used as the full-pipeline-arm initialization; learns fundus-domain representations directly on the 4-channel pipeline tensor.
 
@@ -68,7 +68,7 @@ ST RK 34.014-2002. Information Technology. A set of standards for automated syst
 
 **Resource-limited environment** — a deployment context characterized by at least two of: absence of GPU acceleration; available RAM below 16 GB; batch-processing-time constraints; network connectivity precluding continuous cloud-API reliance.
 
-**Transfer learning** — the reuse and adaptation of pretrained network weights to the fundus-image domain; under H-1 the initialization source is slaved to the arm (ImageNet for baseline, ophthalmology-specific SSL for the full pipeline).
+**Transfer learning** — the reuse and adaptation of pretrained network weights to the fundus-image domain; in Experiment 1 the initialization source is slaved to the arm (ImageNet for baseline, ophthalmology-specific SSL for the full pipeline).
 
 **Weighted loss function** — a cross-entropy loss with class-specific weights addressing class imbalance and exploiting the ordinal structure of the five-class DR grading.
 
@@ -81,16 +81,13 @@ ST RK 34.014-2002. Information Technology. A set of standards for automated syst
 | AUC | Area Under the Curve |
 | BYOL | Bootstrap Your Own Latent (self-supervised learning method) |
 | CAM | Class Activation Mapping |
-| CFC-n | Claim Formulation Constraint n — a rule governing the form a claim may take; the CFC-2 series enumerates claim types this dissertation forbids itself |
 | CLAHE | Contrast-Limited Adaptive Histogram Equalization |
 | CNN | Convolutional Neural Network |
 | CNR | Contrast-to-Noise Ratio |
 | DDR | Diabetic Retinopathy grading dataset (DDR) |
-| DGL-n | Deployment and Generalization Limitation n — a bound on how far a result may be carried beyond the conditions under which it was obtained |
 | DINO | self-Distillation with No labels (self-supervised learning method) |
 | DR | Diabetic Retinopathy |
 | ECE | Expected Calibration Error |
-| EH-n | Evidence Hierarchy rule n — the ranking of metrics by evidentiary weight, and the criteria a result must meet before it counts as decisive |
 | EHR | Electronic Health Record |
 | EMD | Earth Mover's Distance |
 | EyePACS | Eye Picture Archive Communication System (diabetic-retinopathy dataset) |
@@ -104,21 +101,16 @@ ST RK 34.014-2002. Information Technology. A set of standards for automated syst
 | LAB | CIELAB colour space |
 | MLP | Multilayer Perceptron |
 | MoCo | Momentum Contrast (self-supervised learning method) |
-| NC-n | Non-Claim n — a statement this dissertation explicitly does not make, recorded so that its results are not read as making it |
 | NPV | Negative Predictive Value |
 | OD | Optic Disc |
-| OD-n | Operational Definition n — the definition by which a term of this dissertation is measured; distinct from OD above, which is never written with a number |
 | ODIR-5K | Ocular Disease Intelligent Recognition dataset (5,000 patients) |
 | PACS | Picture Archiving and Communication System |
-| PC-n | Primary Claim n — a numbered claim of the dissertation's argument, each carrying its evidence and its assessed strength |
 | PPV | Positive Predictive Value |
 | ReLU | Rectified Linear Unit |
 | RFMiD | Retinal Fundus Multi-disease Image Dataset |
 | RIQA | Retinal Image Quality Assessment |
 | ROC | Receiver Operating Characteristic |
-| SB-n | Scope Boundary n — a statement of what lies outside what this dissertation claims |
 | SimCLR | Simple framework for Contrastive Learning of Representations |
-| SIR-n | Source Interpretation Rule n — a rule constraining what may be attributed to a cited source |
 | SSIM | Structural Similarity Index |
 | SSL | Self-Supervised Learning |
 | STARE | Structured Analysis of the Retina (dataset) |
@@ -399,7 +391,7 @@ Five appendices follow: the source code of the preprocessing pipeline, supplemen
 confusion matrices, the system architecture with the working demonstrator, the attention-map
 gallery, and supplementary tables for the device evaluation.
 
-The dissertation is set out on 107 pages, excluding the appendices, and contains 19 tables and 16
+The dissertation is set out on 102 pages, excluding the appendices, and contains 19 tables and 16
 figures. The list of references comprises 102 sources.
 
 
@@ -3588,9 +3580,9 @@ figure arises, or where the residual error lies, should not have to take the sum
 Two conditions govern the reading of everything below. First, the grade distribution of the training
 corpus is severely imbalanced: of 35,126 images, 25,810 are grade DR0, 2,443 DR1, 5,292 DR2, 873 DR3
 and 708 DR4. Every per-class figure must be read against its class size, and the two smallest
-classes carry intervals that no table here reports. Second, per-class metrics are supplementary in
-this dissertation's evidence hierarchy: they inform the reading of the primary metrics and cannot
-independently establish or refute a hypothesis.
+classes carry intervals that no table here reports. Second, per-class metrics are marked
+supplementary in the metric table of section 2.6: they inform the reading of the primary metrics
+and cannot independently establish or refute a hypothesis.
 
 ### B.1 Per-class performance on the training corpus
 

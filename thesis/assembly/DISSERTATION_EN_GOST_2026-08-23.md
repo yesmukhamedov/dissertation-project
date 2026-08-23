@@ -259,7 +259,7 @@ Five appendices follow: the source code of the preprocessing pipeline, supplemen
 confusion matrices, the system architecture with the working demonstrator, the attention-map
 gallery, and supplementary tables for the device evaluation.
 
-The dissertation is set out on 107 pages, excluding the appendices, and contains 19 tables and 16
+The dissertation is set out on 102 pages, excluding the appendices, and contains 19 tables and 16
 figures. The list of references comprises 102 sources.
 
 
@@ -3636,9 +3636,9 @@ figure arises, or where the residual error lies, should not have to take the sum
 Two conditions govern the reading of everything below. First, the grade distribution of the training
 corpus is severely imbalanced: of 35,126 images, 25,810 are grade DR0, 2,443 DR1, 5,292 DR2, 873 DR3
 and 708 DR4. Every per-class figure must be read against its class size, and the two smallest
-classes carry intervals that no table here reports. Second, per-class metrics are supplementary in
-this dissertation's evidence hierarchy: they inform the reading of the primary metrics and cannot
-independently establish or refute a hypothesis.
+classes carry intervals that no table here reports. Second, per-class metrics are marked
+supplementary in the metric table of section 2.6: they inform the reading of the primary metrics
+and cannot independently establish or refute a hypothesis.
 
 ### B.1 Per-class performance on the training corpus
 

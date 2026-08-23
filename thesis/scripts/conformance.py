@@ -68,6 +68,24 @@ _FENCE = re.compile(r"^\s*```")
 _INTERNAL_CODE = re.compile(r"\b(?:H|SB|OD|SIR|NC|CFC|SC|AOQ|IT|EH|DIA|PC)-\d+(?:\.\d+)*\b")
 _EDITORIAL = re.compile(r"\[VERIFY\b|\bTODO\b|\bTBD\b|\bFIXME\b")
 
+# The same vocabulary in the *unnumbered* form a glossary entry gives it — "PC-n",
+# "SB-n". The body check above never saw those, and nor did anything else: the front
+# matter is authored in thesis/output/ and inserted by the assemblers ahead of the
+# Introduction, which is exactly where `split_sections` starts reading. So eight
+# governance labels (PC/CFC/EH/SIR/DGL/SB/NC/OD-n) sat defined in "Designations and
+# abbreviations" of both editions, used nowhere in either volume, until an external
+# reader of the Kazakh PDF asked where the apparatus they describe is written down
+# (2026-08-23). They are rules for how the text may make claims — not terms of the
+# subject — and a reader who meets one in the abbreviations list is owed the
+# apparatus itself. They were removed; this is what keeps them out.
+_GOVERNANCE_LABEL = re.compile(
+    r"\b(?:H|SB|OD|SIR|NC|CFC|SC|AOQ|IT|EH|DIA|PC|DGL)-(?:\d+(?:\.\d+)*|n)\b"
+)
+
+# Front matter and the council deliverables beside it. None is inside the assembled
+# main text, so all of it is checked from source rather than from the manuscript.
+_FRONT_MATTER = ("normative_references", "definitions", "abbreviations", "abstract")
+
 # `[FIG-…]` / `[TAB-…]` are asset markers, not residue: md2gost resolves each to
 # its image or table at conversion. They are reported separately rather than
 # failed, because their presence in the Markdown is normal — but one md2gost
@@ -80,6 +98,42 @@ _ASSET_MARKER = re.compile(r"\[(?:TAB|FIG)-[\w.]+")
 # caption text and file path. Counting those would inflate the word count and
 # charge the prose for a dash that never reaches the page.
 _ASSET_SPAN = re.compile(r"\[(?:TAB|FIG)-[^\]]*\]")
+
+# --- Kazakh register: is the volume written in Kazakh, or carried over from English?
+#
+# The Kazakh edition is the volume actually defended, and it is a translation of the
+# English one. That makes one failure mode specific to it: English syntax surviving
+# the translation under Kazakh words. Two constructions carry it, and both were
+# measured against two other Kazakh-language dissertations of this council (Ибраева,
+# Тоқтарова) in an external reading of the 2026-08-23 PDF:
+#
+#   * `et al.` rendered word-for-word as "және әріптестері" — 77 uses, against 0 in
+#     either comparator, while the Kazakh norm "т.б." appeared 0 times against their
+#     18 and 12. The literature list itself carried Latin "[et al.]" throughout. The
+#     norm is "т.б."; `_finalize_citations.py` has always parsed both.
+#   * "…, сондықтан …" mid-sentence — 121 uses against 6 and 11. In Kazakh
+#     "сондықтан" opens a sentence; joined to the previous clause by a comma it is
+#     English "…, so …" with Kazakh vocabulary. The idiomatic forms are the causal
+#     suffix (-дықтан/-діктен) or a new sentence.
+#
+# Both were repaired on 2026-08-23. The ceiling below is the comparators' own range,
+# not zero: the construction is not ungrammatical, only foreign in that density.
+_KZ_ETAL_CALQUE = re.compile(r"және\s+әріптестер\w*")
+_KZ_MIDSENTENCE_SO = re.compile(r",\s*сондықтан\b")
+
+# The third finding of the same reading was uniformity: one connective doing all the
+# work. "Демек," ran to 35 uses with no alternative anywhere in the volume, which is
+# the signature of a text produced in one pass rather than written. Kazakh has a full
+# set here; the check asks that no single member take more than half the family.
+_KZ_CONNECTIVES = {
+    "Сондықтан": r"\bСондықтан\b",
+    "Демек": r"\bДемек,",
+    "Сол себепті": r"[Сс]ол себепті",
+    "Тиісінше": r"\bТиісінше,",
+    "Сонымен": r"\bСонымен,",
+    "Осылайша": r"\bОсылайша,",
+    "Яғни": r"\bЯғни,",
+}
 
 # A sentence ends at . ! ? followed by whitespace and a capital letter.
 #
@@ -255,6 +309,41 @@ def contents_entries(lang: str) -> list[str] | None:
     return entries or None
 
 
+def front_matter_labels(lang: str) -> list[tuple[str, str]]:
+    """Governance labels found in the front matter, as (file stem, label).
+
+    The assembled manuscript begins at the Introduction, so nothing above it is ever
+    reached by the body checks. These files are read from `thesis/output/` instead.
+    """
+    out: list[tuple[str, str]] = []
+    for stem in _FRONT_MATTER:
+        path = ROOT / "thesis" / "output" / f"{stem}_{lang}.md"
+        if not path.is_file():
+            continue
+        for label in _GOVERNANCE_LABEL.findall(path.read_text(encoding="utf-8")):
+            out.append((path.stem, label))
+    return out
+
+
+def kazakh_register(prose: str) -> list[Check]:
+    """The three register checks that apply only to the Kazakh edition."""
+    etal = len(_KZ_ETAL_CALQUE.findall(prose))
+    mid_so = len(_KZ_MIDSENTENCE_SO.findall(prose))
+    counts = {name: len(re.findall(pat, prose)) for name, pat in _KZ_CONNECTIVES.items()}
+    total = sum(counts.values())
+    top, top_n = max(counts.items(), key=lambda kv: kv[1]) if total else ("—", 0)
+    share = top_n / total if total else 0.0
+    return [
+        Check("«және әріптестері» (et al. calque)", etal, etal == 0,
+              "0 — the Kazakh norm is «т.б.» (comparators: 0 and 0)"),
+        Check("«, сондықтан» mid-sentence", mid_so, mid_so <= 12,
+              "<= 12 (comparators 6 and 11; this volume once had 121)"),
+        Check(f"top connective share ({top})", f"{share * 100:.0f}%",
+              share <= 0.55,
+              "<= 55% of the connective family — one doing all the work reads as one pass"),
+    ]
+
+
 def analyse(md_path: Path, lang: str) -> list[Check]:
     md = md_path.read_text(encoding="utf-8")
     main_lines, headings = split_sections(md)
@@ -332,6 +421,15 @@ def analyse(md_path: Path, lang: str) -> list[Check]:
               bold_words / max(total_words, 1) <= 0.014, "<= 1.4%"),
         Check("tables in the body", tables, tables <= 20, "<= 20 (corpus max 19)"),
     ]
+
+    fm = front_matter_labels(lang)
+    checks.append(Check("governance labels in front matter", len(fm), not fm,
+                        "0 — defined-but-unused apparatus is a finding, not a glossary"))
+    if fm:
+        checks.append(Check(f"  first is {fm[0][1]}", f"in {fm[0][0]}", False, ""))
+
+    if lang == "kz":
+        checks.extend(kazakh_register(prose))
 
     entries = contents_entries(lang)
     if entries is not None:

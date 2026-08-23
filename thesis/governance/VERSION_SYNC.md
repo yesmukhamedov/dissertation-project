@@ -1,6 +1,34 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 7.2.0 | **Date:** 2026-08-20
+**Version:** 7.2.1 | **Date:** 2026-08-23
+
+## v7.2.1 Sync Scope — the governance apparatus leaves the printed volume (no new binding)
+
+The eight governance labels defined in "Designations and abbreviations" of both editions
+(**PC-n, CFC-n, EH-n, SIR-n, DGL-n, SB-n, NC-n, OD-n**) are removed, together with three residual
+`H-1` references in the definitions list and one prose reference to an "evidence hierarchy" the
+volume never sets out. The apparatus itself is **unchanged and still binds** — `INVARIANTS.md`
+§§IV–IX are untouched — so nothing is created, reversed or reinterpreted. **PATCH-level** per
+VERSIONING_POLICY §4. This closes the pending item recorded under v7.2.0 above.
+
+| File | Was | Now | What changed |
+|---|---|---|---|
+| `output/abbreviations_{en,kz}.md` | — | — | Eight governance entries deleted; every remaining entry is a term of the subject. |
+| `output/definitions_{en,kz}.md` | — | — | Three `H-1` references → "Experiment 1", the body's own name for it. |
+| `chapters/06-appendices/B-{draft,translation}.md` | — | — | "supplementary in this dissertation's evidence hierarchy" → the metric table of section 2.6, where the split is actually written. |
+
+**Kazakh register, same pass.** 131 `et al.` calques («және әріптестері») → «т.б.»; 133 mid-sentence
+«…, сондықтан …» → causal suffix or a new sentence; 18 of 35 «Демек,» varied. Sources only —
+`chapters/**/translations/`; both manuscripts reassembled and the GOST citation pass rerun
+(138 brackets each, 102 external sources, no blocking or unknown resolutions).
+
+**Gate.** `scripts/conformance.py` gained the four checks that make this measurable rather than
+remembered: governance labels in the front matter (which the body scan, starting at the
+Introduction, could never see), the `et al.` calque, mid-sentence «, сондықтан», and the share of
+the largest connective. Not a governance document; recorded here because it is what holds the
+above in place.
+
+---
 
 ## v7.2.0 Sync Scope — restructuring to the council's measured norms (one boundary amended)
 
@@ -18,8 +46,8 @@ is reversed. **MINOR** per VERSIONING_POLICY §4.
 | `outline/REWRITE_MAP.md` | — | **new** | All 98 drafted sections mapped to destination or CUT, with word budgets. |
 
 **Pending in this line, not yet done:** the body itself (Phase 2), the Kazakh edition (Phase 4),
-the trilingual annotation (Phase 5), and the abbreviations list, from which the governance codes
-must be removed once they no longer appear in the text. `HYPOTHESIS.md`, `ARGUMENT_MAP.md`,
+and the trilingual annotation (Phase 5). ~~the abbreviations list, from which the governance codes
+must be removed once they no longer appear in the text~~ — **done 2026-08-23, see v7.2.1 below.** `HYPOTHESIS.md`, `ARGUMENT_MAP.md`,
 `CONTRIBUTIONS.md`, `CENTRAL_THESIS.md`, `CORE_OBJECTIVE.md` and `RESEARCH_ARCHITECTURE.md` are
 **unaffected** — they define what may be claimed, and the restructuring changes where a claim is
 made, not what it is.

@@ -1079,6 +1079,11 @@ def mermaid_failures() -> list[str]:
     return list(_mermaid_failures)
 
 
+# Height allowance for a Mermaid render, in mm — the near-full text block the
+# figures no longer take (see `_fit_width_mm`).
+MERMAID_MAX_H_MM = 215.0
+
+
 def _add_mermaid(doc: Document, code_lines: list[str], base_dir: Path) -> None:
     """Embed a Mermaid diagram as a centred image; fall back to source on failure.
 
@@ -1095,7 +1100,13 @@ def _add_mermaid(doc: Document, code_lines: list[str], base_dir: Path) -> None:
     p.paragraph_format.first_line_indent = Mm(0)
     p.paragraph_format.space_before = Pt(6)
     p.paragraph_format.space_after = Pt(6)
-    p.add_run().add_picture(str(img), width=Mm(_fit_width_mm(img)))
+    # A Mermaid render keeps the full-page height allowance the figures gave up.
+    # Its type is set by the renderer at a fixed size in a 2352 px-wide canvas, so
+    # an entity-relationship view shrunk to the 120 mm figure height would set its
+    # attribute names at about 2.5 pt — unreadable. The four tall structural views
+    # of Appendix C need the page they take.
+    p.add_run().add_picture(str(img), width=Mm(
+        _fit_width_mm(img, maxh=MERMAID_MAX_H_MM, maxh_hard=MERMAID_MAX_H_MM)))
 
 # --- Figure placeholders ------------------------------------------------------
 # Drafts carry assets as inline text markers `[FIG-3.1: caption — path/img.png]`.
@@ -1241,13 +1252,34 @@ def _png_size(p: Path):
     return None
 
 
-def _fit_width_mm(p: Path, maxw: float = 165.0, maxh: float = 215.0) -> float:
-    """Width (mm) that fits the image inside the text box, preserving aspect."""
+def _fit_width_mm(p: Path, maxw: float = 165.0, maxh: float = 95.0,
+                  minw: float = 63.0, maxh_hard: float = 120.0) -> float:
+    """Width (mm) that fits the image inside the text box, preserving aspect.
+
+    `maxh` is deliberately far below the 257 mm text block. At the full height a
+    portrait asset fills its page on its own: eleven of the twenty-seven
+    illustrations printed at 162-215 mm tall, among them the eight-stage pipeline
+    diagram and the three preprocessing stage cards of Chapter 2.
+
+    A single height cap cannot serve both shapes. The stage cards are nearly
+    square, so any height they are given they also take in width; the pipeline
+    diagram and the model flowchart are twice as tall as they are wide, and the
+    same cap squeezes them to a column too narrow to read. So `maxh` is the
+    ordinary allowance, and an asset that comes out narrower than `minw` under it
+    is allowed to run on to `maxh_hard` instead — which is what keeps the two
+    tall Chapter-2 diagrams at their readable width while the cards come down.
+    Both floors are set by the type drawn inside the assets: their labels are
+    large relative to the image, and at these widths they still set at roughly
+    8 pt.
+    """
     sz = _png_size(p)
     if not sz:
         return maxw * 0.9
     w, h = sz
-    return min(maxw, maxh * w / h)
+    width = min(maxw, maxh * w / h)
+    if width < minw:
+        width = min(maxw, minw, maxh_hard * w / h)
+    return width
 
 
 def _parse_fig_body(body: str, base: Path):

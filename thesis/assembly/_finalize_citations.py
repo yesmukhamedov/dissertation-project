@@ -7,8 +7,11 @@ Per thesis/prompts/citation-assembly.md:
   * Numbering is assigned ONCE, by first appearance in the EN manuscript
     (GOST 7.32-2001 §6.11) -> authoritative card -> [N] map.
   * The SAME map is applied to KZ (rule #7, language invariance). KZ keeps Latin
-    author surnames but uses Kazakh connectors ("X және әріптестері(нің/не/нен)"
-    = et al., "X пен/мен Y" = "X and Y") and the Kazakh page form "699-б.".
+    author surnames but uses Kazakh connectors ("X т.б." = et al., "X пен/мен Y"
+    = "X and Y") and the Kazakh page form "699-б.". The word-for-word calque
+    "X және әріптестері(нің)" is still parsed, because a draft may reach here
+    carrying it, but it is no longer written: it was replaced across all 35
+    translation sources on 2026-08-23 and conformance.py fails the volume on it.
   * Resolution is surname-based and language-agnostic: surnames_of() strips every
     non-[a-z] char (so accents AND all Cyrillic connectors fall away), then
     resolve() tries candidate keys full-join -> first-author -> pairs -> singles,

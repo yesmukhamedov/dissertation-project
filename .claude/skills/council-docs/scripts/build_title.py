@@ -204,7 +204,10 @@ def _layout(lang: str) -> list[dict]:
     items += [_para(line) for line in f["degree"]]
 
     items.append({"gap": 3})
-    items += [_para(text, bold=bold, align="left", indent_mm=CONSULT_INDENT_MM)
+    # Flush right against the text-area edge, the way the council sample title
+    # pages set the consultant block; the left indent only bounds the wrap so it
+    # keeps to the right half of the page.
+    items += [_para(text, bold=bold, align="right", indent_mm=CONSULT_INDENT_MM)
               for text, bold in f["consultant"]]
 
     items.append({"gap": 4})
@@ -245,8 +248,10 @@ def _solve_gaps(items: list[dict]) -> list[int]:
 
 def _emit(doc, item: dict) -> None:
     p = doc.add_paragraph()
-    p.alignment = (WD_ALIGN_PARAGRAPH.CENTER if item["align"] == "center"
-                   else WD_ALIGN_PARAGRAPH.LEFT)
+    p.alignment = {
+        "center": WD_ALIGN_PARAGRAPH.CENTER,
+        "right": WD_ALIGN_PARAGRAPH.RIGHT,
+    }.get(item["align"], WD_ALIGN_PARAGRAPH.LEFT)
     pf = p.paragraph_format
     pf.first_line_indent = Mm(0)
     pf.left_indent = Mm(item["indent_mm"])

@@ -6,7 +6,7 @@
 
 **CLAHE (Contrast-Limited Adaptive Histogram Equalization)** — an adaptive contrast-enhancement method operating on local image tiles with a clip limit that bounds contrast amplification; applied in the pipeline to the LAB L-channel under a dual-constraint clip limit (Stage 5).
 
-**Composite independent variable** — the combined manipulated factor of Experiment 1 (H-1), in which the full-pipeline arm differs from baseline jointly along the preprocessing axis (eight-stage pipeline vs. stretch-resize + ImageNet normalize) and the pretraining axis (ophthalmology-specific self-supervised pretraining vs. ImageNet).
+**Composite independent variable** — the combined manipulated factor of Experiment 1, in which the full-pipeline arm differs from baseline jointly along the preprocessing axis (eight-stage pipeline vs. stretch-resize + ImageNet normalize) and the pretraining axis (ophthalmology-specific self-supervised pretraining vs. ImageNet).
 
 **Convolutional Neural Network (CNN)** — a neural architecture comprising convolutional and pooling layers for feature extraction and fully connected layers for classification; the classification backbone operating on preprocessed fundus images for five-class DR staging.
 
@@ -34,7 +34,7 @@
 
 **Image quality** — the measurable capacity of a fundus image to support automated detection of microvascular features relevant to DR staging, assessed through downstream classification performance rather than a subjective visual score.
 
-**Integrated pipeline dominance (H-1)** — the primary hypothesis that the integrated full-pipeline configuration outperforms the baseline as a unitary system, validated when the empirical dominance criterion (≥ 5 pp weighted-F1 gain, ≥ 0.02 ROC-AUC gain, no Cohen's Kappa degradation) is satisfied.
+**Integrated pipeline dominance** — the primary hypothesis that the integrated full-pipeline configuration outperforms the baseline as a unitary system, validated when the empirical dominance criterion (≥ 5 pp weighted-F1 gain, ≥ 0.02 ROC-AUC gain, no Cohen's Kappa degradation) is satisfied.
 
 **Ophthalmology-specific self-supervised pretraining** — self-supervised pretraining of the CNN backbone on an unlabeled retinal fundus corpus (no DR labels), used as the full-pipeline-arm initialization; learns fundus-domain representations directly on the 4-channel pipeline tensor.
 
@@ -44,6 +44,6 @@
 
 **Resource-limited environment** — a deployment context characterized by at least two of: absence of GPU acceleration; available RAM below 16 GB; batch-processing-time constraints; network connectivity precluding continuous cloud-API reliance.
 
-**Transfer learning** — the reuse and adaptation of pretrained network weights to the fundus-image domain; under H-1 the initialization source is slaved to the arm (ImageNet for baseline, ophthalmology-specific SSL for the full pipeline).
+**Transfer learning** — the reuse and adaptation of pretrained network weights to the fundus-image domain; in Experiment 1 the initialization source is slaved to the arm (ImageNet for baseline, ophthalmology-specific SSL for the full pipeline).
 
 **Weighted loss function** — a cross-entropy loss with class-specific weights addressing class imbalance and exploiting the ordinal structure of the five-class DR grading.

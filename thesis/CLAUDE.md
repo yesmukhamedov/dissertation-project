@@ -97,16 +97,35 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 
 **The volume was restructured from six chapters to four** and rewritten against the norms measured
 across the 16 dissertations this council has published (`council/en/10-dissertation/peer-norms.md`).
-Main text 31,263 words, 24 second-level subsections, 19 tables, 16 figures, five appendices, 102
+Main text 31,491 words, 24 second-level subsections, 19 tables, 16 figures, five appendices, 102
 sources. The gate is `scripts/conformance.py`, and a chapter is not finished until it passes.
-Kazakh — the defended edition — passes 16 of 16; English passes 15, failing only on main-text
-words (263 over the ceiling). The Kazakh em-dash failure this file used to record is closed: the
-copula is written with the short dash the corpus uses, and the check now reads 0.0 per 1,000 words.
+Both editions pass in full: English 17 of 17, Kazakh — the defended edition — 20 of 20. The Kazakh
+em-dash failure this file used to record is closed: the copula is written with the short dash the
+corpus uses, and the check now reads 0.0 per 1,000 words.
 
-The GOST export was run on 2026-08-21 and the council pair is
-`defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-21.{docx,pdf}` — **146 pages EN / 158 KZ**,
-107 and 118 of them ahead of the appendices. Each edition's Introduction states its own page count,
-so the counts and the export are a fixed point: change one and the other has to be re-measured.
+**Four checks were added on 2026-08-23** after an external reading of the Kazakh PDF
+(`D:/dissertation_council/temp/АНАЛИЗ_A17_Есмухамедов.md`); see governance CHANGELOG v7.2.1.
+
+- **governance labels in front matter.** The body scan starts at the Introduction, so everything
+  above it — normative references, definitions, abbreviations — was never read by anything. Eight
+  labels (PC/CFC/EH/SIR/DGL/SB/NC/OD-n) survived there, defined and used nowhere. The apparatus
+  binds from `governance/INVARIANTS.md`; it does not appear in the volume. Nothing above the
+  Introduction may carry a code.
+- **Kazakh register (KZ only).** `et al.` is **«т.б.»**, never the calque «және әріптестері»;
+  «сондықтан» opens a sentence rather than following a comma (the idiomatic join is the causal
+  suffix -дықтан/-діктен); and no single connective may take more than half the family
+  («Демек», «Сондықтан», «Сонымен», «Осылайша», «Яғни», «Тиісінше», «сол себепті»). The Kazakh
+  edition is a translation of the English one, which is precisely why English syntax can survive
+  under Kazakh words — these three are where it showed.
+
+The GOST export was run on 2026-08-23 and the council pair is
+`defense/docs/FULL_DISSERTATION_{EN,KZ}_GOST_2026-08-23.{docx,pdf}` — **130 pages EN / 143 KZ**,
+102 and 113 of them ahead of the appendices. Each edition's Introduction states its own page count,
+so the counts and the export are a fixed point: change one and the other has to be re-measured; this
+run was done twice and the second pass reproduced the counts the Introduction now declares. The
+volume lost five pages per edition against 2026-08-21 (107/118) when the illustration height was
+capped — eleven of the twenty-seven figures had been taking a page each; the four structural
+Mermaid views of Appendix C keep the full-page allowance.
 The umbrella `APPENDICES`/`ҚОСЫМШАЛАР` divider is no longer assembled — it was the one top-level
 heading with no body of its own and printed as a lone word on a blank page — so the appendices
 open straight at Appendix A, and the main text is bounded by that heading rather than by a divider.
@@ -143,8 +162,8 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
   `[A-Za-z]` only and a Cyrillic letter in a marker would print raw.
 
 **Two things bind anything written from here.** The gate ceiling is **31,500** words of main text
-(raised from 31,000 by the candidate on 2026-08-21) and the English edition stands at **31,489** —
-**11 words of headroom**, so anything entering the body has to displace very nearly itself.
+(raised from 31,000 by the candidate on 2026-08-21) and the English edition stands at **31,491** —
+**9 words of headroom**, so anything entering the body has to displace very nearly itself.
 `conformance.py` counts a printed citation the way it prints: a parenthetical collapses to `[12]`,
 but a narrative citation keeps its author phrase and prints as four words (`Gulshan et al. [13]`).
 It is where to look for what to cut. And every claim taken from a source names it — the compression
@@ -152,14 +171,15 @@ pass dropped 90 per cent of the attribution once already, and restoring it was a
 every section.
 
 Kazakh translations of the new tree are written: 35 files under `chapters/**/translations/`, one per
-draft, assembled by `assembly/_assemble_kz.py` (35,514 PART-1 words, no suspect extractions).
+draft, assembled by `assembly/_assemble_kz.py` (34,963 PART-1 words, no suspect extractions).
 Terminology follows `outline/TABLE_OF_CONTENTS_KZ.md` rather than the superseded tree — the
 preprocessing pipeline is "алдын ала өңдеу конвейері", not the Latin "pipeline" the old volume kept,
 and the arms are "базалық / интеграцияланған конфигурация". Numbers keep the old Kazakh volume's
 conventions: decimal point, space as thousands separator. Citations stay in working author-year form
-with Kazakh connectors (`және әріптестері`, `пен/мен/бен`), which `_finalize_citations.py` already
-parses: a run over both partials converts 133 brackets in each and reports no blocking or unknown
-resolutions. Mermaid diagram source is left in English, as the superseded Kazakh volume left it.
+with Kazakh connectors (`т.б.` for *et al.*, `пен/мен/бен` for *and*), which
+`_finalize_citations.py` already parses: a run over both partials converts 138 brackets in each and
+reports no blocking or unknown resolutions. The calque `және әріптестері` is **not** the form —
+it was replaced everywhere on 2026-08-23 and `conformance.py` now fails on it. Mermaid diagram source is left in English, as the superseded Kazakh volume left it.
 
 Experimental chapters are written from `results/` (`findings/`, `tables/`, `hypotheses/`), which is the
 single source of truth for every number and verdict. Where an earlier draft conflicts with `results/`,

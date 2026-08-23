@@ -37,15 +37,30 @@ md2gost = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(md2gost)
 
 TAB_MM = 170.0  # text-area right edge: A4 210 - left 30 - right 10
+# Kept clear of the entry text so the dotted leader and the page number always
+# fit on the line; the right tab stop itself still lands on the margin.
+NUM_GUTTER_MM = 12.0
 DASH = "—"
 INDENT_MM = {1: 0.0, 2: 0.0, 3: 7.0, 4: 14.0}
 
-_LEADNUM = re.compile(r"^§?\s*(\d+(?:\.[0-9A-Za-z]+)*)")
+# The number must be a token of its own. Without the lookahead the Kazakh
+# conclusion heading "1-бөлім бойынша қорытындылар" reads as section "1" and
+# silently takes chapter 1's opening page instead of its own.
+_LEADNUM = re.compile(r"^§?\s*(\d+(?:\.[0-9A-Za-z]+)*)(?=\s|$)")
 _CONCL_EN = re.compile(r"Conclusions to Chapter (\d+)", re.I)
-_CONCL_KZ = re.compile(r"(\d+)-тарау")
+# The six-chapter tree headed these "N-тарау"; the four-chapter tree says
+# "N-бөлім". Both are carried so an older manuscript still resolves.
+_CONCL_KZ = re.compile(r"(\d+)-(?:тарау|бөлім)")
 # A Kazakh appendix heading leads with its letter ("А қосымшасы — …"), so it
 # matches none of the `fronts` prefixes.
 _KZ_APPENDIX = re.compile(r"^[А-ЯЁӘҒҚҢӨҰҮҺІ]\s+қосымшасы\b", re.I)
+
+# A contents appendix entry reads "ҚОСЫМША В – …" / "APPENDIX D – …". GOST wants the
+# label itself bold and the appendix title in regular type, so the line is
+# emitted as two runs instead of one.
+_APPENDIX_ENTRY = re.compile(
+    r"^((?:APPENDIX|ПРИЛОЖЕНИЕ|ҚОСЫМША)\s+\S+?)(\s*[–—-]\s*\S.*)$", re.I
+)
 
 
 # --- page-number extraction from the assembled manuscript ---------------------
@@ -145,16 +160,33 @@ def parse_md(md_path: Path):
                 yield (3, "entry", txt)
 
 
+def entry_runs(text: str, *, bold: bool) -> list[tuple[str, bool]]:
+    """Split an outline line into (text, bold) runs.
+
+    One run for everything except an appendix entry, where only the label
+    ("ҚОСЫМША В", "APPENDIX D") stays bold and its title is regular.
+    """
+    m = _APPENDIX_ENTRY.match(text) if bold else None
+    if m:
+        return [(m.group(1), True), (m.group(2), False)]
+    return [(text, bold)]
+
+
 def add_entry(doc, text, page, *, bold, indent_mm):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     pf = p.paragraph_format
     pf.left_indent = Mm(indent_mm)
+    # Reserve the leader/number strip. Without it a long entry runs up to the
+    # right margin, Word then finds no room at the right tab stop and pushes the
+    # page number out to the next default tab - past the text area's right edge.
+    pf.right_indent = Mm(NUM_GUTTER_MM)
     pf.first_line_indent = Mm(0)
     pf.space_after = Pt(2)
     pf.line_spacing = 1.0
     pf.tab_stops.add_tab_stop(Mm(TAB_MM), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
-    md2gost._set_cell_font(p.add_run(text), bold=bold)
+    for run_text, run_bold in entry_runs(text, bold=bold):
+        md2gost._set_cell_font(p.add_run(run_text), bold=run_bold)
     md2gost._set_cell_font(p.add_run("\t" + (str(page) if page is not None else DASH)), bold=bold)
 
 

@@ -6,6 +6,28 @@ The versioning scheme is defined in [VERSIONING_POLICY.md](VERSIONING_POLICY.md)
 
 ---
 
+## v7.2.1 — 2026-08-23
+
+**The governance apparatus is removed from the printed volume, and three Kazakh-register repairs (PATCH — no binding created, reversed or reinterpreted).**
+
+An external reading of the Kazakh PDF (`D:/dissertation_council/temp/АНАЛИЗ_A17_Есмухамедов.md`) reported that "Designations and abbreviations" defined eight labels — **PC-n, CFC-n, EH-n, SIR-n, DGL-n, SB-n, NC-n, OD-n** — that appear nowhere else in either edition, and that the text nevertheless leans on the apparatus they describe. The reading is correct on both counts. These are rules for how a claim may be worded, not terms of ophthalmology or machine learning, and a reader who meets them in a glossary is owed the apparatus itself. **The apparatus is unchanged and still binds** — it lives in `INVARIANTS.md` §§IV–IX, where it belongs; what is removed is its leakage into the volume. This closes the item `VERSION_SYNC.md` v7.2.0 had listed as pending ("the abbreviations list, from which the governance codes must be removed once they no longer appear in the text").
+
+- **`output/abbreviations_{en,kz}.md`** — the eight entries deleted. Every remaining entry is a term of the subject.
+- **`output/definitions_{en,kz}.md`** — three residual `H-1` references replaced by "Experiment 1", which is what the body calls it.
+- **`chapters/06-appendices/{drafts/B-draft,translations/B-translation}.md`** — the one place the prose cited the apparatus, *"supplementary in this dissertation's evidence hierarchy"*, pointed at a hierarchy set out nowhere in the volume. It now cites the metric table of section 2.6, which is where the primary/supplementary split is actually written down.
+
+**Kazakh register.** The same reading measured the Kazakh edition against two other Kazakh-language dissertations of this council and found English syntax under Kazakh words. Repaired across all 35 translation sources:
+
+- **`et al.` → «т.б.»** — 131 occurrences of the word-for-word calque «және әріптестері» (0 in either comparator, while the Kazakh norm «т.б.» stood at 0 against their 18 and 12). `_finalize_citations.py` has always parsed both forms; the GOST pass reconverts identically — 138 brackets in each edition, 102 external sources, no blocking or unknown resolutions.
+- **«…, сондықтан …» mid-sentence** — 133 occurrences (comparators 6 and 11) rewritten to the idiomatic causal suffix (-дықтан/-діктен) or to a new sentence opening with «Сондықтан», which is where Kazakh puts it.
+- **One connective doing all the work** — «Демек,» ran to 35 uses with no alternative anywhere in the volume. Eighteen are now «Сонымен», «Осылайша», «Яғни» and «Тиісінше», chosen per sentence.
+
+**Not repaired, and deliberately.** The reading also noted that 3.9 % of sentences end in «емес» against 0.8 % and 0.2 % in the comparators. That density is the prose honouring the scope boundaries of `INVARIANTS.md` §IV, which bind; grinding it to the comparators' level would mean deleting statements of what the work does not claim. Eleven were varied syntactically with no content lost (4.90 % → 4.17 %) and the rest stand. Terminological uniformity was noted too — one term per concept, no drift — and that is `glossary/GLOSSARY_KZ.md` working as intended, not a defect to introduce variation into.
+
+**Not a governance change, recorded for traceability.** `thesis/scripts/conformance.py` gained the gate that would have caught this: **governance labels in front matter** (the body scan starts at the Introduction, so nothing above it was ever read — which is exactly how eight labels survived), plus three Kazakh-only register checks — the `et al.` calque, mid-sentence «, сондықтан», and the share of the largest connective. EN passes 17 of 17, KZ 20 of 20.
+
+---
+
 ## v7.2.0 — 2026-08-20
 
 **Restructuring to the council's observed norms, and one scope boundary corrected to match fact (MINOR).**

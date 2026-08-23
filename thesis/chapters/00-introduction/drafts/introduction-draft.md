@@ -264,7 +264,7 @@ Five appendices follow: the source code of the preprocessing pipeline, supplemen
 confusion matrices, the system architecture with the working demonstrator, the attention-map
 gallery, and supplementary tables for the device evaluation.
 
-The dissertation is set out on 107 pages, excluding the appendices, and contains 19 tables and 16
+The dissertation is set out on 102 pages, excluding the appendices, and contains 19 tables and 16
 figures. The list of references comprises 102 sources.
 
 ---
