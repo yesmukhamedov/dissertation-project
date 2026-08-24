@@ -1,7 +1,7 @@
 # Что писать в каждом абзаце — бриф по нашей диссертации
 
 > Спутник [[template]] (скелет) и [[structure]] (жанр, нормы, правила вычитки).
-> Тема: «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy».
+> Тема: «Information system for automatic detection of retinal diseases based on deep learning using optical coherence tomography images».
 > Источники фактов: `thesis/output/abstract_ru.md` (паспорт), `results/` (числа),
 > `council/METADATA.toml` (имена, должности, коды, публикации). **Числа из `demo/web/data.js` не брать.**
 

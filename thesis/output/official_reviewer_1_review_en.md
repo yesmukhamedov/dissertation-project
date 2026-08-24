@@ -1,6 +1,6 @@
 # REVIEW OF THE OFFICIAL REVIEWER
 
-**on the dissertation work of Yesmukhamedov Nurmaganbet Seitkaliuly on the topic «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy», provided for the degree of Doctor of Philosophy (PhD) in the educational program: 8D06102 — Computer and Software Engineering**
+**on the dissertation work of Yesmukhamedov Nurmaganbet Seitkaliuly on the topic «Information system for automatic detection of retinal diseases based on deep learning using optical coherence tomography images», provided for the degree of Doctor of Philosophy (PhD) in the educational program: 8D06102 — Computer and Software Engineering**
 
 | № | Criteria | Eligibility (please select one answer option) | Justification of the official reviewer's position |
 |---|---|---|---|
@@ -42,7 +42,7 @@
 
 ## Conclusion
 
-The presented dissertation for the degree of Doctor of Philosophy (PhD) by **Yesmukhamedov Nurmaganbet Seitkaliuly** on the topic «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy» is a completed independent piece of scientific research, which meets the requirements of the Rules for awarding degrees, and its author deserves to be petitioned before the Committee for the award of the degree of Doctor of Philosophy (PhD) in the educational program 8D06102 — Computer and Software Engineering.
+The presented dissertation for the degree of Doctor of Philosophy (PhD) by **Yesmukhamedov Nurmaganbet Seitkaliuly** on the topic «Information system for automatic detection of retinal diseases based on deep learning using optical coherence tomography images» is a completed independent piece of scientific research, which meets the requirements of the Rules for awarding degrees, and its author deserves to be petitioned before the Committee for the award of the degree of Doctor of Philosophy (PhD) in the educational program 8D06102 — Computer and Software Engineering.
 
 **Official reviewer:**  
 

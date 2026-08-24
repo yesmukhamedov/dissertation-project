@@ -1,6 +1,6 @@
 # REVIEW
 
-**of the foreign scientific consultant for the dissertation work of Yesmukhamedov Nurmaganbet Seitkaliuly** «Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy», submitted for the degree of Doctor of Philosophy (PhD) on educational program: 8D06102 — Computer and Software Engineering
+**of the foreign scientific consultant for the dissertation work of Yesmukhamedov Nurmaganbet Seitkaliuly** «Information system for automatic detection of retinal diseases based on deep learning using optical coherence tomography images», submitted for the degree of Doctor of Philosophy (PhD) on educational program: 8D06102 — Computer and Software Engineering
 
 ## Relevance of the Research Topic
 

@@ -2,10 +2,10 @@
 
 <!-- center -->
 **of the PhD thesis by Yesmukhamedov Nurmaganbet Seitkaliuly on**  
-**«Computer System for Processing and Analysis of Eye Data to Support**  
-**Laser Coagulation in the Treatment of Diabetic Retinopathy», submitted**  
-**for the degree of Doctor of Philosophy (PhD) in the educational**  
-**programme 8D06102 — Computer and Software Engineering**
+**«Information system for automatic detection of retinal diseases**  
+**based on deep learning using optical coherence tomography images»,**  
+**submitted for the degree of Doctor of Philosophy (PhD) in the**  
+**educational programme 8D06102 — Computer and Software Engineering**
 
 **General characteristics of the work.** The dissertation investigates and formalises the integration of fundus image enhancement (preprocessing) with convolutional-neural-network (CNN) classification for automated multi-stage diagnosis of diabetic retinopathy (DR). Its central idea is that preprocessing is an integral component of the diagnostic model rather than ancillary data preparation, because it defines the feature space available to the network. To operationalise it, an 8-stage preprocessing pipeline is specified and embedded in the model, and its effect is placed under controlled contrast against an equivalent baseline configuration trained without the pipeline, on eight public and clinical fundus datasets.
 

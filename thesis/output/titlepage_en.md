@@ -9,7 +9,7 @@
 - UDC: 004.93:617.735
 - Manuscript line: On manuscript right
 - Author: YESMUKHAMEDOV NURMAGANBET SEITKALIULY
-- Title: Computer System for Processing and Analysis of Eye Data to Support Laser Coagulation in the Treatment of Diabetic Retinopathy
+- Title: Information system for automatic detection of retinal diseases based on deep learning using optical coherence tomography images
 - Programme: 8D06102 – Computer and Software Engineering
 - Degree statement: Thesis for the degree of doctor of Philosophy (PhD)
 - Scientific consultant: Candidate of Phys.-Math. Sciences, Associate Professor, International Information Technology University — Sapakova S.Z.
