@@ -24,6 +24,10 @@
 готовые документы берут их из реестра. Сверка документов с реестром:
 `python .claude/skills/council-docs/scripts/check_metadata.py`.
 
+**Первоисточники реестра — [`orders/`](orders/).** Сканы приказов и выписок АО «МУИТ»,
+из которых берутся спорные значения (тема на трёх языках, код ОП), с построчной
+транскрипцией каждого документа.
+
 ### Нормативная база и процесс
 | Файл | О чём |
 |------|-------|
@@ -92,6 +96,10 @@ dissertation titles in three languages, the volume figures and the publication l
 The templates below stay anonymised; the finished documents draw their values from
 the registry. Verify documents against it:
 `python .claude/skills/council-docs/scripts/check_metadata.py`.
+
+**Registry sources — [`orders/`](orders/).** Scans of IITU orders and extracts that
+settle the contested values (the topic in three languages, the programme code), each
+with a line-by-line transcription.
 
 ### Regulatory framework & process
 | File | About |
