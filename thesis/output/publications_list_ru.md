@@ -20,8 +20,10 @@
 | № | Наименование научного труда | Характер работы | Выходные данные | Объем,<br>стр. | Соавторы |
 |---|---|---|---|---|---|
 | 1 | 2 | 3 | 4 | 5 | 6 |
-|  | Публикации в материалах международных научно-практических конференциях, индексируемых в Web of Science или Scopus |  |  |  |  |
-| 2 | Methods for pre-processing and analysis of fundus images for detection of diabetic retinopathy | Печатный/<br>электронный | 3-й Международный семинар «Цифровое общество» — DS 2025, г. Стамбул, Турция, 28–30 октября 2025 г.<br>Procedia Computer Science. 2025. Vol. 272. P. 496–501.<br>DOI: https://doi.org/10.1016/j.procs.2025.10.237 | 6 | Сапакова С.З.,<br>Сапаков А.Е.,<br>Ембердиева А.Б.,<br>Кожамкулова Ж.Ж. |
+|  | В изданиях, рекомендуемых Комитетом по обеспечению качества в сфере науки и высшего образования МНВО РК |  |  |  |  |
+| 2 | Development of an information system architecture for healthcare institutions using artificial intelligence | Печатный/<br>электронный | Известия НАН РК, серия физико-математическая. 2025. Vol. 2(354). С. 74–91.<br>DOI: https://doi.org/10.32014/2025.2518-1726.345 | 18 | Сапакова С.З.,<br>Аль-Хаддад С.А.Р.,<br>Даниярова Д.Р. |
+| 3 | Methods for preprocessing and analysis of fundus images for diabetic retinopathy detection | Печатный/<br>электронный | Вестник Казахстанско-Британского технического университета. 2025. № 4(75), т. 22. С. 119–130.<br>DOI: https://doi.org/10.55452/1998-6688-2025-22-4-119-130 | 12 | Сапакова С.З.,<br>Кожамкулова Ж.Ж.,<br>Даниярова Д.Р.,<br>Арманқызы Р. |
+| 4 | Mathematical modeling of laser exposure on fundus tissues in the treatment of diabetic retinopathy | Печатный/<br>электронный | Вестник КазУТБ. 2025. Т. 2, № 27-740. С. 20–30.<br>DOI: https://doi.org/10.58805/kazutb.v.2.27-740 | 11 | Сапакова С.З.,<br>Даниярова Д.Р.,<br>Арманқызы Р.,<br>Ембердиева А.Б.,<br>Калдыбаева А.С. |
 
 Соискатель   Есмухамедов Н.С.  
 
@@ -33,12 +35,11 @@
 | № | Наименование научного труда | Характер работы | Выходные данные | Объем,<br>стр. | Соавторы |
 |---|---|---|---|---|---|
 | 1 | 2 | 3 | 4 | 5 | 6 |
-|  | В изданиях, рекомендуемых Комитетом по обеспечению качества в сфере науки и высшего образования МНВО РК |  |  |  |  |
-| 3 | Development of an information system architecture for healthcare institutions using artificial intelligence | Печатный/<br>электронный | Известия НАН РК, серия физико-математическая. 2025. Vol. 2(354). С. 74–91.<br>DOI: https://doi.org/10.32014/2025.2518-1726.345 | 18 | Сапакова С.З.,<br>Аль-Хаддад С.А.Р.,<br>Даниярова Д.Р. |
-| 4 | Methods for preprocessing and analysis of fundus images for diabetic retinopathy detection | Печатный/<br>электронный | Вестник Казахстанско-Британского технического университета. 2025. № 4(75), т. 22. С. 119–130.<br>DOI: https://doi.org/10.55452/1998-6688-2025-22-4-119-130 | 12 | Сапакова С.З.,<br>Кожамкулова Ж.Ж.,<br>Даниярова Д.Р.,<br>Арманқызы Р. |
-| 5 | Mathematical modeling of laser exposure on fundus tissues in the treatment of diabetic retinopathy | Печатный/<br>электронный | Вестник КазУТБ. 2025. Т. 2, № 27-740. С. 20–30.<br>DOI: https://doi.org/10.58805/kazutb.v.2.27-740 | 11 | Сапакова С.З.,<br>Даниярова Д.Р.,<br>Арманқызы Р.,<br>Ембердиева А.Б.,<br>Калдыбаева А.С. |
+|  | Публикации в материалах международных научно-практических конференциях, индексируемых в Web of Science или Scopus |  |  |  |  |
+| 5 | Methods for pre-processing and analysis of fundus images for detection of diabetic retinopathy | Печатный/<br>электронный | 3-й Международный семинар «Цифровое общество» — DS 2025, г. Стамбул, Турция, 28–30 октября 2025 г.<br>Procedia Computer Science. 2025. Vol. 272. P. 496–501.<br>DOI: https://doi.org/10.1016/j.procs.2025.10.237 | 6 | Сапакова С.З.,<br>Сапаков А.Е.,<br>Ембердиева А.Б.,<br>Кожамкулова Ж.Ж. |
 
 Соискатель   Есмухамедов Н.С.  
 
 Ученый секретарь  
 АО «МУИТ»   Есмурзаева А.Б.  
+

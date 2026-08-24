@@ -823,7 +823,8 @@ def _repeat_header_row(table) -> None:
 
 
 def _add_table(doc: Document, rows: list[list[str]]) -> None:
-    """Render a Markdown pipe-table as a bordered Word table (TNR, header bold).
+    """Render a Markdown pipe-table as a bordered Word table (TNR, header bold
+    except in the list-of-scientific-papers form, whose head row is plain text).
 
     `rows` is the list of cell-text rows (the `|---|` separator already removed).
     Backward-compatible: only invoked when the source contains pipe tables, which
@@ -836,7 +837,11 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
     table.style = "Table Grid"
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     _apply_form_widths(table, rows[0], ncols)
-    banners = _banner_rows(rows, ncols) if _is_pubs_table(rows[0], ncols) else set()
+    is_pubs = _is_pubs_table(rows[0], ncols)
+    # The list-of-scientific-papers form sets its column headings in ordinary
+    # text — the samples this council accepts carry no bold in the head row.
+    head_bold = not is_pubs
+    banners = _banner_rows(rows, ncols) if is_pubs else set()
     for i, row in enumerate(rows):
         if i in banners:
             continue
@@ -850,7 +855,7 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
                 p = cell.paragraphs[0] if k == 0 else cell.add_paragraph()
                 p.paragraph_format.first_line_indent = Mm(0)
                 p.paragraph_format.line_spacing = 1.0
-                _add_runs(p, part.strip(), bold=(i == 0))
+                _add_runs(p, part.strip(), bold=(i == 0 and head_bold))
     for i in sorted(banners):
         _set_banner(table, i, ncols,
                     next(c.strip() for c in rows[i] if c.strip()))

@@ -98,3 +98,40 @@ wsl -d Ubuntu bash -lc "cd /mnt/e/dissertation-project/demo && \
 5. Verify: `curl -X OPTIONS <backend>/api/predict -H "Origin: <frontend>" ...` → 200 + `Access-Control-Allow-Origin` echoes the frontend url; predict returns real grade.
 
 Quick-tunnel URLs are random per launch, so set the frontend's API target *after* the backend tunnel exists → restart frontend whenever backend tunnel changes. Free ports before relaunch: WSL `pkill -f 'uvicorn server.app.main'`; Windows kill the PID on :3000. All servers + tunnels are session-bound background processes — they die when the session/WSL ends; relaunch with the commands above.
+
+## Launch on the D: box — 2026-08-24 session, two blockers and their fixes
+
+**Wrangler can be logged into the WRONG Cloudflare account, and the error hides it.** On
+2026-08-24 `start-pages-demo.ps1` died at `pages project list` with
+`A request to the Cloudflare API (/accounts/41edab150aea08647c6379508249ffb8/pages/projects)
+failed … Authentication error [code: 10000]`. The account id in the URL is the RIGHT one — it
+comes from the stale cache `node_modules/.cache/wrangler/wrangler-account.json` at the repo
+root — but the OAuth token had been replaced by a login as **yesmukhamedov009@gmail.com**
+(account `64cdd2ef6220914b339381bfe76440d2`), which cannot see the outlook account that owns
+the Pages project. `wrangler whoami` is the diagnostic: it prints the email + the single
+account the token can reach. Fix = `npx wrangler logout` then `npx wrangler login`, choosing
+**yesmukhamedov.yeskendyr@outlook.com** in the browser. Do NOT "fix" it by clearing the cache
+or deploying under the gmail account — that yields a different URL and orphans the permanent
+link on the slide. The script's own error message ("not logged in") never fires here, since
+`whoami` succeeds; only the Pages call fails.
+
+**`demo/.venv` was broken again by a Python move — new path is `C:\Python313`.** `pyvenv.cfg`
+pointed at `C:\Users\PC\AppData\Local\Programs\Python\Python313` (old Windows user `PC`);
+`python.exe` in the venv then dies with `did not find executable at …`. Same minor version
+(3.13), so the settled fix applies: rewrite `home`/`executable`/`command` in
+`demo\.venv\pyvenv.cfg` to `C:\Python313`, do not rebuild the venv. Confirmed working after
+the edit (torch 2.13.0+cu126, fastapi, uvicorn all import).
+
+**This box has no NVIDIA GPU.** `nvidia-smi` is absent and `torch.cuda.device_count() == 0`,
+so `/api/health` reports `"device":"cpu"` — expected here, not a regression; inference is just
+slower. The "local GPU box" wording above describes the work PC, not this one.
+
+**A failed health check does NOT roll the launch back.** The launcher reported
+`Waiting for backend tunnel … TIMEOUT` yet exit code 0: Pages had deployed and cloudflared was
+alive (tunnel answered **502** = connector up, origin dead — a useful distinction from a
+connection error, which means the tunnel itself is gone). Only the backend was missing, so the
+cure is to start the backend role alone and keep the session's tunnel URL, instead of rerunning
+the whole script and paying for another rebuild+deploy:
+`start-pages-demo.ps1 -Role backend -Backend native -CorsOrigins "http://localhost:3000,https://dr-classification.pages.dev"`
+(the password is picked up from `demo\.demo-password` by the same script). Backend takes ~30 s
+to answer `/api/health` while the checkpoint loads.
