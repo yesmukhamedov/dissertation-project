@@ -146,11 +146,23 @@ K2C = {
 #   * "Sapakova, Yesmukhamedov & Sapakov, 2025" is cited in 2.1.2 for
 #     "Eq. 1/Eq. 2, p. 5"; the EEJET card records exactly those two equations
 #     (CL = ceil(L/T) + beta(phi - ceil(L/T)) and CLIP LIMIT = T/80) at its p. 5.
-#   * The three remaining works appear with full author lists (Appendix D
-#     Table D.1), so they resolve on the full-join key before any fallback.
-#   * 2.4.1 cites the laser-modelling work by venue rather than by author, in
+#   * The three remaining works appear with full author lists, so they resolve
+#     on the full-join key before any fallback.
+#   * 2.4.1 cited the laser-modelling work by venue rather than by author, in
 #     both languages ("the modeling study reported in the Herald of KazUTB,
 #     2025"); "kazutb|2025" catches it through resolve()'s single-surname tier.
+#     The four-chapter rewrite dropped that venue phrase and left 1.1 describing
+#     the model over four paragraphs with no reference at all; 2026-08-25 the
+#     full author list was put back there, so the venue key is now a safety net.
+#
+# 2026-08-25 (GD-01: "в диссертации обязательно наличие ссылок на собственные
+# публикации", п. 5-1 / п. 6 of the Rules). Before this pass only the EEJET and
+# NAS RK articles carried body citations; Procedia, KBTU and KazUTB were named
+# once each inside the Approbation list and nowhere else. The Procedia and KBTU
+# pair now carries 2.1 (the preprocessing lineage) and 3.2 (the compound-scaled
+# backbone), KazUTB carries the 1.1 laser passage that described it uncited, and
+# the Approbation paragraph states which chapter rests on which work. Every
+# citation added is a FULL author list, so nothing rides on a fallback key.
 # scopus-q2 and scopus-q3 are two literature cards for ONE article, exactly as
 # 0.12 discloses ("five distinct works, not six"), so both map to one entry.
 SELF_K2C = {

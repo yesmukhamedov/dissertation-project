@@ -198,8 +198,7 @@ and on the second external clinical corpus the margin over that difference is fo
 attention result rests on one annotated public corpus, and the qualitative half of that hypothesis
 was not evaluated.
 
-**Approbation of results and publications.** The components of this research were disseminated
-progressively before being integrated here. The work was reported at the 3rd International Workshop
+**Approbation of results and publications.** The work was reported at the 3rd International Workshop
 on Digital Society, held in Istanbul on 28–30 October 2025. The main results are published in five
 peer-reviewed works. Two are indexed in Scopus: an article in Eastern-European Journal of Enterprise
 Technologies, 4(9), 79–88, third quartile and indexed in Web of Science as well (Sapakova,
@@ -213,15 +212,21 @@ Daniyarova, 2025); Herald of the Kazakh-British Technical University, 22(4), 119
 Sapakova, Kozhamkulova, Daniyarova and Armankyzy, 2025); and Herald of KazUTB, 2(27-740), 20–30
 (Sapakova, Daniyarova, Yesmukhamedov, Armankyzy, Emberdieva and Kaldybaeva, 2025).
 
+Chapter 2 rests on (Sapakova, Yesmukhamedov and Sapakov, 2025; Sapakova, Yesmukhamedov,
+Sapakov, Yemberdiyeva and Kozhamkulova, 2025; Yesmukhamedov, Sapakova, Kozhamkulova, Daniyarova
+and Armankyzy, 2025), chapter 4 on (Yesmukhamedov, Sapakova, Al-Haddad and Daniyarova, 2025), and
+the laser model of section 1.1 on (Sapakova, Daniyarova, Yesmukhamedov, Armankyzy, Emberdieva and
+Kaldybaeva, 2025).
+
 All five are co-authored and are treated throughout as prior own work. In each the candidate
 contributed the part on which this dissertation rests: the formulation of the preprocessing problem,
 the design and implementation of the pipeline, the conduct of the classification experiments, the
 analysis of the results and the writing of the corresponding sections. The experimental programme
 reported here, its protocol and its statistical validation were carried out by the candidate.
 
-Publications reporting the same experimental material are never cited as independent corroboration
-of one another, and the performance figures stated inside them are not imported as findings: where
-the same questions arise here they are re-examined on this work's own material.
+Publications reporting the same material are never cited as independent corroboration of one
+another, and their performance figures are not imported as findings: such questions are re-examined
+here on this work's own material.
 
 **Connection with state programmes.** The direction of this research corresponds to the state
 priorities of the Republic of Kazakhstan in the digitalisation of healthcare and the development of

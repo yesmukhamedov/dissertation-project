@@ -5,6 +5,13 @@
 ## I. SOURCE IDENTIFICATION
 
 - **Unique ID:** `LC-AlTimemy-2021`
+- **⚠ OPEN (2026-08-25):** the ID and the bibliographic line above disagree, and the ID is the
+  half that governance relies on (INVARIANTS SB-1.2 / CFC-1.4 / CFC-2.5 / SIR-3, ARGUMENT_MAP,
+  both glossaries, `methods/implementation.md`). The analysis below is of a STARE study — 157/152
+  images, 13 diseases, upgraded CLAHE `CLIP LIMIT = T/80`, RESNET50 224×224, 100 epochs, 100%
+  accuracy — with page locators running to p. 12, which does not fit the ten-page EEJET article
+  (4(9)136, pp. 79–88) whose citation line is printed above. Do not treat this card as the
+  candidate's own prior work until the underlying paper is identified.
 - **Full Bibliographic Citation:** Sapakova, S., Yesmukhamedov, N., & Sapakov, A. (2025). Development of an image quality enhancement approach for diabetic retinopathy diagnosis. *Eastern-European Journal of Enterprise Technologies*, 4(9(136)), 79–88. https://doi.org/10.15587/1729-4061.2025.335570
 - **Type of Publication:** Journal article / Empirical study (primary: journal article, published in a Scopus Q3-indexed journal; the work is empirical in nature, involving experimental model training and evaluation).
 - **Year:** 2025

@@ -315,6 +315,10 @@ This index was re-aligned to the corrected chapter structure. The seven experime
 **Self-publication notes (retained):**
 
 4. Sources #19–#24 are all **co-authored by the dissertation candidate** (🔹SELF flag). All carry **high self-plagiarism risk** — content must be explicitly self-cited and substantially reformulated in the dissertation.
+4a. **Numbering in the assembled volume (2026-08-25).** The six 🔹SELF rows are **five distinct works**: #23 + #24 = one article. In the printed reference list they are [1] EEJET (#23/#24), [2] Procedia (#19), [3] NAS RK (#22), [4] KBTU (#21), [5] KazUTB (#20). Every one of the five now carries body citations, as GD-01 requires (see note 4b): [1] ×6, [2] ×4, [3] ×8, [4] ×4, [5] ×3.
+
+4b. **GD-01 / п. 5-1 and п. 6 of the Rules require the dissertation to cite the candidate's own publications.** Before 2026-08-25 only [1] and [3] were cited in the body; [2], [4] and [5] appeared once each inside the Approbation list and nowhere else, and §1.1 described the KazUTB laser model across four paragraphs with no reference at all. Added: §2.1 (lineage → [1, 2, 4]), §3.2 (compound-scaled backbone → [2, 4]), §1.1 (laser model → [5]), and a chapter-to-work map in the Approbation paragraph. The card IDs are not renumbered — they are labels, not bibliography.
+
 5. Sources #23 and #24 are **duplicate entries for the same article** (Sapakova, Yesmukhamedov & Sapakov, 2025 — *Eastern-European Journal of Enterprise Technologies*, DOI: 10.15587/1729-4061.2025.335570). Two literature cards were prepared from different analytical perspectives. Consider consolidating to a single entry.
 6. Sources #19 (CONF, Procedia CS 2025) and #21 (KBTU, Herald KBTU 2025) report **overlapping experiments** — both evaluate EfficientNetB0 frozen vs. fine-tuned on APTOS 2019 with nearly identical metrics. The dissertation should treat these as a single experimental thread with unified citation.
 7. §6.2 (AI Processing Module / PACS and EHR Integration) accommodates the system architecture content from #22.
