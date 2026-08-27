@@ -93,6 +93,30 @@ python .claude/skills/council-docs/scripts/md2gost.py thesis/output/abstract_en.
 | `supervisor_review_kz` | Supervisor (domestic) review | 13-supervisor-review | `defense/docs/reviews/` |
 | `foreign_consultant_review_en` | Foreign consultant review | 14-foreign-consultant-review | `defense/docs/reviews/` |
 | `official_reviewer_{1,2}_review_{en,ru,kz}` | Official reviewers' reports (Appendix 3) | 15-official-reviewer-report | `defense/docs/reviews/` |
+| `predefense_protocol_ru` / `predefense_protocol_kz` | Extended department meeting protocol (§5 pre-defense), both editions | 22-extended-meeting-protocol | `defense/docs/reviews/` |
+
+The protocol exists in two editions. Russian is the form of the genre — the
+department secretary writes it, and both council samples are Russian — and it
+stays the primary file. Kazakh is carried alongside because the defense is held
+in Kazakh; the candidate keeps the protocol in the language of the defense.
+
+The dissertation title inside **both** editions is given in Kazakh, for the same
+reason, so `check_metadata.py` verifies each against `dissertation.title_kz`.
+The Kazakh edition translates the running text but keeps the technical
+terminology, dataset and model names, metric names and the publication entries
+in their original form; DOIs are what the publication check compares.
+
+Neither edition is in `build_all.py`. Render them with:
+
+```powershell
+python .claude/skills/council-docs/scripts/md2gost.py thesis/output/predefense_protocol_ru.md -o defense/docs/reviews/PREDEFENSE_PROTOCOL_RU_GOST.docx --pdf
+python .claude/skills/council-docs/scripts/md2gost.py thesis/output/predefense_protocol_kz.md -o defense/docs/reviews/PREDEFENSE_PROTOCOL_KZ_GOST.docx --pdf
+```
+
+Two conventions the protocol relies on: `<!-- center -->` above an all-caps
+sub-heading centres it (КҮН ТӘРТІБІ, ТАЛҚЫЛАУ, ШЕШІМ, ҚОРЫТЫНДЫ, ҚАУЛЫ and
+their Russian counterparts), and a two-column pipe table whose header row is
+empty renders as a borderless bold signature block, set off by two empty lines.
 
 Two official reviewers are appointed, and the **language of a report follows the
 reviewer, not the defense**, so all six stems are carried until the reviewers

@@ -524,7 +524,7 @@ _APPENDIX_HEADING = re.compile(
 )
 
 
-def _heading(doc: Document, text: str, level: int):
+def _heading(doc: Document, text: str, level: int, *, center: bool = False):
     am = _APPENDIX_HEADING.match(text) if level == 1 else None
     if am is not None and am.group("title"):
         # Designation line first, the appendix's own title on a line of its own.
@@ -552,7 +552,12 @@ def _heading(doc: Document, text: str, level: int):
         for r in p.runs:
             r.font.size = Pt(16)
     else:
-        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        # `<!-- center -->` immediately above a sub-heading centres it. The
+        # extended-meeting protocol sets its section names — ПОВЕСТКА ДНЯ,
+        # ОБСУЖДЕНИЕ, РЕШЕНИЕ, ЗАКЛЮЧЕНИЕ, ПОСТАНОВЛЕНИЕ — that way, following
+        # the samples; every other document leaves its sub-headings flush left.
+        p.alignment = (WD_ALIGN_PARAGRAPH.CENTER if center
+                       else WD_ALIGN_PARAGRAPH.LEFT)
         _add_runs(p, text, bold=True, italic=(level >= 4))
     return p
 
@@ -573,7 +578,7 @@ def _blank_line(doc: Document) -> None:
     p.paragraph_format.space_after = Pt(0)
 
 
-def _body(doc: Document, text: str, *, center: bool = False):
+def _body(doc: Document, text: str, *, center: bool = False, right: bool = False):
     """A body paragraph: justified, first line indented.
 
     `center` is the masthead shape of an abstract. Every sample opens with the
@@ -583,8 +588,9 @@ def _body(doc: Document, text: str, *, center: bool = False):
     the one place the export diverged from the corpus.
     """
     p = doc.add_paragraph()
-    if center:
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    if center or right:
+        p.alignment = (WD_ALIGN_PARAGRAPH.CENTER if center
+                       else WD_ALIGN_PARAGRAPH.RIGHT)
         p.paragraph_format.first_line_indent = Mm(0)
     else:
         p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -620,7 +626,8 @@ def _page_break(doc: Document) -> None:
     p.paragraph_format.page_break_before = True
 
 
-def _line_block(doc: Document, lines: list[str], *, center: bool = False):
+def _line_block(doc: Document, lines: list[str], *, center: bool = False,
+                right: bool = False):
     """Render hard-broken lines as a signature block: one paragraph per line.
 
     Council reviews end with a signatory block — position, degree, organisation
@@ -642,23 +649,25 @@ def _line_block(doc: Document, lines: list[str], *, center: bool = False):
     PROJECT_MEMORY/abstract-annotation-alignment.md.
     """
     usable = _USABLE_MM
+    flush = center or right
     for i, text in enumerate(lines):
         p = doc.add_paragraph()
         p.alignment = (WD_ALIGN_PARAGRAPH.CENTER if center
+                       else WD_ALIGN_PARAGRAPH.RIGHT if right
                        else WD_ALIGN_PARAGRAPH.LEFT)
         p.paragraph_format.first_line_indent = Mm(0)
         p.paragraph_format.space_after = Pt(0)
-        p.paragraph_format.space_before = Pt(0) if center else (
+        p.paragraph_format.space_before = Pt(0) if flush else (
             Pt(14) if i == 0 else Pt(0))
         head, sep, tail = text.partition("   ")
-        if sep and tail.strip() and not center:
+        if sep and tail.strip() and not flush:
             p.paragraph_format.tab_stops.add_tab_stop(Mm(usable), WD_TAB_ALIGNMENT.RIGHT)
             _add_runs(p, head.strip())
             _set_cell_font(p.add_run("\t"))
             _add_runs(p, tail.strip())
         else:
             _add_runs(p, text.strip())
-    if center:
+    if flush:
         _blank_line(doc)
     return None
 
@@ -684,8 +693,10 @@ _FORM_NUM_HEADS = {"№", "№ п/п", "р/н №"}
 _FORM_CRIT_HEADS = ("criteria", "критерии", "критерийлер")
 # Measured off the samples: the number column is a hair over 3 % of the text
 # block, the criterion name ~17 %, the option list ~25 %, and the reviewer's
-# own argument takes the remaining 55 %.
-_FORM_COL_FRAC = (0.04, 0.17, 0.25, 0.54)
+# own argument takes the remaining 55 %. The number column is given 5 % rather
+# than the sample's 4 %: its Kazakh heading is «р/н №», and at 4 % of the
+# landscape block that head sets on three lines with the slash broken off.
+_FORM_COL_FRAC = (0.05, 0.17, 0.24, 0.54)
 
 
 # The list of scientific papers, portrait like every sample of this document.
@@ -757,12 +768,22 @@ def _apply_form_widths(table, header: list[str], ncols: int) -> None:
         return
     table.autofit = False
     tbl_pr = table._tbl.tblPr
+    for stale in tbl_pr.findall(qn("w:tblLayout")):
+        tbl_pr.remove(stale)
     layout = OxmlElement("w:tblLayout")
     layout.set(qn("w:type"), "fixed")
     tbl_pr.append(layout)
     for row in table.rows:
         for cell, frac in zip(row.cells, fracs):
             cell.width = Mm(_USABLE_MM * frac)
+    # Under a fixed layout the column widths are read off `tblGrid`, which
+    # python-docx leaves at the even split it created the table with; the cell
+    # widths above then disagree with it, and which of the two a renderer
+    # believes is its own business. Restate the proportions in the grid.
+    grid = table._tbl.find(qn("w:tblGrid"))
+    if grid is not None:
+        for col, frac in zip(grid.findall(qn("w:gridCol")), fracs):
+            col.set(qn("w:w"), str(int(round(Mm(_USABLE_MM * frac).twips))))
 
 
 def _banner_rows(rows: list[list[str]], ncols: int) -> set[int]:
@@ -797,7 +818,7 @@ def _set_banner(table, i: int, ncols: int, text: str) -> None:
     _add_runs(p, text, bold=True)
 
 
-def _repeat_header_row(table) -> None:
+def _repeat_header_row(table, cant_split_body: bool = True) -> None:
     """Mark row 0 as a header row, so Word repeats it on every page the table spans.
 
     GOST requires a table broken across a page to be readable on the continued
@@ -815,11 +836,40 @@ def _repeat_header_row(table) -> None:
     if tr_pr.find(qn("w:tblHeader")) is None:
         tr_pr.append(OxmlElement("w:tblHeader"))
     # A single row must not itself straddle the break, or the repeated head
-    # lands above a half-row.
-    for row in table.rows:
+    # lands above a half-row — true of a table of short rows, and false of the
+    # reviewer's form, whose every row is a page of argument. Kept atomic, such
+    # a row cannot start where it does not also finish, so Word carries the
+    # whole block to the next page and leaves two thirds of page 1 empty under
+    # the column heads. There the break has to fall inside the row, between two
+    # lines of the prose (`cant_split_body=False`); only the head row, which is
+    # short and must stay whole, keeps `cantSplit`.
+    rows = table.rows if cant_split_body else table.rows[:1]
+    for row in rows:
         rpr = row._tr.get_or_add_trPr()
         if rpr.find(qn("w:cantSplit")) is None:
             rpr.append(OxmlElement("w:cantSplit"))
+
+
+def _clear_table_borders(table) -> None:
+    """Strip every rule from a table, leaving the cells as invisible layout.
+
+    The protocol closes with two signature lines — position on the left, the
+    signature rule and the name on the right — which the samples set as a
+    borderless two-column block, not as a ruled table. Word needs the borders
+    turned off explicitly: the `Table Grid` style paints them, and clearing the
+    style would also drop the cell margins the block relies on.
+    """
+    tbl_pr = table._tbl.tblPr
+    for old in tbl_pr.findall(qn("w:tblBorders")):
+        tbl_pr.remove(old)
+    borders = OxmlElement("w:tblBorders")
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        el = OxmlElement("w:%s" % edge)
+        el.set(qn("w:val"), "none")
+        el.set(qn("w:sz"), "0")
+        el.set(qn("w:space"), "0")
+        borders.append(el)
+    tbl_pr.append(borders)
 
 
 def _add_table(doc: Document, rows: list[list[str]]) -> None:
@@ -833,10 +883,32 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
     if not rows:
         return
     ncols = max(len(r) for r in rows)
+    # A two-column pipe table whose header row is entirely empty is a layout
+    # block rather than a data table — the signature block at the foot of the
+    # protocol. It is rendered borderless and bold, and the blank header row
+    # that declared it is dropped rather than printed as an empty first row.
+    is_layout = ncols == 2 and not any(c.strip() for c in rows[0])
+    if is_layout:
+        rows = rows[1:]
+        if not rows:
+            return
+        # The samples set the closing signatures off from the last paragraph of
+        # the resolution by two empty lines. Markdown cannot carry them — blank
+        # source lines only end a paragraph — so the gap is emitted here, where
+        # the signature block is recognised.
+        for _ in range(2):
+            _blank_line(doc)
     table = doc.add_table(rows=len(rows), cols=ncols)
     table.style = "Table Grid"
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    _apply_form_widths(table, rows[0], ncols)
+    if is_layout:
+        _clear_table_borders(table)
+        usable = _USABLE_MM
+        for row in table.rows:
+            for cell, share in zip(row.cells, (0.62, 0.38)):
+                cell.width = Mm(usable * share)
+    else:
+        _apply_form_widths(table, rows[0], ncols)
     is_pubs = _is_pubs_table(rows[0], ncols)
     # The list-of-scientific-papers form sets its column headings in ordinary
     # text — the samples this council accepts carry no bold in the head row.
@@ -855,13 +927,19 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
                 p = cell.paragraphs[0] if k == 0 else cell.add_paragraph()
                 p.paragraph_format.first_line_indent = Mm(0)
                 p.paragraph_format.line_spacing = 1.0
-                _add_runs(p, part.strip(), bold=(i == 0 and head_bold))
+                if is_layout:
+                    p.alignment = (WD_ALIGN_PARAGRAPH.RIGHT if j == ncols - 1
+                                   else WD_ALIGN_PARAGRAPH.LEFT)
+                _add_runs(p, part.strip(),
+                          bold=(is_layout or (i == 0 and head_bold)))
     for i in sorted(banners):
         _set_banner(table, i, ncols,
                     next(c.strip() for c in rows[i] if c.strip()))
-    if _is_form_table(rows[0], ncols):
+    is_form = _is_form_table(rows[0], ncols) and not is_layout
+    if is_form:
         _merge_continuation_rows(table, rows)
-    _repeat_header_row(table)
+    if not is_layout:
+        _repeat_header_row(table, cant_split_body=not is_form)
     # spacing paragraph after the table
     doc.add_paragraph()
 
@@ -1529,9 +1607,14 @@ def render_into(
     # justified paragraph per work — rather than as a hanging-indent list.
     # It stays in force until a line that is neither blank nor numbered.
     pending_runlist = [False]
+    pending_right = [False]
 
     def take_center() -> bool:
         was, pending_center[0] = pending_center[0], False
+        return was
+
+    def take_right() -> bool:
+        was, pending_right[0] = pending_right[0], False
         return was
 
     def flush_paragraph() -> None:
@@ -1543,7 +1626,8 @@ def render_into(
         if hard_broken:
             # A signature block, not prose: keep the author's line division.
             parts = [s.strip() for s in raw.split(_HARD_BREAK)]
-            _line_block(doc, [p for p in parts if p], center=take_center())
+            _line_block(doc, [p for p in parts if p], center=take_center(),
+                        right=take_right())
             return
         cleaned, regs, standalone = resolve_markers(raw)
         if standalone:
@@ -1553,7 +1637,7 @@ def render_into(
             for f in regs:
                 _emit(f, note_missing=f["label"] != labels["TAB"])
             return
-        _body(doc, cleaned, center=take_center())
+        _body(doc, cleaned, center=take_center(), right=take_right())
         emit_after(regs)
 
     tbl_buf: list[list[str]] = []
@@ -1644,6 +1728,10 @@ def render_into(
             flush_paragraph()
             pending_center[0] = True
             continue
+        if stripped == "<!-- right -->":
+            flush_paragraph()
+            pending_right[0] = True
+            continue
         if stripped == "<!-- runlist -->":
             flush_paragraph()
             pending_runlist[0] = True
@@ -1688,7 +1776,7 @@ def render_into(
             # full build already breaks after the front matter).
             brk = (level == 1 and _STRUCTURAL.match(htext) is not None
                    and len(doc.paragraphs) > start_paras)
-            p = _heading(doc, htext, level)
+            p = _heading(doc, htext, level, center=take_center())
             if brk:
                 p.paragraph_format.page_break_before = True
             continue

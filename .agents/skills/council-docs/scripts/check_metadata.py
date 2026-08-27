@@ -84,6 +84,37 @@ REQUIRED: dict[str, list[str]] = {
         "organization.academic_secretary_short_ru",
         "pub:1", "pub:2", "pub:3", "pub:4", "pub:5",
     ],
+    # Протокол расширенного заседания кафедры (предзащита, §5). Русский —
+    # составляет секретарь кафедры, независимо от языка защиты. Тема же внутри
+    # приводится НА ЯЗЫКЕ ЗАЩИТЫ, а защита казахская, поэтому сверяется title_kz
+    # (было title_en — исправлено 2026-08-27 по указанию кандидата).
+    "thesis/output/predefense_protocol_ru.md": [
+        "candidate.name_ru_gen", "dissertation.title_kz",
+        "programme.code", "programme.name_ru",
+        "organization.legal_ru", "department.name_ru", "faculty.name_ru",
+        "supervisor.name_ru", "supervisor.degree_ru", "supervisor.title_ru",
+        "foreign_consultant.name_en", "foreign_consultant.org_en",
+        "predefense.chair_ru", "predefense.secretary_ru",
+        "predefense.approver_name_ru", "predefense.approver_position_ru",
+        "predefense.reviewer_1_ru", "predefense.reviewer_2_ru",
+        "predefense.protocol_number", "predefense.protocol_date",
+        "pub:1", "pub:2", "pub:3", "pub:4", "pub:5",
+    ],
+    # Казахская редакция того же протокола. Язык защиты казахский, и кандидат
+    # держит протокол на языке защиты; русская редакция остаётся как основная
+    # форма жанра (оба образца совета русские) — файлы существуют параллельно.
+    "thesis/output/predefense_protocol_kz.md": [
+        "candidate.name_kz_gen", "dissertation.title_kz",
+        "programme.code", "programme.name_kz",
+        "organization.legal_kz", "department.name_kz", "faculty.name_kz",
+        "supervisor.name_kz", "supervisor.degree_kz", "supervisor.title_kz",
+        "foreign_consultant.name_en", "foreign_consultant.org_en",
+        "predefense.chair_ru", "predefense.secretary_ru",
+        "predefense.approver_name_ru",
+        "predefense.reviewer_1_ru", "predefense.reviewer_2_ru",
+        "predefense.protocol_number", "predefense.protocol_date",
+        "pub:1", "pub:2", "pub:3", "pub:4", "pub:5",
+    ],
     "thesis/output/supervisor_review_kz.md": [
         "candidate.name_kz_gen", "dissertation.title_kz",
         "programme.code", "programme.name_kz",
