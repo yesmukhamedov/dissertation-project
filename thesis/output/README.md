@@ -13,7 +13,7 @@ renderings are built from them by the `council-docs` skill into `defense/docs/`.
 | `definitions_{en,kz}.md` | Definitions |
 | `supervisor_review_kz.md` | Supervisor's review |
 | `foreign_consultant_review_en.md` | Foreign consultant's review |
-| `official_reviewer_{1,2}_review_{en,ru,kz}.md` | Official reviewers' reports (Appendix 3 form) |
+| `reviewer_{1,2}_review_{en,ru,kz}.md` | Reviewers' reports (Appendix 3 form) — 1 = Bektemyssova G.U., 2 = Chinibayeva T.T. |
 | `publications_list_ru.md` | List of scientific papers |
 
 The supervisor's and foreign consultant's reviews are the reviewers' own documents and are

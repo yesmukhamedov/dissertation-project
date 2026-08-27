@@ -128,47 +128,47 @@ REQUIRED: dict[str, list[str]] = {
         "foreign_consultant.department_en", "foreign_consultant.faculty_en",
         "foreign_consultant.org_en", "foreign_consultant.address_en",
     ],
-    "thesis/output/official_reviewer_1_review_en.md": [
+    "thesis/output/reviewer_1_review_en.md": [
         "candidate.name_en", "dissertation.title_en",
         "programme.code", "programme.name_en",
-        "official_reviewer_1.name_en", "official_reviewer_1.degree_en",
-        "official_reviewer_1.title_en", "official_reviewer_1.department_en",
-        "official_reviewer_1.org_en",
+        "reviewer_1.name_en", "reviewer_1.degree_en",
+        "reviewer_1.title_en", "reviewer_1.department_en",
+        "reviewer_1.org_en",
     ],
-    "thesis/output/official_reviewer_1_review_ru.md": [
+    "thesis/output/reviewer_1_review_ru.md": [
         "candidate.name_ru_gen", "dissertation.title_ru",
         "programme.code", "programme.name_ru",
-        "official_reviewer_1.name_ru", "official_reviewer_1.degree_ru",
-        "official_reviewer_1.title_ru", "official_reviewer_1.department_ru",
-        "official_reviewer_1.org_ru",
+        "reviewer_1.name_ru", "reviewer_1.degree_ru",
+        "reviewer_1.title_ru", "reviewer_1.department_ru",
+        "reviewer_1.org_ru",
     ],
-    "thesis/output/official_reviewer_1_review_kz.md": [
+    "thesis/output/reviewer_1_review_kz.md": [
         "candidate.name_kz_gen", "dissertation.title_kz",
         "programme.code", "programme.name_kz",
-        "official_reviewer_1.name_kz", "official_reviewer_1.degree_kz",
-        "official_reviewer_1.title_kz", "official_reviewer_1.department_kz",
-        "official_reviewer_1.org_kz",
+        "reviewer_1.name_kz", "reviewer_1.degree_kz",
+        "reviewer_1.title_kz", "reviewer_1.department_kz",
+        "reviewer_1.org_kz",
     ],
-    "thesis/output/official_reviewer_2_review_en.md": [
+    "thesis/output/reviewer_2_review_en.md": [
         "candidate.name_en", "dissertation.title_en",
         "programme.code", "programme.name_en",
-        "official_reviewer_2.name_en", "official_reviewer_2.degree_en",
-        "official_reviewer_2.title_en", "official_reviewer_2.position_en",
-        "official_reviewer_2.org_en",
+        "reviewer_2.name_en", "reviewer_2.degree_en",
+        "reviewer_2.title_en", "reviewer_2.position_en",
+        "reviewer_2.org_en",
     ],
-    "thesis/output/official_reviewer_2_review_ru.md": [
+    "thesis/output/reviewer_2_review_ru.md": [
         "candidate.name_ru_gen", "dissertation.title_ru",
         "programme.code", "programme.name_ru",
-        "official_reviewer_2.name_ru", "official_reviewer_2.degree_ru",
-        "official_reviewer_2.title_ru", "official_reviewer_2.position_ru",
-        "official_reviewer_2.org_ru",
+        "reviewer_2.name_ru", "reviewer_2.degree_ru",
+        "reviewer_2.title_ru", "reviewer_2.position_ru",
+        "reviewer_2.org_ru",
     ],
-    "thesis/output/official_reviewer_2_review_kz.md": [
+    "thesis/output/reviewer_2_review_kz.md": [
         "candidate.name_kz_gen", "dissertation.title_kz",
         "programme.code", "programme.name_kz",
-        "official_reviewer_2.name_kz", "official_reviewer_2.degree_kz",
-        "official_reviewer_2.title_kz", "official_reviewer_2.department_kz",
-        "official_reviewer_2.org_kz",
+        "reviewer_2.name_kz", "reviewer_2.degree_kz",
+        "reviewer_2.title_kz", "reviewer_2.department_kz",
+        "reviewer_2.org_kz",
     ],
     "defense/presentation/slides/01_TITLE.md": [
         "organization.name_en", "dissertation.title_kz",

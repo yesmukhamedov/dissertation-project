@@ -92,7 +92,7 @@ python .claude/skills/council-docs/scripts/md2gost.py thesis/output/abstract_en.
 | `abstract_en` / `abstract_ru` / `abstract_kz` | Trilingual abstract/annotation | 11-abstract-annotation | `defense/docs/abstracts/` |
 | `supervisor_review_kz` | Supervisor (domestic) review | 13-supervisor-review | `defense/docs/reviews/` |
 | `foreign_consultant_review_en` | Foreign consultant review | 14-foreign-consultant-review | `defense/docs/reviews/` |
-| `official_reviewer_{1,2}_review_{en,ru,kz}` | Official reviewers' reports (Appendix 3) | 15-official-reviewer-report | `defense/docs/reviews/` |
+| `reviewer_{1,2}_review_{en,ru,kz}` | Reviewers' reports (Appendix 3) | 15-official-reviewer-report | `defense/docs/reviews/` |
 | `predefense_protocol_ru` / `predefense_protocol_kz` | Extended department meeting protocol (§5 pre-defense), both editions | 22-extended-meeting-protocol | `defense/docs/reviews/` |
 
 The protocol exists in two editions. Russian is the form of the genre — the

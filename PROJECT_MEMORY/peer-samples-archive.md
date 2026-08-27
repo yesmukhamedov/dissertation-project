@@ -21,7 +21,8 @@ metadata:
 
 `doctype` — `announcement`, `abstract_{kz,ru,en}`, `dissertation`, `publications`,
 `supervisor_review`, `foreign_consultant_review`, `ethics_conclusion`,
-`official_reviewer_{1,2}` (у Чинибаева ещё суффикс языка).
+`official_reviewer_{1,2}` (у Чинибаева ещё суффикс языка). ⚠ Это `doctype` образцов чужих
+защит — переименование наших файлов 2026-08-27 в `reviewer_{1,2}_review_*` его не затрагивает.
 
 **Приоритет образца** = свежесть (год − 2021, 0–5) + кафедра (своя «Компьютерная инженерия» 3,
 иная 1) + ОП (своя 8D06102 — 3, иная 8D — 1, старая 6D — 0). Ближайшие к нам, по убыванию:

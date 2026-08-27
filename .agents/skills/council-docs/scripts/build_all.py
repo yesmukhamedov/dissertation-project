@@ -24,19 +24,15 @@ DOCS = {
     "abstract_kz": "Abstract (Kazakh)",
     "supervisor_review_kz": "Supervisor review (Kazakh)",
     "foreign_consultant_review_en": "Foreign consultant review (English)",
-    # Official reviewers' reports (Appendix 3). Two reviewers, and the language
-    # of a report follows the reviewer rather than the defense, so each report
-    # is carried in all three languages until the reviewers are appointed.
-    "official_reviewer_1_review_en": "Official reviewer 1 report (English)",
-    "official_reviewer_1_review_ru": "Official reviewer 1 report (Russian)",
-    "official_reviewer_1_review_kz": "Official reviewer 1 report (Kazakh)",
-    "official_reviewer_2_review_en": "Official reviewer 2 report (English)",
-    "official_reviewer_2_review_ru": "Official reviewer 2 report (Russian)",
-    "official_reviewer_2_review_kz": "Official reviewer 2 report (Kazakh)",
-    # Same report re-issued for the appointed reviewer, filed without a number.
-    "official_reviewer_review_en": "Official reviewer report (English)",
-    "official_reviewer_review_ru": "Official reviewer report (Russian)",
-    "official_reviewer_review_kz": "Official reviewer report (Kazakh)",
+    # Reviewers' reports (Appendix 3). Reviewer 1 is Bektemyssova G.U.,
+    # reviewer 2 is Chinibayeva T.T. The language of a report follows the
+    # reviewer rather than the defense, so each is carried in all three.
+    "reviewer_1_review_en": "Reviewer 1 report (English)",
+    "reviewer_1_review_ru": "Reviewer 1 report (Russian)",
+    "reviewer_1_review_kz": "Reviewer 1 report (Kazakh)",
+    "reviewer_2_review_en": "Reviewer 2 report (English)",
+    "reviewer_2_review_ru": "Reviewer 2 report (Russian)",
+    "reviewer_2_review_kz": "Reviewer 2 report (Kazakh)",
     # The list of scientific papers is Russian in the samples regardless of the
     # defense language — even the Kazakh-language defenses file it in Russian.
     "publications_list_ru": "List of scientific papers (Russian)",
@@ -49,15 +45,12 @@ SUBDIRS = {
     "abstract_kz": "abstracts",
     "supervisor_review_kz": "reviews",
     "foreign_consultant_review_en": "reviews",
-    "official_reviewer_1_review_en": "reviews",
-    "official_reviewer_1_review_ru": "reviews",
-    "official_reviewer_1_review_kz": "reviews",
-    "official_reviewer_2_review_en": "reviews",
-    "official_reviewer_2_review_ru": "reviews",
-    "official_reviewer_2_review_kz": "reviews",
-    "official_reviewer_review_en": "reviews",
-    "official_reviewer_review_ru": "reviews",
-    "official_reviewer_review_kz": "reviews",
+    "reviewer_1_review_en": "reviews",
+    "reviewer_1_review_ru": "reviews",
+    "reviewer_1_review_kz": "reviews",
+    "reviewer_2_review_en": "reviews",
+    "reviewer_2_review_ru": "reviews",
+    "reviewer_2_review_kz": "reviews",
     "publications_list_ru": "publications",
 }
 
