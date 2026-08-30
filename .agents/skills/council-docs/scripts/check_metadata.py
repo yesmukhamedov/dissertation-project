@@ -98,6 +98,7 @@ REQUIRED: dict[str, list[str]] = {
         "predefense.approver_name_ru", "predefense.approver_position_ru",
         "predefense.reviewer_1_ru", "predefense.reviewer_2_ru",
         "predefense.protocol_number", "predefense.protocol_date",
+        "predefense.meeting_date",
         "pub:1", "pub:2", "pub:3", "pub:4", "pub:5",
     ],
     # Казахская редакция того же протокола. Язык защиты казахский, и кандидат
@@ -113,7 +114,27 @@ REQUIRED: dict[str, list[str]] = {
         "predefense.approver_name_ru",
         "predefense.reviewer_1_ru", "predefense.reviewer_2_ru",
         "predefense.protocol_number", "predefense.protocol_date",
+        "predefense.meeting_date",
         "pub:1", "pub:2", "pub:3", "pub:4", "pub:5",
+    ],
+    # Экспертные отзывы практикующих офтальмологов на демонстрацию приложения
+    # (жанр council/en/16-review — свободная проза на бланке организации).
+    # Обязательство принято на расширенном заседании 26.08.2026 в ответ на
+    # предложение Найзабаевой Л.К. (вопрос 5 протокола): при затруднительности
+    # акта внедрения — демонстрация практикующим офтальмологам и их письменные
+    # отзывы. Документ русский, тема приводится по-русски (в отличие от протокола,
+    # где тема идёт на языке защиты). Подписанты в <...> — их называет кандидат.
+    "thesis/output/expert_review_ophthalmologist_1_ru.md": [
+        # short_ru не требуется: отзыв говорит о докторанте в косвенных падежах
+        # («работы Есмухамедова Н.С.», «создано Есмухамедовым Н.С.») — как в протоколе.
+        "candidate.name_ru_gen", "dissertation.title_ru",
+        "programme.code", "programme.name_ru",
+    ],
+    "thesis/output/expert_review_ophthalmologist_2_ru.md": [
+        # short_ru не требуется: отзыв говорит о докторанте в косвенных падежах
+        # («работы Есмухамедова Н.С.», «создано Есмухамедовым Н.С.») — как в протоколе.
+        "candidate.name_ru_gen", "dissertation.title_ru",
+        "programme.code", "programme.name_ru",
     ],
     "thesis/output/supervisor_review_kz.md": [
         "candidate.name_kz_gen", "dissertation.title_kz",
