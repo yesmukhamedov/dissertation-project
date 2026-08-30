@@ -16,7 +16,7 @@ against the currency-passed abstracts (`abstract_{en,kz}.md`, see
 
 The first rewrite followed `council/en/13-…` and `14-…` literally and was **wrong in genre** — the
 candidate caught it. Checked against the real peer submissions in
-`D:/dissertation_council/Образцы документов/авторы/` (Момынқулова, Әйтім, Бакирова, Дауренбаева),
+`D:/phd/council/Образцы документов/авторы/` (Момынқулова, Әйтім, Бакирова, Дауренбаева),
 the same lesson as [[abstract-annotation-alignment]] holds here: **trust the samples, not the
 template.** What the samples actually show:
 

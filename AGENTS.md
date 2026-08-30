@@ -3,19 +3,19 @@
 PhD dissertation: "Automated Diabetic Retinopathy Diagnosis via Fundus Image Enhancement and CNN Classification"
 Candidate: Yesmukhamedov N.S., IITU (Almaty, Kazakhstan)
 
-## Project memory — ON DRIVE E: (not C: harness memory)
+## Project memory — IN-REPO (not C: harness memory)
 
-Persistent project facts live in `PROJECT_MEMORY/` on this drive, indexed by
+Persistent project facts live in `PROJECT_MEMORY/` inside the repo, indexed by
 `PROJECT_MEMORY.md`. **READ `PROJECT_MEMORY.md` at session start, and WRITE new durable
 facts there** (one file per fact, `[[name]]` cross-links) — never into the machine-local
-`~/.Codex/.../memory/` store. The candidate works across a work PC, a home laptop, and a
-university machine, carrying the project on an external drive (E:); only what lives under
-`E:\dissertation-project\` travels.
+`~/.Codex/.../memory/` store. The candidate works across a work PC, a home laptop and a
+university machine; only what lives under the repo root travels, so anything durable must
+be committed. See [[project-relocation-d-phd]] for the current on-disk layout.
 
 ## Monorepo Structure
 
 ```
-dissertation-project/
+dissertation/
 ├── experiments/   Python/PyTorch — ML pipeline, training, 7 experiments
 ├── thesis/        Dissertation text, governance docs, literature cards
 ├── demo/          Defense demo bundle: web/ (React dashboard) + server/ (FastAPI inference backend)
@@ -74,7 +74,7 @@ Full pipeline (Exp 1 B/D) = all 8 stages (4 channels: RGB + FOV mask).
 - GPU: NVIDIA RTX 3060 12GB VRAM
 - OS: WSL2 Ubuntu on Windows
 - Conda env: `dr-classifier`
-- Datasets: `E:/datasets/` (external, not in git)
+- Datasets: `D:/phd/datasets/` (`/mnt/d/phd/datasets/` under WSL; not in git)
 - batch_size=16, image_size=512×512, input_channels=4 (RGB + FOV mask)
 - Cross-validation: 5-fold patient-level stratified
 - Loss: Focal Loss (γ=2, α=inverse-frequency)

@@ -40,7 +40,7 @@ the volume had 42 tables and zero continuations before the pass existed
    one page and has no continuation line.
 
 **What the peer corpus actually does** (checked 2026-08-24 against the full texts
-in `D:\dissertation_council`, not against a summary): **11 of the 16 carry the
+in `D:\phd\council`, not against a summary): **11 of the 16 carry the
 line** — `Продолжение таблицы N` in Бакирова (12×), Момынқулов (10×), Олжаев,
 Базарбеков, Науменко, Муханов; `Continuation of table N` in Нәлгожина, Әйтім,
 Мырзакерімова, Тохтахунов; `N-кестенің жалғасы` in Тоқтарова. The five without

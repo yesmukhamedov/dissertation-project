@@ -25,7 +25,7 @@ ImageNet-pretrained (`init.source=imagenet`), `mixed_precision=False` (fp16 over
    `paths.eyepacs=/mnt/d/datasets/EyePACS`.
 2. **Durable launch = detached `Start-Process`**, NOT harness `run_in_background` (harness
    reaping kills the WSL subtree — see [[ssl-wsl-launch-durability]]). Launcher `~/launch_expC.sh`:
-   sources conda `dr-classifier`, `cd /mnt/d/dissertation-project/experiments`,
+   sources conda `dr-classifier`, `cd /mnt/d/phd/dissertation/experiments`,
    `PYTHONIOENCODING=utf-8`, runs `run_experiment.py exp1 --config configs/_run_exp1C_wsl.yaml
    --configs C --resume >> ~/expC.log 2>&1`, then `touch ~/EXPC_DONE.txt`.
    Launch: `Start-Process -WindowStyle Hidden -FilePath wsl.exe -ArgumentList '-d','Ubuntu','-e','bash','/home/yesmu/launch_expC.sh'`.

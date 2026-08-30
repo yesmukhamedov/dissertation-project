@@ -1,11 +1,11 @@
 ---
 name: eyepacs-local-dataset
-description: Local EyePACS on E:\datasets is the FULL 88,702-image set; test labels added 2026-06-26 (testLabels15.csv)
+description: Local EyePACS on D:\phd\datasets is the FULL 88,702-image set; test labels added 2026-06-26 (testLabels15.csv)
 metadata:
   type: project
 ---
 
-`E:\datasets\EyePACS` already holds the **complete** Kaggle Diabetic Retinopathy
+`D:\phd\datasets\EyePACS` already holds the **complete** Kaggle Diabetic Retinopathy
 Detection set, not just the 35k train split:
 
 - `train/` — 35,126 .jpeg, labeled by `trainLabels.csv` (cols `image,level`)
@@ -15,7 +15,7 @@ Detection set, not just the 35k train split:
 The "only 35k" impression comes from labels, not images: the competition ships
 `trainLabels.csv` (35,126 rows) only. The test images were always present but unlabeled.
 
-**2026-06-26:** added `E:\datasets\EyePACS\testLabels15.csv` — the official 2015 test
+**2026-06-26:** added `D:\phd\datasets\EyePACS\testLabels15.csv` — the official 2015 test
 labels (53,576 rows; cols `image,level,Usage`; `Usage` = Public 10,906 / Private 42,670).
 Verified 1:1 against `test/` basenames (0 mismatches). Level dist: 0=39533, 1=3762,
 2=7861, 3=1214, 4=1206. Source: Kaggle dataset
