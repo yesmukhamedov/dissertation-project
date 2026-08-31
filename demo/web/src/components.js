@@ -7,7 +7,7 @@ export function Card({ label, value, delta, color, sub }) {
   const bg = C[color + 'Bg'] || C.grayBg;
   const tx = C[color + 'T'] || C.grayT;
   return (
-    <div style={{ background: bg, borderRadius: 10, padding: '11px 14px', flex: 1, minWidth: 110 }}>
+    <div className="metric-card" style={{ background: bg, borderRadius: 10, padding: '11px 14px', flex: 1, minWidth: 110 }}>
       <div style={{ fontSize: 10, color: tx, opacity: 0.75 }}>{label}</div>
       <div style={{ fontSize: 20, fontWeight: 600, color: tx, marginTop: 2 }}>{value}</div>
       {delta && (
@@ -98,7 +98,7 @@ export function Sec({ title, note, children }) {
 
 export function DataTable({ headers, rows, highlightRow }) {
   return (
-    <div style={{ overflowX: 'auto' }}>
+    <div className="table-scroll" style={{ overflowX: 'auto' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11 }}>
         <thead>
           <tr style={{ borderBottom: '2px solid var(--color-border-secondary,#ccc)' }}>
@@ -110,10 +110,12 @@ export function DataTable({ headers, rows, highlightRow }) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, i) => (
-            <tr key={i} style={{
+          {rows.map((row, i) => {
+            const hl = !!(highlightRow && highlightRow(row, i));
+            return (
+            <tr key={i} className={hl ? 'row-hl' : undefined} style={{
               borderBottom: '1px solid var(--color-border-tertiary,#eee)',
-              background: highlightRow && highlightRow(row, i) ? C.amberBg : 'transparent',
+              background: hl ? C.amberBg : 'transparent',
             }}>
               {row.map((cell, j) => (
                 <td key={j} style={{
@@ -126,7 +128,8 @@ export function DataTable({ headers, rows, highlightRow }) {
                 </td>
               ))}
             </tr>
-          ))}
+            );
+          })}
         </tbody>
       </table>
     </div>

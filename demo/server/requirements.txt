@@ -8,6 +8,8 @@ opencv-python-headless>=4.8
 numpy>=1.24
 Pillow>=10.0
 pydantic>=2.0
+# PDF case reports (server/app/report.py). Pure Python, no system deps.
+reportlab>=4.0
 # Note: the live Grad-CAM is a self-contained torch implementation
 # (server/app/gradcam.py, conv_head target) — no pytorch-grad-cam dependency.
 # The Chapter 4 / Exp 4 figures pin grad-cam==1.5.0 separately in experiments/.

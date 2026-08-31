@@ -77,7 +77,9 @@ The chart scripts (`generate_charts_*.py`) and the JSONs under `public/results/{
 
 ## Design Decisions
 
-- All inline styles (CSS-in-JS). No external CSS framework.
+- All inline styles (CSS-in-JS). No external CSS framework. **The one exception is
+  `src/index.css`**, which carries the shell (sidebar/topbar/drawer) and the whole
+  responsive layer — see *Responsive / mobile* below.
 - No external charting library — all charts are hand-rolled divs.
 - No status badges/labels — everything presented as completed work. All 7 hypotheses are confirmed, so no `◐ Partial` marker is in use; the caveats live in the section notes instead (H-7's thin Messidor-2 margin, the g_ratio inversions, NC-14).
 - Tab IDs: exph1, exph2, exph3, exph4, exph5, exph6, exph7. Note the tab labels do not map one-to-one onto hypothesis numbers (exph3 → H-4/APTOS, exph4 → Exp 5 external clinical sets). **H-3 is not dropped** — domain distance (MMD/KL) is measured and confirmed; the data lives in `DOMAIN_DIST` but has no dedicated tab yet.
@@ -100,6 +102,49 @@ Dashboard data must match `../../thesis/governance/` invariants exactly:
 - **H-7 claims external performance, not resistance.** It is confirmed 2/2 under the operative form (Δ wF1 ≥ MCID 0.050, CI⁻ > 0), but never write "the pipeline degrades less": proportionally the arms drop almost equally. The Δ_drop form is retired and algebraically degenerate; the same defect drives the H-6 g_ratio inversions. Always carry the Messidor-2 caveat — the margin over the MCID is 0.0041.
 - Stage contributions **can** be ranked as a grouping: flat-field (+1.43pp) and CLAHE (+1.25pp) lead with 41% of the gain between them. But adjacent ranks sit within noise, so never write "stage X ranks above stage Y" outside the photometric-vs-rest split, and note that the hierarchy has not yet been shown to reproduce across runs.
 - Clinical metrics are operating characteristics on annotated datasets, not a clinical validation.
+
+## Responsive / mobile
+
+Every tab is authored at desktop density: 9-12px inline font sizes laid out for an
+820px column. Rather than restyle thousands of inline rules, `index.css` scales the
+whole content column with `zoom` and then fixes the handful of layouts that cannot
+survive a narrow column. Breakpoints:
+
+| Width | `--content-zoom` | Layout width it buys | Shell |
+|---|---|---|---|
+| >=1024px | 1 (no zoom) | 820px column | sticky 192px sidebar |
+| 768-1023px | 1.55 | ~485px | top bar + drawer |
+| 360-767px | 1.25 | ~310px on a 390px phone | top bar + drawer |
+| <360px | 1.1 | ~290px | top bar + drawer |
+
+`--content-zoom` is a variable rather than a literal so anything measured against the
+*unzoomed* viewport can divide it back out (`.tooltip-bubble` does).
+
+What the mobile block does beyond scaling, and why each piece exists:
+
+- **Flex rows wrap.** `.main-content div[style*="display: flex"]` gets
+  `flex-wrap: wrap !important` — the card and metric rows are written for an 820px
+  column and have to stack below it. Two escape hatches: `.keep-row` for rows whose
+  children already shrink with `flex: 1` (segmented controls, the pipeline progress
+  strip, the Datasets stacked bar) and `.stack-sm` for side-by-side prose blocks that
+  should become one column rather than two narrow ones (the *standard approach vs. our
+  adaptation* pairs in `ModelMethods.js`).
+- **Oversized `minWidth` is capped.** Blocks carrying `minWidth: 150...240` are switched
+  to `border-box` and capped at `100%`; the app sets no global `border-box`, so those
+  content-box minimums plus padding and an accent border overhang the screen edge.
+- **Tables scroll instead of crushing.** `DataTable` renders into `.table-scroll`
+  (`min-width: max-content`, `nowrap`, sticky first column so the row label survives a
+  swipe). The eight hand-rolled tables already sit in an `overflowX: auto` wrapper and
+  get a 460px floor instead — their cells hold prose, so `nowrap` would run them several
+  screens wide.
+- **The two fundus slots stay side by side** (`.eye-slot-row` / `.eye-slot`). They are
+  1:1 squares; stacked at full width they push the Run button a screen and a half down.
+- Touch targets are >=44px, `env(safe-area-inset-*)` is honoured on the top bar, drawer
+  and content padding, and `100dvh` is used for the shell and drawer.
+
+Verified with no horizontal overflow on all 21 tabs at 320/360/390/414/768/1440px in
+both EN and KZ. When adding a tab, re-check it at 390px — the usual failure is a new
+`display: flex` row with a `minWidth` above ~150px, or a table outside `DataTable`.
 
 ## Common Tasks
 

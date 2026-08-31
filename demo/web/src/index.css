@@ -1,3 +1,10 @@
+html {
+  /* Stop iOS/Android from inflating text on rotate — the content column is
+     already scaled deliberately via --content-zoom. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,6 +16,15 @@ body {
 
 body.no-scroll {
   overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Media never widens the layout past its container. */
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
 }
 
 code {
@@ -81,6 +97,7 @@ code {
 .app-shell {
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--color-background-primary, #fff);
   font-family: system-ui, -apple-system, sans-serif;
 }
@@ -121,6 +138,8 @@ code {
   border-bottom: 1px solid var(--color-border-tertiary, #e5e5e3);
   z-index: 100;
   padding: 0 20px;
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
   align-items: center;
   justify-content: space-between;
   gap: 14px;
@@ -132,6 +151,10 @@ code {
   font-weight: 700;
   color: #1D9E75;
   letter-spacing: 0.04em;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hamburger {
@@ -192,7 +215,17 @@ code {
   pointer-events: auto;
 }
 
-/* ============ Mobile (<1024px) ============ */
+/* ============ Responsive scale ============ */
+/* The dashboard is authored at desktop density (9–12px inline font sizes on an
+   820px column). On narrow screens the whole content column is uniformly scaled
+   with `zoom` instead of restyling every inline rule. --content-zoom holds that
+   factor so anything sized against the *unzoomed* viewport (e.g. 100vw inside
+   zoomed content) can divide it back out. */
+:root {
+  --content-zoom: 1;
+}
+
+/* ============ Tablet / mobile shell (<1024px) ============ */
 @media (max-width: 1023px) {
   .topbar {
     display: flex;
@@ -207,84 +240,219 @@ code {
     top: 0;
     left: 0;
     height: 100vh;
-    width: min(78vw, 420px);
+    height: 100dvh;
+    width: min(84vw, 340px);
     min-width: 0;
     z-index: 300;
     transform: translateX(-100%);
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
     border-right: 1px solid var(--color-border-tertiary, #e5e5e3);
-    padding: 24px 0;
+    padding: 20px 0 calc(20px + env(safe-area-inset-bottom)) 0;
+    overscroll-behavior: contain;
   }
 
   .sidebar.mobile-open {
     transform: translateX(0);
   }
 
-  /* Scale-up sidebar contents to match 2x content */
+  /* Drawer entries scaled up to comfortable touch targets. */
   .sidebar button {
-    font-size: 22px !important;
-    padding-top: 14px !important;
-    padding-bottom: 14px !important;
-    padding-left: 22px !important;
-    padding-right: 22px !important;
+    font-size: 15px !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
     line-height: 1.35 !important;
-    border-left-width: 5px !important;
+    min-height: 44px;
+    border-left-width: 4px !important;
   }
   .sidebar button[style*="padding-left: 20px"],
   .sidebar button[style*="20px"] {
-    padding-left: 34px !important;
+    padding-left: 30px !important;
   }
-  /* Group labels (uppercase headings inside sidebar) */
+  /* Group labels (uppercase headings inside the drawer) */
   .sidebar > div:not(:first-child) {
-    font-size: 16px !important;
-    padding: 16px 22px 6px 22px !important;
+    font-size: 11px !important;
+    padding: 14px 18px 5px 18px !important;
     letter-spacing: 0.08em !important;
   }
-  /* Sidebar header block (DR DASHBOARD + subtitle + LangSwitcher) */
+  /* Drawer header block (DR DASHBOARD + subtitle + switchers) */
   .sidebar > div:first-child {
-    padding: 0 22px 22px 22px !important;
+    padding: 0 18px 18px 18px !important;
   }
   .sidebar > div:first-child > div:nth-child(1) {
-    font-size: 20px !important;
-  }
-  .sidebar > div:first-child > div:nth-child(2) {
     font-size: 15px !important;
   }
+  .sidebar > div:first-child > div:nth-child(2) {
+    font-size: 11px !important;
+  }
   .sidebar > div:first-child button {
-    font-size: 18px !important;
-    padding: 8px 16px !important;
-    border-radius: 7px !important;
+    font-size: 13px !important;
+    min-height: 40px;
   }
-  /* Chip toggles bigger inside mobile sidebar header (preserve pill shape) */
   .sidebar > div:first-child .chip-toggle {
-    font-size: 18px !important;
-    padding: 10px 18px !important;
+    font-size: 13px !important;
+    padding: 9px 14px !important;
     border-radius: 999px !important;
-    gap: 8px !important;
+    gap: 7px !important;
   }
-  /* Chip toggles bigger in mobile topbar */
   .topbar .chip-toggle {
-    font-size: 18px;
-    padding: 9px 16px;
-    gap: 7px;
+    font-size: 13px;
+    padding: 9px 13px;
+    gap: 6px;
+    min-height: 40px;
   }
 
   .main-content {
     max-width: none;
-    padding: 14px 16px;
     width: 100%;
     box-sizing: border-box;
-    /* Scale up all dashboard content uniformly */
-    zoom: 2;
-  }
-  /* Safari fallback (does not support zoom uniformly with flex) */
-  @supports not (zoom: 1) {
-    .main-content {
-      font-size: 200%;
-    }
+    zoom: var(--content-zoom);
+    /* Long unbroken tokens (file names, hashes, code) must not force a layout
+       wider than the screen; `anywhere` also lets flex items shrink past their
+       longest word, which is what keeps the rows below from overflowing. */
+    overflow-wrap: anywhere;
   }
 
-  /* Mobile component tweaks */
+  /* Any inline-styled flex row inside the content column is allowed to wrap.
+     The dashboard lays cards and metric blocks out as `display:flex; gap:N`
+     rows sized for an 820px column; below that they have to stack. Opt out
+     with .keep-row where a row must stay on one line. */
+  .main-content div[style*="display: flex"]:not([style*="flex-direction: column"]):not(.keep-row) {
+    flex-wrap: wrap !important;
+  }
+
+  /* Segmented controls, progress strips and stacked bars are flex rows whose
+     children already shrink with flex:1 — wrapping them would break the
+     control, so they keep a single line. */
+  .keep-row {
+    flex-wrap: nowrap !important;
+  }
+
+  .tooltip-bubble {
+    max-width: calc((100vw - 28px) / var(--content-zoom)) !important;
+  }
+
+  /* Wide data tables scroll horizontally rather than crushing their columns. */
+  .table-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .table-scroll table {
+    min-width: max-content;
+  }
+  .table-scroll th,
+  .table-scroll td {
+    white-space: nowrap;
+  }
+  /* The row label has to stay put, otherwise a swiped-across table shows a wall
+     of numbers with nothing to attach them to. */
+  .table-scroll th:first-child,
+  .table-scroll td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--color-background-primary, #fff);
+    box-shadow: 1px 0 0 var(--color-border-tertiary, #eee);
+  }
+  .table-scroll tr.row-hl td:first-child {
+    background: #FAEEDA;
+  }
+
+  /* Tables written inline rather than through DataTable already sit in an
+     overflow-x wrapper, but their cells hold prose: without a floor the phone
+     column crushes them to one character per line. Give them a readable width
+     and let the wrapper scroll. No nowrap here — these sentences would run to
+     several screens. */
+  .main-content div[style*="overflow-x: auto"]:not(.table-scroll) > table {
+    min-width: 460px;
+  }
+}
+
+/* ============ Tablet (768–1023px) ============ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --content-zoom: 1.55;
+  }
+
+  .main-content {
+    padding: 18px 20px 40px 20px;
+  }
+}
+
+/* ============ Phone (<768px) ============ */
+@media (max-width: 767px) {
+  :root {
+    /* 1.25 keeps ~330 CSS px of layout width on a 414px phone: text lands at
+       ~14px effective while the two-column blocks still have room to stack. */
+    --content-zoom: 1.25;
+  }
+
+  .topbar {
+    height: 54px;
+    padding-left: max(14px, env(safe-area-inset-left));
+    padding-right: max(14px, env(safe-area-inset-right));
+    gap: 8px;
+  }
+
+  .topbar-title {
+    font-size: 15px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hamburger {
+    width: 44px;
+    height: 44px;
+    gap: 5px;
+    border-radius: 10px;
+  }
+
+  .hamburger span {
+    width: 22px;
+    height: 2px;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .topbar .chip-toggle {
+    font-size: 12px;
+    padding: 8px 11px;
+  }
+
+  .main-content {
+    padding-top: 12px;
+    padding-bottom: calc(28px + env(safe-area-inset-bottom));
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+  }
+
+  /* Side-by-side prose comparisons ("standard approach" vs "our adaptation")
+     squeeze to two or three words per line in a phone-width column. Stack them. */
+  .main-content .stack-sm {
+    flex-direction: column !important;
+  }
+  /* The three-column comparison rows draw their own borders between columns;
+     once stacked those separators have to move to the horizontal edges. */
+  .main-content .stack-sm > div[style*="border-left"] {
+    border-left: none !important;
+    border-top: 1px solid var(--color-border-tertiary, #eee);
+  }
+  .main-content .stack-sm > div[style*="width: 140px"] {
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Hbar: the right-aligned label column has no room next to the bar. */
   .hbar-row {
     flex-direction: column !important;
     align-items: stretch !important;
@@ -297,8 +465,68 @@ code {
     margin-bottom: 2px;
   }
 
-  .tooltip-bubble {
-    max-width: calc(100vw - 32px) !important;
+  /* Cards fall to two-up rather than four-up squeezed to nothing. */
+  .main-content .metric-card {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 120px;
+  }
+
+  /* Two-column text blocks carry a min-width sized for the 820px column. The
+     app does not set a global border-box, so those minimums are content-box and
+     their padding + accent border push the block past the screen edge. Cap the
+     minimum at the container and switch just these blocks to border-box, so a
+     pair stacks cleanly instead of overhanging. */
+  .main-content div[style*="min-width: 240px"],
+  .main-content div[style*="min-width: 220px"],
+  .main-content div[style*="min-width: 200px"],
+  .main-content div[style*="min-width: 180px"],
+  .main-content div[style*="min-width: 160px"],
+  .main-content div[style*="min-width: 150px"] {
+    box-sizing: border-box;
+    min-width: 100% !important;
+  }
+
+  /* The two fundus slots are 1:1 squares; stacked at full width they would push
+     the Run button a screen and a half down. Keep them side by side and let each
+     shrink instead. (Specificity has to beat the min-width cap above.) */
+  .eye-slot-row {
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .main-content .eye-slot-row .eye-slot {
+    min-width: 0 !important;
+    flex: 1 1 0 !important;
+  }
+}
+
+/* ============ Small phone (<360px) ============ */
+/* 360px is the floor of the mainstream range (iPhone 12–15 sit at 390–393), so
+   the step down is reserved for the genuinely narrow devices below it. */
+@media (max-width: 359px) {
+  :root {
+    --content-zoom: 1.1;
+  }
+
+  .topbar-title {
+    font-size: 13px;
+  }
+
+  .main-content .metric-card {
+    flex-basis: 100%;
+  }
+}
+
+/* ============ Landscape phone ============ */
+/* Short viewports cannot spare 54px of permanent chrome. */
+@media (max-width: 1023px) and (max-height: 450px) and (orientation: landscape) {
+  .topbar {
+    height: 44px;
+  }
+
+  .hamburger {
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -334,5 +562,17 @@ code {
 @media (max-width: 1023px) {
   .app-shell.mode-lite .backdrop {
     display: none;
+  }
+}
+
+/* ============ Touch input ============ */
+@media (hover: none) and (pointer: coarse) {
+  /* Hover-only affordances are unreachable; do not leave them as dead styles. */
+  .chip-toggle:hover {
+    background: var(--color-background-primary, #fff);
+    border-color: var(--color-border-tertiary, #e5e5e3);
+  }
+  .hamburger:hover {
+    background: transparent;
   }
 }

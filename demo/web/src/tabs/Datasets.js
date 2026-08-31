@@ -603,7 +603,7 @@ function DistributionRow({ data }) {
       <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-primary,#333)', marginBottom: 5 }}>
         {label}
       </div>
-      <div style={{ display: 'flex', height: 24, borderRadius: 5, overflow: 'hidden', border: '1px solid var(--color-border-tertiary,#eee)' }}>
+      <div className="keep-row" style={{ display: 'flex', height: 24, borderRadius: 5, overflow: 'hidden', border: '1px solid var(--color-border-tertiary,#eee)' }}>
         {Object.entries(shares).map(([brand, pct]) => {
           const colorKey = CAMERA_COLORS[brand] || 'gray';
           return (

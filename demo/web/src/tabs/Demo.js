@@ -21,7 +21,7 @@ import { analyzeFundus } from './_analyzeFundus';
 import {
   predictPatient, getHealth, getPassword, setPassword, verifyPassword,
   openCaseImage, submitCaseFeedback, retractCaseFeedback, getCaseStats,
-  getCaseVerdicts,
+  getCaseVerdicts, fetchCaseReport,
 } from './_apiPredict';
 import VisionWidget from './_VisionWidget';
 import LiveVisualizationBlock from './_LiveGradcam';
@@ -149,7 +149,7 @@ function EyeSlot({ label, eye, image, onPick, onClear, onSwap, t }) {
     : '';
 
   return (
-    <div style={{ flex: 1, minWidth: 220 }}>
+    <div className="eye-slot" style={{ flex: 1, minWidth: 220 }}>
       <div style={{
         display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
         marginBottom: 6, gap: 6,
@@ -583,7 +583,7 @@ function PasswordGate({ onUnlock, t }) {
 }
 
 export default function Demo() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [leftImg, setLeftImg] = useState(null);
   const [rightImg, setRightImg] = useState(null);
   const [running, setRunning] = useState(false);
@@ -596,6 +596,10 @@ export default function Demo() {
   // confirmed and rejected at the same time.
   // { verdict, correctedGrade, historyId, caseId, index }
   const [verdictEntry, setVerdictEntry] = useState(null);
+  // The PDF hand-out is rendered on the server from the case as it stands, so
+  // the button only reports progress and failure — there is nothing to cache.
+  const [reportBusy, setReportBusy] = useState(false);
+  const [reportError, setReportError] = useState('');
   const [toast, setToast] = useState('');
   // Relabeling buffer. Rebuilt from the verdicts in the case store on load (see
   // `refreshBuffer`), so it survives a reload the same way the study totals do
@@ -758,6 +762,7 @@ export default function Demo() {
   const clearReview = () => {
     setFeedbackMode(null);
     setVerdictEntry(null);
+    setReportError('');
   };
 
   // Swap the two slots — used by the wrong-slot warning chip. Both images
@@ -947,21 +952,55 @@ export default function Demo() {
       .catch(() => { /* best-effort */ });
   };
 
+  // Save a blob under `filename` through a throwaway anchor. Shared by the
+  // JSONL export and the PDF report.
+  const saveBlob = (blob, filename) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  // Download the patient's full PDF report: verdict, prediction, the images,
+  // every preprocessing stage and the attention maps, rendered by the server
+  // from the case on disk.
+  //
+  // Queued behind the verdict chain on purpose. The verdict is written
+  // asynchronously, so a report requested the instant the reviewer clicks
+  // confirm/reject would otherwise race that write and come back describing an
+  // unreviewed case. Waiting also means an undo-then-download reports the case
+  // as it actually stands.
+  const downloadReport = () => {
+    const cid = caseIdRef.current;
+    if (!cid || reportBusy) return;
+    setReportBusy(true);
+    setReportError('');
+    verdictChainRef.current = verdictChainRef.current
+      .then(() => fetchCaseReport(cid, lang))
+      .then(({ blob, filename }) => {
+        saveBlob(blob, filename);
+        setReportBusy(false);
+      })
+      .catch((err) => {
+        setReportBusy(false);
+        setReportError(err && err.message ? err.message : String(err));
+      });
+  };
+
   const exportJsonl = () => {
     if (history.length === 0) return;
     // `local` is bookkeeping for the reconciliation above, not part of the label.
     const jsonl = history
       .map(({ local, ...row }) => JSON.stringify(row))
       .join('\n');
-    const blob = new Blob([jsonl], { type: 'application/x-ndjson' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `dr-relabel-${new Date().toISOString().replace(/[:.]/g, '-')}.jsonl`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    saveBlob(
+      new Blob([jsonl], { type: 'application/x-ndjson' }),
+      `dr-relabel-${new Date().toISOString().replace(/[:.]/g, '-')}.jsonl`,
+    );
   };
 
   // Block the demo body behind the access screen only when the backend
@@ -1037,7 +1076,7 @@ export default function Demo() {
       <Sec title={t('demo.uploadSection')}>
         {/* Right eye (OD) shown on the LEFT, left eye (OS) on the RIGHT — matches
             the clinical convention for displaying fundus pairs. */}
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+        <div className="eye-slot-row" style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <EyeSlot
             label={t('demo.rightEye')}
             eye="right"
@@ -1306,6 +1345,25 @@ export default function Demo() {
                   {t('demo.recordedGrade')}: <strong>{t('demo.grade.' + verdictEntry.correctedGrade)}</strong>
                 </div>
               </div>
+              {/* The verdict closes the review, so this is where the patient's
+                  report becomes downloadable. It needs a server-side case: with
+                  no backend there are no stage images or attention maps to put
+                  in it. */}
+              {caseId && (
+                <button
+                  onClick={downloadReport}
+                  disabled={reportBusy}
+                  title={t('demo.report.hint')}
+                  style={{
+                    padding: '7px 14px', fontSize: 11, fontWeight: 600,
+                    background: reportBusy ? C.gray : C.teal, color: 'white',
+                    border: 'none', borderRadius: 6,
+                    cursor: reportBusy ? 'wait' : 'pointer',
+                  }}
+                >
+                  {reportBusy ? `… ${t('demo.report.busy')}` : `⬇ ${t('demo.report.download')}`}
+                </button>
+              )}
               <button
                 onClick={undoVerdict}
                 style={{
@@ -1370,6 +1428,14 @@ export default function Demo() {
               >
                 {t('demo.submit')}
               </button>
+            </div>
+          )}
+          {reportError && (
+            <div style={{
+              marginTop: 10, padding: '8px 12px', borderRadius: 6,
+              background: C.redBg, color: C.redT, fontSize: 11, fontWeight: 600,
+            }}>
+              ✕ {t('demo.report.failed')} — {reportError}
             </div>
           )}
           {toast && (

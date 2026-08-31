@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import asyncio
 
-from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from . import cases as cases_mod
@@ -42,6 +42,9 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    # The PDF report is fetched, not navigated to, so the browser must be
+    # allowed to read the file name the server chose for it.
+    expose_headers=["Content-Disposition"],
 )
 
 # Single CUDA stream → serialize predictions to avoid races on one GPU.
@@ -517,6 +520,54 @@ async def get_case(case_id: str, password: str | None = Query(default=None)) -> 
         return cases_mod.load_case(settings.cases_dir, case_id)
     except (FileNotFoundError, ValueError) as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+# Declared sync on purpose: FastAPI then runs it in a threadpool, so decoding a
+# case's images and laying out the PDF does not block the event loop for
+# everyone else while one report renders.
+@app.get("/api/case/{case_id}/report.pdf")
+def case_report(
+    case_id: str,
+    password: str | None = Query(default=None),
+    lang: str = Query(default="en", description='Report language: "en" or "kk".'),
+) -> Response:
+    """Render one case as a PDF the ophthalmologist can take away.
+
+    Built entirely from what the case store already holds — the record plus the
+    originals, cached stages and attention maps on disk — so a report can be
+    pulled for any case at any later time, and reflects the verdict as it stands
+    at the moment of the request.
+
+    Unlike every other write in the demo, this one is *not* best-effort: the
+    clinician asked for the document, so a failure to produce it is an error
+    they must see rather than a warning in the server log.
+    """
+    _require_password(password)
+    try:
+        record = cases_mod.load_case(settings.cases_dir, case_id)
+    except (FileNotFoundError, ValueError) as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    try:
+        from .report import build_case_report, report_filename
+    except ImportError as exc:  # reportlab missing from the environment
+        raise HTTPException(
+            status_code=503,
+            detail="PDF reporting is unavailable — reportlab is not installed.",
+        ) from exc
+
+    try:
+        pdf = build_case_report(record, cases_mod.case_dir(settings.cases_dir, case_id), lang)
+    except (OSError, ValueError) as exc:
+        raise HTTPException(status_code=500,
+                            detail=f"Could not render the report: {exc}") from exc
+
+    filename = report_filename(case_id, lang)
+    return Response(
+        content=pdf,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @app.get("/api/selftest", response_model=SelftestResponse)

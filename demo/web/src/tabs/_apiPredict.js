@@ -193,6 +193,30 @@ export async function retractCaseFeedback(caseId, index) {
   }
 }
 
+// GET /api/case/{id}/report.pdf → the printable case report.
+// Unlike the other case calls this one is NOT best-effort: the clinician asked
+// for the document, so a failure has to reach them. It throws on any error and
+// resolves to { blob, filename } — the file name is the server's own (the
+// backend exposes Content-Disposition through CORS), with a local fallback for
+// the case where a proxy strips the header.
+export async function fetchCaseReport(caseId, lang = 'en') {
+  if (!API) throw new Error('REACT_APP_API_URL is not set');
+  if (!caseId) throw new Error('no patient case is open');
+  const qs = new URLSearchParams({ lang: lang || 'en' });
+  const pw = getPassword();
+  if (pw) qs.set('password', pw);
+  const res = await fetch(`${API}/api/case/${caseId}/report.pdf?${qs.toString()}`);
+  if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
+  const disposition = res.headers.get('content-disposition') || '';
+  const match = /filename="?([^";]+)"?/i.exec(disposition);
+  return {
+    blob: await res.blob(),
+    // The server names the file (and normalises the language tag); this is only
+    // for the case where a proxy drops the header.
+    filename: (match && match[1]) || `dr-report-${caseId}.pdf`,
+  };
+}
+
 // GET /api/cases/stats → counters over every case the backend holds.
 // These come from disk, not from this tab, so they survive a cleared relabeling
 // buffer and a reload. Resolves to null when the backend is unreachable.

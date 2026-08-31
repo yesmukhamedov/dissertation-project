@@ -59,6 +59,7 @@ that patient is filed into one directory (`server/app/cases.py`, default
 | `attention/<eye>_{gradcam,attention_overlay}.png` | `POST /api/gradcam` |
 | `case.json` — the record; `case.txt` — the same, rendered for a human | every write |
 | the ophthalmologist's confirm/reject verdict + corrected grade | `POST /api/case/{id}/feedback` |
+| — (rendered on demand, not stored) the case as a printable PDF | `GET /api/case/{id}/report.pdf` |
 
 The verdict is the point: the confirm/reject control used to live only in browser
 memory, so a disagreement died with the tab.
@@ -69,6 +70,17 @@ twice or confirmed and rejected at once. Undo (`DELETE /api/case/{id}/feedback`)
 **removes** the verdict rather than flagging it — one left in place would keep
 being counted and exported. Both writes go through one promise chain in
 `Demo.js`, so an undo clicked before the save lands retracts what that save wrote.
+
+**The PDF report is the take-away.** Once a verdict stands, the result section offers
+*Download PDF report* (`server/app/report.py`, `GET /api/case/{id}/report.pdf?lang=en|kk`).
+It is rendered server-side from the case directory — verdict first, then the prediction and
+its probabilities, the originals, every preprocessing stage, the 4-channel CNN input and the
+Grad-CAM maps — so it needs no browser state and can be pulled for any case later. Three
+things about it are deliberate: it is **not** best-effort (a failure surfaces in the UI, since
+the clinician asked for the document); the request is queued behind the same verdict promise
+chain as *Undo*, so a report requested the instant the button is clicked cannot describe an
+unreviewed case; and panels are re-encoded at ~170 dpi JPEG, which is what keeps a report at
+~300 KB rather than 10 MB. The report follows the dashboard language switch (`kz` → `kk`).
 
 **Both panels come from disk, not the tab.** `GET /api/cases/stats` walks the case
 directories for the *Study totals* counters (patients, verdicts, agreement, reviewed

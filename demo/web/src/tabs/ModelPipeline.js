@@ -174,7 +174,7 @@ function StagePanel({ stepIndex, drId, viewId }) {
 
 function GradeSelector({ value, onChange }) {
   return (
-    <div style={{
+    <div className="keep-row" style={{
       display: 'flex', gap: 4, marginBottom: 14, padding: 4,
       background: 'var(--color-background-secondary,#f1efe8)', borderRadius: 8,
     }}>
@@ -304,7 +304,7 @@ export default function ModelPipeline() {
         </div>
 
         {/* Progress bar */}
-        <div style={{ display: 'flex', gap: 3, marginBottom: 14 }}>
+        <div className="keep-row" style={{ display: 'flex', gap: 3, marginBottom: 14 }}>
           {PIPE.map((s, i) => (
             <button key={i} onClick={() => setStg(i)} style={{
               flex: 1, height: 6, border: 'none', borderRadius: 3, cursor: 'pointer',

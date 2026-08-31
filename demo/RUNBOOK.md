@@ -192,6 +192,15 @@ probabilities and per-eye grades, the Grad-CAM statistics, and — the reason th
 folder exists — the ophthalmologist's confirm/reject verdict with the grade they
 consider correct. That verdict used to live only in the browser tab.
 
+The same case is also available as a PDF. Once you confirm or reject a prediction,
+a **Download PDF report** button appears next to the verdict; it produces the whole
+case as a printable document — the verdict, the model's grade and probabilities,
+the input images, every preprocessing stage, the 4-channel CNN input and the
+Grad-CAM maps — in whichever language the dashboard is set to. It is generated
+fresh each time from the case folder, so an old case can still be printed later
+(`GET /api/case/<case_id>/report.pdf`). Nothing is stored: the PDF exists only in
+the download.
+
 These are real fundus images of real people: the folder is gitignored, it is not
 copied by any launcher, and nothing prunes it. A two-eye case is a few MB, so
 clear out old cases by hand before handing the machine on.

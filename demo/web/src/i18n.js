@@ -245,6 +245,11 @@ const translations = {
     'demo.export': 'Export JSONL',
     'demo.historySource': 'Read back from the case store on the server, not from this browser tab — the rows survive a reload. Withdraw one with “Undo verdict” on its result.',
     'demo.undoVerdict': 'Undo verdict',
+    'demo.report.download': 'Download PDF report',
+    'demo.report.busy': 'Preparing the report',
+    'demo.report.failed': 'The report could not be prepared',
+    'demo.report.hint': 'Full case report: your verdict, the model prediction, the input '
+      + 'images, every preprocessing stage and the attention maps.',
     'demo.verdictGiven.confirmed': 'You confirmed this prediction',
     'demo.verdictGiven.rejected': 'You rejected this prediction',
     'demo.recordedGrade': 'Recorded grade',
@@ -575,6 +580,11 @@ const translations = {
     'demo.export': 'JSONL экспорттау',
     'demo.historySource': 'Жазбалар браузер қойындысынан емес, сервердегі істер қорынан оқылады — беттi жаңартқанда сақталады. Жеке шешімді нәтиже жанындағы «Шешімді қайтару» арқылы алып тастаңыз.',
     'demo.undoVerdict': 'Шешімді қайтару',
+    'demo.report.download': 'PDF есебін жүктеу',
+    'demo.report.busy': 'Есеп дайындалуда',
+    'demo.report.failed': 'Есепті дайындау мүмкін болмады',
+    'demo.report.hint': 'Толық есеп: сіздің шешіміңіз, модель болжамы, кіріс кескіндер, '
+      + 'барлық өңдеу сатылары және назар карталары.',
     'demo.verdictGiven.confirmed': 'Сіз бұл болжамды растадыңыз',
     'demo.verdictGiven.rejected': 'Сіз бұл болжамды қабылдамадыңыз',
     'demo.recordedGrade': 'Жазылған класс',

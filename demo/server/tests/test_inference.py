@@ -328,6 +328,61 @@ def test_case_verdicts_rebuild_the_relabeling_buffer(
     assert client.get("/api/cases/verdicts").json()["total"] == 0
 
 
+def test_case_report_pdf_carries_the_whole_case(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path
+) -> None:
+    """The PDF hand-out renders from the case on disk, in either language."""
+    from server.app import config, main
+
+    monkeypatch.setattr(config.settings, "cases_dir", tmp_path)
+    monkeypatch.setattr(main.settings, "cases_dir", tmp_path)
+
+    image = _synthetic_fundus()
+    case_id = client.post(
+        "/api/case/image",
+        data={"eye": "right", "is_fundus": "true", "laterality": "right"},
+        files={"image": ("right.png", image, "image/png")},
+    ).json()["case_id"]
+
+    # A report is available before any run — it just has nothing to report yet.
+    bare = client.get(f"/api/case/{case_id}/report.pdf")
+    assert bare.status_code == 200, bare.text
+    assert bare.content.startswith(b"%PDF-")
+
+    for endpoint in ("/api/visualize", "/api/gradcam"):
+        client.post(endpoint, data={"eye": "right", "case_id": case_id},
+                    files={"image": ("right.png", image, "image/png")})
+    grade = client.post("/api/predict", data={"case_id": case_id},
+                        files={"right": ("right.png", image, "image/png")}).json()["pred"]
+    client.post(f"/api/case/{case_id}/feedback",
+                data={"verdict": "rejected", "corrected_grade": "3",
+                      "predicted_grade": str(grade), "reviewer": "Dr. Test"})
+
+    full = client.get(f"/api/case/{case_id}/report.pdf")
+    assert full.status_code == 200, full.text
+    assert full.headers["content-type"].startswith("application/pdf")
+    assert f'filename="dr-report-{case_id}-en.pdf"' in full.headers["content-disposition"]
+    assert full.content.startswith(b"%PDF-")
+    # The images, stages and attention maps make it far bigger than the bare one.
+    assert len(full.content) > len(bare.content)
+
+    kk = client.get(f"/api/case/{case_id}/report.pdf", params={"lang": "kk"})
+    assert kk.status_code == 200
+    assert f'filename="dr-report-{case_id}-kk.pdf"' in kk.headers["content-disposition"]
+
+    # The text layer carries the verdict and the reviewer's grade.
+    from server.app import report as report_mod
+
+    record = client.get(f"/api/case/{case_id}").json()
+    text = report_mod.build_case_report(record, tmp_path / case_id, "en")
+    assert text.startswith(b"%PDF-")
+    assert report_mod.report_filename(case_id, "ru") == f"dr-report-{case_id}-en.pdf"
+
+    # Unknown / malformed cases never render.
+    assert client.get("/api/case/case_20200101T000000Z_00000000/report.pdf").status_code == 404
+    assert client.get("/api/case/..%2F..%2Fetc/report.pdf").status_code in (400, 404)
+
+
 def test_case_refuses_a_non_fundus_image(
     client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path
 ) -> None:

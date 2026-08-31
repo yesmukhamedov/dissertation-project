@@ -87,7 +87,7 @@ function Stage0a() {
         caption="Left-eye image after canonical flip — optic disc now positioned on the right side, matching right-eye orientation. All training images are normalised to this canonical layout. (DR Grade 4 example)"
         tooltip="tooltip.method_flip"
       />
-      <div style={{ display: 'flex', gap: 12, marginBottom: 10 }}>
+      <div className="stack-sm" style={{ display: 'flex', gap: 12, marginBottom: 10 }}>
         <div style={{ flex: 1, padding: '8px 10px', background: C.grayBg, borderRadius: 6 }}>
           <div style={{ fontSize: 10, fontWeight: 700, color: C.grayT, marginBottom: 4 }}>Standard CV approach</div>
           <div style={{ fontSize: 11, color: C.grayT, lineHeight: 1.6 }}>
@@ -157,7 +157,7 @@ function Stage0b() {
         σ_θ = arctan(√(r_OD² + r_fovea²) / distance_OD_fovea)
       </code>
 
-      <div style={{ display: 'flex', gap: 12 }}>
+      <div className="stack-sm" style={{ display: 'flex', gap: 12 }}>
         <div style={{ flex: 1, padding: '8px 10px', background: C.grayBg, borderRadius: 6 }}>
           <div style={{ fontSize: 10, fontWeight: 700, color: C.grayT, marginBottom: 4 }}>Standard approach</div>
           <div style={{ fontSize: 11, color: C.grayT, lineHeight: 1.6 }}>No rotation normalisation. Random ±15° augmentation used. Camera-to-camera orientation variation treated as noise.</div>
@@ -187,7 +187,7 @@ function Stage1() {
         caption="After FOV detection, isotropic resize to 512×512, and centred zero-padding. Black border regions removed; aspect ratio preserved so border pixels no longer consume the CNN receptive field."
         tooltip="tooltip.method_fov"
       />
-      <div style={{ display: 'flex', gap: 12, marginBottom: 10 }}>
+      <div className="stack-sm" style={{ display: 'flex', gap: 12, marginBottom: 10 }}>
         <div style={{ flex: 1, padding: '8px 10px', background: C.grayBg, borderRadius: 6 }}>
           <div style={{ fontSize: 10, fontWeight: 700, color: C.grayT, marginBottom: 4 }}>Standard method</div>
           <div style={{ fontSize: 11, color: C.grayT, lineHeight: 1.6 }}>Hough circle detection. Sensitive to image quality, fails on non-circular FOV or partial occlusions.</div>
@@ -224,7 +224,7 @@ function Stage2() {
       <code style={formulaStyle}>
         corrected = image − GaussianBlur(image, σ=0.07×D) + 128  {'  '}(D = FOV diameter)
       </code>
-      <div style={{ display: 'flex', gap: 12, marginBottom: 10 }}>
+      <div className="stack-sm" style={{ display: 'flex', gap: 12, marginBottom: 10 }}>
         <div style={{ flex: 1, padding: '8px 10px', background: C.grayBg, borderRadius: 6 }}>
           <div style={{ fontSize: 10, fontWeight: 700, color: C.grayT, marginBottom: 4 }}>Standard approach</div>
           <div style={{ fontSize: 11, color: C.grayT, lineHeight: 1.6 }}>Most DR pipelines skip illumination correction entirely. Some use global histogram normalisation (loses spatial gradient info).</div>
@@ -303,7 +303,7 @@ function Stage3() {
       </div>
 
       <div style={{ fontSize: 11, fontWeight: 600, marginBottom: 4 }}>Optimal parameters (Exp 2 sweep on IDRiD)</div>
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div className="stack-sm" style={{ display: 'flex', gap: 8 }}>
         {[
           { grade: 'DR Grade 1', cf: '2.5', gt: '0.03', note: 'Mild NPDR — subtle microaneurysms benefit from stronger enhancement' },
           { grade: 'DR Grade 2', cf: '2.0', gt: '0.03', note: 'Moderate NPDR — more visible features, lower clip needed' },
@@ -368,7 +368,7 @@ function Stage5() {
           { aspect: 'Acquisition variability', standard: 'Rarely modelled', ours: 'Gaussian noise (σ ∈ [2, 6], p = 0.15) and JPEG compression (quality ∈ [70, 100], p = 0.20) simulate real sensor noise and storage artefacts.' },
           { aspect: 'Transform pipeline', standard: 'Sequential (multiple interpolations)', ours: 'Geometry composed into a single affine matrix — single bilinear interpolation pass. Reduces cumulative resampling artefacts.' },
         ].map((r, i) => (
-          <div key={i} style={{ display: 'flex', gap: 0, borderRadius: 5, overflow: 'hidden', border: '1px solid var(--color-border-tertiary,#eee)' }}>
+          <div key={i} className="stack-sm" style={{ display: 'flex', gap: 0, borderRadius: 5, overflow: 'hidden', border: '1px solid var(--color-border-tertiary,#eee)' }}>
             <div style={{ width: 140, minWidth: 140, padding: '6px 8px', background: 'var(--color-background-secondary,#f7f7f5)', fontSize: 10, fontWeight: 600 }}>{r.aspect}</div>
             <div style={{ flex: 1, padding: '6px 8px', fontSize: 11, borderLeft: '1px solid var(--color-border-tertiary,#eee)' }}><span style={{ color: C.gray }}>Standard: </span>{r.standard}</div>
             <div style={{ flex: 1, padding: '6px 8px', fontSize: 11, background: '#E6F9F1', borderLeft: '1px solid var(--color-border-tertiary,#eee)' }}><span style={{ color: C.teal, fontWeight: 600 }}>Ours: </span>{r.ours}</div>
