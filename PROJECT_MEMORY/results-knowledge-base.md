@@ -79,7 +79,7 @@ SSL-гейт пройден обоими бэкбонами; блок **H-3** (�
 - **GPU доступен ЛОКАЛЬНО через WSL.** Рабочая машина = GPU-бокс: в WSL Ubuntu `nvidia-smi` видит
   RTX 3060, окружение `dr-classifier`
   (`/home/yesmu/miniconda3/envs/dr-classifier/bin/python`) = torch **2.5.1+cu121, cuda True**.
-  Из WSL пути `/mnt/d/phd/...`. Системный `C:\Python312` = **torch cpu-only** → для GPU звать WSL.
+  Из WSL пути `/mnt/d/personal/phd/...`. Системный `C:\Python312` = **torch cpu-only** → для GPU звать WSL.
   Долгий WSL-джоб — через Bash `run_in_background` с foreground-вызовом `wsl`.
 - **Гейт eval для EffNet:** `mixed_precision: false` (AMP роняет EffNet cuDNN).
 - **exp4/IDRiD:** маски лежат в «A. Segmentation», а не в «B. Disease Grading»; пересечение

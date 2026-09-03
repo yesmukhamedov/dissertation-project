@@ -104,7 +104,7 @@ em-dash failure this file used to record is closed: the copula is written with t
 corpus uses, and the check now reads 0.0 per 1,000 words.
 
 **Four checks were added on 2026-08-23** after an external reading of the Kazakh PDF
-(`D:/phd/council/temp/АНАЛИЗ_A17_Есмухамедов.md`); see governance CHANGELOG v7.2.1.
+(`D:/personal/phd/council/temp/АНАЛИЗ_A17_Есмухамедов.md`); see governance CHANGELOG v7.2.1.
 
 - **governance labels in front matter.** The body scan starts at the Introduction, so everything
   above it — normative references, definitions, abbreviations — was never read by anything. Eight
@@ -135,7 +135,7 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
 - 00-introduction: written last, as the map requires. One continuous section, eleven bold run-in
   rubrics, unnumbered and not listed in the contents. No hypothesis rubric and no separate
   empirical-basis rubric: neither has a precedent in the corpus, and both are dissolved into prose.
-  **Re-aligned to the corpus on 2026-08-22** against `D:/phd/council/temp/` (the sixteen
+  **Re-aligned to the corpus on 2026-08-22** against `D:/personal/phd/council/temp/` (the sixteen
   introductions and `АНАЛИЗ_ВВЕДЕНИЙ.md`): the provisions and novelty rubrics carried **no digits at
   all** where the corpus median is 5.0 and 1.8 per 1,000 characters, so every provision now states
   the effect size its criterion was fixed on, from `results/`. The evidential bounds moved to the
@@ -152,7 +152,7 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
 - 06-appendices: A source code · B supplementary results · C system architecture **and the working
   demonstrator** · D attention-map plates · E device supplementary tables. Kazakh lettering
   А, Ә, Б, В, Г. The old publication appendix is deleted: reprints and indexing screenshots appear
-  in none of the 16. **Reworked 2026-08-22** against `D:/phd/council/temp/АНАЛИЗ_ПРИЛОЖЕНИЙ.md`
+  in none of the 16. **Reworked 2026-08-22** against `D:/personal/phd/council/temp/АНАЛИЗ_ПРИЛОЖЕНИЙ.md`
   (10 of the 16 have appendices at all; 5–28 pages; the median single appendix is **one** page):
   Appendix D went from 54 plates to **four** (IDRiD_007, 017, 020, 050) and its exhaustiveness
   argument was replaced by a declared selection, and Appendix C gained **C.5**, three screenshots of

@@ -16,7 +16,7 @@ H-5 test (IoU_full > IoU_baseline for ≥3/4 lesion types). Output: `outputs/exp
 
 **Config gotcha (the reason a plain `_wsl_local.yaml` merge is NOT enough):** exp-4 reads
 BOTH `paths.eyepacs` AND `paths.idrid`, but `configs/_wsl_local.yaml` only overrides
-`eyepacs`. `default.yaml` still has `paths.idrid: D:/phd/datasets/IDRiD` (prior box's Windows
+`eyepacs`. `default.yaml` still has `paths.idrid: D:/personal/phd/datasets/IDRiD` (prior box's Windows
 path, nonexistent in WSL). So the merged run config must fix **both**: built
 `configs/_run_exp4_wsl.yaml` = `load_configs(default, _wsl_local)` then set
 `paths.eyepacs=/mnt/d/datasets/EyePACS` + `paths.idrid=/mnt/d/datasets/IDRiD` → `yaml.safe_dump`

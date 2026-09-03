@@ -55,7 +55,7 @@ Demo stack = **`demo/server/`** (FastAPI inference, CUDA) + **`demo/web/`** (Rea
 
 **Backend** (WSL2 Ubuntu, conda `dr-classifier`; conda NOT on PATH — use absolute binary). Default WSL distro is docker-desktop (no bash) — must pass `-d Ubuntu`:
 ```
-wsl -d Ubuntu bash -lc "cd /mnt/d/phd/dissertation/demo && \
+wsl -d Ubuntu bash -lc "cd /mnt/d/personal/phd/dissertation/demo && \
   ~/miniconda3/bin/conda run --no-capture-output -n dr-classifier \
   uvicorn server.app.main:app --host 127.0.0.1 --port 8000"
 ```
@@ -89,7 +89,7 @@ wsl -d Ubuntu bash -lc "cd /mnt/d/phd/dissertation/demo && \
 
 **BLOCKER: the candidate's zone `yeskendyr.men` lapsed.** Registered 2025-05-29 via Cloudflare Registrar, **expired 2026-05-29**; on 2026-08-03 registry RDAP (`https://rdap.nic.men/domain/yeskendyr.men`) reports status `redemption period` + `pending delete`, and the name is NXDOMAIN on public resolvers (so the "validate to renew SSL" mail of 2026-08-01 was moot — the registration, not the certificate, is what died). Cloudflare's schedule is 40-day grace / days 41–70 redemption / days 71–75 pendingDelete, i.e. ~day 66 of 75 on 2026-08-03: restore is a **paid, irreversible, dashboard-only** action (Registrar restores only while EPP status is `redemptionPeriod`) and the window is days. Intended name once a zone exists: **`dr-classification.<zone>`**.
 
-`demo/web/start-tunnel.bat` and `demo/web/_launch_with_tunnel.bat` are now **superseded stubs** forwarding to `demo/start-tunnel.ps1`; the old bodies tunnelled only the frontend, hardcoded `/mnt/d/phd/`, were WSL-only and ended on a blocking `pause`. The dashboard badge shows **"simulator (backend offline)"** for remote users when only the frontend is tunnelled, because the HTTPS tunnel page can't call `http://localhost:8000` (browser **mixed-content** block). Manual recipe (for debugging one leg):
+`demo/web/start-tunnel.bat` and `demo/web/_launch_with_tunnel.bat` are now **superseded stubs** forwarding to `demo/start-tunnel.ps1`; the old bodies tunnelled only the frontend, hardcoded `/mnt/d/personal/phd/`, were WSL-only and ended on a blocking `pause`. The dashboard badge shows **"simulator (backend offline)"** for remote users when only the frontend is tunnelled, because the HTTPS tunnel page can't call `http://localhost:8000` (browser **mixed-content** block). Manual recipe (for debugging one leg):
 
 1. `cloudflared tunnel --url http://localhost:3000` → FRONTEND url (e.g. `https://<a>.trycloudflare.com`)
 2. `cloudflared tunnel --url http://localhost:8000` → BACKEND url (e.g. `https://<b>.trycloudflare.com`)

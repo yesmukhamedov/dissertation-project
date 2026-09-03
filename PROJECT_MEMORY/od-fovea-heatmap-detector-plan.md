@@ -32,7 +32,7 @@ it latches onto the dark vignette at native res) and its `confident` flag is fak
 
 Trained in WSL2 Ubuntu / `dr-classifier` conda env, RTX 3060 (Windows-native torch is CPU-only).
 Canonical `configs/default.yaml` unchanged; a WSL-path copy is generated at
-`experiments/od_fovea_detector/outputs/_wsl_config.yaml` (idrid_root → `/mnt/d/phd/...`, absolute
+`experiments/od_fovea_detector/outputs/_wsl_config.yaml` (idrid_root → `/mnt/d/personal/phd/...`, absolute
 weights/output paths; gitignored via `outputs/*.yaml`). Re-create it from `default.yaml` whenever
 training on a WSL machine.
 

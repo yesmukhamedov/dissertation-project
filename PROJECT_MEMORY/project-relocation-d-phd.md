@@ -1,38 +1,38 @@
 ---
 name: project-relocation-d-phd
-description: 2026-08-30 проект переехал на D:\phd\dissertation (диска E: больше нет); карта старых и новых путей, фикс git safe.directory, что ещё осталось стухшим
+description: 2026-08-30 проект переехал на D:\personal\phd\dissertation (диска E: больше нет); карта старых и новых путей, фикс git safe.directory, что ещё осталось стухшим
 metadata:
   type: project
 ---
 
-**2026-08-30 проект переехал.** Диска `E:` на этой машине больше нет — всё живёт под `D:\phd\`.
+**2026-08-30 проект переехал.** Диска `E:` на этой машине больше нет — всё живёт под `D:\personal\phd\`.
 Репозиторий перестал читаться Git'ом до тех пор, пока новый путь не был помечен доверенным.
 
 ## Карта путей
 
 | Было | Стало |
 |---|---|
-| `E:\dissertation-project` → позже `D:\dissertation-project` | `D:\phd\dissertation` |
-| `E:\datasets` | `D:\phd\datasets` |
-| `E:\dissertation_council` / `D:\dissertation_council` | `D:\phd\council` |
-| `/mnt/e/dissertation-project`, `/mnt/d/dissertation-project` | `/mnt/d/phd/dissertation` |
-| `/mnt/e/datasets` | `/mnt/d/phd/datasets` |
+| `E:\dissertation-project` → позже `D:\dissertation-project` | `D:\personal\phd\dissertation` |
+| `E:\datasets` | `D:\personal\phd\datasets` |
+| `E:\dissertation_council` / `D:\dissertation_council` | `D:\personal\phd\council` |
+| `/mnt/e/dissertation-project`, `/mnt/d/dissertation-project` | `/mnt/d/personal/phd/dissertation` |
+| `/mnt/e/datasets` | `/mnt/d/personal/phd/datasets` |
 
 Датасеты на месте и полные: `APTOS 2019`, `clinical`, `DDR`, `downloaded`, `EyePACS`, `IDRiD`,
-`Messidor-2`, `ODIR-5K`, `RFMiD`. Соседи проекта под `D:\phd\`: `council`, `coursework`, `history`.
+`Messidor-2`, `ODIR-5K`, `RFMiD`. Соседи проекта под `D:\personal\phd\`: `council`, `coursework`, `history`.
 
 ## Git после переезда
 
 Git отказывался читать репозиторий целиком:
 
 ```
-fatal: detected dubious ownership in repository at 'D:/phd/dissertation'
+fatal: detected dubious ownership in repository at 'D:/personal/phd/dissertation'
 ```
 
 Из-за этого история выглядела пустой, а изменения — отсутствующими. Лечится один раз на машину:
 
 ```
-git config --global --add safe.directory D:/phd/dissertation
+git config --global --add safe.directory D:/personal/phd/dissertation
 ```
 
 После этого всё на месте: `origin` = `git@github.com:yesmukhamedov/dissertation-project.git`

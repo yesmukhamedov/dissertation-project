@@ -78,7 +78,7 @@ every number that reaches the thesis, the defense or the demo. Never take number
 - GPU: NVIDIA RTX 3060 12GB VRAM
 - OS: WSL2 Ubuntu on Windows
 - Conda env: `dr-classifier`
-- Datasets: `D:/phd/datasets/` (`/mnt/d/phd/datasets/` under WSL; not in git)
+- Datasets: `D:/personal/phd/datasets/` (`/mnt/d/personal/phd/datasets/` under WSL; not in git)
 - batch_size=16, image_size=512×512, input_channels=4 (RGB + FOV mask)
 - Cross-validation: 5-fold patient-level stratified
 - Loss: Focal Loss (γ=2, α=inverse-frequency)

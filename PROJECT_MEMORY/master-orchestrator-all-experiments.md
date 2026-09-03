@@ -6,7 +6,7 @@ metadata:
 ---
 
 **Machine:** native Windows 11, **RTX 5070 Ti 16GB**, external drive mounts as **D:** (project
-root `D:/phd/dissertation`). Env python `C:/mamba/envs/dr-classifier/python.exe` (torch
+root `D:/personal/phd/dissertation`). Env python `C:/mamba/envs/dr-classifier/python.exe` (torch
 2.11+cu128). NOT the RTX 3060/WSL box (that one uses `/mnt/d`; see [[ssl-wsl-launch-durability]],
 [[exp1-config-c-wsl-launch]]). Machine-local scratch = `C:/ssl_out` (logs, markers, SSL artifacts)
 and `C:/ssl_data/cache_512` (512² Stage 0–4 cache, ~35k PNGs, needed by the pipeline arm B/D).
@@ -171,7 +171,7 @@ logs exp2's status; the old `CHAIN_EXP4_SKIPPED.txt` no-resume branch was remove
 the old watcher (PID 7742, a stateless poller) and relaunching the edited script detached via
 `setsid bash chain_exp4_after_exp2.sh` (new PID logged in `chain_exp4.log`); exp2 was never touched.
 Gotcha: through `wsl -d Ubuntu -- bash -lc '…'`, shell **variables** silently expand empty and bare
-`/mnt/d/phd/…` args get MSYS-rewritten to `C:/Program Files/Git/mnt/d/phd/…` — use literal paths inside the
+`/mnt/d/personal/phd/…` args get MSYS-rewritten to `C:/Program Files/Git/mnt/d/personal/phd/…` — use literal paths inside the
 `bash -lc` quoted script (and `MSYS_NO_PATHCONV=1` only when a `/mnt` path is a standalone arg).
 
 **Update 2026-07-23 (cont.) — WSL-box chain made sleep-proof + reboot-resilient.** Two additions on the
@@ -280,7 +280,7 @@ contexts).
 **Update 2026-07-25 (cont.) — cache-swap fully wired + a detached orchestrator drives it.** Done: (a)
 `exp4_explainability.py` reads `paths.eyepacs_cache_512` → uses `CachedEyePACSDataset` for full_pipeline,
 gracefully falls back to the live pipeline if `cache_meta.csv` is absent (so the config key can be set before
-the cache exists); (b) added `paths.eyepacs_cache_512: /mnt/d/phd/datasets/EyePACS/cache_512_exp4` to
+the cache exists); (b) added `paths.eyepacs_cache_512: /mnt/d/personal/phd/datasets/EyePACS/cache_512_exp4` to
 `configs/_run_gen_wsl.yaml`; (c) imports/paths/bit-identity all verified. **Orchestrator
 `outputs/chain_exp4_cache_swap.sh`** (launched detached via setsid, survives reaping; log
 `outputs/exp4_cache_swap.log`) does the whole swap on the operator's plan: waits for full_pipeline **epoch 5**
@@ -297,11 +297,11 @@ tool get reaped here; setsid-detached WSL scripts (exp4 training, chain watchers
 stopped mid-cache-build (**~10.7k/35k** PNGs done; build is resumable — skips names already in cache_meta.csv
 with a PNG on disk). Full state: NOTHING running (GPU idle ~1.2 GB); exp4 stopped at its **ep5** checkpoint
 (`outputs/exp4/checkpoints/full_pipeline/last_checkpoint.pt`, 11:11:02); partial cache at
-`/mnt/d/phd/datasets/EyePACS/cache_512_exp4` (10.7k PNGs + cache_meta.csv). Two safety-disables applied so nothing
+`/mnt/d/personal/phd/datasets/EyePACS/cache_512_exp4` (10.7k PNGs + cache_meta.csv). Two safety-disables applied so nothing
 auto-starts on a partial cache: (1) **`paths.eyepacs_cache_512` commented out** in `configs/_run_gen_wsl.yaml`
 (exp4 would else crash reading the ~24k missing cache PNGs; commented → it falls back to the LIVE pipeline);
 (2) **Startup reboot-resume disabled** (`…/Startup/DR-ChainResume.cmd` → `.cmd.disabled`). **TO RESUME: run
-`bash /mnt/d/phd/dissertation/experiments/outputs/RESUME_EXP4_CACHE.sh`** — it un-comments the config key,
+`bash /mnt/d/personal/phd/dissertation/experiments/outputs/RESUME_EXP4_CACHE.sh`** — it un-comments the config key,
 restores the Startup launcher, and relaunches `chain_exp4_cache_swap.sh`, which resumes the build from ~10.7k →
 verifies → restarts exp4 on the cache from ep6. Kill mechanics note: killing the orchestrator orphaned the
 build python (reparented, kept running) — had to kill the build's process group separately

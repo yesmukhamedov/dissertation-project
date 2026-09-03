@@ -17,9 +17,9 @@ which of them is wanted.
 
 | The candidate says | Run |
 |---|---|
-| «запусти демо» / «запускаем demo» / "launch the demo" — **no qualifier: PUBLIC is the default** | `powershell -ExecutionPolicy Bypass -File D:\phd\dissertation\demo\start-pages-demo.ps1` (background) — the candidate expects the Cloudflare tunnel and the agreed fixed https://dr-classification.pages.dev immediately. Do not fall back to the local launcher and do not ask which one (settled 2026-08-14). |
-| «запускаем demo **локально**» / "run the demo locally" — local said **explicitly** | `powershell -ExecutionPolicy Bypass -File D:\phd\dissertation\demo\start-demo.ps1` |
-| «запускаем demo **публично**» / "publish the demo" / "share the demo" | `powershell -ExecutionPolicy Bypass -File D:\phd\dissertation\demo\start-pages-demo.ps1` |
+| «запусти демо» / «запускаем demo» / "launch the demo" — **no qualifier: PUBLIC is the default** | `powershell -ExecutionPolicy Bypass -File D:\personal\phd\dissertation\demo\start-pages-demo.ps1` (background) — the candidate expects the Cloudflare tunnel and the agreed fixed https://dr-classification.pages.dev immediately. Do not fall back to the local launcher and do not ask which one (settled 2026-08-14). |
+| «запускаем demo **локально**» / "run the demo locally" — local said **explicitly** | `powershell -ExecutionPolicy Bypass -File D:\personal\phd\dissertation\demo\start-demo.ps1` |
+| «запускаем demo **публично**» / "publish the demo" / "share the demo" | `powershell -ExecutionPolicy Bypass -File D:\personal\phd\dissertation\demo\start-pages-demo.ps1` |
 | «останови demo» / "stop the demo" | `.\start-pages-demo.ps1 -Stop` (public) or close the two windows (local) |
 
 Public launches take several minutes (model load + CRA build + Pages deploy) — run them with

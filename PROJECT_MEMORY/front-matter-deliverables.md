@@ -12,7 +12,7 @@ authored 2026-06-18 as standalone source Markdown in `thesis/output/`:
 (= the "Designations and Abbreviations" section), `definitions_{en,kz}.md`.
 
 **Verified 2026-06-18 against real IITU council samples** in
-`D:/phd/council/Образцы документов/авторы/` (esp. the English theses of
+`D:/personal/phd/council/Образцы документов/авторы/` (esp. the English theses of
 Daurenbayeva & Tokhtakhunov) and corrected to match the house style — DON'T diverge:
 
 - **Order** (per samples): TITLE PAGE → NORMATIVE REFERENCES → DESIGNATIONS AND

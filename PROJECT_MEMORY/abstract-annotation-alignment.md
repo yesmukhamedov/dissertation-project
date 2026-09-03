@@ -7,7 +7,7 @@ metadata:
 
 The trilingual аннотация/abstract (`thesis/output/abstract_{en,ru,kz}.md`) was aligned on
 2026-06-18 to the **real authorefarat samples** of IITU doctoral candidates in
-`D:/phd/council/Образцы документов/авторы/` (Tokhtakhunov, Daurenbayeva, et al.),
+`D:/personal/phd/council/Образцы документов/авторы/` (Tokhtakhunov, Daurenbayeva, et al.),
 **not just** the council template `council/en/11-abstract-annotation/structure.md`. The template
 diverged from what candidates actually submit — trust the real samples for the section set/order.
 
@@ -160,7 +160,7 @@ conflict of [[annotation-page-cap-conflict]] remains open and untouched.
 
 ## Rewritten to the corpus genre — 2026-08-23
 
-`D:/phd/council/temp/АНАЛИЗ_АННОТАЦИЙ.md` measured all seventeen candidates'
+`D:/personal/phd/council/temp/АНАЛИЗ_АННОТАЦИЙ.md` measured all seventeen candidates'
 abstracts on three languages (we are **A17**). It settles what the genre is, and we were
 outside it on two axes at once.
 
