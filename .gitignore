@@ -53,3 +53,8 @@ thesis/assembly/_tmp_body/
 # cached preprocessing, attention maps, verdicts) and the OD/fovea correction
 # store. Real fundus images of real people — never commit them.
 demo/server/data/
+
+# Generated source-code listings for the NIIS copyright application.
+ip/kazpatent/build/
+ip/kazpatent/filled/
+ip/kazpatent/certificate/
