@@ -17,6 +17,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import os
 import re
@@ -27,10 +28,11 @@ import tempfile
 from pathlib import Path
 
 from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_COLOR_INDEX, WD_TAB_ALIGNMENT
 from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import OxmlElement
+from docx.text.run import Run
 from docx.oxml.ns import qn
 from docx.shared import Mm, Pt
 
@@ -457,6 +459,70 @@ def _configure_page(doc: Document, *, landscape: bool = False) -> None:
         section.top_margin = Mm(20)
         section.bottom_margin = Mm(20)
         section.different_first_page_header_footer = True  # no number on page 1
+
+
+# A fill-in slot left for a human: <дата>, <Фамилия И.О.>, <полное наименование
+# медицинской организации>. Angle brackets never occur otherwise in a finished
+# deliverable — `<br>` is consumed by the table renderer and `<u>…</u>` by the
+# inline splitter, so neither can reach a run.
+_PLACEHOLDER = re.compile(r"<[^<>\n]{1,120}>")
+
+
+def _iter_paragraphs(container):
+    """Every paragraph in the document, table cells included."""
+    for p in container.paragraphs:
+        yield p
+    for table in container.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                yield from _iter_paragraphs(cell)
+
+
+def _highlight_placeholders(doc: Document) -> int:
+    """Paint every `<…>` fill-in slot yellow, so the signatory can find them.
+
+    A run is split into up to three runs around each slot and the slot's own run
+    is highlighted; the original run properties are copied verbatim onto the
+    pieces, so bold, size and font survive. Once the slots are filled the pattern
+    matches nothing and the document comes out unmarked — the highlighting
+    disappears on its own rather than having to be switched off.
+    """
+    painted = 0
+    for paragraph in _iter_paragraphs(doc):
+        for run in list(paragraph.runs):
+            text = run.text
+            if not text or not _PLACEHOLDER.search(text):
+                continue
+            pieces, pos = [], 0
+            for m in _PLACEHOLDER.finditer(text):
+                if m.start() > pos:
+                    pieces.append((text[pos:m.start()], False))
+                pieces.append((m.group(0), True))
+                pos = m.end()
+            if pos < len(text):
+                pieces.append((text[pos:], False))
+            # Copy the properties before touching the run: highlighting the
+            # first piece would otherwise be inherited by every piece after it.
+            rpr = run._element.find(qn("w:rPr"))
+            rpr_template = copy.deepcopy(rpr) if rpr is not None else None
+            head_text, head_hl = pieces[0]
+            run.text = head_text
+            if head_hl:
+                run.font.highlight_color = WD_COLOR_INDEX.YELLOW
+                painted += 1
+            anchor = run._element
+            for piece_text, is_slot in pieces[1:]:
+                element = OxmlElement("w:r")
+                if rpr_template is not None:
+                    element.append(copy.deepcopy(rpr_template))
+                anchor.addnext(element)
+                anchor = element
+                piece = Run(element, paragraph)
+                piece.text = piece_text
+                if is_slot:
+                    piece.font.highlight_color = WD_COLOR_INDEX.YELLOW
+                    painted += 1
+    return painted
 
 
 def _add_page_numbers(doc: Document) -> None:
@@ -908,8 +974,11 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
     if is_layout:
         _clear_table_borders(table)
         usable = _USABLE_MM
+        # Equal halves. At 62/38 the right column was 65 mm and a signature rule
+        # followed by a name — "____________  <Фамилия И.О.>" — wrapped onto a
+        # second line, which reads as a defect on a signed page.
         for row in table.rows:
-            for cell, share in zip(row.cells, (0.62, 0.38)):
+            for cell, share in zip(row.cells, (0.50, 0.50)):
                 cell.width = Mm(usable * share)
     else:
         _apply_form_widths(table, rows[0], ncols)
@@ -934,8 +1003,16 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
                 if is_layout:
                     p.alignment = (WD_ALIGN_PARAGRAPH.RIGHT if j == ncols - 1
                                    else WD_ALIGN_PARAGRAPH.LEFT)
-                _add_runs(p, part.strip(),
-                          bold=(is_layout or (i == 0 and head_bold)))
+                # A signature block is set bold — but only where the author
+                # has not said otherwise. A cell carrying its own ** markers
+                # opts out of the blanket bold and keeps exactly what it marked,
+                # which is how an expert review sets the signature rule bold and
+                # the date rule beneath it plain. Cells without markers (both
+                # protocol editions) are unaffected.
+                # A layout table has one row, so the head-row rule would make
+                # every cell bold and swallow the opt-out; it never applies here.
+                cell_bold = (is_layout and "**" not in text) if is_layout                     else (i == 0 and head_bold)
+                _add_runs(p, part.strip(), bold=cell_bold)
     for i in sorted(banners):
         _set_banner(table, i, ncols,
                     next(c.strip() for c in rows[i] if c.strip()))
@@ -944,8 +1021,24 @@ def _add_table(doc: Document, rows: list[list[str]]) -> None:
         _merge_continuation_rows(table, rows)
     if not is_layout:
         _repeat_header_row(table, cant_split_body=not is_form)
-    # spacing paragraph after the table
-    doc.add_paragraph()
+    # A data table is set off from the text that follows it by a spacing
+    # paragraph. The layout table is not a table to the reader — it IS the
+    # signature block — and whatever follows it (the date rule of an expert
+    # review) belongs tight under the name, so it gets no trailing gap. The
+    # protocols close on their signature block at end of file, where the
+    # difference is invisible either way.
+    if is_layout:
+        # OOXML requires a paragraph after a table, and Word inserts a full-height
+        # one when the file has none — which is the blank line that shows up under
+        # a signature block standing at the end of a document. Emit it ourselves,
+        # collapsed to nothing.
+        tail = doc.add_paragraph()
+        tail.paragraph_format.space_before = Pt(0)
+        tail.paragraph_format.space_after = Pt(0)
+        tail.paragraph_format.line_spacing = Pt(1)
+        tail.add_run("").font.size = Pt(1)
+    else:
+        doc.add_paragraph()
 
 
 def _add_code_block(doc: Document, code_lines: list[str]) -> None:
@@ -1730,6 +1823,15 @@ def render_into(
             flush_table()
             _page_break(doc)
             continue
+        if stripped == "<!-- blank -->":
+            # An explicit empty paragraph. Markdown has no way to ask for one —
+            # blank source lines only end a paragraph — and a signature block
+            # sometimes has to be set lower on the page than the two lines
+            # _add_table gives it.
+            flush_paragraph()
+            flush_table()
+            _blank_line(doc)
+            continue
         if stripped == "<!-- center -->":
             flush_paragraph()
             pending_center[0] = True
@@ -1849,6 +1951,8 @@ def convert(
     strip_process: bool = True,
     lang: str | None = None,
     base_dir: Path | None = None,
+    page_numbers: bool = True,
+    highlight_placeholders: bool = False,
 ) -> None:
     text = md_path.read_text(encoding="utf-8")
     if strip_versions:
@@ -1865,7 +1969,10 @@ def convert(
     _configure_styles(doc)
     _configure_page(doc, landscape=_wants_landscape(text))
     render_into(doc, text, lang=lang, base_dir=base_dir)
-    _add_page_numbers(doc)
+    if highlight_placeholders:
+        _highlight_placeholders(doc)
+    if page_numbers:
+        _add_page_numbers(doc)
     docx_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(str(docx_path))
 
@@ -1875,11 +1982,18 @@ def main() -> None:
     ap.add_argument("input", type=Path, help="input .md file")
     ap.add_argument("-o", "--output", type=Path, help="output .docx (default: alongside input)")
     ap.add_argument("--pdf", action="store_true", help="also render a .pdf via MS Word")
+    # A two-page document signed on an organisation's letterhead carries no
+    # folio: the expert reviews are printed and signed, not bound.
+    ap.add_argument("--no-page-numbers", action="store_true",
+                    help="omit the page-number footer")
+    ap.add_argument("--highlight-placeholders", action="store_true",
+                    help="paint <…> fill-in slots yellow")
     args = ap.parse_args()
 
     md_path: Path = args.input
     docx_path: Path = args.output or md_path.with_suffix(".docx")
-    convert(md_path, docx_path)
+    convert(md_path, docx_path, page_numbers=not args.no_page_numbers,
+            highlight_placeholders=args.highlight_placeholders)
     print(f"[docx] {docx_path}")
 
     if _mermaid_failures:

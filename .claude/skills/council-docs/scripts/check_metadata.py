@@ -43,6 +43,7 @@ SCAN_GLOBS = [
     "council/ru/**/*.md",
     "defense/presentation/slides/*.md",
     "defense/presentation/*.md",
+    "defense/docs/reviews/expert/*.md",
 ]
 
 # Templates in council/en and council/ru are deliberately anonymised (they carry
@@ -133,16 +134,16 @@ REQUIRED: dict[str, list[str]] = {
     # акта внедрения — демонстрация практикующим офтальмологам и их письменные
     # отзывы. Документ русский, тема приводится по-русски (в отличие от протокола,
     # где тема идёт на языке защиты). Подписанты в <...> — их называет кандидат.
-    "thesis/output/expert_review_ophthalmologist_1_ru.md": [
-        # short_ru не требуется: отзыв говорит о докторанте в косвенных падежах
-        # («работы Есмухамедова Н.С.», «создано Есмухамедовым Н.С.») — как в протоколе.
-        "candidate.name_ru_gen", "dissertation.title_ru",
-        "programme.code", "programme.name_ru",
-    ],
-    "thesis/output/expert_review_ophthalmologist_2_ru.md": [
-        # short_ru не требуется: отзыв говорит о докторанте в косвенных падежах
-        # («работы Есмухамедова Н.С.», «создано Есмухамедовым Н.С.») — как в протоколе.
-        "candidate.name_ru_gen", "dissertation.title_ru",
+    # Ключ — маска: отзывов столько, сколько врачей в
+    # defense/docs/reviews/expert/ophthalmologists.toml, и собирает их
+    # build_expert_reviews.py. Значения он подставляет из этого же реестра,
+    # так что сверка здесь ловит рассинхрон реестра с уже собранными файлами.
+    # short_ru не требуется: отзыв говорит о докторанте в косвенных падежах
+    # («работы Есмухамедова Н.С.») — как в протоколе.
+    # dissertation.title_ru здесь НЕ сверяется: тема в отзыве намеренно не
+    # приводится — отзыв говорит о продемонстрированном приложении, а не о работе.
+    "defense/docs/reviews/expert/expert_review_*_ru.md": [
+        "candidate.name_ru_gen",
         "programme.code", "programme.name_ru",
     ],
     "thesis/output/supervisor_review_kz.md": [
@@ -301,18 +302,24 @@ def check_forbidden(reg: dict, files: list[Path]) -> list[str]:
 def check_required(reg: dict) -> tuple[list[str], list[str]]:
     problems, skipped = [], []
     for doc, fields in REQUIRED.items():
-        path = ROOT / doc
-        if not path.is_file():
+        # Ключ со звёздочкой — семейство однотипных документов (экспертные
+        # отзывы офтальмологов собираются по одному на врача), остальные —
+        # один файл под точным именем.
+        paths = sorted(ROOT.glob(doc)) if "*" in doc else [ROOT / doc]
+        paths = [p for p in paths if p.is_file()]
+        if not paths:
             problems.append(f"{doc} — файл не найден")
             continue
-        flat = normalise(path.read_text(encoding="utf-8", errors="replace"))
-        for field in fields:
-            value = resolve(reg, field)
-            if not value:
-                skipped.append(f"{doc} — {field} пусто в реестре, проверить нечем")
-                continue
-            if normalise(value) not in flat:
-                problems.append(f"{doc} — нет канонического значения {field}: «{value}»")
+        for path in paths:
+            name = path.relative_to(ROOT).as_posix()
+            flat = normalise(path.read_text(encoding="utf-8", errors="replace"))
+            for field in fields:
+                value = resolve(reg, field)
+                if not value:
+                    skipped.append(f"{name} — {field} пусто в реестре, проверить нечем")
+                    continue
+                if normalise(value) not in flat:
+                    problems.append(f"{name} — нет канонического значения {field}: «{value}»")
     return problems, skipped
 
 

@@ -101,6 +101,37 @@ are known; build only the two that apply.
 The routing lives in `SUBDIRS` in `build_all.py`; `--out DIR` moves the whole
 tree, sub-folders included.
 
+## Ophthalmologists' expert reviews — generated, not authored here
+
+The expert reviews of practising ophthalmologists on the demonstration of the
+application (genre `16-review`) are the one deliverable whose source does **not**
+live in `thesis/output/`. Everything about them sits in
+`defense/docs/reviews/expert/`, and they are assembled rather than written:
+
+```powershell
+py -3 defense/docs/reviews/expert/build_expert_reviews.py [--only SLUG] [--no-pdf]
+```
+
+`ophthalmologists.toml` holds one `[[ophthalmologist]]` block per signatory and is
+the only file the candidate edits; the candidate's name, the topic and the
+programme are **not** repeated there — the builder reads them from
+`council/METADATA.toml`, so registry-verbatim is guaranteed by construction. The
+prose is split between `template_ru.md` (the masthead, the demonstration protocol
+and the signature block) and `voice_{screening,interpretability}_ru.md`, one of
+which each review selects through its `variant` field.
+
+An empty field renders as a `<…>` placeholder, so the document stays printable
+while the doctors are still unnamed. **The review is budgeted at exactly two
+pages** — masthead and protocol on the first, the clinician's own text and the
+signature block on the second — and the text block holds 45 lines, which leaves
+roughly 2 400 characters for a voice. The builder counts the pages of the PDF it
+produced and exits non-zero when a review is not two pages; what to shorten then
+is the voice, never the protocol.
+
+`check_metadata.py` addresses these by mask
+(`defense/docs/reviews/expert/expert_review_*_ru.md`), since there are as many
+reviews as there are doctors in the TOML.
+
 ## Layout of `defense/docs/`
 
 The two assembled manuscripts stay at the top level; everything that feeds them
