@@ -1299,6 +1299,14 @@ def mermaid_failures() -> list[str]:
 # figures no longer take (see `_fit_width_mm`).
 MERMAID_MAX_H_MM = 215.0
 
+# An APP exhibit is a reproduced document, not an illustration: a scanned A4
+# sheet is 1.41 times as tall as it is wide, and the ordinary 95 mm figure
+# allowance sets it 67 mm across, at which the type on the sheet is unreadable
+# and the exhibit fails at the one thing it is in the volume to do. It takes the
+# Mermaid allowance instead — 215 mm of height puts an A4 sheet 152 mm across,
+# very nearly the full text block, which is how the corpus prints a certificate.
+EXHIBIT_MAX_H_MM = 215.0
+
 
 def _add_mermaid(doc: Document, code_lines: list[str], base_dir: Path) -> None:
     """Embed a Mermaid diagram as a centred image; fall back to source on failure.
@@ -1566,14 +1574,16 @@ def _print_ready(img: Path, width_mm: float, base_dir: Path) -> Path:
 
 
 def _insert_figure(doc: Document, label: str, num: str, caption: str, img: Path | None,
-                   *, note_missing: bool = True, base_dir: Path | None = None):
+                   *, note_missing: bool = True, base_dir: Path | None = None,
+                   kind: str = "FIG"):
     if img is not None:
         p = doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.first_line_indent = Mm(0)
         p.paragraph_format.space_before = Pt(6)
         p.paragraph_format.keep_with_next = True
-        w = _fit_width_mm(img)
+        w = (_fit_width_mm(img, maxh=EXHIBIT_MAX_H_MM, maxh_hard=EXHIBIT_MAX_H_MM)
+             if kind == "APP" else _fit_width_mm(img))
         src = _print_ready(img, w, base_dir) if base_dir is not None else img
         p.add_run().add_picture(str(src), width=Mm(w))
     c = doc.add_paragraph()
@@ -1647,7 +1657,8 @@ def render_into(
                 seq[(kind, num)] = seq.get((kind, num), 0) + 1
                 num = f"{num}.{seq[(kind, num)]}" if num else str(seq[(kind, num)])
             figs[k] = {"label": labels.get(k[0], labels["FIG"]), "num": num,
-                       "caption": caption, "img": img, "placed": False}
+                       "caption": caption, "img": img, "placed": False,
+                       "kind": k[0]}
         return figs[k]
 
     def _fig_inline(m: re.Match) -> str:
@@ -1668,7 +1679,8 @@ def render_into(
         if f["placed"]:
             return
         _insert_figure(doc, f["label"], f["num"], f["caption"], f["img"],
-                       note_missing=note_missing, base_dir=base_dir)
+                       note_missing=note_missing, base_dir=base_dir,
+                       kind=f.get("kind", "FIG"))
         f["placed"] = True
 
     def resolve_markers(raw: str) -> tuple[str, list[dict], bool]:

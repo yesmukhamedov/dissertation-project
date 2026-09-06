@@ -83,3 +83,5 @@
 ## APPENDIX D – Attention-map gallery
 
 ## APPENDIX E – Device domain-shift supplementary tables
+
+## APPENDIX F – Certificate of state registration of the software complex

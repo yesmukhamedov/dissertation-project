@@ -660,7 +660,17 @@ total = 5
 scopus_wos_journal = 1
 scopus_conference = 1
 kkson = 3
-copyright_certificate = ""   # авторского свидетельства НЕТ — подтверждено, не выдумывать
+# Свидетельство о внесении сведений в Государственный реестр прав на объекты,
+# охраняемые авторским правом (РГП «НИИС» МЮ РК). Получено 04.09.2026 по заявке
+# № 498692 от 03.09.2026. Скан — ip/kazpatent/certificate/, в томе — Приложение F
+# (каз. ҚОСЫМША Ғ). НЕ входит в счёт publications.total = 5: это не публикация.
+copyright_certificate = "№ 78109 от 04.09.2026"
+copyright_certificate_number = "78109"
+copyright_certificate_date = "2026-09-04"
+copyright_certificate_object_ru = "Программный комплекс автоматизированной диагностики диабетической ретинопатии по изображениям глазного дна на основе конвейера предобработки изображений и свёрточной нейронной сети"
+copyright_certificate_kind_ru = "компьютерные программы (программное обеспечение)"
+copyright_certificate_authority_ru = "РГП «Национальный институт интеллектуальной собственности» МЮ РК"
+copyright_certificate_creation_date = "2026-09-03"
 
 [[publications.items]]
 num = 1

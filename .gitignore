@@ -57,4 +57,7 @@ demo/server/data/
 # Generated source-code listings for the NIIS copyright application.
 ip/kazpatent/build/
 ip/kazpatent/filled/
-ip/kazpatent/certificate/
+# ip/kazpatent/certificate/ is NOT ignored: the issued certificate carries only the
+# author's name, the object title and the registration number — all of which are
+# printed in the dissertation itself — and it has to travel with the repository
+# because the thesis export embeds it as Appendix F.

@@ -114,6 +114,15 @@ three lookups. `thesis/output/contents_{en,kz}.md` carry the titles since 2026-0
 that the contents listed bare `А ҚОСЫМШАСЫ` with no title while the body had the title, exactly
 backwards from the corpus.
 
+**An `APP` exhibit takes the full-page height allowance (2026-09-06).** `_fit_width_mm` caps an
+ordinary figure at 95 mm of height, which is right for the wide diagrams but sets a scanned A4
+sheet — 1.41 times as tall as it is wide — just **67 mm** across, at which the type on the sheet is
+unreadable. That is a failure of the one thing an exhibit is in the volume to do. `md2gost.py` now
+carries the marker kind through `_register` → `_emit` → `_insert_figure` and gives `APP` the Mermaid
+allowance, `EXHIBIT_MAX_H_MM = 215.0` → **152 mm** across. `APP` is used by Appendix F only, so no
+other illustration moved; both editions gained exactly one page and the main text did not shift.
+Mirror any change in **both** `.claude/` and `.agents/` copies of the script.
+
 **A Markdown `---` prints as a black rule across the page** — `md2gost.py` turns it into a
 paragraph with a bottom border. The assemblers used it as an internal separator, so every part
 of the volume ended on a stripe until 2026-08-21. Fixed at the source; run

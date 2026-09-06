@@ -97,7 +97,7 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 
 **The volume was restructured from six chapters to four** and rewritten against the norms measured
 across the 16 dissertations this council has published (`council/en/10-dissertation/peer-norms.md`).
-Main text 31,491 words, 24 second-level subsections, 19 tables, 16 figures, five appendices, 102
+Main text 31,496 words, 24 second-level subsections, 19 tables, 16 figures, six appendices, 102
 sources. The gate is `scripts/conformance.py`, and a chapter is not finished until it passes.
 Both editions pass in full: English 17 of 17, Kazakh — the defended edition — 20 of 20. The Kazakh
 em-dash failure this file used to record is closed: the copula is written with the short dash the
@@ -150,8 +150,10 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
 - 01-review → 05-conclusion: written in the order 3 → 2 → 1 → 4 → introduction → conclusion, so the
   chapter carrying the results fixed the register and the table budget for the rest.
 - 06-appendices: A source code · B supplementary results · C system architecture **and the working
-  demonstrator** · D attention-map plates · E device supplementary tables. Kazakh lettering
-  А, Ә, Б, В, Г. The old publication appendix is deleted: reprints and indexing screenshots appear
+  demonstrator** · D attention-map plates · E device supplementary tables · **F the certificate of
+  state registration of the software complex** (added 2026-09-06; scan in
+  `ip/kazpatent/certificate/`, plates `defense/figures/certificate_{kz,ru}.png`). Kazakh lettering
+  А, Ә, Б, В, Г, Ғ. The old publication appendix is deleted: reprints and indexing screenshots appear
   in none of the 16. **Reworked 2026-08-22** against `D:/personal/phd/council/temp/АНАЛИЗ_ПРИЛОЖЕНИЙ.md`
   (10 of the 16 have appendices at all; 5–28 pages; the median single appendix is **one** page):
   Appendix D went from 54 plates to **four** (IDRiD_007, 017, 020, 050) and its exhaustiveness
@@ -162,8 +164,11 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
   `[A-Za-z]` only and a Cyrillic letter in a marker would print raw.
 
 **Two things bind anything written from here.** The gate ceiling is **31,500** words of main text
-(raised from 31,000 by the candidate on 2026-08-21) and the English edition stands at **31,491** —
-**9 words of headroom**, so anything entering the body has to displace very nearly itself.
+(raised from 31,000 by the candidate on 2026-08-21) and the English edition stands at **31,496** —
+**4 words of headroom**, so anything entering the body has to displace very nearly itself. The
+certificate line added to the Introduction on 2026-09-06 cost +1 word net: it was paid for by
+merging three restatements (the novelty opener, the significance opener and the closing sentence of
+the personal-contribution paragraph), which is the only kind of room left.
 `conformance.py` counts a printed citation the way it prints: a parenthetical collapses to `[12]`,
 but a narrative citation keeps its author phrase and prints as four words (`Gulshan et al. [13]`).
 It is where to look for what to cut. And every claim taken from a source names it — the compression

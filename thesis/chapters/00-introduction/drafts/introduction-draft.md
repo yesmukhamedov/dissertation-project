@@ -85,11 +85,10 @@ of four manufacturers and several independent grading protocols, of which one su
 the remaining seven external, clinical and device-shift evaluation.
 
 **Scientific novelty.** The principal contribution is conceptual: the reframing of preprocessing
-from ancillary preparation to an integral component of the diagnostic model. Preprocessing is
-formalised as a binding part of the model specification and placed under controlled experimental
-contrast, so what is new is not the existence of a pipeline but the treatment of one as an object of
-experiment rather than of description. Each item below is at once an engineering result about a
-particular pipeline and evidence bearing on that stance.
+from ancillary preparation to an integral component of the diagnostic model, formalised as a binding
+part of the model specification and placed under controlled experimental contrast. What is new is
+not the existence of a pipeline but the treatment of one as an object of experiment rather than of
+description. Each item below is at once an engineering result and evidence bearing on that stance.
 
 Five elements of its engineering realisation are specified in forms not previously combined:
 isotropic resize with centred padding; a field-of-view mask supplied as a fourth input channel;
@@ -158,7 +157,7 @@ direction holds at every binarisation threshold tested. This is defended as alig
 localisation.
 
 **Theoretical and practical significance.** The theoretical significance lies in how the problem is
-posed and measured. The reframing changes what counts as a complete description of a diagnostic
+posed and measured: the reframing changes what counts as a complete description of a diagnostic
 model of this class, and with it what counts as a fair comparison. Five formalisations make
 previously informal choices explicit and testable: the clip limit, the illumination correction,
 attention agreement as an asymmetric overlap, the postulated mechanism as a measurable distance, and
@@ -220,13 +219,15 @@ Kaldybaeva, 2025).
 
 All five are co-authored and are treated throughout as prior own work. In each the candidate
 contributed the part on which this dissertation rests: the formulation of the preprocessing problem,
-the design and implementation of the pipeline, the conduct of the classification experiments, the
-analysis of the results and the writing of the corresponding sections. The experimental programme
-reported here, its protocol and its statistical validation were carried out by the candidate.
+the design and implementation of the pipeline, the writing of the corresponding sections, and the
+experimental programme reported here with its protocol and its statistical validation.
 
 Publications reporting the same material are never cited as independent corroboration of one
 another, and their performance figures are not imported as findings: such questions are re-examined
 here on this work's own material.
+
+The software complex is entered in the state register of copyright objects, certificate
+No. 78109 of 4 September 2026 (Appendix F).
 
 **Connection with state programmes.** The direction of this research corresponds to the state
 priorities of the Republic of Kazakhstan in the digitalisation of healthcare and the development of
@@ -241,7 +242,7 @@ priorities, not a statement that the work was funded under a state programme or 
 body, and not a claim that any policy objective has been achieved through it.
 
 **Structure and volume of the work.** The dissertation comprises front matter, an introduction, four
-chapters, a conclusion, a list of references and five appendices.
+chapters, a conclusion, a list of references and six appendices.
 
 Chapter 1 establishes the clinical and technical context of screening. It characterises the grading
 of the disease and what a screening programme demands of a resource-limited setting, identifies the
@@ -265,9 +266,9 @@ inference behaviour without acceleration hardware and its ingestion protocol, di
 exists from what remains specification. The conclusion consolidates the outcomes and the directions
 for further work.
 
-Five appendices follow: the source code of the preprocessing pipeline, supplementary results and
+Six appendices follow: the source code of the preprocessing pipeline, supplementary results and
 confusion matrices, the system architecture with the working demonstrator, the attention-map
-gallery, and supplementary tables for the device evaluation.
+gallery, supplementary tables for the device evaluation, and the registration certificate.
 
 The dissertation is set out on 102 pages, excluding the appendices, and contains 19 tables and 16
 figures. The list of references comprises 102 sources.
