@@ -55,6 +55,33 @@ EXPECTED_PAGES = 2
 VARIANTS = {
     "screening": "voice_screening_ru.md",
     "interpretability": "voice_interpretability_ru.md",
+    # Бланк для рассылки: часть 3 — только пустые абзацы, врач пишет своё
+    # впечатление сам. В этом и смысл бланка: врачу уходит первая страница
+    # (что за приложение и что было показано) и пустая вторая под его
+    # собственный текст, а не готовое мнение на подпись.
+    #
+    # 30 пустых абзацев — максимум, при котором документ остаётся на двух
+    # страницах: 31 уже даёт три. Пояснения держим здесь, а не в самом
+    # voice_blank_ru.md: многострочный HTML-комментарий md2gost переносит
+    # в документ как обычный текст.
+    #
+    # Ставится только флагом --blank, в ophthalmologists.toml не указывается.
+    "blank": "voice_blank_ru.md",
+}
+
+# Бланк, который уходит врачу до демонстрации: все поля — плейсхолдеры, слово
+# врача пустое. Роль «докторант» здесь не выбор, а нейтральная форма: адресат
+# ещё не известен, а слово всё равно стоит в протоколе демонстрации.
+BLANK = {
+    "slug": "blank",
+    "position": "",
+    "category": "",
+    "degree": "",
+    "organization": "",
+    "demo_date": "",
+    "fio": "",
+    "variant": "blank",
+    "role": "докторант",
 }
 
 # Как отзыв называет докторанта. Слово задаётся на врача, а не на весь комплект:
@@ -200,10 +227,17 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--only", metavar="SLUG", help="собрать отзыв одного врача")
     ap.add_argument("--no-pdf", action="store_true", help="только .md, без .docx/.pdf")
+    ap.add_argument(
+        "--blank", action="store_true",
+        help="собрать бланк для рассылки: стр. 1 с плейсхолдерами, стр. 2 пустая "
+             "под слово врача и подпись (врачи из TOML при этом не собираются)",
+    )
     args = ap.parse_args()
 
     reg = tomllib.loads(REGISTRY.read_text(encoding="utf-8"))
-    docs = tomllib.loads(DATA.read_text(encoding="utf-8"))["ophthalmologist"]
+    docs = [BLANK] if args.blank else tomllib.loads(
+        DATA.read_text(encoding="utf-8")
+    )["ophthalmologist"]
     if args.only:
         docs = [d for d in docs if str(d["slug"]) == args.only]
         if not docs:
