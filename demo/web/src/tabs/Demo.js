@@ -12,7 +12,7 @@
 // the server instead of dying with the browser tab.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { C } from '../data';
+import { C, GRADE_COLORS, GRADE_INK } from '../data';
 import { Card, Sec, Note } from '../components';
 import { useLang } from '../i18n';
 import { IDRID_PATIENTS } from './_idridSamples';
@@ -107,6 +107,7 @@ function EyeSlot({ label, eye, image, onPick, onClear, onSwap, t }) {
   const [dims, setDims] = useState(null);
   // "Keep" dismisses the wrong-slot warning for the current image only.
   const [dismissed, setDismissed] = useState(false);
+  const [drag, setDrag] = useState(false);
   // Reset the size badge and dismissed-warning state when the loaded image
   // changes (or is cleared) so we never carry the previous image's dimensions
   // or a stale dismissal into a freshly loaded image. (Extracted to a variable
@@ -148,62 +149,61 @@ function EyeSlot({ label, eye, image, onPick, onClear, onSwap, t }) {
     ? t('demo.check.wrongSide').replace('{eye}', t('demo.check.eye.' + checks.laterality))
     : '';
 
+  const openPicker = () => inputRef.current && inputRef.current.click();
+  const code = eye === 'right' ? 'OD' : 'OS';
+
   return (
     <div className="eye-slot" style={{ flex: 1, minWidth: 220 }}>
-      <div style={{
-        display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
-        marginBottom: 6, gap: 6,
-      }}>
-        <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-secondary,#666)' }}>
-          {label}
-        </div>
+      <div className="eye-label">
+        <span className="eye-code">{code}</span>
+        <span className="eye-name" title={label}>{t('demo.eye.' + eye)}</span>
         {dims && (
-          <div style={{
-            fontSize: 9, fontFamily: 'monospace',
-            color: 'var(--color-text-secondary,#888)',
-          }}>
+          <span style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--color-text-tertiary)' }}>
             {dims.w} × {dims.h} px
-          </div>
+          </span>
         )}
       </div>
       <div
-        onClick={() => inputRef.current && inputRef.current.click()}
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={onDrop}
-        style={{
-          width: '100%',
-          // Fixed 1:1 frame regardless of image presence — keeps the form
-          // height stable so siblings (Run button, Result panel) don't jump
-          // when an image loads or is cleared. Image is letterboxed inside.
-          aspectRatio: '1 / 1',
-          border: `1px dashed ${image ? C.teal : 'var(--color-border-secondary,#ccc)'}`,
-          borderRadius: 10,
-          // Keep the letterbox grey (not black) even with an image loaded: fundus
-          // photos carry their own black border, so a black box would blend with
-          // it and make the snapshot look smaller than it is. Grey reveals the
-          // true image rectangle and shape.
-          background: 'var(--color-background-secondary,#f7f7f5)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer', overflow: 'hidden', position: 'relative',
-        }}
+        role="button"
+        tabIndex={0}
+        aria-label={`${label}: ${image ? image.name || '' : t('demo.dropHere')}`}
+        onClick={openPicker}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); } }}
+        onDragOver={(e) => { e.preventDefault(); if (!drag) setDrag(true); }}
+        onDragLeave={() => setDrag(false)}
+        onDrop={(e) => { setDrag(false); onDrop(e); }}
+        // Fixed 1:1 frame regardless of image presence — keeps the form height
+        // stable so the Run button and result don't jump when an image loads.
+        // A loaded photo sits on dark slate rather than black: fundus photos
+        // carry their own black border, and slate still reveals its true shape.
+        className={'eye-frame' + (image ? '' : ' empty') + (drag ? ' drag' : '')}
       >
         {image ? (
           <img
             src={image.src}
             alt={label}
             onLoad={(e) => setDims({ w: e.target.naturalWidth, h: e.target.naturalHeight })}
-            style={{
-              width: '100%', height: '100%',
-              objectFit: 'contain', display: 'block',
-            }}
+            style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
           />
         ) : (
-          <div style={{ textAlign: 'center', color: 'var(--color-text-secondary,#888)', padding: 12 }}>
-            <div style={{ fontSize: 11, fontWeight: 600 }}>{t('demo.dropHere')}</div>
-            <div style={{ fontSize: 9, marginTop: 4 }}>{t('demo.formats')}</div>
-          </div>
+          <>
+            {/* Empty state: the 45° fundus field as a reticle, with the optic
+                disc on this eye's nasal side and the fovea at the centre — the
+                shape of what belongs in the slot. */}
+            <svg className="reticle" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="49" fill="none" stroke="currentColor" strokeWidth="0.7" strokeDasharray="2 2.2" />
+              <line x1="50" y1="44" x2="50" y2="56" stroke="currentColor" strokeWidth="0.6" />
+              <line x1="44" y1="50" x2="56" y2="50" stroke="currentColor" strokeWidth="0.6" />
+              <circle cx={eye === 'right' ? 74 : 26} cy="47" r="6" fill="none" stroke="currentColor" strokeWidth="0.7" />
+            </svg>
+            <div className="eye-empty-copy">
+              <strong className="copy-long">{t('demo.dropHere')}</strong>
+              <strong className="copy-short">{t('demo.tapToAdd')}</strong>
+              <span>{t('demo.formats')}</span>
+            </div>
+          </>
         )}
-        <input ref={inputRef} type="file" accept="image/*" onChange={onChange} style={{ display: 'none' }} />
+        <input ref={inputRef} type="file" accept="image/*" onChange={onChange} style={{ display: 'none' }} tabIndex={-1} />
       </div>
 
       {/* Validation chips (uploaded images only). Warn, never block. */}
@@ -250,12 +250,8 @@ function EyeSlot({ label, eye, image, onPick, onClear, onSwap, t }) {
       <button
         onClick={onClear}
         disabled={!image}
-        style={{
-          marginTop: 6, fontSize: 10, padding: '3px 8px', background: 'transparent',
-          color: C.red, border: `1px solid ${C.red}`, borderRadius: 4,
-          cursor: image ? 'pointer' : 'default',
-          visibility: image ? 'visible' : 'hidden',
-        }}
+        className="btn btn-quiet btn-sm"
+        style={{ marginTop: 8, visibility: image ? 'visible' : 'hidden' }}
       >
         {t('demo.clear')}
       </button>
@@ -263,20 +259,45 @@ function EyeSlot({ label, eye, image, onPick, onClear, onSwap, t }) {
   );
 }
 
-function ProbabilityBar({ idx, p, isPred, t }) {
+// The ICDR grade scale — the page's one signature figure. Five steps in the
+// grade ramp, the model's probability standing on each, and the referral
+// threshold drawn between DR1 and DR2. Columns are scaled to the tallest so the
+// shape reads at a glance; the printed percentages carry the absolute values.
+function GradeScale({ probs, pred, t }) {
+  const top = Math.max(...probs, 1e-6);
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-      <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#666)', minWidth: 36, fontWeight: isPred ? 700 : 400 }}>
-        {t('demo.gradeShort.' + idx)}
+    <div className="grade-scale" role="img" aria-label={
+      probs.map((p, g) => `${t('demo.gradeShort.' + g)} ${(p * 100).toFixed(1)}%`).join(', ')
+    }>
+      <div className="gs-cols">
+        {probs.map((p, g) => (
+          <div key={g} className={'gs-col' + (g === pred ? ' pred' : '')}>
+            <div className="gs-pct">{(p * 100).toFixed(p < 0.1 ? 1 : 0)}%</div>
+            <div className="gs-bar" style={{ height: `${Math.max(2, (p / top) * 70)}%`, background: GRADE_COLORS[g] }} />
+          </div>
+        ))}
+        <div className="gs-threshold"><span>{t('demo.scale.threshold')}</span></div>
       </div>
-      <div style={{ flex: 1, height: 16, background: 'var(--color-background-secondary,#eeede9)', borderRadius: 3, position: 'relative', overflow: 'hidden' }}>
-        <div style={{ width: `${p * 100}%`, height: '100%', background: isPred ? C.teal : C.gray, opacity: isPred ? 0.85 : 0.45 }} />
-        <span style={{ position: 'absolute', right: 5, top: '50%', transform: 'translateY(-50%)', fontSize: 9, fontWeight: isPred ? 700 : 500, color: 'var(--color-text-primary,#333)' }}>
-          {(p * 100).toFixed(1)}%
-        </span>
+      <div className="gs-track">
+        {GRADE_COLORS.map((c, g) => <div key={g} className="gs-step" style={{ background: c }} />)}
+      </div>
+      <div className="gs-labels">
+        {probs.map((_, g) => (
+          <div key={g} className="gs-label">
+            <b>{g}</b>
+            {gradeName(t, g)}
+          </div>
+        ))}
       </div>
     </div>
   );
+}
+
+// "DR2 — Moderate NPDR" → "Moderate NPDR" (both languages share the format).
+function gradeName(t, g) {
+  const full = t('demo.grade.' + g);
+  const i = full.indexOf(' — ');
+  return i >= 0 ? full.slice(i + 3) : full;
 }
 
 function HeatmapPair({ resultsBase, side, t }) {
@@ -342,8 +363,8 @@ function CaseStatsPanel({ stats, t }) {
   // Scale the grade bars to the busiest grade (never divide by zero).
   const maxGrade = Math.max(1, ...stats.grades);
   return (
-    <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px solid var(--color-border-tertiary,#eee)' }}>
-      <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-secondary,#666)', marginBottom: 8 }}>
+    <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--color-border-tertiary)' }}>
+      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 10 }}>
         {t('demo.stats.title')}
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -384,7 +405,7 @@ function CaseStatsPanel({ stats, t }) {
                 flex: 1, height: 14, background: 'var(--color-background-secondary,#eeede9)',
                 borderRadius: 3, position: 'relative', overflow: 'hidden',
               }}>
-                <div style={{ width: `${(n / maxGrade) * 100}%`, height: '100%', background: g >= 2 ? C.coral : C.teal, opacity: 0.75 }} />
+                <div style={{ width: `${(n / maxGrade) * 100}%`, height: '100%', background: GRADE_COLORS[g] }} />
                 <span style={{
                   position: 'absolute', right: 5, top: '50%', transform: 'translateY(-50%)',
                   fontSize: 9, fontWeight: 600, color: 'var(--color-text-primary,#333)',
@@ -398,7 +419,7 @@ function CaseStatsPanel({ stats, t }) {
       )}
 
       {stats.last_activity_utc && (
-        <div style={{ fontSize: 9, color: C.gray, marginTop: 8, fontFamily: 'monospace' }}>
+        <div style={{ fontSize: 11, color: 'var(--color-text-tertiary)', marginTop: 8 }}>
           {t('demo.stats.lastActivity')}: {new Date(stats.last_activity_utc).toLocaleString()}
         </div>
       )}
@@ -502,10 +523,10 @@ function PasswordGate({ onUnlock, t }) {
 
   return (
     <div style={{ maxWidth: 420, margin: '48px auto', textAlign: 'center' }}>
-      <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary,#222)', marginBottom: 6 }}>
+      <h2 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-text-primary)', marginBottom: 8 }}>
         {t('demo.gate.title')}
       </h2>
-      <p style={{ fontSize: 12, color: 'var(--color-text-secondary,#666)', lineHeight: 1.55, marginBottom: 26 }}>
+      <p style={{ fontSize: 14, color: 'var(--color-text-secondary)', lineHeight: 1.6, marginBottom: 28 }}>
         {t('demo.gate.prompt')}
       </p>
 
@@ -543,7 +564,7 @@ function PasswordGate({ onUnlock, t }) {
               className={i === activeIdx && !d ? 'pin-bar pin-bar-active' : 'pin-bar'}
               style={{
                 width: '100%', height: 5, borderRadius: 3,
-                background: denied ? C.red : (d || i === activeIdx) ? C.teal : 'var(--color-border-secondary,#ccc)',
+                background: denied ? C.red : (d || i === activeIdx) ? 'var(--cobalt)' : 'var(--color-border-secondary)',
                 transition: 'background 150ms ease-out',
               }}
             />
@@ -573,7 +594,7 @@ function PasswordGate({ onUnlock, t }) {
       </div>
 
       {/* Fixed-height status line so the cells do not jump between states. */}
-      <div style={{ minHeight: 32, fontSize: 11, lineHeight: 1.5 }}>
+      <div style={{ minHeight: 32, fontSize: 12.5, lineHeight: 1.5 }}>
         {busy && <span style={{ color: 'var(--color-text-secondary,#666)' }}>{t('demo.gate.checking')}</span>}
         {denied && <span style={{ color: C.redT }}>{t('demo.gate.denied')}</span>}
         {!busy && !denied && <span style={{ color: 'var(--color-text-tertiary,#999)' }}>{t('demo.gate.hint')}</span>}
@@ -1013,48 +1034,34 @@ export default function Demo() {
   return (
     <div>
       {/* Header */}
-      <div style={{ marginBottom: 20 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--color-text-primary,#222)', margin: '0 0 4px 0' }}>
+      <header style={{ marginBottom: 30 }}>
+        <h2 style={{
+          fontSize: 30, fontWeight: 700, letterSpacing: '-0.025em', lineHeight: 1.12,
+          color: 'var(--color-text-primary)', margin: '0 0 10px 0', maxWidth: '26ch',
+        }}>
           {t('demo.title')}
         </h2>
-        <p style={{ fontSize: 12, color: 'var(--color-text-secondary,#666)', margin: '0 0 8px 0', lineHeight: 1.55 }}>
+        <p style={{ fontSize: 14, color: 'var(--color-text-secondary)', margin: '0 0 18px 0', lineHeight: 1.6, maxWidth: '64ch' }}>
           {t('demo.subtitle')}
         </p>
-        {/* Framing block (TASK-Demo D.1) — muted, no marketing copy. Laid out
-            as a row: the two text lines form a column on the left, the random
-            sample button sits on the right and stretches to the full block
-            height (both lines), not just the first line. */}
+        {/* Framing block (TASK-Demo D.1) — muted, no marketing copy. The two
+            text lines form a column on the left, the random-sample button sits
+            on the right; when the row gets tight the button yields width first. */}
         <div style={{
-          fontSize: 11, color: 'var(--color-text-secondary,#777)', lineHeight: 1.6,
-          borderLeft: `2px solid ${C.teal}`, paddingLeft: 10, margin: '0 0 8px 0',
-          display: 'flex', alignItems: 'stretch', justifyContent: 'space-between',
-          gap: 10, flexWrap: 'nowrap',
+          fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.55,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          gap: 16, flexWrap: 'wrap',
+          padding: '12px 14px 12px 16px', background: 'var(--color-background-primary)',
+          border: '1px solid var(--color-border-tertiary)', borderRadius: 10,
         }}>
-          {/* Text keeps priority and stays on its line; when the row gets tight
-              the button yields width first (its label re-flows within the height
-              it already stretches to) instead of the text wrapping. */}
-          <div style={{ flex: '1 1 auto', minWidth: 0 }}>
-            <div style={{ fontWeight: 700 }}>{t('demo.framing.line1')}</div>
+          <div style={{ flex: '1 1 320px', minWidth: 0 }}>
+            <div style={{ fontWeight: 600, color: 'var(--color-text-primary)' }}>{t('demo.framing.line1')}</div>
             <div>{t('demo.framing.line2')}</div>
           </div>
-          <button
-            onClick={loadRandomSample}
-            title={t('demo.randomHint')}
-            style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              gap: 6, flexGrow: 0, flexShrink: 100, minWidth: 0, alignSelf: 'stretch',
-              padding: '6px 13px', fontSize: 10.5, fontWeight: 600,
-              letterSpacing: '0.02em', fontVariant: 'small-caps',
-              background: 'transparent', color: C.tealT,
-              border: `1px solid ${C.teal}`, borderRadius: 5, cursor: 'pointer',
-              transition: 'background 0.15s ease, box-shadow 0.15s ease',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = C.tealBg; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
-          >
+          <button onClick={loadRandomSample} title={t('demo.randomHint')} className="btn btn-quiet btn-wrap" style={{ flexShrink: 1 }}>
             {/* Shuffle glyph — a quiet "draw a sample" cue in place of the dice emoji. */}
             <svg
-              width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
               style={{ flexShrink: 0 }}
             >
@@ -1067,16 +1074,13 @@ export default function Demo() {
             {t('demo.random')}
           </button>
         </div>
-        {/* <div style={{ fontSize: 10, color: C.amberT, background: C.amberBg, padding: '6px 10px', borderRadius: 6, display: 'inline-block' }}>
-          ⚠ {t('demo.disclaimer')}
-        </div> */}
-      </div>
+      </header>
 
       {/* Upload section */}
-      <Sec title={t('demo.uploadSection')}>
+      <Sec step={1} title={t('demo.uploadSection')}>
         {/* Right eye (OD) shown on the LEFT, left eye (OS) on the RIGHT — matches
             the clinical convention for displaying fundus pairs. */}
-        <div className="eye-slot-row" style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+        <div className="eye-slot-row" style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           <EyeSlot
             label={t('demo.rightEye')}
             eye="right"
@@ -1119,10 +1123,10 @@ export default function Demo() {
                   it never toggles the panel. */}
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
-                padding: '6px 12px',
-                background: C.tealBg,
-                border: `1px solid ${C.teal}`,
-                borderRadius: showDetail ? '6px 6px 0 0' : 6,
+                padding: '8px 12px',
+                background: 'var(--color-background-primary)',
+                border: '1px solid var(--color-border-tertiary)',
+                borderRadius: showDetail ? '10px 10px 0 0' : 10,
                 transition: 'border-radius 0.25s ease',
               }}>
                 <button
@@ -1132,8 +1136,8 @@ export default function Demo() {
                   style={{
                     display: 'flex', alignItems: 'center', gap: 8,
                     flex: 1, minWidth: 0, padding: '2px 0',
-                    fontSize: 12, fontWeight: 600, textAlign: 'left',
-                    background: 'transparent', color: C.tealT,
+                    fontSize: 13, fontWeight: 600, textAlign: 'left',
+                    background: 'transparent', color: 'var(--cobalt)',
                     border: 'none', cursor: 'pointer',
                   }}
                 >
@@ -1162,8 +1166,8 @@ export default function Demo() {
                         : (selected === 'left' ? t('demo.leftEye') : t('demo.rightEye'))}
                       style={{ flexShrink: 0, cursor: dual ? 'pointer' : 'default', opacity: dual ? 1 : 0.7 }}
                     >
-                      <span aria-hidden="true">👁</span>
-                      <span>{selected === 'left' ? t('demo.leftEye') : t('demo.rightEye')}</span>
+                      <span>{selected === 'left' ? 'OS' : 'OD'}</span>
+                      <span className="chip-key">{t('demo.eye.' + selected)}</span>
                     </button>
                   );
                 })()}
@@ -1180,8 +1184,9 @@ export default function Demo() {
                   display: 'grid',
                   gridTemplateRows: showDetail ? '1fr' : '0fr',
                   transition: 'grid-template-rows 0.3s ease',
-                  border: `1px solid ${showDetail ? C.teal : 'transparent'}`,
-                  borderTop: 'none', borderRadius: '0 0 6px 6px',
+                  border: `1px solid ${showDetail ? 'var(--color-border-tertiary)' : 'transparent'}`,
+                  borderTop: 'none', borderRadius: '0 0 10px 10px',
+                  background: showDetail ? 'var(--color-background-primary)' : 'transparent',
                 }}
               >
                 <div style={{ overflow: 'hidden', minHeight: 0 }}>
@@ -1216,26 +1221,22 @@ export default function Demo() {
       </Sec>
 
       {/* Run section */}
-      <Sec title={t('demo.runSection')}>
+      <Sec step={2} title={t('demo.runSection')}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
           <button
             onClick={handleRun}
             disabled={running || eyes.length === 0}
-            style={{
-              padding: '8px 18px', fontSize: 12, fontWeight: 600,
-              background: (running || eyes.length === 0) ? C.gray : C.teal,
-              color: 'white', border: 'none', borderRadius: 6,
-              cursor: (running || eyes.length === 0) ? 'not-allowed' : 'pointer',
-            }}
+            className="btn btn-primary"
+            style={{ minHeight: 42, padding: '0 22px', fontSize: 14 }}
           >
             {running ? t('demo.running') : t('demo.runButton')}
           </button>
           {eyes.length === 0 && (
-            <span style={{ fontSize: 11, color: C.red }}>{t('demo.needAtLeastOne')}</span>
+            <span style={{ fontSize: 12.5, color: 'var(--color-text-secondary)' }}>{t('demo.needAtLeastOne')}</span>
           )}
           {eyes.length > 0 && !running && (
-            <span style={{ fontSize: 11, color: 'var(--color-text-secondary,#666)' }}>
-              {eyes.length} {eyes.length === 1 ? 'image' : 'images'}
+            <span style={{ fontSize: 12.5, color: 'var(--color-text-secondary)' }}>
+              {eyes.length} {eyes.length === 1 ? t('demo.image') : t('demo.images')}
             </span>
           )}
         </div>
@@ -1243,65 +1244,49 @@ export default function Demo() {
 
       {/* Result section */}
       {result && (
-        <Sec title={t('demo.resultSection')}>
-          <div style={{
-            display: 'flex', gap: 12, flexWrap: 'wrap',
-            padding: 14, borderRadius: 10,
-            background: result.pred >= 2 ? C.coralBg : C.tealBg,
-            border: `1px solid ${result.pred >= 2 ? C.coral : C.teal}`,
-          }}>
-            <div style={{ flex: 1, minWidth: 180 }}>
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: result.pred >= 2 ? C.coralT : C.tealT, opacity: 0.8 }}>
-                {t('demo.predictedGrade')}
+        <Sec step={3} title={t('demo.resultSection')}>
+          <div className="panel">
+            <div className="result-head">
+              <div>
+                <div className="result-kicker">{t('demo.patientGrade')}</div>
+                <div className="result-grade" style={{ color: GRADE_INK[result.pred] }}>
+                  {gradeName(t, result.pred)}
+                </div>
+                <div className="result-kicker" style={{ marginBottom: 14 }}>
+                  {t('demo.gradeOf').replace('{g}', result.pred)}
+                </div>
+                <span className="referral" style={result.pred >= 2
+                  ? { background: C.coralBg, color: GRADE_INK[3] }
+                  : { background: C.tealBg, color: GRADE_INK[0] }}>
+                  {result.pred >= 2 ? t('demo.referYes') : t('demo.referNo')}
+                </span>
               </div>
-              <div style={{ fontSize: 22, fontWeight: 700, color: result.pred >= 2 ? C.coralT : C.tealT, marginTop: 2 }}>
-                {t('demo.grade.' + result.pred)}
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--color-text-secondary,#555)', marginTop: 6 }}>
-                {t('demo.confidence')}: <strong>{(result.confidence * 100).toFixed(1)}%</strong>
-                {' · '}
-                {t('demo.referable')}: <strong>{result.pred >= 2 ? t('demo.yes') : t('demo.no')}</strong>
-                {' · '}
-                {t('demo.latency')}: <strong>{result.latencyMs} ms</strong>
+              <div>
+                <div className="result-kicker" style={{ marginBottom: 22 }}>{t('demo.scale.title')}</div>
+                <GradeScale probs={result.probs} pred={result.pred} t={t} />
               </div>
             </div>
-            <div style={{ flex: 1, minWidth: 220 }}>
-              <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--color-text-secondary,#666)', marginBottom: 4 }}>
-                {t('demo.classProbs')}
+            <div className="facts">
+              <div className="fact">
+                <div className="fact-k">{t('demo.confidence')}</div>
+                <div className="fact-v">{(result.confidence * 100).toFixed(1)}%</div>
               </div>
-              {result.probs.map((p, i) => (
-                <ProbabilityBar key={i} idx={i} p={p} isPred={i === result.pred} t={t} />
+              <div className="fact">
+                <div className="fact-k">{t('demo.latency')}</div>
+                <div className="fact-v">{result.latencyMs} ms</div>
+              </div>
+              {/* Per-eye breakdown: the patient grade above is the worse eye. */}
+              {result.perEye.length > 1 && result.perEye.map((eye, i) => (
+                <div key={i} className="fact">
+                  <div className="fact-k">{t('demo.eye.' + (eye.eye === 'left' ? 'left' : 'right'))} ({eye.eye === 'left' ? 'OS' : 'OD'})</div>
+                  <div className="fact-v" style={{ color: GRADE_INK[eye.result.pred] }}>
+                    {t('demo.gradeShort.' + eye.result.pred)}
+                  </div>
+                  <div className="fact-s">{(eye.result.confidence * 100).toFixed(1)}%, {eye.result.latencyMs} ms</div>
+                </div>
               ))}
             </div>
           </div>
-
-          {/* Per-eye breakdown */}
-          {result.perEye.length > 1 && (
-            <div style={{ marginTop: 12 }}>
-              <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-secondary,#666)', marginBottom: 6 }}>
-                {t('demo.perEye')}
-              </div>
-              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                {result.perEye.map((eye, i) => (
-                  <div key={i} style={{
-                    flex: 1, minWidth: 200, padding: '8px 12px',
-                    background: 'var(--color-background-secondary,#f7f7f5)', borderRadius: 8,
-                    borderLeft: `3px solid ${eye.result.pred >= 2 ? C.coral : C.teal}`,
-                  }}>
-                    <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#666)', fontWeight: 600 }}>
-                      {t(eye.eye === 'left' ? 'demo.leftEye' : 'demo.rightEye')}
-                    </div>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary,#222)' }}>
-                      {t('demo.grade.' + eye.result.pred)}
-                    </div>
-                    <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#666)', marginTop: 2 }}>
-                      {(eye.result.confidence * 100).toFixed(1)}% · {eye.result.latencyMs} ms
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Grad-CAM heatmap + attention overlay.
               Live (from the checkpoint) for custom uploads when the real model
@@ -1321,7 +1306,7 @@ export default function Demo() {
 
       {/* Feedback section */}
       {result && (
-        <Sec title={t('demo.feedbackSection')} note={t('demo.feedbackHint')}>
+        <Sec step={4} title={t('demo.feedbackSection')} note={t('demo.feedbackHint')}>
           {/* One verdict per prediction. Until it is given, the two buttons; once
               it is, they give way to the standing verdict and a single "undo",
               so the same result cannot be confirmed twice — or confirmed and
@@ -1329,19 +1314,20 @@ export default function Demo() {
           {verdictEntry ? (
             <div style={{
               display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center',
-              padding: '10px 14px', borderRadius: 8,
-              background: verdictEntry.verdict === 'confirmed' ? C.greenBg : C.redBg,
-              border: `1px solid ${verdictEntry.verdict === 'confirmed' ? C.green : C.red}`,
+              padding: '14px 16px', borderRadius: 12,
+              background: 'var(--color-background-primary)',
+              border: '1px solid var(--color-border-tertiary)',
+              boxShadow: `inset 4px 0 0 ${verdictEntry.verdict === 'confirmed' ? GRADE_COLORS[0] : GRADE_COLORS[4]}`,
             }}>
               <div style={{ flex: 1, minWidth: 180 }}>
                 <div style={{
-                  fontSize: 12, fontWeight: 700,
-                  color: verdictEntry.verdict === 'confirmed' ? C.greenT : C.redT,
+                  fontSize: 14, fontWeight: 600,
+                  color: verdictEntry.verdict === 'confirmed' ? GRADE_INK[0] : GRADE_INK[4],
                 }}>
                   {verdictEntry.verdict === 'confirmed' ? '✓' : '✕'}{' '}
                   {t('demo.verdictGiven.' + verdictEntry.verdict)}
                 </div>
-                <div style={{ fontSize: 11, color: 'var(--color-text-secondary,#555)', marginTop: 3 }}>
+                <div style={{ fontSize: 12.5, color: 'var(--color-text-secondary)', marginTop: 3 }}>
                   {t('demo.recordedGrade')}: <strong>{t('demo.grade.' + verdictEntry.correctedGrade)}</strong>
                 </div>
               </div>
@@ -1354,78 +1340,53 @@ export default function Demo() {
                   onClick={downloadReport}
                   disabled={reportBusy}
                   title={t('demo.report.hint')}
-                  style={{
-                    padding: '7px 14px', fontSize: 11, fontWeight: 600,
-                    background: reportBusy ? C.gray : C.teal, color: 'white',
-                    border: 'none', borderRadius: 6,
-                    cursor: reportBusy ? 'wait' : 'pointer',
-                  }}
+                  className="btn btn-primary"
+                  style={{ cursor: reportBusy ? 'wait' : 'pointer' }}
                 >
-                  {reportBusy ? `… ${t('demo.report.busy')}` : `⬇ ${t('demo.report.download')}`}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
+                  </svg>
+                  {reportBusy ? t('demo.report.busy') : t('demo.report.download')}
                 </button>
               )}
-              <button
-                onClick={undoVerdict}
-                style={{
-                  padding: '7px 14px', fontSize: 11, fontWeight: 600,
-                  background: 'transparent', color: 'var(--color-text-secondary,#555)',
-                  border: '1px solid var(--color-border-secondary,#bbb)',
-                  borderRadius: 6, cursor: 'pointer',
-                }}
-              >
-                ↺ {t('demo.undoVerdict')}
+              <button onClick={undoVerdict} className="btn btn-quiet">
+                {t('demo.undoVerdict')}
               </button>
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
               <button
                 onClick={() => { setFeedbackMode('confirm'); submitFeedback('confirmed'); }}
-                style={{
-                  padding: '8px 16px', fontSize: 12, fontWeight: 600,
-                  background: C.green, color: 'white', border: 'none',
-                  borderRadius: 6, cursor: 'pointer',
-                }}
+                className="btn btn-confirm"
               >
-                ✓ {t('demo.confirm')}
+                {t('demo.confirm')}
               </button>
-              <button
-                onClick={() => setFeedbackMode('reject')}
-                style={{
-                  padding: '8px 16px', fontSize: 12, fontWeight: 600,
-                  background: 'white', color: C.red,
-                  border: `1px solid ${C.red}`, borderRadius: 6, cursor: 'pointer',
-                }}
-              >
-                ✕ {t('demo.reject')}
+              <button onClick={() => setFeedbackMode('reject')} className="btn btn-reject">
+                {t('demo.reject')}
               </button>
             </div>
           )}
           {!verdictEntry && feedbackMode === 'reject' && (
             <div style={{
-              marginTop: 12, padding: 12, borderRadius: 8,
-              background: C.redBg, border: `1px solid ${C.red}`,
+              marginTop: 12, padding: '12px 14px', borderRadius: 10,
+              background: 'var(--color-background-primary)', border: '1px solid var(--color-border-tertiary)',
+              boxShadow: `inset 4px 0 0 ${GRADE_COLORS[4]}`,
               display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap',
             }}>
-              <label style={{ fontSize: 11, fontWeight: 600, color: C.redT }}>
+              <label htmlFor="corrected-grade" style={{ fontSize: 13, fontWeight: 600 }}>
                 {t('demo.correctGrade')}:
               </label>
               <select
+                id="corrected-grade"
                 value={correctedGrade}
                 onChange={(e) => setCorrectedGrade(parseInt(e.target.value, 10))}
-                style={{ padding: '4px 8px', fontSize: 11, border: '1px solid var(--color-border-secondary,#ccc)', borderRadius: 4 }}
+                style={{ minHeight: 36, padding: '0 10px', fontSize: 13, border: '1px solid var(--color-border-secondary)', borderRadius: 8, background: '#fff' }}
               >
                 {[0, 1, 2, 3, 4].map(g => (
                   <option key={g} value={g}>{t('demo.grade.' + g)}</option>
                 ))}
               </select>
-              <button
-                onClick={() => submitFeedback('rejected')}
-                style={{
-                  padding: '6px 14px', fontSize: 11, fontWeight: 600,
-                  background: C.red, color: 'white', border: 'none',
-                  borderRadius: 4, cursor: 'pointer',
-                }}
-              >
+              <button onClick={() => submitFeedback('rejected')} className="btn btn-primary">
                 {t('demo.submit')}
               </button>
             </div>
@@ -1459,23 +1420,14 @@ export default function Demo() {
       {/* History / relabeling buffer */}
       <Sec title={`${t('demo.historyTitle')} (${history.length})`}>
         <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-          <button
-            onClick={exportJsonl}
-            disabled={history.length === 0}
-            style={{
-              padding: '6px 12px', fontSize: 11, fontWeight: 600,
-              background: history.length === 0 ? C.gray : C.blue,
-              color: 'white', border: 'none', borderRadius: 4,
-              cursor: history.length === 0 ? 'not-allowed' : 'pointer',
-            }}
-          >
-            ⬇ {t('demo.export')}
+          <button onClick={exportJsonl} disabled={history.length === 0} className="btn btn-quiet btn-sm">
+            {t('demo.export')}
           </button>
         </div>
         {/* The buffer is no longer this tab's scratch list, so say where the rows
             come from — and that a row is withdrawn one verdict at a time (Undo
             on the result), never by wiping the block. */}
-        <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#777)', marginBottom: 10 }}>
+        <div style={{ fontSize: 12, color: 'var(--color-text-secondary)', marginBottom: 10, maxWidth: '70ch' }}>
           {t('demo.historySource')}
         </div>
         {history.length === 0 ? (
@@ -1484,7 +1436,7 @@ export default function Demo() {
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11 }}>
               <thead>
-                <tr style={{ borderBottom: '2px solid var(--color-border-secondary,#ccc)' }}>
+                <tr style={{ borderBottom: '1.5px solid var(--color-text-primary)', color: 'var(--color-text-secondary)', fontSize: 11 }}>
                   <th style={{ padding: '5px 8px', textAlign: 'left', fontWeight: 600 }}>{t('demo.col.time')}</th>
                   <th style={{ padding: '5px 8px', textAlign: 'center', fontWeight: 600 }}>{t('demo.col.images')}</th>
                   <th style={{ padding: '5px 8px', textAlign: 'center', fontWeight: 600 }}>{t('demo.col.predicted')}</th>
@@ -1495,7 +1447,7 @@ export default function Demo() {
               <tbody>
                 {history.map(h => (
                   <tr key={h.id} style={{ borderBottom: '1px solid var(--color-border-tertiary,#eee)' }}>
-                    <td style={{ padding: '5px 8px', fontFamily: 'monospace', fontSize: 10, color: 'var(--color-text-secondary,#666)' }}>
+                    <td style={{ padding: '6px 8px', color: 'var(--color-text-secondary)' }}>
                       {new Date(h.timestamp).toLocaleTimeString()}
                     </td>
                     <td style={{ padding: '5px 8px', textAlign: 'center' }}>{h.images.length}</td>
@@ -1504,9 +1456,9 @@ export default function Demo() {
                     </td>
                     <td style={{ padding: '5px 8px', textAlign: 'center' }}>
                       <span style={{
-                        padding: '2px 6px', borderRadius: 3, fontSize: 10, fontWeight: 600,
-                        background: h.verdict === 'confirmed' ? C.greenBg : C.redBg,
-                        color: h.verdict === 'confirmed' ? C.greenT : C.redT,
+                        padding: '2px 8px', borderRadius: 999, fontSize: 11, fontWeight: 600,
+                        background: h.verdict === 'confirmed' ? C.tealBg : C.redBg,
+                        color: h.verdict === 'confirmed' ? GRADE_INK[0] : GRADE_INK[4],
                       }}>
                         {t('demo.verdict.' + h.verdict)}
                       </span>
@@ -1528,20 +1480,15 @@ export default function Demo() {
 
       {/* Provenance string (TASK-Demo D.7) — what the committee can quote. */}
       {health && (
-        <div style={{ fontSize: 9, color: C.gray, marginTop: 4, fontFamily: 'monospace' }}>
+        <div style={{ fontSize: 11, color: 'var(--color-text-tertiary)', marginTop: 4 }}>
           version {health.version} · git {health.git_sha || 'n/a'} · checkpoint {health.checkpoint}
           {health.checkpoint_loaded ? '' : ' (not loaded)'} · {health.device}
         </div>
       )}
 
       <div style={{ marginTop: 14 }}>
-        <button onClick={() => reset()} style={{
-          fontSize: 10, padding: '4px 10px', background: 'transparent',
-          color: 'var(--color-text-secondary,#666)',
-          border: '1px solid var(--color-border-secondary,#ccc)',
-          borderRadius: 4, cursor: 'pointer',
-        }}>
-          ↺ Reset case
+        <button onClick={() => reset()} className="btn btn-quiet btn-sm">
+          Reset case
         </button>
       </div>
     </div>

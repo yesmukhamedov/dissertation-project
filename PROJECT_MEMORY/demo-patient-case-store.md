@@ -55,8 +55,9 @@ Relabeling buffer): сколько пациентов, снимков, прог�
   ~30 PNG по 512 px давало отчёт на 10 МБ вместо ~300 КБ.
 
 Язык отчёта следует переключателю дашборда (`kz` → `kk`). Кириллица требует TrueType —
-встроенные шрифты reportlab её не содержат, поэтому `_register_fonts()` ищет DejaVu (лежит
-внутри matplotlib в venv) или Arial и лишь в крайнем случае откатывается на Helvetica.
+встроенные шрифты reportlab её не содержат, поэтому `_register_fonts()` берёт Golos Text из
+`server/app/fonts/` (с 2026-09-21, см. [[demo-design-system]]), затем DejaVu (внутри matplotlib
+в venv) или Arial и лишь в крайнем случае откатывается на Helvetica.
 
 Правила, которые легко нарушить:
 - запись всегда **best-effort** — `_case_write()` в `main.py` глушит ошибки, потому что упавшая

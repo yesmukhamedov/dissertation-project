@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { C } from './data';
 import { useLang } from './i18n';
 import { LangSwitcher, ModeSwitcher } from './components';
 import Overview from './tabs/Overview';
@@ -25,6 +24,34 @@ import ValComputational from './tabs/ValComputational';
 import Publications from './tabs/Publications';
 
 const MOBILE_BREAKPOINT = 1024;
+
+// Brand mark: a fundus disc with the optic disc on the nasal side, drawn in
+// the report's grade-0 teal on cobalt — the two hues the whole app is built on.
+function BrandMark() {
+  return (
+    <svg className="brand-mark" viewBox="0 0 26 26" aria-hidden="true">
+      <circle cx="13" cy="13" r="12" fill="#2340B8" />
+      <circle cx="13" cy="13" r="8.2" fill="none" stroke="#fff" strokeOpacity="0.35" strokeWidth="1" />
+      <circle cx="17.2" cy="11.6" r="2.6" fill="#fff" />
+      <circle cx="10" cy="13.6" r="1.3" fill="#9FB4F5" />
+    </svg>
+  );
+}
+
+function Brand({ t }) {
+  return (
+    <div className="brand">
+      <BrandMark />
+      <div style={{ minWidth: 0 }}>
+        <div className="brand-name">
+          <span className="brand-long">{t('brand.name')}</span>
+          <span className="brand-short">{t('brand.short')}</span>
+        </div>
+        <div className="brand-sub">{t('brand.sub')}</div>
+      </div>
+    </div>
+  );
+}
 
 function getNav(t) {
   return [
@@ -160,7 +187,7 @@ export default function App() {
             <span /><span /><span />
           </button>
         )}
-        <div className="topbar-title">DR DASHBOARD</div>
+        <div className="topbar-title"><Brand t={t} /></div>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           <ModeSwitcher mode={mode} setMode={setMode} />
           <LangSwitcher />
@@ -177,33 +204,25 @@ export default function App() {
       {/* Sidebar (full mode only) */}
       {!isLite && (
         <nav className={sidebarClass}>
-          <div style={{ padding: '0 12px 14px 12px', borderBottom: '1px solid var(--color-border-tertiary,#e5e5e3)', marginBottom: 8 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: C.teal, letterSpacing: '0.03em' }}>DR DASHBOARD</div>
-            <div style={{ fontSize: 9, color: 'var(--color-text-secondary,#999)', marginTop: 2 }}>PhD Dissertation Defense</div>
-            <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div className="sidebar-head">
+            <Brand t={t} />
+            <div style={{ marginTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
               <ModeSwitcher mode={mode} setMode={setMode} />
               <LangSwitcher />
             </div>
           </div>
           {NAV.map((item, i) => {
             if (item.type === 'group') {
-              return (
-                <div key={i} style={{ padding: '8px 12px 3px 12px', fontSize: 9, fontWeight: 700, color: 'var(--color-text-secondary,#999)', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 4 }}>
-                  {item.label}
-                </div>
-              );
+              return <div key={i} className="nav-group">{item.label}</div>;
             }
             const isActive = tab === item.id;
             return (
-              <button key={item.id} onClick={() => handleNavClick(item.id)} style={{
-                display: 'block', width: '100%', textAlign: 'left',
-                padding: `5px ${item.indent ? '12px' : '12px'} 5px ${item.indent ? '20px' : '12px'}`,
-                fontSize: 11, fontWeight: isActive ? 600 : 400,
-                color: isActive ? C.tealT : 'var(--color-text-primary,#444)',
-                background: isActive ? C.tealBg : 'transparent',
-                border: 'none', borderLeft: isActive ? `3px solid ${C.teal}` : '3px solid transparent',
-                cursor: 'pointer', lineHeight: 1.4,
-              }}>
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                aria-current={isActive ? 'page' : undefined}
+                className={'nav-item' + (item.indent ? ' indent' : '') + (isActive ? ' active' : '')}
+              >
                 {item.label}
               </button>
             );

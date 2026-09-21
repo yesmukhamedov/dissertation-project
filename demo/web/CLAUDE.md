@@ -52,7 +52,8 @@ The chart scripts (`generate_charts_*.py`) and the JSONs under `public/results/{
 
 ## Key Data Constants in data.js
 
-- `C` — colour palette (blue/teal/coral/purple/amber/gray/green/red + backgrounds + text variants)
+- `C` — colour palette (blue/teal/coral/purple/amber/gray/green/red + backgrounds + text variants), retuned to the design tokens; keys unchanged
+- `GRADE_COLORS`, `GRADE_INK` — ICDR grade ramp 0→4 (fill / text); mirrored by `--grade-*` in `index.css` and `_GRADE*` in `server/app/report.py`
 - `CONFIGS` (A–D), `CONFIG_DELTAS` — Experiment 1 results + paired differences with 95% CI
 - `ABL` (8 levels), `STAGE_CONTRIB` — Experiment 2 cumulative ablation + per-stage marginal Δ vs the 2·σ_fold band
 - `CLAHE1`, `CLAHE2`, `CLAHE_WF1`, `CLAHE_CLIP`, `CLAHE_THRESH`, `CLAHE_HELDOUT` — joint CLAHE grid (8×5) + held-out confirmation
@@ -78,8 +79,19 @@ The chart scripts (`generate_charts_*.py`) and the JSONs under `public/results/{
 ## Design Decisions
 
 - All inline styles (CSS-in-JS). No external CSS framework. **The one exception is
-  `src/index.css`**, which carries the shell (sidebar/topbar/drawer) and the whole
-  responsive layer — see *Responsive / mobile* below.
+  `src/index.css`**, which carries the design tokens, the shell (sidebar/topbar/drawer),
+  the demo's own classes (`.btn*`, `.eye-frame`, `.grade-scale`, `.result-head`, `.fact`)
+  and the whole responsive layer — see *Responsive / mobile* below.
+- **Design tokens** are CSS variables on `:root` in `index.css`. Inline styles read
+  `var(--color-text-secondary)` / `--color-background-secondary` / `--color-border-*`, so
+  change colours there, not per tab. Interface = cobalt `--cobalt`; clinical data = the ICDR
+  ramp `--grade-0…4`. Typeface: Golos Text (Google Fonts link in `public/index.html`; the PDF
+  bundles the same family). No all-caps labels, no monospace data labels, no emoji icons.
+- **Signature element**: the ICDR grade scale (`GradeScale` in `Demo.js`), also drawn in the
+  PDF report. Keep the two in step.
+- `Sec` takes an optional `step` number — only for real sequences (the demo's four steps).
+- The mode chip keeps the words **Lite / Full**: invitations sent to reviewing
+  ophthalmologists tell them to switch to "Full".
 - No external charting library — all charts are hand-rolled divs.
 - No status badges/labels — everything presented as completed work. All 7 hypotheses are confirmed, so no `◐ Partial` marker is in use; the caveats live in the section notes instead (H-7's thin Messidor-2 margin, the g_ratio inversions, NC-14).
 - Tab IDs: exph1, exph2, exph3, exph4, exph5, exph6, exph7. Note the tab labels do not map one-to-one onto hypothesis numbers (exph3 → H-4/APTOS, exph4 → Exp 5 external clinical sets). **H-3 is not dropped** — domain distance (MMD/KL) is measured and confirmed; the data lives in `DOMAIN_DIST` but has no dedicated tab yet.

@@ -4,18 +4,25 @@ import { C } from './data';
 import { useLang } from './i18n';
 
 export function Card({ label, value, delta, color, sub }) {
-  const bg = C[color + 'Bg'] || C.grayBg;
-  const tx = C[color + 'T'] || C.grayT;
+  // A figure, not a tile: the colour lives in a short rule above the number,
+  // so a row of five metrics reads as one measured line rather than a
+  // patchwork of pastel boxes.
+  const accent = C[color] || C.gray;
   return (
-    <div className="metric-card" style={{ background: bg, borderRadius: 10, padding: '11px 14px', flex: 1, minWidth: 110 }}>
-      <div style={{ fontSize: 10, color: tx, opacity: 0.75 }}>{label}</div>
-      <div style={{ fontSize: 20, fontWeight: 600, color: tx, marginTop: 2 }}>{value}</div>
+    <div className="metric-card" style={{
+      flex: 1, minWidth: 110, padding: '10px 14px 12px',
+      background: 'var(--color-background-primary)',
+      border: '1px solid var(--color-border-tertiary)', borderRadius: 10,
+      boxShadow: `inset 0 3px 0 ${accent}`,
+    }}>
+      <div style={{ fontSize: 11, color: 'var(--color-text-secondary)', marginTop: 2 }}>{label}</div>
+      <div style={{ fontSize: 21, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-text-primary)', marginTop: 3 }}>{value}</div>
       {delta && (
-        <div style={{ fontSize: 10, color: (delta.includes('✓') || delta.includes('+')) ? C.green : C.red, marginTop: 1 }}>
+        <div style={{ fontSize: 11, fontWeight: 500, color: (delta.includes('✓') || delta.includes('+')) ? C.green : C.red, marginTop: 1 }}>
           {delta}
         </div>
       )}
-      {sub && <div style={{ fontSize: 9, color: tx, opacity: 0.5, marginTop: 1 }}>{sub}</div>}
+      {sub && <div style={{ fontSize: 10.5, color: 'var(--color-text-tertiary)', marginTop: 2 }}>{sub}</div>}
     </div>
   );
 }
@@ -23,9 +30,10 @@ export function Card({ label, value, delta, color, sub }) {
 export function Note({ children }) {
   return (
     <div style={{
-      fontSize: 11, color: 'var(--color-text-secondary,#666)',
-      padding: '8px 12px', background: 'var(--color-background-secondary,#f7f7f5)',
-      borderRadius: 7, marginTop: 8, lineHeight: 1.6,
+      fontSize: 12, color: 'var(--color-text-secondary)',
+      padding: '9px 14px', background: 'var(--color-background-secondary)',
+      borderLeft: '2px solid var(--color-border-primary)',
+      borderRadius: '0 8px 8px 0', marginTop: 10, lineHeight: 1.6,
     }}>
       {children}
     </div>
@@ -38,12 +46,14 @@ export function Hbar({ items, maxV, height = 20 }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
       {items.map((it, i) => (
         <div key={i} className="hbar-row" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div className="hbar-label" style={{ fontSize: 10, color: 'var(--color-text-secondary,#666)', minWidth: 150, textAlign: 'right', lineHeight: 1.2 }}>
+          <div className="hbar-label" style={{ fontSize: 11, color: 'var(--color-text-secondary)', minWidth: 150, textAlign: 'right', lineHeight: 1.25 }}>
             {it.label}
           </div>
-          <div style={{ flex: 1, height, background: 'var(--color-background-secondary,#eeede9)', borderRadius: 3, position: 'relative', overflow: 'hidden' }}>
-            <div style={{ width: `${(it.v / mx) * 100}%`, height: '100%', background: it.color || C.blue, borderRadius: 3, opacity: 0.8 }} />
-            <span style={{ position: 'absolute', right: 5, top: '50%', transform: 'translateY(-50%)', fontSize: 9, fontWeight: 500 }}>
+          <div className="keep-row" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ flex: 1, height, background: 'var(--color-background-secondary)', borderRadius: 3, overflow: 'hidden' }}>
+              <div style={{ width: `${(it.v / mx) * 100}%`, height: '100%', background: it.color || C.blue, borderRadius: 3 }} />
+            </div>
+            <span style={{ width: 40, flexShrink: 0, fontSize: 11, fontWeight: 600, textAlign: 'right' }}>
               {it.v.toFixed ? it.v.toFixed(3) : it.v}
             </span>
           </div>
@@ -69,13 +79,13 @@ export function Paired({ items, c1 = C.gray, c2 = C.teal, l1 = 'Baseline', l2 = 
         <div key={i} style={{ marginBottom: 8 }}>
           <div style={{ fontSize: 10, color: 'var(--color-text-secondary,#666)', marginBottom: 2 }}>{it.label}</div>
           {[{ v: it.a, c: c1 }, { v: it.b, c: c2 }].map((b, bi) => (
-            <div key={bi} style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 1 }}>
-              <div style={{ flex: 1, height: 16, background: 'var(--color-background-secondary,#eeede9)', borderRadius: 3, position: 'relative', overflow: 'hidden' }}>
-                <div style={{ width: `${(b.v / mx) * 100}%`, height: '100%', background: b.c, borderRadius: 3, opacity: 0.8 }} />
-                <span style={{ position: 'absolute', right: 4, top: '50%', transform: 'translateY(-50%)', fontSize: 9, fontWeight: 500 }}>
-                  {b.v.toFixed(3)}
-                </span>
+            <div key={bi} className="keep-row" style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+              <div style={{ flex: 1, height: 14, background: 'var(--color-background-secondary)', borderRadius: 3, overflow: 'hidden' }}>
+                <div style={{ width: `${(b.v / mx) * 100}%`, height: '100%', background: b.c, borderRadius: 3 }} />
               </div>
+              <span style={{ width: 40, flexShrink: 0, fontSize: 11, fontWeight: 600, textAlign: 'right' }}>
+                {b.v.toFixed(3)}
+              </span>
             </div>
           ))}
         </div>
@@ -84,15 +94,16 @@ export function Paired({ items, c1 = C.gray, c2 = C.teal, l1 = 'Baseline', l2 = 
   );
 }
 
-export function Sec({ title, note, children }) {
+export function Sec({ title, note, step, children }) {
   return (
-    <div style={{ marginBottom: 24 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-        <h3 style={{ fontSize: 14, fontWeight: 600, margin: 0, color: 'var(--color-text-primary,#333)' }}>{title}</h3>
-      </div>
+    <section className="sec">
+      <h3 className="sec-title">
+        {step != null && <span className="sec-step" aria-hidden="true">{step}</span>}
+        <span>{title}</span>
+      </h3>
       {children}
       {note && <Note>{note}</Note>}
-    </div>
+    </section>
   );
 }
 
@@ -101,9 +112,9 @@ export function DataTable({ headers, rows, highlightRow }) {
     <div className="table-scroll" style={{ overflowX: 'auto' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11 }}>
         <thead>
-          <tr style={{ borderBottom: '2px solid var(--color-border-secondary,#ccc)' }}>
+          <tr style={{ borderBottom: '1.5px solid var(--color-text-primary)' }}>
             {headers.map((h, i) => (
-              <th key={i} style={{ padding: '5px 8px', textAlign: i === 0 ? 'left' : 'center', fontWeight: 600, color: 'var(--color-text-primary,#333)' }}>
+              <th key={i} style={{ padding: '6px 8px', textAlign: i === 0 ? 'left' : 'center', fontWeight: 600, fontSize: 11, color: 'var(--color-text-secondary)' }}>
                 {h}
               </th>
             ))}
@@ -119,7 +130,7 @@ export function DataTable({ headers, rows, highlightRow }) {
             }}>
               {row.map((cell, j) => (
                 <td key={j} style={{
-                  padding: '5px 8px',
+                  padding: '6px 8px',
                   textAlign: j === 0 ? 'left' : 'center',
                   fontWeight: j === 0 ? 500 : 400,
                   color: typeof cell === 'string' && cell.includes('✓') ? C.teal : 'inherit',
@@ -244,36 +255,36 @@ export function ImageWithTooltip({ src, alt, tooltip, figNum, caption, style }) 
 export function LangSwitcher() {
   const { lang, setLang } = useLang();
   const label = lang === 'en' ? 'EN' : 'ҚАЗ';
+  const other = lang === 'en' ? 'ҚАЗ' : 'EN';
   const next = lang === 'en' ? 'kz' : 'en';
   return (
     <button
       type="button"
       className="chip-toggle"
       onClick={() => setLang(next)}
-      title={`Language: ${label} (click to switch)`}
-      aria-label={`Language: ${label}, click to switch`}
+      title={`Switch to ${other}`}
+      aria-label={`Language: ${label}. Switch to ${other}`}
     >
-      <span aria-hidden="true">🌐</span>
       <span>{label}</span>
+      <span className="chip-key" aria-hidden="true">/ {other}</span>
     </button>
   );
 }
 
 export function ModeSwitcher({ mode, setMode }) {
+  // Both names stay visible, current one in ink: invitations sent to the
+  // reviewing ophthalmologists tell them to switch to "Full" by that word.
   const isLite = mode === 'lite';
-  const icon = isLite ? '⚡' : '📚';
-  const label = isLite ? 'Lite' : 'Full';
-  const next = isLite ? 'full' : 'lite';
   return (
     <button
       type="button"
       className="chip-toggle"
-      onClick={() => setMode(next)}
-      title={`Mode: ${label} (click to switch)`}
-      aria-label={`Mode: ${label}, click to switch`}
+      onClick={() => setMode(isLite ? 'full' : 'lite')}
+      title={isLite ? 'Full: every experiment and result of the study' : 'Lite: the live demo alone'}
+      aria-label={`View: ${isLite ? 'Lite' : 'Full'}. Switch to ${isLite ? 'Full' : 'Lite'}`}
     >
-      <span aria-hidden="true">{icon}</span>
-      <span>{label}</span>
+      <span className={isLite ? undefined : 'chip-key'}>Lite</span>
+      <span className={isLite ? 'chip-key' : undefined}>Full</span>
     </button>
   );
 }

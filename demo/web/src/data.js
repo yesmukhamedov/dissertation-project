@@ -9,15 +9,23 @@
 // Where a panel shows a single "baseline vs pipeline" pair, it is C vs D (EfficientNet-B3),
 // which is the arm used for all transfer/device/explainability experiments.
 
-// Colour palette
+// Colour palette — cool slate + slit-lamp cobalt, with warm hues kept for the
+// clinical side (coral/amber/red read as "referable" / "worse"). Keys and their
+// meanings are unchanged: teal = pipeline arm, gray = baseline arm.
 export const C = {
-  blue: '#378ADD', teal: '#1D9E75', coral: '#D85A30', purple: '#7F77DD',
-  amber: '#EF9F27', gray: '#888780', green: '#639922', red: '#E24B4A',
-  blueBg: '#E6F1FB', tealBg: '#E1F5EE', coralBg: '#FAECE7', purpleBg: '#EEEDFE',
-  amberBg: '#FAEEDA', grayBg: '#F1EFE8', greenBg: '#EAF3DE', redBg: '#FCEBEB',
-  blueT: '#0C447C', tealT: '#085041', coralT: '#712B13', purpleT: '#3C3489',
-  amberT: '#633806', grayT: '#444441', greenT: '#27500A', redT: '#791F1F',
+  blue: '#2340B8', teal: '#2F7A70', coral: '#C4521F', purple: '#5B4FB0',
+  amber: '#C98A1B', gray: '#8793A0', green: '#4E7D2E', red: '#A3262A',
+  blueBg: '#E8ECFA', tealBg: '#E3F0EE', coralBg: '#F8E9E1', purpleBg: '#ECEAF7',
+  amberBg: '#F8EFDC', grayBg: '#EEF1F3', greenBg: '#E7F0DF', redBg: '#F9ECEC',
+  blueT: '#172C86', tealT: '#1B4B45', coralT: '#6E2A0E', purpleT: '#342B7A',
+  amberT: '#5E3D07', grayT: '#3B4652', greenT: '#28451A', redT: '#6B1417',
 };
+
+// ICDR grade ramp (0 No DR … 4 PDR): healthy-retina teal to haemorrhage red.
+// Mirrored by --grade-0…4 in index.css and by _GRADE in server/app/report.py.
+export const GRADE_COLORS = ['#3E7C74', '#8A9A3B', '#C98A1B', '#C4521F', '#9E1F24'];
+// The same hues darkened to ≥4.5:1 on white, for grade names set as text.
+export const GRADE_INK = ['#2C5F58', '#5A6620', '#855709', '#973A11', '#7E1519'];
 
 // Exp 1: 4 configurations (A–D) — results/tables/TAB-4.2_exp1_factorial.md
 // EyePACS 100% (n=35,126), 5-fold patient-level CV. mean ± std.
