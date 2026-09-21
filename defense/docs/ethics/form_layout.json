@@ -1,0 +1,1705 @@
+{
+ "ru": {
+  "source_file": "Заключение_Этической_комиссии_бланк_рус.docx",
+  "font": "Times New Roman",
+  "default_pt": 10.0,
+  "page": {
+   "width": 11906,
+   "height": 16838,
+   "margins": {
+    "top": 1134,
+    "right": 850,
+    "bottom": 1134,
+    "left": 1700,
+    "header": 708,
+    "footer": 708,
+    "gutter": 0
+   }
+  },
+  "body": [
+   {
+    "type": "p",
+    "jc": "center",
+    "runs": [
+     [
+      "ЗАКЛЮЧЕНИЕ",
+      {
+       "b": true,
+       "pt": 12.0
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "runs": []
+   },
+   {
+    "type": "p",
+    "jc": "center",
+    "runs": [
+     [
+      "Этической комиссии",
+      {
+       "b": true,
+       "pt": 12.0
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "center",
+    "spacing": {
+     "after": "300"
+    },
+    "runs": [
+     [
+      "АО «Международный университет информационных технологий»",
+      {
+       "b": true,
+       "pt": 12.0
+      }
+     ]
+    ]
+   },
+   {
+    "type": "tbl",
+    "width": 9360,
+    "grid": [
+     4390,
+     4970
+    ],
+    "cell_margin": {
+     "left": 10,
+     "right": 10
+    },
+    "border": {
+     "top": {
+      "val": "single",
+      "sz": 4
+     },
+     "left": {
+      "val": "single",
+      "sz": 4
+     },
+     "bottom": {
+      "val": "single",
+      "sz": 4
+     },
+     "right": {
+      "val": "single",
+      "sz": 4
+     },
+     "insideH": {
+      "val": "single",
+      "sz": 4
+     },
+     "insideV": {
+      "val": "single",
+      "sz": 4
+     }
+    },
+    "rows": [
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "ФИО Докторанта",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "ru-RU"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Специальность (о",
+            {
+             "pt": 11.0,
+             "lang": "ru-RU"
+            }
+           ],
+           [
+            "бразовательная программа",
+            {
+             "pt": 11.0
+            }
+           ],
+           [
+            ")",
+            {
+             "pt": 11.0,
+             "lang": "ru-RU"
+            }
+           ],
+           [
+            " докторантуры",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Период обучения в докторантуре",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "ru-RU"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Тема диссертаци",
+            {
+             "pt": 11.0
+            }
+           ],
+           [
+            "и",
+            {
+             "pt": 11.0,
+             "lang": "ru-RU"
+            }
+           ],
+           [
+            " (номер приказа, дата утверждения)",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "ru-RU"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Данные о научных консультантах: ФИО (при наличии), ученая степень и звание, должность, место работы, гражданство",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Объекты исследования",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Нарушения в процессе планирования, оценки, отбора и проведения научных исследований",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Нарушения не выявлены",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Нарушения в процессе распространения результатов научных исследований",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Нарушения не выявлены",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 4390,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "Каким образом проводилась защита прав, безопасности и благополучия объектов исследования (в случае наличия объектов живой природы и среды обитания)",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4970,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0
+          },
+          "runs": [
+           [
+            "В работе объекты живой природы и среды обитания не исследовались",
+            {
+             "pt": 11.0
+            }
+           ]
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "both",
+    "spacing": {
+     "before": "300",
+     "after": "300"
+    },
+    "mark": {
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "      Научные исследования докторанта ",
+      {
+       "pt": 12.0
+      }
+     ],
+     [
+      "____ ",
+      {
+       "b": true,
+       "pt": 12.0,
+       "lang": "ru-RU"
+      }
+     ],
+     [
+      "на тему «",
+      {
+       "pt": 12.0
+      }
+     ],
+     [
+      "_______________",
+      {
+       "pt": 12.0,
+       "lang": "ru-RU"
+      }
+     ],
+     [
+      "»",
+      {
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ],
+     [
+      " полностью соответствует этическим нормам и может быть реализовано в нынешнем виде.",
+      {
+       "pt": 12.0
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "both",
+    "spacing": {
+     "before": "300",
+     "after": "300"
+    },
+    "mark": {
+     "lang": "kk-KZ"
+    },
+    "runs": []
+   },
+   {
+    "type": "p",
+    "runs": [
+     [
+      "Председатель Этической комиссии",
+      {
+       "b": true,
+       "pt": 12.0
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "spacing": {
+     "after": "300"
+    },
+    "runs": [
+     [
+      "по оценке научных исследований АО «МУИТ»",
+      {
+       "b": true,
+       "pt": 12.0
+      }
+     ],
+     [
+      "      _________________  Дузбаев Н.Т.",
+      {
+       "pt": 12.0
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "mark": {
+     "pt": 12.0,
+     "lang": "ru-RU"
+    },
+    "runs": [
+     [
+      "Секретарь",
+      {
+       "b": true,
+       "pt": 12.0
+      }
+     ],
+     [
+      "                                                                  ",
+      {
+       "pt": 12.0
+      }
+     ],
+     [
+      "     ",
+      {
+       "pt": 12.0,
+       "lang": "ru-RU"
+      }
+     ],
+     [
+      " _________________  Есмурзаева А.Б.",
+      {
+       "pt": 12.0
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "mark": {
+     "pt": 12.0,
+     "lang": "ru-RU"
+    },
+    "runs": []
+   },
+   {
+    "type": "p",
+    "mark": {
+     "pt": 12.0,
+     "lang": "ru-RU"
+    },
+    "runs": []
+   },
+   {
+    "type": "p",
+    "mark": {
+     "lang": "ru-RU"
+    },
+    "runs": [
+     [
+      "Дата выдачи: _______________ 2026 года",
+      {
+       "pt": 12.0,
+       "lang": "ru-RU"
+      }
+     ]
+    ]
+   }
+  ]
+ },
+ "kz": {
+  "source_file": "Заключение_Этической_комиссии_бланк_каз.docx",
+  "font": "Times New Roman",
+  "default_pt": 10.0,
+  "page": {
+   "width": 11906,
+   "height": 16838,
+   "margins": {
+    "top": 1134,
+    "right": 850,
+    "bottom": 1134,
+    "left": 1700,
+    "header": 708,
+    "footer": 708,
+    "gutter": 0
+   }
+  },
+  "body": [
+   {
+    "type": "p",
+    "jc": "center",
+    "mark": {
+     "b": true,
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "Халықаралық ақпараттық технологиялар университетінің ",
+      {
+       "b": true,
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "center",
+    "mark": {
+     "b": true,
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "Әдеп комиссиясының ",
+      {
+       "b": true,
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "center",
+    "mark": {
+     "b": true,
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": []
+   },
+   {
+    "type": "p",
+    "jc": "center",
+    "mark": {
+     "b": true,
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "ҚОРЫТЫНДЫСЫ",
+      {
+       "b": true,
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "center",
+    "mark": {
+     "lang": "kk-KZ"
+    },
+    "runs": []
+   },
+   {
+    "type": "tbl",
+    "width": 9351,
+    "grid": [
+     704,
+     4111,
+     4536
+    ],
+    "cell_margin": {
+     "left": 10,
+     "right": 10
+    },
+    "border": {
+     "top": {
+      "val": "single",
+      "sz": 4
+     },
+     "left": {
+      "val": "single",
+      "sz": 4
+     },
+     "bottom": {
+      "val": "single",
+      "sz": 4
+     },
+     "right": {
+      "val": "single",
+      "sz": 4
+     },
+     "insideH": {
+      "val": "single",
+      "sz": 4
+     },
+     "insideV": {
+      "val": "single",
+      "sz": 4
+     }
+    },
+    "rows": [
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "1",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Докторанттың Т.А.Ә.",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "2",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Докторантура мамандығы (білім беру бағдарламасы)",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "3",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Докторантурада оқу кезеңі",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "4",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Диссертация тақырыбы, бекіту мерзімі",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "5",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Ғылыми кеңесшілер туралы деректер – Т.А.Ә. (болған жағдайда), жұмыс орны және лауазымы, ғылыми дәрежелері, азаматтығы",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "6",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Зерттеу объектілері",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "7",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Ғылыми зерттеулерді жоспарлау, бағалау, іріктеу және жүргізу процесіндегі бұзушылықтар",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Бұзушылықтар анықталмады",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "8",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Ғылыми зерттеу нәтижелерін тарату процесіндегі бұзушылықтар",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "cells": [
+       {
+        "width": 704,
+        "valign": null,
+        "margin": null,
+        "paragraphs": [
+         {
+          "jc": "center",
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "9",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       },
+       {
+        "width": 4111,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Зерттеу объектілерінің (жанды табиғат пен тіршілік ортасының объектілері болғанда) құқықтарын, қауіпсіздігі мен саулығын қорғау қалай жүргізілді?",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         },
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": []
+         }
+        ]
+       },
+       {
+        "width": 4536,
+        "valign": "center",
+        "margin": {
+         "top": 100,
+         "left": 150,
+         "bottom": 100,
+         "right": 150
+        },
+        "paragraphs": [
+         {
+          "mark": {
+           "pt": 11.0,
+           "lang": "kk-KZ"
+          },
+          "runs": [
+           [
+            "Бұзушылықтар анықталмады",
+            {
+             "pt": 11.0,
+             "lang": "kk-KZ"
+            }
+           ]
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "both",
+    "spacing": {
+     "before": "300",
+     "after": "300"
+    },
+    "mark": {
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "     ",
+      {
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "both",
+    "spacing": {
+     "before": "300",
+     "after": "300"
+    },
+    "mark": {
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "Докторанттың ______________ «______________» тақырыбындағы ғылыми зерттеулері әдеп нормаларына толық сәйкес келеді және қазіргі нұсқасында жүзеге асырылуы мүмкін.",
+      {
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "jc": "both",
+    "spacing": {
+     "before": "300",
+     "after": "300"
+    },
+    "mark": {
+     "lang": "kk-KZ"
+    },
+    "runs": []
+   },
+   {
+    "type": "p",
+    "spacing": {
+     "after": "300"
+    },
+    "mark": {
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "Әдеп комиссиясының төрағасы",
+      {
+       "b": true,
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ],
+     [
+      "      _________________  Дузбаев Н.Т.",
+      {
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "mark": {
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "Әдеп комиссиясының хатшысы",
+      {
+       "b": true,
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ],
+     [
+      "      _________________  Есмурзаева А.Б.",
+      {
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   },
+   {
+    "type": "p",
+    "mark": {
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": []
+   },
+   {
+    "type": "p",
+    "mark": {
+     "pt": 12.0,
+     "lang": "kk-KZ"
+    },
+    "runs": []
+   },
+   {
+    "type": "p",
+    "mark": {
+     "lang": "kk-KZ"
+    },
+    "runs": [
+     [
+      "Берілген күні: _______________ 2026 жыл",
+      {
+       "pt": 12.0,
+       "lang": "kk-KZ"
+      }
+     ]
+    ]
+   }
+  ]
+ }
+}

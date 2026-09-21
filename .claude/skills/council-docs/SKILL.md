@@ -156,6 +156,25 @@ is the voice, never the protocol.
 (`defense/docs/reviews/expert/expert_review_*_ru.md`), since there are as many
 reviews as there are doctors in the TOML.
 
+## Ethics committee conclusion — generated from IITU's own blank
+
+The conclusion (Appendix 2, genre `17-ethics-committee-conclusion`) is the second deliverable that
+does **not** go through `md2gost.py`: its look is dictated by the blank IITU issues, not by the GOST
+volume rules (margins there are 30/15/20/20 mm, table text 11 pt, no page numbers). Everything sits in
+`defense/docs/ethics/`:
+
+```powershell
+python defense/docs/ethics/build_ethics_conclusion.py [--only ru|kz] [--no-pdf]
+```
+
+`parse_form.py` turned the two blanks into `form_layout.json` (blanks live outside the repository in
+`D:\personal\phd\council\`, read-only; rerun the parser only if IITU changes the form).
+`build_ethics_conclusion.py` rebuilds the document from that spec, reading the candidate, programme,
+topic, order and consultants from `council/METADATA.toml`; the two texts the registry lacks live in
+`conclusion.toml`. An empty value prints as `<…>`. The build exits non-zero unless each document is
+exactly one page. `--blank` reproduces the blank verbatim for a fidelity check. Layout and
+filling rules: `council/en/17-ethics-committee-conclusion/form-layout.md`.
+
 ## Layout of `defense/docs/`
 
 The two assembled manuscripts stay at the top level; everything that feeds them

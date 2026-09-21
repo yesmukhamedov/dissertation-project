@@ -7,6 +7,11 @@
 > tick-box, and it did not mention that the conclusion is not always issued by IITU.
 > Prepared at the [[../01-defense-process/preliminary-review|preliminary review]] stage.
 
+> **Update 2026-09-19 — IITU's own blank has been obtained** and parsed: see [[form-layout]]. It prints
+> **9 rows** (no AI rows 10–12) and names **Дузбаев Н.Т.** as chairman (Есмурзаева А.Б. secretary), so
+> the "12 rows since 2026" and "chairman Найзабаева" statements below reflect the peer samples, not
+> the blank. Row wording and the Kazakh committee name in the blank also differ from the tables below.
+
 ## Who issues it
 
 | | Samples | When |
@@ -136,8 +141,12 @@ Two signatories, chairman first. In the samples the chairman is the council's ow
 
 ## Ours
 
-**Not yet prepared** — no `ethics_conclusion` exists under `thesis/output/` or `defense/docs/`,
-while all 16 samples have one. It is one of the 11 documents published online before the defense.
+**Draft generated 2026-09-19** in `defense/docs/ethics/` — `ETHICS_CONCLUSION_{RU,KZ}.docx/.pdf`,
+built by `build_ethics_conclusion.py` on the layout of IITU's blank ([[form-layout]]). Rows 1–2, 4–5 come
+from the registry; **row 3 (study period) and row 9 (protection of rights) are `<…>` placeholders**, row 6
+is a short draft in `conclusion.toml`. It is a draft for the commission, not the commission's
+conclusion: no number, date or signature. It is one of the 11 documents published online before the
+defense.
 
 ## Related
 - [[../01-defense-process/preliminary-review]] — the stage at which this is obtained.
