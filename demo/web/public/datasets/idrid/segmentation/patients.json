@@ -1,0 +1,1197 @@
+[
+  {
+    "patient": "p01",
+    "grade": null,
+    "colour_distance": 0.351,
+    "left": {
+      "id": "IDRiD_seg_p01_L_48",
+      "source": "48",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p01_L_48.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p01_L_48_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        89.7,
+        141.5
+      ],
+      "od_radius": 31.5
+    },
+    "right": {
+      "id": "IDRiD_seg_p01_R_36",
+      "source": "36",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p01_R_36.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p01_R_36_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        347.2,
+        178.2
+      ],
+      "od_radius": 31.5
+    }
+  },
+  {
+    "patient": "p02",
+    "grade": null,
+    "colour_distance": 0.401,
+    "left": {
+      "id": "IDRiD_seg_p02_L_16",
+      "source": "16",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p02_L_16.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p02_L_16_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        158.3,
+        144.1
+      ],
+      "od_radius": 36.4
+    },
+    "right": {
+      "id": "IDRiD_seg_p02_R_15",
+      "source": "15",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p02_R_15.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p02_R_15_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        346.8,
+        178.8
+      ],
+      "od_radius": 35.7
+    }
+  },
+  {
+    "patient": "p03",
+    "grade": null,
+    "colour_distance": 0.45,
+    "left": {
+      "id": "IDRiD_seg_p03_L_33",
+      "source": "33",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p03_L_33.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p03_L_33_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        132.5,
+        176.4
+      ],
+      "od_radius": 32.4
+    },
+    "right": {
+      "id": "IDRiD_seg_p03_R_44",
+      "source": "44",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p03_R_44.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p03_R_44_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        333.9,
+        181.5
+      ],
+      "od_radius": 24.3
+    }
+  },
+  {
+    "patient": "p04",
+    "grade": null,
+    "colour_distance": 0.455,
+    "left": {
+      "id": "IDRiD_seg_p04_L_32",
+      "source": "32",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p04_L_32.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p04_L_32_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        135.2,
+        172.6
+      ],
+      "od_radius": 31.2
+    },
+    "right": {
+      "id": "IDRiD_seg_p04_R_30",
+      "source": "30",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p04_R_30.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p04_R_30_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        353.0,
+        194.0
+      ],
+      "od_radius": 29.6
+    }
+  },
+  {
+    "patient": "p05",
+    "grade": null,
+    "colour_distance": 0.537,
+    "left": {
+      "id": "IDRiD_seg_p05_L_42",
+      "source": "42",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p05_L_42.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p05_L_42_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        125.6,
+        177.6
+      ],
+      "od_radius": 32.7
+    },
+    "right": {
+      "id": "IDRiD_seg_p05_R_34",
+      "source": "34",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p05_R_34.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p05_R_34_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        345.1,
+        161.1
+      ],
+      "od_radius": 29.1
+    }
+  },
+  {
+    "patient": "p06",
+    "grade": null,
+    "colour_distance": 0.561,
+    "left": {
+      "id": "IDRiD_seg_p06_L_26",
+      "source": "26",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p06_L_26.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p06_L_26_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        122.2,
+        162.1
+      ],
+      "od_radius": 33.1
+    },
+    "right": {
+      "id": "IDRiD_seg_p06_R_49",
+      "source": "49",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p06_R_49.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p06_R_49_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        354.3,
+        196.7
+      ],
+      "od_radius": 28.5
+    }
+  },
+  {
+    "patient": "p07",
+    "grade": null,
+    "colour_distance": 0.671,
+    "left": {
+      "id": "IDRiD_seg_p07_L_14",
+      "source": "14",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p07_L_14.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p07_L_14_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        127.1,
+        152.8
+      ],
+      "od_radius": 32.1
+    },
+    "right": {
+      "id": "IDRiD_seg_p07_R_13",
+      "source": "13",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p07_R_13.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p07_R_13_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        339.3,
+        165.5
+      ],
+      "od_radius": 31.3
+    }
+  },
+  {
+    "patient": "p08",
+    "grade": null,
+    "colour_distance": 0.687,
+    "left": {
+      "id": "IDRiD_seg_p08_L_43",
+      "source": "43",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p08_L_43.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p08_L_43_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        133.2,
+        158.1
+      ],
+      "od_radius": 31.7
+    },
+    "right": {
+      "id": "IDRiD_seg_p08_R_27",
+      "source": "27",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p08_R_27.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p08_R_27_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        388.4,
+        168.0
+      ],
+      "od_radius": 30.1
+    }
+  },
+  {
+    "patient": "p09",
+    "grade": null,
+    "colour_distance": 0.824,
+    "left": {
+      "id": "IDRiD_seg_p09_L_24",
+      "source": "24",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p09_L_24.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p09_L_24_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        146.6,
+        158.7
+      ],
+      "od_radius": 30.9
+    },
+    "right": {
+      "id": "IDRiD_seg_p09_R_38",
+      "source": "38",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p09_R_38.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p09_R_38_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        358.1,
+        219.4
+      ],
+      "od_radius": 33.7
+    }
+  },
+  {
+    "patient": "p10",
+    "grade": null,
+    "colour_distance": 0.858,
+    "left": {
+      "id": "IDRiD_seg_p10_L_12",
+      "source": "12",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p10_L_12.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p10_L_12_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        132.7,
+        176.3
+      ],
+      "od_radius": 39.1
+    },
+    "right": {
+      "id": "IDRiD_seg_p10_R_17",
+      "source": "17",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p10_R_17.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p10_R_17_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        347.1,
+        172.2
+      ],
+      "od_radius": 30.3
+    }
+  },
+  {
+    "patient": "p11",
+    "grade": null,
+    "colour_distance": 0.964,
+    "left": {
+      "id": "IDRiD_seg_p11_L_37",
+      "source": "37",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p11_L_37.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p11_L_37_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        122.2,
+        161.6
+      ],
+      "od_radius": 30.9
+    },
+    "right": {
+      "id": "IDRiD_seg_p11_R_07",
+      "source": "07",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p11_R_07.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p11_R_07_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        372.1,
+        198.5
+      ],
+      "od_radius": 30.5
+    }
+  },
+  {
+    "patient": "p12",
+    "grade": null,
+    "colour_distance": 0.979,
+    "left": {
+      "id": "IDRiD_seg_p12_L_54",
+      "source": "54",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p12_L_54.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p12_L_54_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        106.9,
+        151.2
+      ],
+      "od_radius": 29.9
+    },
+    "right": {
+      "id": "IDRiD_seg_p12_R_41",
+      "source": "41",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p12_R_41.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p12_R_41_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        339.5,
+        140.0
+      ],
+      "od_radius": 30.9
+    }
+  },
+  {
+    "patient": "p13",
+    "grade": null,
+    "colour_distance": 0.984,
+    "left": {
+      "id": "IDRiD_seg_p13_L_40",
+      "source": "40",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p13_L_40.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p13_L_40_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        130.1,
+        146.2
+      ],
+      "od_radius": 35.8
+    },
+    "right": {
+      "id": "IDRiD_seg_p13_R_20",
+      "source": "20",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p13_R_20.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p13_R_20_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        329.2,
+        181.9
+      ],
+      "od_radius": 34.9
+    }
+  },
+  {
+    "patient": "p14",
+    "grade": null,
+    "colour_distance": 1.014,
+    "left": {
+      "id": "IDRiD_seg_p14_L_52",
+      "source": "52",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p14_L_52.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p14_L_52_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        125.7,
+        162.1
+      ],
+      "od_radius": 33.0
+    },
+    "right": {
+      "id": "IDRiD_seg_p14_R_51",
+      "source": "51",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p14_R_51.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p14_R_51_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        360.8,
+        204.8
+      ],
+      "od_radius": 31.8
+    }
+  },
+  {
+    "patient": "p15",
+    "grade": null,
+    "colour_distance": 1.04,
+    "left": {
+      "id": "IDRiD_seg_p15_L_21",
+      "source": "21",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p15_L_21.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p15_L_21_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        102.5,
+        169.3
+      ],
+      "od_radius": 34.5
+    },
+    "right": {
+      "id": "IDRiD_seg_p15_R_19",
+      "source": "19",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p15_R_19.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p15_R_19_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        353.8,
+        164.0
+      ],
+      "od_radius": 31.8
+    }
+  },
+  {
+    "patient": "p16",
+    "grade": null,
+    "colour_distance": 1.083,
+    "left": {
+      "id": "IDRiD_seg_p16_L_03",
+      "source": "03",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p16_L_03.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p16_L_03_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        81.3,
+        166.9
+      ],
+      "od_radius": 32.9
+    },
+    "right": {
+      "id": "IDRiD_seg_p16_R_01",
+      "source": "01",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p16_R_01.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p16_R_01_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        387.4,
+        167.1
+      ],
+      "od_radius": 31.2
+    }
+  },
+  {
+    "patient": "p17",
+    "grade": null,
+    "colour_distance": 1.266,
+    "left": {
+      "id": "IDRiD_seg_p17_L_31",
+      "source": "31",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p17_L_31.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p17_L_31_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        133.2,
+        154.7
+      ],
+      "od_radius": 28.1
+    },
+    "right": {
+      "id": "IDRiD_seg_p17_R_45",
+      "source": "45",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p17_R_45.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p17_R_45_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        275.7,
+        178.3
+      ],
+      "od_radius": 23.6
+    }
+  },
+  {
+    "patient": "p18",
+    "grade": null,
+    "colour_distance": 1.275,
+    "left": {
+      "id": "IDRiD_seg_p18_L_10",
+      "source": "10",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p18_L_10.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p18_L_10_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        67.0,
+        114.9
+      ],
+      "od_radius": 31.2
+    },
+    "right": {
+      "id": "IDRiD_seg_p18_R_22",
+      "source": "22",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p18_R_22.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p18_R_22_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        345.0,
+        189.3
+      ],
+      "od_radius": 29.0
+    }
+  },
+  {
+    "patient": "p19",
+    "grade": null,
+    "colour_distance": 1.281,
+    "left": {
+      "id": "IDRiD_seg_p19_L_29",
+      "source": "29",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p19_L_29.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p19_L_29_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        129.8,
+        165.8
+      ],
+      "od_radius": 32.9
+    },
+    "right": {
+      "id": "IDRiD_seg_p19_R_08",
+      "source": "08",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p19_R_08.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p19_R_08_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        366.1,
+        176.5
+      ],
+      "od_radius": 30.6
+    }
+  },
+  {
+    "patient": "p20",
+    "grade": null,
+    "colour_distance": 1.419,
+    "left": {
+      "id": "IDRiD_seg_p20_L_28",
+      "source": "28",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p20_L_28.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p20_L_28_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        144.1,
+        173.2
+      ],
+      "od_radius": 31.8
+    },
+    "right": {
+      "id": "IDRiD_seg_p20_R_05",
+      "source": "05",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p20_R_05.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p20_R_05_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        352.9,
+        164.8
+      ],
+      "od_radius": 31.3
+    }
+  },
+  {
+    "patient": "p21",
+    "grade": null,
+    "colour_distance": 1.448,
+    "left": {
+      "id": "IDRiD_seg_p21_L_25",
+      "source": "25",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p21_L_25.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p21_L_25_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        130.7,
+        162.9
+      ],
+      "od_radius": 29.6
+    },
+    "right": {
+      "id": "IDRiD_seg_p21_R_47",
+      "source": "47",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p21_R_47.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p21_R_47_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        323.8,
+        144.3
+      ],
+      "od_radius": 38.1
+    }
+  },
+  {
+    "patient": "p22",
+    "grade": null,
+    "colour_distance": 1.598,
+    "left": {
+      "id": "IDRiD_seg_p22_L_02",
+      "source": "02",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p22_L_02.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p22_L_02_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        86.9,
+        151.0
+      ],
+      "od_radius": 30.4
+    },
+    "right": {
+      "id": "IDRiD_seg_p22_R_09",
+      "source": "09",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p22_R_09.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p22_R_09_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        378.7,
+        153.6
+      ],
+      "od_radius": 34.3
+    }
+  },
+  {
+    "patient": "p23",
+    "grade": null,
+    "colour_distance": 1.67,
+    "left": {
+      "id": "IDRiD_seg_p23_L_50",
+      "source": "50",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p23_L_50.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p23_L_50_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        107.2,
+        142.1
+      ],
+      "od_radius": 28.8
+    },
+    "right": {
+      "id": "IDRiD_seg_p23_R_23",
+      "source": "23",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p23_R_23.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p23_R_23_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        326.9,
+        169.4
+      ],
+      "od_radius": 32.0
+    }
+  },
+  {
+    "patient": "p24",
+    "grade": null,
+    "colour_distance": 1.696,
+    "left": {
+      "id": "IDRiD_seg_p24_L_35",
+      "source": "35",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p24_L_35.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p24_L_35_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        129.4,
+        155.3
+      ],
+      "od_radius": 29.3
+    },
+    "right": {
+      "id": "IDRiD_seg_p24_R_18",
+      "source": "18",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p24_R_18.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p24_R_18_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        350.6,
+        169.7
+      ],
+      "od_radius": 32.3
+    }
+  },
+  {
+    "patient": "p25",
+    "grade": null,
+    "colour_distance": 1.713,
+    "left": {
+      "id": "IDRiD_seg_p25_L_53",
+      "source": "53",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p25_L_53.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p25_L_53_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        132.6,
+        151.7
+      ],
+      "od_radius": 29.5
+    },
+    "right": {
+      "id": "IDRiD_seg_p25_R_46",
+      "source": "46",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p25_R_46.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p25_R_46_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        348.5,
+        176.4
+      ],
+      "od_radius": 27.3
+    }
+  },
+  {
+    "patient": "p26",
+    "grade": null,
+    "colour_distance": 2.266,
+    "left": {
+      "id": "IDRiD_seg_p26_L_11",
+      "source": "11",
+      "side": "left",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p26_L_11.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p26_L_11_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        101.7,
+        183.0
+      ],
+      "od_radius": 30.4
+    },
+    "right": {
+      "id": "IDRiD_seg_p26_R_39",
+      "source": "39",
+      "side": "right",
+      "image": "datasets/idrid/segmentation/IDRiD_seg_p26_R_39.jpg",
+      "mask": "datasets/idrid/segmentation/IDRiD_seg_p26_R_39_mask.png",
+      "segments": [
+        "optic-disc",
+        "microaneurysms",
+        "haemorrhages",
+        "hard-exudates",
+        "soft-exudates"
+      ],
+      "width": 512,
+      "height": 340,
+      "od_center": [
+        345.1,
+        163.9
+      ],
+      "od_radius": 33.6
+    }
+  }
+]

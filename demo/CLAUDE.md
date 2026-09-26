@@ -17,9 +17,9 @@ which of them is wanted.
 
 | The candidate says | Run |
 |---|---|
-| «запусти демо» / «запускаем demo» / "launch the demo" — **no qualifier: PUBLIC is the default** | `powershell -ExecutionPolicy Bypass -File D:\personal\phd\dissertation\demo\start-pages-demo.ps1` (background) — the candidate expects the Cloudflare tunnel and the agreed fixed https://dr-classification.pages.dev immediately. Do not fall back to the local launcher and do not ask which one (settled 2026-08-14). |
-| «запускаем demo **локально**» / "run the demo locally" — local said **explicitly** | `powershell -ExecutionPolicy Bypass -File D:\personal\phd\dissertation\demo\start-demo.ps1` |
-| «запускаем demo **публично**» / "publish the demo" / "share the demo" | `powershell -ExecutionPolicy Bypass -File D:\personal\phd\dissertation\demo\start-pages-demo.ps1` |
+| «запусти демо» / «запускаем demo» / "launch the demo" — **no qualifier: PUBLIC is the default** | `powershell -ExecutionPolicy Bypass -File C:\projects\demo\start-pages-demo.ps1` (background) — the candidate expects the Cloudflare tunnel and the agreed fixed https://dr-classification.pages.dev immediately. Do not fall back to the local launcher and do not ask which one (settled 2026-08-14). |
+| «запускаем demo **локально**» / "run the demo locally" — local said **explicitly** | `powershell -ExecutionPolicy Bypass -File C:\projects\demo\start-demo.ps1` |
+| «запускаем demo **публично**» / "publish the demo" / "share the demo" | `powershell -ExecutionPolicy Bypass -File C:\projects\demo\start-pages-demo.ps1` |
 | «останови demo» / "stop the demo" | `.\start-pages-demo.ps1 -Stop` (public) or close the two windows (local) |
 
 Public launches take several minutes (model load + CRA build + Pages deploy) — run them with
@@ -75,7 +75,19 @@ being counted and exported. Both writes go through one promise chain in
 *Download PDF report* (`server/app/report.py`, `GET /api/case/{id}/report.pdf?lang=en|kk`).
 It is rendered server-side from the case directory — verdict first, then the prediction and
 its probabilities, the originals, every preprocessing stage, the 4-channel CNN input and the
-Grad-CAM maps — so it needs no browser state and can be pulled for any case later. Three
+Grad-CAM maps — so it needs no browser state and can be pulled for any case later. When the
+case was built on the bundled sample images, **page 2 is their annotated structures and
+lesions** (optic disc, microaneurysms, haemorrhages, hard and soft exudates) in three
+columns: right eye, left eye, and what the layer is plus per-eye measurements — foci, quadrants
+reached, area in disc areas / ≈mm² / % of the retinal field, distance to the fovea in disc
+diameters, foci inside the macula — and IDRiD's macular oedema risk (0–2) on the exudate row.
+Each panel carries a macula ring (1 DD round the fovea). The fovea is IDRiD's expert markup for
+the 40 eyes also in its Localization part (`web/scripts/idrid_seg_fovea.json`), else the mean
+disc-to-fovea offset (median error 0.24 DD). Those panels and measurements are the dataset's own
+expert annotations pre-rendered into
+`server/app/segments/` by `web/scripts/prepare_segmentation_pairs.py`, looked up by the
+`filename` the client filed the image under — there is no segmentation network in the demo, so
+a clinician's own photograph simply has no such page. Three
 things about it are deliberate: it is **not** best-effort (a failure surfaces in the UI, since
 the clinician asked for the document); the request is queued behind the same verdict promise
 chain as *Undo*, so a report requested the instant the button is clicked cannot describe an

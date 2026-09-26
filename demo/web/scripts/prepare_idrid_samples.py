@@ -3,6 +3,12 @@ prepare_idrid_samples.py — Build a pool of IDRiD localization **patients** (a
 left + right eye each) for the Demo tab's "Random sample" button, carrying
 ground-truth optic-disc and fovea centres.
 
+SUPERSEDED for the Random button: that pool now comes from the Segmentation
+subset via ``prepare_segmentation_pairs.py`` and Demo.js no longer imports
+``_idridSamples.js``. This script is still the source of ``_idridGtLookup.js``,
+which `_idridUpload.js` uses to match MANUAL uploads by filename — so keep it,
+but note that re-running it rewrites the now-unused sample pool as well.
+
 IDRiD is monocular (one image per record) and ships pixel-accurate OD-centre and
 fovea-centre markups for its Localization sub-challenge. We:
   * derive each image's true laterality from anatomy — the fovea is temporal to

@@ -65,6 +65,7 @@
 | Явочный лист | [ru/20-явочный-лист/структура.md](ru/20-явочный-лист/структура.md) |
 | Отчёт о работе диссовета | [ru/21-отчет-о-работе-диссовета/структура.md](ru/21-отчет-о-работе-диссовета/структура.md) |
 | Протокол расширенного заседания кафедры (предзащита) | [en/22-extended-meeting-protocol/structure.md](en/22-extended-meeting-protocol/structure.md) — нормы и жанр; бланк-скелет [template.md](en/22-extended-meeting-protocol/template.md), что писать по нашей теме [content-brief.md](en/22-extended-meeting-protocol/content-brief.md), банк вопросов [qa-bank.md](en/22-extended-meeting-protocol/qa-bank.md) |
+| Презентация и доклад на защиту | [ru/23-презентация-доклад/структура.md](ru/23-презентация-доклад/структура.md) — нормы, скелет слайдов, скрипт речи и Q&A |
 
 ### Образовательные программы 8D061
 8D06101 — Интеллектуальные системы · 8D06102 — Компьютерная и программная инженерия ·
@@ -138,6 +139,7 @@ with a line-by-line transcription.
 | Attendance sheet | [en/20-attendance-sheet/structure.md](en/20-attendance-sheet/structure.md) |
 | Council annual report | [en/21-council-annual-report/structure.md](en/21-council-annual-report/structure.md) |
 | Extended department meeting protocol (pre-defense) | [en/22-extended-meeting-protocol/structure.md](en/22-extended-meeting-protocol/structure.md) — norms & genre; the fill-in skeleton is [template.md](en/22-extended-meeting-protocol/template.md), what each paragraph must say for this dissertation is [content-brief.md](en/22-extended-meeting-protocol/content-brief.md), the question bank is [qa-bank.md](en/22-extended-meeting-protocol/qa-bank.md) |
+| Defense presentation and talk | [en/23-defense-presentation/structure.md](en/23-defense-presentation/structure.md) — norms, slide skeleton, speech script and Q&A |
 
 ### 8D061 educational programmes
 8D06101 — Intelligent Systems · 8D06102 — Computer and Software Engineering ·

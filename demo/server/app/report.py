@@ -20,10 +20,12 @@ otherwise — see :func:`_register_fonts`.
 from __future__ import annotations
 
 import io
+import json
 from datetime import datetime, timezone
 from pathlib import Path
 
 from PIL import Image as PILImage
+from PIL import ImageDraw
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_RIGHT
 from reportlab.lib.pagesizes import A4
@@ -83,6 +85,18 @@ _GRID_GAP = 4 * mm
 # for pictures that are never printed larger than ~45 mm.
 _TARGET_DPI = 170
 _JPEG_QUALITY = 86
+
+# Pre-rendered segmentation panels for the bundled sample images, written by
+# `demo/web/scripts/prepare_segmentation_pairs.py`. The index maps the image id
+# the client files an upload under to its fovea, disc diameter and the layers
+# annotated for it, each measured on the full-size mask (area, foci, quadrants,
+# distance to the fovea); a clinician's own photograph is not in it, and then the
+# report simply has no such page.
+_SEGMENTS_DIR = Path(__file__).resolve().parent / "segments"
+_SEGMENT_ORDER = (
+    "optic-disc", "microaneurysms", "haemorrhages", "hard-exudates", "soft-exudates",
+)
+_SEGMENT_INDEX: dict[str, dict] | None = None  # loaded on first report
 
 _FONT = "Helvetica"
 _FONT_MEDIUM = "Helvetica"
@@ -257,6 +271,39 @@ _STRINGS: dict[str, dict[str, str]] = {
         "att.heatmap": "Grad-CAM heatmap",
         "att.overlay": "Attention overlay",
         "att.of_retina": "of the retina",
+        "seg.section": "Annotated structures and lesions",
+        "seg.optic-disc": "Optic disc",
+        "seg.microaneurysms": "Microaneurysms",
+        "seg.haemorrhages": "Haemorrhages",
+        "seg.hard-exudates": "Hard exudates",
+        "seg.soft-exudates": "Soft exudates",
+        "seg.finding": "Finding",
+        "seg.absent": "Not detected",
+        "seg.foci": "foci",
+        "seg.quadrants": "quadrants",
+        "seg.of_field": "of the retinal field",
+        "seg.nearest": "nearest {d} DD from the fovea",
+        "seg.in_macula": "{n} in the macula",
+        "seg.macula_clear": "macula clear",
+        "seg.dme": "Macular oedema risk (IDRiD, 0\u20132)",
+        "seg.about.optic-disc": "Entry of the optic nerve and retinal vessels. Its diameter (DD, "
+                                "\u22481.8 mm) and area (DA, \u22482.5 mm\u00b2) are the units "
+                                "used on this page; percentages are shares of the retinal "
+                                "field. The white ring marks the macula: 1 DD around the "
+                                "fovea.",
+        "seg.about.microaneurysms": "Saccular bulges of capillary walls, 25\u2013125 \u00b5m "
+                                    "across: the earliest visible sign of diabetic retinopathy. "
+                                    "A rising count signals progression.",
+        "seg.about.haemorrhages": "Blood leaked from damaged vessels into the retina. The "
+                                  "quadrants they reach grade the non-proliferative stage: more "
+                                  "than 20 in each of four means severe (4-2-1 rule).",
+        "seg.about.hard-exudates": "Lipid and protein deposits left by leaking vessels. Near "
+                                   "the fovea they signal macular oedema, the main cause of "
+                                   "vision loss in diabetes: risk 1 with exudates outside the "
+                                   "macula, 2 within 1 DD of the fovea.",
+        "seg.about.soft-exudates": "Cotton-wool spots: swelling of the nerve-fibre layer where "
+                                   "capillaries have closed. They mark retinal ischaemia and "
+                                   "often precede progression.",
         "yes": "yes",
         "no": "no",
         "eye.right": "Right eye (OD)",
@@ -341,6 +388,40 @@ _STRINGS: dict[str, dict[str, str]] = {
         "att.heatmap": "Grad-CAM жылу картасы",
         "att.overlay": "Назар қабаты",
         "att.of_retina": "тор қабықтан",
+        "seg.section": "Белгіленген құрылымдар мен зақымданулар",
+        "seg.optic-disc": "Көру жүйкесінің дискісі",
+        "seg.microaneurysms": "Микроаневризмалар",
+        "seg.haemorrhages": "Қан құйылулар",
+        "seg.hard-exudates": "Қатты экссудаттар",
+        "seg.soft-exudates": "Жұмсақ экссудаттар",
+        "seg.finding": "Белгі",
+        "seg.absent": "Анықталмады",
+        "seg.foci": "ошақ",
+        "seg.quadrants": "квадрант",
+        "seg.of_field": "тор қабық аумағынан",
+        "seg.nearest": "фовеаға ең жақыны {d} ДД",
+        "seg.in_macula": "макулада {n}",
+        "seg.macula_clear": "макула таза",
+        "seg.dme": "Макулярлы ісіну қаупі (IDRiD, 0\u20132)",
+        "seg.about.optic-disc": "Көру жүйкесі мен тор қабық тамырларының кіру орны. Оның "
+                                "диаметрі (ДД, \u22481,8 мм) мен ауданы (ДА, \u22482,5 мм\u00b2) "
+                                "осы беттегі өлшем бірліктері; пайыздар — тор қабық "
+                                "аумағының үлесі. Ақ сақина — макула: фовеа айналасындағы "
+                                "1 ДД аймақ.",
+        "seg.about.microaneurysms": "Капилляр қабырғаларының 25\u2013125 мкм қапшық тәрізді "
+                                    "кеңеюлері — диабеттік ретинопатияның ең ерте көрінетін "
+                                    "белгісі. Санының өсуі аурудың үдеуін көрсетеді.",
+        "seg.about.haemorrhages": "Зақымданған тамырлардан тор қабыққа құйылған қан. Олар "
+                                  "таралған квадранттар саны пролиферативті емес сатыны анықтайды: "
+                                  "төртеуінің әрқайсысында 20-дан көп болса — ауыр саты "
+                                  "(4-2-1 ережесі).",
+        "seg.about.hard-exudates": "Өткізгіштігі бұзылған тамырлардан бөлінген липид пен ақуыз шөгінділері. "
+                                   "Фовеаға жақын болса, макулярлы ісінуді — диабетте көру "
+                                   "қабілетін жоғалтудың басты себебін — білдіреді: макуладан "
+                                   "тыс болса қауіп 1, фовеадан 1 ДД ішінде болса 2.",
+        "seg.about.soft-exudates": "Мақта тәрізді ошақтар — капиллярлар бітелген жердегі жүйке "
+                                   "талшықтары қабатының ісінуі. Тор қабық ишемиясын көрсетеді "
+                                   "және жиі ауру үдеуінің алдында пайда болады.",
         "yes": "иә",
         "no": "жоқ",
         "eye.right": "Оң көз (OD)",
@@ -658,7 +739,7 @@ class _GradeScale(Flowable):
 
 
 def _image_flowable(
-    path: Path, width: float, max_height: float | None = None, box: bool = False,
+    path: Path | io.BytesIO, width: float, max_height: float | None = None, box: bool = False,
 ) -> Image | None:
     """Scale an on-disk image to ``width`` (and at most ``max_height``).
 
@@ -713,12 +794,21 @@ def _image_grid(
     st: _Styles,
     cols: int = _GRID_COLS,
     total_width: float = _CONTENT_W,
+    cell_ratio: float = 1.0,
 ) -> list:
-    """Lay captioned images out on a grid, dropping any that cannot be read."""
+    """Lay captioned images out on a grid, dropping any that cannot be read.
+
+    Args:
+        cell_ratio: Cell height as a fraction of cell width. Square by default,
+            which lines up panels of mixed aspect ratios; pass the pictures' own
+            ratio when they all share one, to spend the page on retina rather
+            than on letterbox.
+    """
     cell_w = (total_width - _GRID_GAP * (cols - 1)) / cols
+    cell_h = cell_w * cell_ratio
     cells: list[list] = []
     for path, caption in items:
-        img = _image_flowable(path, cell_w, max_height=cell_w, box=True)
+        img = _image_flowable(path, cell_w, max_height=cell_h, box=True)
         if img is None:
             continue
         block = [img]
@@ -1099,6 +1189,201 @@ def _attention_section(record: dict, directory: Path, st: _Styles, t: _T) -> lis
     return [KeepTogether(_heading(t("att.section"), st) + [blocks[0]])] + blocks[1:]
 
 
+def _segment_index() -> dict[str, dict]:
+    """Read the bundled panel index once, tolerating its absence."""
+    global _SEGMENT_INDEX
+    if _SEGMENT_INDEX is None:
+        try:
+            _SEGMENT_INDEX = json.loads(
+                (_SEGMENTS_DIR / "index.json").read_text(encoding="utf-8")
+            )
+        except Exception:  # noqa: BLE001 — no panels is a report without the page
+            _SEGMENT_INDEX = {}
+    return _SEGMENT_INDEX
+
+
+def _fmt_num(value: float, lang: str, small: str = "<0.01") -> str:
+    """A measured quantity, with as many decimals as its size needs."""
+    if value < 0.01:
+        text = small
+    elif value < 1:
+        text = f"{value:.2f}"
+    elif value < 10:
+        text = f"{value:.1f}"
+    else:
+        text = f"{value:.0f}"
+    return text.replace(".", ",") if lang == "kk" else text
+
+
+# One disc diameter is ~1.8 mm, so one disc area is ~2.5 mm². Only a reading
+# aid: a photograph has no scale of its own, and discs vary between eyes.
+_DA_MM2 = 3.14159 * 0.9 ** 2
+
+
+def _segment_measure(layer: str, stats: dict | None, code: str, st: _Styles, t: _T) -> list:
+    """One eye's line in the findings column: extent, spread and macular reach."""
+    lang = t.lang
+    head = f"<font name='{_FONT_SEMI}' color='#{_INK.hexval()[2:]}'>{code}</font>&nbsp;&nbsp;"
+    out: list = []
+    if not stats or "area_pct" not in stats:
+        out.append(Paragraph(head + _esc(t("seg.absent").lower()), st.small))
+    elif layer == "optic-disc":
+        text = f"{_fmt_num(stats['area_pct'], lang)}\u00a0% {t('seg.of_field')}"
+        out.append(Paragraph(head + _esc(text), st.small))
+    else:
+        da = float(stats.get("area_da") or 0)
+        parts = [
+            f"{stats.get('count', 0)} {t('seg.foci')}",
+            f"{stats.get('quadrants', 0)}/4 {t('seg.quadrants')}",
+            f"{_fmt_num(da, lang, '<0.01')}\u00a0{'ДА' if lang == 'kk' else 'DA'} "
+            f"\u2248\u00a0{_fmt_num(da * _DA_MM2, lang)}\u00a0{'мм' if lang == 'kk' else 'mm'}\u00b2",
+            f"{_fmt_num(stats['area_pct'], lang)}\u00a0%",
+        ]
+        near = t("seg.nearest").format(d=_fmt_num(float(stats.get("nearest_dd", 0)), lang))
+        in_mac = int(stats.get("in_macula") or 0)
+        reach = t("seg.in_macula").format(n=in_mac) if in_mac else t("seg.macula_clear")
+        text = " · ".join(parts) + f". {near[0].upper()}{near[1:]}; {reach}."
+        out.append(Paragraph(head + _esc(text), st.small))
+    return out
+
+
+def _marked_panel(path: Path, eye: dict) -> io.BytesIO | None:
+    """The panel with the macula ring (1 DD round the fovea) and a fovea cross."""
+    try:
+        with PILImage.open(path) as im:
+            panel = im.convert("RGB")
+    except Exception:  # noqa: BLE001 — a missing panel must not fail the report
+        return None
+    fovea, dd = eye.get("fovea"), eye.get("disc_diameter")
+    if fovea and dd:
+        scale = 2  # draw at twice the size so the ring stays smooth when shrunk
+        panel = panel.resize((panel.width * scale, panel.height * scale), PILImage.LANCZOS)
+        w, h = panel.size
+        cx, cy, r = fovea[0] * w, fovea[1] * h, dd * w
+        draw = ImageDraw.Draw(panel)
+        draw.ellipse((cx - r, cy - r, cx + r, cy + r), outline=(255, 255, 255), width=scale)
+        arm = r * 0.18
+        draw.line((cx - arm, cy, cx + arm, cy), fill=(255, 255, 255), width=scale)
+        draw.line((cx, cy - arm, cx, cy + arm), fill=(255, 255, 255), width=scale)
+    buf = io.BytesIO()
+    panel.save(buf, format="JPEG", quality=92)
+    buf.seek(0)
+    return buf
+
+
+def _absent_cell(width: float, height: float, text: str, st: _Styles) -> Table:
+    """A slate frame the size of a panel, for a layer this eye does not show."""
+    style = ParagraphStyle("rAbsent", parent=st.caption, textColor=colors.HexColor("#9AA6B2"))
+    cell = Table([[Paragraph(_esc(text), style)]], colWidths=[width], rowHeights=[height])
+    cell.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), colors.Color(*(c / 255 for c in _SLATE))),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+    ]))
+    return cell
+
+
+def _segmentation_section(record: dict, st: _Styles, t: _T) -> list:
+    """The annotated layers of both eyes, one row per structure or lesion type.
+
+    Three columns: the right eye's panel, the left eye's panel, and the layer's
+    name, what it is clinically and, per eye, how many foci it has, how many
+    fovea-centred quadrants they reach, their area in disc areas and as a share
+    of the retinal field, and how close they come to the fovea. The hard
+    exudates row adds IDRiD's macular oedema risk. Every panel carries the
+    macula ring. The layers are the dataset's own expert annotations, not a
+    model output — there is no segmentation network in the demo — so only the
+    bundled sample images carry them.
+    """
+    index = _segment_index()
+    if not index:
+        return []
+
+    images = record.get("images") or {}
+    eyes: dict[str, tuple[str, dict]] = {}
+    for side in ("right", "left"):
+        filename = str((images.get(side) or {}).get("filename") or "")
+        eye = index.get(filename)
+        if eye and eye.get("layers"):
+            eyes[side] = (filename, eye)
+    if not eyes:
+        return []
+
+    gap = 3 * mm
+    img_w = 46 * mm
+    img_h = img_w * 2 / 3  # boxed at the samples' own 3:2
+    text_w = _CONTENT_W - 2 * img_w - 2 * gap
+    codes = {"right": "OD", "left": "OS"}
+    label = ParagraphStyle("rSegHead", parent=st.h3, spaceBefore=0, spaceAfter=0)
+    about_style = ParagraphStyle("rSegAbout", parent=st.small, textColor=_INK)
+
+    rows: list[list] = [[
+        Paragraph(_esc(t("eye.right")), label),
+        Paragraph(_esc(t("eye.left")), label),
+        Paragraph(_esc(t("seg.finding")), label),
+    ]]
+    for layer in _SEGMENT_ORDER:
+        if not any(layer in eye["layers"] for _, eye in eyes.values()):
+            continue
+        row: list = []
+        for side in ("right", "left"):
+            filename, eye = eyes.get(side, ("", {"layers": {}}))
+            img = None
+            if layer in eye["layers"]:
+                panel = _marked_panel(_SEGMENTS_DIR / f"{filename}__{layer}.jpg", eye)
+                if panel is not None:
+                    img = _image_flowable(panel, img_w, max_height=img_h, box=True)
+            row.append(img or _absent_cell(
+                img_w, img_h, t("seg.absent") if side in eyes else "\u2014", st))
+        about: list = [
+            Paragraph(_esc(t("seg." + layer)), label),
+            Spacer(1, 1.5),
+            Paragraph(_esc(t("seg.about." + layer)), about_style),
+        ]
+        present = [side for side in ("right", "left") if side in eyes]
+        if layer == "optic-disc":
+            # Both discs on one line: their share of the field is all they add.
+            shares = [
+                f"<font name='{_FONT_SEMI}' color='#{_INK.hexval()[2:]}'>{codes[side]}</font>"
+                f"&nbsp;{_fmt_num(stat['area_pct'], t.lang)}\u00a0%"
+                for side in present
+                if (stat := eyes[side][1]["layers"].get(layer))
+            ]
+            about += [Spacer(1, 2.5), Paragraph(
+                " · ".join(shares) + " " + _esc(t("seg.of_field")), st.small)]
+        else:
+            for side in present:
+                about.append(Spacer(1, 2.5))
+                about += _segment_measure(
+                    layer, eyes[side][1]["layers"].get(layer), codes[side], st, t)
+        if layer == "hard-exudates":
+            # IDRiD's own macular oedema scale, read off the exudate annotation:
+            # 0 none, 1 outside the macula only, 2 within 1 DD of the fovea.
+            grades = []
+            for side in present:
+                stat = eyes[side][1]["layers"].get(layer)
+                grade = 0 if not stat else (2 if int(stat.get("in_macula") or 0) else 1)
+                grades.append(f"{codes[side]}&nbsp;<font name='{_FONT_SEMI}'>{grade}</font>")
+            dme = ParagraphStyle("rDme", parent=st.small, textColor=_INK)
+            about += [Spacer(1, 2.5), Paragraph(
+                _esc(t("seg.dme")) + ": " + " · ".join(grades), dme)]
+        row.append(about)
+        rows.append(row)
+
+    table = Table(rows, colWidths=[img_w + gap, img_w + gap, text_w],
+                  hAlign="LEFT", repeatRows=1)
+    table.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (1, -1), gap),
+        ("RIGHTPADDING", (2, 0), (2, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+        ("LINEBELOW", (0, 0), (-1, -2), 0.5, _RULE),
+    ]))
+    return _heading(t("seg.section"), st) + [table]
+
+
 def _verdict_history(record: dict, st: _Styles, t: _T) -> list:
     """Every verdict on this patient, in order — a regrade leaves both entries."""
     feedback = record.get("feedback") or []
@@ -1249,6 +1534,14 @@ def build_case_report(record: dict, directory: Path, lang: str = "en") -> bytes:
     story += _prediction_section(record, st, t)
     story += _verdict_history(record, st, t)
     story += _model_section(record, st, t)
+
+    # Page 2, when the case is built on sample images: their annotated
+    # structures and lesions, both eyes side by side with what each layer is
+    # and how much of the retinal field it covers.
+    segments = _segmentation_section(record, st, t)
+    if segments:
+        story.append(PageBreak())
+        story += segments
 
     # What follows is the evidence: what exactly was received, where the
     # detector put the landmarks, how the images were transformed and what the

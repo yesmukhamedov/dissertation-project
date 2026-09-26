@@ -1,0 +1,2230 @@
+{
+ "IDRiD_seg_p01_L_48": {
+  "fovea": [
+   0.4731,
+   0.47
+  ],
+  "disc_diameter": 0.1231,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.596,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.265,
+    "area_da": 0.102,
+    "count": 81,
+    "quadrants": 4,
+    "nearest_dd": 0.72,
+    "in_macula": 1
+   },
+   "haemorrhages": {
+    "area_pct": 1.579,
+    "area_da": 0.608,
+    "count": 52,
+    "quadrants": 4,
+    "nearest_dd": 0.22,
+    "in_macula": 7
+   },
+   "hard-exudates": {
+    "area_pct": 1.831,
+    "area_da": 0.705,
+    "count": 256,
+    "quadrants": 4,
+    "nearest_dd": 0.33,
+    "in_macula": 36
+   },
+   "soft-exudates": {
+    "area_pct": 0.696,
+    "area_da": 0.268,
+    "count": 5,
+    "quadrants": 3,
+    "nearest_dd": 0.89,
+    "in_macula": 1
+   }
+  }
+ },
+ "IDRiD_seg_p01_R_36": {
+  "fovea": [
+   0.3589,
+   0.5456
+  ],
+  "disc_diameter": 0.1232,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.602,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.117,
+    "area_da": 0.045,
+    "count": 43,
+    "quadrants": 4,
+    "nearest_dd": 0.5,
+    "in_macula": 10
+   },
+   "haemorrhages": {
+    "area_pct": 0.692,
+    "area_da": 0.266,
+    "count": 10,
+    "quadrants": 4,
+    "nearest_dd": 0.37,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 0.07,
+    "area_da": 0.027,
+    "count": 43,
+    "quadrants": 3,
+    "nearest_dd": 0.34,
+    "in_macula": 14
+   }
+  }
+ },
+ "IDRiD_seg_p02_L_16": {
+  "fovea": [
+   0.6474,
+   0.4628
+  ],
+  "disc_diameter": 0.1421,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.461,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.046,
+    "area_da": 0.013,
+    "count": 10,
+    "quadrants": 4,
+    "nearest_dd": 0.43,
+    "in_macula": 4
+   },
+   "haemorrhages": {
+    "area_pct": 0.221,
+    "area_da": 0.064,
+    "count": 3,
+    "quadrants": 3,
+    "nearest_dd": 0.04,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 1.374,
+    "area_da": 0.397,
+    "count": 75,
+    "quadrants": 4,
+    "nearest_dd": 0.01,
+    "in_macula": 48
+   }
+  }
+ },
+ "IDRiD_seg_p02_R_15": {
+  "fovea": [
+   0.3547,
+   0.5562
+  ],
+  "disc_diameter": 0.1393,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.322,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.024,
+    "area_da": 0.007,
+    "count": 7,
+    "quadrants": 3,
+    "nearest_dd": 1.02,
+    "in_macula": 0
+   },
+   "haemorrhages": {
+    "area_pct": 0.038,
+    "area_da": 0.011,
+    "count": 2,
+    "quadrants": 2,
+    "nearest_dd": 0.85,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.506,
+    "area_da": 0.152,
+    "count": 37,
+    "quadrants": 3,
+    "nearest_dd": 0.61,
+    "in_macula": 5
+   }
+  }
+ },
+ "IDRiD_seg_p03_L_33": {
+  "fovea": [
+   0.5723,
+   0.5653
+  ],
+  "disc_diameter": 0.1266,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.747,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.43,
+    "area_da": 0.156,
+    "count": 126,
+    "quadrants": 4,
+    "nearest_dd": 0.22,
+    "in_macula": 19
+   },
+   "haemorrhages": {
+    "area_pct": 3.926,
+    "area_da": 1.429,
+    "count": 106,
+    "quadrants": 4,
+    "nearest_dd": 0.27,
+    "in_macula": 12
+   },
+   "hard-exudates": {
+    "area_pct": 0.691,
+    "area_da": 0.252,
+    "count": 397,
+    "quadrants": 4,
+    "nearest_dd": 0.01,
+    "in_macula": 176
+   },
+   "soft-exudates": {
+    "area_pct": 0.066,
+    "area_da": 0.024,
+    "count": 1,
+    "quadrants": 1,
+    "nearest_dd": 3.57,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p03_R_44": {
+  "fovea": [
+   0.3617,
+   0.5562
+  ],
+  "disc_diameter": 0.095,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 1.545,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.023,
+    "area_da": 0.015,
+    "count": 9,
+    "quadrants": 3,
+    "nearest_dd": 1.79,
+    "in_macula": 0
+   },
+   "haemorrhages": {
+    "area_pct": 0.07,
+    "area_da": 0.045,
+    "count": 4,
+    "quadrants": 3,
+    "nearest_dd": 0.26,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.294,
+    "area_da": 0.19,
+    "count": 74,
+    "quadrants": 4,
+    "nearest_dd": 0.03,
+    "in_macula": 20
+   }
+  }
+ },
+ "IDRiD_seg_p04_L_32": {
+  "fovea": [
+   0.5586,
+   0.5606
+  ],
+  "disc_diameter": 0.1217,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.539,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.072,
+    "area_da": 0.028,
+    "count": 13,
+    "quadrants": 4,
+    "nearest_dd": 1.06,
+    "in_macula": 0
+   },
+   "haemorrhages": {
+    "area_pct": 1.026,
+    "area_da": 0.404,
+    "count": 12,
+    "quadrants": 4,
+    "nearest_dd": 1.35,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 1.008,
+    "area_da": 0.397,
+    "count": 103,
+    "quadrants": 4,
+    "nearest_dd": 0.07,
+    "in_macula": 14
+   },
+   "soft-exudates": {
+    "area_pct": 0.474,
+    "area_da": 0.187,
+    "count": 6,
+    "quadrants": 3,
+    "nearest_dd": 1.36,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p04_R_30": {
+  "fovea": [
+   0.41,
+   0.621
+  ],
+  "disc_diameter": 0.1154,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.284,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.087,
+    "area_da": 0.038,
+    "count": 22,
+    "quadrants": 3,
+    "nearest_dd": 1.31,
+    "in_macula": 0
+   },
+   "haemorrhages": {
+    "area_pct": 0.634,
+    "area_da": 0.278,
+    "count": 14,
+    "quadrants": 3,
+    "nearest_dd": 0.95,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.267,
+    "area_da": 0.117,
+    "count": 41,
+    "quadrants": 4,
+    "nearest_dd": 0.08,
+    "in_macula": 9
+   },
+   "soft-exudates": {
+    "area_pct": 0.174,
+    "area_da": 0.076,
+    "count": 2,
+    "quadrants": 2,
+    "nearest_dd": 2.54,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p05_L_42": {
+  "fovea": [
+   0.5704,
+   0.514
+  ],
+  "disc_diameter": 0.1276,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.788,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.03,
+    "area_da": 0.011,
+    "count": 10,
+    "quadrants": 4,
+    "nearest_dd": 0.86,
+    "in_macula": 2
+   },
+   "haemorrhages": {
+    "area_pct": 0.052,
+    "area_da": 0.019,
+    "count": 4,
+    "quadrants": 2,
+    "nearest_dd": 2.92,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.299,
+    "area_da": 0.107,
+    "count": 53,
+    "quadrants": 4,
+    "nearest_dd": 0.22,
+    "in_macula": 20
+   }
+  }
+ },
+ "IDRiD_seg_p05_R_34": {
+  "fovea": [
+   0.3703,
+   0.5365
+  ],
+  "disc_diameter": 0.1137,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.214,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.149,
+    "area_da": 0.067,
+    "count": 44,
+    "quadrants": 4,
+    "nearest_dd": 0.36,
+    "in_macula": 5
+   },
+   "haemorrhages": {
+    "area_pct": 4.929,
+    "area_da": 2.226,
+    "count": 43,
+    "quadrants": 4,
+    "nearest_dd": 0.63,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 0.317,
+    "area_da": 0.143,
+    "count": 52,
+    "quadrants": 4,
+    "nearest_dd": 0.2,
+    "in_macula": 10
+   }
+  }
+ },
+ "IDRiD_seg_p06_L_26": {
+  "fovea": [
+   0.5517,
+   0.5331
+  ],
+  "disc_diameter": 0.1293,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.865,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.233,
+    "area_da": 0.081,
+    "count": 62,
+    "quadrants": 4,
+    "nearest_dd": 0.51,
+    "in_macula": 10
+   },
+   "haemorrhages": {
+    "area_pct": 1.24,
+    "area_da": 0.433,
+    "count": 26,
+    "quadrants": 4,
+    "nearest_dd": 0.36,
+    "in_macula": 4
+   },
+   "hard-exudates": {
+    "area_pct": 0.03,
+    "area_da": 0.01,
+    "count": 5,
+    "quadrants": 3,
+    "nearest_dd": 1.57,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p06_R_49": {
+  "fovea": [
+   0.4114,
+   0.585
+  ],
+  "disc_diameter": 0.1112,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.12,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.196,
+    "area_da": 0.092,
+    "count": 82,
+    "quadrants": 4,
+    "nearest_dd": 0.46,
+    "in_macula": 3
+   },
+   "haemorrhages": {
+    "area_pct": 2.116,
+    "area_da": 0.998,
+    "count": 44,
+    "quadrants": 4,
+    "nearest_dd": 0.72,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 2.633,
+    "area_da": 1.242,
+    "count": 416,
+    "quadrants": 4,
+    "nearest_dd": 0.04,
+    "in_macula": 71
+   },
+   "soft-exudates": {
+    "area_pct": 0.504,
+    "area_da": 0.237,
+    "count": 1,
+    "quadrants": 1,
+    "nearest_dd": 1.79,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p07_L_14": {
+  "fovea": [
+   0.5529,
+   0.5351
+  ],
+  "disc_diameter": 0.1252,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.686,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.301,
+    "area_da": 0.112,
+    "count": 97,
+    "quadrants": 4,
+    "nearest_dd": 0.24,
+    "in_macula": 20
+   },
+   "haemorrhages": {
+    "area_pct": 0.743,
+    "area_da": 0.277,
+    "count": 36,
+    "quadrants": 4,
+    "nearest_dd": 0.59,
+    "in_macula": 3
+   },
+   "hard-exudates": {
+    "area_pct": 1.965,
+    "area_da": 0.732,
+    "count": 297,
+    "quadrants": 4,
+    "nearest_dd": 0.2,
+    "in_macula": 104
+   },
+   "soft-exudates": {
+    "area_pct": 0.129,
+    "area_da": 0.048,
+    "count": 1,
+    "quadrants": 1,
+    "nearest_dd": 2.15,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p07_R_13": {
+  "fovea": [
+   0.3652,
+   0.5481
+  ],
+  "disc_diameter": 0.1223,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.563,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.407,
+    "area_da": 0.159,
+    "count": 125,
+    "quadrants": 4,
+    "nearest_dd": 0.37,
+    "in_macula": 15
+   },
+   "haemorrhages": {
+    "area_pct": 0.444,
+    "area_da": 0.173,
+    "count": 36,
+    "quadrants": 4,
+    "nearest_dd": 0.4,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 2.544,
+    "area_da": 0.992,
+    "count": 239,
+    "quadrants": 4,
+    "nearest_dd": 0.17,
+    "in_macula": 63
+   },
+   "soft-exudates": {
+    "area_pct": 0.845,
+    "area_da": 0.33,
+    "count": 8,
+    "quadrants": 4,
+    "nearest_dd": 0.59,
+    "in_macula": 2
+   }
+  }
+ },
+ "IDRiD_seg_p08_L_43": {
+  "fovea": [
+   0.5609,
+   0.5323
+  ],
+  "disc_diameter": 0.1239,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.629,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.011,
+    "area_da": 0.004,
+    "count": 3,
+    "quadrants": 2,
+    "nearest_dd": 0.46,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 0.728,
+    "area_da": 0.277,
+    "count": 82,
+    "quadrants": 4,
+    "nearest_dd": 0.07,
+    "in_macula": 61
+   }
+  }
+ },
+ "IDRiD_seg_p08_R_27": {
+  "fovea": [
+   0.4918,
+   0.5418
+  ],
+  "disc_diameter": 0.1176,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.367,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.305,
+    "area_da": 0.129,
+    "count": 106,
+    "quadrants": 4,
+    "nearest_dd": 0.18,
+    "in_macula": 10
+   },
+   "haemorrhages": {
+    "area_pct": 0.775,
+    "area_da": 0.327,
+    "count": 34,
+    "quadrants": 4,
+    "nearest_dd": 0.91,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.827,
+    "area_da": 0.349,
+    "count": 214,
+    "quadrants": 4,
+    "nearest_dd": 0.27,
+    "in_macula": 41
+   }
+  }
+ },
+ "IDRiD_seg_p09_L_24": {
+  "fovea": [
+   0.5618,
+   0.5534
+  ],
+  "disc_diameter": 0.1207,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.495,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.016,
+    "area_da": 0.006,
+    "count": 4,
+    "quadrants": 3,
+    "nearest_dd": 0.29,
+    "in_macula": 3
+   },
+   "haemorrhages": {
+    "area_pct": 0.321,
+    "area_da": 0.129,
+    "count": 5,
+    "quadrants": 3,
+    "nearest_dd": 1.73,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.098,
+    "area_da": 0.039,
+    "count": 18,
+    "quadrants": 3,
+    "nearest_dd": 0.14,
+    "in_macula": 10
+   }
+  }
+ },
+ "IDRiD_seg_p09_R_38": {
+  "fovea": [
+   0.4069,
+   0.6879
+  ],
+  "disc_diameter": 0.1316,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.965,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.111,
+    "area_da": 0.037,
+    "count": 34,
+    "quadrants": 4,
+    "nearest_dd": 0.55,
+    "in_macula": 13
+   },
+   "haemorrhages": {
+    "area_pct": 0.166,
+    "area_da": 0.056,
+    "count": 5,
+    "quadrants": 3,
+    "nearest_dd": 1.1,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.149,
+    "area_da": 0.05,
+    "count": 74,
+    "quadrants": 4,
+    "nearest_dd": 0.09,
+    "in_macula": 50
+   },
+   "soft-exudates": {
+    "area_pct": 0.22,
+    "area_da": 0.074,
+    "count": 2,
+    "quadrants": 1,
+    "nearest_dd": 3.06,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p10_L_12": {
+  "fovea": [
+   0.629,
+   0.5853
+  ],
+  "disc_diameter": 0.1528,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.475,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.041,
+    "area_da": 0.012,
+    "count": 17,
+    "quadrants": 4,
+    "nearest_dd": 0.5,
+    "in_macula": 4
+   },
+   "haemorrhages": {
+    "area_pct": 0.277,
+    "area_da": 0.08,
+    "count": 7,
+    "quadrants": 3,
+    "nearest_dd": 0.37,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.068,
+    "area_da": 0.02,
+    "count": 12,
+    "quadrants": 2,
+    "nearest_dd": 0.3,
+    "in_macula": 9
+   }
+  }
+ },
+ "IDRiD_seg_p10_R_17": {
+  "fovea": [
+   0.3853,
+   0.5653
+  ],
+  "disc_diameter": 0.1185,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.405,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.169,
+    "area_da": 0.07,
+    "count": 39,
+    "quadrants": 3,
+    "nearest_dd": 0.47,
+    "in_macula": 3
+   },
+   "haemorrhages": {
+    "area_pct": 21.618,
+    "area_da": 8.989,
+    "count": 53,
+    "quadrants": 4,
+    "nearest_dd": 0.37,
+    "in_macula": 8
+   },
+   "hard-exudates": {
+    "area_pct": 2.389,
+    "area_da": 0.994,
+    "count": 234,
+    "quadrants": 4,
+    "nearest_dd": 0.22,
+    "in_macula": 34
+   },
+   "soft-exudates": {
+    "area_pct": 0.571,
+    "area_da": 0.237,
+    "count": 7,
+    "quadrants": 2,
+    "nearest_dd": 1.27,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p11_L_37": {
+  "fovea": [
+   0.559,
+   0.5678
+  ],
+  "disc_diameter": 0.1208,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.501,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.077,
+    "area_da": 0.031,
+    "count": 27,
+    "quadrants": 4,
+    "nearest_dd": 0.56,
+    "in_macula": 3
+   },
+   "haemorrhages": {
+    "area_pct": 0.594,
+    "area_da": 0.237,
+    "count": 9,
+    "quadrants": 4,
+    "nearest_dd": 0.32,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.306,
+    "area_da": 0.122,
+    "count": 59,
+    "quadrants": 4,
+    "nearest_dd": 0.3,
+    "in_macula": 20
+   }
+  }
+ },
+ "IDRiD_seg_p11_R_07": {
+  "fovea": [
+   0.4381,
+   0.6357
+  ],
+  "disc_diameter": 0.1193,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.436,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.15,
+    "area_da": 0.061,
+    "count": 43,
+    "quadrants": 4,
+    "nearest_dd": 0.47,
+    "in_macula": 1
+   },
+   "haemorrhages": {
+    "area_pct": 0.379,
+    "area_da": 0.156,
+    "count": 16,
+    "quadrants": 4,
+    "nearest_dd": 0.78,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 1.986,
+    "area_da": 0.815,
+    "count": 332,
+    "quadrants": 4,
+    "nearest_dd": 0.01,
+    "in_macula": 125
+   }
+  }
+ },
+ "IDRiD_seg_p12_L_54": {
+  "fovea": [
+   0.5382,
+   0.539
+  ],
+  "disc_diameter": 0.1169,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.343,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.285,
+    "area_da": 0.122,
+    "count": 66,
+    "quadrants": 4,
+    "nearest_dd": 0.17,
+    "in_macula": 11
+   },
+   "haemorrhages": {
+    "area_pct": 0.46,
+    "area_da": 0.196,
+    "count": 26,
+    "quadrants": 4,
+    "nearest_dd": 0.3,
+    "in_macula": 4
+   },
+   "hard-exudates": {
+    "area_pct": 0.112,
+    "area_da": 0.048,
+    "count": 18,
+    "quadrants": 3,
+    "nearest_dd": 0.57,
+    "in_macula": 2
+   },
+   "soft-exudates": {
+    "area_pct": 0.365,
+    "area_da": 0.156,
+    "count": 6,
+    "quadrants": 1,
+    "nearest_dd": 2.66,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p12_R_41": {
+  "fovea": [
+   0.3512,
+   0.5298
+  ],
+  "disc_diameter": 0.1205,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.49,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.065,
+    "area_da": 0.026,
+    "count": 13,
+    "quadrants": 4,
+    "nearest_dd": 0.38,
+    "in_macula": 5
+   },
+   "haemorrhages": {
+    "area_pct": 0.051,
+    "area_da": 0.02,
+    "count": 4,
+    "quadrants": 4,
+    "nearest_dd": 0.47,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.098,
+    "area_da": 0.039,
+    "count": 19,
+    "quadrants": 3,
+    "nearest_dd": 0.47,
+    "in_macula": 3
+   }
+  }
+ },
+ "IDRiD_seg_p13_L_40": {
+  "fovea": [
+   0.5625,
+   0.5548
+  ],
+  "disc_diameter": 0.1398,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.348,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.078,
+    "area_da": 0.023,
+    "count": 35,
+    "quadrants": 4,
+    "nearest_dd": 0.21,
+    "in_macula": 7
+   },
+   "haemorrhages": {
+    "area_pct": 0.043,
+    "area_da": 0.013,
+    "count": 3,
+    "quadrants": 2,
+    "nearest_dd": 1.41,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.092,
+    "area_da": 0.028,
+    "count": 19,
+    "quadrants": 4,
+    "nearest_dd": 0.09,
+    "in_macula": 4
+   }
+  }
+ },
+ "IDRiD_seg_p13_R_20": {
+  "fovea": [
+   0.3484,
+   0.5418
+  ],
+  "disc_diameter": 0.1364,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.188,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.309,
+    "area_da": 0.097,
+    "count": 104,
+    "quadrants": 4,
+    "nearest_dd": 0.28,
+    "in_macula": 26
+   },
+   "haemorrhages": {
+    "area_pct": 0.791,
+    "area_da": 0.248,
+    "count": 46,
+    "quadrants": 4,
+    "nearest_dd": 0.61,
+    "in_macula": 7
+   },
+   "hard-exudates": {
+    "area_pct": 2.18,
+    "area_da": 0.684,
+    "count": 406,
+    "quadrants": 4,
+    "nearest_dd": 0.08,
+    "in_macula": 172
+   }
+  }
+ },
+ "IDRiD_seg_p14_L_52": {
+  "fovea": [
+   0.566,
+   0.5376
+  ],
+  "disc_diameter": 0.1291,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.855,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.079,
+    "area_da": 0.028,
+    "count": 23,
+    "quadrants": 4,
+    "nearest_dd": 0.68,
+    "in_macula": 2
+   },
+   "haemorrhages": {
+    "area_pct": 0.04,
+    "area_da": 0.014,
+    "count": 4,
+    "quadrants": 4,
+    "nearest_dd": 1.01,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.035,
+    "area_da": 0.012,
+    "count": 13,
+    "quadrants": 3,
+    "nearest_dd": 0.16,
+    "in_macula": 1
+   },
+   "soft-exudates": {
+    "area_pct": 0.116,
+    "area_da": 0.041,
+    "count": 2,
+    "quadrants": 2,
+    "nearest_dd": 1.5,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p14_R_51": {
+  "fovea": [
+   0.3738,
+   0.6601
+  ],
+  "disc_diameter": 0.1244,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.65,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.17,
+    "area_da": 0.064,
+    "count": 46,
+    "quadrants": 4,
+    "nearest_dd": 0.26,
+    "in_macula": 11
+   },
+   "haemorrhages": {
+    "area_pct": 0.573,
+    "area_da": 0.216,
+    "count": 16,
+    "quadrants": 4,
+    "nearest_dd": 0.72,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 0.228,
+    "area_da": 0.086,
+    "count": 53,
+    "quadrants": 4,
+    "nearest_dd": 0.24,
+    "in_macula": 12
+   },
+   "soft-exudates": {
+    "area_pct": 0.932,
+    "area_da": 0.352,
+    "count": 7,
+    "quadrants": 4,
+    "nearest_dd": 0.48,
+    "in_macula": 2
+   }
+  }
+ },
+ "IDRiD_seg_p15_L_21": {
+  "fovea": [
+   0.4865,
+   0.5878
+  ],
+  "disc_diameter": 0.1347,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.111,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.256,
+    "area_da": 0.082,
+    "count": 80,
+    "quadrants": 4,
+    "nearest_dd": 0.31,
+    "in_macula": 16
+   },
+   "haemorrhages": {
+    "area_pct": 1.214,
+    "area_da": 0.39,
+    "count": 49,
+    "quadrants": 4,
+    "nearest_dd": 0.42,
+    "in_macula": 18
+   },
+   "hard-exudates": {
+    "area_pct": 2.283,
+    "area_da": 0.734,
+    "count": 297,
+    "quadrants": 4,
+    "nearest_dd": 0.0,
+    "in_macula": 134
+   }
+  }
+ },
+ "IDRiD_seg_p15_R_19": {
+  "fovea": [
+   0.3512,
+   0.5312
+  ],
+  "disc_diameter": 0.1242,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.644,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.072,
+    "area_da": 0.027,
+    "count": 23,
+    "quadrants": 4,
+    "nearest_dd": 1.22,
+    "in_macula": 0
+   },
+   "haemorrhages": {
+    "area_pct": 0.743,
+    "area_da": 0.281,
+    "count": 25,
+    "quadrants": 4,
+    "nearest_dd": 1.04,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.207,
+    "area_da": 0.078,
+    "count": 51,
+    "quadrants": 3,
+    "nearest_dd": 0.66,
+    "in_macula": 18
+   },
+   "soft-exudates": {
+    "area_pct": 0.972,
+    "area_da": 0.367,
+    "count": 9,
+    "quadrants": 4,
+    "nearest_dd": 1.36,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p16_L_03": {
+  "fovea": [
+   0.4594,
+   0.5576
+  ],
+  "disc_diameter": 0.1287,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.834,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.134,
+    "area_da": 0.047,
+    "count": 63,
+    "quadrants": 4,
+    "nearest_dd": 0.16,
+    "in_macula": 13
+   },
+   "haemorrhages": {
+    "area_pct": 1.928,
+    "area_da": 0.68,
+    "count": 77,
+    "quadrants": 4,
+    "nearest_dd": 0.49,
+    "in_macula": 16
+   },
+   "hard-exudates": {
+    "area_pct": 3.575,
+    "area_da": 1.262,
+    "count": 347,
+    "quadrants": 4,
+    "nearest_dd": 0.0,
+    "in_macula": 103
+   },
+   "soft-exudates": {
+    "area_pct": 0.039,
+    "area_da": 0.014,
+    "count": 1,
+    "quadrants": 1,
+    "nearest_dd": 2.1,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p16_R_01": {
+  "fovea": [
+   0.4622,
+   0.5445
+  ],
+  "disc_diameter": 0.1217,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.534,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.082,
+    "area_da": 0.032,
+    "count": 18,
+    "quadrants": 4,
+    "nearest_dd": 0.33,
+    "in_macula": 5
+   },
+   "haemorrhages": {
+    "area_pct": 0.42,
+    "area_da": 0.166,
+    "count": 15,
+    "quadrants": 3,
+    "nearest_dd": 1.16,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 1.342,
+    "area_da": 0.53,
+    "count": 106,
+    "quadrants": 4,
+    "nearest_dd": 0.26,
+    "in_macula": 37
+   }
+  }
+ },
+ "IDRiD_seg_p17_L_31": {
+  "fovea": [
+   0.4613,
+   0.4533
+  ],
+  "disc_diameter": 0.1098,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.066,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.097,
+    "area_da": 0.047,
+    "count": 28,
+    "quadrants": 4,
+    "nearest_dd": 0.34,
+    "in_macula": 5
+   },
+   "haemorrhages": {
+    "area_pct": 2.573,
+    "area_da": 1.245,
+    "count": 27,
+    "quadrants": 4,
+    "nearest_dd": 0.13,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.581,
+    "area_da": 0.281,
+    "count": 102,
+    "quadrants": 4,
+    "nearest_dd": 0.21,
+    "in_macula": 23
+   },
+   "soft-exudates": {
+    "area_pct": 1.875,
+    "area_da": 0.907,
+    "count": 8,
+    "quadrants": 3,
+    "nearest_dd": 1.75,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p17_R_45": {
+  "fovea": [
+   0.3154,
+   0.5646
+  ],
+  "disc_diameter": 0.0922,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 1.455,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.03,
+    "area_da": 0.021,
+    "count": 12,
+    "quadrants": 4,
+    "nearest_dd": 0.29,
+    "in_macula": 4
+   },
+   "haemorrhages": {
+    "area_pct": 0.157,
+    "area_da": 0.108,
+    "count": 4,
+    "quadrants": 2,
+    "nearest_dd": 0.32,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.562,
+    "area_da": 0.386,
+    "count": 168,
+    "quadrants": 4,
+    "nearest_dd": 0.24,
+    "in_macula": 9
+   }
+  }
+ },
+ "IDRiD_seg_p18_L_10": {
+  "fovea": [
+   0.4664,
+   0.4126
+  ],
+  "disc_diameter": 0.122,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.551,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.397,
+    "area_da": 0.156,
+    "count": 89,
+    "quadrants": 4,
+    "nearest_dd": 0.83,
+    "in_macula": 2
+   },
+   "haemorrhages": {
+    "area_pct": 1.099,
+    "area_da": 0.431,
+    "count": 32,
+    "quadrants": 4,
+    "nearest_dd": 0.87,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 9.555,
+    "area_da": 3.746,
+    "count": 418,
+    "quadrants": 4,
+    "nearest_dd": 0.0,
+    "in_macula": 36
+   }
+  }
+ },
+ "IDRiD_seg_p18_R_22": {
+  "fovea": [
+   0.594,
+   0.4547
+  ],
+  "disc_diameter": 0.1131,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.192,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.123,
+    "area_da": 0.056,
+    "count": 29,
+    "quadrants": 3,
+    "nearest_dd": 0.45,
+    "in_macula": 2
+   },
+   "haemorrhages": {
+    "area_pct": 3.024,
+    "area_da": 1.38,
+    "count": 31,
+    "quadrants": 4,
+    "nearest_dd": 1.39,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 1.115,
+    "area_da": 0.509,
+    "count": 117,
+    "quadrants": 4,
+    "nearest_dd": 0.16,
+    "in_macula": 25
+   },
+   "soft-exudates": {
+    "area_pct": 1.282,
+    "area_da": 0.585,
+    "count": 6,
+    "quadrants": 3,
+    "nearest_dd": 1.71,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p19_L_29": {
+  "fovea": [
+   0.5555,
+   0.539
+  ],
+  "disc_diameter": 0.1285,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.827,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.054,
+    "area_da": 0.019,
+    "count": 26,
+    "quadrants": 4,
+    "nearest_dd": 0.29,
+    "in_macula": 2
+   },
+   "haemorrhages": {
+    "area_pct": 0.025,
+    "area_da": 0.009,
+    "count": 4,
+    "quadrants": 2,
+    "nearest_dd": 1.42,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.028,
+    "area_da": 0.01,
+    "count": 5,
+    "quadrants": 3,
+    "nearest_dd": 1.37,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p19_R_08": {
+  "fovea": [
+   0.4097,
+   0.5404
+  ],
+  "disc_diameter": 0.1194,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.439,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.05,
+    "area_da": 0.02,
+    "count": 16,
+    "quadrants": 2,
+    "nearest_dd": 0.33,
+    "in_macula": 8
+   },
+   "haemorrhages": {
+    "area_pct": 0.441,
+    "area_da": 0.181,
+    "count": 12,
+    "quadrants": 4,
+    "nearest_dd": 0.28,
+    "in_macula": 8
+   },
+   "hard-exudates": {
+    "area_pct": 0.241,
+    "area_da": 0.099,
+    "count": 57,
+    "quadrants": 4,
+    "nearest_dd": 0.05,
+    "in_macula": 31
+   },
+   "soft-exudates": {
+    "area_pct": 0.455,
+    "area_da": 0.186,
+    "count": 3,
+    "quadrants": 2,
+    "nearest_dd": 0.88,
+    "in_macula": 1
+   }
+  }
+ },
+ "IDRiD_seg_p20_L_28": {
+  "fovea": [
+   0.5695,
+   0.5534
+  ],
+  "disc_diameter": 0.1242,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.641,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.057,
+    "area_da": 0.022,
+    "count": 23,
+    "quadrants": 4,
+    "nearest_dd": 0.24,
+    "in_macula": 6
+   },
+   "haemorrhages": {
+    "area_pct": 0.384,
+    "area_da": 0.146,
+    "count": 22,
+    "quadrants": 4,
+    "nearest_dd": 0.18,
+    "in_macula": 8
+   },
+   "hard-exudates": {
+    "area_pct": 0.056,
+    "area_da": 0.021,
+    "count": 34,
+    "quadrants": 4,
+    "nearest_dd": 0.09,
+    "in_macula": 11
+   }
+  }
+ },
+ "IDRiD_seg_p20_R_05": {
+  "fovea": [
+   0.3932,
+   0.538
+  ],
+  "disc_diameter": 0.1224,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.562,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.047,
+    "area_da": 0.018,
+    "count": 8,
+    "quadrants": 3,
+    "nearest_dd": 0.99,
+    "in_macula": 1
+   },
+   "haemorrhages": {
+    "area_pct": 0.117,
+    "area_da": 0.046,
+    "count": 6,
+    "quadrants": 3,
+    "nearest_dd": 0.87,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.098,
+    "area_da": 0.038,
+    "count": 23,
+    "quadrants": 3,
+    "nearest_dd": 0.29,
+    "in_macula": 14
+   }
+  }
+ },
+ "IDRiD_seg_p21_L_25": {
+  "fovea": [
+   0.5354,
+   0.5295
+  ],
+  "disc_diameter": 0.1158,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.297,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.278,
+    "area_da": 0.121,
+    "count": 67,
+    "quadrants": 4,
+    "nearest_dd": 0.34,
+    "in_macula": 3
+   },
+   "haemorrhages": {
+    "area_pct": 3.945,
+    "area_da": 1.717,
+    "count": 54,
+    "quadrants": 4,
+    "nearest_dd": 0.65,
+    "in_macula": 3
+   },
+   "hard-exudates": {
+    "area_pct": 7.319,
+    "area_da": 3.186,
+    "count": 411,
+    "quadrants": 4,
+    "nearest_dd": 0.06,
+    "in_macula": 136
+   },
+   "soft-exudates": {
+    "area_pct": 0.273,
+    "area_da": 0.119,
+    "count": 4,
+    "quadrants": 3,
+    "nearest_dd": 0.6,
+    "in_macula": 1
+   }
+  }
+ },
+ "IDRiD_seg_p21_R_47": {
+  "fovea": [
+   0.3188,
+   0.5126
+  ],
+  "disc_diameter": 0.1487,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.785,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.047,
+    "area_da": 0.012,
+    "count": 13,
+    "quadrants": 4,
+    "nearest_dd": 1.12,
+    "in_macula": 0
+   },
+   "haemorrhages": {
+    "area_pct": 0.813,
+    "area_da": 0.215,
+    "count": 9,
+    "quadrants": 3,
+    "nearest_dd": 0.17,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 0.458,
+    "area_da": 0.121,
+    "count": 69,
+    "quadrants": 4,
+    "nearest_dd": 0.2,
+    "in_macula": 12
+   },
+   "soft-exudates": {
+    "area_pct": 0.4,
+    "area_da": 0.106,
+    "count": 1,
+    "quadrants": 1,
+    "nearest_dd": 2.93,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p22_L_02": {
+  "fovea": [
+   0.4543,
+   0.539
+  ],
+  "disc_diameter": 0.1187,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.415,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.112,
+    "area_da": 0.046,
+    "count": 41,
+    "quadrants": 4,
+    "nearest_dd": 0.47,
+    "in_macula": 5
+   },
+   "haemorrhages": {
+    "area_pct": 0.206,
+    "area_da": 0.085,
+    "count": 22,
+    "quadrants": 3,
+    "nearest_dd": 0.46,
+    "in_macula": 3
+   },
+   "hard-exudates": {
+    "area_pct": 1.606,
+    "area_da": 0.665,
+    "count": 166,
+    "quadrants": 4,
+    "nearest_dd": 0.26,
+    "in_macula": 20
+   }
+  }
+ },
+ "IDRiD_seg_p22_R_09": {
+  "fovea": [
+   0.3783,
+   0.5495
+  ],
+  "disc_diameter": 0.134,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 3.077,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.417,
+    "area_da": 0.136,
+    "count": 54,
+    "quadrants": 4,
+    "nearest_dd": 0.24,
+    "in_macula": 13
+   },
+   "haemorrhages": {
+    "area_pct": 1.007,
+    "area_da": 0.327,
+    "count": 25,
+    "quadrants": 4,
+    "nearest_dd": 0.32,
+    "in_macula": 5
+   },
+   "hard-exudates": {
+    "area_pct": 3.017,
+    "area_da": 0.981,
+    "count": 143,
+    "quadrants": 4,
+    "nearest_dd": 0.0,
+    "in_macula": 70
+   }
+  }
+ },
+ "IDRiD_seg_p23_L_50": {
+  "fovea": [
+   0.504,
+   0.5035
+  ],
+  "disc_diameter": 0.1124,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.163,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.062,
+    "area_da": 0.029,
+    "count": 11,
+    "quadrants": 4,
+    "nearest_dd": 1.11,
+    "in_macula": 0
+   },
+   "haemorrhages": {
+    "area_pct": 0.405,
+    "area_da": 0.187,
+    "count": 9,
+    "quadrants": 4,
+    "nearest_dd": 0.84,
+    "in_macula": 1
+   },
+   "hard-exudates": {
+    "area_pct": 1.431,
+    "area_da": 0.662,
+    "count": 207,
+    "quadrants": 4,
+    "nearest_dd": 0.26,
+    "in_macula": 56
+   },
+   "soft-exudates": {
+    "area_pct": 0.436,
+    "area_da": 0.202,
+    "count": 4,
+    "quadrants": 4,
+    "nearest_dd": 1.1,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p23_R_23": {
+  "fovea": [
+   0.3554,
+   0.5481
+  ],
+  "disc_diameter": 0.125,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.679,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.054,
+    "area_da": 0.02,
+    "count": 14,
+    "quadrants": 4,
+    "nearest_dd": 0.28,
+    "in_macula": 4
+   },
+   "haemorrhages": {
+    "area_pct": 1.323,
+    "area_da": 0.494,
+    "count": 19,
+    "quadrants": 4,
+    "nearest_dd": 1.14,
+    "in_macula": 0
+   },
+   "hard-exudates": {
+    "area_pct": 0.176,
+    "area_da": 0.066,
+    "count": 64,
+    "quadrants": 3,
+    "nearest_dd": 0.31,
+    "in_macula": 10
+   },
+   "soft-exudates": {
+    "area_pct": 0.708,
+    "area_da": 0.264,
+    "count": 5,
+    "quadrants": 2,
+    "nearest_dd": 2.2,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p24_L_35": {
+  "fovea": [
+   0.5583,
+   0.5418
+  ],
+  "disc_diameter": 0.1145,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.246,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.166,
+    "area_da": 0.074,
+    "count": 42,
+    "quadrants": 4,
+    "nearest_dd": 0.3,
+    "in_macula": 11
+   },
+   "haemorrhages": {
+    "area_pct": 4.38,
+    "area_da": 1.95,
+    "count": 34,
+    "quadrants": 4,
+    "nearest_dd": 0.49,
+    "in_macula": 4
+   },
+   "hard-exudates": {
+    "area_pct": 0.236,
+    "area_da": 0.105,
+    "count": 49,
+    "quadrants": 4,
+    "nearest_dd": 0.03,
+    "in_macula": 38
+   },
+   "soft-exudates": {
+    "area_pct": 0.49,
+    "area_da": 0.218,
+    "count": 3,
+    "quadrants": 2,
+    "nearest_dd": 1.6,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p24_R_18": {
+  "fovea": [
+   0.3547,
+   0.5418
+  ],
+  "disc_diameter": 0.126,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.722,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.293,
+    "area_da": 0.108,
+    "count": 80,
+    "quadrants": 4,
+    "nearest_dd": 0.35,
+    "in_macula": 9
+   },
+   "haemorrhages": {
+    "area_pct": 1.066,
+    "area_da": 0.392,
+    "count": 53,
+    "quadrants": 4,
+    "nearest_dd": 0.33,
+    "in_macula": 13
+   },
+   "hard-exudates": {
+    "area_pct": 1.261,
+    "area_da": 0.463,
+    "count": 208,
+    "quadrants": 4,
+    "nearest_dd": 0.06,
+    "in_macula": 63
+   },
+   "soft-exudates": {
+    "area_pct": 0.486,
+    "area_da": 0.179,
+    "count": 3,
+    "quadrants": 2,
+    "nearest_dd": 1.12,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p25_L_53": {
+  "fovea": [
+   0.5382,
+   0.4963
+  ],
+  "disc_diameter": 0.1153,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.275,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.314,
+    "area_da": 0.138,
+    "count": 118,
+    "quadrants": 4,
+    "nearest_dd": 0.36,
+    "in_macula": 11
+   },
+   "haemorrhages": {
+    "area_pct": 1.082,
+    "area_da": 0.475,
+    "count": 46,
+    "quadrants": 4,
+    "nearest_dd": 0.5,
+    "in_macula": 6
+   },
+   "hard-exudates": {
+    "area_pct": 0.13,
+    "area_da": 0.057,
+    "count": 57,
+    "quadrants": 4,
+    "nearest_dd": 0.1,
+    "in_macula": 31
+   },
+   "soft-exudates": {
+    "area_pct": 0.107,
+    "area_da": 0.047,
+    "count": 1,
+    "quadrants": 1,
+    "nearest_dd": 2.5,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p25_R_46": {
+  "fovea": [
+   0.3547,
+   0.5418
+  ],
+  "disc_diameter": 0.1066,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 1.948,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.138,
+    "area_da": 0.071,
+    "count": 39,
+    "quadrants": 4,
+    "nearest_dd": 0.37,
+    "in_macula": 7
+   },
+   "haemorrhages": {
+    "area_pct": 2.288,
+    "area_da": 1.175,
+    "count": 44,
+    "quadrants": 4,
+    "nearest_dd": 0.44,
+    "in_macula": 4
+   },
+   "hard-exudates": {
+    "area_pct": 0.251,
+    "area_da": 0.129,
+    "count": 93,
+    "quadrants": 4,
+    "nearest_dd": 0.38,
+    "in_macula": 26
+   },
+   "soft-exudates": {
+    "area_pct": 1.191,
+    "area_da": 0.611,
+    "count": 6,
+    "quadrants": 3,
+    "nearest_dd": 1.55,
+    "in_macula": 0
+   }
+  }
+ },
+ "IDRiD_seg_p26_L_11": {
+  "fovea": [
+   0.4856,
+   0.5899
+  ],
+  "disc_diameter": 0.1186,
+  "fovea_source": "estimated",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.411,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.253,
+    "area_da": 0.105,
+    "count": 70,
+    "quadrants": 4,
+    "nearest_dd": 0.71,
+    "in_macula": 7
+   },
+   "haemorrhages": {
+    "area_pct": 0.674,
+    "area_da": 0.28,
+    "count": 24,
+    "quadrants": 3,
+    "nearest_dd": 0.78,
+    "in_macula": 2
+   },
+   "hard-exudates": {
+    "area_pct": 3.456,
+    "area_da": 1.433,
+    "count": 472,
+    "quadrants": 4,
+    "nearest_dd": 0.12,
+    "in_macula": 114
+   }
+  }
+ },
+ "IDRiD_seg_p26_R_39": {
+  "fovea": [
+   0.3687,
+   0.5351
+  ],
+  "disc_diameter": 0.1314,
+  "fovea_source": "expert",
+  "layers": {
+   "optic-disc": {
+    "area_pct": 2.96,
+    "area_da": 1.0,
+    "count": 1
+   },
+   "microaneurysms": {
+    "area_pct": 0.452,
+    "area_da": 0.153,
+    "count": 119,
+    "quadrants": 4,
+    "nearest_dd": 0.22,
+    "in_macula": 20
+   },
+   "haemorrhages": {
+    "area_pct": 2.972,
+    "area_da": 1.004,
+    "count": 80,
+    "quadrants": 4,
+    "nearest_dd": 0.43,
+    "in_macula": 11
+   },
+   "hard-exudates": {
+    "area_pct": 0.222,
+    "area_da": 0.075,
+    "count": 71,
+    "quadrants": 4,
+    "nearest_dd": 0.32,
+    "in_macula": 21
+   },
+   "soft-exudates": {
+    "area_pct": 1.012,
+    "area_da": 0.342,
+    "count": 10,
+    "quadrants": 4,
+    "nearest_dd": 1.2,
+    "in_macula": 0
+   }
+  }
+ }
+}

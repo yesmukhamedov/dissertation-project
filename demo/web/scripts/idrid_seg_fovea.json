@@ -1,0 +1,289 @@
+{
+ "02": {
+  "localization_id": "IDRiD_366",
+  "fovea": [
+   1948.0,
+   1535.0
+  ]
+ },
+ "03": {
+  "localization_id": "IDRiD_369",
+  "fovea": [
+   1970.0,
+   1588.0
+  ]
+ },
+ "06": {
+  "localization_id": "IDRiD_196",
+  "fovea": [
+   1554.0,
+   1554.0
+  ]
+ },
+ "08": {
+  "localization_id": "IDRiD_207",
+  "fovea": [
+   1757.0,
+   1539.0
+  ]
+ },
+ "09": {
+  "localization_id": "IDRiD_091",
+  "fovea": [
+   1622.0,
+   1565.0
+  ]
+ },
+ "10": {
+  "localization_id": "IDRiD_224",
+  "fovea": [
+   2000.0,
+   1175.0
+  ]
+ },
+ "13": {
+  "localization_id": "IDRiD_231",
+  "fovea": [
+   1566.0,
+   1561.0
+  ]
+ },
+ "14": {
+  "localization_id": "IDRiD_232",
+  "fovea": [
+   2371.0,
+   1524.0
+  ]
+ },
+ "15": {
+  "localization_id": "IDRiD_236",
+  "fovea": [
+   1521.0,
+   1584.0
+  ]
+ },
+ "16": {
+  "localization_id": "IDRiD_237",
+  "fovea": [
+   2776.0,
+   1318.0
+  ]
+ },
+ "17": {
+  "localization_id": "IDRiD_239",
+  "fovea": [
+   1652.0,
+   1610.0
+  ]
+ },
+ "18": {
+  "localization_id": "IDRiD_132",
+  "fovea": [
+   1521.0,
+   1543.0
+  ]
+ },
+ "19": {
+  "localization_id": "IDRiD_242",
+  "fovea": [
+   1506.0,
+   1513.0
+  ]
+ },
+ "20": {
+  "localization_id": "IDRiD_245",
+  "fovea": [
+   1494.0,
+   1543.0
+  ]
+ },
+ "21": {
+  "localization_id": "IDRiD_246",
+  "fovea": [
+   2086.0,
+   1674.0
+  ]
+ },
+ "22": {
+  "localization_id": "IDRiD_088",
+  "fovea": [
+   2547.0,
+   1295.0
+  ]
+ },
+ "23": {
+  "localization_id": "IDRiD_247",
+  "fovea": [
+   1524.0,
+   1561.0
+  ]
+ },
+ "24": {
+  "localization_id": "IDRiD_248",
+  "fovea": [
+   2409.0,
+   1576.0
+  ]
+ },
+ "27": {
+  "localization_id": "IDRiD_254",
+  "fovea": [
+   2109.0,
+   1543.0
+  ]
+ },
+ "28": {
+  "localization_id": "IDRiD_261",
+  "fovea": [
+   2442.0,
+   1576.0
+  ]
+ },
+ "29": {
+  "localization_id": "IDRiD_263",
+  "fovea": [
+   2382.0,
+   1535.0
+  ]
+ },
+ "31": {
+  "localization_id": "IDRiD_089",
+  "fovea": [
+   1978.0,
+   1291.0
+  ]
+ },
+ "33": {
+  "localization_id": "IDRiD_272",
+  "fovea": [
+   2454.0,
+   1610.0
+  ]
+ },
+ "34": {
+  "localization_id": "IDRiD_277",
+  "fovea": [
+   1588.0,
+   1528.0
+  ]
+ },
+ "35": {
+  "localization_id": "IDRiD_278",
+  "fovea": [
+   2394.0,
+   1543.0
+  ]
+ },
+ "36": {
+  "localization_id": "IDRiD_280",
+  "fovea": [
+   1539.0,
+   1554.0
+  ]
+ },
+ "37": {
+  "localization_id": "IDRiD_281",
+  "fovea": [
+   2397.0,
+   1617.0
+  ]
+ },
+ "38": {
+  "localization_id": "IDRiD_185",
+  "fovea": [
+   1745.0,
+   1959.0
+  ]
+ },
+ "39": {
+  "localization_id": "IDRiD_271",
+  "fovea": [
+   1581.0,
+   1524.0
+  ]
+ },
+ "40": {
+  "localization_id": "IDRiD_282",
+  "fovea": [
+   2412.0,
+   1580.0
+  ]
+ },
+ "41": {
+  "localization_id": "IDRiD_283",
+  "fovea": [
+   1506.0,
+   1509.0
+  ]
+ },
+ "42": {
+  "localization_id": "IDRiD_284",
+  "fovea": [
+   2446.0,
+   1464.0
+  ]
+ },
+ "43": {
+  "localization_id": "IDRiD_294",
+  "fovea": [
+   2405.0,
+   1516.0
+  ]
+ },
+ "44": {
+  "localization_id": "IDRiD_300",
+  "fovea": [
+   1551.0,
+   1584.0
+  ]
+ },
+ "46": {
+  "localization_id": "IDRiD_306",
+  "fovea": [
+   1521.0,
+   1543.0
+  ]
+ },
+ "47": {
+  "localization_id": "IDRiD_064",
+  "fovea": [
+   1367.0,
+   1460.0
+  ]
+ },
+ "49": {
+  "localization_id": "IDRiD_308",
+  "fovea": [
+   1764.0,
+   1666.0
+  ]
+ },
+ "50": {
+  "localization_id": "IDRiD_048",
+  "fovea": [
+   2161.0,
+   1434.0
+  ]
+ },
+ "51": {
+  "localization_id": "IDRiD_310",
+  "fovea": [
+   1603.0,
+   1880.0
+  ]
+ },
+ "52": {
+  "localization_id": "IDRiD_311",
+  "fovea": [
+   2427.0,
+   1531.0
+  ]
+ },
+ "54": {
+  "localization_id": "IDRiD_314",
+  "fovea": [
+   2308.0,
+   1535.0
+  ]
+ }
+}
