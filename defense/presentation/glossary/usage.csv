@@ -503,111 +503,105 @@ aim;Есмухамедов Н.С.;A17;2026;kk;03;aim-objectives;Мақсаты;d
 objectives;Есмухамедов Н.С.;A17;2026;kk;03;aim-objectives;Міндеттері;defense\presentation\slides\03-aim-objectives\kk.md
 integrated_configuration;Есмухамедов Н.С.;A17;2026;kk;03;aim-objectives;интеграцияланған конфигурация;defense\presentation\slides\03-aim-objectives\kk.md
 preprocessing_pipeline;Есмухамедов Н.С.;A17;2026;kk;03;aim-objectives;алдын ала өңдеу конвейері;defense\presentation\slides\03-aim-objectives\kk.md
-object_subject;Есмухамедов Н.С.;A17;2026;kk;04;object-subject;Зерттеу объектісі, пәні және әдістері;defense\presentation\slides\04-object-subject\kk.md
-object;Есмухамедов Н.С.;A17;2026;kk;04;object-subject;Зерттеу объектісі;defense\presentation\slides\04-object-subject\kk.md
-subject;Есмухамедов Н.С.;A17;2026;kk;04;object-subject;Зерттеу пәні;defense\presentation\slides\04-object-subject\kk.md
-methods;Есмухамедов Н.С.;A17;2026;kk;04;object-subject;Зерттеу әдістері;defense\presentation\slides\04-object-subject\kk.md
-novelty;Есмухамедов Н.С.;A17;2026;kk;05;novelty;Ғылыми жаңалығы;defense\presentation\slides\05-novelty\kk.md
-preprocessing_pipeline;Есмухамедов Н.С.;A17;2026;kk;05;novelty;алдын ала өңдеу конвейері;defense\presentation\slides\05-novelty\kk.md
-clip_limit;Есмухамедов Н.С.;A17;2026;kk;05;novelty;клип-лимит;defense\presentation\slides\05-novelty\kk.md
-fov_mask;Есмухамедов Н.С.;A17;2026;kk;05;novelty;көру алаңының маскасы;defense\presentation\slides\05-novelty\kk.md
-flat_field;Есмухамедов Н.С.;A17;2026;kk;05;novelty;жарықтандыруды түзету;defense\presentation\slides\05-novelty\kk.md
-alo;Есмухамедов Н.С.;A17;2026;kk;05;novelty;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\05-novelty\kk.md
-domain_distance;Есмухамедов Н.С.;A17;2026;kk;05;novelty;домен қашықтығы;defense\presentation\slides\05-novelty\kk.md
-provisions;Есмухамедов Н.С.;A17;2026;kk;06;provisions;Қорғауға ұсынылатын ғылыми тұжырымдар;defense\presentation\slides\06-provisions\kk.md
-provision_n;Есмухамедов Н.С.;A17;2026;kk;06;provisions;N-тұжырым;defense\presentation\slides\06-provisions\kk.md
-integrated_configuration;Есмухамедов Н.С.;A17;2026;kk;06;provisions;интеграцияланған конфигурация;defense\presentation\slides\06-provisions\kk.md
-baseline_configuration;Есмухамедов Н.С.;A17;2026;kk;06;provisions;базалық конфигурация;defense\presentation\slides\06-provisions\kk.md
-weighted_f1;Есмухамедов Н.С.;A17;2026;kk;06;provisions;салмақталған F1;defense\presentation\slides\06-provisions\kk.md
-domain_distance;Есмухамедов Н.С.;A17;2026;kk;06;provisions;домен қашықтығы;defense\presentation\slides\06-provisions\kk.md
-generalization_ratio;Есмухамедов Н.С.;A17;2026;kk;06;provisions;жалпылау қатынасы (G);defense\presentation\slides\06-provisions\kk.md
-alo;Есмухамедов Н.С.;A17;2026;kk;06;provisions;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\06-provisions\kk.md
-mcid;Есмухамедов Н.С.;A17;2026;kk;06;provisions;клиникалық маңызды ең аз айырма (MCID);defense\presentation\slides\06-provisions\kk.md
-preprocessing;Есмухамедов Н.С.;A17;2026;kk;07;review;алдын ала өңдеу;defense\presentation\slides\07-review\kk.md
-domain_shift;Есмухамедов Н.С.;A17;2026;kk;07;review;домен ығысуы;defense\presentation\slides\07-review\kk.md
-grad_cam;Есмухамедов Н.С.;A17;2026;kk;07;review;Grad-CAM;defense\presentation\slides\07-review\kk.md
-preprocessing_pipeline;Есмухамедов Н.С.;A17;2026;kk;09;system-architecture;алдын ала өңдеу конвейері;defense\presentation\slides\09-system-architecture\kk.md
-fov_mask;Есмухамедов Н.С.;A17;2026;kk;09;system-architecture;көру алаңының маскасы;defense\presentation\slides\09-system-architecture\kk.md
-backbone;Есмухамедов Н.С.;A17;2026;kk;09;system-architecture;backbone;defense\presentation\slides\09-system-architecture\kk.md
-referable_dr;Есмухамедов Н.С.;A17;2026;kk;09;system-architecture;жолдама берілуге тиіс ДР (ŷ ≥ 2);defense\presentation\slides\09-system-architecture\kk.md
-grad_cam;Есмухамедов Н.С.;A17;2026;kk;09;system-architecture;Grad-CAM;defense\presentation\slides\09-system-architecture\kk.md
-alo;Есмухамедов Н.С.;A17;2026;kk;09;system-architecture;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\09-system-architecture\kk.md
-factorial_design;Есмухамедов Н.С.;A17;2026;kk;10;factorial-design;факторлық жоба (2 × 2);defense\presentation\slides\10-factorial-design\kk.md
-baseline_configuration;Есмухамедов Н.С.;A17;2026;kk;10;factorial-design;базалық конфигурация;defense\presentation\slides\10-factorial-design\kk.md
-integrated_configuration;Есмухамедов Н.С.;A17;2026;kk;10;factorial-design;интеграцияланған конфигурация;defense\presentation\slides\10-factorial-design\kk.md
-weighted_f1;Есмухамедов Н.С.;A17;2026;kk;10;factorial-design;салмақталған F1;defense\presentation\slides\10-factorial-design\kk.md
-focal_loss;Есмухамедов Н.С.;A17;2026;kk;10;factorial-design;focal loss;defense\presentation\slides\10-factorial-design\kk.md
-patient_level_cv;Есмухамедов Н.С.;A17;2026;kk;10;factorial-design;пациент деңгейінде стратификацияланған кросс-валидация;defense\presentation\slides\10-factorial-design\kk.md
-corpus;Есмухамедов Н.С.;A17;2026;kk;12;datasets;корпус;defense\presentation\slides\12-datasets\kk.md
-icdr;Есмухамедов Н.С.;A17;2026;kk;12;datasets;ICDR бес класты шкаласы;defense\presentation\slides\12-datasets\kk.md
-class_imbalance;Есмухамедов Н.С.;A17;2026;kk;12;datasets;класс теңгерімсіздігі;defense\presentation\slides\12-datasets\kk.md
-camera_group;Есмухамедов Н.С.;A17;2026;kk;13;cameras;камера тобы;defense\presentation\slides\13-cameras\kk.md
-zero_shot;Есмухамедов Н.С.;A17;2026;kk;14;datasets-experiments;қайта оқытусыз тексеру;defense\presentation\slides\14-datasets-experiments\kk.md
-preprocessing_pipeline;Есмухамедов Н.С.;A17;2026;kk;15;pipeline-overview;алдын ала өңдеу конвейері;defense\presentation\slides\15-pipeline-overview\kk.md
-fov_mask;Есмухамедов Н.С.;A17;2026;kk;15;pipeline-overview;көру алаңының маскасы;defense\presentation\slides\15-pipeline-overview\kk.md
-canonical_flip;Есмухамедов Н.С.;A17;2026;kk;16;canonical-flip;канондық айналдыру;defense\presentation\slides\16-canonical-flip\kk.md
-od_fovea_rotation;Есмухамедов Н.С.;A17;2026;kk;17;od-fovea-rotation;диск пен фовеа бойынша бұру;defense\presentation\slides\17-od-fovea-rotation\kk.md
-optic_disc;Есмухамедов Н.С.;A17;2026;kk;17;od-fovea-rotation;оптикалық диск;defense\presentation\slides\17-od-fovea-rotation\kk.md
-fovea;Есмухамедов Н.С.;A17;2026;kk;17;od-fovea-rotation;фовеа;defense\presentation\slides\17-od-fovea-rotation\kk.md
-fov_crop;Есмухамедов Н.С.;A17;2026;kk;18;crop-fov-mask;көру алаңы бойынша кесу;defense\presentation\slides\18-crop-fov-mask\kk.md
-fov_mask;Есмухамедов Н.С.;A17;2026;kk;18;crop-fov-mask;көру алаңының маскасы;defense\presentation\slides\18-crop-fov-mask\kk.md
-isotropic_scaling;Есмухамедов Н.С.;A17;2026;kk;18;crop-fov-mask;изотропты масштабтау;defense\presentation\slides\18-crop-fov-mask\kk.md
-clahe;Есмухамедов Н.С.;A17;2026;kk;19;clahe;CLAHE (контрасты шектелген адаптивті гистограмма теңестіру);defense\presentation\slides\19-clahe\kk.md
-clip_limit;Есмухамедов Н.С.;A17;2026;kk;19;clahe;клип-лимит;defense\presentation\slides\19-clahe\kk.md
-augmentation;Есмухамедов Н.С.;A17;2026;kk;20;aug-rotation;аугментация;defense\presentation\slides\20-aug-rotation\kk.md
-augmentation;Есмухамедов Н.С.;A17;2026;kk;21;aug-geometric;аугментация;defense\presentation\slides\21-aug-geometric\kk.md
-augmentation;Есмухамедов Н.С.;A17;2026;kk;22;aug-photometric;аугментация;defense\presentation\slides\22-aug-photometric\kk.md
-color_jitter;Есмухамедов Н.С.;A17;2026;kk;22;aug-photometric;түс ауытқуы (ColorJitter);defense\presentation\slides\22-aug-photometric\kk.md
-dataset_normalization;Есмухамедов Н.С.;A17;2026;kk;23;normalization;бастапқы домен статистикасы бойынша нормалау;defense\presentation\slides\23-normalization\kk.md
-focal_loss;Есмухамедов Н.С.;A17;2026;kk;25;training-metrics;focal loss;defense\presentation\slides\25-training-metrics\kk.md
-patient_level_cv;Есмухамедов Н.С.;A17;2026;kk;25;training-metrics;пациент деңгейінде стратификацияланған кросс-валидация;defense\presentation\slides\25-training-metrics\kk.md
-weighted_f1;Есмухамедов Н.С.;A17;2026;kk;25;training-metrics;салмақталған F1;defense\presentation\slides\25-training-metrics\kk.md
-roc_auc;Есмухамедов Н.С.;A17;2026;kk;25;training-metrics;ROC-AUC (қисық астындағы аудан);defense\presentation\slides\25-training-metrics\kk.md
-kappa;Есмухамедов Н.С.;A17;2026;kk;25;training-metrics;квадраттық каппа (κ);defense\presentation\slides\25-training-metrics\kk.md
-generalization_ratio;Есмухамедов Н.С.;A17;2026;kk;25;training-metrics;жалпылау қатынасы (G);defense\presentation\slides\25-training-metrics\kk.md
-alo;Есмухамедов Н.С.;A17;2026;kk;25;training-metrics;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\25-training-metrics\kk.md
-factorial_design;Есмухамедов Н.С.;A17;2026;kk;26;exp1;факторлық жоба (2 × 2);defense\presentation\slides\26-exp1\kk.md
-weighted_f1;Есмухамедов Н.С.;A17;2026;kk;26;exp1;салмақталған F1;defense\presentation\slides\26-exp1\kk.md
-integrated_configuration;Есмухамедов Н.С.;A17;2026;kk;26;exp1;интеграцияланған конфигурация;defense\presentation\slides\26-exp1\kk.md
-baseline_configuration;Есмухамедов Н.С.;A17;2026;kk;26;exp1;базалық конфигурация;defense\presentation\slides\26-exp1\kk.md
-ablation;Есмухамедов Н.С.;A17;2026;kk;27;exp2;абляция (кумулятивті);defense\presentation\slides\27-exp2\kk.md
-flat_field;Есмухамедов Н.С.;A17;2026;kk;27;exp2;жарықтандыруды түзету;defense\presentation\slides\27-exp2\kk.md
-clahe;Есмухамедов Н.С.;A17;2026;kk;27;exp2;CLAHE (контрасты шектелген адаптивті гистограмма теңестіру);defense\presentation\slides\27-exp2\kk.md
-clip_limit;Есмухамедов Н.С.;A17;2026;kk;27;exp2;клип-лимит;defense\presentation\slides\27-exp2\kk.md
-domain_distance;Есмухамедов Н.С.;A17;2026;kk;28;domain-distance;домен қашықтығы;defense\presentation\slides\28-domain-distance\kk.md
-mmd;Есмухамедов Н.С.;A17;2026;kk;28;domain-distance;MMD (максималды орташа айырма);defense\presentation\slides\28-domain-distance\kk.md
-kl_divergence;Есмухамедов Н.С.;A17;2026;kk;28;domain-distance;KL-дивергенция;defense\presentation\slides\28-domain-distance\kk.md
-penultimate_layer;Есмухамедов Н.С.;A17;2026;kk;28;domain-distance;соңының алдындағы қабат;defense\presentation\slides\28-domain-distance\kk.md
-generalization_ratio;Есмухамедов Н.С.;A17;2026;kk;29;exp3;жалпылау қатынасы (G);defense\presentation\slides\29-exp3\kk.md
-zero_shot;Есмухамедов Н.С.;A17;2026;kk;29;exp3;қайта оқытусыз тексеру;defense\presentation\slides\29-exp3\kk.md
-cross_corpus_transfer;Есмухамедов Н.С.;A17;2026;kk;29;exp3;корпусаралық тасымалдау;defense\presentation\slides\29-exp3\kk.md
-alo;Есмухамедов Н.С.;A17;2026;kk;30;exp4;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\30-exp4\kk.md
-grad_cam;Есмухамедов Н.С.;A17;2026;kk;30;exp4;Grad-CAM;defense\presentation\slides\30-exp4\kk.md
-attention_alignment;Есмухамедов Н.С.;A17;2026;kk;30;exp4;назардың аннотациямен үйлесімі;defense\presentation\slides\30-exp4\kk.md
-lesion_types;Есмухамедов Н.С.;A17;2026;kk;30;exp4;зақымдану түрлері: микроаневризма, қанталау, қатты / жұмсақ экссудат;defense\presentation\slides\30-exp4\kk.md
-mcid;Есмухамедов Н.С.;A17;2026;kk;31;exp5;клиникалық маңызды ең аз айырма (MCID);defense\presentation\slides\31-exp5\kk.md
-external_clinical_performance;Есмухамедов Н.С.;A17;2026;kk;31;exp5;сыртқы клиникалық өнімділік;defense\presentation\slides\31-exp5\kk.md
-camera_group;Есмухамедов Н.С.;A17;2026;kk;32;exp6;камера тобы;defense\presentation\slides\32-exp6\kk.md
-device_shift;Есмухамедов Н.С.;A17;2026;kk;32;exp6;құрылғылық ығысу;defense\presentation\slides\32-exp6\kk.md
-small_data;Есмухамедов Н.С.;A17;2026;kk;33;exp7;деректері тапшы режим;defense\presentation\slides\33-exp7\kk.md
-cnr;Есмухамедов Н.С.;A17;2026;kk;35;synthesis;CNR (контраст–шу қатынасы);defense\presentation\slides\35-synthesis\kk.md
-ssim;Есмухамедов Н.С.;A17;2026;kk;35;synthesis;SSIM;defense\presentation\slides\35-synthesis\kk.md
-entropy;Есмухамедов Н.С.;A17;2026;kk;35;synthesis;энтропия;defense\presentation\slides\35-synthesis\kk.md
-delong;Есмухамедов Н.С.;A17;2026;kk;35;synthesis;DeLong тесті;defense\presentation\slides\35-synthesis\kk.md
-mcnemar;Есмухамедов Н.С.;A17;2026;kk;35;synthesis;McNemar тесті;defense\presentation\slides\35-synthesis\kk.md
-bootstrap;Есмухамедов Н.С.;A17;2026;kk;35;synthesis;bootstrap аралықтары;defense\presentation\slides\35-synthesis\kk.md
-class_imbalance;Есмухамедов Н.С.;A17;2026;kk;36;limitations;класс теңгерімсіздігі;defense\presentation\slides\36-limitations\kk.md
-grad_cam;Есмухамедов Н.С.;A17;2026;kk;36;limitations;Grad-CAM;defense\presentation\slides\36-limitations\kk.md
-theoretical;Есмухамедов Н.С.;A17;2026;kk;37;theoretical-significance;Теориялық маңыздылығы;defense\presentation\slides\37-theoretical-significance\kk.md
-alo;Есмухамедов Н.С.;A17;2026;kk;37;theoretical-significance;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\37-theoretical-significance\kk.md
-domain_distance;Есмухамедов Н.С.;A17;2026;kk;37;theoretical-significance;домен қашықтығы;defense\presentation\slides\37-theoretical-significance\kk.md
-generalization_ratio;Есмухамедов Н.С.;A17;2026;kk;37;theoretical-significance;жалпылау қатынасы (G);defense\presentation\slides\37-theoretical-significance\kk.md
-practical;Есмухамедов Н.С.;A17;2026;kk;38;practical-significance;Практикалық маңыздылығы;defense\presentation\slides\38-practical-significance\kk.md
-screening_system;Есмухамедов Н.С.;A17;2026;kk;38;practical-significance;скрининг жүйесі;defense\presentation\slides\38-practical-significance\kk.md
-inference_service;Есмухамедов Н.С.;A17;2026;kk;38;practical-significance;инференс сервисі;defense\presentation\slides\38-practical-significance\kk.md
-conclusion;Есмухамедов Н.С.;A17;2026;kk;39;conclusion;Қорытынды;defense\presentation\slides\39-conclusion\kk.md
-objectives;Есмухамедов Н.С.;A17;2026;kk;39;conclusion;Міндеттері;defense\presentation\slides\39-conclusion\kk.md
-publications;Есмухамедов Н.С.;A17;2026;kk;40;publications;Жарияланымдар;defense\presentation\slides\40-publications\kk.md
-approbation;Есмухамедов Н.С.;A17;2026;kk;40;publications;Нәтижелердің апробациясы және жарияланымдар;defense\presentation\slides\40-publications\kk.md
-certificate;Есмухамедов Н.С.;A17;2026;kk;41;certificate;Авторлық құқық туралы куәлік;defense\presentation\slides\41-certificate\kk.md
-thanks;Есмухамедов Н.С.;A17;2026;kk;42;final;Назарларыңызға рахмет!;defense\presentation\slides\42-final\kk.md
+object;Есмухамедов Н.С.;A17;2026;kk;03;object-subject;Зерттеу объектісі;defense\presentation\slides\03-aim-objectives\kk.md
+subject;Есмухамедов Н.С.;A17;2026;kk;03;object-subject;Зерттеу пәні;defense\presentation\slides\03-aim-objectives\kk.md
+novelty;Есмухамедов Н.С.;A17;2026;kk;04;novelty;Ғылыми жаңалығы;defense\presentation\slides\04-provisions\kk.md
+preprocessing_pipeline;Есмухамедов Н.С.;A17;2026;kk;04;novelty;алдын ала өңдеу конвейері;defense\presentation\slides\04-provisions\kk.md
+clip_limit;Есмухамедов Н.С.;A17;2026;kk;04;novelty;клип-лимит;defense\presentation\slides\04-provisions\kk.md
+fov_mask;Есмухамедов Н.С.;A17;2026;kk;04;novelty;көру алаңының маскасы;defense\presentation\slides\04-provisions\kk.md
+flat_field;Есмухамедов Н.С.;A17;2026;kk;04;novelty;жарықтандыруды түзету;defense\presentation\slides\04-provisions\kk.md
+alo;Есмухамедов Н.С.;A17;2026;kk;04;novelty;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\04-provisions\kk.md
+domain_distance;Есмухамедов Н.С.;A17;2026;kk;04;novelty;домен қашықтығы;defense\presentation\slides\04-provisions\kk.md
+provisions;Есмухамедов Н.С.;A17;2026;kk;04;provisions;Қорғауға ұсынылатын ғылыми тұжырымдар;defense\presentation\slides\04-provisions\kk.md
+provision_n;Есмухамедов Н.С.;A17;2026;kk;04;provisions;N-тұжырым;defense\presentation\slides\04-provisions\kk.md
+integrated_configuration;Есмухамедов Н.С.;A17;2026;kk;04;provisions;интеграцияланған конфигурация;defense\presentation\slides\04-provisions\kk.md
+baseline_configuration;Есмухамедов Н.С.;A17;2026;kk;04;provisions;базалық конфигурация;defense\presentation\slides\04-provisions\kk.md
+weighted_f1;Есмухамедов Н.С.;A17;2026;kk;04;provisions;салмақталған F1;defense\presentation\slides\04-provisions\kk.md
+domain_distance;Есмухамедов Н.С.;A17;2026;kk;04;provisions;домен қашықтығы;defense\presentation\slides\04-provisions\kk.md
+generalization_ratio;Есмухамедов Н.С.;A17;2026;kk;04;provisions;жалпылау қатынасы (G);defense\presentation\slides\04-provisions\kk.md
+alo;Есмухамедов Н.С.;A17;2026;kk;04;provisions;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\04-provisions\kk.md
+mcid;Есмухамедов Н.С.;A17;2026;kk;04;provisions;клиникалық маңызды ең аз айырма (MCID);defense\presentation\slides\04-provisions\kk.md
+preprocessing;Есмухамедов Н.С.;A17;2026;kk;05;review;алдын ала өңдеу;defense\presentation\slides\05-review\kk.md
+domain_shift;Есмухамедов Н.С.;A17;2026;kk;05;review;домен ығысуы;defense\presentation\slides\05-review\kk.md
+grad_cam;Есмухамедов Н.С.;A17;2026;kk;05;review;Grad-CAM;defense\presentation\slides\05-review\kk.md
+preprocessing_pipeline;Есмухамедов Н.С.;A17;2026;kk;06;system-architecture;алдын ала өңдеу конвейері;defense\presentation\slides\06-system-architecture\kk.md
+fov_mask;Есмухамедов Н.С.;A17;2026;kk;06;system-architecture;көру алаңының маскасы;defense\presentation\slides\06-system-architecture\kk.md
+backbone;Есмухамедов Н.С.;A17;2026;kk;06;system-architecture;backbone;defense\presentation\slides\06-system-architecture\kk.md
+referable_dr;Есмухамедов Н.С.;A17;2026;kk;06;system-architecture;жолдама берілуге тиіс ДР (ŷ ≥ 2);defense\presentation\slides\06-system-architecture\kk.md
+grad_cam;Есмухамедов Н.С.;A17;2026;kk;06;system-architecture;Grad-CAM;defense\presentation\slides\06-system-architecture\kk.md
+alo;Есмухамедов Н.С.;A17;2026;kk;06;system-architecture;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\06-system-architecture\kk.md
+factorial_design;Есмухамедов Н.С.;A17;2026;kk;07;factorial-design;факторлық жоба (2 × 2);defense\presentation\slides\07-factorial-design\kk.md
+baseline_configuration;Есмухамедов Н.С.;A17;2026;kk;07;factorial-design;базалық конфигурация;defense\presentation\slides\07-factorial-design\kk.md
+integrated_configuration;Есмухамедов Н.С.;A17;2026;kk;07;factorial-design;интеграцияланған конфигурация;defense\presentation\slides\07-factorial-design\kk.md
+weighted_f1;Есмухамедов Н.С.;A17;2026;kk;07;factorial-design;салмақталған F1;defense\presentation\slides\07-factorial-design\kk.md
+focal_loss;Есмухамедов Н.С.;A17;2026;kk;07;factorial-design;focal loss;defense\presentation\slides\07-factorial-design\kk.md
+patient_level_cv;Есмухамедов Н.С.;A17;2026;kk;07;factorial-design;пациент деңгейінде стратификацияланған кросс-валидация;defense\presentation\slides\07-factorial-design\kk.md
+corpus;Есмухамедов Н.С.;A17;2026;kk;08;datasets;корпус;defense\presentation\slides\08-datasets\kk.md
+icdr;Есмухамедов Н.С.;A17;2026;kk;08;datasets;ICDR бес класты шкаласы;defense\presentation\slides\08-datasets\kk.md
+class_imbalance;Есмухамедов Н.С.;A17;2026;kk;08;datasets;класс теңгерімсіздігі;defense\presentation\slides\08-datasets\kk.md
+camera_group;Есмухамедов Н.С.;A17;2026;kk;09;cameras;камера тобы;defense\presentation\slides\09-cameras\kk.md
+zero_shot;Есмухамедов Н.С.;A17;2026;kk;10;datasets-experiments;қайта оқытусыз тексеру;defense\presentation\slides\10-datasets-experiments\kk.md
+preprocessing_pipeline;Есмухамедов Н.С.;A17;2026;kk;11;pipeline-overview;алдын ала өңдеу конвейері;defense\presentation\slides\11-pipeline-overview\kk.md
+fov_mask;Есмухамедов Н.С.;A17;2026;kk;11;pipeline-overview;көру алаңының маскасы;defense\presentation\slides\11-pipeline-overview\kk.md
+canonical_flip;Есмухамедов Н.С.;A17;2026;kk;12;canonical-flip;канондық айналдыру;defense\presentation\slides\12-canonical-flip\kk.md
+od_fovea_rotation;Есмухамедов Н.С.;A17;2026;kk;13;od-fovea-rotation;диск пен фовеа бойынша бұру;defense\presentation\slides\13-od-fovea-rotation\kk.md
+optic_disc;Есмухамедов Н.С.;A17;2026;kk;13;od-fovea-rotation;оптикалық диск;defense\presentation\slides\13-od-fovea-rotation\kk.md
+fovea;Есмухамедов Н.С.;A17;2026;kk;13;od-fovea-rotation;фовеа;defense\presentation\slides\13-od-fovea-rotation\kk.md
+fov_crop;Есмухамедов Н.С.;A17;2026;kk;14;crop-fov-mask;көру алаңы бойынша кесу;defense\presentation\slides\14-crop-fov-mask\kk.md
+fov_mask;Есмухамедов Н.С.;A17;2026;kk;14;crop-fov-mask;көру алаңының маскасы;defense\presentation\slides\14-crop-fov-mask\kk.md
+isotropic_scaling;Есмухамедов Н.С.;A17;2026;kk;14;crop-fov-mask;изотропты масштабтау;defense\presentation\slides\14-crop-fov-mask\kk.md
+clahe;Есмухамедов Н.С.;A17;2026;kk;15;clahe;CLAHE (контрасты шектелген адаптивті гистограмма теңестіру);defense\presentation\slides\15-clahe\kk.md
+clip_limit;Есмухамедов Н.С.;A17;2026;kk;15;clahe;клип-лимит;defense\presentation\slides\15-clahe\kk.md
+augmentation;Есмухамедов Н.С.;A17;2026;kk;16;aug-rotation;аугментация;defense\presentation\slides\16-aug-rotation\kk.md
+augmentation;Есмухамедов Н.С.;A17;2026;kk;17;aug-geometric;аугментация;defense\presentation\slides\17-aug-geometric\kk.md
+augmentation;Есмухамедов Н.С.;A17;2026;kk;18;aug-photometric;аугментация;defense\presentation\slides\18-aug-photometric\kk.md
+color_jitter;Есмухамедов Н.С.;A17;2026;kk;18;aug-photometric;түс ауытқуы (ColorJitter);defense\presentation\slides\18-aug-photometric\kk.md
+dataset_normalization;Есмухамедов Н.С.;A17;2026;kk;19;normalization;бастапқы домен статистикасы бойынша нормалау;defense\presentation\slides\19-normalization\kk.md
+focal_loss;Есмухамедов Н.С.;A17;2026;kk;20;training-metrics;focal loss;defense\presentation\slides\20-training-metrics\kk.md
+patient_level_cv;Есмухамедов Н.С.;A17;2026;kk;20;training-metrics;пациент деңгейінде стратификацияланған кросс-валидация;defense\presentation\slides\20-training-metrics\kk.md
+weighted_f1;Есмухамедов Н.С.;A17;2026;kk;20;training-metrics;салмақталған F1;defense\presentation\slides\20-training-metrics\kk.md
+roc_auc;Есмухамедов Н.С.;A17;2026;kk;20;training-metrics;ROC-AUC (қисық астындағы аудан);defense\presentation\slides\20-training-metrics\kk.md
+kappa;Есмухамедов Н.С.;A17;2026;kk;20;training-metrics;квадраттық каппа (κ);defense\presentation\slides\20-training-metrics\kk.md
+generalization_ratio;Есмухамедов Н.С.;A17;2026;kk;20;training-metrics;жалпылау қатынасы (G);defense\presentation\slides\20-training-metrics\kk.md
+alo;Есмухамедов Н.С.;A17;2026;kk;20;training-metrics;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\20-training-metrics\kk.md
+factorial_design;Есмухамедов Н.С.;A17;2026;kk;21;exp1;факторлық жоба (2 × 2);defense\presentation\slides\21-exp1\kk.md
+weighted_f1;Есмухамедов Н.С.;A17;2026;kk;21;exp1;салмақталған F1;defense\presentation\slides\21-exp1\kk.md
+integrated_configuration;Есмухамедов Н.С.;A17;2026;kk;21;exp1;интеграцияланған конфигурация;defense\presentation\slides\21-exp1\kk.md
+baseline_configuration;Есмухамедов Н.С.;A17;2026;kk;21;exp1;базалық конфигурация;defense\presentation\slides\21-exp1\kk.md
+ablation;Есмухамедов Н.С.;A17;2026;kk;22;exp2;абляция (кумулятивті);defense\presentation\slides\22-exp2\kk.md
+flat_field;Есмухамедов Н.С.;A17;2026;kk;22;exp2;жарықтандыруды түзету;defense\presentation\slides\22-exp2\kk.md
+clahe;Есмухамедов Н.С.;A17;2026;kk;22;exp2;CLAHE (контрасты шектелген адаптивті гистограмма теңестіру);defense\presentation\slides\22-exp2\kk.md
+clip_limit;Есмухамедов Н.С.;A17;2026;kk;22;exp2;клип-лимит;defense\presentation\slides\22-exp2\kk.md
+domain_distance;Есмухамедов Н.С.;A17;2026;kk;23;domain-distance;домен қашықтығы;defense\presentation\slides\23-domain-distance\kk.md
+mmd;Есмухамедов Н.С.;A17;2026;kk;23;domain-distance;MMD (максималды орташа айырма);defense\presentation\slides\23-domain-distance\kk.md
+kl_divergence;Есмухамедов Н.С.;A17;2026;kk;23;domain-distance;KL-дивергенция;defense\presentation\slides\23-domain-distance\kk.md
+penultimate_layer;Есмухамедов Н.С.;A17;2026;kk;23;domain-distance;соңының алдындағы қабат;defense\presentation\slides\23-domain-distance\kk.md
+generalization_ratio;Есмухамедов Н.С.;A17;2026;kk;24;exp3;жалпылау қатынасы (G);defense\presentation\slides\24-exp3\kk.md
+zero_shot;Есмухамедов Н.С.;A17;2026;kk;24;exp3;қайта оқытусыз тексеру;defense\presentation\slides\24-exp3\kk.md
+cross_corpus_transfer;Есмухамедов Н.С.;A17;2026;kk;24;exp3;корпусаралық тасымалдау;defense\presentation\slides\24-exp3\kk.md
+alo;Есмухамедов Н.С.;A17;2026;kk;25;exp4;ALO — назардың зақымданумен беттесуі;defense\presentation\slides\25-exp4\kk.md
+grad_cam;Есмухамедов Н.С.;A17;2026;kk;25;exp4;Grad-CAM;defense\presentation\slides\25-exp4\kk.md
+attention_alignment;Есмухамедов Н.С.;A17;2026;kk;25;exp4;назардың аннотациямен үйлесімі;defense\presentation\slides\25-exp4\kk.md
+lesion_types;Есмухамедов Н.С.;A17;2026;kk;25;exp4;зақымдану түрлері: микроаневризма, қанталау, қатты / жұмсақ экссудат;defense\presentation\slides\25-exp4\kk.md
+mcid;Есмухамедов Н.С.;A17;2026;kk;26;exp5;клиникалық маңызды ең аз айырма (MCID);defense\presentation\slides\26-exp5\kk.md
+external_clinical_performance;Есмухамедов Н.С.;A17;2026;kk;26;exp5;сыртқы клиникалық өнімділік;defense\presentation\slides\26-exp5\kk.md
+camera_group;Есмухамедов Н.С.;A17;2026;kk;27;exp6;камера тобы;defense\presentation\slides\27-exp6\kk.md
+device_shift;Есмухамедов Н.С.;A17;2026;kk;27;exp6;құрылғылық ығысу;defense\presentation\slides\27-exp6\kk.md
+small_data;Есмухамедов Н.С.;A17;2026;kk;28;exp7;деректері тапшы режим;defense\presentation\slides\28-exp7\kk.md
+delong;Есмухамедов Н.С.;A17;2026;kk;30;conclusion;DeLong тесті;defense\presentation\slides\30-conclusion\kk.md
+mcnemar;Есмухамедов Н.С.;A17;2026;kk;30;conclusion;McNemar тесті;defense\presentation\slides\30-conclusion\kk.md
+bootstrap;Есмухамедов Н.С.;A17;2026;kk;30;conclusion;bootstrap аралықтары;defense\presentation\slides\30-conclusion\kk.md
+class_imbalance;Есмухамедов Н.С.;A17;2026;kk;R1;limitations;класс теңгерімсіздігі;defense\presentation\slides\R1-limitations\kk.md
+grad_cam;Есмухамедов Н.С.;A17;2026;kk;R1;limitations;Grad-CAM;defense\presentation\slides\R1-limitations\kk.md
+theoretical;Есмухамедов Н.С.;A17;2026;kk;30;conclusion;Теориялық маңыздылығы;defense\presentation\slides\30-conclusion\kk.md
+screening_system;Есмухамедов Н.С.;A17;2026;kk;29;screening-system;скрининг жүйесі;defense\presentation\slides\29-screening-system\kk.md
+inference_service;Есмухамедов Н.С.;A17;2026;kk;29;screening-system;инференс сервисі;defense\presentation\slides\29-screening-system\kk.md
+conclusion;Есмухамедов Н.С.;A17;2026;kk;30;conclusion;Қорытынды;defense\presentation\slides\30-conclusion\kk.md
+objectives;Есмухамедов Н.С.;A17;2026;kk;30;conclusion;Міндеттері;defense\presentation\slides\30-conclusion\kk.md
+publications;Есмухамедов Н.С.;A17;2026;kk;31;publications;Жарияланымдар;defense\presentation\slides\31-publications\kk.md
+approbation;Есмухамедов Н.С.;A17;2026;kk;31;publications;Нәтижелердің апробациясы және жарияланымдар;defense\presentation\slides\31-publications\kk.md
+certificate;Есмухамедов Н.С.;A17;2026;kk;32;certificate;Авторлық құқық туралы куәлік;defense\presentation\slides\32-certificate\kk.md
+thanks;Есмухамедов Н.С.;A17;2026;kk;33;final;Назарларыңызға рахмет!;defense\presentation\slides\33-final\kk.md
+focal_loss;Есмухамедов Н.С.;A17;2026;kk;06;system-architecture;focal loss;defense\presentation\slides\06-system-architecture\kk.md
+flat_field;Есмухамедов Н.С.;A17;2026;kk;15;clahe;жарықтандыруды түзету;defense\presentation\slides\15-clahe\kk.md
+grad_cam;Есмухамедов Н.С.;A17;2026;kk;29;screening-system;Grad-CAM;defense\presentation\slides\29-screening-system\kk.md

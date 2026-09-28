@@ -4,7 +4,7 @@ id: relevance
 lang: en
 status: draft
 seconds: 55
-source: архив сл. 2 — переработан
+source: архив сл. 2 — переработан по образцу Базарбекова (сл. 2)
 terms: [relevance, dr, screening, fundus_image, preprocessing]
 ---
 
@@ -12,18 +12,14 @@ terms: [relevance, dr, screening, fundus_image, preprocessing]
 
 ## На слайде
 
-**Clinical need**
-- Diabetic retinopathy (DR) is a leading cause of preventable vision loss in working-age adults; early stages are asymptomatic
-- About **one third** of people with diabetes have retinopathy; only **⅓–½** attend annual screening [7]
-- Kazakhstan: **~1,200** ophthalmologists, **~40 %** of the population is rural, **~70 %** of them have limited access to a specialist [3]
+- **Growing burden:** registered diabetes patients in Kazakhstan doubled in ten years — from 261 thousand (2014) to 517 thousand (2024); worldwide, 103 million people have diabetic retinopathy, 161 million by 2045.
+- **Screening gap:** early retinopathy is asymptomatic, so every patient needs an annual fundus examination; the country has about 1,500 ophthalmologists — ≈ 340 diabetes patients per doctor; 36 % of the population is rural, but only 20 % of ophthalmologists work in rural areas.
+- **Rationale:** the growing burden and the shortage of specialists call for automated screening from fundus images, but the accuracy of published models is unstable across cameras and acquisition conditions — a model is needed in which preprocessing is a component.
 
-**Methodological problem**
-- Published model accuracy is unstable when the camera and acquisition conditions change
-- Preprocessing is not reported as part of the model → models are compared while only partly specified
+**Charts:** `img/chart1_en.png` — registered diabetes patients, 2014–2024; `img/chart2_en.png` — rural share: population 36 % / ophthalmologists 20 %.
 
-**Research problem:** is preprocessing data preparation or a model component — and what difference does it make?
+*Sources: MoH RK (2024); Teo Z.L. et al., Ophthalmology, 2021; MoH RK (2026); Bureau of National Statistics RK (2026).*
 
 ## Речь
 
-The relevance has two sides. Clinically, diabetic retinopathy is a leading cause of vision loss in working-age adults, and its early stages are silent. The whole diabetic cohort must therefore be screened on schedule, while Kazakhstan has about twelve hundred ophthalmologists and rural access to them is limited.
-Automation was shown feasible ten years ago, but published accuracy is unstable when the camera and acquisition conditions change. Preprocessing is usually treated as ancillary preparation outside the model and goes unreported. If it defines the network's feature space, such models are only partly specified. The research answers this question.
+Registered diabetes patients in Kazakhstan doubled in ten years to 517 thousand, and early retinopathy is asymptomatic, so every patient needs an annual fundus examination. The country has about one and a half thousand ophthalmologists — some three hundred and forty patients per doctor — and in rural areas, home to a third of the population, only a fifth of ophthalmologists work. The answer is automated screening from fundus images. But the accuracy of published models is unstable across cameras and acquisition conditions, and preprocessing is usually treated as preparation outside the model and left undescribed. This is the problem the research addresses.
