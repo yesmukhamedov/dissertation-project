@@ -1,0 +1,91 @@
+{
+ "file": "chapters/06-appendices/drafts/C-draft.md",
+ "out": "chapters/06-appendices/translations-ru/C-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 7,
+ "clean_first_try": 5,
+ "needs_review": [
+  6,
+  7
+ ],
+ "warnings": 5,
+ "minutes": 9.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 238,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 64.3,
+   "src_head": "This appendix has two halves. The first gives the formal structural views of the"
+  },
+  {
+   "chunk": 2,
+   "words": 273,
+   "errors": [],
+   "warnings": [
+    "term «decision support» not rendered as «поддержка принятия решений»"
+   ],
+   "attempts": 1,
+   "sec": 79.0,
+   "src_head": "The view is to be read against Table C.1 rather than on its own. The table names"
+  },
+  {
+   "chunk": 3,
+   "words": 12,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 8.8,
+   "src_head": "### C.2 Deployment view\n\n**Diagram C.2 – Store-and-forward deployment topology.*"
+  },
+  {
+   "chunk": 4,
+   "words": 154,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 42.2,
+   "src_head": "This is the view in which the deployment envelope prunes the design. The periphe"
+  },
+  {
+   "chunk": 5,
+   "words": 158,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 46.0,
+   "src_head": "Two properties of the ordering are the point of the diagram. The clinician's dis"
+  },
+  {
+   "chunk": 6,
+   "words": 437,
+   "errors": [
+    "names/codes lost: Decision-Support"
+   ],
+   "warnings": [
+    "authors not found in Latin: Ingestion, Inference",
+    "term «five grades» not rendered as «пять степеней»"
+   ],
+   "attempts": 1,
+   "sec": 113.8,
+   "src_head": "The entities that carry patient or clinician identity are marked, because that i"
+  },
+  {
+   "chunk": 7,
+   "words": 220,
+   "errors": [
+    "names/codes lost: Data-Management"
+   ],
+   "warnings": [
+    "authors not found in Latin: Clinician Interface",
+    "heading numbers differ"
+   ],
+   "attempts": 1,
+   "sec": 59.7,
+   "src_head": "**[FIG-C.3: The view after a recorded verdict, with the persisted case, the rela"
+  }
+ ]
+}

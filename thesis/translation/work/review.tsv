@@ -1,0 +1,164 @@
+en	ru	kz	kz_confirmed	n_ev	note
+integrated configuration	интегрированная конфигурация	интеграцияланған конфигурация	1	2	
+baseline configuration	базовая конфигурация	базалық конфигурация	0	0	GUESS
+integrated arm	интегрированная ветвь	интеграцияланған тармақ	1	2	
+baseline arm	базовая ветвь	базалық тармақ	1	2	
+arm	ветвь	тармақ	1	2	
+preprocessing	предобработка	алдын ала өңдеу	1	2	
+preprocessing pipeline	конвейер предобработки	алдын ала өңдеу конвейері	1	2	
+eight-stage pipeline	8-этапный конвейер	сегіз кезеңді конвейер	1	2	
+preprocessing engine	движок предобработки	алдын ала өңдеу қозғалтқышы	1	1	
+pretraining	предобучение	алдын ала оқыту	1	2	
+in-domain initialisation	инициализация в домене	домен ішіндегі инициализация	1	2	KZ uses 'домен ішіндегі' for in-domain.
+self-supervised pretraining	самообучение	өздігінен бақыланатын алдын ала оқыту	1	1	KZ literal translation; RU often uses 'самообучение'.
+fine-tuning	дообучение	дәлдеп баптау	1	2	KZ uses 'дәлдеп баптау'; RU uses 'дообучение'.
+training corpus	обучающий корпус	оқыту корпусы	1	2	
+source corpus	исходный корпус	бастапқы корпус	1	1	KZ uses 'бастапқы' for source.
+target corpus	целевой корпус	нысаналы корпус	1	2	KZ uses 'нысаналы' for target.
+public corpus	публичный корпус	ашық корпус	1	1	KZ uses 'ашық' for public.
+clinical corpus	клинический корпус	клиникалық корпус	1	2	
+external corpus	внешний корпус	сыртқы корпус	1	2	
+held-out data	отложенные данные	бөлек ұсталған деректер	1	2	KZ literal 'separately held data'; RU 'отложенные'.
+test partition	тестовая выборка	тест бөлігі	1	2	KZ uses 'бөлігі' (part) not 'выборка'.
+patient-level stratified	стратификация на уровне пациента	пациент деңгейінде стратификацияланған	1	2	KZ uses 'деңгейінде' (at level of).
+five folds	пять фолдов	бес фолд	1	2	KZ uses 'фолд' (fold) as a loanword.
+cross-corpus transfer	межкорпусный перенос	корпусаралық тасымалдану қабілеті	1	1	KZ adds 'қабілеті' (ability) for transferability.
+domain shift	сдвиг доменов	домендік ығысу	1	1	KZ uses 'ығысу' (shift/displacement).
+distributional distance	расстояние распределений	үлестірімдік қашықтық	1	2	KZ uses 'үлестірімдік' (distributional) and 'қашықтық' (distance).
+feature space	пространство признаков	белгілер кеңістігі	1	2	KZ uses 'белгілер' (features/labels) and 'кеңістігі' (space).
+penultimate-layer features	признаки предпоследнего слоя	алдыңғы соңғы қабаттың белгілері	1	1	KZ uses 'алдыңғы соңғы' (penultimate) and 'қабаттың' (layer's).
+maximum mean discrepancy	максимальное среднее расхождение	максималды орташа алшақтық	1	1	KZ uses 'алшақтық' (discrepancy) not 'айырмашылық'.
+in-domain performance	внутридоменное качество	домен ішіндегі өнімділік	1	2	KZ uses 'ішіндегі' (inside) and 'өнімділік' (performance).
+external performance	внешняя производительность	сыртқы өнімділік	1	2	RU abstract uses 'внешнее качество'.
+external clinical	внешняя клиническая	сыртқы клиникалық	1	2	Adjective form; noun is 'клиническая оценка'.
+retention ratio	коэффициент удержания	сақталу қатынасы	1	2	RU abstract uses 'коэффициент обобщения'.
+camera group	группа камер	камералық топ	1	2	KZ uses 'топтастыру' for grouping.
+confusion matrix	матрица ошибок	шатасу матрицасы	1	2	Standard ML term in Russian.
+weighted F1	взвешенный F1	салмақталған F1	1	2	Latin 'F1' preserved in all languages.
+quadratic weighted kappa	квадратичная каппа	квадраттық салмақталған каппа	1	2	RU abstract uses 'квадратичная каппа'.
+sensitivity	чувствительность	сезімталдық	1	2	Synonym: 'полнота' in some contexts.
+specificity	специфичность	спецификалық	1	2	KZ text uses adjective form 'спецификалық'.
+referable disease	референтное заболевание	жолдама берілуге тиіс ауру	1	2	RU abstract lacks this specific term.
+referral threshold	порог направления	жолдама табалдырығы	1	2	КЗ: жолдама табалдырығы
+predictive values	прогностические значения	болжамдық мән	1	1	КЗ: болжамдық мән
+percentage points	процентные пункты	пайыздық тармақ	1	2	КЗ: пайыздық тармақ
+confidence interval	доверительный интервал	сенімділік аралығы	1	2	КЗ: сенімділік аралығы
+interval excluding zero	интервал, исключающий ноль	нөлді қамтымайтын аралық	0	2	КЗ: нөлді қамтымайтын аралық
+bootstrap	бутстрап	bootstrap	1	2	КЗ: bootstrap
+minimal clinically important difference	минимально клинически значимая разница	минималды клиникалық маңызды айырма	1	2	КЗ: минималды клиникалық маңызды айырма
+criterion	критерий	өлшем	1	2	КЗ: өлшем
+effect size	размер эффекта	әсер көлемі	0	0	GUESS: әсер көлемі
+standard deviation	стандартное отклонение	стандартты ауытқу	1	2	КЗ: стандартты ауытқу
+mixed-effects model	модель со смешанными эффектами	аралас әсерлер моделі	1	2	
+ablation	абляция	абляция	1	2	
+clip factor	коэффициент клипирования	клип-фактор	1	2	
+clip limit	лимит клипирования	клип-лимит	1	2	
+flat-field correction	коррекция плоского поля	flat-field түзетуі	1	2	KZ keeps 'flat-field' in Latin.
+illumination correction	коррекция освещения	жарықтандыруды түзету	1	2	
+contrast enhancement	усиление контраста	контрастты күшейту	1	2	
+canonical flip	канонический разворот	канондық аудару	1	2	KZ uses 'аудару', RU uses 'разворот'.
+fovea rotation	нормализация поворота по оси «диск—фовеа»	айналуды нормалау	1	1	KZ text describes the normalization step.
+optic disc	диск зрительного нерва	көру дискі	1	2	
+fovea	фовеа	фовеа	1	2	Центр желдік аймақ
+field-of-view mask	маска поля зрения	көру алаңының маскасы	1	2	
+isotropic resize	изотропное масштабирование	изотропты масштабтау	1	2	
+four-channel tensor	четырехканальный тензор	төрт арналы тензор	1	1	
+mask channel	масочный канал	маска арнасы	1	2	маска как канал
+photometric stages	фотометрические этапы	фотометриялық кезеңдер	1	2	
+attention map	карта внимания	назар картасы	1	2	
+attention overlay	наложение внимания	назар қабаттамасы	1	2	
+expert annotation	экспертная разметка	сарапшы аннотациясы	1	2	экспертная аннотация
+lesion type	тип очага	зақымдану түрі	1	2	тип поражения
+hard exudates	твёрдые экссудаты	қатты экссудаттар	1	2	
+haemorrhages	геморрагии	қан құйылулар	1	2	KZ uses descriptive 'қан құйылулар'.
+microaneurysms	микроаневризмы	микроаневризмалар	1	2	
+soft exudates	мягкие экссудаты	жұмсақ экссудаттар	1	2	Also known as cotton-wool spots.
+diabetic retinopathy	диабетическая ретинопатия	диабеттік ретинопатия	1	2	
+fundus image	изображение глазного дна	көз түбі кескіні	1	2	KZ uses 'кескін' for image.
+fundus photography	фотосъёмка глазного дна	көз түбі фотосуреті	1	2	
+five grades	пять степеней	бес дәреже	1	2	Refers to DR grading scale.
+minority grades	малочисленные степени	азшылық дәрежелер	1	2	Context: class imbalance.
+severely imbalanced	сильно несбалансированный	қатты теңгерімсіз	1	2	Describes class distribution.
+focal loss	focal loss	focal loss	1	2	Latin script retained in KZ text.
+best epoch	лучшая эпоха	үздік эпоха	1	2	KZ uses 'үздік' (best/peak).
+batch size	размер батча	топтама өлшемі	1	1	KZ translates as 'batch size'.
+calibration	калибровка	калибрлеу	1	2	
+expected calibration error	ожидаемая ошибка калибровки	күтілетін калибрлеу қатесі	1	2	
+brier score	показатель Брайера	Brier ұпайы	1	2	KZ keeps 'Brier' in Latin.
+contrast-to-noise ratio	отношение контраст-шум	контраст-шу қатынасы	1	2	
+structural similarity	структурное сходство	құрылымдық ұқсастық	1	2	Refers to SSIM.
+automated screening	автоматизированный скрининг	автоматтандырылған скрининг	1	2	
+screening system	система скрининга	скрининг жүйесі	1	2	
+decision support	поддержка принятия решений	шешім қабылдауды қолдау	1	2	KZ uses 'шешім қабылдауды қолдау'.
+working demonstrator	рабочий демонстратор	жұмыс істейтін демонстратор	1	2	KZ variant: 'жұмыс істеп тұрған демонстратор'.
+software complex	программный комплекс	бағдарламалық кешен	1	2	
+deployment context	контекст развёртывания	орналастыру контексі	1	2	
+integral component	неотъемлемый компонент	ажырамас компонент	1	2	
+ancillary data preparation	вспомогательная подготовка данных	қосалқы деректер дайындығы	1	2	KZ variant: 'деректерді көмекші дайындау'.
+diagnostic model	диагностическая модель	диагностикалық модель	1	2	
+methodological contribution	методологический вклад	әдіснамалық үлес	0	1	GUESS: Term not explicitly in KZ pairs.
+prior own work	предшествующая собственная работа	бұрынғы өз жұмысы	1	1	
+evidence base	база доказательств	дәлелдер базасы	1	2	KZ variant: 'эмпирикалық база'.
+convolutional network	свёрточная нейронная сеть	конволюциялық нейрондық желі	1	2	KZ uses 'конволюциялық', not 'сверткалық'.
+hypothesis	гипотеза	гипотеза	1	2	
+provision	положение	тұжырым	1	2	Context: 'положения, выносимые на защиту'.
+scientific novelty	научная новизна	ғылыми жаңалық	1	1	
+CNN	CNN	CNN	1	2	Latin script retained in KZ text.
+Convolution	свёртка	конволюция	1	2	KZ uses 'конволюциялық' (adjective).
+Pooling	пулинг	біріктіру	1	2	KZ uses 'біріктірілген' (pooled) in tables.
+Transfer Learning	перенос обучения	transfer learning	1	1	KZ keeps Latin script in text.
+Progressive Fine-Tuning	постепенная дообучение	бірте-бірте дәлдеп баптау	1	1	KZ: 'бірте-бірте дәлдеп бапталған'.
+EfficientNet-B3	EfficientNet-B3	EfficientNet-B3	1	2	Model name kept in Latin.
+EfficientNet-B4	EfficientNet-B4	EfficientNet-B4	1	2	Model name kept in Latin.
+ResNet-50	ResNet-50	ResNet-50	1	2	Model name kept in Latin.
+Transformer	трансформер	vision transformer	1	1	KZ uses 'vision transformer'; RU uses 'трансформер'.
+CLAHE	CLAHE	CLAHE	1	2	Acronym kept in Latin.
+Loss Function	функция потерь	шығын функциясы	1	1	KZ 'шығын' means loss/cost.
+ROC-AUC	ROC-AUC	ROC-AUC	1	2	Metric acronym kept in Latin.
+F1-Score	F1-мера	F1-score	1	2	KZ uses 'F1-score'; RU uses 'F1-мера'.
+Macro Average	макро-среднее	макро-орташа	1	1	KZ 'макро-орташа' is standard.
+Weighted Average	взвешенное среднее	салмақталған орташа	1	2	KZ 'салмақталған' means weighted.
+Cross-Validation	кросс-валидация	кросс-валидация	1	2	Transliteration used in both languages.
+Inference	инференс	инференс	1	2	Latin script in KZ text.
+Benchmarking	бенчмаркинг	бенчмарк	1	2	KZ uses noun 'бенчмарк'.
+Pipeline	конвейер	конвейер	1	2	
+ImageNet	ImageNet	ImageNet	1	2	
+EyePACS	EyePACS	EyePACS	1	2	
+APTOS 2019	APTOS 2019	APTOS 2019	1	2	
+IDRiD	IDRiD	IDRiD	1	2	
+Messidor-2	Messidor-2	Messidor-2	1	2	
+RFMiD	RFMiD	RFMiD	1	1	
+DDR	DDR	DDR	1	1	
+ODIR-5K	ODIR-5K	ODIR-5K	1	1	Dataset name kept in Latin.
+PACS	PACS	PACS	1	1	Acronym kept in Latin.
+EHR	EHR	EHR	1	1	Acronym kept in Latin.
+GDPR	GDPR	GDPR	1	1	Acronym kept in Latin.
+HIPAA	HIPAA	HIPAA	1	1	Acronym kept in Latin.
+Grad-CAM	Grad-CAM	Grad-CAM	1	1	Method name kept in Latin.
+CAM	CAM	CAM	1	2	Not explicitly in KZ text; standard acronym.
+IoU	IoU	IoU	1	1	Metric kept in Latin.
+FOV	FOV	FOV	1	2	GUESS: Not in KZ text; standard acronym.
+LAB	LAB	LAB	1	2	Color space kept in Latin.
+Microaneurysm	микроаневризма	микроаневризма	1	2	
+Image Quality	качество изображения	кескін сапасы	1	2	
+Class Distribution	распределение классов	класс үлестірімі	1	2	
+Overfitting	переобучение	артық үйрену	1	1	
+Convergence	сходимость	жинақталу	1	2	
+Image Enhancement	улучшение изображений	кескінді жақсарту	1	2	
+Clinical Workflow	клинический рабочий процесс	клиникалық жұмыс ағыны	1	1	
+Regulatory Compliance	регуляторное соответствие	нормативтік сәйкестік	1	1	
+External Clinical Performance	внешняя клиническая эффективность	сыртқы клиникалық өнімділік	1	1	
+Physician-in-the-Loop	врач в контуре	дәрігер контурда	1	1	
+Canonical Orientation	каноническая ориентация	канондық бағдар	1	2	
+DR Grading	градация ДР	ДР дәрежелендіру	0	1	KZ uses 'дәрежелендіру' or 'дәреже үлестірімі'.
+Telemedicine	телемедицина	телемедицина	1	2	
+Laser Coagulation	лазерная коагуляция	лазерлік коагуляция	1	1	
+Precision	точность	дәлдік	1	2	KZ 'дәлдік' covers both precision and accuracy.
+Recall	полнота	толықтық	1	2	
+Accuracy	точность	дәлдік	1	2	KZ 'дәлдік' covers both precision and accuracy.
+Convolutional Neural Network	свёрточная нейронная сеть	конволюциялық нейрондық желі	1	1	KZ uses 'конволюциялық', RU uses 'свёрточная'.
+Two-Stage Fine-Tuning	двухэтапная дообучение	екі кезеңді дәлдеп баптау	1	1	KZ 'дәлдеп баптау' is fine-tuning.
+Intersection over Union	пересечение над объединением	қиылысу бөлінген бірігу	1	1	KZ literal translation of IoU.
+Class Activation Mapping	картирование активации классов	класс активациясын карталау	1	1	Grad-CAM is the specific implementation.
+Vessel Visibility Index	индекс видимости сосудов	тамырлардың көрінімділік индексі	1	1	Not used in the study.
+FOV Mask	маска поля зрения	көру өрісінің маскасы	1	1	Used as fourth input channel.

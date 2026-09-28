@@ -1,0 +1,170 @@
+en	ru	kz	rule	note
+integrated configuration	интегрированная конфигурация	интеграцияланған конфигурация	translate	
+baseline configuration	базовая конфигурация	базалық конфигурация	translate	KZ form not seen in the approved text
+integrated arm	интегрированная ветвь	интеграцияланған тармақ	translate	
+baseline arm	базовая ветвь	базалық тармақ	translate	
+arm	ветвь	тармақ	translate	arm of the controlled comparison, as in the RU abstract
+preprocessing	предобработка	алдын ала өңдеу	translate	
+preprocessing pipeline	конвейер предобработки	алдын ала өңдеу конвейері	translate	
+eight-stage pipeline	8-этапный конвейер	сегіз кезеңді конвейер	translate	
+preprocessing engine	модуль предобработки	алдын ала өңдеу қозғалтқышы	translate	
+pretraining	предобучение	алдын ала оқыту	translate	
+in-domain initialisation	внутридоменная инициализация	домен ішіндегі инициализация	translate	KZ uses 'домен ішіндегі' for in-domain.
+self-supervised pretraining	самоконтролируемое предобучение	өздігінен бақыланатын алдын ала оқыту	translate	KZ literal translation; RU often uses 'самообучение'.
+fine-tuning	дообучение	дәлдеп баптау	translate	KZ uses 'дәлдеп баптау'; RU uses 'дообучение'.
+training corpus	обучающий корпус	оқыту корпусы	translate	
+source corpus	исходный корпус	бастапқы корпус	translate	KZ uses 'бастапқы' for source.
+target corpus	целевой корпус	нысаналы корпус	translate	KZ uses 'нысаналы' for target.
+public corpus	открытый корпус	ашық корпус	translate	KZ uses 'ашық' for public.
+clinical corpus	клинический корпус	клиникалық корпус	translate	
+external corpus	внешний корпус	сыртқы корпус	translate	
+held-out data	отложенные данные	бөлек ұсталған деректер	translate	KZ literal 'separately held data'; RU 'отложенные'.
+test partition	тестовое подмножество	тест бөлігі	translate	KZ uses 'бөлігі' (part) not 'выборка'.
+patient-level stratified	стратификация на уровне пациента	пациент деңгейінде стратификацияланған	translate	KZ uses 'деңгейінде' (at level of).
+five folds	пять фолдов	бес фолд	translate	KZ uses 'фолд' (fold) as a loanword.
+cross-corpus transfer	межкорпусный перенос	корпусаралық тасымалдану қабілеті	translate	KZ adds 'қабілеті' (ability) for transferability.
+domain shift	доменный сдвиг	домендік ығысу	translate	KZ uses 'ығысу' (shift/displacement).
+distributional distance	расстояние между распределениями	үлестірімдік қашықтық	translate	KZ uses 'үлестірімдік' (distributional) and 'қашықтық' (distance).
+feature space	пространство признаков	белгілер кеңістігі	translate	KZ uses 'белгілер' (features/labels) and 'кеңістігі' (space).
+penultimate-layer features	признаки предпоследнего слоя	алдыңғы соңғы қабаттың белгілері	translate	KZ uses 'алдыңғы соңғы' (penultimate) and 'қабаттың' (layer's).
+maximum mean discrepancy	максимальное среднее расхождение	максималды орташа алшақтық	translate	KZ uses 'алшақтық' (discrepancy) not 'айырмашылық'.
+in-domain performance	внутридоменное качество	домен ішіндегі өнімділік	translate	KZ uses 'ішіндегі' (inside) and 'өнімділік' (performance).
+external performance	качество на внешних корпусах	сыртқы өнімділік	translate	RU abstract uses 'внешнее качество'.
+retention ratio	коэффициент сохранения	сақталу қатынасы	translate	RU abstract uses 'коэффициент обобщения'.
+camera group	группа камер	камералық топ	translate	KZ uses 'топтастыру' for grouping.
+confusion matrix	матрица ошибок	шатасу матрицасы	translate	Standard ML term in Russian.
+weighted F1	взвешенный F1	салмақталған F1	translate	Latin 'F1' preserved in all languages.
+quadratic weighted kappa	квадратичная каппа	квадраттық салмақталған каппа	translate	RU abstract uses 'квадратичная каппа'.
+sensitivity	чувствительность	сезімталдық	translate	Synonym: 'полнота' in some contexts.
+specificity	специфичность	спецификалық	translate	KZ text uses adjective form 'спецификалық'.
+referable disease	заболевание, требующее направления к специалисту	жолдама берілуге тиіс ауру	translate	RU abstract lacks this specific term.
+referral threshold	порог направления	жолдама табалдырығы	translate	КЗ: жолдама табалдырығы
+predictive values	прогностические ценности	болжамдық мән	translate	КЗ: болжамдық мән
+percentage points	процентные пункты	пайыздық тармақ	translate	КЗ: пайыздық тармақ
+confidence interval	доверительный интервал	сенімділік аралығы	translate	КЗ: сенімділік аралығы
+interval excluding zero	интервал, исключающий ноль	нөлді қамтымайтын аралық	translate	KZ form not seen in the approved text; КЗ: нөлді қамтымайтын аралық
+bootstrap	бутстрап	bootstrap	translate	КЗ: bootstrap
+minimal clinically important difference	минимальная клинически значимая разница	минималды клиникалық маңызды айырма	translate	КЗ: минималды клиникалық маңызды айырма
+criterion	критерий	өлшем	translate	КЗ: өлшем
+effect size	размер эффекта	әсер көлемі	translate	KZ form not seen in the approved text
+standard deviation	стандартное отклонение	стандартты ауытқу	translate	КЗ: стандартты ауытқу
+mixed-effects model	модель со смешанными эффектами	аралас әсерлер моделі	translate	
+ablation	абляция	абляция	translate	
+clip factor	коэффициент ограничения контраста (clip factor)	клип-фактор	translate	
+clip limit	предел ограничения контраста (clip limit)	клип-лимит	translate	
+flat-field correction	коррекция плоского поля	flat-field түзетуі	translate	KZ keeps 'flat-field' in Latin.
+illumination correction	коррекция освещения	жарықтандыруды түзету	translate	
+contrast enhancement	усиление контраста	контрастты күшейту	translate	
+canonical flip	каноническое отражение	канондық аудару	translate	KZ uses 'аудару', RU uses 'разворот'.
+fovea rotation	нормализация поворота по оси диск–фовеа	айналуды нормалау	translate	KZ text describes the normalization step.
+optic disc	диск зрительного нерва	көру дискі	translate	
+fovea	фовеа	фовеа	translate	Центр желдік аймақ
+field-of-view mask	маска поля зрения	көру алаңының маскасы	translate	
+isotropic resize	изотропное масштабирование	изотропты масштабтау	translate	
+four-channel tensor	четырёхканальный тензор	төрт арналы тензор	translate	
+mask channel	канал маски	маска арнасы	translate	маска как канал
+photometric stages	фотометрические этапы	фотометриялық кезеңдер	translate	
+attention map	карта внимания	назар картасы	translate	
+attention overlay	наложение карты внимания	назар қабаттамасы	translate	
+expert annotation	экспертная разметка	сарапшы аннотациясы	translate	экспертная аннотация
+lesion type	тип поражения	зақымдану түрі	translate	тип поражения
+hard exudates	твёрдые экссудаты	қатты экссудаттар	translate	
+haemorrhages	геморрагии	қан құйылулар	translate	KZ uses descriptive 'қан құйылулар'.
+microaneurysms	микроаневризмы	микроаневризмалар	translate	
+soft exudates	мягкие экссудаты	жұмсақ экссудаттар	translate	Also known as cotton-wool spots.
+diabetic retinopathy	диабетическая ретинопатия	диабеттік ретинопатия	translate	
+fundus image	изображение глазного дна	көз түбі кескіні	translate	KZ uses 'кескін' for image.
+fundus photography	фотосъёмка глазного дна	көз түбі фотосуреті	translate	
+five grades	пять степеней	бес дәреже	translate	Refers to DR grading scale.
+minority grades	малочисленные степени	азшылық дәрежелер	translate	Context: class imbalance.
+severely imbalanced	сильно несбалансированный	қатты теңгерімсіз	translate	Describes class distribution.
+focal loss	focal loss	focal loss	keep	Latin script retained in KZ text.
+best epoch	лучшая эпоха	үздік эпоха	translate	KZ uses 'үздік' (best/peak).
+batch size	размер батча	топтама өлшемі	translate	KZ translates as 'batch size'.
+calibration	калибровка	калибрлеу	translate	
+expected calibration error	ожидаемая ошибка калибровки	күтілетін калибрлеу қатесі	translate	
+brier score	оценка Брайера	Brier ұпайы	translate	KZ keeps 'Brier' in Latin.
+contrast-to-noise ratio	отношение контраст/шум	контраст-шу қатынасы	translate	
+structural similarity	структурное сходство	құрылымдық ұқсастық	translate	Refers to SSIM.
+automated screening	автоматизированный скрининг	автоматтандырылған скрининг	translate	
+screening system	система скрининга	скрининг жүйесі	translate	
+decision support	поддержка принятия решений	шешім қабылдауды қолдау	translate	KZ uses 'шешім қабылдауды қолдау'.
+working demonstrator	действующий демонстратор	жұмыс істейтін демонстратор	translate	KZ variant: 'жұмыс істеп тұрған демонстратор'.
+software complex	программный комплекс	бағдарламалық кешен	translate	
+deployment context	условия развёртывания	орналастыру контексі	translate	
+integral component	неотъемлемый компонент	ажырамас компонент	translate	
+ancillary data preparation	вспомогательная подготовка данных	қосалқы деректер дайындығы	translate	KZ variant: 'деректерді көмекші дайындау'.
+diagnostic model	диагностическая модель	диагностикалық модель	translate	
+methodological contribution	методологический вклад	әдіснамалық үлес	translate	KZ form not seen in the approved text
+prior own work	предшествующая собственная работа	бұрынғы өз жұмысы	translate	
+evidence base	доказательная база	дәлелдер базасы	translate	KZ variant: 'эмпирикалық база'.
+convolutional network	свёрточная нейронная сеть	конволюциялық нейрондық желі	translate	KZ uses 'конволюциялық', not 'сверткалық'.
+hypothesis	гипотеза	гипотеза	translate	
+provision	положение	?	translate	Context: 'положения, выносимые на защиту'.; KZ word is also a common word - not used for matching
+scientific novelty	научная новизна	ғылыми жаңалық	translate	
+CNN	CNN	CNN	keep	Latin script retained in KZ text.
+Convolution	свёртка	конволюция	translate	KZ uses 'конволюциялық' (adjective).
+Pooling	пулинг	?	translate	KZ uses 'біріктірілген' (pooled) in tables.; KZ word is also a common word - not used for matching
+Transfer Learning	трансферное обучение	transfer learning	translate	KZ keeps Latin script in text.
+Progressive Fine-Tuning	поэтапное дообучение	бірте-бірте дәлдеп баптау	translate	KZ: 'бірте-бірте дәлдеп бапталған'.
+EfficientNet-B3	EfficientNet-B3	EfficientNet-B3	keep	Model name kept in Latin.
+EfficientNet-B4	EfficientNet-B4	EfficientNet-B4	keep	Model name kept in Latin.
+ResNet-50	ResNet-50	ResNet-50	keep	Model name kept in Latin.
+Transformer	трансформер	vision transformer	translate	KZ uses 'vision transformer'; RU uses 'трансформер'.
+CLAHE	CLAHE	CLAHE	keep	Acronym kept in Latin.
+Loss Function	функция потерь	шығын функциясы	translate	KZ 'шығын' means loss/cost.
+ROC-AUC	ROC-AUC	ROC-AUC	keep	Metric acronym kept in Latin.
+F1-Score	F1-мера	F1-score	translate	KZ uses 'F1-score'; RU uses 'F1-мера'.
+Macro Average	макроусреднение	макро-орташа	translate	KZ 'макро-орташа' is standard.
+Weighted Average	взвешенное усреднение	салмақталған орташа	translate	KZ 'салмақталған' means weighted.
+Cross-Validation	кросс-валидация	кросс-валидация	translate	Transliteration used in both languages.
+Inference	инференс	инференс	translate	Latin script in KZ text.
+Benchmarking	бенчмаркинг	бенчмарк	translate	KZ uses noun 'бенчмарк'.
+Pipeline	конвейер	конвейер	translate	
+ImageNet	ImageNet	ImageNet	keep	
+EyePACS	EyePACS	EyePACS	keep	
+APTOS 2019	APTOS 2019	APTOS 2019	keep	
+IDRiD	IDRiD	IDRiD	keep	
+Messidor-2	Messidor-2	Messidor-2	keep	
+RFMiD	RFMiD	RFMiD	keep	
+DDR	DDR	DDR	keep	
+ODIR-5K	ODIR-5K	ODIR-5K	keep	Dataset name kept in Latin.
+PACS	PACS	PACS	keep	Acronym kept in Latin.
+EHR	EHR	EHR	keep	Acronym kept in Latin.
+GDPR	GDPR	GDPR	keep	Acronym kept in Latin.
+HIPAA	HIPAA	HIPAA	keep	Acronym kept in Latin.
+Grad-CAM	Grad-CAM	Grad-CAM	keep	Method name kept in Latin.
+CAM	CAM	CAM	keep	Not explicitly in KZ text; standard acronym.
+IoU	IoU	IoU	keep	Metric kept in Latin.
+FOV	FOV	FOV	keep	
+LAB	LAB	LAB	keep	Color space kept in Latin.
+Microaneurysm	микроаневризма	микроаневризма	translate	
+Image Quality	качество изображения	кескін сапасы	translate	
+Class Distribution	распределение классов	класс үлестірімі	translate	
+Overfitting	переобучение	артық үйрену	translate	
+Convergence	сходимость	жинақталу	translate	
+Image Enhancement	улучшение изображений	кескінді жақсарту	translate	
+Clinical Workflow	клинический рабочий процесс	клиникалық жұмыс ағыны	translate	
+Regulatory Compliance	соответствие регуляторным требованиям	нормативтік сәйкестік	translate	
+External Clinical Performance	качество на внешних клинических данных	сыртқы клиникалық өнімділік	translate	
+Physician-in-the-Loop	врач в контуре принятия решений	дәрігер контурда	translate	
+Canonical Orientation	каноническая ориентация	канондық бағдар	translate	
+DR Grading	градация ДР	ДР дәрежелендіру	translate	KZ form not seen in the approved text; KZ uses 'дәрежелендіру' or 'дәреже үлестірімі'.
+Telemedicine	телемедицина	телемедицина	translate	
+Laser Coagulation	лазерная коагуляция	лазерлік коагуляция	translate	
+Precision	прецизионность	дәлдік	translate	do not confuse with accuracy (точность)
+Recall	полнота	толықтық	translate	
+Accuracy	точность	дәлдік	translate	RU: precision = прецизионность, accuracy = точность; KZ uses дәлдік for accuracy
+Convolutional Neural Network	свёрточная нейронная сеть	конволюциялық нейрондық желі	translate	KZ uses 'конволюциялық', RU uses 'свёрточная'.
+Two-Stage Fine-Tuning	двухэтапное дообучение	екі кезеңді дәлдеп баптау	translate	KZ 'дәлдеп баптау' is fine-tuning.
+Intersection over Union	пересечение по объединению (IoU)	қиылысу бөлінген бірігу	translate	KZ literal translation of IoU.
+Class Activation Mapping	карты активации классов (CAM)	класс активациясын карталау	translate	Grad-CAM is the specific implementation.
+Vessel Visibility Index	индекс видимости сосудов	тамырлардың көрінімділік индексі	translate	Not used in the study.
+FOV Mask	маска поля зрения	көру өрісінің маскасы	translate	Used as fourth input channel.
+DR	ДР	DR	translate	RU: Cyrillic ДР; the KZ edition keeps Latin DR
+performance	качество	өнімділік	translate	RU: diagnostic performance = качество диагностики; never «производительность» (that is speed)
+grading	градация	?	translate	grading of DR severity; RU not «оценка»
+controlled comparison	контролируемое сопоставление	?	translate	
+framework	система	?	translate	RU: not «фреймворк» unless software
+parameter sweep	перебор параметров	параметрлерді сканерлеу	translate	not «обход»
+re-implementation	повторная реализация	қайта іске асыру	translate	not «переосуществление»

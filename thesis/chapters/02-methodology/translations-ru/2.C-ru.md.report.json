@@ -1,0 +1,25 @@
+{
+ "file": "chapters/02-methodology/drafts/2.C-draft.md",
+ "out": "chapters/02-methodology/translations-ru/2.C-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 1,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 1.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 386,
+   "errors": [],
+   "warnings": [
+    "heading numbers differ",
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 106.1,
+   "src_head": "## Conclusions on section 2\n\nThis chapter specified the model as a two-stage sys"
+  }
+ ]
+}

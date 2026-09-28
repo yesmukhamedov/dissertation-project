@@ -1,0 +1,60 @@
+{
+ "file": "chapters/03-experiments/drafts/3.5-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.5-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 5,
+ "clean_first_try": 5,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 9.7,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 443,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 147.4,
+   "src_head": "## 3.5 Cross-dataset and external transfer\n\nThe previous section established tha"
+  },
+  {
+   "chunk": 2,
+   "words": 405,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 113.6,
+   "src_head": "A feature of that measure works against the integrated arm and recurs through th"
+  },
+  {
+   "chunk": 3,
+   "words": 439,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 108.6,
+   "src_head": "Two properties of that form matter for reading the verdict. The corpora are not "
+  },
+  {
+   "chunk": 4,
+   "words": 389,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 119.3,
+   "src_head": "It penalises the integrated arm precisely for its in-domain success: every point"
+  },
+  {
+   "chunk": 5,
+   "words": 357,
+   "errors": [],
+   "warnings": [
+    "term «integrated arm» not rendered as «интегрированная ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 95.9,
+   "src_head": "One quantity behaves in a way that requires comment rather than omission. The re"
+  }
+ ]
+}

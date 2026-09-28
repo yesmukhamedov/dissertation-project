@@ -1,0 +1,25 @@
+{
+ "file": "chapters/04-system/drafts/4.C-draft.md",
+ "out": "chapters/04-system/translations-ru/4.C-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 1,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 1.6,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 341,
+   "errors": [],
+   "warnings": [
+    "heading numbers differ",
+    "term «attention map» not rendered as «карта внимания»"
+   ],
+   "attempts": 1,
+   "sec": 94.2,
+   "src_head": "## Conclusions on section 4\n\nThis chapter described the screening system built a"
+  }
+ ]
+}

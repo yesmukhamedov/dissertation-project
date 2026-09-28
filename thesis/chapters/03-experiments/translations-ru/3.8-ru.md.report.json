@@ -1,0 +1,68 @@
+{
+ "file": "chapters/03-experiments/drafts/3.8-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.8-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 5,
+ "clean_first_try": 5,
+ "needs_review": [],
+ "warnings": 6,
+ "minutes": 10.4,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 398,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 111.0,
+   "src_head": "## 3.8 Statistical validation and comparative analysis\n\nThe individual tests and"
+  },
+  {
+   "chunk": 2,
+   "words": 446,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «evidence base» not rendered as «доказательная база»"
+   ],
+   "attempts": 1,
+   "sec": 127.4,
+   "src_head": "Correction for multiplicity was applied within the factorial, across its four ce"
+  },
+  {
+   "chunk": 3,
+   "words": 425,
+   "errors": [],
+   "warnings": [
+    "term «Pooling» not rendered as «пулинг»"
+   ],
+   "attempts": 1,
+   "sec": 158.7,
+   "src_head": "**Table 3.14 – Published automated screening results, with the properties that d"
+  },
+  {
+   "chunk": 4,
+   "words": 408,
+   "errors": [],
+   "warnings": [
+    "term «Precision» not rendered as «прецизионность»"
+   ],
+   "attempts": 1,
+   "sec": 125.4,
+   "src_head": "That is the whole of what the juxtaposition supports. These figures were obtaine"
+  },
+  {
+   "chunk": 5,
+   "words": 344,
+   "errors": [],
+   "warnings": [
+    "numbers added: 16",
+    "term «Precision» not rendered as «прецизионность»"
+   ],
+   "attempts": 1,
+   "sec": 98.5,
+   "src_head": "That statement is confined to the network, and the confinement is not a formalit"
+  }
+ ]
+}

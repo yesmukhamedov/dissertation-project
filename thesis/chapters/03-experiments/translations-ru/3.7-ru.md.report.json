@@ -1,0 +1,35 @@
+{
+ "file": "chapters/03-experiments/drafts/3.7-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.7-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 3.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 384,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»"
+   ],
+   "attempts": 1,
+   "sec": 124.8,
+   "src_head": "## 3.7 Training on small clinical samples\n\nEvery experiment so far fitted its mo"
+  },
+  {
+   "chunk": 2,
+   "words": 397,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»"
+   ],
+   "attempts": 1,
+   "sec": 102.1,
+   "src_head": "The measured gains do not show that pattern. An advantage of similar magnitude i"
+  }
+ ]
+}

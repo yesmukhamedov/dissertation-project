@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Словарь защиты</title>
+<style>
+:root{
+  --bg:#f7f6f2; --panel:#ffffff; --ink:#1d1f23; --muted:#6b6f78; --line:#e3e1da;
+  --accent:#1f5f8b; --accent-soft:#e3eef6; --warn:#a4541a; --ok:#2f7a4a; --edit:#fff7d6;
+  --kk:#7a4b9a; --ru:#1f5f8b; --en:#2f7a4a;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#16181c; --panel:#1f2227; --ink:#e7e7e4; --muted:#9a9ea7; --line:#33373e;
+  --accent:#6fb1e0; --accent-soft:#1d3346; --warn:#e0955a; --ok:#6cc08b; --edit:#3a3420;
+  --kk:#c39be0; --ru:#6fb1e0; --en:#6cc08b;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Segoe UI",system-ui,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+h1{font-size:18px;margin:0 12px 0 0;font-weight:600}
+input,select,button,textarea{font:inherit;color:inherit}
+input[type=search],select,.comment{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 9px}
+input[type=search]{min-width:220px;flex:1}
+.comment{min-width:200px}
+button{background:var(--accent);color:#fff;border:0;border-radius:6px;padding:7px 12px;cursor:pointer}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
+button.danger{background:transparent;color:var(--warn);border:1px solid var(--line)}
+.tabs{display:flex;gap:4px;margin-left:auto}
+.tabs button{background:transparent;color:var(--muted);border:1px solid transparent}
+.tabs button.on{color:var(--ink);border-color:var(--line);background:var(--panel)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;padding:16px}
+@media (max-width:1000px){main{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:auto}
+table{border-collapse:collapse;width:100%}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--panel);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+td[contenteditable]{outline:none;min-width:70px}
+td[contenteditable]:focus{background:var(--edit)}
+td.dirty{box-shadow:inset 3px 0 var(--warn)}
+tr.sel td{background:var(--accent-soft)}
+tr{cursor:default}
+.lang-kk{color:var(--kk)} .lang-ru{color:var(--ru)} .lang-en{color:var(--en)}
+.badge{display:inline-block;font-size:12px;border-radius:10px;padding:1px 8px;border:1px solid var(--line);color:var(--muted)}
+.badge.approved{color:var(--ok);border-color:var(--ok)}
+.side{padding:14px}
+.side h2{font-size:16px;margin:0 0 4px}
+.side h3{font-size:13px;margin:16px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.use{border-top:1px solid var(--line);padding:6px 0;font-size:14px}
+.use .q{color:var(--muted)}
+.hist{font-size:13px;border-top:1px solid var(--line);padding:5px 0}
+.hist del{color:var(--warn)} .hist ins{color:var(--ok);text-decoration:none}
+.muted{color:var(--muted)}
+.status{font-size:13px;color:var(--muted)}
+.hidden{display:none}
+form.adduse{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+form.adduse input,form.adduse textarea{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:5px 7px;width:100%}
+form.adduse textarea,form.adduse button{grid-column:1/-1}
+</style>
+</head>
+<body>
+<header>
+  <h1>Словарь защиты · kk / ru / en</h1>
+  <input type="search" id="q" placeholder="Поиск по всем языкам…">
+  <select id="fkind"><option value="">все виды</option></select>
+  <select id="fstatus"><option value="">все статусы</option><option>draft</option><option>approved</option></select>
+  <input class="comment" id="comment" placeholder="причина правки (в историю)">
+  <button id="add">+ термин</button>
+  <div class="tabs"><button class="on" data-tab="terms">Термины</button><button data-tab="history">История</button></div>
+  <span class="status" id="status"></span>
+</header>
+
+<main id="view-terms">
+  <div class="card">
+    <table id="terms"><thead><tr>
+      <th>id</th><th class="lang-kk">kk</th><th class="lang-ru">ru</th><th class="lang-en">en</th>
+      <th>вид</th><th>статус</th><th>примечание</th><th>исп.</th><th>изм.</th>
+    </tr></thead><tbody></tbody></table>
+  </div>
+  <aside class="card side" id="side"><p class="muted">Выберите термин — здесь будет, у кого и на каком слайде он встречается, и история его правок.</p></aside>
+</main>
+
+<main id="view-history" class="hidden" style="grid-template-columns:1fr">
+  <div class="card"><table id="hist"><thead><tr>
+    <th>когда</th><th>таблица</th><th>термин</th><th>действие</th><th>поле</th><th>было</th><th>стало</th><th>комментарий</th>
+  </tr></thead><tbody></tbody></table></div>
+</main>
+
+<script>
+const COLS = ["id","kk","ru","en","kind","status","note"];
+let D = {terms:[], usage:[], history:[]}, sel = null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const status = t => { $("#status").textContent = t; };
+
+async function load(){
+  const r = await fetch("/api/data");
+  D = await r.json();
+  const kinds = [...new Set(D.terms.map(t => t.kind).filter(Boolean))].sort();
+  const fk = $("#fkind"), cur = fk.value;
+  fk.innerHTML = '<option value="">все виды</option>' + kinds.map(k => `<option>${esc(k)}</option>`).join("");
+  fk.value = cur;
+  render();
+}
+
+async function save(table, rows, what){
+  status("сохраняю…");
+  const r = await fetch("/api/save", {method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({table, rows, comment: $("#comment").value})});
+  const j = await r.json();
+  status(j.error ? "ошибка: " + j.error : `${what}: ${j.changes} изм.`);
+  await load();
+}
+
+function render(){
+  const q = $("#q").value.trim().toLowerCase(), fk = $("#fkind").value, fs = $("#fstatus").value;
+  const cnt = {};
+  D.usage.forEach(u => cnt[u.id] = (cnt[u.id] || 0) + 1);
+  const rows = D.terms.filter(t =>
+    (!fk || t.kind === fk) && (!fs || t.status === fs) &&
+    (!q || [t.id,t.kk,t.ru,t.en,t.note].join(" ").toLowerCase().includes(q)));
+  $("#terms tbody").innerHTML = rows.map(t => `<tr data-id="${esc(t.id)}" class="${t.id === sel ? "sel" : ""}">
+    ${COLS.map(c => c === "status"
+      ? `<td><select data-c="status"><option ${t.status!=="approved"?"selected":""}>draft</option><option ${t.status==="approved"?"selected":""}>approved</option></select></td>`
+      : `<td contenteditable data-c="${c}" class="${["kk","ru","en"].includes(c) ? "lang-"+c : ""}">${esc(t[c])}</td>`).join("")}
+    <td class="muted">${cnt[t.id] || ""}</td><td class="muted">${esc(t.updated)}</td></tr>`).join("");
+  status(`${rows.length} из ${D.terms.length} терминов · ${D.usage.length} употреблений`);
+  renderSide();
+  $("#hist tbody").innerHTML = [...D.history].reverse().map(h => `<tr>
+    <td>${esc(h.ts)}</td><td>${esc(h.table)}</td><td>${esc(h.id)}</td><td>${esc(h.action)}</td><td>${esc(h.field)}</td>
+    <td><del>${esc(h.old)}</del></td><td>${esc(h.new)}</td><td class="muted">${esc(h.comment)}</td></tr>`).join("");
+}
+
+function renderSide(){
+  const t = D.terms.find(x => x.id === sel), side = $("#side");
+  if (!t){ side.innerHTML = '<p class="muted">Выберите термин — здесь будет, у кого и на каком слайде он встречается, и история его правок.</p>'; return; }
+  const us = D.usage.filter(u => u.id === sel)
+    .sort((a,b) => (a.slug!=="A17") - (b.slug!=="A17") || b.year.localeCompare(a.year));
+  const hs = D.history.filter(h => h.id === sel || h.id.startsWith(sel + " | ")).reverse();
+  side.innerHTML = `<h2>${esc(t.id)}</h2>
+    <div class="lang-kk">kk: ${esc(t.kk) || "—"}</div><div class="lang-ru">ru: ${esc(t.ru) || "—"}</div><div class="lang-en">en: ${esc(t.en) || "—"}</div>
+    <h3>Употребления (${us.length})</h3>
+    ${us.map((u,i) => `<div class="use"><b>${esc(u.author || u.slug)}</b> ${esc(u.year)} · сл. ${esc(u.slide)} ${esc(u.rubric)} · <span class="lang-${esc(u.lang)}">${esc(u.lang)}</span>
+      <div class="q">«${esc(u.quote)}»</div><div class="muted" style="font-size:12px">${esc(u.source)}</div>
+      <button class="danger" data-deluse="${D.usage.indexOf(u)}">удалить</button></div>`).join("") || '<p class="muted">нет</p>'}
+    <form class="adduse" id="adduse">
+      <input name="author" placeholder="кто (A17 — мы)"><input name="slug" placeholder="slug, напр. bazarbekov / A17">
+      <input name="year" placeholder="год"><input name="slide" placeholder="слайд №">
+      <input name="lang" placeholder="kk / ru / en"><input name="rubric" placeholder="рубрика слайда">
+      <textarea name="quote" rows="2" placeholder="цитата со слайда"></textarea>
+      <input name="source" placeholder="источник (файл:строка)" style="grid-column:1/-1">
+      <button>+ употребление</button>
+    </form>
+    <h3>История (${hs.length})</h3>
+    ${hs.map(h => `<div class="hist"><span class="muted">${esc(h.ts)}</span> ${esc(h.action)} ${esc(h.field)}
+      ${h.action === "update" ? `<br><del>${esc(h.old)}</del> → <ins>${esc(h.new)}</ins>` : ""}
+      ${h.comment ? `<br><span class="muted">${esc(h.comment)}</span>` : ""}</div>`).join("") || '<p class="muted">нет</p>'}
+    <p><button class="danger" id="delterm">удалить термин</button></p>`;
+}
+
+// edits in the table: save the whole terms table when a cell loses focus with a changed value
+$("#terms").addEventListener("focusin", e => { if (e.target.dataset.c) e.target.dataset.orig = e.target.textContent; });
+$("#terms").addEventListener("focusout", e => {
+  const td = e.target; if (!td.isContentEditable || td.textContent === td.dataset.orig) return;
+  commitRow(td.closest("tr"), td.dataset.c, td.textContent.trim());
+});
+$("#terms").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && e.target.isContentEditable){ e.preventDefault(); e.target.blur(); }});
+$("#terms").addEventListener("change", e => { if (e.target.dataset.c === "status") commitRow(e.target.closest("tr"), "status", e.target.value); });
+$("#terms").addEventListener("click", e => {
+  const tr = e.target.closest("tr[data-id]"); if (!tr) return;
+  sel = tr.dataset.id;
+  document.querySelectorAll("#terms tr.sel").forEach(r => r.classList.remove("sel")); tr.classList.add("sel");
+  renderSide();
+});
+
+function commitRow(tr, col, val){
+  const id = tr.dataset.id;
+  if (col === "id" && (!val || D.terms.some(t => t.id === val))){ status("id пустой или уже есть"); return render(); }
+  const rows = D.terms.map(t => t.id === id ? {...t, [col]: val} : t);
+  if (col === "id"){
+    D.usage.forEach(u => { if (u.id === id) u.id = val; });
+    save("usage", D.usage, "переименование");
+    sel = val;
+  }
+  save("terms", rows, "термин");
+}
+
+$("#add").onclick = () => {
+  let n = 1; while (D.terms.some(t => t.id === "new-" + n)) n++;
+  sel = "new-" + n;
+  save("terms", [...D.terms, {id: sel, kk:"", ru:"", en:"", kind:"", status:"draft", note:""}], "новый термин");
+};
+$("#side").addEventListener("click", e => {
+  if (e.target.dataset.deluse !== undefined){
+    const i = +e.target.dataset.deluse;
+    save("usage", D.usage.filter((_,k) => k !== i), "употребление удалено");
+  }
+  if (e.target.id === "delterm" && confirmInline(e.target)){
+    save("terms", D.terms.filter(t => t.id !== sel), "термин удалён"); sel = null;
+  }
+});
+function confirmInline(btn){  // second click confirms; avoids browser dialogs
+  if (btn.dataset.armed) return true;
+  btn.dataset.armed = 1; btn.textContent = "точно удалить? нажмите ещё раз"; return false;
+}
+$("#side").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(e.target));
+  if (!f.quote.trim()){ status("цитата пустая"); return; }
+  save("usage", [...D.usage, {...f, id: sel}], "употребление добавлено");
+});
+["q","fkind","fstatus"].forEach(id => $("#"+id).addEventListener("input", render));
+document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".tabs button").forEach(x => x.classList.toggle("on", x === b));
+  $("#view-terms").classList.toggle("hidden", b.dataset.tab !== "terms");
+  $("#view-history").classList.toggle("hidden", b.dataset.tab !== "history");
+});
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+ "file": "chapters/03-experiments/drafts/3.6-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.6-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 4,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 7,
+ "minutes": 7.5,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 408,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 115.4,
+   "src_head": "## 3.6 Attention maps and lesion agreement\n\nA screening system's acceptability t"
+  },
+  {
+   "chunk": 2,
+   "words": 385,
+   "errors": [],
+   "warnings": [
+    "term «integrated arm» not rendered as «интегрированная ветвь»",
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 133.7,
+   "src_head": "Differences were tested with a one-sided signed-rank test over the paired per-im"
+  },
+  {
+   "chunk": 3,
+   "words": 450,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «attention map» not rendered as «карта внимания»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 121.5,
+   "src_head": "The direction of the effect holds at every threshold examined, and significance "
+  },
+  {
+   "chunk": 4,
+   "words": 282,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 76.8,
+   "src_head": "Three limits confine it. The two channels were not measured on the same models: "
+  }
+ ]
+}

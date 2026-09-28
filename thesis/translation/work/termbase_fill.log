@@ -1,0 +1,18 @@
+163 terms, 153 to do, 16 calls
+batch 1: 10 terms, 115.0s, prompt 7723 tok @222/s, gen 712 @7.3/s
+batch 2: 10 terms, 144.2s, prompt 8141 tok @223/s, gen 869 @6.9/s
+batch 3: 10 terms, 122.6s, prompt 7573 tok @218/s, gen 729 @7.0/s
+batch 4: 10 terms, 117.1s, prompt 8159 tok @224/s, gen 726 @7.4/s
+batch 5: 10 terms, 111.3s, prompt 8768 tok @229/s, gen 655 @7.3/s
+batch 6: 10 terms, 112.6s, prompt 8870 tok @231/s, gen 639 @7.0/s
+batch 7: 10 terms, 120.2s, prompt 8688 tok @228/s, gen 705 @7.1/s
+batch 8: 10 terms, 109.1s, prompt 7788 tok @228/s, gen 677 @7.3/s
+batch 9: 10 terms, 122.9s, prompt 9126 tok @227/s, gen 717 @7.2/s
+batch 10: 10 terms, 113.9s, prompt 7809 tok @227/s, gen 690 @7.1/s
+batch 11: 10 terms, 110.4s, prompt 8016 tok @234/s, gen 685 @7.4/s
+batch 12: 10 terms, 97.7s, prompt 8496 tok @233/s, gen 580 @7.4/s
+batch 13: 10 terms, 96.5s, prompt 7750 tok @227/s, gen 600 @7.5/s
+batch 14: 10 terms, 97.1s, prompt 7503 tok @233/s, gen 616 @7.5/s
+batch 15: 10 terms, 117.5s, prompt 8256 tok @228/s, gen 714 @7.2/s
+batch 16: 3 terms, 34.3s, prompt 5099 tok @191/s, gen 216 @7.7/s
+confirmed KZ: 158/163; with evidence: 161

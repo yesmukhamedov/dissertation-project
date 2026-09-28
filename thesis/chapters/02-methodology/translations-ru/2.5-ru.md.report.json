@@ -1,0 +1,46 @@
+{
+ "file": "chapters/02-methodology/drafts/2.5-draft.md",
+ "out": "chapters/02-methodology/translations-ru/2.5-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 5.2,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 421,
+   "errors": [],
+   "warnings": [
+    "term «Class Activation Mapping» not rendered as «карты активации классов (CAM)»"
+   ],
+   "attempts": 1,
+   "sec": 114.5,
+   "src_head": "## 2.5 Explainability and quality metrics\n\nA classifier outputs a grade, but a s"
+  },
+  {
+   "chunk": 2,
+   "words": 414,
+   "errors": [],
+   "warnings": [
+    "term «attention map» not rendered as «карта внимания»"
+   ],
+   "attempts": 1,
+   "sec": 110.3,
+   "src_head": "The second is method and layer dependence. The map depends on which layer's acti"
+  },
+  {
+   "chunk": 3,
+   "words": 335,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 90.0,
+   "src_head": "There is also a methodological reason. Because the two arms differ along more th"
+  }
+ ]
+}

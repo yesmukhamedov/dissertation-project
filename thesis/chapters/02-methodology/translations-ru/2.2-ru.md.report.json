@@ -1,0 +1,42 @@
+{
+ "file": "chapters/02-methodology/drafts/2.2-draft.md",
+ "out": "chapters/02-methodology/translations-ru/2.2-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 5.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 394,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 105.4,
+   "src_head": "## 2.2 Formalisation of the clip limit\n\nThe contrast stage rests on a lineage of"
+  },
+  {
+   "chunk": 2,
+   "words": 424,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 114.3,
+   "src_head": "In the conventional formulation the limit is set relative to the height a tile's"
+  },
+  {
+   "chunk": 3,
+   "words": 433,
+   "errors": [],
+   "warnings": [
+    "numbers added: 8, 8"
+   ],
+   "attempts": 1,
+   "sec": 135.0,
+   "src_head": "Taking the minimum makes the constraints act as a conjunction. In a well-spread "
+  }
+ ]
+}

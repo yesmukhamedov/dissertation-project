@@ -1,0 +1,45 @@
+{
+ "file": "chapters/01-review/drafts/1.4-draft.md",
+ "out": "chapters/01-review/translations-ru/1.4-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 5.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 227,
+   "errors": [],
+   "warnings": [
+    "term «screening system» not rendered as «система скрининга»",
+    "term «Pooling» not rendered as «пулинг»"
+   ],
+   "attempts": 1,
+   "sec": 75.2,
+   "src_head": "## 1.4 Existing automated screening systems\n\nThis section examines how the compo"
+  },
+  {
+   "chunk": 2,
+   "words": 418,
+   "errors": [],
+   "warnings": [
+    "term «Pooling» not rendered as «пулинг»"
+   ],
+   "attempts": 1,
+   "sec": 162.9,
+   "src_head": "| Study or system | Task | Corpus and population | Reported metric | Validation "
+  },
+  {
+   "chunk": 3,
+   "words": 202,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 59.4,
+   "src_head": "The deployment landscape compounds these limitations differently. A comparison o"
+  }
+ ]
+}

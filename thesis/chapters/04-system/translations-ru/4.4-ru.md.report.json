@@ -1,0 +1,31 @@
+{
+ "file": "chapters/04-system/drafts/4.4-draft.md",
+ "out": "chapters/04-system/translations-ru/4.4-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 2.3,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 438,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 113.8,
+   "src_head": "## 4.4 Deployment and data protection\n\nThe system is deployed as a static client"
+  },
+  {
+   "chunk": 2,
+   "words": 83,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 25.0,
+   "src_head": "What the deployment does establish is architectural and modest. A screening clie"
+  }
+ ]
+}

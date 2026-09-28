@@ -1,0 +1,16 @@
+{
+ "out": "The explanation module computes attention maps on demand, using the formalism from Chapter 2 on the final convolutional block. A second deviation stands alongside the first. Maps are computed in real time for images uploaded by the operator; embedded demonstration cases, which exist to allow the system to be shown without patient data, provide stored proxy heatmaps rather than computed ones.\n\nAnyone evaluating the system must know which of the two variants they are examining, and this distinction is recorded here precisely for that reason. It has no bearing on the content of Chapter 3, where all attention measures were computed on experimental models against annotated masks, not within this system.\n\nThe self-check module launches at startup and verifies that the deployed pipeline reproduces expected outputs on fixed inputs. Its function is to make silent divergence visible: a preprocessing stage that begins to behave differently after a dependency change would otherwise degrade results without any signal, whereas the check is cheap compared to that risk.\n\nThe error-handling path processes inputs that fall outside the contract established in Chapter 2, applying the ingestion protocol specified there. Corrupted containers are rejected, images for which the field of view cannot be restored are held rather than passed to stages operating on meaningless content, and low-confidence laterality determinations are logged as such rather than asserted.\n\nThus, the system fails explicitly rather than implicitly when encountering out-of-contract input, which is the behaviour named in the original project and implemented here. What the protocol does not do is generalise: it is designed and validated only for the clinical images used in this work.",
+ "errors": [],
+ "warnings": [
+  "term «система» not rendered as «framework»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 51.5,
+  "finish": "stop",
+  "p_tok": 2502,
+  "c_tok": 316,
+  "pp_tps": 215,
+  "tg_tps": 7.0
+ }
+}

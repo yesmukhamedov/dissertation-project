@@ -1,0 +1,49 @@
+{
+ "file": "chapters/03-experiments/drafts/3.1-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.1-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 7,
+ "minutes": 6.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 448,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 141.2,
+   "src_head": "## 3.1 Datasets and experimental configuration\n\nThe previous chapter fixed what "
+  },
+  {
+   "chunk": 2,
+   "words": 420,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»",
+    "term «five grades» not rendered as «пять степеней»",
+    "term «F1-Score» not rendered as «F1-мера»",
+    "term «DR Grading» not rendered as «градация ДР»"
+   ],
+   "attempts": 1,
+   "sec": 133.5,
+   "src_head": "[FIG-3.2: The corpora by grade — defense/figures/figures_mine/fig4_2_dataset_gra"
+  },
+  {
+   "chunk": 3,
+   "words": 432,
+   "errors": [],
+   "warnings": [
+    "numbers added: 16",
+    "term «Precision» not rendered as «прецизионность»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 138.6,
+   "src_head": "Stratifying by grade preserves the class proportions across folds, so the rare s"
+  }
+ ]
+}

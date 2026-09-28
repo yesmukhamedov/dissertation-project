@@ -1,0 +1,47 @@
+{
+ "file": "chapters/02-methodology/drafts/2.3-draft.md",
+ "out": "chapters/02-methodology/translations-ru/2.3-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 5.3,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 442,
+   "errors": [],
+   "warnings": [
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 126.3,
+   "src_head": "## 2.3 Classification architectures and adaptation\n\nA convolutional network swee"
+  },
+  {
+   "chunk": 2,
+   "words": 380,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «Convolution» not rendered as «свёртка»"
+   ],
+   "attempts": 1,
+   "sec": 106.8,
+   "src_head": "Reading the contrast within each fixed backbone, and then asking whether the two"
+  },
+  {
+   "chunk": 3,
+   "words": 271,
+   "errors": [],
+   "warnings": [
+    "term «Precision» not rendered as «прецизионность»"
+   ],
+   "attempts": 1,
+   "sec": 86.4,
+   "src_head": "Regularisation operates at three levels and all three are used. At the level of "
+  }
+ ]
+}

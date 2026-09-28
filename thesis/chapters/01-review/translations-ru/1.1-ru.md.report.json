@@ -1,0 +1,46 @@
+{
+ "file": "chapters/01-review/drafts/1.1-draft.md",
+ "out": "chapters/01-review/translations-ru/1.1-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 6.5,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 411,
+   "errors": [],
+   "warnings": [
+    "term «screening system» not rendered as «система скрининга»",
+    "term «Pooling» not rendered as «пулинг»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 136.9,
+   "src_head": "## 1.1 Diabetic retinopathy and screening demand\n\nDiabetic retinopathy is a chro"
+  },
+  {
+   "chunk": 2,
+   "words": 399,
+   "errors": [],
+   "warnings": [
+    "term «five grades» not rendered as «пять степеней»"
+   ],
+   "attempts": 1,
+   "sec": 124.7,
+   "src_head": "The clinical scale partitions this burden into severity classes. As summarised b"
+  },
+  {
+   "chunk": 3,
+   "words": 422,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 126.4,
+   "src_head": "Deployed automated systems, relayed by Morya et al. (2024), and the national scr"
+  }
+ ]
+}

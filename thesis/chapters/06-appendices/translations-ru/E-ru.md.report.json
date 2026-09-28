@@ -1,0 +1,70 @@
+{
+ "file": "chapters/06-appendices/drafts/E-draft.md",
+ "out": "chapters/06-appendices/translations-ru/E-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 5,
+ "clean_first_try": 5,
+ "needs_review": [],
+ "warnings": 8,
+ "minutes": 9.5,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 340,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 108.9,
+   "src_head": "This appendix records the per-group evidence behind the camera-grouping evaluati"
+  },
+  {
+   "chunk": 2,
+   "words": 301,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 137.4,
+   "src_head": "### E.2 Weighted F1 and retention ratio by group\n\nThe retention ratio is the gro"
+  },
+  {
+   "chunk": 3,
+   "words": 311,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 139.7,
+   "src_head": "### E.4 Referable-DR AUC by group\n\n**Table E.4 – Binary referable-DR ROC-AUC (gr"
+  },
+  {
+   "chunk": 4,
+   "words": 346,
+   "errors": [],
+   "warnings": [
+    "term «integrated arm» not rendered as «интегрированная ветвь»",
+    "term «arm» not rendered as «ветвь»",
+    "term «five grades» not rendered as «пять степеней»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 119.0,
+   "src_head": "### E.6 Between-class dispersion\n\n**Table E.7 – Span of per-class F1 across the "
+  },
+  {
+   "chunk": 5,
+   "words": 265,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «external performance» not rendered as «качество на внешних корпусах»"
+   ],
+   "attempts": 1,
+   "sec": 68.0,
+   "src_head": "This is one instance of a defect that recurs across three measures in this disse"
+  }
+ ]
+}

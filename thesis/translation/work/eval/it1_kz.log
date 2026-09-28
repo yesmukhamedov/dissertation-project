@@ -1,0 +1,16 @@
+02:29:45   chunk 1/3 try 1: 397 w, 208.4s, pp 219/s tg 5.8/s, 0 err, 3 warn
+02:33:43   chunk 2/3 try 1: 445 w, 237.6s, pp 228/s tg 6.0/s, 1 err, 3 warn | forbidden «—»: long dash; Kazakh copula dash is ' – '
+02:37:48   chunk 2/3 try 2: 445 w, 244.7s, pp 220/s tg 6.0/s, 1 err, 4 warn | forbidden «—»: long dash; Kazakh copula dash is ' – '
+02:40:55   chunk 3/3 try 1: 353 w, 187.2s, pp 212/s tg 5.4/s, 0 err, 2 warn
+02:40:55 chapters/03-experiments/drafts/3.4-draft.md -> translation/work/eval/it1/kz/3.4-kz.md: 3 chunks, 2 clean first try, NEEDS_REVIEW [2], 8 warnings, 14.6 min
+02:40:55   3.4: chrF++ 67.6
+02:44:03   chunk 1/2 try 1: 416 w, 188.2s, pp 210/s tg 5.8/s, 0 err, 1 warn
+02:46:57   chunk 2/2 try 1: 384 w, 173.5s, pp 209/s tg 5.7/s, 0 err, 1 warn
+02:46:57 chapters/04-system/drafts/4.2-draft.md -> translation/work/eval/it1/kz/4.2-kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 2 warnings, 6.0 min
+02:46:57   4.2: chrF++ 65.8
+02:50:24   chunk 1/3 try 1: 410 w, 206.7s, pp 216/s tg 6.1/s, 0 err, 3 warn
+02:53:50   chunk 2/3 try 1: 420 w, 206.8s, pp 212/s tg 6.0/s, 0 err, 1 warn
+02:54:30   chunk 3/3 try 1: 77 w, 39.4s, pp 217/s tg 5.9/s, 0 err, 0 warn
+02:54:30 chapters/01-review/drafts/1.3-draft.md -> translation/work/eval/it1/kz/1.3-kz.md: 3 chunks, 3 clean first try, NEEDS_REVIEW none, 4 warnings, 7.5 min
+02:54:30   1.3: chrF++ 69.3
+02:54:30 it1 en>kz: chrF++ 70.2, chunks 8, first-try 7, clean 7, 28.1 min, errors {'forbidden «—»': 1}

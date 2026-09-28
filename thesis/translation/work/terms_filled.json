@@ -1,0 +1,1469 @@
+[
+ {
+  "en": "integrated configuration",
+  "kz": "интеграцияланған конфигурация",
+  "kz_keeps_latin": false,
+  "ru": "интегрированная конфигурация",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "baseline configuration",
+  "kz": "базалық конфигурация",
+  "kz_keeps_latin": false,
+  "ru": "базовая конфигурация",
+  "note": "GUESS",
+  "n_ev": 0,
+  "kz_confirmed": false
+ },
+ {
+  "en": "integrated arm",
+  "kz": "интеграцияланған тармақ",
+  "kz_keeps_latin": false,
+  "ru": "интегрированная ветвь",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "baseline arm",
+  "kz": "базалық тармақ",
+  "kz_keeps_latin": false,
+  "ru": "базовая ветвь",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "arm",
+  "kz": "тармақ",
+  "kz_keeps_latin": false,
+  "ru": "ветвь",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "preprocessing",
+  "kz": "алдын ала өңдеу",
+  "kz_keeps_latin": false,
+  "ru": "предобработка",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "preprocessing pipeline",
+  "kz": "алдын ала өңдеу конвейері",
+  "kz_keeps_latin": false,
+  "ru": "конвейер предобработки",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "eight-stage pipeline",
+  "kz": "сегіз кезеңді конвейер",
+  "kz_keeps_latin": false,
+  "ru": "8-этапный конвейер",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "preprocessing engine",
+  "kz": "алдын ала өңдеу қозғалтқышы",
+  "kz_keeps_latin": false,
+  "ru": "движок предобработки",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "pretraining",
+  "kz": "алдын ала оқыту",
+  "kz_keeps_latin": false,
+  "ru": "предобучение",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "in-domain initialisation",
+  "kz": "домен ішіндегі инициализация",
+  "kz_keeps_latin": false,
+  "ru": "инициализация в домене",
+  "note": "KZ uses 'домен ішіндегі' for in-domain.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "self-supervised pretraining",
+  "kz": "өздігінен бақыланатын алдын ала оқыту",
+  "kz_keeps_latin": false,
+  "ru": "самообучение",
+  "note": "KZ literal translation; RU often uses 'самообучение'.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "fine-tuning",
+  "kz": "дәлдеп баптау",
+  "kz_keeps_latin": false,
+  "ru": "дообучение",
+  "note": "KZ uses 'дәлдеп баптау'; RU uses 'дообучение'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "training corpus",
+  "kz": "оқыту корпусы",
+  "kz_keeps_latin": false,
+  "ru": "обучающий корпус",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "source corpus",
+  "kz": "бастапқы корпус",
+  "kz_keeps_latin": false,
+  "ru": "исходный корпус",
+  "note": "KZ uses 'бастапқы' for source.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "target corpus",
+  "kz": "нысаналы корпус",
+  "kz_keeps_latin": false,
+  "ru": "целевой корпус",
+  "note": "KZ uses 'нысаналы' for target.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "public corpus",
+  "kz": "ашық корпус",
+  "kz_keeps_latin": false,
+  "ru": "публичный корпус",
+  "note": "KZ uses 'ашық' for public.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "clinical corpus",
+  "kz": "клиникалық корпус",
+  "kz_keeps_latin": false,
+  "ru": "клинический корпус",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "external corpus",
+  "kz": "сыртқы корпус",
+  "kz_keeps_latin": false,
+  "ru": "внешний корпус",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "held-out data",
+  "kz": "бөлек ұсталған деректер",
+  "kz_keeps_latin": false,
+  "ru": "отложенные данные",
+  "note": "KZ literal 'separately held data'; RU 'отложенные'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "test partition",
+  "kz": "тест бөлігі",
+  "kz_keeps_latin": false,
+  "ru": "тестовая выборка",
+  "note": "KZ uses 'бөлігі' (part) not 'выборка'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "patient-level stratified",
+  "kz": "пациент деңгейінде стратификацияланған",
+  "kz_keeps_latin": false,
+  "ru": "стратификация на уровне пациента",
+  "note": "KZ uses 'деңгейінде' (at level of).",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "five folds",
+  "kz": "бес фолд",
+  "kz_keeps_latin": false,
+  "ru": "пять фолдов",
+  "note": "KZ uses 'фолд' (fold) as a loanword.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "cross-corpus transfer",
+  "kz": "корпусаралық тасымалдану қабілеті",
+  "kz_keeps_latin": false,
+  "ru": "межкорпусный перенос",
+  "note": "KZ adds 'қабілеті' (ability) for transferability.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "domain shift",
+  "kz": "домендік ығысу",
+  "kz_keeps_latin": false,
+  "ru": "сдвиг доменов",
+  "note": "KZ uses 'ығысу' (shift/displacement).",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "distributional distance",
+  "kz": "үлестірімдік қашықтық",
+  "kz_keeps_latin": false,
+  "ru": "расстояние распределений",
+  "note": "KZ uses 'үлестірімдік' (distributional) and 'қашықтық' (distance).",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "feature space",
+  "kz": "белгілер кеңістігі",
+  "kz_keeps_latin": false,
+  "ru": "пространство признаков",
+  "note": "KZ uses 'белгілер' (features/labels) and 'кеңістігі' (space).",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "penultimate-layer features",
+  "kz": "алдыңғы соңғы қабаттың белгілері",
+  "kz_keeps_latin": false,
+  "ru": "признаки предпоследнего слоя",
+  "note": "KZ uses 'алдыңғы соңғы' (penultimate) and 'қабаттың' (layer's).",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "maximum mean discrepancy",
+  "kz": "максималды орташа алшақтық",
+  "kz_keeps_latin": false,
+  "ru": "максимальное среднее расхождение",
+  "note": "KZ uses 'алшақтық' (discrepancy) not 'айырмашылық'.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "in-domain performance",
+  "kz": "домен ішіндегі өнімділік",
+  "kz_keeps_latin": false,
+  "ru": "внутридоменное качество",
+  "note": "KZ uses 'ішіндегі' (inside) and 'өнімділік' (performance).",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "external performance",
+  "kz": "сыртқы өнімділік",
+  "kz_keeps_latin": false,
+  "ru": "внешняя производительность",
+  "note": "RU abstract uses 'внешнее качество'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "external clinical",
+  "kz": "сыртқы клиникалық",
+  "kz_keeps_latin": false,
+  "ru": "внешняя клиническая",
+  "note": "Adjective form; noun is 'клиническая оценка'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "retention ratio",
+  "kz": "сақталу қатынасы",
+  "kz_keeps_latin": false,
+  "ru": "коэффициент удержания",
+  "note": "RU abstract uses 'коэффициент обобщения'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "camera group",
+  "kz": "камералық топ",
+  "kz_keeps_latin": false,
+  "ru": "группа камер",
+  "note": "KZ uses 'топтастыру' for grouping.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "confusion matrix",
+  "kz": "шатасу матрицасы",
+  "kz_keeps_latin": false,
+  "ru": "матрица ошибок",
+  "note": "Standard ML term in Russian.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "weighted F1",
+  "kz": "салмақталған F1",
+  "kz_keeps_latin": false,
+  "ru": "взвешенный F1",
+  "note": "Latin 'F1' preserved in all languages.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "quadratic weighted kappa",
+  "kz": "квадраттық салмақталған каппа",
+  "kz_keeps_latin": false,
+  "ru": "квадратичная каппа",
+  "note": "RU abstract uses 'квадратичная каппа'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "sensitivity",
+  "kz": "сезімталдық",
+  "kz_keeps_latin": false,
+  "ru": "чувствительность",
+  "note": "Synonym: 'полнота' in some contexts.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "specificity",
+  "kz": "спецификалық",
+  "kz_keeps_latin": false,
+  "ru": "специфичность",
+  "note": "KZ text uses adjective form 'спецификалық'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "referable disease",
+  "kz": "жолдама берілуге тиіс ауру",
+  "kz_keeps_latin": false,
+  "ru": "референтное заболевание",
+  "note": "RU abstract lacks this specific term.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "referral threshold",
+  "kz": "жолдама табалдырығы",
+  "kz_keeps_latin": false,
+  "ru": "порог направления",
+  "note": "КЗ: жолдама табалдырығы",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "predictive values",
+  "kz": "болжамдық мән",
+  "kz_keeps_latin": false,
+  "ru": "прогностические значения",
+  "note": "КЗ: болжамдық мән",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "percentage points",
+  "kz": "пайыздық тармақ",
+  "kz_keeps_latin": false,
+  "ru": "процентные пункты",
+  "note": "КЗ: пайыздық тармақ",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "confidence interval",
+  "kz": "сенімділік аралығы",
+  "kz_keeps_latin": false,
+  "ru": "доверительный интервал",
+  "note": "КЗ: сенімділік аралығы",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "interval excluding zero",
+  "kz": "нөлді қамтымайтын аралық",
+  "kz_keeps_latin": false,
+  "ru": "интервал, исключающий ноль",
+  "note": "КЗ: нөлді қамтымайтын аралық",
+  "n_ev": 2,
+  "kz_confirmed": false
+ },
+ {
+  "en": "bootstrap",
+  "kz": "bootstrap",
+  "kz_keeps_latin": true,
+  "ru": "бутстрап",
+  "note": "КЗ: bootstrap",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "minimal clinically important difference",
+  "kz": "минималды клиникалық маңызды айырма",
+  "kz_keeps_latin": false,
+  "ru": "минимально клинически значимая разница",
+  "note": "КЗ: минималды клиникалық маңызды айырма",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "criterion",
+  "kz": "өлшем",
+  "kz_keeps_latin": false,
+  "ru": "критерий",
+  "note": "КЗ: өлшем",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "effect size",
+  "kz": "әсер көлемі",
+  "kz_keeps_latin": false,
+  "ru": "размер эффекта",
+  "note": "GUESS: әсер көлемі",
+  "n_ev": 0,
+  "kz_confirmed": false
+ },
+ {
+  "en": "standard deviation",
+  "kz": "стандартты ауытқу",
+  "kz_keeps_latin": false,
+  "ru": "стандартное отклонение",
+  "note": "КЗ: стандартты ауытқу",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "mixed-effects model",
+  "kz": "аралас әсерлер моделі",
+  "kz_keeps_latin": false,
+  "ru": "модель со смешанными эффектами",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "ablation",
+  "kz": "абляция",
+  "kz_keeps_latin": false,
+  "ru": "абляция",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "clip factor",
+  "kz": "клип-фактор",
+  "kz_keeps_latin": false,
+  "ru": "коэффициент клипирования",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "clip limit",
+  "kz": "клип-лимит",
+  "kz_keeps_latin": false,
+  "ru": "лимит клипирования",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "flat-field correction",
+  "kz": "flat-field түзетуі",
+  "kz_keeps_latin": true,
+  "ru": "коррекция плоского поля",
+  "note": "KZ keeps 'flat-field' in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "illumination correction",
+  "kz": "жарықтандыруды түзету",
+  "kz_keeps_latin": false,
+  "ru": "коррекция освещения",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "contrast enhancement",
+  "kz": "контрастты күшейту",
+  "kz_keeps_latin": false,
+  "ru": "усиление контраста",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "canonical flip",
+  "kz": "канондық аудару",
+  "kz_keeps_latin": false,
+  "ru": "канонический разворот",
+  "note": "KZ uses 'аудару', RU uses 'разворот'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "fovea rotation",
+  "kz": "айналуды нормалау",
+  "kz_keeps_latin": false,
+  "ru": "нормализация поворота по оси «диск—фовеа»",
+  "note": "KZ text describes the normalization step.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "optic disc",
+  "kz": "көру дискі",
+  "kz_keeps_latin": false,
+  "ru": "диск зрительного нерва",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "fovea",
+  "kz": "фовеа",
+  "kz_keeps_latin": false,
+  "ru": "фовеа",
+  "note": "Центр желдік аймақ",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "field-of-view mask",
+  "kz": "көру алаңының маскасы",
+  "kz_keeps_latin": false,
+  "ru": "маска поля зрения",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "isotropic resize",
+  "kz": "изотропты масштабтау",
+  "kz_keeps_latin": false,
+  "ru": "изотропное масштабирование",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "four-channel tensor",
+  "kz": "төрт арналы тензор",
+  "kz_keeps_latin": false,
+  "ru": "четырехканальный тензор",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "mask channel",
+  "kz": "маска арнасы",
+  "kz_keeps_latin": false,
+  "ru": "масочный канал",
+  "note": "маска как канал",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "photometric stages",
+  "kz": "фотометриялық кезеңдер",
+  "kz_keeps_latin": false,
+  "ru": "фотометрические этапы",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "attention map",
+  "kz": "назар картасы",
+  "kz_keeps_latin": false,
+  "ru": "карта внимания",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "attention overlay",
+  "kz": "назар қабаттамасы",
+  "kz_keeps_latin": false,
+  "ru": "наложение внимания",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "expert annotation",
+  "kz": "сарапшы аннотациясы",
+  "kz_keeps_latin": false,
+  "ru": "экспертная разметка",
+  "note": "экспертная аннотация",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "lesion type",
+  "kz": "зақымдану түрі",
+  "kz_keeps_latin": false,
+  "ru": "тип очага",
+  "note": "тип поражения",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "hard exudates",
+  "kz": "қатты экссудаттар",
+  "kz_keeps_latin": false,
+  "ru": "твёрдые экссудаты",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "haemorrhages",
+  "kz": "қан құйылулар",
+  "kz_keeps_latin": false,
+  "ru": "геморрагии",
+  "note": "KZ uses descriptive 'қан құйылулар'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "microaneurysms",
+  "kz": "микроаневризмалар",
+  "kz_keeps_latin": false,
+  "ru": "микроаневризмы",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "soft exudates",
+  "kz": "жұмсақ экссудаттар",
+  "kz_keeps_latin": false,
+  "ru": "мягкие экссудаты",
+  "note": "Also known as cotton-wool spots.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "diabetic retinopathy",
+  "kz": "диабеттік ретинопатия",
+  "kz_keeps_latin": false,
+  "ru": "диабетическая ретинопатия",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "fundus image",
+  "kz": "көз түбі кескіні",
+  "kz_keeps_latin": false,
+  "ru": "изображение глазного дна",
+  "note": "KZ uses 'кескін' for image.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "fundus photography",
+  "kz": "көз түбі фотосуреті",
+  "kz_keeps_latin": false,
+  "ru": "фотосъёмка глазного дна",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "five grades",
+  "kz": "бес дәреже",
+  "kz_keeps_latin": false,
+  "ru": "пять степеней",
+  "note": "Refers to DR grading scale.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "minority grades",
+  "kz": "азшылық дәрежелер",
+  "kz_keeps_latin": false,
+  "ru": "малочисленные степени",
+  "note": "Context: class imbalance.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "severely imbalanced",
+  "kz": "қатты теңгерімсіз",
+  "kz_keeps_latin": false,
+  "ru": "сильно несбалансированный",
+  "note": "Describes class distribution.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "focal loss",
+  "kz": "focal loss",
+  "kz_keeps_latin": true,
+  "ru": "focal loss",
+  "note": "Latin script retained in KZ text.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "best epoch",
+  "kz": "үздік эпоха",
+  "kz_keeps_latin": false,
+  "ru": "лучшая эпоха",
+  "note": "KZ uses 'үздік' (best/peak).",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "batch size",
+  "kz": "топтама өлшемі",
+  "kz_keeps_latin": false,
+  "ru": "размер батча",
+  "note": "KZ translates as 'batch size'.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "calibration",
+  "kz": "калибрлеу",
+  "kz_keeps_latin": false,
+  "ru": "калибровка",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "expected calibration error",
+  "kz": "күтілетін калибрлеу қатесі",
+  "kz_keeps_latin": false,
+  "ru": "ожидаемая ошибка калибровки",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "brier score",
+  "kz": "Brier ұпайы",
+  "kz_keeps_latin": false,
+  "ru": "показатель Брайера",
+  "note": "KZ keeps 'Brier' in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "contrast-to-noise ratio",
+  "kz": "контраст-шу қатынасы",
+  "kz_keeps_latin": false,
+  "ru": "отношение контраст-шум",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "structural similarity",
+  "kz": "құрылымдық ұқсастық",
+  "kz_keeps_latin": false,
+  "ru": "структурное сходство",
+  "note": "Refers to SSIM.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "automated screening",
+  "kz": "автоматтандырылған скрининг",
+  "kz_keeps_latin": false,
+  "ru": "автоматизированный скрининг",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "screening system",
+  "kz": "скрининг жүйесі",
+  "kz_keeps_latin": false,
+  "ru": "система скрининга",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "decision support",
+  "kz": "шешім қабылдауды қолдау",
+  "kz_keeps_latin": false,
+  "ru": "поддержка принятия решений",
+  "note": "KZ uses 'шешім қабылдауды қолдау'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "working demonstrator",
+  "kz": "жұмыс істейтін демонстратор",
+  "kz_keeps_latin": false,
+  "ru": "рабочий демонстратор",
+  "note": "KZ variant: 'жұмыс істеп тұрған демонстратор'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "software complex",
+  "kz": "бағдарламалық кешен",
+  "kz_keeps_latin": false,
+  "ru": "программный комплекс",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "deployment context",
+  "kz": "орналастыру контексі",
+  "kz_keeps_latin": false,
+  "ru": "контекст развёртывания",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "integral component",
+  "kz": "ажырамас компонент",
+  "kz_keeps_latin": false,
+  "ru": "неотъемлемый компонент",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "ancillary data preparation",
+  "kz": "қосалқы деректер дайындығы",
+  "kz_keeps_latin": false,
+  "ru": "вспомогательная подготовка данных",
+  "note": "KZ variant: 'деректерді көмекші дайындау'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "diagnostic model",
+  "kz": "диагностикалық модель",
+  "kz_keeps_latin": false,
+  "ru": "диагностическая модель",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "methodological contribution",
+  "kz": "әдіснамалық үлес",
+  "kz_keeps_latin": false,
+  "ru": "методологический вклад",
+  "note": "GUESS: Term not explicitly in KZ pairs.",
+  "n_ev": 1,
+  "kz_confirmed": false
+ },
+ {
+  "en": "prior own work",
+  "kz": "бұрынғы өз жұмысы",
+  "kz_keeps_latin": false,
+  "ru": "предшествующая собственная работа",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "evidence base",
+  "kz": "дәлелдер базасы",
+  "kz_keeps_latin": false,
+  "ru": "база доказательств",
+  "note": "KZ variant: 'эмпирикалық база'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "convolutional network",
+  "kz": "конволюциялық нейрондық желі",
+  "kz_keeps_latin": false,
+  "ru": "свёрточная нейронная сеть",
+  "note": "KZ uses 'конволюциялық', not 'сверткалық'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "hypothesis",
+  "kz": "гипотеза",
+  "kz_keeps_latin": false,
+  "ru": "гипотеза",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "provision",
+  "kz": "тұжырым",
+  "kz_keeps_latin": false,
+  "ru": "положение",
+  "note": "Context: 'положения, выносимые на защиту'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "scientific novelty",
+  "kz": "ғылыми жаңалық",
+  "kz_keeps_latin": false,
+  "ru": "научная новизна",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "CNN",
+  "kz": "CNN",
+  "kz_keeps_latin": true,
+  "ru": "CNN",
+  "note": "Latin script retained in KZ text.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Convolution",
+  "kz": "конволюция",
+  "kz_keeps_latin": false,
+  "ru": "свёртка",
+  "note": "KZ uses 'конволюциялық' (adjective).",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Pooling",
+  "kz": "біріктіру",
+  "kz_keeps_latin": false,
+  "ru": "пулинг",
+  "note": "KZ uses 'біріктірілген' (pooled) in tables.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Transfer Learning",
+  "kz": "transfer learning",
+  "kz_keeps_latin": true,
+  "ru": "перенос обучения",
+  "note": "KZ keeps Latin script in text.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Progressive Fine-Tuning",
+  "kz": "бірте-бірте дәлдеп баптау",
+  "kz_keeps_latin": false,
+  "ru": "постепенная дообучение",
+  "note": "KZ: 'бірте-бірте дәлдеп бапталған'.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "EfficientNet-B3",
+  "kz": "EfficientNet-B3",
+  "kz_keeps_latin": true,
+  "ru": "EfficientNet-B3",
+  "note": "Model name kept in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "EfficientNet-B4",
+  "kz": "EfficientNet-B4",
+  "kz_keeps_latin": true,
+  "ru": "EfficientNet-B4",
+  "note": "Model name kept in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "ResNet-50",
+  "kz": "ResNet-50",
+  "kz_keeps_latin": true,
+  "ru": "ResNet-50",
+  "note": "Model name kept in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Transformer",
+  "kz": "vision transformer",
+  "kz_keeps_latin": true,
+  "ru": "трансформер",
+  "note": "KZ uses 'vision transformer'; RU uses 'трансформер'.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "CLAHE",
+  "kz": "CLAHE",
+  "kz_keeps_latin": true,
+  "ru": "CLAHE",
+  "note": "Acronym kept in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Loss Function",
+  "kz": "шығын функциясы",
+  "kz_keeps_latin": false,
+  "ru": "функция потерь",
+  "note": "KZ 'шығын' means loss/cost.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "ROC-AUC",
+  "kz": "ROC-AUC",
+  "kz_keeps_latin": true,
+  "ru": "ROC-AUC",
+  "note": "Metric acronym kept in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "F1-Score",
+  "kz": "F1-score",
+  "kz_keeps_latin": true,
+  "ru": "F1-мера",
+  "note": "KZ uses 'F1-score'; RU uses 'F1-мера'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Macro Average",
+  "kz": "макро-орташа",
+  "kz_keeps_latin": false,
+  "ru": "макро-среднее",
+  "note": "KZ 'макро-орташа' is standard.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Weighted Average",
+  "kz": "салмақталған орташа",
+  "kz_keeps_latin": false,
+  "ru": "взвешенное среднее",
+  "note": "KZ 'салмақталған' means weighted.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Cross-Validation",
+  "kz": "кросс-валидация",
+  "kz_keeps_latin": false,
+  "ru": "кросс-валидация",
+  "note": "Transliteration used in both languages.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Inference",
+  "kz": "инференс",
+  "kz_keeps_latin": false,
+  "ru": "инференс",
+  "note": "Latin script in KZ text.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Benchmarking",
+  "kz": "бенчмарк",
+  "kz_keeps_latin": false,
+  "ru": "бенчмаркинг",
+  "note": "KZ uses noun 'бенчмарк'.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Pipeline",
+  "kz": "конвейер",
+  "kz_keeps_latin": false,
+  "ru": "конвейер",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "ImageNet",
+  "kz": "ImageNet",
+  "kz_keeps_latin": true,
+  "ru": "ImageNet",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "EyePACS",
+  "kz": "EyePACS",
+  "kz_keeps_latin": true,
+  "ru": "EyePACS",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "APTOS 2019",
+  "kz": "APTOS 2019",
+  "kz_keeps_latin": true,
+  "ru": "APTOS 2019",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "IDRiD",
+  "kz": "IDRiD",
+  "kz_keeps_latin": true,
+  "ru": "IDRiD",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Messidor-2",
+  "kz": "Messidor-2",
+  "kz_keeps_latin": true,
+  "ru": "Messidor-2",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "RFMiD",
+  "kz": "RFMiD",
+  "kz_keeps_latin": true,
+  "ru": "RFMiD",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "DDR",
+  "kz": "DDR",
+  "kz_keeps_latin": true,
+  "ru": "DDR",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "ODIR-5K",
+  "kz": "ODIR-5K",
+  "kz_keeps_latin": true,
+  "ru": "ODIR-5K",
+  "note": "Dataset name kept in Latin.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "PACS",
+  "kz": "PACS",
+  "kz_keeps_latin": true,
+  "ru": "PACS",
+  "note": "Acronym kept in Latin.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "EHR",
+  "kz": "EHR",
+  "kz_keeps_latin": true,
+  "ru": "EHR",
+  "note": "Acronym kept in Latin.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "GDPR",
+  "kz": "GDPR",
+  "kz_keeps_latin": true,
+  "ru": "GDPR",
+  "note": "Acronym kept in Latin.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "HIPAA",
+  "kz": "HIPAA",
+  "kz_keeps_latin": true,
+  "ru": "HIPAA",
+  "note": "Acronym kept in Latin.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Grad-CAM",
+  "kz": "Grad-CAM",
+  "kz_keeps_latin": true,
+  "ru": "Grad-CAM",
+  "note": "Method name kept in Latin.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "CAM",
+  "kz": "CAM",
+  "kz_keeps_latin": true,
+  "ru": "CAM",
+  "note": "Not explicitly in KZ text; standard acronym.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "IoU",
+  "kz": "IoU",
+  "kz_keeps_latin": true,
+  "ru": "IoU",
+  "note": "Metric kept in Latin.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "FOV",
+  "kz": "FOV",
+  "kz_keeps_latin": true,
+  "ru": "FOV",
+  "note": "GUESS: Not in KZ text; standard acronym.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "LAB",
+  "kz": "LAB",
+  "kz_keeps_latin": true,
+  "ru": "LAB",
+  "note": "Color space kept in Latin.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Microaneurysm",
+  "kz": "микроаневризма",
+  "kz_keeps_latin": false,
+  "ru": "микроаневризма",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Image Quality",
+  "kz": "кескін сапасы",
+  "kz_keeps_latin": false,
+  "ru": "качество изображения",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Class Distribution",
+  "kz": "класс үлестірімі",
+  "kz_keeps_latin": false,
+  "ru": "распределение классов",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Overfitting",
+  "kz": "артық үйрену",
+  "kz_keeps_latin": false,
+  "ru": "переобучение",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Convergence",
+  "kz": "жинақталу",
+  "kz_keeps_latin": false,
+  "ru": "сходимость",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Image Enhancement",
+  "kz": "кескінді жақсарту",
+  "kz_keeps_latin": false,
+  "ru": "улучшение изображений",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Clinical Workflow",
+  "kz": "клиникалық жұмыс ағыны",
+  "kz_keeps_latin": false,
+  "ru": "клинический рабочий процесс",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Regulatory Compliance",
+  "kz": "нормативтік сәйкестік",
+  "kz_keeps_latin": false,
+  "ru": "регуляторное соответствие",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "External Clinical Performance",
+  "kz": "сыртқы клиникалық өнімділік",
+  "kz_keeps_latin": false,
+  "ru": "внешняя клиническая эффективность",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Physician-in-the-Loop",
+  "kz": "дәрігер контурда",
+  "kz_keeps_latin": false,
+  "ru": "врач в контуре",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Canonical Orientation",
+  "kz": "канондық бағдар",
+  "kz_keeps_latin": false,
+  "ru": "каноническая ориентация",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "DR Grading",
+  "kz": "ДР дәрежелендіру",
+  "kz_keeps_latin": false,
+  "ru": "градация ДР",
+  "note": "KZ uses 'дәрежелендіру' or 'дәреже үлестірімі'.",
+  "n_ev": 1,
+  "kz_confirmed": false
+ },
+ {
+  "en": "Telemedicine",
+  "kz": "телемедицина",
+  "kz_keeps_latin": false,
+  "ru": "телемедицина",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Laser Coagulation",
+  "kz": "лазерлік коагуляция",
+  "kz_keeps_latin": false,
+  "ru": "лазерная коагуляция",
+  "note": "",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Precision",
+  "kz": "дәлдік",
+  "kz_keeps_latin": false,
+  "ru": "точность",
+  "note": "KZ 'дәлдік' covers both precision and accuracy.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Recall",
+  "kz": "толықтық",
+  "kz_keeps_latin": false,
+  "ru": "полнота",
+  "note": "",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Accuracy",
+  "kz": "дәлдік",
+  "kz_keeps_latin": false,
+  "ru": "точность",
+  "note": "KZ 'дәлдік' covers both precision and accuracy.",
+  "n_ev": 2,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Convolutional Neural Network",
+  "kz": "конволюциялық нейрондық желі",
+  "kz_keeps_latin": false,
+  "ru": "свёрточная нейронная сеть",
+  "note": "KZ uses 'конволюциялық', RU uses 'свёрточная'.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Two-Stage Fine-Tuning",
+  "kz": "екі кезеңді дәлдеп баптау",
+  "kz_keeps_latin": false,
+  "ru": "двухэтапная дообучение",
+  "note": "KZ 'дәлдеп баптау' is fine-tuning.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Intersection over Union",
+  "kz": "қиылысу бөлінген бірігу",
+  "kz_keeps_latin": false,
+  "ru": "пересечение над объединением",
+  "note": "KZ literal translation of IoU.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Class Activation Mapping",
+  "kz": "класс активациясын карталау",
+  "kz_keeps_latin": false,
+  "ru": "картирование активации классов",
+  "note": "Grad-CAM is the specific implementation.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "Vessel Visibility Index",
+  "kz": "тамырлардың көрінімділік индексі",
+  "kz_keeps_latin": false,
+  "ru": "индекс видимости сосудов",
+  "note": "Not used in the study.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ },
+ {
+  "en": "FOV Mask",
+  "kz": "көру өрісінің маскасы",
+  "kz_keeps_latin": false,
+  "ru": "маска поля зрения",
+  "note": "Used as fourth input channel.",
+  "n_ev": 1,
+  "kz_confirmed": true
+ }
+]

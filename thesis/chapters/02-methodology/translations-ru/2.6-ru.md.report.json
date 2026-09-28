@@ -1,0 +1,45 @@
+{
+ "file": "chapters/02-methodology/drafts/2.6-draft.md",
+ "out": "chapters/02-methodology/translations-ru/2.6-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 5.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 443,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 149.6,
+   "src_head": "## 2.6 Evaluation and statistical protocol\n\nDiagnostic effectiveness is read fro"
+  },
+  {
+   "chunk": 2,
+   "words": 428,
+   "errors": [],
+   "warnings": [
+    "numbers added: 15, 5",
+    "term «five folds» not rendered as «пять фолдов»"
+   ],
+   "attempts": 1,
+   "sec": 125.2,
+   "src_head": "The secondary measures are reported for completeness and cannot independently es"
+  },
+  {
+   "chunk": 3,
+   "words": 250,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»"
+   ],
+   "attempts": 1,
+   "sec": 73.8,
+   "src_head": "Patient-level grouping removes that path, and it composes with the train-only st"
+  }
+ ]
+}

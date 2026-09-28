@@ -1,0 +1,35 @@
+{
+ "file": "chapters/04-system/drafts/4.2-draft.md",
+ "out": "translation/work/eval/it1/kz/4.2-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 6.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 416,
+   "errors": [],
+   "warnings": [
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+   ],
+   "attempts": 1,
+   "sec": 188.2,
+   "src_head": "## 4.2 Preprocessing and inference services\n\nThe preprocessing module runs the e"
+  },
+  {
+   "chunk": 2,
+   "words": 384,
+   "errors": [],
+   "warnings": [
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+   ],
+   "attempts": 1,
+   "sec": 173.5,
+   "src_head": "One divergence must be recorded here rather than left to be discovered. The chec"
+  }
+ ]
+}

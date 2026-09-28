@@ -1,0 +1,72 @@
+{
+ "file": "chapters/03-experiments/drafts/3.2-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.2-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 5,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 10,
+ "minutes": 13.6,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 415,
+   "errors": [],
+   "warnings": [
+    "numbers added: 2, 2, 8, 8",
+    "term «field-of-view mask» not rendered as «маска поля зрения»",
+    "term «F1-Score» not rendered as «F1-мера»"
+   ],
+   "attempts": 1,
+   "sec": 135.8,
+   "src_head": "## 3.2 Effect of the pipeline on accuracy\n\nThe first experiment is a complete tw"
+  },
+  {
+   "chunk": 2,
+   "words": 418,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»"
+   ],
+   "attempts": 1,
+   "sec": 129.0,
+   "src_head": "One asymmetry must be stated plainly rather than buried. The baseline arm initia"
+  },
+  {
+   "chunk": 3,
+   "words": 444,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»"
+   ],
+   "attempts": 2,
+   "sec": 154.9,
+   "src_head": "The integrated cells were also better calibrated on both backbones. Expected cal"
+  },
+  {
+   "chunk": 4,
+   "words": 410,
+   "errors": [],
+   "warnings": [
+    "numbers added: 1",
+    "term «integrated arm» not rendered as «интегрированная ветвь»",
+    "term «baseline arm» not rendered as «базовая ветвь»",
+    "term «arm» not rendered as «ветвь»",
+    "term «Pooling» not rendered as «пулинг»"
+   ],
+   "attempts": 1,
+   "sec": 164.0,
+   "src_head": "**Table 3.5 – Per-class F1-score by cell, pooled validation folds.**\n\n| Grade | "
+  },
+  {
+   "chunk": 5,
+   "words": 246,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 75.1,
+   "src_head": "Sensitivity to vision-threatening disease rose by 11.2 percentage points on both"
+  }
+ ]
+}

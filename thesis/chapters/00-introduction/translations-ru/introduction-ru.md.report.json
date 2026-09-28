@@ -1,0 +1,109 @@
+{
+ "file": "chapters/00-introduction/drafts/introduction-draft.md",
+ "out": "chapters/00-introduction/translations-ru/introduction-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 8,
+ "clean_first_try": 7,
+ "needs_review": [
+  6
+ ],
+ "warnings": 13,
+ "minutes": 15.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 427,
+   "errors": [],
+   "warnings": [
+    "numbers added: 8"
+   ],
+   "attempts": 1,
+   "sec": 110.0,
+   "src_head": "**Relevance of the research.** Diabetic retinopathy is a microvascular complicat"
+  },
+  {
+   "chunk": 2,
+   "words": 376,
+   "errors": [],
+   "warnings": [
+    "term «photometric stages» not rendered as «фотометрические этапы»",
+    "term «convolutional network» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 1,
+   "sec": 104.8,
+   "src_head": "1. To analyse the problem domain and formulate the research problem: the clinica"
+  },
+  {
+   "chunk": 3,
+   "words": 434,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «external performance» not rendered as «качество на внешних корпусах»"
+   ],
+   "attempts": 1,
+   "sec": 112.3,
+   "src_head": "**Scientific novelty.** The principal contribution is conceptual: the reframing "
+  },
+  {
+   "chunk": 4,
+   "words": 419,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «five folds» not rendered as «пять фолдов»",
+    "term «photometric stages» not rendered as «фотометрические этапы»"
+   ],
+   "attempts": 1,
+   "sec": 119.9,
+   "src_head": "The integrated configuration exceeds the baseline on the training corpus of 35,1"
+  },
+  {
+   "chunk": 5,
+   "words": 351,
+   "errors": [],
+   "warnings": [
+    "term «evidence base» not rendered as «доказательная база»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 93.6,
+   "src_head": "**Theoretical and practical significance.** The theoretical significance lies in"
+  },
+  {
+   "chunk": 6,
+   "words": 435,
+   "errors": [
+    "names/codes lost: Physico-Mathematical, Kazakh-British, KazUTB"
+   ],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 138.4,
+   "src_head": "Four bounds attach to particular provisions. The stage ranking holds at the reso"
+  },
+  {
+   "chunk": 7,
+   "words": 428,
+   "errors": [],
+   "warnings": [
+    "numbers added: 8",
+    "term «convolutional network» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 1,
+   "sec": 112.5,
+   "src_head": "The software complex is entered in the state register of copyright objects, cert"
+  },
+  {
+   "chunk": 8,
+   "words": 61,
+   "errors": [],
+   "warnings": [
+    "term «attention map» not rendered as «карта внимания»"
+   ],
+   "attempts": 1,
+   "sec": 18.4,
+   "src_head": "Six appendices follow: the source code of the preprocessing pipeline, supplement"
+  }
+ ]
+}

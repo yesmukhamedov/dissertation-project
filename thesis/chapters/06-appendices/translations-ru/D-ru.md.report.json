@@ -1,0 +1,48 @@
+{
+ "file": "chapters/06-appendices/drafts/D-draft.md",
+ "out": "chapters/06-appendices/translations-ru/D-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 2,
+ "needs_review": [
+  1
+ ],
+ "warnings": 3,
+ "minutes": 6.2,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 432,
+   "errors": [
+    "names/codes lost: Intersection-over-Union"
+   ],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 111.9,
+   "src_head": "### D.1 What this gallery is, and how it must be read\n\nThe reading rule comes be"
+  },
+  {
+   "chunk": 2,
+   "words": 350,
+   "errors": [],
+   "warnings": [
+    "term «attention overlay» not rendered as «наложение карты внимания»",
+    "term «expert annotation» not rendered as «экспертная разметка»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 95.5,
+   "src_head": "No property of the aggregate may be read off four plates, and none is asserted f"
+  },
+  {
+   "chunk": 3,
+   "words": 190,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 53.7,
+   "src_head": "### D.5 What is absent, and what follows from it\n\nThe hypothesis under which the"
+  }
+ ]
+}

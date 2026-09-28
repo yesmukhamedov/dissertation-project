@@ -1,0 +1,35 @@
+{
+ "file": "chapters/04-system/translations/4.2-translation.md",
+ "out": "translation/work/eval/dirs/4.2-ru.md",
+ "src": "kz",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 3.7,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 416,
+   "errors": [],
+   "warnings": [
+    "term «назар картасы» not rendered as «карта внимания»",
+    "term «тұжырым» not rendered as «положение»",
+    "term «біріктіру» not rendered as «пулинг»"
+   ],
+   "attempts": 1,
+   "sec": 158.6,
+   "src_head": "## 4.2 Алдын ала өңдеу және инференс сервистері\n\nАлдын ала өңдеу модулі 2-тарауд"
+  },
+  {
+   "chunk": 2,
+   "words": 160,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 65.6,
+   "src_head": "Жүйені бағалайтын кез келген адам екеуінің қайсысын көріп отырғанын білуге тиіс,"
+  }
+ ]
+}

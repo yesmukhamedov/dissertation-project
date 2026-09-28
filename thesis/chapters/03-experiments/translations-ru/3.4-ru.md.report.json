@@ -1,0 +1,44 @@
+{
+ "file": "chapters/03-experiments/drafts/3.4-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.4-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 5.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 397,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 113.5,
+   "src_head": "## 3.4 Domain distance in feature space\n\nThe two preceding sections established "
+  },
+  {
+   "chunk": 2,
+   "words": 445,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 143.3,
+   "src_head": "A second property forecloses the objection that would otherwise be decisive. If "
+  },
+  {
+   "chunk": 3,
+   "words": 353,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 92.9,
+   "src_head": "The pixel-level reduction is proportional rather than levelling. It fell within "
+  }
+ ]
+}

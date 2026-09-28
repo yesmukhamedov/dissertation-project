@@ -1,0 +1,24 @@
+{
+ "file": "chapters/01-review/drafts/1.C-draft.md",
+ "out": "chapters/01-review/translations-ru/1.C-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 1,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 1.5,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 308,
+   "errors": [],
+   "warnings": [
+    "heading numbers differ"
+   ],
+   "attempts": 1,
+   "sec": 92.7,
+   "src_head": "## Conclusions on section 1\n\nThis chapter established the problem the work addre"
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "file": "chapters/06-appendices/drafts/F-draft.md",
+ "out": "chapters/06-appendices/translations-ru/F-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 3.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 366,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 88.6,
+   "src_head": "### F.1 What this document is, and what it is not\n\nThe reading rule comes before"
+  },
+  {
+   "chunk": 2,
+   "words": 413,
+   "errors": [],
+   "warnings": [
+    "term «Convolutional Neural Network» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 1,
+   "sec": 105.4,
+   "src_head": "### F.2 Particulars of the registration\n\nTable F.1 gives the particulars as they"
+  },
+  {
+   "chunk": 3,
+   "words": 155,
+   "errors": [],
+   "warnings": [
+    "numbers added: 8",
+    "authors not found in Latin: Kazakh"
+   ],
+   "attempts": 1,
+   "sec": 39.6,
+   "src_head": "The eight-stage pipeline specified in chapter 2 is the method the registered com"
+  }
+ ]
+}

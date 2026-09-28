@@ -1,0 +1,67 @@
+{
+ "file": "chapters/03-experiments/drafts/3.3-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.3-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 5,
+ "clean_first_try": 5,
+ "needs_review": [],
+ "warnings": 6,
+ "minutes": 10.2,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 438,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «five folds» not rendered as «пять фолдов»",
+    "term «Inference» not rendered as «инференс»"
+   ],
+   "attempts": 1,
+   "sec": 154.3,
+   "src_head": "## 3.3 Stage ablation and parameter sensitivity\n\nThe first experiment left one q"
+  },
+  {
+   "chunk": 2,
+   "words": 422,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»",
+    "term «photometric stages» not rendered as «фотометрические этапы»"
+   ],
+   "attempts": 1,
+   "sec": 112.8,
+   "src_head": "Two features make the endpoint agreement hard to read as coincidence. The orderi"
+  },
+  {
+   "chunk": 3,
+   "words": 423,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 117.6,
+   "src_head": "The response is non-monotone in both dimensions. Along the clip factor the score"
+  },
+  {
+   "chunk": 4,
+   "words": 402,
+   "errors": [],
+   "warnings": [
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 131.0,
+   "src_head": "The sweep ran from 0.05 to 0.10 in steps of 0.01. The profile is strictly unimod"
+  },
+  {
+   "chunk": 5,
+   "words": 351,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 95.9,
+   "src_head": "Flat-field correction is the only stage that raised the contrast-to-noise ratio "
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "file": "translation/work/eval/it1/abstract_en_sample.md",
+ "out": "translation/work/eval/it1/ru/abstract_en_sample.ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 1,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 1.7,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 368,
+   "errors": [],
+   "warnings": [
+    "term «convolutional network» not rendered as «свёрточная нейронная сеть»",
+    "term «CAM» not rendered as «CAM»",
+    "term «Convolutional Neural Network» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 1,
+   "sec": 103.8,
+   "src_head": "**General characteristics of the work.** The dissertation investigates the integ"
+  }
+ ]
+}

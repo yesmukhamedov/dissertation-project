@@ -1,0 +1,1574 @@
+[
+ {
+  "en": "CNN",
+  "kz": "CNN",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "CNN",
+  "n_en": 3,
+  "n_both": 3
+ },
+ {
+  "en": "Convolution",
+  "kz": "Convolution",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Convolution",
+  "n_en": 10,
+  "n_both": 0
+ },
+ {
+  "en": "Pooling",
+  "kz": "Pooling",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Pooling",
+  "n_en": 5,
+  "n_both": 2
+ },
+ {
+  "en": "Feature Extraction",
+  "kz": "Feature Extraction",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Feature Extraction",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Transfer Learning",
+  "kz": "Transfer Learning",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Transfer Learning",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "Fine-Tuning",
+  "kz": "Fine-Tuning",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Fine-Tuning",
+  "n_en": 10,
+  "n_both": 0
+ },
+ {
+  "en": "Progressive Fine-Tuning",
+  "kz": "Progressive Fine-Tuning",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Progressive Fine-Tuning",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Frozen-Layer Strategy",
+  "kz": "Frozen-Layer Strategy",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Frozen-Layer Strategy",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Domain Adaptation",
+  "kz": "Domain Adaptation",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Domain Adaptation",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Domain Shift",
+  "kz": "Domain Shift",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Domain Shift",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "EfficientNetB0",
+  "kz": "EfficientNetB0",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "EfficientNetB0",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "EfficientNet-B3",
+  "kz": "EfficientNet-B3",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "EfficientNet-B3",
+  "n_en": 8,
+  "n_both": 8
+ },
+ {
+  "en": "EfficientNet-B4",
+  "kz": "EfficientNet-B4",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "EfficientNet-B4",
+  "n_en": 2,
+  "n_both": 2
+ },
+ {
+  "en": "ResNet-50",
+  "kz": "ResNet-50",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "ResNet-50",
+  "n_en": 3,
+  "n_both": 3
+ },
+ {
+  "en": "Transformer",
+  "kz": "Transformer",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Transformer",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "SSL (Self-Supervised Learning)",
+  "kz": "SSL (Self-Supervised Learning)",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "SSL",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "DINO",
+  "kz": "DINO",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "DINO",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "BYOL",
+  "kz": "BYOL",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "BYOL",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "SimCLR",
+  "kz": "SimCLR",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "SimCLR",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "MoCo",
+  "kz": "MoCo",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "MoCo",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "CLAHE",
+  "kz": "CLAHE",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "CLAHE",
+  "n_en": 4,
+  "n_both": 4
+ },
+ {
+  "en": "Histogram Equalization",
+  "kz": "Histogram Equalization",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Histogram Equalization",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Softmax",
+  "kz": "Softmax",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Softmax",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Sigmoid",
+  "kz": "Sigmoid",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Sigmoid",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "ReLU",
+  "kz": "ReLU",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "ReLU",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Dropout",
+  "kz": "Dropout",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Dropout",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Batch Normalization",
+  "kz": "Batch Normalization",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Batch Normalization",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Data Augmentation",
+  "kz": "Data Augmentation",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Data Augmentation",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Loss Function",
+  "kz": "Loss Function",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Loss Function",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Weighted Loss",
+  "kz": "Weighted Loss",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Weighted Loss",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Adam Optimizer",
+  "kz": "Adam Optimizer",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Adam Optimizer",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Early Stopping",
+  "kz": "Early Stopping",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Early Stopping",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "ReduceLROnPlateau",
+  "kz": "ReduceLROnPlateau",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "ReduceLROnPlateau",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "ROC-AUC",
+  "kz": "ROC-AUC",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "ROC-AUC",
+  "n_en": 7,
+  "n_both": 7
+ },
+ {
+  "en": "F1-Score",
+  "kz": "F1-Score",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "F1-Score",
+  "n_en": 5,
+  "n_both": 5
+ },
+ {
+  "en": "Macro Average",
+  "kz": "Macro Average",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Macro Average",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Weighted Average",
+  "kz": "Weighted Average",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Weighted Average",
+  "n_en": 2,
+  "n_both": 0
+ },
+ {
+  "en": "Cross-Validation",
+  "kz": "Cross-Validation",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Cross-Validation",
+  "n_en": 13,
+  "n_both": 1
+ },
+ {
+  "en": "Ablation Study",
+  "kz": "Ablation Study",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Ablation Study",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Inference",
+  "kz": "Inference",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Inference",
+  "n_en": 18,
+  "n_both": 0
+ },
+ {
+  "en": "Benchmarking",
+  "kz": "Benchmarking",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Benchmarking",
+  "n_en": 4,
+  "n_both": 0
+ },
+ {
+  "en": "Pipeline",
+  "kz": "Pipeline",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Pipeline",
+  "n_en": 34,
+  "n_both": 1
+ },
+ {
+  "en": "ImageNet",
+  "kz": "ImageNet",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "ImageNet",
+  "n_en": 2,
+  "n_both": 2
+ },
+ {
+  "en": "EyePACS",
+  "kz": "EyePACS",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "EyePACS",
+  "n_en": 9,
+  "n_both": 9
+ },
+ {
+  "en": "APTOS 2019",
+  "kz": "APTOS 2019",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "APTOS 2019",
+  "n_en": 2,
+  "n_both": 2
+ },
+ {
+  "en": "IDRiD",
+  "kz": "IDRiD",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "IDRiD",
+  "n_en": 11,
+  "n_both": 11
+ },
+ {
+  "en": "Messidor-2",
+  "kz": "Messidor-2",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Messidor-2",
+  "n_en": 6,
+  "n_both": 6
+ },
+ {
+  "en": "RFMiD",
+  "kz": "RFMiD",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "RFMiD",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "DDR",
+  "kz": "DDR",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "DDR",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "ODIR-5K",
+  "kz": "ODIR-5K",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "ODIR-5K",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "STARE",
+  "kz": "STARE",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "STARE",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "PACS",
+  "kz": "PACS",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "PACS",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "EHR",
+  "kz": "EHR",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "EHR",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "GDPR",
+  "kz": "GDPR",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "GDPR",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "HIPAA",
+  "kz": "HIPAA",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "HIPAA",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "UML",
+  "kz": "UML",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "UML",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Grad-CAM",
+  "kz": "Grad-CAM",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Grad-CAM",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "CAM",
+  "kz": "CAM",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "CAM",
+  "n_en": 30,
+  "n_both": 1
+ },
+ {
+  "en": "IoU",
+  "kz": "IoU",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "IoU",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "Cohen's Kappa",
+  "kz": "Cohen's Kappa",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Cohen's Kappa",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Confusion Matrix",
+  "kz": "Confusion Matrix",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Confusion Matrix",
+  "n_en": 3,
+  "n_both": 0
+ },
+ {
+  "en": "Keras",
+  "kz": "Keras",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Keras",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "TensorFlow",
+  "kz": "TensorFlow",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "TensorFlow",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "OpenCV",
+  "kz": "OpenCV",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "OpenCV",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "FOV",
+  "kz": "FOV",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "FOV",
+  "n_en": 7,
+  "n_both": 0
+ },
+ {
+  "en": "HSV",
+  "kz": "HSV",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "HSV",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "LAB",
+  "kz": "LAB",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "LAB",
+  "n_en": 13,
+  "n_both": 1
+ },
+ {
+  "en": "RGB",
+  "kz": "RGB",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "RGB",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Hough Transform",
+  "kz": "Hough Transform",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Hough Transform",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "ECE (Expected Calibration Error)",
+  "kz": "ECE (Expected Calibration Error)",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "ECE",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Brier Score",
+  "kz": "Brier Score",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Brier Score",
+  "n_en": 3,
+  "n_both": 0
+ },
+ {
+  "en": "CNR (Contrast-to-Noise Ratio)",
+  "kz": "CNR (Contrast-to-Noise Ratio)",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "CNR",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "VVI (Vessel Visibility Index)",
+  "kz": "VVI (Vessel Visibility Index)",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "VVI",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "SSIM (Structural Similarity Index)",
+  "kz": "SSIM (Structural Similarity Index)",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "SSIM",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "PPV / NPV",
+  "kz": "PPV / NPV",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "PPV / NPV",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Bonferroni / Holm Correction",
+  "kz": "Bonferroni / Holm Correction",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Bonferroni / Holm Correction",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Mixed-Effects Model",
+  "kz": "Mixed-Effects Model",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Mixed-Effects Model",
+  "n_en": 2,
+  "n_both": 0
+ },
+ {
+  "en": "Bootstrap",
+  "kz": "Bootstrap",
+  "rule": "keep",
+  "sec": "A",
+  "en_form": "Bootstrap",
+  "n_en": 3,
+  "n_both": 3
+ },
+ {
+  "en": "Diabetic Retinopathy",
+  "kz": "Диабеттік ретинопатия",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Әрқашан толық аударылады",
+  "en_form": "Diabetic Retinopathy",
+  "n_en": 5,
+  "n_both": 5
+ },
+ {
+  "en": "Fundus Image",
+  "kz": "Көз түбі кескіні",
+  "rule": "translate",
+  "sec": "B",
+  "note": "«кескін» дәйекті қолданылады",
+  "en_form": "Fundus Image",
+  "n_en": 10,
+  "n_both": 9
+ },
+ {
+  "en": "Retinal Vessel",
+  "kz": "Торқабық тамыры",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Retinal Vessel",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Microaneurysm",
+  "kz": "Микроаневризма",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Microaneurysm",
+  "n_en": 10,
+  "n_both": 10
+ },
+ {
+  "en": "Image Quality",
+  "kz": "Кескін сапасы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "OD-1 бойынша операционалды анықтама: downstream жіктеу метрикалары арқылы бағаланады",
+  "en_form": "Image Quality",
+  "n_en": 8,
+  "n_both": 8
+ },
+ {
+  "en": "Diagnostic Effectiveness",
+  "kz": "Диагностикалық тиімділік",
+  "rule": "translate",
+  "sec": "B",
+  "note": "«дәлдік» емес; OD-5 бойынша операционалды анықтама",
+  "en_form": "Diagnostic Effectiveness",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Architectural Complexity",
+  "kz": "Архитектуралық күрделілік",
+  "rule": "translate",
+  "sec": "B",
+  "note": "OD-2 бойынша операционалды анықтама",
+  "en_form": "Architectural Complexity",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Class Imbalance",
+  "kz": "Класс теңгерімсіздігі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Class Imbalance",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Class Distribution",
+  "kz": "Класс үлестірімі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Class Distribution",
+  "n_en": 2,
+  "n_both": 2
+ },
+ {
+  "en": "Generalization [training]",
+  "kz": "Жалпылау қабілеті [оқыту]",
+  "rule": "translate",
+  "sec": "B",
+  "note": "OD-4: оқыту-тест өнімділік алшақтығы",
+  "en_form": "Generalization",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Cross-Database Generalization",
+  "kz": "Деректер жиынтықтары арасындағы жалпылау",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Cross-Database Generalization",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Overfitting",
+  "kz": "Артық үйрену",
+  "rule": "translate",
+  "sec": "B",
+  "note": "OD-4: 15 пп шегінен асу",
+  "en_form": "Overfitting",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "Convergence",
+  "kz": "Жинақталу",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Convergence",
+  "n_en": 4,
+  "n_both": 3
+ },
+ {
+  "en": "Image Enhancement",
+  "kz": "Кескінді жақсарту",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Image Enhancement",
+  "n_en": 2,
+  "n_both": 2
+ },
+ {
+  "en": "Noise Reduction",
+  "kz": "Шуды азайту",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Noise Reduction",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Spatial Filtering",
+  "kz": "Кеңістіктік сүзгілеу",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Spatial Filtering",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Mathematical Modeling",
+  "kz": "Математикалық модельдеу",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Mathematical Modeling",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Laser-Tissue Interaction",
+  "kz": "Лазер–тін өзара әрекеттесуі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Laser-Tissue Interaction",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Clinical Workflow",
+  "kz": "Клиникалық жұмыс үдерісі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Clinical Workflow",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Resource-Limited Environment",
+  "kz": "Ресурсы шектеулі орта",
+  "rule": "translate",
+  "sec": "B",
+  "note": "OD-6 бойынша операционалды анықтама",
+  "en_form": "Resource-Limited Environment",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Decision Support System",
+  "kz": "Шешім қабылдауды қолдау жүйесі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Decision Support System",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Data Security",
+  "kz": "Деректер қауіпсіздігі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Data Security",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Regulatory Compliance",
+  "kz": "Нормативтік сәйкестік",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Regulatory Compliance",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "Preprocessing Pipeline",
+  "kz": "Алдын ала өңдеу pipeline",
+  "rule": "translate",
+  "sec": "B",
+  "note": "OD-3: 8 кезеңді жүйе (0–7 кезеңдер)",
+  "en_form": "Preprocessing Pipeline",
+  "n_en": 3,
+  "n_both": 0
+ },
+ {
+  "en": "Integrated Pipeline Dominance (H-1)",
+  "kz": "Біріктірілген pipeline басымдығы (H-1)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "H-1; құрама тәуелсіз айнымалы (preprocessing × pretraining); EH-3 шарттары; CFC-2.8",
+  "en_form": "Integrated Pipeline Dominance",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "External Clinical Performance (H-7)",
+  "kz": "Сыртқы клиникалық өнімділік (H-7)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "H-7 [v7.0.0]; Δ wF1 ≥ MCID 0.050 ЖӘНЕ CI⁻ > 0, екі жиынтықта да; «Clinical Degradation Resistance» — Deprecated",
+  "en_form": "External Clinical Performance",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Two-Stage Fine-Tuning Protocol",
+  "kz": "Екі кезеңді Fine-Tuning хаттамасы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "H-3 [алынып тасталды — оқыту стратегиясы ретінде сақталды]",
+  "en_form": "Two-Stage Fine-Tuning Protocol",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Frozen-Layer Fine-Tuning",
+  "kz": "Frozen-Layer Fine-Tuning",
+  "rule": "translate",
+  "sec": "B",
+  "note": "1-кезең",
+  "en_form": "Frozen-Layer Fine-Tuning",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Weighted Loss Function",
+  "kz": "Салмақталған Loss Function",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Реттік класс құрылымы үшін",
+  "en_form": "Weighted Loss Function",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Ordinal Class Structure",
+  "kz": "Реттік класс құрылымы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "DR 0–4 реттік қатынасы",
+  "en_form": "Ordinal Class Structure",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Contrast-Adaptive Preprocessing",
+  "kz": "Контрастқа бейімделетін алдын ала өңдеу",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Preprocessing pipeline синонимі",
+  "en_form": "Contrast-Adaptive Preprocessing",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Physician-in-the-Loop",
+  "kz": "Physician-in-the-Loop парадигмасы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Дәрігер — AI жүйесінің аудиторы",
+  "en_form": "Physician-in-the-Loop",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Doctor-AI Feedback Loop",
+  "kz": "Дәрігер–AI кері байланыс механизмі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Диссертанттың авторлық термині",
+  "en_form": "Doctor-AI Feedback Loop",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Performance-Complexity Trade-Off",
+  "kz": "Өнімділік-күрделілік арасындағы теңгерім",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Performance-Complexity Trade-Off",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Canonical Orientation",
+  "kz": "Канондық бағдарлама (Canonical Orientation)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Pipeline-нің 0-кезеңі (Canonical Flip) мен 1-кезеңінің (OD-Fovea Rotation Normalization) біріккен әсері",
+  "en_form": "Canonical Orientation",
+  "n_en": 2,
+  "n_both": 0
+ },
+ {
+  "en": "OD-Fovea Rotation Normalization",
+  "kz": "OD-Fовеа айналу нормализациясы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Pipeline 1-кезеңі (әрқашан қосулы); OD (ең жарық аймақ) және фовеаны (алдын ала қашықтықпен ең қараңғы аймақ) анықтайды; OD→фовеа осі горизонталь болатындай сур",
+  "en_form": "OD-Fovea Rotation Normalization",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "FOV Crop and Resize",
+  "kz": "FOV қию және изотропты өлшемін өзгерту",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Pipeline 2-кезеңі (әрқашан қосулы); изотропты 512×512 ортаға толтырумен; Hough-шеңбер анықтауын (тарихи) ауыстырады",
+  "en_form": "FOV Crop and Resize",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Flat-Field Correction (Adaptive)",
+  "kz": "Жарық өрісін түзету (адаптивті)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Pipeline 4-кезеңі (әрқашан қосулы); адаптивті σ = 0.07·D; тұрақты σ=45 нұсқасы — Deprecated",
+  "en_form": "Flat-Field Correction",
+  "n_en": 5,
+  "n_both": 0
+ },
+ {
+  "en": "ImageNet Normalization",
+  "kz": "ImageNet нормализациясы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Baseline арнаның нормализациясы (3 арна); толық pipeline 7-кезеңде дерек жиынтығына тән нормализацияны қолданады",
+  "en_form": "ImageNet Normalization",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "FOV Standardization (Hough)",
+  "kz": "FOV стандарттау (Hough)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "[Тарихи — бұрынғы 5 компонентті pipeline-ның 1-компоненті]; ауыстырылды → FOV Crop and Resize (2-кезең) — Deprecated",
+  "en_form": "FOV Standardization",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Green Channel Imaging",
+  "kz": "Жасыл арна бөліп алу",
+  "rule": "translate",
+  "sec": "B",
+  "note": "[Тарихи — бұрынғы 5 компонентті pipeline-ның 4-компоненті]; pipeline-нан алынып тасталды — Deprecated",
+  "en_form": "Green Channel Imaging",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "HSV Contrast Enhancement",
+  "kz": "HSV контрастты күшейту",
+  "rule": "translate",
+  "sec": "B",
+  "note": "[Тарихи — бұрынғы 5 компонентті pipeline-ның 3-компоненті]; ауыстырылды → Flat-Field Correction — Deprecated",
+  "en_form": "HSV Contrast Enhancement",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Ophthalmology-Specific Self-Supervised Pretraining",
+  "kz": "Офтальмологияға тән өзін-өзі бақылайтын алдын ала оқыту",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; толық pipeline арнасының инициализация көзі; белгіленбеген көз түбі корпусында CNN backbone-ды алдын ала оқыту. v6.2.0: корпус — белгіленбеген EyePACS «test» ",
+  "en_form": "Ophthalmology-Specific Self-Supervised Pretraining",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "SSL Method Family (DINO / BYOL / SimCLR / MoCo)",
+  "kz": "SSL әдістер отбасы (DINO / BYOL / SimCLR / MoCo)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; толық pipeline инициализация хаттамасы алынатын CNN-үйлесімді SSL отбасы; төрт мүше — DINO, BYOL, SimCLR, MoCo. v6.2.0: BYOL — басты хаттама (MoCo-v2 / SimSia",
+  "en_form": "SSL Method Family",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Fundus-SSL Pretraining Corpus",
+  "kz": "Көз түбі-SSL алдын ала оқыту корпусы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; біріктірілген арна backbone-ы алдын ала оқытылатын белгіленбеген корпус — EyePACS «test» бөлігі (53 576 кескін); pretext міндеті үшін таңбасыз; кескін және па",
+  "en_form": "Fundus-SSL Pretraining Corpus",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Linear-Probe Acceptance Gate",
+  "kz": "Сызықтық зонд қабылдау қақпасы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; SSL checkpoint-тың Эксперимент-1-ге кіру алғышарты; backbone қатырылған, бір сызықтық бас EyePACS-test таңбалы тілімінде оқытылады; екі backbone үшін де кезде",
+  "en_form": "Linear-Probe Acceptance Gate",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Composite Independent Variable (preprocessing × pretraining)",
+  "kz": "Құрама тәуелсіз айнымалы (preprocessing × pretraining)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; H-1 манипуляцияланатын факторы; pretraining арнаға бағынады (baseline ⟹ ImageNet, толық pipeline ⟹ ophthalmology-SSL); CFC-2.8",
+  "en_form": "Composite Independent Variable",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Paradigm P1 (End-to-End CNN)",
+  "kz": "P1 парадигмасы (End-to-End CNN)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; preprocessing қосалқы дайындық ретінде қаралатын парадигма; Gulshan (2016) — P1 канондық өкілі (SIR-9, SB-1.12)",
+  "en_form": "Paradigm P1",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Paradigm P2 (Integrated Preprocessing-CNN)",
+  "kz": "P2 парадигмасы (Біріктірілген preprocessing-CNN)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; preprocessing — интегралды модель компоненті (model = preprocessing + CNN); толық pipeline — P2 парадигмалық дананы (C-1)",
+  "en_form": "Paradigm P2",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Canonical Representative (paradigmatic)",
+  "kz": "Канондық өкіл (парадигмалық)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; дереккөздің бақыланатын әдістемелік практикасы парадигмаға сай болғанда тағайындалады (SIR-9, CFC-2.9)",
+  "en_form": "Canonical Representative",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "SC-H (Ophthalmology-SSL Initialization Contribution)",
+  "kz": "SC-H (Ophthalmology-SSL инициализация үлесі)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "; ImageNet трансферін домендік-ішілік инициализациямен ауыстыруды тіркейтін қосалқы үлес; CFC-2.8-пен шектелген",
+  "en_form": "SC-H",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "External Image Ingestion Protocol",
+  "kz": "Сыртқы кескіндерді қабылдау хаттамасы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "5 кезеңді хаттама",
+  "en_form": "External Image Ingestion Protocol",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Preprocessing Component Ablation",
+  "kz": "Preprocessing компоненттерін абляциялау",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Pipeline ішіндегі талдау",
+  "en_form": "Preprocessing Component Ablation",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "DR Grading (Five-Class)",
+  "kz": "DR градациялау (бес класты)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "0–4 ауырлық дәрежесі",
+  "en_form": "DR Grading",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Telemedicine",
+  "kz": "Телемедицина",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Telemedicine",
+  "n_en": 3,
+  "n_both": 3
+ },
+ {
+  "en": "Laser Coagulation",
+  "kz": "Лазерлік коагуляция",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Laser Coagulation",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "Beer's Law",
+  "kz": "Бер заңы",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Beer's Law",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Heat Conduction Equation",
+  "kz": "Жылу өткізгіштік теңдеуі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Heat Conduction Equation",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Gaussian Beam Profile",
+  "kz": "Гаусс сәулесінің профилі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "",
+  "en_form": "Gaussian Beam Profile",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Sensitivity",
+  "kz": "Сезімталдық",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Sen = TP/(TP+FN) стандартты анықтама",
+  "en_form": "Sensitivity",
+  "n_en": 9,
+  "n_both": 9
+ },
+ {
+  "en": "Specificity",
+  "kz": "Спецификалық",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Spe = TN/(TN+FP)",
+  "en_form": "Specificity",
+  "n_en": 7,
+  "n_both": 7
+ },
+ {
+  "en": "Precision",
+  "kz": "Precision",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Аударылмайды",
+  "en_form": "Precision",
+  "n_en": 5,
+  "n_both": 0
+ },
+ {
+  "en": "Recall",
+  "kz": "Recall",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Аударылмайды",
+  "en_form": "Recall",
+  "n_en": 2,
+  "n_both": 0
+ },
+ {
+  "en": "Accuracy",
+  "kz": "Accuracy",
+  "rule": "translate",
+  "sec": "B",
+  "note": "Аударылмайды; метрика ретінде",
+  "en_form": "Accuracy",
+  "n_en": 9,
+  "n_both": 0
+ },
+ {
+  "en": "Empirical Dominance Criterion",
+  "kz": "Эмпирикалық басымдық критерийі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "EH-3: үш шарт бір мезгілде",
+  "en_form": "Empirical Dominance Criterion",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Sufficient Validation Criterion",
+  "kz": "Жеткілікті валидация критерийі",
+  "rule": "translate",
+  "sec": "B",
+  "note": "EH-4",
+  "en_form": "Sufficient Validation Criterion",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Minimal Clinically Important Difference (MCID)",
+  "kz": "Клиникалық маңызды ең аз айырма",
+  "rule": "translate",
+  "sec": "B",
+  "note": "MCID_wF1 = 0.050; H-7 қабылдау шегі (Δ ≥ MCID ЖӘНЕ CI⁻ > 0)",
+  "en_form": "Minimal Clinically Important Difference",
+  "n_en": 3,
+  "n_both": 0
+ },
+ {
+  "en": "Generalization Ratio (G)",
+  "kz": "Жалпылау коэффициенті (G)",
+  "rule": "translate",
+  "sec": "B",
+  "note": "G = F1_external / F1_EyePACS",
+  "en_form": "Generalization Ratio",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Calibration",
+  "kz": "Калибрлеу",
+  "rule": "translate",
+  "sec": "B",
+  "note": "ECE, Brier Score арқылы",
+  "en_form": "Calibration",
+  "n_en": 7,
+  "n_both": 7
+ },
+ {
+  "en": "Convolutional Neural Network",
+  "kz": "Конволюциялық нейрондық желі",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: Конволюциялық нейрондық желі (CNN); later: CNN",
+  "en_form": "Convolutional Neural Network",
+  "n_en": 1,
+  "n_both": 1
+ },
+ {
+  "en": "Contrast Enhancement",
+  "kz": "Контрастты күшейту",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: Контрастты күшейту (Contrast Enhancement); later: Қазақша",
+  "en_form": "Contrast Enhancement",
+  "n_en": 3,
+  "n_both": 3
+ },
+ {
+  "en": "Two-Stage Fine-Tuning",
+  "kz": "Екі кезеңді Fine-Tuning",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: Екі кезеңді Fine-Tuning; later: Fine-Tuning",
+  "en_form": "Two-Stage Fine-Tuning",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "CLAHE with Dual-Constraint Clip Limit",
+  "kz": "Қос шектеулі клип лимитімен CLAHE",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: Қос шектеулі клип лимитімен CLAHE; later: Stage 5; dual-constraint; stochastic (80%); LAB L-арна",
+  "en_form": "CLAHE with Dual-Constraint Clip Limit",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Gradient-weighted Class Activation Mapping",
+  "kz": "Grad-CAM",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: Grad-CAM (Gradient-weighted Class Activation Mapping); later: Grad-CAM",
+  "en_form": "Gradient-weighted Class Activation Mapping",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Intersection over Union",
+  "kz": "IoU",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: IoU (Intersection over Union); later: IoU",
+  "en_form": "Intersection over Union",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Class Activation Mapping",
+  "kz": "CAM",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: CAM (Class Activation Mapping); later: CAM",
+  "en_form": "Class Activation Mapping",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Expected Calibration Error",
+  "kz": "ECE",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: ECE (Expected Calibration Error); later: ECE",
+  "en_form": "Expected Calibration Error",
+  "n_en": 3,
+  "n_both": 0
+ },
+ {
+  "en": "Contrast-to-Noise Ratio",
+  "kz": "CNR",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: CNR (Contrast-to-Noise Ratio); later: CNR",
+  "en_form": "Contrast-to-Noise Ratio",
+  "n_en": 2,
+  "n_both": 0
+ },
+ {
+  "en": "Vessel Visibility Index",
+  "kz": "VVI",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: VVI (Vessel Visibility Index); later: VVI",
+  "en_form": "Vessel Visibility Index",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Structural Similarity Index",
+  "kz": "SSIM",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: SSIM (Structural Similarity Index); later: SSIM",
+  "en_form": "Structural Similarity Index",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Positive Predictive Value",
+  "kz": "PPV",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: PPV (Positive Predictive Value); later: PPV",
+  "en_form": "Positive Predictive Value",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Negative Predictive Value",
+  "kz": "NPV",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: NPV (Negative Predictive Value); later: NPV",
+  "en_form": "Negative Predictive Value",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Shallow Baseline CNN",
+  "kz": "Таяз базалық CNN",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: Таяз базалық CNN (Shallow Baseline CNN); later: Базалық CNN",
+  "en_form": "Shallow Baseline CNN",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Enhanced Multi-Block CNN",
+  "kz": "Жетілдірілген көп блокты CNN",
+  "rule": "bilingual-first",
+  "sec": "C",
+  "note": "first use: Жетілдірілген көп блокты CNN (Enhanced Multi-Block CNN); later: Жетілдірілген CNN",
+  "en_form": "Enhanced Multi-Block CNN",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "FOV Mask",
+  "kz": "FOV Маскасы",
+  "rule": "translate",
+  "sec": "Q",
+  "note": "Fundus өрісінің бинарлық маскасы (1.0 = нақты пиксель, 0.0 = толтырылған аумақ); 3-кезеңде жасалады, 4-ші арна ретінде қосылады",
+  "en_form": "FOV Mask",
+  "n_en": 1,
+  "n_both": 0
+ },
+ {
+  "en": "Adaptive Flat-Field Correction",
+  "kz": "Adaptive Flat-Field Correction",
+  "rule": "translate",
+  "sec": "Q",
+  "note": "Техникалық атау — аудармауға; pipeline-нің 4-кезеңі; адаптивті σ = 0.07·D; тұрақты-σ алдыңғысы — Deprecated",
+  "en_form": "Adaptive Flat-Field Correction",
+  "n_en": 0,
+  "n_both": 0
+ },
+ {
+  "en": "Dataset-Specific Normalization",
+  "kz": "Деректер жиынтығына тән нормализация",
+  "rule": "translate",
+  "sec": "Q",
+  "note": "Pipeline-нің 7-кезеңі; оқыту жиынтығынан есептелген орташа мән мен стандартты ауытқуды қолдану; baseline арнаның ImageNet нормализациясымен салыстырылады",
+  "en_form": "Dataset-Specific Normalization",
+  "n_en": 0,
+  "n_both": 0
+ }
+]

@@ -1,0 +1,35 @@
+{
+ "file": "translation/work/eval/dirs/4.2-ru.md",
+ "out": "translation/work/eval/dirs/from_ru/4.2-ru.en.md",
+ "src": "ru",
+ "tgt": "en",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 2.4,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 440,
+   "errors": [],
+   "warnings": [
+    "term «точность» not rendered as «Accuracy»"
+   ],
+   "attempts": 1,
+   "sec": 90.6,
+   "src_head": "## 4.2 Сервисы предобработки и инференса\n\nМодуль предобработки выполняет восемь "
+  },
+  {
+   "chunk": 2,
+   "words": 239,
+   "errors": [],
+   "warnings": [
+    "term «система» not rendered as «framework»"
+   ],
+   "attempts": 1,
+   "sec": 51.5,
+   "src_head": "Модуль объяснения вычисляет карты внимания по запросу, используя формализм главы"
+  }
+ ]
+}

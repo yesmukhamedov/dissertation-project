@@ -1,0 +1,57 @@
+{
+ "file": "chapters/02-methodology/drafts/2.4-draft.md",
+ "out": "chapters/02-methodology/translations-ru/2.4-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 4,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 5,
+ "minutes": 6.6,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 414,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 128.1,
+   "src_head": "## 2.4 Pretraining and fine-tuning strategy\n\nWhat distinguishes the two arms of "
+  },
+  {
+   "chunk": 2,
+   "words": 411,
+   "errors": [],
+   "warnings": [
+    "term «baseline arm» not rendered as «базовая ветвь»",
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 115.1,
+   "src_head": "The rationale for a convolution-native in-domain initialisation is to obtain dom"
+  },
+  {
+   "chunk": 3,
+   "words": 401,
+   "errors": [],
+   "warnings": [
+    "authors not found in Latin: As Yosinski",
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 112.3,
+   "src_head": "In the first stage the backbone is frozen and only the new head is trained. With"
+  },
+  {
+   "chunk": 4,
+   "words": 126,
+   "errors": [],
+   "warnings": [
+    "numbers added: 173"
+   ],
+   "attempts": 1,
+   "sec": 40.4,
+   "src_head": "The focal term therefore addresses the imbalance between easy and hard examples,"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "file": "chapters/02-methodology/drafts/2.1-draft.md",
+ "out": "chapters/02-methodology/translations-ru/2.1-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 5,
+ "clean_first_try": 5,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 10.6,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 440,
+   "errors": [],
+   "warnings": [
+    "term «convolutional network» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 1,
+   "sec": 142.9,
+   "src_head": "## 2.1 Preprocessing pipeline formalisation\n\nThe organising commitment of this c"
+  },
+  {
+   "chunk": 2,
+   "words": 427,
+   "errors": [],
+   "warnings": [
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 116.6,
+   "src_head": "Rotation normalisation detects two anatomical landmarks with a heatmap-regressio"
+  },
+  {
+   "chunk": 3,
+   "words": 422,
+   "errors": [],
+   "warnings": [
+    "term «preprocessing» not rendered as «предобработка»",
+    "term «Precision» not rendered as «прецизионность»"
+   ],
+   "attempts": 1,
+   "sec": 133.2,
+   "src_head": "Contrast enhancement operates on the luminance channel of a perceptual colour sp"
+  },
+  {
+   "chunk": 4,
+   "words": 424,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 120.4,
+   "src_head": "Two operating states of the pipeline are defined for the experiments. In the ful"
+  },
+  {
+   "chunk": 5,
+   "words": 355,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 122.8,
+   "src_head": "The edge-preserving filtering literature resolves the tension in principle by ma"
+  }
+ ]
+}

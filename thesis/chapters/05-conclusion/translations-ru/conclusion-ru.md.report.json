@@ -1,0 +1,55 @@
+{
+ "file": "chapters/05-conclusion/drafts/conclusion-draft.md",
+ "out": "chapters/05-conclusion/translations-ru/conclusion-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 4,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 5.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 402,
+   "errors": [],
+   "warnings": [
+    "numbers added: 8",
+    "term «photometric stages» not rendered as «фотометрические этапы»"
+   ],
+   "attempts": 1,
+   "sec": 107.2,
+   "src_head": "This dissertation set out to establish whether the preparation of a fundus image"
+  },
+  {
+   "chunk": 2,
+   "words": 404,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 109.5,
+   "src_head": "Attention overlapped expert-annotated lesions more under the integrated configur"
+  },
+  {
+   "chunk": 3,
+   "words": 410,
+   "errors": [],
+   "warnings": [
+    "term «arm» not rendered as «ветвь»",
+    "term «external performance» not rendered as «качество на внешних корпусах»"
+   ],
+   "attempts": 1,
+   "sec": 117.6,
+   "src_head": "The methodological contribution is analytic. Three measures in common use for ex"
+  },
+  {
+   "chunk": 4,
+   "words": 65,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 18.3,
+   "src_head": "The work does not show that this configuration is clinically valid, deployable, "
+  }
+ ]
+}

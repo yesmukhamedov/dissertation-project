@@ -1,0 +1,35 @@
+{
+ "file": "chapters/04-system/drafts/4.2-draft.md",
+ "out": "chapters/04-system/translations-ru/4.2-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 3.4,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 416,
+   "errors": [],
+   "warnings": [
+    "term «five grades» not rendered as «пять степеней»"
+   ],
+   "attempts": 1,
+   "sec": 98.4,
+   "src_head": "## 4.2 Preprocessing and inference services\n\nThe preprocessing module runs the e"
+  },
+  {
+   "chunk": 2,
+   "words": 384,
+   "errors": [],
+   "warnings": [
+    "term «attention map» not rendered as «карта внимания»"
+   ],
+   "attempts": 1,
+   "sec": 104.0,
+   "src_head": "One divergence must be recorded here rather than left to be discovered. The chec"
+  }
+ ]
+}

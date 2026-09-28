@@ -1,0 +1,14 @@
+{
+ "out": "### C.2 Вид развёртывания\n\n**Рисунок C.2 – Топология развёртывания store-and-forward.**",
+ "errors": [],
+ "warnings": [],
+ "attempts": 1,
+ "info": {
+  "sec": 8.8,
+  "finish": "stop",
+  "p_tok": 2313,
+  "c_tok": 32,
+  "pp_tps": 201,
+  "tg_tps": 7.6
+ }
+}

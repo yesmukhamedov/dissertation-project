@@ -1,0 +1,51 @@
+{
+ "file": "chapters/01-review/drafts/1.2-draft.md",
+ "out": "chapters/01-review/translations-ru/1.2-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 4,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 7.1,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 398,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 119.8,
+   "src_head": "## 1.2 Fundus image quality and variability\n\nThe screening contexts just describ"
+  },
+  {
+   "chunk": 2,
+   "words": 416,
+   "errors": [],
+   "warnings": [
+    "numbers added: 29000"
+   ],
+   "attempts": 1,
+   "sec": 124.1,
+   "src_head": "These axes are not independent of the deployment context. Each is aggravated in "
+  },
+  {
+   "chunk": 3,
+   "words": 440,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 130.7,
+   "src_head": "Beede et al. (2020) reinforce the cost of gating from the deployment side, findi"
+  },
+  {
+   "chunk": 4,
+   "words": 152,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 49.5,
+   "src_head": "Framing device variability this way points to two responses. Normalising geometr"
+  }
+ ]
+}

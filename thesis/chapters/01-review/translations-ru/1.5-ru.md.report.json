@@ -1,0 +1,36 @@
+{
+ "file": "chapters/01-review/drafts/1.5-draft.md",
+ "out": "chapters/01-review/translations-ru/1.5-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 2.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 408,
+   "errors": [],
+   "warnings": [
+    "numbers added: 8",
+    "term «arm» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 116.3,
+   "src_head": "## 1.5 Problem statement and research direction\n\nThe preceding sections converge"
+  },
+  {
+   "chunk": 2,
+   "words": 205,
+   "errors": [],
+   "warnings": [
+    "term «five grades» not rendered as «пять степеней»"
+   ],
+   "attempts": 1,
+   "sec": 60.3,
+   "src_head": "The remaining hypotheses probe distinct properties: component ablation and param"
+  }
+ ]
+}

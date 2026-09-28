@@ -1,0 +1,33 @@
+{
+ "file": "chapters/04-system/translations/4.2-translation.md",
+ "out": "translation/work/eval/dirs/4.2-en.md",
+ "src": "kz",
+ "tgt": "en",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 2.6,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 416,
+   "errors": [],
+   "warnings": [
+    "term «біріктіру» not rendered as «Pooling»"
+   ],
+   "attempts": 1,
+   "sec": 110.0,
+   "src_head": "## 4.2 Алдын ала өңдеу және инференс сервистері\n\nАлдын ала өңдеу модулі 2-тарауд"
+  },
+  {
+   "chunk": 2,
+   "words": 160,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 43.0,
+   "src_head": "Жүйені бағалайтын кез келген адам екеуінің қайсысын көріп отырғанын білуге тиіс,"
+  }
+ ]
+}

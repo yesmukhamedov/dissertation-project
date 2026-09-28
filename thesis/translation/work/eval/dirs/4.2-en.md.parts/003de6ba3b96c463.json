@@ -1,0 +1,14 @@
+{
+ "out": "Any individual evaluating the system must know which of the two they are observing, and this distinction is recorded for that reason. It is unrelated to anything in Chapter 3: there, all attention metrics were computed against annotated masks in experimental models, not in this system.\n\nThe self-test module runs on startup and verifies that the deployed pipeline reproduces expected outputs on fixed inputs. Its function is to make silent divergence audible: a preprocessing stage that begins to behave differently after a dependency change would otherwise degrade results without any signal, whereas the test is cheap compared to that risk.\n\nThe error path handles inputs that fall outside the contract established in Chapter 2 and applies the acceptance protocol defined there. Corrupted containers are not accepted, images in which no coherent field of view can be recovered are withheld rather than passed to stages that would operate on meaningless content, and a low-confidence lateralisation is not confirmed but recorded as is.\n\nThus, the system does not fail silently on out-of-contract inputs; it fails visibly. This is the behaviour named in the initial design and realised here. The protocol does not generalise: it was designed against the clinical images used in this work and validated only for them.",
+ "errors": [],
+ "warnings": [],
+ "attempts": 1,
+ "info": {
+  "sec": 43.0,
+  "finish": "stop",
+  "p_tok": 2604,
+  "c_tok": 242,
+  "pp_tps": 220,
+  "tg_tps": 6.7
+ }
+}

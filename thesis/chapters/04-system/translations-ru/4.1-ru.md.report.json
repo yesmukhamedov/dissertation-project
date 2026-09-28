@@ -1,0 +1,33 @@
+{
+ "file": "chapters/04-system/drafts/4.1-draft.md",
+ "out": "chapters/04-system/translations-ru/4.1-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 3.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 432,
+   "errors": [],
+   "warnings": [
+    "term «attention map» not rendered as «карта внимания»"
+   ],
+   "attempts": 1,
+   "sec": 116.1,
+   "src_head": "## 4.1 System architecture and modules\n\nThe preceding chapters treated the model"
+  },
+  {
+   "chunk": 2,
+   "words": 426,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 111.9,
+   "src_head": "That correspondence was a design decision rather than an accident of implementat"
+  }
+ ]
+}

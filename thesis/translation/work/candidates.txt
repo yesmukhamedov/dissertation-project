@@ -1,0 +1,105 @@
+# one EN term per line; glossary terms that occur in the chapters are added automatically
+integrated configuration
+baseline configuration
+integrated arm
+baseline arm
+arm
+preprocessing
+preprocessing pipeline
+eight-stage pipeline
+preprocessing engine
+pretraining
+in-domain initialisation
+self-supervised pretraining
+fine-tuning
+training corpus
+source corpus
+target corpus
+public corpus
+clinical corpus
+external corpus
+held-out data
+test partition
+patient-level stratified
+five folds
+cross-corpus transfer
+domain shift
+distributional distance
+feature space
+penultimate-layer features
+maximum mean discrepancy
+in-domain performance
+external performance
+external clinical
+retention ratio
+camera group
+confusion matrix
+weighted F1
+quadratic weighted kappa
+sensitivity
+specificity
+referable disease
+referral threshold
+predictive values
+percentage points
+confidence interval
+interval excluding zero
+bootstrap
+minimal clinically important difference
+criterion
+effect size
+standard deviation
+mixed-effects model
+ablation
+clip factor
+clip limit
+flat-field correction
+illumination correction
+contrast enhancement
+canonical flip
+fovea rotation
+optic disc
+fovea
+field-of-view mask
+isotropic resize
+four-channel tensor
+mask channel
+photometric stages
+attention map
+attention overlay
+expert annotation
+lesion type
+hard exudates
+haemorrhages
+microaneurysms
+soft exudates
+diabetic retinopathy
+fundus image
+fundus photography
+five grades
+minority grades
+severely imbalanced
+focal loss
+best epoch
+batch size
+calibration
+expected calibration error
+brier score
+contrast-to-noise ratio
+structural similarity
+automated screening
+screening system
+decision support
+working demonstrator
+software complex
+deployment context
+integral component
+ancillary data preparation
+diagnostic model
+methodological contribution
+prior own work
+evidence base
+convolutional network
+hypothesis
+provision
+scientific novelty

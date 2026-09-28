@@ -1,0 +1,37 @@
+{
+ "file": "chapters/03-experiments/drafts/3.C-draft.md",
+ "out": "chapters/03-experiments/translations-ru/3.C-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 2.4,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 440,
+   "errors": [],
+   "warnings": [
+    "heading numbers differ",
+    "term «external performance» not rendered as «качество на внешних корпусах»",
+    "term «photometric stages» not rendered as «фотометрические этапы»"
+   ],
+   "attempts": 1,
+   "sec": 117.4,
+   "src_head": "## Conclusions on section 3\n\nThis chapter reported eight investigations on a com"
+  },
+  {
+   "chunk": 2,
+   "words": 69,
+   "errors": [],
+   "warnings": [
+    "term «attention overlay» not rendered as «наложение карты внимания»"
+   ],
+   "attempts": 1,
+   "sec": 25.6,
+   "src_head": "Several matters remain open. The clinical attention overlays were not produced a"
+  }
+ ]
+}

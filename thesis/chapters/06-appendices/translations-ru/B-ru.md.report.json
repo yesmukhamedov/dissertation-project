@@ -1,0 +1,64 @@
+{
+ "file": "chapters/06-appendices/drafts/B-draft.md",
+ "out": "chapters/06-appendices/translations-ru/B-ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 5,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 15.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 405,
+   "errors": [],
+   "warnings": [
+    "term «Pooling» not rendered as «пулинг»",
+    "term «grading» not rendered as «градация»"
+   ],
+   "attempts": 1,
+   "sec": 154.8,
+   "src_head": "This appendix records the decomposition behind the aggregate figures reported in"
+  },
+  {
+   "chunk": 2,
+   "words": 300,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 144.4,
+   "src_head": "### B.2 Confusion matrices on the training corpus\n\nRows are the reference grade,"
+  },
+  {
+   "chunk": 3,
+   "words": 443,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 181.9,
+   "src_head": "### B.3 Confusion matrices on the external public corpus\n\n**Table B.6 – Confusio"
+  },
+  {
+   "chunk": 4,
+   "words": 377,
+   "errors": [],
+   "warnings": [
+    "term «five folds» not rendered as «пять фолдов»",
+    "term «DR» not rendered as «ДР»"
+   ],
+   "attempts": 2,
+   "sec": 175.0,
+   "src_head": "### B.6 Interval estimates\n\nTwo intervals are reported and they quantify differe"
+  },
+  {
+   "chunk": 5,
+   "words": 247,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 70.0,
+   "src_head": "### B.8 What this appendix does not contain\n\nThree sets of material that an appe"
+  }
+ ]
+}

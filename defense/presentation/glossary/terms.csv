@@ -1,0 +1,86 @@
+﻿id;kk;ru;en;kind;note;status;updated
+relevance;Зерттеудің өзектілігі;Актуальность исследования;Relevance of the research;рубрика;"kk/en — введение диссертации; ru — Базарбеков сл.2 (у других чаще просто «Актуальность»)";draft;2026-09-26
+aim_objectives;Зерттеудің мақсаты мен міндеттері;Цель и задачи исследования;Research aim and objectives;рубрика;"kk/en — введение диссертации; ru — самый частый заголовок слайда (Базарбеков сл.3 и др.)";draft;2026-09-26
+aim;Мақсаты;Цель;Aim;подпись;внутри слайда цели и задач;draft;2026-09-26
+objectives;Міндеттері;Задачи;Objectives;подпись;внутри слайда цели и задач;draft;2026-09-26
+objective_n;N-міндет;Задача N;Objective N;подпись;плашка внизу слайдов основной части (Момынқулов, Тохтахунов);draft;2026-09-26
+object_subject;Зерттеу объектісі, пәні және әдістері;Объект, предмет и методы исследования;Object, subject and methods of research;рубрика;"заголовок слайда 04 A17 (методы добавлены, как у Бакировой); без методов — «Зерттеу объектісі мен пәні»";draft;2026-09-28
+object;Зерттеу объектісі;Объект исследования;Object of research;подпись;kk: у Тоқтаровой на слайде «зерттеу нысаны», в диссертации A17 — «объектісі»;draft;2026-09-26
+subject;Зерттеу пәні;Предмет исследования;Subject of research;подпись;;draft;2026-09-26
+methods;Зерттеу әдістері;Методы исследования;Research methods;рубрика;в диссертации отдельной рубрики нет — есть «Теориялық және әдіснамалық негізі» / «Theoretical and methodological framework»;draft;2026-09-26
+novelty;Ғылыми жаңалығы;Научная новизна;Scientific novelty;рубрика;"одинаково у всех; kk/en — введение диссертации";draft;2026-09-26
+provisions;Қорғауға ұсынылатын ғылыми тұжырымдар;Положения, выносимые на защиту;Provisions submitted for defence;рубрика;"kk — как у Базарбекова и Олжаева (2026, abstract_kz); введение A17: «Қорғауға ұсынылатын тұжырымдар» (без «ғылыми»); en у докторантов чаще «Scientific provisions submitted for defense»";draft;2026-09-28
+provision_n;N-тұжырым;Положение N;Provision N;подпись;плашка на слайде результата (Науменко: «Обоснование положения N»);draft;2026-09-26
+significance;Теориялық және практикалық маңыздылығы;Теоретическая и практическая значимость;Theoretical and practical significance;рубрика;kk/en — введение диссертации;draft;2026-09-26
+theoretical;Теориялық маңыздылығы;Теоретическая значимость;Theoretical significance;рубрика;если значимость — двумя слайдами;draft;2026-09-26
+practical;Практикалық маңыздылығы;Практическая значимость;Practical significance;рубрика;если значимость — двумя слайдами;draft;2026-09-26
+contribution;Автордың жеке үлесі;Личный вклад автора;Personal contribution;рубрика;на слайдах у докторантов не встречается — только в аннотациях;draft;2026-09-26
+approbation;Нәтижелердің апробациясы және жарияланымдар;Апробация результатов и публикации;Approbation of results and publications;рубрика;"kk/en — введение диссертации; ru «Апробация результатов» — 3 слайда у докторантов";draft;2026-09-26
+publications;Жарияланымдар;Публикации по теме диссертации;Publications;рубрика;ru — Базарбеков сл.17;draft;2026-09-26
+published_in;Жарияланған:;Опубликовано:;Published in:;подпись;строка внизу слайда результата (Тохтахунов);draft;2026-09-26
+implementation;Енгізу актісі;Акт внедрения;Implementation certificate;рубрика;"en — у докторантов «Implementation certificate»; kk — сверить с самим актом";draft;2026-09-26
+certificate;Авторлық құқық туралы куәлік;Свидетельство об авторском праве;Copyright certificate;рубрика;полное название — сверить с документом в dissertation\ip;draft;2026-09-26
+conclusion;Қорытынды;Заключение;Conclusion;рубрика;одинаково у всех;draft;2026-09-26
+thanks;Назарларыңызға рахмет!;Спасибо за внимание!;Thank you for your attention!;рубрика;"kk — Тоқтарова; en у докторантов «Thank you for the attention»";draft;2026-09-26
+title_degree;Философия докторы (PhD) дәрежесін алу үшін дайындалған диссертация;Диссертация на соискание степени доктора философии (PhD);Dissertation for the degree of Doctor of Philosophy (PhD);титул;kk — сверить с титулом казахской версии диссертации;draft;2026-09-26
+title_program;Білім беру бағдарламасы;Образовательная программа;Educational program;титул;на титуле: код и название ОП;draft;2026-09-26
+title_doctoral;Докторант;Докторант;Doctoral student;титул;;draft;2026-09-26
+title_consultant;Ғылыми кеңесші;Научный консультант;Scientific consultant;титул;kk у Ибраевой: «отандық ғылыми кеңесшісі»;draft;2026-09-26
+title_foreign_consultant;Шетелдік ғылыми кеңесші;Зарубежный научный консультант;Foreign scientific consultant;титул;;draft;2026-09-26
+dr;диабеттік ретинопатия (ДР);диабетическая ретинопатия (ДР);diabetic retinopathy (DR);термин;"kk — текст диссертации (KZ, 2026-09); на слайдах архива — «DR»";draft;2026-09-28
+screening;скрининг;скрининг;screening;термин;"kk — текст диссертации (KZ, 2026-09);";draft;2026-09-28
+fundus_image;көз түбі кескіні;снимок глазного дна;fundus image;термин;"kk — текст диссертации (KZ, 2026-09); архив: «fundus суреті»; GLOSSARY_KZ: «көз түбі кескіні»";draft;2026-09-28
+preprocessing;алдын ала өңдеу;предобработка;preprocessing;термин;"kk — текст диссертации (KZ, 2026-09); ⚠ на сохраняемых слайдах 15–27 — «препроцессинг»; выбрать одно (report §4)";draft;2026-09-28
+preprocessing_pipeline;алдын ала өңдеу конвейері;конвейер предобработки;preprocessing pipeline;термин;"kk — текст диссертации (KZ, 2026-09); ⚠ архив: «pipeline», GLOSSARY_KZ: «алдын ала өңдеу pipeline»; текст тома — «конвейер»";draft;2026-09-28
+integrated_configuration;интеграцияланған конфигурация;интегрированная конфигурация;integrated configuration (arm);термин;"kk — текст диссертации (KZ, 2026-09); архив: «Pipeline моделі»; корневой CLAUDE.md: integrated arm";draft;2026-09-28
+baseline_configuration;базалық конфигурация;базовая конфигурация;baseline configuration (arm);термин;"kk — текст диссертации (KZ, 2026-09); архив: «baseline»";draft;2026-09-28
+canonical_flip;канондық айналдыру;каноническое отражение;canonical flip;термин;"этап 0; архивный заголовок сл. 16 — «Каноникалық айналым»";draft;2026-09-28
+od_fovea_rotation;диск пен фовеа бойынша бұру;поворот по диску и фовеа;OD–fovea rotation;термин;этап 1;draft;2026-09-28
+optic_disc;оптикалық диск;диск зрительного нерва;optic disc (OD);термин;;draft;2026-09-28
+fovea;фовеа;фовеа;fovea;термин;;draft;2026-09-28
+fov_crop;көру алаңы бойынша кесу;обрезка по полю зрения;FOV crop;термин;этап 2;draft;2026-09-28
+isotropic_scaling;изотропты масштабтау;изотропное масштабирование;isotropic scaling;термин;"kk — текст диссертации (KZ, 2026-09); с центрированным дополнением";draft;2026-09-28
+fov_mask;көру алаңының маскасы;маска поля зрения;field-of-view (FOV) mask;термин;"kk — текст диссертации (KZ, 2026-09); ⚠ архив: «көру өрісі маскасы (FOV mask)»";draft;2026-09-28
+flat_field;жарықтандыруды түзету;коррекция освещённости (flat-field);flat-field (illumination) correction;термин;"kk — текст диссертации (KZ, 2026-09); GLOSSARY_KZ: «жарық өрісін түзету»; σ = 0,07·D";draft;2026-09-28
+clahe;CLAHE (контрасты шектелген адаптивті гистограмма теңестіру);CLAHE (адаптивное выравнивание гистограммы с ограничением контраста);CLAHE;термин;аббревиатура не переводится (GLOSSARY_KZ, раздел A);draft;2026-09-28
+clip_limit;клип-лимит;клип-лимит;clip limit;термин;"kk — текст диссертации (KZ, 2026-09); двухограниченный: минимум гистограммного и ячеечного ограничений";draft;2026-09-28
+augmentation;аугментация;аугментация;augmentation;термин;этап 6, только обучение;draft;2026-09-28
+color_jitter;түс ауытқуы (ColorJitter);цветовые искажения (ColorJitter);colour jitter;термин;⚠ архивный заголовок сл. 22 — «PCA түс jitter»: PCA в конвейере нет;draft;2026-09-28
+dataset_normalization;бастапқы домен статистикасы бойынша нормалау;нормализация по статистикам исходного корпуса;dataset-specific normalisation;термин;"этап 7; статистики только обучающего корпуса";draft;2026-09-28
+backbone;backbone;backbone (базовая сеть);backbone;термин;не переводится (GLOSSARY_KZ);draft;2026-09-28
+referable_dr;жолдама берілуге тиіс ДР (ŷ ≥ 2);ДР, требующая направления (ŷ ≥ 2);referable DR;термин;;draft;2026-09-28
+grad_cam;Grad-CAM;Grad-CAM;Grad-CAM;термин;не переводится;draft;2026-09-28
+alo;ALO — назардың зақымданумен беттесуі;ALO — перекрытие внимания с поражением;ALO (attention–lesion overlap);термин;"доля поражения, покрытая картой внимания; асимметричная мера";draft;2026-09-28
+attention_alignment;назардың аннотациямен үйлесімі;согласованность внимания с разметкой;attention–annotation alignment;термин;"kk — текст диссертации (KZ, 2026-09); не «локализация» (INVARIANTS NC-14)";draft;2026-09-28
+lesion_types;зақымдану түрлері: микроаневризма, қанталау, қатты / жұмсақ экссудат;типы поражений: микроаневризмы, кровоизлияния, твёрдые / мягкие экссудаты;lesion types: MA, HE, EX, SE;термин;;draft;2026-09-28
+factorial_design;факторлық жоба (2 × 2);факторный план (2 × 2);factorial design (2 × 2);термин;"kk — текст диссертации (KZ, 2026-09); архив: «факторлық дизайн»";draft;2026-09-28
+ablation;абляция (кумулятивті);абляция (кумулятивная);(cumulative) ablation;термин;;draft;2026-09-28
+weighted_f1;салмақталған F1;взвешенный F1;weighted F1;термин;основная метрика;draft;2026-09-28
+roc_auc;ROC-AUC (қисық астындағы аудан);ROC-AUC (площадь под кривой);ROC-AUC;термин;;draft;2026-09-28
+kappa;квадраттық каппа (κ);квадратичная каппа (κ);quadratic weighted kappa (κ);термин;;draft;2026-09-28
+focal_loss;focal loss;focal loss;focal loss;термин;"не переводится; γ = 2, α — обратная частота";draft;2026-09-28
+patient_level_cv;пациент деңгейінде стратификацияланған кросс-валидация;кросс-валидация, стратифицированная на уровне пациента;patient-level stratified cross-validation;термин;5 фолдов;draft;2026-09-28
+class_imbalance;класс теңгерімсіздігі;дисбаланс классов;class imbalance;термин;GLOSSARY_KZ;draft;2026-09-28
+corpus;корпус;корпус (набор данных);corpus (dataset);термин;"kk — текст диссертации (KZ, 2026-09); архив: «датасет», «деректер жиыны»";draft;2026-09-28
+icdr;ICDR бес класты шкаласы;пятиклассовая шкала ICDR;ICDR five-grade scale;термин;;draft;2026-09-28
+zero_shot;қайта оқытусыз тексеру;проверка без дообучения;zero-shot evaluation;термин;архив: «zero-shot режим»;draft;2026-09-28
+cross_corpus_transfer;корпусаралық тасымалдау;межкорпусный перенос;cross-corpus transfer;термин;"kk — текст диссертации (KZ, 2026-09); архив: «Cross-dataset жалпылау»";draft;2026-09-28
+generalization_ratio;жалпылау қатынасы (G);коэффициент обобщения (G);generalisation ratio (G);термин;"G = F1_ext / F1_EyePACS; ⚠ архив сл. 25: «Generalization gap»; GLOSSARY_KZ: «жалпылау коэффициенті»";draft;2026-09-28
+domain_shift;домен ығысуы;сдвиг домена;domain shift;термин;GLOSSARY_KZ: «Domain Shift (таралу ығысуы)»;draft;2026-09-28
+domain_distance;домен қашықтығы;доменное расстояние;domain distance;термин;"kk — текст диссертации (KZ, 2026-09); H-3";draft;2026-09-28
+mmd;MMD (максималды орташа айырма);MMD (максимальное среднее расхождение);MMD (maximum mean discrepancy);термин;на предпоследнем слое;draft;2026-09-28
+kl_divergence;KL-дивергенция;дивергенция Кульбака–Лейблера;KL divergence;термин;по гистограммам каналов;draft;2026-09-28
+penultimate_layer;соңының алдындағы қабат;предпоследний слой;penultimate layer;термин;"kk — текст диссертации (KZ, 2026-09);";draft;2026-09-28
+camera_group;камера тобы;группа камер;camera group;термин;5 групп в эксп. 6;draft;2026-09-28
+device_shift;құрылғылық ығысу;приборный сдвиг;device shift;термин;"kk — текст диссертации (KZ, 2026-09);";draft;2026-09-28
+mcid;клиникалық маңызды ең аз айырма (MCID);минимальная клинически значимая разница (MCID);minimal clinically important difference (MCID);термин;"0,050 по wF1; GLOSSARY_KZ";draft;2026-09-28
+external_clinical_performance;сыртқы клиникалық өнімділік;внешняя клиническая точность;external clinical performance;термин;"H-7 в действующей форме; ⚠ архив: «сапа төмендеуіне төзімділік» — снятая форма";draft;2026-09-28
+small_data;деректері тапшы режим;режим дефицита данных;small-data regime;термин;"kk — текст диссертации (KZ, 2026-09); архив: «кіші деректермен оқыту»";draft;2026-09-28
+cnr;CNR (контраст–шу қатынасы);CNR (отношение контраст/шум);CNR (contrast-to-noise ratio);термин;;draft;2026-09-28
+ssim;SSIM;SSIM;SSIM;термин;;draft;2026-09-28
+entropy;энтропия;энтропия;entropy;термин;;draft;2026-09-28
+delong;DeLong тесті;тест DeLong;DeLong test;термин;;draft;2026-09-28
+mcnemar;McNemar тесті;тест McNemar;McNemar test;термин;⚠ архив сл. 35: «MacNemar»;draft;2026-09-28
+bootstrap;bootstrap аралықтары;bootstrap-интервалы;bootstrap intervals;термин;;draft;2026-09-28
+screening_system;скрининг жүйесі;система скрининга;screening system;термин;"kk — текст диссертации (KZ, 2026-09);";draft;2026-09-28
+inference_service;инференс сервисі;сервис вывода (инференса);inference service;термин;"kk — текст диссертации (KZ, 2026-09);";draft;2026-09-28
