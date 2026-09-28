@@ -12,7 +12,7 @@ terms: [class_imbalance, grad_cam]
 
 ## На слайде
 
-Figure: EfficientNet-B3, F1 by DR grade (`img/perclass_en.png`); a DR0 false-positive example with Grad-CAM — ⚠ capture from Config D together with slide 25
+Figure: EfficientNet-B3, F1 by DR grade (`img/perclass_en.png`)
 
 ## Речь
 

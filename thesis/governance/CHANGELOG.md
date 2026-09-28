@@ -6,6 +6,19 @@ The versioning scheme is defined in [VERSIONING_POLICY.md](VERSIONING_POLICY.md)
 
 ---
 
+## v7.3.0 — 2026-09-28
+
+**OD-3 Stage 5 admits the polar CLAHE geometry and names it the default (MINOR — one operational definition amended, nothing reversed).**
+
+The binding definition of Stage 5 fixed an 8×8 tile grid, but every run configuration sets `clahe_mode: polar` and every reported result was produced with the polar geometry; OD-3 Stage 1 already referred to a Stage-5 polar pivot the Stage-5 clause did not define. The proposal raised on 2026-08-12 (`records/AMENDMENT_PROPOSAL_stage5_polar_clahe.md`) left the decision to the candidate because it fixes what the reported results are results *of*; **the candidate ratified it on 2026-09-28**, while preparing the defence slides, where Stage 5 is now presented as polar CLAHE.
+
+- **`INVARIANTS.md` 7.1.0 → 7.2.0** — Stage 5: the dual-constraint rule is stated over a *cell* of the selected partition; two geometries are defined, polar (default: fovea pivot when the detection is confident, FOV-mask centroid otherwise; log-spaced rings; vessel-density angular sectors; bilinear interpolation between cells) and rectilinear 8×8. LAB L-channel, p = 0.8 at train time and determinism at inference are invariant; clip factor and global threshold remain free.
+- **Chapter 2, §2.1 and §2.2 (EN / KZ / RU)** — the stage table and the closing paragraph of §2.2 describe the polar grid. The sentence that opened that paragraph is dropped so the main text does not grow.
+
+**Not changed, deliberately.** The fallback rotation σ discrepancy in the v6.1.0 summary (15.0° against 13.0° in all configs) is a separate PATCH item and is not folded in here.
+
+---
+
 ## v7.2.1 — 2026-08-23
 
 **The governance apparatus is removed from the printed volume, and three Kazakh-register repairs (PATCH — no binding created, reversed or reinterpreted).**

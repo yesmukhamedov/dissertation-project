@@ -12,7 +12,7 @@ terms: [alo, grad_cam, attention_alignment, lesion_types]
 
 ## На слайде
 
-Рисунки: слева — ALO по типам поражений и определение ALO (`img/exp4_ru.png`); справа — сравнение Grad-CAM (`img/a27_2.png` — ⚠ старый прогон, снять заново с чекпойнта Config D)
+Рисунки: слева — ALO по типам поражений и определение ALO (`img/exp4_ru.png`); справа — пара Grad-CAM: базовая · интегрированная · маска эксперта, IDRiD_007 — рис. D.1 тома (`img/gradcam_ru.png`)
 
 ## Речь
 

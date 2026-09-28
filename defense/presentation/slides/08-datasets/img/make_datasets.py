@@ -19,15 +19,17 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[2]))
 from figlib import DEMO, INK, INK2, LANGS, fov_crop, save, show  # noqa: E402
 
-# (corpus, DR0 … DR4 %) — archive generate_kz_class_distribution.py, DATASETS_5CLASS
-SHARES = [("EyePACS", 73.5, 6.9, 15.1, 2.5, 2.0), ("Messidor-2", 58.3, 15.5, 19.9, 4.3, 2.0),
-          ("DDR", 50.0, 5.0, 35.8, 1.9, 7.3), ("APTOS 2019", 49.3, 10.1, 27.3, 5.3, 8.1),
-          ("IDRiD", 32.6, 4.8, 32.6, 18.0, 12.0)]
+# (corpus, gradable n, DR0 … DR4 %) — archive generate_kz_class_distribution.py, DATASETS_5CLASS. n counts images graded
+# 0–4: DDR 12 522 of ~13 673 (grade 5 «ungradable» is dropped, experiments/src/data/datasets.py), Messidor-2 1 744 of 1 748.
+SHARES = [("EyePACS", "35 126", 73.5, 6.9, 15.1, 2.5, 2.0), ("Messidor-2", "1 744", 58.3, 15.5, 19.9, 4.3, 2.0),
+          ("DDR", "12 522", 50.0, 5.0, 35.8, 1.9, 7.3), ("APTOS 2019", "3 662", 49.3, 10.1, 27.3, 5.3, 8.1),
+          ("IDRiD", "516", 32.6, 4.8, 32.6, 18.0, 12.0)]
 RAMP = ["#e9e4dc", "#f2c38b", "#e58a45", "#c0502a", "#7e2412"]  # sequential: grade = severity
 G = {"kk": ["0 · ДР жоқ", "1 · жеңіл", "2 · орташа", "3 · ауыр", "4 · пролиферативті"],
      "ru": ["0 · нет ДР", "1 · лёгкая", "2 · умеренная", "3 · тяжёлая", "4 · пролиферативная"],
      "en": ["0 · no DR", "1 · mild", "2 · moderate", "3 · severe", "4 · proliferative"]}
-TITLE = {"kk": "Дәрежелер үлесі, %", "ru": "Доли степеней, %", "en": "Share of grades, %"}
+TITLE = {"kk": "Дәрежелер үлесі, % (n — 0–4 дәрежесі қойылған кескіндер)", "ru": "Доли степеней, % (n — снимки с оценкой 0–4)",
+         "en": "Share of grades, % (n — images graded 0–4)"}
 
 
 def main() -> None:
@@ -42,14 +44,14 @@ def main() -> None:
         ax = fig.add_axes([0.12, 0.06, 0.85, 0.4])
         left = np.zeros(len(SHARES))
         for g in range(5):
-            v = np.array([r[g + 1] for r in SHARES])
+            v = np.array([r[g + 2] for r in SHARES])
             ax.barh(range(len(SHARES)), v, left=left, color=RAMP[g], edgecolor="white", linewidth=2, height=0.7)
             for y, (l, w) in enumerate(zip(left, v)):
                 if w >= 5:
                     ax.text(l + w / 2, y, f"{w:.0f}", ha="center", va="center", fontsize=11,
                             color=INK if g < 3 else "white")
             left += v
-        ax.set_yticks(range(len(SHARES)), [r[0] for r in SHARES], fontsize=12)
+        ax.set_yticks(range(len(SHARES)), [f"{r[0]}\nn = {r[1]}" for r in SHARES], fontsize=11.5)
         ax.invert_yaxis()
         ax.set_xlim(0, 100)
         ax.set_xticks([])

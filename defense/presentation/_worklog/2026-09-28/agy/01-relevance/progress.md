@@ -1,0 +1,5 @@
+- [x] 1. Global adults (20–79) with diabetes
+- [x] 2. Global DR and vision-threatening DR
+- [x] 3. Screening gap
+- [x] 4. Kazakhstan
+- [x] thesis refs [3],[7]

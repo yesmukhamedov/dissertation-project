@@ -9,7 +9,7 @@ INVARIANTS OD-3 diverges from `experiments/` in two ways, both verified against 
 the pipeline source on 2026-08-12. Neither is a stale label — in both cases governance describes a
 transform that produced none of the reported results.
 
-**1. Polar CLAHE is the operational Stage-5 default; OD-3 defines the rectilinear one.**
+**1. RESOLVED 2026-09-28 — the candidate ratified the amendment: INVARIANTS v7.2.0 names polar the Stage-5 default (rectilinear 8×8 kept as a variant); §2.1–2.2 of the volume (EN/KZ/RU) describe the polar grid; VERSION_SYNC/CHANGELOG v7.3.0.** History: polar CLAHE is the operational Stage-5 default; OD-3 defined the rectilinear one.
 `configs/default.yaml` sets `clahe_mode: polar` (commented "adaptive polar, thesis-faithful"), and
 **all sixteen** run configs do the same — no config in the repo selects `tiles`.
 `src/preprocessing/pipeline.py` calls `maybe_apply_polar_clahe` / `apply_polar_clahe`;

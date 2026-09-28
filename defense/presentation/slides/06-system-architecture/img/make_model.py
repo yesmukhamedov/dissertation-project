@@ -3,7 +3,7 @@ Grad-CAM → ALO; two eyes → one patient-level decision, kk/ru/en.
 
 Content: thesis ch. 2 and the slide's formulation block; the 4-channel conv1 of both backbones comes from the archived
 a08_2 (slide 07), which this figure absorbs. Replaces a07_1 (English, tall, unreadable) and a08_2.
-The rule that merges the two eyes is not named here — TODO.md §3 (check demo/server before naming it).
+Two eyes → the grade of the worse eye (max), as demo/server/app/inference.py:150 and §4.2 of the volume.
 𝒫 is drawn with mathtext ($\\mathcal{P}$): DejaVu Sans has no glyph for U+1D4AB.
 Run: python make_model.py  ->  model_<lang>.png
 """
@@ -23,15 +23,15 @@ X = r"$x \in \mathbb{R}^{4 \times 512 \times 512}$"
 PIPE, CNN, OUT = "#e3f1ea", "#e4eefb", "#f7e7e1"
 T = {"kk": {"in": "Көз түбі\nкескіні I,\nкөз жағы s", "p": f"Алдын ала\nөңдеу {P}\n8 кезең",
             "x": f"{X}\nRGB +\nкөру алаңының\nмаскасы", "cnn": "CNN$_\\theta$\nResNet-50 /\nEfficientNet-B3\n1-қабат — 4 арна",
-            "sm": "softmax\nŷ ∈ {0, …, 4}", "ref": "ŷ ≥ 2 →\nдәрігерге жолдама", "pat": "Екі көз →\nпациент бойынша\nшешім",
+            "sm": "softmax\nŷ ∈ {0, …, 4}", "ref": "ŷ ≥ 2 →\nдәрігерге жолдама", "pat": "Екі көз →\nнашар көздің\nдәрежесі (max)",
             "cam": "Grad-CAM → ALO", "model": f"Модель = {P} + CNN: θ {P} шығысында оқытылады"},
      "ru": {"in": "Снимок\nглазного дна I,\nсторона глаза s", "p": f"Предобработка\n{P}\n8 этапов",
             "x": f"{X}\nRGB +\nмаска поля\nзрения", "cnn": "CNN$_\\theta$\nResNet-50 /\nEfficientNet-B3\n1-й слой — 4 канала",
-            "sm": "softmax\nŷ ∈ {0, …, 4}", "ref": "ŷ ≥ 2 →\nнаправление к врачу", "pat": "Два глаза →\nрешение\nпо пациенту",
+            "sm": "softmax\nŷ ∈ {0, …, 4}", "ref": "ŷ ≥ 2 →\nнаправление к врачу", "pat": "Два глаза →\nстепень худшего\nглаза (max)",
             "cam": "Grad-CAM → ALO", "model": f"Модель = {P} + CNN: θ обучается на выходе {P}"},
      "en": {"in": "Fundus\nimage I,\neye side s", "p": f"Preprocessing\n{P}\n8 stages",
             "x": f"{X}\nRGB +\nFOV mask", "cnn": "CNN$_\\theta$\nResNet-50 /\nEfficientNet-B3\n1st layer — 4 channels",
-            "sm": "softmax\nŷ ∈ {0, …, 4}", "ref": "ŷ ≥ 2 →\nrefer to a doctor", "pat": "Two eyes →\npatient-level\ndecision",
+            "sm": "softmax\nŷ ∈ {0, …, 4}", "ref": "ŷ ≥ 2 →\nrefer to a doctor", "pat": "Two eyes →\ngrade of the\nworse eye (max)",
             "cam": "Grad-CAM → ALO", "model": f"Model = {P} + CNN: θ is trained on the output of {P}"}}
 
 

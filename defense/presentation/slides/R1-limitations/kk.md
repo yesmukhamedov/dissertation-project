@@ -12,7 +12,7 @@ terms: [class_imbalance, grad_cam]
 
 ## На слайде
 
-Сурет: EfficientNet-B3, ДР дәрежелері бойынша F1 (`img/perclass_kk.png`); DR0 жалған позитив мысалы Grad-CAM-мен — ⚠ Config D-ден 25-слайдпен бірге түсіру керек
+Сурет: EfficientNet-B3, ДР дәрежелері бойынша F1 (`img/perclass_kk.png`)
 
 ## Речь
 

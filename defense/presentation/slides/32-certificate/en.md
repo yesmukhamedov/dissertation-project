@@ -12,7 +12,7 @@ terms: [certificate]
 
 ## На слайде
 
-Scan of the certificate (`img/certificate_kz.png`), one document per slide. Caption: "No. 78109, 04.09.2026 — software package"
+Figure: certificate of registration of copyright No. 78109, 04.09.2026 — software package (`img/certificate_kz.png`); one document per slide
 
 ## Речь
 

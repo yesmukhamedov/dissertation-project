@@ -17,9 +17,9 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[2]))
 from figlib import LANGS, img, save, show  # noqa: E402
 
-CAP = {"kk": ("Кесуден кейін", "4 · Жарықтандыруды түзету\nσ = 0,07·D", "5 · CLAHE\n(LAB, L арнасы)"),
-       "ru": ("После обрезки", "4 · Коррекция освещённости\nσ = 0,07·D", "5 · CLAHE\n(LAB, канал L)"),
-       "en": ("After cropping", "4 · Flat-field correction\nσ = 0.07·D", "5 · CLAHE\n(LAB, L channel)")}
+CAP = {"kk": ("Кесуден кейін", "4 · Жарықтандыруды түзету\nσ = 0,07·D", "5 · Полярлы CLAHE\n(LAB, L арнасы)"),
+       "ru": ("После обрезки", "4 · Коррекция освещённости\nσ = 0,07·D", "5 · Полярный CLAHE\n(LAB, канал L)"),
+       "en": ("After cropping", "4 · Flat-field correction\nσ = 0.07·D", "5 · Polar CLAHE\n(LAB, L channel)")}
 
 
 def main() -> None:

@@ -12,7 +12,7 @@ terms: [alo, grad_cam, attention_alignment, lesion_types]
 
 ## На слайде
 
-Figures: left — ALO by lesion type and the ALO definition (`img/exp4_en.png`); right — Grad-CAM comparison (`img/a27_2.png` — ⚠ old run, re-capture from the Config D checkpoint)
+Figures: left — ALO by lesion type and the ALO definition (`img/exp4_en.png`); right — the Grad-CAM pair: baseline · integrated · expert mask, IDRiD_007 — fig. D.1 of the volume (`img/gradcam_en.png`)
 
 ## Речь
 

@@ -54,10 +54,11 @@ def chart2(lang: str) -> None:
     """Two horizontal bars: rural share of population vs of ophthalmologists."""
     t = T[lang]
     fig, ax = plt.subplots(figsize=(6.4, 2.6), dpi=200, facecolor=SURFACE)
-    labels, vals, cols = [t["oph"], t["pop"]], [20, 36], [BLUE, GRAY]
+    # rural ophthalmologists: 156 of 1 610 (2016), MoH RK via Semenova et al., Hum Resour Health 2026;24:8 → 9.7 %
+    labels, vals, cols = [t["oph"], t["pop"]], [10, 36], [BLUE, GRAY]
     ax.barh(labels, vals, color=cols, height=0.55)
     for y, v in enumerate(vals):
-        ax.text(v + 1, y, f"{v} %", va="center", color=INK, fontweight="bold")
+        ax.text(v + 1, y, ("≈ " if y == 0 else "") + f"{v} %", va="center", color=INK, fontweight="bold")
     ax.set_xlim(0, 45)
     ax.set_title(t["c2"], loc="left", color=INK, fontsize=13)
     for s in ("top", "right", "bottom"):

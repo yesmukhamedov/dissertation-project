@@ -76,11 +76,62 @@ def build_analysis(dirs: list[Path]) -> None:
     print("ANALYSIS.md:", len(dirs), "slides")
 
 
+# Council rule 10–11 (council/temp/АНАЛИЗ_ОФОРМЛЕНИЯ_ПРЕЗЕНТАЦИЙ.md §9): figures and tables numbered through the talk,
+# «Рисунок N – …» / «Таблица N – …»; a «Задача N» plate on the main-part slides. Task → slides as in PLAN.md.
+TASKS = {1: ("02", "05"), 2: ("06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"),
+         3: tuple(f"{n:02d}" for n in range(20, 29)), 4: ("29", "32")}
+LABEL = {"kk": ("Сурет", "Кесте", "{}-міндет"), "ru": ("Рисунок", "Таблица", "Задача {}"), "en": ("Figure", "Table", "Task {}")}
+NO_CAPTION = ("01", "31", "33")  # title and final slide: logo; publications: a list, not a figure
+IMG = re.compile(r"\(`(img/[\w.-]+\.(?:png|jpg))`[^)]*\)")
+
+
+def build_captions(lang: str, dirs: list[Path], reserve: list[Path]) -> None:
+    """Number the figures and tables of the talk and write report/captions_{lang}.md for the pptx assembly.
+
+    A figure is every `img/…` reference in «## На слайде» (its caption is the text before it, up to the previous
+    reference or the «Сурет:» head); a table is every markdown table there (captioned by the slide title).
+    Reserve slides continue the numbering after the talk.
+    """
+    fig_w, tab_w, task_w = LABEL[lang]
+    nf = nt = 0
+    rows = [f"# {fig_w} / {tab_w} — сквозная нумерация ({lang})", "",
+            "Собрано `report/build.py` из `slides/*/%s.md`. Не править руками: номера пересчитываются при каждой сборке." % lang,
+            "", "| № | Плашка | Подписи |", "|---|---|---|"]
+    for d in dirs + reserve:
+        n = d.name[:2]
+        if n in NO_CAPTION:
+            continue
+        text = (d / f"{lang}.md").read_text(encoding="utf-8")
+        title = re.search(r"^# (.+)$", text, flags=re.M).group(1)
+        onslide = text.split("## На слайде", 1)[1].split("## Речь", 1)[0]
+        caps = []
+        for line in onslide.splitlines():
+            if IMG.search(line):
+                body = re.sub(r"^\w+:\s*", "", line)
+                start = 0
+                for m in IMG.finditer(body):
+                    desc = body[start:m.start()].strip(" ;,—")
+                    desc = re.sub(r"^(слева|справа|сол жақта|оң жақта|left|right)\s*—\s*", "", desc)
+                    start = m.end()
+                    nf += 1
+                    caps.append(f"{fig_w} {nf} – {desc[:1].upper() + desc[1:]}")
+            elif line.startswith("|---"):
+                nt += 1
+                caps.append(f"{tab_w} {nt} – {title}")
+        task = next((k for k, v in TASKS.items() if n in v), None)
+        plate = task_w.format(task) if task else "—"
+        if caps:
+            rows.append(f"| {n} | {plate} | {'<br>'.join(caps)} |")
+    (HERE / f"captions_{lang}.md").write_text("\n".join(rows) + "\n", encoding="utf-8")
+    print(f"captions_{lang}.md: {nf} figures, {nt} tables")
+
+
 def main() -> None:
     dirs = sorted(p for p in SLIDES.iterdir() if p.is_dir() and re.match(r"\d\d-", p.name))
     reserve = sorted(p for p in SLIDES.iterdir() if p.is_dir() and re.match(r"R\d-", p.name))
     for lang in ("kk", "ru", "en"):
         build_speech(lang, dirs, reserve)
+        build_captions(lang, dirs, reserve)
     build_analysis(dirs + reserve)
     check_approbation(dirs)
 

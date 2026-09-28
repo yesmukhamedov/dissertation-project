@@ -1,6 +1,29 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 7.2.1 | **Date:** 2026-08-23
+**Version:** 7.3.0 | **Date:** 2026-09-28
+
+## v7.3.0 Sync Scope — Stage 5 admits the polar CLAHE geometry (one operational definition amended)
+
+The candidate ratified `records/AMENDMENT_PROPOSAL_stage5_polar_clahe.md` on 2026-09-28. OD-3 Stage 5 now fixes
+the dual-constraint clip rule as the invariant and the grid as a selectable geometry — **polar (default)** or
+rectilinear 8×8 — which is what every run configuration has always executed. Nothing is reversed. **MINOR** per
+VERSIONING_POLICY §4.
+
+| File | Was | Now | What changed |
+|---|---|---|---|
+| `INVARIANTS.md` | 7.1.0 | **7.2.0** | OD-3 Stage 5 rewritten (cell = member of the selected partition; polar default, fovea pivot with FOV-centroid fallback, log-spaced rings, vessel-density sectors, interpolation between cells); v7.2.0 summary added. |
+| `chapters/02-methodology/{drafts/2.1-draft, translations/2.1-translation, translations-ru/2.1-ru}.md` | — | — | Stage-table row: "8 by 8 tiles" → "polar grid". |
+| `chapters/02-methodology/{drafts/2.2-draft, translations/2.2-translation, translations-ru/2.2-ru}.md` | — | — | Closing paragraph describes the polar grid; its leading sentence ("The remainder of the stage follows the specification") is dropped to keep the main-text word count within the gate. |
+| `records/AMENDMENT_PROPOSAL_stage5_polar_clahe.md` | PROPOSED | **APPLIED** | Status line. |
+
+**Unaffected:** `HYPOTHESIS.md`, `ARGUMENT_MAP.md`, `CONTRIBUTIONS.md`, `CENTRAL_THESIS.md`, `CORE_OBJECTIVE.md`,
+`RESEARCH_ARCHITECTURE.md` — none of them names a grid geometry. Appendix A already stated that the polar variant is
+the shipped default and needs no change. The generic word "tile" in the theory of §2.2 and in §3.3 names the local
+region the clip rule is defined on and remains correct under either geometry. **Still open, not part of this
+amendment:** the Stage-1 fallback rotation σ (13.0° in every config, 15.0° in the v6.1.0 text) — a separate PATCH
+item recorded in the proposal §7.
+
+---
 
 ## v7.2.1 Sync Scope — the governance apparatus leaves the printed volume (no new binding)
 
@@ -227,7 +250,7 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 
 | File | Version | Synced |
 |------|---------|--------|
-| governance/INVARIANTS.md | 7.0.0 | ✅ — v7.0.0: H-7 reformulated (Section II) Clinical Degradation Resistance → External Clinical Performance; Δ_drop retired to descriptive; header summary added — completed 2026-08-04. v6.3.0: SB-2.4 relaxed + CFC-2.8 extended to admit SIP as a gate-selected integrated-arm init |
+| governance/INVARIANTS.md | 7.2.0 | ✅ — v7.2.0: OD-3 Stage 5 admits the polar CLAHE geometry as the default (ratified 2026-09-28). v7.1.0: SB-4.1 amended (deployed demonstrator). v7.0.0: H-7 reformulated (Section II) Clinical Degradation Resistance → External Clinical Performance; Δ_drop retired to descriptive; header summary added — completed 2026-08-04. v6.3.0: SB-2.4 relaxed + CFC-2.8 extended to admit SIP as a gate-selected integrated-arm init |
 | governance/HYPOTHESIS.md | 7.1.0 | ✅ — v7.1.0: **H-3 restored** as Domain-Shift Reduction (K = 5 of n = 6, MMD primary, source-statistics protocol condition, label-reuse notice) — completed 2026-08-05. v7.0.0: H-7 reformulated (form S, MCID 0.050, CI⁻ > 0, both sets); Conclusion + Central-Hypothesis note synced. v6.2.0: Premise 4 + Conclusion RETFound→ophthalmology-SSL |
 | governance/RESEARCH_ARCHITECTURE.md | 7.0.0 | ✅ — v7.0.0: §5.5 purpose + acceptance rewritten, §9.1 H-7 bullet, PC-10 row — completed 2026-08-04. v6.2.0: §4.2bis extended; §9.1 pretraining-leakage bullet |
 | governance/CONTRIBUTIONS.md | 7.1.0 | ✅ — v7.1.0: **SC-I** added for the direct domain-distance measurement (H-3 restoration) — completed 2026-08-05. v7.0.0: SC-G reframed to external clinical performance + secondary methodological contribution (Δ_drop defect) — completed 2026-08-04. v6.3.0: SC-H generalized to "in-domain initialization (self-supervised OR supervised), gate-selected" — SIP admitted, SSL negative result recorded. v6.2.0: SC-H refined with locked SSL specifics; CFC-2.8 boundary unchanged |

@@ -12,7 +12,7 @@ terms: [class_imbalance, grad_cam]
 
 ## На слайде
 
-Рисунок: EfficientNet-B3, F1 по степеням ДР (`img/perclass_ru.png`); пример ложноположительного DR0 с Grad-CAM — ⚠ снять с Config D вместе со сл. 25
+Рисунок: EfficientNet-B3, F1 по степеням ДР (`img/perclass_ru.png`)
 
 ## Речь
 

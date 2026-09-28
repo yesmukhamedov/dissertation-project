@@ -2,7 +2,7 @@
 
 Собрано из `slides/*/en.md` скриптом `report/build.py`. Не править руками.
 
-**Итого:** 33 слайдов · бюджет 1018 с (17.0 мин) · 2014 слов · при 90 сл/мин ≈ 22.4 мин · регламент 20 мин
+**Итого:** 33 слайдов · бюджет 1033 с (17.2 мин) · 2038 слов · при 90 сл/мин ≈ 22.6 мин · регламент 20 мин
 
 | № | Слайд | Бюджет, с | Слов | При 90 сл/мин, с |
 |---|---|---|---|---|
@@ -11,7 +11,7 @@
 | 03 | Research aim and objectives | 55 | 72 | 48 |
 | 04 | Provisions submitted for defence | 75 | 102 | 68 |
 | 05 | Analysis of existing approaches | 35 | 56 | 37 |
-| 06 | Mathematical formulation and architecture of the model | 45 | 94 | 63 |
+| 06 | Mathematical formulation and architecture of the model | 45 | 96 | 64 |
 | 07 | Experimental design: 2 × 2 factorial | 40 | 80 | 53 |
 | 08 | Datasets | 35 | 64 | 43 |
 | 09 | Distribution by camera | 25 | 45 | 30 |
@@ -20,14 +20,14 @@
 | 12 | Canonical flip | 15 | 38 | 25 |
 | 13 | Rotation by optic disc and fovea (midpoint) | 15 | 42 | 28 |
 | 14 | Crop & resize, field-of-view (FOV) mask | 20 | 54 | 36 |
-| 15 | Flat-field correction and adaptive CLAHE | 30 | 93 | 62 |
+| 15 | Flat-field correction and polar CLAHE | 35 | 68 | 45 |
 | 16 | Augmentation: rotation | 20 | 54 | 36 |
-| 17 | Augmentation: translation, scale, shear | 20 | 32 | 21 |
-| 18 | Augmentation: colour, brightness and contrast | 20 | 54 | 36 |
+| 17 | Augmentation: scale and shear | 20 | 33 | 22 |
+| 18 | Augmentation: colour, brightness, contrast, noise | 25 | 78 | 52 |
 | 19 | Dataset-specific normalisation | 15 | 46 | 31 |
 | 20 | Training parameters: focal loss, optimiser, 5-fold CV; metrics: F1, AUC, Cohen's κ, G, ALO | 38 | 68 | 45 |
 | 21 | Experiment 1: contribution of preprocessing across two architectures | 40 | 70 | 47 |
-| 22 | Experiment 2: ablation of pipeline stages | 35 | 67 | 45 |
+| 22 | Experiment 2: ablation of pipeline stages | 40 | 89 | 59 |
 | 23 | Domain distance in feature space | 35 | 80 | 53 |
 | 24 | Experiment 3: transfer to another dataset | 30 | 77 | 51 |
 | 25 | Experiment 4: interpretability (ALO, Grad-CAM) | 35 | 64 | 43 |
@@ -50,7 +50,7 @@ Dear Chair, dear members of the dissertation council! Allow me to present the di
 
 *55 с · 101 слов*
 
-Registered diabetes patients in Kazakhstan doubled in ten years to 517 thousand, and early retinopathy is asymptomatic, so every patient needs an annual fundus examination. The country has about one and a half thousand ophthalmologists — some three hundred and forty patients per doctor — and in rural areas, home to a third of the population, only a fifth of ophthalmologists work. The answer is automated screening from fundus images. But the accuracy of published models is unstable across cameras and acquisition conditions, and preprocessing is usually treated as preparation outside the model and left undescribed. This is the problem the research addresses.
+Registered diabetes patients in Kazakhstan doubled in ten years to 517 thousand, and early retinopathy is asymptomatic, so every patient needs an annual fundus examination. The country has about one and a half thousand ophthalmologists — some three hundred and forty patients per doctor — and in rural areas, home to a third of the population, only a tenth of ophthalmologists work. The answer is automated screening from fundus images. But the accuracy of published models is unstable across cameras and acquisition conditions, and preprocessing is usually treated as preparation outside the model and left undescribed. This is the problem the research addresses.
 
 ## 03. Research aim and objectives
 
@@ -73,9 +73,9 @@ Existing work was analysed along five directions. Most raise accuracy through ar
 
 ## 06. Mathematical formulation and architecture of the model
 
-*45 с · 94 слов*
+*45 с · 96 слов*
 
-Formally the model is a composition: the network is applied to the pipeline output and its parameters are trained on that output, so the pipeline belongs to the definition of the model. The input image first passes the eight-stage pipeline: deterministic at inference, with stochastic contrast and augmentation in training. The output is a four-channel tensor: three colour channels and the field-of-view mask. The network returns one of five grades, with referral from grade two. The two eyes are combined at patient level, and Grad-CAM gives the attention map.
+Formally the model is a composition: the network is applied to the pipeline output and its parameters are trained on that output, so the pipeline belongs to the definition of the model. The input image first passes the eight-stage pipeline: deterministic at inference, with stochastic contrast and augmentation in training. The output is a four-channel tensor: three colour channels and the field-of-view mask. The network returns one of five grades, with referral from grade two. The patient's grade is that of the worse eye, and Grad-CAM gives the attention map.
 
 ## 07. Experimental design: 2 × 2 factorial
 
@@ -125,11 +125,11 @@ At this stage the image is rotated so that the line joining the optic disc and t
 
 At this stage the black borders around the image are cropped, leaving only the circular fundus region. The image is scaled isotropically, without distorting proportions, to 512 by 512. The field-of-view mask is fed to the network as a separate fourth channel, so the model knows explicitly where the valid pixels are.
 
-## 15. Flat-field correction and adaptive CLAHE
+## 15. Flat-field correction and polar CLAHE
 
-*30 с · 93 слов*
+*35 с · 68 слов*
 
-Stage four evens out the illumination: a blurred copy of the image is subtracted from it, with the blur scale at 0.07 of the field-of-view diameter, so the correction is the same at any resolution. Stage five is CLAHE. CLAHE is a local contrast enhancement method, applied to the lightness channel of LAB space. The clip limit is computed as the minimum of two constraints — histogram- and tile-relative — and is applied stochastically in training. After processing, fine vessels and microaneurysms are clearly distinguishable — the key signs of early retinopathy.
+Stage four evens out the illumination: a blurred copy is subtracted from the image, at a scale of 0.07 of the field-of-view diameter. Stage five is polar CLAHE: contrast is enhanced locally in rings and sectors around the fovea, finer where vessels are denser; the clip limit is the minimum of two constraints. Fine vessels and microaneurysms — the early signs of retinopathy — become clearly visible.
 
 ## 16. Augmentation: rotation
 
@@ -137,17 +137,17 @@ Stage four evens out the illumination: a blurred copy of the image is subtracted
 
 In training the image is rotated by a random angle, with the spread of the angle set by the uncertainty in locating the optic disc and fovea. So even when the orientation at the rotation stage is imprecise, the model learns to recognise retinal structure and becomes robust to images taken at different angles.
 
-## 17. Augmentation: translation, scale, shear
+## 17. Augmentation: scale and shear
 
-*20 с · 32 слов*
+*20 с · 33 слов*
 
-In training the image is randomly translated, scaled and sheared. As a result the model learns to grade correctly even when the central region is off-centre or the crop is imprecise.
+In training the image is randomly scaled, slightly stretched and sheared. As a result the model learns to grade correctly even when the central region is off-centre or the crop is imprecise.
 
-## 18. Augmentation: colour, brightness and contrast
+## 18. Augmentation: colour, brightness, contrast, noise
 
-*20 с · 54 слов*
+*25 с · 78 слов*
 
-This augmentation slightly and randomly changes the colour channels, brightness and contrast. Since every camera renders colour a little differently, the model learns to rely not on colour but on the structural features of the retina. Light and colour are the most variable acquisition factor, so this is the strongest part of the augmentation.
+This augmentation slightly and randomly changes the colour channels, brightness and contrast. Since every camera renders colour a little differently, the model learns to rely not on colour but on the structural features of the retina. In addition, noise and JPEG compression are added with a small probability — as with an inexpensive camera and an image sent over a network. Light and colour are the most variable acquisition factor, so this is the strongest part of the augmentation.
 
 ## 19. Dataset-specific normalisation
 
@@ -169,9 +169,9 @@ In the first experiment the integrated configuration is higher on both architect
 
 ## 22. Experiment 2: ablation of pipeline stages
 
-*35 с · 67 слов*
+*40 с · 89 слов*
 
-The second experiment adds the stages in turn under a single initialisation. F1 rises from 0.754 to 0.819 monotonically in each of the five folds — the first experiment's gain is fully reproduced by preprocessing. Every step exceeds noise; illumination correction and CLAHE contribute most, 41 percent together. Their parameters have an interior optimum: clip factor 2.5, threshold 0.03, correction scale 0.07.
+The second experiment adds the stages in turn under a single initialisation. F1 rises from 0.754 to 0.819 monotonically in each of the five folds — the first experiment's gain is fully reproduced by preprocessing. Every step exceeds noise; illumination correction and CLAHE contribute most, 41 percent together. Their parameters have an interior optimum: clip factor 2.5, threshold 0.03, correction scale 0.07. The main configurations were trained at 2.0 and 0.01 — off the optimum, so the result is not inflated by tuning.
 
 ## 23. Domain distance in feature space
 

@@ -1,6 +1,6 @@
 # AMENDMENT PROPOSAL — OD-3 Stage 5: admit the polar CLAHE variant
 
-**Status:** PROPOSED, NOT APPLIED · **Raised:** 2026-08-12 · **Against:** INVARIANTS.md v7.0.0 (OD-3 Stage 5)
+**Status:** APPLIED 2026-09-28 (INVARIANTS v7.2.0, ratified by the candidate) · **Raised:** 2026-08-12 · **Against:** INVARIANTS.md v7.0.0 (OD-3 Stage 5)
 **Requested bump:** MINOR (a new operational variant is admitted; no hypothesis, scope boundary, forbidden
 claim or factorial design changes) per VERSIONING_POLICY §4.
 
