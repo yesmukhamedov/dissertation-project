@@ -4,7 +4,7 @@ id: screening-system
 lang: en
 status: draft
 seconds: 35
-source: архив сл. 36 — переработан в слайд системы (рисунок TELEMED оставлен; скриншоты клиента — снять заново)
+source: архив сл. 36 — переработан в слайд системы (рисунок TELEMED оставлен; скриншоты клиента сняты 2026-09-29)
 terms: [screening_system, inference_service, grad_cam, fov_mask]
 ---
 
@@ -12,7 +12,7 @@ terms: [screening_system, inference_service, grad_cam, fov_mask]
 
 ## На слайде
 
-Figures: left — system diagram: doctor ↔ browser client ↔ inference service (𝒫 → CNN → Grad-CAM) (`img/system_en.png`); right — two screenshots of the browser client: (a) grade, class probabilities and Grad-CAM; (b) preprocessing stages (`img/ui_1_en.png`, `img/ui_2_en.png` — ⚠ to be captured from the current demo)
+Figures: left — system diagram: doctor ↔ browser client ↔ inference service (𝒫 → CNN → Grad-CAM) (`img/system_en.png`); right — two screenshots of the browser client: (a) grade, class probabilities and Grad-CAM; (b) preprocessing stages (`img/ui_1_en.png`, `img/ui_2_en.png` — captured from the live demo 2026-09-29)
 
 1. **Inference service + browser client**, 8 modules; the same pipeline code as in the experiments
 2. **Shows every step:** preprocessing stages, grade, Grad-CAM attention map; the clinician confirms or corrects the decision
