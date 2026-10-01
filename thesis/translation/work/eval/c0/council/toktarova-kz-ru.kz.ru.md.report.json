@@ -1,0 +1,41 @@
+{
+ "file": "translation/work/eval/c0/council/src/toktarova-kz-ru.kz.md",
+ "genre": "council",
+ "out": "translation/work/eval/c0/council/toktarova-kz-ru.kz.ru.md",
+ "src": "kz",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 0,
+ "needs_review": [
+  1,
+  2
+ ],
+ "warnings": 1,
+ "minutes": 5.1,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 423,
+   "errors": [
+    "English left untranslated (3 function words, e.g. of, and, and)"
+   ],
+   "warnings": [
+    "term «жинақталу» not rendered as «сходимость»"
+   ],
+   "attempts": 1,
+   "sec": 133.0,
+   "src_head": "Зерттеу жұмысының өзектілігі. Бүгінгі күні онлайн әлеуметтік желілердегі ғадауат"
+  },
+  {
+   "chunk": 2,
+   "words": 41,
+   "errors": [
+    "Kazakh letters in Russian text: ұ"
+   ],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 18.5,
+   "src_head": "Зерттеу жұмысы барысында көрсеткен баға жетпес көмегі мен кеңестері үшін автор ғ"
+  }
+ ]
+}

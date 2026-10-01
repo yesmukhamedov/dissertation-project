@@ -1,0 +1,158 @@
+[
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 148.1
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 180.1
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 162.4
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «criterion» not rendered as «өлшем»"
+  ],
+  "sec": 169.3
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 26.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 159.2
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 186.6
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 162.7
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 98.7
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 159.4
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 81.6
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 8, 8"
+  ],
+  "sec": 180.2
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 204.2
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 178.2
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.C-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 159.5
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 151.1
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 155.7
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 196.4
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 147.5
+ }
+]

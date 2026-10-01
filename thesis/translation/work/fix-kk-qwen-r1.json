@@ -1,0 +1,171 @@
+[
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 1,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 1,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 3,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 4,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin).",
+   "Thousands are separated by a space, not a comma: «1,000» -> «1 000», «35,126» -> «35 126»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 5,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin).",
+   "'given in Appendix E' must be «Г қосымшасында келтірілген», not «Е қосымшасында»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 2,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 5,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin).",
+   "In this appendix (Appendix C) the section headings and schemes are «Б.4», «Б.5»..., not «В.4»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 6,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 7,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin).",
+   "This is Appendix D: its headings are «### В.1», «### В.2», not «Д.1»; 'Appendix B' is «Ә қосымшасы», not «Б»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin).",
+   "'Appendix B' is «Ә қосымшасы», not «Б қосымшасы»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 2,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 3,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 4,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 5,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin).",
+   "'Appendix C' is «Б қосымшасы» (not Cyrillic «С қосымшасы»); 'Appendix A' is «А қосымшасы»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 3,
+  "issues": [
+   "Appendix letters must be Kazakh letters of the approved edition: A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ. Write «Ә қосымшасы» for Appendix B, «Б.1-кесте» for Table C.1, «### Ә.2 ...» for heading B.2, «В.3-сурет» for Figure D.3. Never Latin letters (C.1, E.2) and never lookalikes (С, Д, Е). Markers in square brackets like [FIG-C.1: ...] stay exactly as in the source (Latin)."
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Бұл кез келген мақсаттық статистика түрлендіруге кірмей жүріс орын алды.» is garbled. Source: 'without any target statistic entering the transform' - e.g. «Бұл түрлендіруге ешбір мақсаттық статистика енгізілмей орын алды.»",
+   "«дәлелдеу гипотезалаған механизм қорытындыланбастан, өлшенді» is unclear. Source: 'the mechanism the argument postulates was measured rather than inferred' - the mechanism was measured directly, not inferred: «дәлелдеу болжаған механизм жанама тұжырымдалған жоқ, тікелей өлшенді».",
+   "«екі конфигурация да дегенде бірдей түсті» is wrong. Source: 'the two configurations declined almost identically' - «екі конфигурация да дерлік бірдей төмендеді»."
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 2,
+  "issues": [
+   "A clause is MISSING after «...локализацияны емес дәлелдейді.». Source: 'and the qualitative examination on the clinical corpus that the hypothesis also contemplates was not carried out.' Translate it as a new sentence, e.g. «Гипотеза сонымен қатар қарастырған клиникалық корпустағы сапалық талдау жүргізілген жоқ.»"
+  ]
+ }
+]

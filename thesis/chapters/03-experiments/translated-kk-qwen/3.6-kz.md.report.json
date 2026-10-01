@@ -1,0 +1,52 @@
+{
+ "file": "chapters/03-experiments/drafts/3.6-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 4,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 408,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 217.9,
+   "src_head": "## 3.6 Attention maps and lesion agreement\n\nA screening system's acceptability t"
+  },
+  {
+   "chunk": 2,
+   "words": 385,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 216.8,
+   "src_head": "Differences were tested with a one-sided signed-rank test over the paired per-im"
+  },
+  {
+   "chunk": 3,
+   "words": 450,
+   "errors": [],
+   "warnings": [
+    "numbers added: 5, 8"
+   ],
+   "attempts": 1,
+   "sec": 226.0,
+   "src_head": "The direction of the effect holds at every threshold examined, and significance "
+  },
+  {
+   "chunk": 4,
+   "words": 282,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 134.3,
+   "src_head": "Three limits confine it. The two channels were not measured on the same models: "
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "out": "**Main research results.** 1. An eight-stage preprocessing pipeline has been designed and formalised: canonical flip, fovea rotation, field-of-view crop with isotropic resize, FOV Mask as the fourth input channel, illumination correction, stochastic CLAHE, and dataset-specific augmentation and normalisation. 2. An experimental programme has been conducted, the results of which are set out in the provisions submitted for defence. 3. A modular architecture for a DR screening framework has been designed for resource-constrained conditions, and a working demonstrator has been created.\n\n**Main provisions submitted for defence:** 1. Fundus image preprocessing is a formalisable and experimentally verifiable component of the diagnostic model, not ancillary data preparation; this provision is methodological in nature. 2. The integrated configuration outperforms the baseline on the training corpus of 35,126 images, for both architectures, across all three components of the conjunctive criterion: weighted F1 by 6.54 and 6.55 percentage points, area under the curve by 0.032 and 0.036, and quadratic weighted kappa by 0.11; each interval excludes zero, comparisons remain valid after correction for multiplicity, and there is no interaction between the arm and the architecture. The arms also differ in initialisation, so the effect belongs to the configuration as a whole. 3. The contributions of individual stages are separable: cumulative ablation across eight levels increases weighted F1 from 0.7538 to 0.8193, monotonically and without a single inversion in any of the five folds; each of the seven transitions contributes between 0.0065 and 0.0143; the two photometric stages provide 41% of the increase; both parameters exhibit an internal optimum, confirmed on held-out data: clip factor 2.5 with a histogram threshold of 0.03 and a correction scale of 0.07 field-of-view diameters. 4. The distance to the training distribution decreases on each of the six external corpora – by 0.070–0.093 on the penultimate layer, with each interval excluding zero – while the transformation uses no statistics from the target corpus. 5. Competence transfers to corpora not involved in training: on the cross-corpus set, the generalisation coefficient is 0.898 versus 0.858, and weighted F1 is higher by 0.089; in five camera groupings, performance is higher in all cases, and variance is reduced by 2.4 and 3.1 times; on two external clinical corpora, the gap is 0.069 and 0.054 in weighted F1, which exceeds the minimal clinically important difference of 0.050. 6. Model attention overlaps more closely with expert-annotated lesions across all four annotated lesion types – by 0.099–0.129 at p ≤ 0.0148 – and the direction is preserved at each binarisation threshold; this provision is defended as attention consistency, not as pathology localisation. 7. Also submitted for defence are the coupled thermo-optical model of fundus tissue response to laser exposure as a theoretical contribution, and the modular architecture of the screening framework as a design contribution.",
+ "errors": [
+  "numbers missing: 8"
+ ],
+ "warnings": [
+  "term «8-этапный конвейер» not rendered as «eight-stage pipeline»",
+  "term «клинический корпус» not rendered as «clinical corpus»",
+  "term «внешний корпус» not rendered as «external corpus»",
+  "term «специфичность» not rendered as «specificity»",
+  "term «маска поля зрения» not rendered as «field-of-view mask»",
+  "term «система скрининга» not rendered as «screening system»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 100.1,
+  "finish": "stop",
+  "p_tok": 2785,
+  "c_tok": 720,
+  "pp_tps": 223,
+  "tg_tps": 7.7
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "file": "translation/work/eval/c0/council/src/bazarbekov-ru-kz.ru.md",
+ "genre": "council",
+ "out": "translation/work/eval/c0/council/bazarbekov-ru-kz.ru.kz.md",
+ "src": "ru",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 1,
+ "needs_review": [
+  1
+ ],
+ "warnings": 2,
+ "minutes": 12.7,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 440,
+   "errors": [
+    "numbers missing: 0.05"
+   ],
+   "warnings": [
+    "numbers added: 0,05"
+   ],
+   "attempts": 1,
+   "sec": 288.4,
+   "src_head": "1) Провести критический обзор и обобщение современных методов ИИ и машинного обу"
+  },
+  {
+   "chunk": 2,
+   "words": 283,
+   "errors": [],
+   "warnings": [
+    "term «трансформер» not rendered as «vision transformer»"
+   ],
+   "attempts": 1,
+   "sec": 188.7,
+   "src_head": "2) Разработано сенсорное устройство для регистрации кинематических параметров по"
+  }
+ ]
+}

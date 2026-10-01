@@ -1,0 +1,16 @@
+{
+ "out": "The third section describes the research materials and methods in detail. It presents the process of collecting, preprocessing, and accurately annotating a unique set of video data recorded in real-world usage scenarios. Particular attention is paid to the mathematical and structural design of the TCR-RoadNet innovative multi-task neural network architecture. The operation of the multi-scale convolutional backbone, the Context Refinement Module based on cross-scale transformer attention (TCR), and the three specialized Output arms is described in detail: the separate detection module, the classification refinement block, and the segmentation arm accounting for boundaries. The optimization strategy and multi-task loss functions (CIoU, Focal Loss, and a combination of BCE+Dice) are additionally described.\n\nThe total length of the dissertation is 104 pages, including 28 illustrations, 8 tables, and a list of references drawn from 154 sources.",
+ "errors": [],
+ "warnings": [
+  "term «трансформер» not rendered as «transformer model»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 33.1,
+  "finish": "stop",
+  "p_tok": 3555,
+  "c_tok": 184,
+  "pp_tps": 206,
+  "tg_tps": 6.8
+ }
+}

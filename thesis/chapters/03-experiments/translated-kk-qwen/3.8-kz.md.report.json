@@ -1,0 +1,61 @@
+{
+ "file": "chapters/03-experiments/drafts/3.8-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 5,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 398,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 199.7,
+   "src_head": "## 3.8 Statistical validation and comparative analysis\n\nThe individual tests and"
+  },
+  {
+   "chunk": 2,
+   "words": 446,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 235.2,
+   "src_head": "Correction for multiplicity was applied within the factorial, across its four ce"
+  },
+  {
+   "chunk": 3,
+   "words": 425,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 238.3,
+   "src_head": "**Table 3.14 – Published automated screening results, with the properties that d"
+  },
+  {
+   "chunk": 4,
+   "words": 408,
+   "errors": [],
+   "warnings": [
+    "numbers added: 0.9, 32"
+   ],
+   "attempts": 2,
+   "sec": 207.4,
+   "src_head": "That is the whole of what the juxtaposition supports. These figures were obtaine"
+  },
+  {
+   "chunk": 5,
+   "words": 344,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 169.2,
+   "src_head": "That statement is confined to the network, and the confinement is not a formalit"
+  }
+ ]
+}

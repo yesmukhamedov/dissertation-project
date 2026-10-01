@@ -1,0 +1,14 @@
+[
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «attention overlay» not rendered as «назар қабаттамасы»",
+   "term «expert annotation» not rendered as «сарапшы аннотациясы»"
+  ],
+  "sec": 136.3
+ }
+]

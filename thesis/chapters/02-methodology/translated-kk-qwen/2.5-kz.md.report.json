@@ -1,0 +1,41 @@
+{
+ "file": "chapters/02-methodology/drafts/2.5-draft.md",
+ "genre": "thesis",
+ "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 421,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 216.4,
+   "src_head": "## 2.5 Explainability and quality metrics\n\nA classifier outputs a grade, but a s"
+  },
+  {
+   "chunk": 2,
+   "words": 414,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 208.6,
+   "src_head": "The second is method and layer dependence. The map depends on which layer's acti"
+  },
+  {
+   "chunk": 3,
+   "words": 335,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 174.8,
+   "src_head": "There is also a methodological reason. Because the two arms differ along more th"
+  }
+ ]
+}

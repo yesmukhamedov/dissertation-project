@@ -1,0 +1,14 @@
+chapters/03-experiments/translated-kk-qwen/3.3-kz.md chunk 3: applied, 0 err, 0 warn, 159.8s
+chapters/03-experiments/translated-kk-qwen/3.3-kz.md chunk 4: applied, 0 err, 1 warn, 165.3s
+chapters/03-experiments/translated-kk-qwen/3.3-kz.md chunk 5: applied, 0 err, 0 warn, 128.0s
+chapters/03-experiments/translated-kk-qwen/3.4-kz.md chunk 2: applied, 0 err, 0 warn, 191.9s
+chapters/03-experiments/translated-kk-qwen/3.4-kz.md chunk 3: applied, 1 err, 1 warn, 129.8s | forbidden «корпусар»: plural of корпус is «корпустар»
+chapters/03-experiments/translated-kk-qwen/3.5-kz.md chunk 1: applied, 0 err, 0 warn, 186.9s
+chapters/03-experiments/translated-kk-qwen/3.5-kz.md chunk 3: applied, 0 err, 0 warn, 150.9s
+chapters/03-experiments/translated-kk-qwen/3.5-kz.md chunk 5: applied, 0 err, 1 warn, 130.9s
+chapters/03-experiments/translated-kk-qwen/3.6-kz.md chunk 1: applied, 0 err, 1 warn, 160.6s
+chapters/03-experiments/translated-kk-qwen/3.6-kz.md chunk 3: applied, 0 err, 1 warn, 164.6s
+chapters/03-experiments/translated-kk-qwen/3.6-kz.md chunk 4: applied, 0 err, 0 warn, 99.7s
+chapters/03-experiments/translated-kk-qwen/3.7-kz.md chunk 2: applied, 0 err, 1 warn, 131.0s
+chapters/03-experiments/translated-kk-qwen/3.8-kz.md chunk 2: applied, 0 err, 0 warn, 170.1s
+chapters/03-experiments/translated-kk-qwen/3.8-kz.md chunk 4: applied, 0 err, 2 warn, 162.8s

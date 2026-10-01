@@ -12,7 +12,7 @@ terms: [screening_system, inference_service, grad_cam, fov_mask]
 
 ## На слайде
 
-Figures: left — system diagram: doctor ↔ browser client ↔ inference service (𝒫 → CNN → Grad-CAM) (`img/system_en.png`); right — two screenshots of the browser client: (a) grade, class probabilities and Grad-CAM; (b) preprocessing stages (`img/ui_1_en.png`, `img/ui_2_en.png` — captured from the live demo 2026-09-29)
+Figures: left — system diagram: doctor ↔ browser client ↔ inference service (𝒫 → CNN → Grad-CAM) (`img/system_en.png`); right — two screenshots of the browser client: (a) grade, class probabilities and Grad-CAM; (b) preprocessing stages (`img/ui_1_g4_en.png`, `img/ui_2_g4_en.png` — captured from the live demo 2026-09-30, EyePACS patient 294: both eyes DR4)
 
 1. **Inference service + browser client**, 8 modules; the same pipeline code as in the experiments
 2. **Shows every step:** preprocessing stages, grade, Grad-CAM attention map; the clinician confirms or corrects the decision

@@ -1,0 +1,18 @@
+{
+ "out": "# АННОТАЦИЯ",
+ "errors": [
+  "names/codes lost: ABSTRACT"
+ ],
+ "warnings": [
+  "heading numbers differ"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 10.8,
+  "finish": "stop",
+  "p_tok": 1766,
+  "c_tok": 7,
+  "pp_tps": 184,
+  "tg_tps": 6.5
+ }
+}

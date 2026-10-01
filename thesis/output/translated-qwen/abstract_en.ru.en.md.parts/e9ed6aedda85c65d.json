@@ -1,0 +1,20 @@
+{
+ "out": "**Publications.** The main results of the dissertation are published in 5 scientific works: 1 article in a journal indexed in Scopus and Web of Science (*Eastern-European Journal of Enterprise Technologies*, Q3, CiteScore 2025 = 2.5, 42nd percentile in the category Computer Science Applications); 1 paper in the proceedings of an international conference indexed in Scopus (*Procedia Computer Science*); and 3 articles in journals recommended by the Committee for Quality Assurance in the Field of Science and Higher Education of the Republic of Kazakhstan. Full details are provided in the list of published works on the topic of the dissertation. In addition, the software complex implementing the method has been entered into the State Register of Rights to Objects Protected by Copyright of the Republic of Kazakhstan (certificate No. 78109 dated 4 September 2026); it is reproduced in Appendix F.\n\n**Main content of the work.** In the Introduction, the relevance of the topic is justified, and the aim, objectives, object, subject, novelty, provisions submitted for defense, significance, reliability, and validation are formulated. Chapter 1 establishes the clinical and technical context of screening and formulates the research problem; Chapter 2 specifies the methodology – the Pipeline, classification architectures and their adaptation to four-channel input, pretraining strategy, explainability formalism, and the pre-registered evaluation protocol; Chapter 3 presents the experimental program – factor comparison, stage ablation, measurement of distance between domains, transfer between corpora, devices, and clinical scenarios, attention consistency, and data scarcity mode; Chapter 4 describes the screening system, distinguishing between what exists and what remains at the specification level. In the Conclusion, the results and directions for further work are summarised.\n\n**Personal contribution of the author.** The main results were obtained by the author personally: reinterpreting preprocessing as an integral component of the diagnostic model; designing and formally specifying the eight-stage pipeline; the measure of overlap between attention and lesions (Attention–Lesion Overlap); the experimental plan and the system of statistical validation; the architecture of the screening system. All five publications are joint; in each of them, the author contributed to the part on which the present dissertation relies.\n\n**Structure and volume of the work.** The dissertation consists of an introductory part, an Introduction, four chapters, a Conclusion, a list of references, and six appendices. The dissertation is written on 113 pages and contains 19 tables and 16 figures. The list of references includes 102 sources. The specified volumes refer to the dissertation excluding the appendices.",
+ "errors": [
+  "numbers missing: 8"
+ ],
+ "warnings": [
+  "term «полнота» not rendered as «Recall»",
+  "term «качество» not rendered as «performance»",
+  "term «система» not rendered as «framework»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 75.8,
+  "finish": "stop",
+  "p_tok": 2290,
+  "c_tok": 545,
+  "pp_tps": 214,
+  "tg_tps": 7.7
+ }
+}

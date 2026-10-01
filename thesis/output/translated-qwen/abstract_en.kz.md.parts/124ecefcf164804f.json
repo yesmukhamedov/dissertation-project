@@ -1,0 +1,30 @@
+{
+ "out": "# АҢДАТПА",
+ "errors": [
+  "names/codes lost: ABSTRACT"
+ ],
+ "warnings": [],
+ "attempts": 1,
+ "info": {
+  "sec": 5.7,
+  "finish": "stop",
+  "p_tok": 3042,
+  "c_tok": 7,
+  "pp_tps": 186,
+  "tg_tps": 4.7
+ },
+ "history": [
+  {
+   "out": "# РЕФЕРАТ",
+   "errors": [
+    "names/codes lost: ABSTRACT"
+   ],
+   "warnings": []
+  }
+ ],
+ "fixed_by": [
+  [
+   "The heading of a PhD abstract in Kazakh is «АҢДАТПА», not «РЕФЕРАТ» - write «# АҢДАТПА»"
+  ]
+ ]
+}

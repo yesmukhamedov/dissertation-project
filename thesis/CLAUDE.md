@@ -97,7 +97,7 @@ INVARIANTS.md is the supreme authority. If any document conflicts with INVARIANT
 
 **The volume was restructured from six chapters to four** and rewritten against the norms measured
 across the 16 dissertations this council has published (`council/en/10-dissertation/peer-norms.md`).
-Main text 31,496 words, 24 second-level subsections, 19 tables, 16 figures, six appendices, 102
+Main text 30,931 words (2026-09-30), 24 second-level subsections, 19 tables, 16 figures, six appendices, 107
 sources. The gate is `scripts/conformance.py`, and a chapter is not finished until it passes.
 Both editions pass in full: English 17 of 17, Kazakh — the defended edition — 20 of 20. The Kazakh
 em-dash failure this file used to record is closed: the copula is written with the short dash the
@@ -147,6 +147,11 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
   overview roughly doubled, against a corpus median of 14.1 per cent of the introduction. The
   additions were paid for inside the introduction, out of the four rubrics measured furthest above
   the corpus — novelty, provisions, framework, significance — so the volume did not grow.
+  **Re-aligned to the defence slides on 2026-09-30** (governance v7.3.1, candidate's ruling that the volume follows
+  the council's template): aim, objectives, object, subject, novelty and **four provisions without figures** are
+  worded as on slides 03–04 (the 2026-08-22 "every provision states its effect size" rule is superseded; the
+  figures live in chapter 3, the conclusion and the abstracts' main results), and relevance carries the slide-02
+  national figures. The five new sources number first, so the candidate's publications are now `[6]`–`[10]`.
 - 01-review → 05-conclusion: written in the order 3 → 2 → 1 → 4 → introduction → conclusion, so the
   chapter carrying the results fixed the register and the table budget for the rest.
 - 06-appendices: A source code · B supplementary results · C system architecture **and the working
@@ -164,8 +169,8 @@ in `PROJECT_MEMORY/gost-export-toolchain.md`.
   `[A-Za-z]` only and a Cyrillic letter in a marker would print raw.
 
 **Two things bind anything written from here.** The gate ceiling is **31,500** words of main text
-(raised from 31,000 by the candidate on 2026-08-21) and the English edition stands at **31,496** —
-**4 words of headroom**, so anything entering the body has to displace very nearly itself. The
+(raised from 31,000 by the candidate on 2026-08-21) and the English edition stands at **30,931** (2026-09-30) —
+**569 words of headroom**, freed when the provisions lost their figures; spend it deliberately. The
 certificate line added to the Introduction on 2026-09-06 cost +1 word net: it was paid for by
 merging three restatements (the novelty opener, the significance opener and the closing sentence of
 the personal-contribution paragraph), which is the only kind of room left.

@@ -1,0 +1,42 @@
+{
+ "file": "translation/work/eval/v3/council-valid/src/olzhayev-ru-kz.ru.md",
+ "genre": "council",
+ "out": "translation/work/eval/v3/council-valid/olzhayev-ru-kz.ru.kz.md",
+ "src": "ru",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 1,
+ "needs_review": [
+  1
+ ],
+ "warnings": 4,
+ "minutes": 12.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 401,
+   "errors": [
+    "list markers differ: [] vs ['•', '•', '•', '•', '•', '•']"
+   ],
+   "warnings": [
+    "term «выборка» not rendered as «іріктеме»",
+    "term «качество» not rendered as «сапа»"
+   ],
+   "attempts": 1,
+   "sec": 266.4,
+   "src_head": "Целью диссертационного исследования является разработка интеллектуальной системы"
+  },
+  {
+   "chunk": 2,
+   "words": 337,
+   "errors": [],
+   "warnings": [
+    "authors not found in Latin: Focal Loss",
+    "term «задачи исследования» not rendered as «зерттеудің міндеттері»"
+   ],
+   "attempts": 1,
+   "sec": 213.8,
+   "src_head": "Основные результаты работы были представлены и обсуждены на семинарах кафедры «М"
+  }
+ ]
+}

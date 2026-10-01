@@ -6,6 +6,25 @@ The versioning scheme is defined in [VERSIONING_POLICY.md](VERSIONING_POLICY.md)
 
 ---
 
+## v7.3.1 — 2026-09-30
+
+**The Introduction, section 1.1 and the three abstracts follow defence slides 02–04 (PATCH — no binding created, reversed or reinterpreted).**
+
+The candidate approved the Kazakh slide texts and ruled that the volume adapts to the council's template: four provisions
+without figures, novelty as one paragraph, aim / objectives / object / subject as on slide 03, and relevance with national
+figures and sources. Before transfer two slide phrasings were brought inside the invariants (candidate's decision):
+provision 1 no longer claims independence from the camera (**NC-16**) but a reduction of differences, and "regardless of
+the network architecture" became "on both architectures studied" (**CFC-2.1, NC-17**). The figures the six old provisions
+carried stay in the volume (chapter 3, conclusion) and in the abstracts' main results. Five sources added (Teo et al. 2021;
+Semenova et al. 2026; MoH RK 2024, 2026; BNS 2026); the section-1.1 figures drawn from the candidate's own 2025 article
+(1,200 ophthalmologists, 40 % rural, 70 % limited access) are withdrawn as superseded or not independently sourced.
+Detail: `VERSION_SYNC.md` v7.3.1.
+
+**Not done here.** The GOST export and the page counts the Introduction declares (102 EN / 113 KZ) must be re-measured
+after reassembly; `conformance.py` must be rerun on the new assembly.
+
+---
+
 ## v7.3.0 — 2026-09-28
 
 **OD-3 Stage 5 admits the polar CLAHE geometry and names it the default (MINOR — one operational definition amended, nothing reversed).**

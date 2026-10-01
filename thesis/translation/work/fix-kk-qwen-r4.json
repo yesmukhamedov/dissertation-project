@@ -1,0 +1,635 @@
+[
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Контраст кезеңінің клип-лимиті гистограммалық және плиткалық шектеулердің минимумы ретінде айқындалып, оқыту кезеңінде стохастикалық қолданылады, сондықтан бұл кезең бір мезгілде жақсарту, әрі регуляризация қызметін атқарады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Нормалау көз статистикаларын қолданады және нысанада ешқашан қайта есептелмейді, сондықтан жинақталу – нысанаға бейімделген рәсімнің емес, алдын ала өңдеудің қасиеті.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Сыртқы орнықтылықты бағалауға кең қолданылатын өлшемдер отбасы тармақтың сыртқы өнімділігін оның өз домен ішіндегі өнімділігіне қатысты нормалайды, сондықтан ол қолданылатын жердің бәрінде конфигурацияның домен ішіндегі күші үшін оны жазалайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Бұл тұжырым конфигурацияға қатысты: тармақтар алдын ала өңдеумен қатар инициализацияда да ерекшеленеді, сондықтан әсердің ешқандай бөлігі тек алдын ала өңдеуге ғана жатпайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Бөлу пациент деңгейінде әрі ауырлық дәрежелері бойынша стратификацияланған, сондықтан модель бұрын көрген пациентті тану үшін бағалана алмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Осы негіздердің ең күштісі кестеде көрінбейді, сондықтан ол айтылады: әрбір гипотезаның қабылдау критерийі оны тексерген экспериментке дейін бекітілген, ал нәтиже белгілі болғаннан кейін жазылған критерий әрқашан орындалуы мүмкін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Көптікке түзету салыстырулар жоспарланған сол жалғыз экспериментпен шектелген, сондықтан дәлелдер базасының бүкілі бойынша ешқандай қателік деңгейі бақыланбайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Бірқатар бағалау бір рет сәйкестендірілген фолдтың модельдеріне сүйенеді, сондықтан олардың аралықтары белгілі бір бағытта толық белгісіздікті төмендетеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 6,
+  "issues": [
+   "«Жалпылау коэффициенті де, камера топтары бойынша ұстап қалу шегі де тармақтарды ажыратпайды, сондықтан трансфер дәлелдері салыстыруда және таралудың қысқаруында жатыр, ал екінші сыртқы клиникалық корпуста сол айырмадан асатын қор төрт мыңнан тұрады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Көз түбі фотосуреті микротамырлық көріністерді бейнелейді, сондықтан стандартты клиникалық шкала бойынша бағаланған модель ең алдымен нейрологиялық болуы мүмкін әрі әлі көрінбейтін процестің ең бастапқы патологиясының тамырлық қолтаңбасын міндетті түрде үйренеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Ол эксперименттік немесе клиникалық өлшеулерге қарсы валидацияланбаған, сондықтан ол клиникалық деңгейдегі ешқандай тұжырымды қолдамайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Көз түбі фотосуреті кішкентай шәкіл арқылы қисық, жартылай шағылысатын ішкі бетті жарықтандырады, сондықтан жарықтандыру сирек кезде біркелкі болады: виньетка, орталық шағылысу және көлеңкелеу градиенттері патологиямен байланысы жоқ үлкен төмен жиілікті өзгерістерді тудырады, бұл әлсіз жарықтандыру » - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Оның ерекше белгісі – оның себептерінің бір бөлігі құралда емес, науқаста жатқандығы, сондықтан оны жақсырақ камера инженериясымен жою мүмкін емес және ол кез келген нақты скрининг популяциясында сақтала береді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Әрқайсысы камера моделінің тұрақты қасиеті, сондықтан бірдей ретинаны суреттейтін екі камера бір-бірімен тұрақты, болжамды жолдармен ерекшеленетін кескіндер береді, ал модель үйренетін көрініс статистикасы оның оқыту кескіндерін өндірген құрылғымен бөліктік байланыста болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Белгіленген торқабық деректері заманауи архитектуралардың өлшеміне қарағанда тапшы, сондықтан жүйелердің дегенде барлығы басқа жерден, басым түрде табиғи кескіндерден оқытылған салмақтардан бастайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«(2017) градиентке негізделген түрі қайта оқытусыз негізінен кез келген конволюциялық архитектураға қолданылады, сондықтан ол әдепкі тәсілге айналды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Дизайнның адалдығы үшін оның екі тармағы бір мезетте екі ось бойынша ерекшеленетінін тіркеу өте маңызды, сондықтан байқалған әсер интеграцияланған конфигурацияның бірлескен үлесі болып табылады және оны алдын ала өңдеуге бөлек жатқызуға болмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Ол конволюциялық нейрондық желіге қолжетімді белгілер кеңістігін анықтайды, сондықтан желінің не үйренетінін бірлесіп анықтайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Аугментациядан басқа барлық кезеңдер оқыту және инференс кезінде қолданылады, сондықтан өндірістік түрлендіру детерминацияланған.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Контрастты күшейту қабылдаушылық түс кеңістігінің жарықтық арнасында жұмыс істейді, сондықтан түс ауытқусыз контраст өседі; оқу кезінде стохастикалық, ал инференс кезінде детерминацияланған түрде қолданылады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Оның айналу шашырауы әр кескінге бейімделетін сипатта және айналу кезеңінің локализациялау белгісіздігінен шығарылады, сондықтан бағдары сенімді түрде нормаланған кескін тарырақ аралықта айналдырылады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«[FIG-2.2: Диск-фокеа осіндегі айналу нормалауы – defense/presentation/assets/preprocessing/12_od_fovea_rotation/stage1_od_fovea_rotation.png]\n\nФотометриялық отбасы жарықтылықты, контрастты, қанықтылықты және түсті бұрмалайды; әрқайсысы арнайы тар аралықта және бір-бірінен тәуелсіз қолданылады, сонды» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Білатеральды сүзгілеу (Tomasi пен Manduchi, 1998) орташа мәнді фотометриялық ұқсастыққа қоса, кеңістіктік жақындықпен де салмақтайды, сондықтан қарқындылық шекарасы арқылы пикселдер бір-біріне араласпайды; жергілікті емес орташа мәндер (Buades т.б., 2011) ұқсастықты көрші аймақтан кескін бойындағы п» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Екеуі де медициналық бейнелеу бағалаусыз, тек шығару және сапалық мысалдар арқылы ұсынылады, сондықтан олар келесі кезеңдегі тиімділік үшін емес, тек принцип үшін сілтеме жасалады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Конвейер қызмет ететін мақсат, яғни құрылғылар мен алу жағдайлары арасындағы ауытқуды азайту, сонымен қатар диагностикалық маңызды белгілерді сақтау, сондықтан мұнда дәлелденген нәтиже емес, жобалау мақсаты ретінде тұжырымдалады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Адаптивті теңестіру жергілікті тапшылықты бөлінудің әр тайлы үшін жеке сәйкестендіру есептеу арқылы жөндейді, сондықтан белгілі бір нүктедегі түрлендіру сол нүктенің статистикасын көрсетеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Тік сәйкестендіру кішігірім айырмашылықтарды бөлінбей күшейтеді, сондықтан басқа да ерекшеліксіз аймақтағы сенсорлық және квантталу шуы кез келген сигналмен бірге күшейтіледі.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Сол деректе баспаға түскен сезімталдық анықтамасы стандартты анықтаманыңнан ауытқиды, сондықтан оның сезімталдық мәндері салыстырмалы шама ретінде алға алынбайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Ал оның негізгі көрсеткіштері басқа тапсырмада және шағын толықтырылған корпусты алынған, сондықтан олар қазіргі контекстке тасымалданбайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Vision transformer қолданса, архитектура мен инициализация бір мезетте өзгерер еді, ал сол конволюциялық дизайнның домен ішіндегі инициализациясы тек инициализацияны өзгертеді, сондықтан контраст шатаспайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Сол бас екі backbone-та да және екі тармақта да сол алдын ала оқыту басын ауыстырады, сондықтан тек зерттелетін екі ось құбылады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Ол кішігірім батчаларға төзімді, сондықтан бір құрылғының есептеу бюджетіне сәйкес келеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Оның оқитын белгілері тек қақпа ғана оқиды, алдын ала оқыту мақсаты ешқашан оқимайды, сондықтан ол pretext тапсырмасына ешқандай ақпарат ағуын енгізбейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Бұл жұмыс домен ішіндегі инициализацияның дәстүрлісінен жоғары нәтиже көрсететінін дәлелдемейді, сондықтан шек дәлелге сәйкес қойылды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«(2023) жариялаған көз қарнының негізгі моделі – vision transformer, сондықтан осы модельден инициализациялау базалық тармаққа қатысты архитектуралық және инициализациялық өзгерістерді бір мезгілде енгізеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Біріншісі – ажыратымдылық: көрінетін шекаралар жуық, сондықтан ең кіші шешуші зақымданулар дәл шектелмей, дұрыс назар аударылуы мүмкін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Симметриялы өлшем сол асып кетуді қате деп қабылдайды, сондықтан назар зақымданудан қатаң болған кезде (ол бұл тұрғыда табиғи түрде қатаң) шынайы сәйкестікті жүйелі түрде төмен бағалайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Оның бұл жұмыста іске асырылуы, демек есептеу көзі жоқ, сондықтан ол қолжетімсіз ретінде хабарланбастан, осы негізде есептен шығарылады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Сандық түрде анықталмаған белгісіздік осы типтегі құрама өлшемдерді қолдауға қабілетті емес, сондықтан хаттама өлшемдердің бөлімдер бойынша қалай есептелетінін және олардың белгісіздігі қалай сандық түрде анықталатынын көрсетеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Пациент деңгейіндегі топтастыру сол жолды жоққа шығарады, ал бұл өңдеудің тек оқытуға ғана қатысты мәртебесімен үйлеседі, сондықтан ешқандай өңделген сурет тест бөлігіне кірмейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Әрбір негізгі өлшем бес фолд бойынша орташа мәні мен стандартты ауытқуы ретінде беріледі, сондықтан фолдтар арасындағы өзгергіштік орталық бағаның жанында көрінеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Сол эксперимент бірнеше бір мезгілді салыстырулар жасайтындықтан, онда көптеген салыстыруларға түзету қолданылады, сондықтан салыстырулар саны маңыздылықты жасанды түрде туғызбауы үшін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Осыларды бекіту орындаулар арасындағы детерминизмсіздікті шатастырушы фактор ретінде жоққа шығарады, сондықтан конфигурациялар арасындағы өлшенген айырма конфигурацияға тән, тұқымның өзгеруіне емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Төрт конфигурацияның барлығында басы, дәлдеп баптау кестесі және мақсатты функция бірдей ұсталды, сондықтан зерттелетін екі ось ғана өзгерді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Тармақтар алдын ала өңдеуден гөрі инициализацияда да ерекшеленеді, сондықтан тәуелсіз айнымалы құрамдас болып табылады және ешқандай нәтижені тек алдын ала өңдеуге ғана жатқызуға болмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Ол көрінетін ретинопатия жоқ дәрежесінде шоғырланады және тікелей төмендейді, сондықтан ауыр және пролиферативті дәрежелер салыстырмалы түрде аз кескіндермен көрсетіледі.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Сілтеуге болатын ось қолданылған жағдайда, оның бес дәрежеге сәйкестігі нақты көрсетіледі, сондықтан корпусар арасындағы салыстыру белгілердің теңдігін алдын ала болжамай, өз таксономиялық контекстін алып жүреді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Әр эксперимент пациент деңгейінде стратификацияланған бөлумен бес фолдты кросс-валидацияны пайдаланады, сондықтан бірде-бір пациенттің кескіндері фолдтың оқыту және тест бөліктерінің екеуінде де болмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Дәреже бойынша стратификация фолдтар арасындағы класс үлестірімін сақтайды, сондықтан сирек кездесетін ауыр дәрежелер бір жерге шоғырланбастан, әр тест бөлігінде пайда болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Протокол өсу (аугментация) тек оқыту кезеңінде қолданылатын талаппен үйлесімді, сондықтан өңделген кескіндер тест бөлігіне түспейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Бағдарламалық стек бекітілген, конвейер мен оқыту коды А қосымшасында қайта жаңғыртылған, сондықтан әр кескінге қолданылған түрлендіру жай ғана сипатталған емес, қалпына келтірілуі мүмкін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Факторлық форма бұл тексеруді бір эксперимент ішінде мүмкін етеді: екі тармақ қарама-қарсылығы тек тірек желіде ғана ерекшеленеді, сондықтан қайталану болжам емес, өлшенеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Тармақ пен негізгі архитектурды факторлар ретінде қарастыратын аралас әсерлер моделі олардың арасындағы өзара әрекеттесуді анықтамады (p = 0.31), сондықтан екі архитектурда біртекті конвейер әсері жоққа шығарылмады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Квадраттық салмақтау тағайындалған және нақты дәреже арасындағы қашықтықтың квадратына пропорционал қате дәрежелеуді жазалайды, сондықтан екі қадамдық қате көршілес қатеден төрт есе, ал төрт қадамдық қате он алты есе қымбат.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Тұрақты қисық бойымен жұмыс нүктесін жылжыту міндетті түрде біреуін екіншісіне айырбастауды талап етеді, сондықтан бір мезгілдегі ұтыс тек қисықтың өзі жылжыған жағдайда ғана мүмкін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Екі болжамдық мән де өсті, сондықтан жіберіп алған ауру мен қажетсіз жолдама бір мезгілде азайды, айырбасталмады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Интеграцияланған тармақ алдын ала өңдеу мен бастапқы инициализация өлшемдерінің екеуі бойынша базалық конфигурациядан ерекшеленеді, сондықтан дәлелденген – интеграцияланған конфигурацияның біртұтас жүйе ретіндегі басымдылығы; айырмашылықтың ешқандай бөлігі мұнда алдын ала өңдеуге бөлек тиесілі етілм» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Оның екі тармағы бір мезгілде алдын ала өңдеу және инициализация жағынан айырмашылық көрсетті, сондықтан ол өлген нәрсе интеграцияланған конфигурацияның тұтастай үлесіне жатады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Әр кезең өз енгізілген деңгейде фолдаралық таралуға қарағанда көбірек үлес қосты, жеті реттен жеті рет, сондықтан бұл дәлелдерге сүйенсек, ешбір кезең артық емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Кезеңдердің реті бекітілген, сондықтан әрбір прирост ретке тәуелді және басқа рет оларды өзгермеген соңғы нүктеде де қайта бөлістіруі мүмкін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Маска оқшауландырылмаған, себебі ол төртінші арна ретінде енеді және оны өшіру үшін үш арналы нұсқа қажет, сондықтан кроп пен маска өз деңгейінде бірлесіп үлес қосады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Клип-фактор бойынша ұпай 2.5-те максимумға жетіп, одан кейін тұрақты түрде төмендейді, сондықтан қолда бар ең күшті теңестіру ең жоғары өнімділік көрсетпейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Flat-field түзетуі оның жарықтандыру бағасының енімен басқарылады, ол көру өрісінің диаметрінің үлесі ретінде өрнектеледі, сондықтан түзету кадрдың үлестіру ажыратымдылығына емес, оның геометриясына сәйкес масштабталады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Профиль қатаң түрде мономодальды, оның максимумы 0.07-де орналасқан, төменде 0.7662-ге, ал жоғарыда 0.7577-ге дейін төмендейді, сондықтан бұл оптимум да ішкі нүкте болып табылады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Әділ аралық ішіндегі нашар таңдау конвейерді мүлдем елемегенмен бірдей шығынға әкеледі, сондықтан параметрді дәстүр бойынша белгілеу мүмкін емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Құрылымдық ұқсастық монотон түрде төмендегенде, ал балл монотон түрде өсті, сондықтан бастапқы кадрдан қашықтық мұнда деградацияның бір түрі емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Метрикаларды айтарлықтай қозғалтатын екі деңгей – ең үлкен екі үлес қосушы, сондықтан метрикалар механизмнің бас құрамдас бөлігін белгілейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Екі параметр де EyePACS-та таңдалды, сондықтан басқа деректерде пайдалану үшін мәндерді қайта қолданбастан, сканерлеулерді қайталау қажет болар еді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Тексерілген аралықтардан тыс ештеңе айтылмайды, әрі әр тор нүктесі – қаталар бойынша таралуы жоқ жалғыз бағалау, сондықтан беттің ұсақ құрылымын тым терең оқуға болмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Қашықтық оқытуға қатыспаған үш топтың барлығын қамтитын алты нысаналы корпус бойынша өлшенді, сондықтан популяция, протокол және камера айырмашылықтары бірге қарастырылды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Интенсивтілік гистограммалары арасындағы ажырау екінші ретті болып табылады, себебі жарықтандыруды түзету және контрастты теңестіру құрайтын конвейерден гистограммалардың жақындауы күтіледі, сондықтан пиксель деңгейіндегі азаю кезеңдердің не істейтінін қайта айтқандай болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Қашықтық нормаланбаған және кез келген бірліктерде болғандықтан, нөлден өзгеше ең кіші айырмашылықты түсіндіруге болмайды, сондықтан әр корпус бойынша тест таза бағытты маңыздылыққа дейін қысқарады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Алдыңғы соңғы қабаттың белгілері оқытылған модельге тиесілі, сондықтан әр қашықтық өз тармағы үйренген көріністе өлшенеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Оның орнына ол бастапқы статистикаларды пайдаланады, сондықтан кез келген азаю бастапқы кезеңдердің әсерінен болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Конвейер өз бекітілген параметрлерімен қолданылды, ал нормалау кезеңі бастапқы домен статистикаларын пайдаланды, сондықтан кез келген нысаналы таралу қасиеті түрлендіруге кірмеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Қатынас әр тармақтың өз домен ішіндегі балына қатысты есептеледі, сондықтан бастапқы балды жақсарту мақсатты балдың жетуі тиіс деңгейді көтереді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Модель суреттеу жағдайлары оның оқытылған жағдайларынан айырмашылық танытса да, жағдайларды ауырлық шкаласында шамамен тиісті орнына қоя береді, сондықтан келісім өлшемі тасымалдау кезінде 0.7887-ден 0.8874-ке дейін өседі.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Екі болжамдық мән де өсті, сондықтан жақсару кейіпкерлерді шартсыз көбірек жолдау арқылы сатып алынған жоқ.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Корпустар агрегацияланбайды, сондықтан кез келген бірінде кері бағыт болса, екіншісіне қарамастан шешім теріс болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Осы диссертацияда деградацияның азаюы туралы ешқандай тұжырым жасалмаған, ал осы пропорциялар дәл осылай есептелген, сондықтан мұндай оқылым мүмкін болмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Интеграцияланған тармақ дәл оның домен ішіндегі сәттілігі үшін жазаланады: домен ішіндегі әрбір жақсарту сыртқы нәтиженің асуы тиіс деңгейді көтереді, сондықтан тармақ барлық корпуста жақсарып, қайта да жеңіліске ұшырауы мүмкін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Нәтижелерден бұрын қабаттасу туралы мәлімдеме жасалуы тиіс: топтардың екеуі – жақында хабарланған екі клиникалық корпус, сондықтан олардың мәндері мен аралықтары құрылымы бойынша сол жолдардағы мәндермен сәйкес келеді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Бес топтың бәрі екі тармақ астында да осы шектен асады, сондықтан өлшем қайтадан оларды ажыратпайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Қатынас тармақтың өз домен ішіндегі өнімділігіне бөлінеді, ал интеграцияланған тармақтың бөлімі үлкенірек, сондықтан домен ішінде жақсаратын тармақ қатынасын сақтау үшін нысаналы доменде пропорционалды түрде одан да көп жақсаруы керек.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Әрқайсысы кросс-валидацияның бір қаттының модельдерін пайдаланды, сондықтан қаттар арасындағы дисперсия қолжетімді емес, ал аралықтар сәйкестендірілген модельдегі емес, нысаналы корпус ішіндегі таңдау ауытқуын сипаттайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Бес аппараттық топтың екеуі тәуелсіз дәлел бермейді, сондықтан әртүрлі баптаулардың тиімді саны бестен кіші.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Екі тармақ та әрбір кескін үшін карта береді, сондықтан салыстыру әр кескін ішінде жүргізіледі және кескіндердің қиындық деңгейі арасындағы айырмашылықтар ескерілмейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Табалдырық бақылауы салыстыру ақпаратты үлгіге сүйенетінін растайды: 54 кескіннің 6-сында екі тармақта да үйлесім нөл болды, сондықтан 48 жұп ақпарат тасиды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Осы тірек астында екі тармақтың да құзыреті кең мағынада салыстырмалы түрде ұқсас болды, салмақталған F1 көрсеткіші 0.7545 және 0.7766 құрады, сондықтан назар айырмашылығы жұмыс істейтін модель мен істен шыққан модель арасындағы салыстыру емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Назар карталары бұрын оқытылған және бағаланған модельді визуализациялайды, сондықтан салыстыру декоративті деп қарастырылуы мүмкін, жіктеу нәтижелері орнатқанның бәрін ештеңе қоспай.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Екі арна бірдей модельдерде өлшенбеді: бұл бағалау басқа бекетті, бір қатты және өзіндік оқыту конфигурациясын қолданды, сондықтан оның жіктеу қоры мен факторлықтың қоры салыстырылмайды, олар арасында салыстыру жасалмады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Барлық өлшеулер бір орталықтағы бір камерамен түсірілген 54 суретте жүргізілді, олардың 26-сында жұмсақ экссудаттар бар, сондықтан кез келген жеке тип үшін шамасы дәл бағаланбаған.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Сол қабаттамалар жасалмаған, сондықтан гипотеза тек сандық жартысы бойынша, бір аннотацияланған ашық корпуста қолдау табады, ал оның сапалық жартысы мүлдем бағаланбаған.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«IDRiD көлемі EyePACS-ке шамамен жетінші бөлігіне тең, сондықтан баптау режимі нақты дерек тапшылығын білдіреді, мол деректердің іріктелген жуықтамасы емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Жоғарыда хабарланған ажырату жұпталған талдаудан келеді, ол тармақтарды бірдей кескіндерде фолдтан фолдқа салыстырады, сондықтан фолдтар арасындағы және кескіндер арасындағы дисперсияны алып тастайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Ол ведомстволық келісім бойынша ұсталады және ашық емес, сондықтан хабарланғандар арасында бұл экспериментті сыртқы тарап тәуелсіз түрде қайталай алмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Ол бес пациент деңгейіндегі фолдты ұсынады, сондықтан фолд таралуы мен аралас әсерлер моделі қолжетімді; инстанс бойынша қайта үлгілеу бағалау үлгілеуін шешеді; әр фолд ішіндегі ортақ бөлініс бірдей суреттерде жұптық тесттерді қолдайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Әрбір сыртқы бағалау тармаққа бір бапталған модельді қолданды, сондықтан оның аралықтары бағалау корпусының үлгілеуін және басқа ештеңені сипаттайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Бұл қорғалуға тұрарлық: гипотезалар алдын ала әртүрлі критерийлермен және әртүрлі корпустарда белгіленген, сондықтан олар бойынша жалпы қателік деңгейінің нақты сипаттамасы болмаған болар еді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Оның салдары сын емес, практикалық: олардың нәтижелерін бұл тарау өзіндік нәтижелерін ыдыратқандай ыдыратуға болмайды, сондықтан ақырғы нүктелер үйлескен күннің өзінде салыстыруды бақыланатын етіп жасау мүмкін болмас еді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Әрбір шекара оны тудырған бөлімде бекітілді және мұнда қайта дәлелдеусіз берілді, сондықтан оқырман осы диссертациядағы кез келген тұжырымның олардан аспайтынын тексере алады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Факторлық тәжірибеден басқа барлық бағалауларда әр тармақ үшін бір ғана оқытылған модель қолданылды, сондықтан осы интервалдар жалпы белгісіздіктен тарырақ.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Көптік үшін түзету бір экспериментке ғана қатысты және жеті гипотезаны қамтымайды, сондықтан дәлелдер базасының бәрі бойынша қателік деңгейі бақыланбады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Жеке клиникалық корпус қайта таратылмайды, сондықтан оған тәуелді нәтижелер тәуелсіз түрде қайталанбайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Әрбір түйін модульге сәйкес келеді, сондықтан оқырман архитектурда көретін шекара жұмыс істеп тұрған жүйенің шекарасы болып табылады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Клиент – статикалық жинақ, сондықтан оны кез келген хосттан таратуға және кэштен сақтауға болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Скрининг құралы үшін бұл сирек кездеседі, сондықтан оның себебін айту қажет.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Жазбалар мүмкіндігінше жазылады, сондықтан біреуін сақтау сәтсіз болса, болжам сәтсіз болмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Бар нәрсе – механизм ғана, ал оператор түзетулерінің детекторды жақсартатыны туралы дәлелдеу емес, сондықтан мұндай жақсару туралы ешқандай тұжырым жасалмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Осы шешім демонстраторға серверсіз қол жеткізуді қамтамасыз етеді, сондықтан оның қасиеттерін ашық айтуға тұрарлық, өйткені олар оның шектеулері де.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Ол жазбада түпнұсқалар, әр кезеңнің шығысы, кіріс арналары, назар картасы, баға және сол шешім сақталады, сондықтан кейіннен іс қайта құрылуы мүмкін.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Сервис қызмет көрсететін чекпоинт – бұрынғы артефакт, ал оның жанында көрсетілген сандар алмастырылған орындаудан алынған, сондықтан демонстратор көрсететін ешбір нәрсе бұл диссертациядағы ешбір санның көзі емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Инженерлік үлес – параметр мәндері белгілі корпус таңдалып бекітілген, сондықтан мұраға алу емес, қайта орнату қажет болған, нақтыланған және қайталанатын объект ретіндегі конвейер.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Сыртқы орнықтылықты білдіру үшін жиі қолданылатын үш өлшемнің әрқайсысы тармақтың сыртқы өнімділігін сол тармақтың өз домен ішіндегі өнімділігіне нормалайды немесе одан шегереді, сондықтан конфигурацияны оның домен ішіндегі күштілігі үшін жазалайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Ұзағырақ оқыту да жақсарту әкелмеді, сондықтан ол қабылданбады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«6-кезең аугментациясы тек оқыту кезінде қолданылады және 7-кезең нормализациясынан бұрын енгізіледі, сондықтан ол `uint8` кескіндерімен жұмыс істейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Бір конфигурация ішіндегі үздік эпохалардың таралуы бір-бір жарым эпоха, сондықтан жинақталу режимі нақты бір фолдтың емес, конфигурацияның қасиеті болып табылады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Кросс-валидация аралығы бес фолд бойынша алынады, сондықтан қайта баптау құбылмалылығын қамтиды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Екіншісі жұмыс істейтін демонстратордың жұмыс істеп тұрғанын көрсетеді, сондықтан Б.1-кесте құрылған деп белгілеген модульдер кестеде айтылғандай іс-әрекет жасап жатқанын көруге болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Әрбір элемент 4-тараудағы тұжырымға сәйкес келеді; сол тарау детальды бекітпеген жағдайда, деталь мұнда таңдалмай, өткізіп жіберіледі, сондықтан сызбаларда диссертацияда мәтін түрінде жасалмаған ешқандай жоба шешімі жоқ.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Ингестиядан Есеп беруге дейінгі қабылданбаған кіріс жолы анық сызылған, себебі бұзылған, сапасы төмен немесе шарттан тыс кіріс үнсіз қатесіз өңделуі тиіс, сондықтан қабылдамау – жоқ нәтиже емес, хабарланатын нәтиже.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Төрт кескін 4, 4, 2 және 2 дәрестерін алып жүреді, сондықтан таңдау шкаланың ауыр шегімен шектелмейді.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Жалпы жиынтықтың қасиетін төрт тақтаннан оқуға болмайды, сондықтан олардан ешқандай тұжырым жасалмайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Түсіндірілу қабілетін талдау барысында ешқандай жерде нақтылау корпусы да, фолд та өзгертілген жоқ, сондықтан оның фолдаралық өзгергіштігі қолжетімді емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«Әрқайсысы құжатты түрлендіру кезінде өз кескініне дейін ашылады, әрі әрбір астындағы мәтін оның қай кескіннен алынғанын атап көрсетеді, сондықтан тақтаны жүріс нәтижелерімен салыстыруға болады.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«**Екінші жарты жүргізілмеді.** Клиникалық қабаттамалар ешқашан жасалмаған, сондықтан бұл қосымша аннотацияланған ашық корпуспен шектеледі.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Олар тәуелсіз дәлел емес, сондықтан «бес топтастыру» санын осыны ескере оқу қажет.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "«**Топтастырулардың үшеуі бірнеше камера моделін біріктіреді.** Олар жекелеген құралды емес, құрал отбасын және алу контекстін анықтайды, сондықтан топ-бойынша көрсеткіш құрал-бойынша көрсеткіш емес.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Еден екі конфигурацияда да бес топтың барлығында асырылады, сондықтан 3.5-бөлімде айтылғандай, ол оларды ажыратпайды.» - «, сондықтан» after a comma is not allowed; rewrite this sentence",
+   "How to rewrite: either end the first part and start a new sentence with a connective, or join the cause with the suffix -дықтан/-діктен/-тықтан/-тіктен (e.g. «X аз болды, сондықтан Y» -> «X аз болғандықтан, Y» or «X аз болды. Сол себепті Y»). Vary the connective (Сондықтан, Демек, Сол себепті, Осылайша, Тиісінше) - do not start many sentences with «Сондықтан». Keep the meaning, numbers and terms; change nothing else."
+  ]
+ }
+]

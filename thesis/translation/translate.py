@@ -3,7 +3,7 @@
   python translate.py --tgt ru chapters/04-system/drafts/4.4-draft.md
   python translate.py --tgt ru "chapters/*/drafts/*-draft.md"            # whole volume, resumable
   python translate.py --src kz --tgt ru chapters/03-experiments/translations/3.4-translation.md
-  python translate.py --tgt en --out D:/tmp/x some_russian_text.md        # any markdown file
+  python translate.py --tgt en --out C:/tmp/x some_russian_text.md        # any markdown file
 
 Per chunk (~450 words, tables and code never split) the prompt carries: the fixed rules
 (common + target language), the termbase rows that occur in the chunk, the two most similar
@@ -28,8 +28,31 @@ WORD = re.compile(r"[\wӘәҒғҚқҢңӨөҰұҮүҺһІі]+")
 
 
 # ---------- context pieces ----------
-def rules(tgt):
-    return read(os.path.join(HERE, "rules", "common.md")) + "\n" + read(os.path.join(HERE, "rules", f"{tgt}.md"))
+GENRES = ("thesis", "council")
+
+
+def rules(tgt, genre="thesis"):
+    """common + target language + genre rules. rules/genre-<genre>.md (optional) begins with a role paragraph
+    that replaces the dissertation role of common.md; the rest of it goes last and overrides earlier rules."""
+    common, lang = read(os.path.join(HERE, "rules", "common.md")), read(os.path.join(HERE, "rules", f"{tgt}.md"))
+    g = os.path.join(HERE, "rules", f"genre-{genre}.md")
+    if not os.path.exists(g):
+        return common + "\n" + lang
+    role, rest = read(g).split("\n\n", 1)
+    return "\n".join([role + "\n\n" + common.split("\n\n", 1)[1], lang, rest])
+
+
+def load_postfix(tgt):
+    """rules/postfix-<tgt>.tsv: regex -> replacement, applied to every output (unambiguous lexical errors only)."""
+    p = os.path.join(HERE, "rules", f"postfix-{tgt}.tsv")
+    rows = [l.split("\t") for l in read(p).split("\n") if l.strip() and not l.startswith("#")] if os.path.exists(p) else []
+    return [(re.compile(a), b) for a, b in rows]
+
+
+def postfix(txt, fixes):
+    for rx, rep in fixes:
+        txt = rx.sub(rep, txt)
+    return txt
 
 
 def load_tm():
@@ -37,8 +60,9 @@ def load_tm():
     return [json.loads(l) for l in read(p).split("\n") if l.strip()] if os.path.exists(p) else []
 
 
-def examples(chunk, tm, src, tgt, k=2, exclude=None):
-    """k TM rows with both languages, most similar to the chunk by shared content words."""
+def examples(chunk, tm, src, tgt, k=2, exclude=None, genre="thesis"):
+    """k TM rows with both languages, most similar to the chunk by shared content words;
+    rows of the same genre (row["domain"], default thesis) are preferred."""
     words = {w.lower() for w in WORD.findall(chunk) if len(w) > 3}
     scored = []
     for r in tm:
@@ -46,7 +70,8 @@ def examples(chunk, tm, src, tgt, k=2, exclude=None):
             continue
         rw = {w.lower() for w in WORD.findall(r[src]) if len(w) > 3}
         if rw:
-            scored.append((len(words & rw) / (len(rw) ** 0.5), r))
+            same = r.get("domain", "thesis") == genre
+            scored.append((len(words & rw) / (len(rw) ** 0.5) + (1.0 if same else 0), r))
     scored.sort(key=lambda x: -x[0])
     return [r for _, r in scored[:k]]
 
@@ -64,16 +89,17 @@ def terms_block(chunk, termbase, src, tgt):
     return "\n".join(dict.fromkeys(lines))
 
 
-def build_prompt(chunk, src, tgt, termbase, tm, prev, pivot, exclude, fix=None):
+def build_prompt(chunk, src, tgt, termbase, tm, prev, pivot, exclude, fix=None, genre="thesis"):
     parts = []
     t = terms_block(chunk + "\n" + (pivot or ""), termbase, src, tgt)
     if pivot and src != "en":
         t = "\n".join(filter(None, [t, terms_block(pivot, termbase, "en", tgt)]))
     if t:
         parts.append(f"TERMINOLOGY ({LANG_NAME[src]} = {LANG_NAME[tgt]}), use exactly:\n{t}")
-    ex = examples(chunk, tm, src, tgt, exclude=exclude)
+    ex = examples(chunk, tm, src, tgt, exclude=exclude, genre=genre)
     if ex:
-        parts.append("EXAMPLES of approved translations from this dissertation (style and terminology):\n" +
+        what = "from this dissertation" if genre == "thesis" else "of similar documents"
+        parts.append(f"EXAMPLES of approved translations {what} (style and terminology):\n" +
                      "\n\n".join(f"[{LANG_NAME[src]}]\n{r[src]}\n[{LANG_NAME[tgt]}]\n{r[tgt]}" for r in ex))
     if pivot and src != "en":
         parts.append("ENGLISH ORIGINAL of the source chunk (authoritative for meaning; translate the SOURCE, "
@@ -91,6 +117,13 @@ def segments(body):
     """-> list of (is_translatable, text); consecutive translatable blocks grouped up to MAX_WORDS."""
     segs, cur, n = [], [], 0
     for b in blocks(body):
+        m = re.match(r"(<!--.*?-->)\n(\S.*)", b, re.S)
+        if m and kind(b) == "marker":          # <!-- center --> directly above a title block: the text is its own chunk
+            if cur:
+                segs.append((True, "\n\n".join(cur)))
+                cur, n = [], 0
+            segs += [(False, m.group(1)), (True, m.group(2))]
+            continue
         if not translatable(b):
             if cur:
                 segs.append((True, "\n\n".join(cur)))
@@ -152,7 +185,7 @@ def out_path(path, tgt, out_dir):
 
 
 # ---------- main loop ----------
-def translate_file(path, src, tgt, termbase, tm, out_dir, retries, log, exclude=None):
+def translate_file(path, src, tgt, termbase, tm, out_dir, retries, log, exclude=None, genre=None):
     text = read(path)
     head, body, _tail = split_parts(text)
     src = src or detect_lang(body)
@@ -167,8 +200,11 @@ def translate_file(path, src, tgt, termbase, tm, out_dir, retries, log, exclude=
     en_p = english_original(path) if src != "en" and tgt != "en" else None
     pivots = pivot_for(chunks, split_parts(read(en_p))[1]) if en_p else [None] * len(chunks)
     ch, sid = chapter_ids(path)
+    genre = genre or ("thesis" if ch else "council")
     exclude = exclude or (f"chapters/{sid}" if sid else None)   # never show a chunk its own reference translation
-    sysmsg = rules(tgt)
+    sysmsg = rules(tgt, genre)
+    fixes = load_postfix(tgt)
+    termbase = [r for r in termbase if r.get("domain", "all") in ("all", genre)]
     res, report, prev, ci = [], [], "", 0
     t_file = time.time()
     for ok, seg in segs:
@@ -183,11 +219,12 @@ def translate_file(path, src, tgt, termbase, tm, out_dir, retries, log, exclude=
             best = None
             for attempt in range(retries + 1):
                 fix = best["errors"] if best else None
-                user = build_prompt(seg, src, tgt, termbase, tm, prev, pivots[ci], exclude, fix)
+                user = build_prompt(seg, src, tgt, termbase, tm, prev, pivots[ci], exclude, fix, genre)
                 words = len(WORD.findall(seg))
                 txt, info = chat(sysmsg, user, max_tokens=min(8000, 400 + words * 6), temperature=0.3 if not fix else 0.2)
                 txt = txt.strip().replace(" — ", " – ")   # the volume gate forbids the long dash
-                errs, warns = check(seg, txt, src, tgt, termbase)
+                txt = postfix(txt, fixes)
+                errs, warns = check(seg, txt, src, tgt, termbase, genre)
                 if info["finish"] == "length":
                     errs.insert(0, "output truncated")
                 cand = dict(out=txt, errors=errs, warnings=warns, attempts=attempt + 1, info=info)
@@ -211,7 +248,7 @@ def translate_file(path, src, tgt, termbase, tm, out_dir, retries, log, exclude=
     doc = NOTE[tgt].format(src=rel) + "\n\n" + PART1[tgt] + "\n\n" + "\n\n".join(res).strip() + "\n"
     write(out, doc)
     bad = [c for c in report if c["errors"]]
-    summ = dict(file=rel, out=os.path.relpath(out, THESIS).replace("\\", "/"), src=src, tgt=tgt, chunks=len(report),
+    summ = dict(file=rel, genre=genre, out=os.path.relpath(out, THESIS).replace("\\", "/"), src=src, tgt=tgt, chunks=len(report),
                 clean_first_try=sum(1 for c in report if not c["errors"] and c["attempts"] == 1),
                 needs_review=[c["chunk"] for c in bad], warnings=sum(len(c["warnings"]) for c in report),
                 minutes=round((time.time() - t_file) / 60, 1), detail=report)
@@ -229,6 +266,10 @@ def main():
     ap.add_argument("--out", help="output directory (default: chapters/<ch>/translations-<tgt>/)")
     ap.add_argument("--retries", type=int, default=1)
     ap.add_argument("--no-tm", action="store_true", help="no translation-memory examples (for ablation)")
+    ap.add_argument("--exclude", help="TM source never shown as an example (e.g. output/abstract when translating "
+                    "the abstract, so Qwen does not copy the approved reference)")
+    ap.add_argument("--genre", choices=GENRES, help="thesis (chapter files) or council (official documents, "
+                    "abstracts, regulations); default: thesis for chapter files, council otherwise")
     a = ap.parse_args()
     files = []
     for p in a.inputs:
@@ -246,7 +287,7 @@ def main():
         print(time.strftime("%H:%M:%S"), m, flush=True)
 
     log(f"{len(files)} file(s) -> {LANG_NAME[a.tgt]}; termbase {len(termbase)} rows, TM {len(tm)} rows")
-    allr = [translate_file(f, a.src, a.tgt, termbase, tm, a.out, a.retries, log) for f in files]
+    allr = [translate_file(f, a.src, a.tgt, termbase, tm, a.out, a.retries, log, exclude=a.exclude, genre=a.genre) for f in files]
     allr = [r for r in allr if r]
     n = sum(r["chunks"] for r in allr)
     log(f"DONE {len(allr)} files, {n} chunks, {sum(r['clean_first_try'] for r in allr)} clean first try, "

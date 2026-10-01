@@ -130,6 +130,13 @@ K2C = {
  "nandal|2024":"nandal-2024.md","guo|2017":"guo-2017-calibration.md","wang|2004":"wang-2004-ssim.md",
  "hinton|2012":"krizhevsky-2012-alexnet.md","gonzalez-diaz|2024":"gonzalez-diaz-2024.md",
  "abramoff|2018":"abramoff-2018-clinical-ai-validation.md",
+ # 2026-09-30: national screening context, aligned to defence slide 02 (Introduction, 1.1).
+ # Corporate authors resolve on the full join of their Latin words ("of"/"the" are stop words).
+ "teo|2021":"teo-2021-global-dr-prevalence.md",
+ "semenova|2026":"semenova-2026-kz-ophthalmology-workforce.md",
+ "ministry-health-republic-kazakhstan|2024":"moh-rk-2024-diabetes-registry.md",
+ "ministry-health-republic-kazakhstan|2026":"moh-rk-2026-ophthalmology-care.md",
+ "bureau-national-statistics|2026":"bns-rk-2026-population.md",
 }
 
 # ---- the candidate's own publications (SIR-4) -----------------------------

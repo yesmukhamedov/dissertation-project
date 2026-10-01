@@ -1,0 +1,25 @@
+{
+ "file": "translation/work/eval/v3/council-valid/src/mukhanov-en-ru.en.md",
+ "genre": "council",
+ "out": "translation/work/eval/v3/council-valid/mukhanov-en-ru.en.ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 1,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 0.7,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 223,
+   "errors": [],
+   "warnings": [
+    "term «Convolutional Neural Network» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 1,
+   "sec": 43.9,
+   "src_head": "Currently, more and more research are focused on solving problems using computer"
+  }
+ ]
+}

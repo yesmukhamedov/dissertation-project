@@ -1,0 +1,124 @@
+[
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«пайыздық пункт» (any case form: «пайыздық пунктке», «пайыздық пункттен») is wrong for 'percentage points' - the thesis term is «пайыздық тармақ»: write «пайыздық тармаққа», «пайыздық тармақтан» etc. with the same case ending"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 7,
+  "issues": [
+   "'the direct measurement of source-to-target distance' is rendered as «мақсатқа дейінгі қашықтықты» - that drops 'source' and uses the wrong word for target. Write «бастапқы доменнен нысаналы доменге дейінгі қашықтықты тікелей өлшеу»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«корпустаралық» is misspelled - the term for cross-corpus is «корпусаралық» (so «корпусаралық тасымалдану қабілеті»)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«пайыздық пункт» (any case form: «пайыздық пунктке», «пайыздық пункттен») is wrong for 'percentage points' - the thesis term is «пайыздық тармақ»: write «пайыздық тармаққа», «пайыздық тармақтан» etc. with the same case ending",
+   "The last sentence dropped its subject: source 'no claim that contrast enhancement uniformly improves classification is admissible' - KZ «Жіктеуді біркелкі жақсартады деген тұжырымға жол берілмейді» does not say WHAT improves classification. Write «Контрастты күшейту жіктеуді біркелкі жақсартады деген тұжырымға жол берілмейді»",
+   "«ол параметрлердің бірлескен орналасуы дәл осы сканерлеу арқылы сипатталатын екі параметрді ашады» is garbled (parameters of parameters) - source 'it exposes two parameters whose joint setting is exactly what the sweep is built to characterise'. Write «ол бірлескен мәндерін сипаттау үшін дәл осы сканерлеу құрылған екі параметрді ашық көрсетеді»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«батч өлшемі» is not the thesis term for 'batch size' - write «топтама өлшемі» («16-ға тең топтама өлшемі»)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«кішігірім батчаларға» uses the loanword «батч» - the thesis word for batch is «топтама»: write «шағын топтамаларға»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«жүз жетпіс үш (173)» repeats the number - the source says 'one hundred and seventy-three' once; write the number once: «зерттелген 173 мақаланың»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«пайыздық пункт» (any case form: «пайыздық пунктке», «пайыздық пункттен») is wrong for 'percentage points' - the thesis term is «пайыздық тармақ»: write «пайыздық тармаққа», «пайыздық тармақтан» etc. with the same case ending"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«пайыздық пункт» (any case form: «пайыздық пунктке», «пайыздық пункттен») is wrong for 'percentage points' - the thesis term is «пайыздық тармақ»: write «пайыздық тармаққа», «пайыздық тармақтан» etc. with the same case ending"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«пайыздық пункт» (any case form: «пайыздық пунктке», «пайыздық пункттен») is wrong for 'percentage points' - the thesis term is «пайыздық тармақ»: write «пайыздық тармаққа», «пайыздық тармақтан» etc. with the same case ending"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«пайыздық пункт» (any case form: «пайыздық пунктке», «пайыздық пункттен») is wrong for 'percentage points' - the thesis term is «пайыздық тармақ»: write «пайыздық тармаққа», «пайыздық тармақтан» etc. with the same case ending"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«, сондықтан» after a comma is to be avoided in this volume - rewrite that sentence: either end the sentence and start the next with «Сондықтан», or use a -дықтан/-діктен/-ғандықтан/-гендіктен clause. Do not change the meaning. There are two places: «...бір фолдының модельдерін пайдаланды, сондықтан фолдтар арасындағы дисперсия қолжетімді емес...» and «Бес аппараттық топтың екеуі тәуелсіз дәлел бермейді, сондықтан әртүрлі жағдайлардың тиімді саны бестен кіші»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Intersection over Union (қиылыстың бірігуге қатынасы)» - the thesis term is «қиылысу бөлінген бірігу (IoU)»; do not keep the English words in the Kazakh text"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«, сондықтан» after a comma is to be avoided in this volume - rewrite that sentence: either end the sentence and start the next with «Сондықтан», or use a -дықтан/-діктен/-ғандықтан/-гендіктен clause. Do not change the meaning: «Ол тармақтарды бірдей кескіндерде фолдтан фолдқа салыстырады, сондықтан фолдтар арасындағы және кескіндер арасындағы дисперсияны алып тастайды»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«шамамен 0.9 пайыз (бір пайыздың оннан тоғызын)» gives the number twice - write it once: «шамамен 0.9 пайызға»; remove the bracketed gloss"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Intersection-over-Union (қиылыстың бірігуге қатынасы)» - the thesis term is «қиылысу бөлінген бірігу (IoU)»; do not keep the English words",
+   "«, сондықтан» after a comma is to be avoided in this volume - rewrite that sentence: either end the sentence and start the next with «Сондықтан», or use a -дықтан/-діктен/-ғандықтан/-гендіктен clause. Do not change the meaning: «Төрт кескін 4, 4, 2 және 2 дәрежелерін алып жүреді, сондықтан таңдау шкаланың ауыр шегімен шектелмейді»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«, сондықтан» after a comma is to be avoided in this volume - rewrite that sentence: either end the sentence and start the next with «Сондықтан», or use a -дықтан/-діктен/-ғандықтан/-гендіктен clause. Do not change the meaning: «Төменгі шекті екі конфигурация да бес топтың барлығында асып түседі, сондықтан 3.5-бөлімде айтылғандай, ол оларды ажыратпайды»"
+  ]
+ }
+]

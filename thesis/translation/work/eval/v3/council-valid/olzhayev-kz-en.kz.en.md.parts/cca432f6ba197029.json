@@ -1,0 +1,19 @@
+{
+ "out": "In recent days, the automated detection of road defects using computer vision is considered one of the relevant tasks, and we observe an exponential growth of interest in this field. Analyzing the specialized literature, we can clearly see this growth in scientific activity: if there were only about 50 relevant publications in 2015, by 2025 their number exceeded 900 works. Such dynamics are related to three factors: the widespread introduction of high-resolution sensors, the formation of large-scale representative datasets, and the availability of high-performance computing power required for training multi-layer neural networks.\n\nAnalysis of the visual features and characteristics of pavement images. • A deep learning model for classifying and segmenting road damage\n\nScientific propositions put forward for defense: • Simultaneous detection of pavement damage in real-time mode,\n\nMain results of the research: • Using computer vision and deep learning methods, real-time\n\nenabled improving the stability of recognizing complex damage; • Efficient spatial dependencies between objects of different scales\n\ndemonstrated the possibility of operation; • Maintaining the high performance of the system, the accuracy of defect detection\n\ndataset (dataset) was developed and labeled. • The impact of seasonal conditions and the variability of dynamic lighting\n\na comprehensive system of automated monitoring was developed.\n\nThe validity of the obtained results is ensured by the application of modern methods of computer vision and deep learning, the use of convolutional neural networks (CNN) and transformer attention mechanisms, as well as by conducting computational experiments on a labeled video dataset of road pavement collected in actual usage conditions. The reliability of the results is confirmed by a comparative analysis with existing architectures and road defect detection algorithms, the use of generally accepted quality assessment metrics (mAP, IoU, Precision, Recall, F1-Score), the stable convergence of the model during the training process, and the reproducibility of the results obtained under various lighting conditions, weather factors, and background noise.\n\nThe main results of the work were presented and discussed at the seminars of the Department of \"Mathematical and Computer Modeling\" of JSC \"IITU\" (2024–2026), Asia Metropolitan University, Malaysia (2026). Four publications on the dissertation topic were made, including 2 publications in rated scientific journals indexed in the Scopus database; 2 publications in the materials of international conferences; 1 author's certificate was obtained.\n\nIn all the mentioned publications, the applicant holds the leading role, and conclusions are drawn based on the main results of the research, the analyses performed by the author, the models, the programs, and the results obtained from the applicant's work and research.\n\nThe second chapter provides a comprehensive literature review covering the classification of road defect types and the analysis of the evolution of their detection methods. The historical transition from classical computer vision algorithms to modern deep learning architectures (convolutional networks, YOLO detectors, visual transformers) is considered. Fundamental gaps in existing research, such as the complexity of processing continuous video streams due to temporal misalignment, the lack of imaging datasets, and the problem of adapting heavy models to peripheral computing, justify the algorithmic direction of the current work.",
+ "errors": [
+  "numbers missing: 4"
+ ],
+ "warnings": [
+  "term «конвейер» not rendered as «Pipeline»",
+  "term «трансформер» not rendered as «transformer model»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 105.3,
+  "finish": "stop",
+  "p_tok": 4564,
+  "c_tok": 649,
+  "pp_tps": 221,
+  "tg_tps": 6.8
+ }
+}

@@ -1,6 +1,26 @@
 # VERSION SYNCHRONIZATION REGISTER
 
-**Version:** 7.3.0 | **Date:** 2026-09-28
+**Version:** 7.3.1 | **Date:** 2026-09-30
+
+## v7.3.1 Sync Scope — Introduction and abstracts aligned to defence slides 02–04 (no new binding)
+
+The candidate approved the Kazakh texts of slides 02–04 on 2026-09-30 and ruled that the volume follows the council's
+template: aim, objectives, object, subject, novelty and **four provisions without figures** are worded as on the slides,
+and the relevance rubric carries the slide-02 figures with their sources. Two phrasings of the slides were brought inside
+the invariants before transfer, by the candidate's decision: provision 1 "independence from … camera" → "reduces
+differences … in orientation, geometry, illumination and camera" (**NC-16**), and "regardless of the network
+architecture" → "on both architectures studied" (**CFC-2.1 / NC-17**). No hypothesis, forbidden claim or non-claim is
+changed. **PATCH** per VERSIONING_POLICY §4.
+
+| File | Was | Now | What changed |
+|------|-----|-----|--------------|
+| `CORE_OBJECTIVE.md` | 7.1.0 | **7.1.1** | The Introduction's re-worded aim recorded; the long statement kept as its operational expansion. |
+| `chapters/00-introduction/{drafts/introduction-draft, translations/introduction-translation, translations-ru/introduction-ru}.md` | — | — | Relevance + registry/workforce figures; aim, objectives, object, subject, novelty, four provisions from slides 03–04; "provisions" → "results" in the reliability bounds; 102 → 107 sources; compliance checklist. |
+| `chapters/01-review/{drafts/1.1-draft, translations/1.1-translation, translations-ru/1.1-ru}.md` | — | — | Superseded national figures (1,200 ophthalmologists, 40 % rural, 70 % limited access, own work 2025) replaced by MoH RK 2024/2026, BNS 2026, Semenova et al. 2026. |
+| `output/abstract_{en,kz,ru}.md` | — | — | Same rubrics; the figures of the old provisions moved to "main results", so none is lost. |
+| `literature/external/{teo-2021-global-dr-prevalence, semenova-2026-kz-ophthalmology-workforce}.md`, `literature/non-peer-reviewed/{moh-rk-2024-diabetes-registry, moh-rk-2026-ophthalmology-care, bns-rk-2026-population}.md` | — | **new** | Five sources of slide 02. |
+| `assembly/{_card_bib.tsv, _card_gost.tsv, _finalize_citations.py}` | — | — | Five entries and their citation keys. |
+
 
 ## v7.3.0 Sync Scope — Stage 5 admits the polar CLAHE geometry (one operational definition amended)
 
@@ -254,7 +274,8 @@ Pretraining source amendment: integrated arm of Experiment 1 uses RETFound; base
 | governance/HYPOTHESIS.md | 7.1.0 | ✅ — v7.1.0: **H-3 restored** as Domain-Shift Reduction (K = 5 of n = 6, MMD primary, source-statistics protocol condition, label-reuse notice) — completed 2026-08-05. v7.0.0: H-7 reformulated (form S, MCID 0.050, CI⁻ > 0, both sets); Conclusion + Central-Hypothesis note synced. v6.2.0: Premise 4 + Conclusion RETFound→ophthalmology-SSL |
 | governance/RESEARCH_ARCHITECTURE.md | 7.0.0 | ✅ — v7.0.0: §5.5 purpose + acceptance rewritten, §9.1 H-7 bullet, PC-10 row — completed 2026-08-04. v6.2.0: §4.2bis extended; §9.1 pretraining-leakage bullet |
 | governance/CONTRIBUTIONS.md | 7.1.0 | ✅ — v7.1.0: **SC-I** added for the direct domain-distance measurement (H-3 restoration) — completed 2026-08-05. v7.0.0: SC-G reframed to external clinical performance + secondary methodological contribution (Δ_drop defect) — completed 2026-08-04. v6.3.0: SC-H generalized to "in-domain initialization (self-supervised OR supervised), gate-selected" — SIP admitted, SSL negative result recorded. v6.2.0: SC-H refined with locked SSL specifics; CFC-2.8 boundary unchanged |
-| governance/VERSION_SYNC.md | 7.1.1 | ✅ — this document; v7.1.1 is the downstream-currency pass recorded above |
+| governance/VERSION_SYNC.md | 7.3.1 | ✅ — this document; v7.3.1: Introduction and abstracts aligned to slides 02–04 |
+| governance/CORE_OBJECTIVE.md | 7.1.1 | ✅ — v7.1.1: the Introduction's re-worded aim recorded (slide 03) — 2026-09-30 |
 | governance/ARGUMENT_MAP.md | 7.1.0 | ✅ — v7.1.0: **PC-11** node (Domain-Shift Reduction, mechanistic) + DAG edge, depends on PC-1, feeds PC-6/PC-9/PC-10 explanatorily; magnitude-correspondence boundary — completed 2026-08-05. v7.0.0: PC-10 formal statement, SC-10.1, PC-10 strength criteria, DAG label and dependency note — completed 2026-08-04 |
 | governance/CENTRAL_THESIS.md | 7.1.0 | ✅ — v7.1.1 sync: H-7 → external clinical performance; H-3 mechanism added to the substantiating evidence; **the clinical Grad-CAM overlays removed from the substantiation** (never produced, G-3 — H-5 is supported in its quantitative half only) |
 | literature/external/gulshan-2016.md | v5.3 sync ✅ | ✅ — v5.3: §15 Paradigmatic Role block + §16 Paradigmatic citation-ready statements + §18 Paradigmatic Synthesis — completed 2026-05-28 |

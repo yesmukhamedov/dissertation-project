@@ -1,0 +1,8 @@
+12:57:25 1 file(s) -> Russian; termbase 276 rows, TM 547 rows
+12:57:42   chunk 2/9 try 1: 44 w, 16.8s, pp 5/s tg 6.8/s, 0 err, 1 warn
+12:57:42 output/abstract_en.md -> output/translated-qwen/abstract_en.ru.md: 9 chunks, 7 clean first try, NEEDS_REVIEW [1, 5], 16 warnings, 0.3 min
+12:57:42 DONE 1 files, 9 chunks, 7 clean first try, 2 need review, 0 min
+12:57:42 1 file(s) -> Kazakh; termbase 276 rows, TM 547 rows
+12:58:14   chunk 2/9 try 1: 44 w, 31.7s, pp 169/s tg 5.7/s, 0 err, 2 warn
+12:58:14 output/abstract_en.md -> output/translated-qwen/abstract_en.kz.md: 9 chunks, 6 clean first try, NEEDS_REVIEW [1], 8 warnings, 0.5 min
+12:58:14 DONE 1 files, 9 chunks, 6 clean first try, 1 need review, 0 min

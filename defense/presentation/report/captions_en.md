@@ -32,3 +32,4 @@
 | 29 | Task 4 | Figure 26 – System diagram: doctor ↔ browser client ↔ inference service (𝒫 → CNN → Grad-CAM)<br>Figure 27 – Two screenshots of the browser client: (a) grade, class probabilities and Grad-CAM; (b) preprocessing stages |
 | 32 | Task 4 | Figure 28 – Certificate of registration of copyright No. 78109, 04.09.2026 — software package |
 | R1 | — | Figure 29 – EfficientNet-B3, F1 by DR grade |
+| R2 | — | Figure 30 – Three screens of the web application: (a) uploading both eyes of one patient; (b) grade, class probabilities and Grad-CAM; (c) the doctor's confirmation and the relabelling buffer |

@@ -1,0 +1,41 @@
+{
+ "file": "translation/work/eval/c2/council/src/bazarbekov-ru-kz.ru.md",
+ "genre": "council",
+ "out": "translation/work/eval/c2/council/bazarbekov-ru-kz.ru.kz.md",
+ "src": "ru",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 1,
+ "needs_review": [
+  2
+ ],
+ "warnings": 3,
+ "minutes": 11.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 440,
+   "errors": [],
+   "warnings": [
+    "term «протокол» not rendered as «хаттама»",
+    "term «степени свободы» not rendered as «еркіндік дәрежелері»"
+   ],
+   "attempts": 1,
+   "sec": 282.5,
+   "src_head": "1) Провести критический обзор и обобщение современных методов ИИ и машинного обу"
+  },
+  {
+   "chunk": 2,
+   "words": 283,
+   "errors": [
+    "Latin words not in the source: vision (added or invented?)"
+   ],
+   "warnings": [
+    "term «протокол» not rendered as «хаттама»"
+   ],
+   "attempts": 1,
+   "sec": 184.9,
+   "src_head": "2) Разработано сенсорное устройство для регистрации кинематических параметров по"
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+chapters/06-appendices/translated-kk-qwen/D-kz.md chunk 2: applied, 1 err, 3 warn, 132.1s | appendix letters ['Б'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expect
+chapters/06-appendices/translated-kk-qwen/F-kz.md chunk 1: applied, 0 err, 0 warn, 113.8s
+chapters/06-appendices/translated-kk-qwen/F-kz.md chunk 2: applied, 0 err, 0 warn, 142.7s
+chapters/06-appendices/drafts/D-draft.md -> chapters/06-appendices/translated-kk-qwen/D-kz.md: 3 chunks, 2 clean first try, NEEDS_REVIEW [2], 8 warnings, 0.0 min
+chapters/06-appendices/drafts/F-draft.md -> chapters/06-appendices/translated-kk-qwen/F-kz.md: 3 chunks, 3 clean first try, NEEDS_REVIEW none, 1 warnings, 0.0 min

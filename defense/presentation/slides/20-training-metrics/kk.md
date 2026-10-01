@@ -8,7 +8,7 @@ source: архив сл. 23 — без изменений
 terms: [focal_loss, patient_level_cv, weighted_f1, roc_auc, kappa, generalization_ratio, alo]
 ---
 
-# Оқыту параметрлері: Focal Loss, optimizer, 5-fold CV; Метрикалар: F1, AUC, Cohen's κ, Generalization gap (G), ALO
+# Оқыту параметрлері: Focal Loss, optimizer, 5-fold CV; Метрикалар: F1, AUC, Cohen's κ, G, ALO
 
 ## На слайде
 

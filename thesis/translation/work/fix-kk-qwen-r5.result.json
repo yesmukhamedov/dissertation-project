@@ -1,0 +1,358 @@
+[
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 163.5
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 138.0
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 81.6
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 133.9
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 166.0
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 128.8
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «Convergence» not rendered as «жинақталу»"
+  ],
+  "sec": 192.4
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 186.6
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 150.1
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 149.4
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 155.8
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 131.5
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 157.2
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 5, 8"
+  ],
+  "sec": 160.7
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 98.4
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 158.1
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 133.1
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 148.2
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 168.4
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «Precision» not rendered as «дәлдік»"
+  ],
+  "sec": 155.0
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 161.5
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 138.0
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 167.9
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 147.0
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 139.2
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 145.3
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 133.5
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 156.0
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.C-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 123.8
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 140.9
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 156.4
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 169.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 69.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 218.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 201.9
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 85.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Decision-Support, Data-Management, Error-Handling"
+  ],
+  "sec": 111.0
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Intersection-over-Union",
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «lesion type» not rendered as «зақымдану түрі»"
+  ],
+  "sec": 143.9
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 139.7
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «Inference» not rendered as «инференс»"
+  ],
+  "sec": 64.0
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 140.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 152.5
+ }
+]

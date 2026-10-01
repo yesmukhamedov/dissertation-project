@@ -1,0 +1,44 @@
+{
+ "file": "chapters/03-experiments/drafts/3.1-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 448,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 214.8,
+   "src_head": "## 3.1 Datasets and experimental configuration\n\nThe previous chapter fixed what "
+  },
+  {
+   "chunk": 2,
+   "words": 420,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 221.1,
+   "src_head": "[FIG-3.2: The corpora by grade — defense/figures/figures_mine/fig4_2_dataset_gra"
+  },
+  {
+   "chunk": 3,
+   "words": 432,
+   "errors": [],
+   "warnings": [
+    "numbers added: 16, 16",
+    "term «degrees of freedom» not rendered as «еркіндік дәрежелері»"
+   ],
+   "attempts": 1,
+   "sec": 237.3,
+   "src_head": "Stratifying by grade preserves the class proportions across folds, so the rare s"
+  }
+ ]
+}

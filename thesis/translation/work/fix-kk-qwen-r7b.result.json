@@ -1,0 +1,404 @@
+[
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «five grades» not rendered as «бес дәреже»"
+  ],
+  "sec": 152.0
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 132.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 65.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 156.9
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «Intersection over Union» not rendered as «қиылысу бөлінген бірігу»"
+  ],
+  "sec": 147.0
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 122.8
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 148.4
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.C-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [
+   "forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ],
+  "warnings": [],
+  "sec": 163.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 177.7
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.C-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 127.7
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 166.6
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 136.2
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 6,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Physico-Mathematical, Kazakh-British"
+  ],
+  "sec": 172.3
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 7,
+  "applied": false,
+  "errors": [
+   "forbidden «корпусар»: plural of корпус is «корпустар»",
+   "forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ],
+  "warnings": [],
+  "sec": 175.2
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 8,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 26.2
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 160.4
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [
+   "forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ],
+  "warnings": [],
+  "sec": 174.4
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 172.1
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 178.5
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 65.9
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «Transformer» not rendered as «vision transformer»"
+  ],
+  "sec": 162.5
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 29.4
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 10, 10"
+  ],
+  "sec": 201.9
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «cross-corpus transfer» not rendered as «корпусаралық тасымалдану қабілеті»"
+  ],
+  "sec": 85.2
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.C-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 123.2
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 161.8
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 176.0
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 158.9
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 161.0
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 163.9
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «Transformer» not rendered as «vision transformer»"
+  ],
+  "sec": 136.1
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 16",
+   "term «batch size» not rendered as «топтама өлшемі»"
+  ],
+  "sec": 104.3
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [
+   "forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ],
+  "warnings": [],
+  "sec": 160.5
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: As Yosinski",
+   "term «pretraining» not rendered as «алдын ала оқыту»",
+   "term «Transfer Learning» not rendered as «transfer learning»"
+  ],
+  "sec": 151.6
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 173"
+  ],
+  "sec": 53.9
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 156.6
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 134.5
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 103.3
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 169.5
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 16, 16",
+   "term «degrees of freedom» not rendered as «еркіндік дәрежелері»"
+  ],
+  "sec": 198.1
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «percentage points» not rendered as «пайыздық тармақ»"
+  ],
+  "sec": 166.4
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 197.3
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [
+   "forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ],
+  "warnings": [],
+  "sec": 195.7
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «percentage points» not rendered as «пайыздық тармақ»"
+  ],
+  "sec": 99.3
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 152.1
+ }
+]

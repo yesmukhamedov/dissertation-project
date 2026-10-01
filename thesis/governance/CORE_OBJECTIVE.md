@@ -1,4 +1,10 @@
-**Version:** 7.1.0 | **Date:** 2026-08-11 | **Binding Reference:** INVARIANTS.md v7.0.0 / HYPOTHESIS.md v7.1.0
+**Version:** 7.1.1 | **Date:** 2026-09-30 | **Binding Reference:** INVARIANTS.md v7.2.0 / HYPOTHESIS.md v7.1.0
+
+**v7.1.1 sync (no new binding).** The aim rubric of the Introduction was re-worded to defence slide 03 at the candidate's instruction (the volume follows the council's template). The goal as the Introduction now states it:
+
+> To develop and experimentally substantiate an integrated model for automated diagnosis of diabetic retinopathy from colour fundus images in which the preprocessing pipeline is a component of the model.
+
+The statement below is unchanged and is kept as the **operational expansion** of that goal — the validation programme the four objectives of the Introduction discharge. Nothing in it is withdrawn.
 
 **v7.1.0 sync (no new binding).** Two corrections, both tracking decisions already ratified elsewhere. (1) *Clinical degradation resistance* is replaced by **external clinical performance** — H-7 was reformulated in INVARIANTS v7.0.0, and the retired Δ_drop form is descriptive only and may carry no objective. (2) The **direct measurement of domain-shift reduction (H-3)** is added to the validation programme; it was restored in HYPOTHESIS v7.1.0 and is the one element of the programme this document predated entirely. The authoritative prose formulation of the goal is now §0.3 of the dissertation, from which this statement is derived; the two must be kept in agreement.
 

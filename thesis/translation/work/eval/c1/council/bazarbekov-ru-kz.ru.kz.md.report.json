@@ -1,0 +1,41 @@
+{
+ "file": "translation/work/eval/c1/council/src/bazarbekov-ru-kz.ru.md",
+ "genre": "council",
+ "out": "translation/work/eval/c1/council/bazarbekov-ru-kz.ru.kz.md",
+ "src": "ru",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 1,
+ "needs_review": [
+  1
+ ],
+ "warnings": 3,
+ "minutes": 12.4,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 440,
+   "errors": [
+    "Russian calque/abbreviation in Kazakh: ба, иму (see rules: нейрондық желі, конволюциялық, машиналық оқыту, АА, IMU, ҚРЗ)"
+   ],
+   "warnings": [
+    "term «протокол» not rendered as «хаттама»",
+    "term «степени свободы» not rendered as «еркіндік дәрежелері»"
+   ],
+   "attempts": 1,
+   "sec": 272.0,
+   "src_head": "1) Провести критический обзор и обобщение современных методов ИИ и машинного обу"
+  },
+  {
+   "chunk": 2,
+   "words": 283,
+   "errors": [],
+   "warnings": [
+    "term «протокол» not rendered as «хаттама»"
+   ],
+   "attempts": 1,
+   "sec": 187.9,
+   "src_head": "2) Разработано сенсорное устройство для регистрации кинематических параметров по"
+  }
+ ]
+}

@@ -1,0 +1,160 @@
+[
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «endpoint» not rendered as «соңғы нүкте»"
+  ],
+  "sec": 155.3
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 158.6
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 22.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «FOV Mask» not rendered as «көру өрісінің маскасы»"
+  ],
+  "sec": 172.7
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 67.4
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 65.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 191.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 158.5
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 215.4
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 203.0
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 92.4
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Decision-Support, Data-Management, Error-Handling"
+  ],
+  "sec": 114.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 7.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 50.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 58.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 6,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Decision-Support",
+   "authors not found in Latin: Ingestion, Inference"
+  ],
+  "sec": 160.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 7,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Data-Management",
+   "authors not found in Latin: Clinician Interface"
+  ],
+  "sec": 73.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Intersection-over-Union"
+  ],
+  "sec": 144.0
+ }
+]

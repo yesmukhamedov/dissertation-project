@@ -1,0 +1,43 @@
+{
+ "file": "chapters/06-appendices/drafts/A-draft.md",
+ "genre": "thesis",
+ "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 401,
+   "errors": [],
+   "warnings": [
+    "term «FOV Mask» not rendered as «көру өрісінің маскасы»"
+   ],
+   "attempts": 1,
+   "sec": 216.1,
+   "src_head": "Section 3.1 undertook to reproduce the preprocessing and training code here, so "
+  },
+  {
+   "chunk": 2,
+   "words": 180,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 90.6,
+   "src_head": "Stage 5 is implemented by more than one module because the pipeline ships with a"
+  },
+  {
+   "chunk": 3,
+   "words": 154,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 90.9,
+   "src_head": "The remaining modules follow the same conventions: type-hinted signatures, `Args"
+  }
+ ]
+}

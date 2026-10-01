@@ -1,0 +1,6 @@
+[
+ {"out": "output/translated-qwen/abstract_en.ru.md", "chunk": 5, "issues": [
+  "AMBIGUOUS: «аугментация и нормализация, специфичная для набора данных» can be read as both being dataset-specific (the back-translation gave 'dataset-specific augmentation and normalisation'). Only the normalisation is dataset-specific - write «аугментация и специфичная для набора данных нормализация»"]},
+ {"out": "output/translated-qwen/abstract_en.ru.md", "chunk": 7, "issues": [
+  "«превосходство над любой конкретной опубликованной системой» - source 'superiority over any NAMED published system' - write «превосходство над любой поименованной опубликованной системой»"]}
+]

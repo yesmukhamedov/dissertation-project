@@ -1,0 +1,46 @@
+{
+ "file": "chapters/02-methodology/drafts/2.3-draft.md",
+ "genre": "thesis",
+ "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 442,
+   "errors": [],
+   "warnings": [
+    "term «cross-corpus transfer» not rendered as «корпусаралық тасымалдану қабілеті»",
+    "term «identity shortcut» not rendered as «бірегейлік қысқа жол»"
+   ],
+   "attempts": 1,
+   "sec": 235.0,
+   "src_head": "## 2.3 Classification architectures and adaptation\n\nA convolutional network swee"
+  },
+  {
+   "chunk": 2,
+   "words": 380,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 181.2,
+   "src_head": "Reading the contrast within each fixed backbone, and then asking whether the two"
+  },
+  {
+   "chunk": 3,
+   "words": 271,
+   "errors": [],
+   "warnings": [
+    "numbers added: 16"
+   ],
+   "attempts": 1,
+   "sec": 141.7,
+   "src_head": "Regularisation operates at three levels and all three are used. At the level of "
+  }
+ ]
+}

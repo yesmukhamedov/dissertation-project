@@ -1,0 +1,27 @@
+11:29:19 1 file(s) -> Russian; termbase 276 rows, TM 547 rows
+11:29:29   chunk 1/8 try 1: 1 w, 10.8s, pp 184/s tg 6.5/s, 1 err, 1 warn | names/codes lost: ABSTRACT
+11:29:32   chunk 1/8 try 2: 1 w, 2.8s, pp 32/s tg 3.9/s, 1 err, 1 warn | names/codes lost: ABSTRACT
+11:31:25   chunk 2/8 try 1: 441 w, 112.9s, pp 198/s tg 6.9/s, 0 err, 2 warn
+11:33:33   chunk 3/8 try 1: 408 w, 128.1s, pp 206/s tg 6.8/s, 0 err, 5 warn
+11:33:58   chunk 4/8 try 1: 84 w, 25.1s, pp 189/s tg 7.6/s, 1 err, 1 warn | names/codes lost: OD-fovea, FOV
+11:34:23   chunk 4/8 try 2: 84 w, 24.8s, pp 197/s tg 7.5/s, 1 err, 1 warn | names/codes lost: OD-fovea, FOV
+11:36:10   chunk 5/8 try 1: 401 w, 106.9s, pp 199/s tg 7.0/s, 0 err, 3 warn
+11:37:52   chunk 6/8 try 1: 384 w, 102.0s, pp 202/s tg 6.5/s, 0 err, 2 warn
+11:39:27   chunk 7/8 try 1: 402 w, 95.0s, pp 191/s tg 7.2/s, 0 err, 1 warn
+11:39:58   chunk 8/8 try 1: 128 w, 30.3s, pp 181/s tg 7.5/s, 0 err, 0 warn
+11:39:58 output/abstract_en.md -> output/translated-qwen/abstract_en.ru.md: 8 chunks, 6 clean first try, NEEDS_REVIEW [1, 4], 15 warnings, 10.6 min
+11:39:58 DONE 1 files, 8 chunks, 6 clean first try, 2 need review, 11 min
+11:39:58 1 file(s) -> Kazakh; termbase 276 rows, TM 547 rows
+11:40:03   chunk 1/8 try 1: 1 w, 5.7s, pp 186/s tg 4.7/s, 1 err, 0 warn | names/codes lost: ABSTRACT
+11:40:09   chunk 1/8 try 2: 1 w, 5.1s, pp 142/s tg 4.7/s, 1 err, 0 warn | names/codes lost: ABSTRACT
+11:43:31   chunk 2/8 try 1: 441 w, 202.5s, pp 219/s tg 6.6/s, 0 err, 0 warn
+11:46:49   chunk 3/8 try 1: 408 w, 197.9s, pp 229/s tg 6.6/s, 1 err, 2 warn | forbidden «ұздатыл»: frozen (backbone/layers) is «қатырылған»
+11:50:01   chunk 3/8 try 2: 408 w, 192.1s, pp 229/s tg 6.7/s, 0 err, 2 warn
+11:50:47   chunk 4/8 try 1: 84 w, 46.3s, pp 184/s tg 6.1/s, 1 err, 3 warn | numbers missing: 8
+11:51:30   chunk 4/8 try 2: 84 w, 43.0s, pp 145/s tg 6.5/s, 0 err, 1 warn
+11:54:32   chunk 5/8 try 1: 401 w, 181.9s, pp 215/s tg 6.6/s, 0 err, 1 warn
+11:57:49   chunk 6/8 try 1: 384 w, 196.5s, pp 222/s tg 6.0/s, 0 err, 0 warn
+12:00:47   chunk 7/8 try 1: 402 w, 178.4s, pp 224/s tg 6.6/s, 0 err, 1 warn
+12:01:49   chunk 8/8 try 1: 128 w, 61.3s, pp 211/s tg 6.4/s, 0 err, 1 warn
+12:01:49 output/abstract_en.md -> output/translated-qwen/abstract_en.kz.md: 8 chunks, 5 clean first try, NEEDS_REVIEW [1], 6 warnings, 21.8 min
+12:01:49 DONE 1 files, 8 chunks, 5 clean first try, 1 need review, 22 min

@@ -1,0 +1,39 @@
+{
+ "file": "translation/work/eval/c0/council/src/bakirova-kz-en.kz.md",
+ "genre": "council",
+ "out": "translation/work/eval/c0/council/bakirova-kz-en.kz.en.md",
+ "src": "kz",
+ "tgt": "en",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 5,
+ "minutes": 3.1,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 424,
+   "errors": [],
+   "warnings": [
+    "term «конвейер» not rendered as «Pipeline»",
+    "term «дәлдік» not rendered as «Precision»"
+   ],
+   "attempts": 1,
+   "sec": 109.0,
+   "src_head": "4. Әзірленген модельдердің әртүрлі IID емес деректер жағдайындағы тиімділігін, т"
+  },
+  {
+   "chunk": 2,
+   "words": 302,
+   "errors": [],
+   "warnings": [
+    "numbers added: 1, 2, 4",
+    "term «конвейер» not rendered as «Pipeline»",
+    "term «толықтық» not rendered as «Recall»"
+   ],
+   "attempts": 1,
+   "sec": 78.9,
+   "src_head": "FedAvg, FedOpt және FedProx федеративті оқыту алгоритмдері дифференциалданбайтын"
+  }
+ ]
+}

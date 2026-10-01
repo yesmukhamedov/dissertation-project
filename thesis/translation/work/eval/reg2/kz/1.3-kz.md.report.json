@@ -1,0 +1,43 @@
+{
+ "file": "chapters/01-review/drafts/1.3-draft.md",
+ "genre": "thesis",
+ "out": "translation/work/eval/reg2/kz/1.3-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 7.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 410,
+   "errors": [],
+   "warnings": [
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+   ],
+   "attempts": 1,
+   "sec": 213.9,
+   "src_head": "## 1.3 Convolutional networks for retinal images\n\nThe learning machinery of auto"
+  },
+  {
+   "chunk": 2,
+   "words": 420,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 213.3,
+   "src_head": "The strand that matters for this work asks whether in-domain initialisation does"
+  },
+  {
+   "chunk": 3,
+   "words": 77,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 38.0,
+   "src_head": "The lesson is not about that architecture. It is that increasing architectural s"
+  }
+ ]
+}

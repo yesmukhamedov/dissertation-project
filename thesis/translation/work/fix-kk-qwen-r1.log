@@ -1,0 +1,30 @@
+chapters/06-appendices/translated-kk-qwen/A-kz.md chunk 1: applied, 0 err, 2 warn, 169.9s
+chapters/06-appendices/translated-kk-qwen/B-kz.md chunk 1: applied, 0 err, 0 warn, 207.9s
+chapters/06-appendices/translated-kk-qwen/B-kz.md chunk 3: applied, 0 err, 1 warn, 227.7s
+chapters/06-appendices/translated-kk-qwen/B-kz.md chunk 4: applied, 0 err, 1 warn, 201.6s
+chapters/06-appendices/translated-kk-qwen/B-kz.md chunk 5: applied, 0 err, 0 warn, 89.8s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 1: applied, 0 err, 1 warn, 83.4s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 2: applied, 0 err, 2 warn, 110.1s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 5: applied, 0 err, 0 warn, 56.4s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 6: applied, 0 err, 2 warn, 152.1s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 7: applied, 0 err, 2 warn, 74.7s
+chapters/06-appendices/translated-kk-qwen/D-kz.md chunk 1: applied, 0 err, 3 warn, 142.2s
+chapters/06-appendices/translated-kk-qwen/D-kz.md chunk 2: REJECTED, 1 err, 3 warn, 131.7s | appendix letters ['D'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expect
+chapters/06-appendices/translated-kk-qwen/D-kz.md chunk 3: applied, 0 err, 2 warn, 62.2s
+chapters/06-appendices/translated-kk-qwen/E-kz.md chunk 1: applied, 0 err, 1 warn, 136.9s
+chapters/06-appendices/translated-kk-qwen/E-kz.md chunk 2: applied, 0 err, 2 warn, 151.0s
+chapters/06-appendices/translated-kk-qwen/E-kz.md chunk 3: applied, 0 err, 0 warn, 153.1s
+chapters/06-appendices/translated-kk-qwen/E-kz.md chunk 4: applied, 0 err, 1 warn, 136.6s
+chapters/06-appendices/translated-kk-qwen/E-kz.md chunk 5: applied, 0 err, 0 warn, 96.7s
+chapters/06-appendices/translated-kk-qwen/F-kz.md chunk 1: REJECTED, 1 err, 0 warn, 119.0s | appendix letters ['F'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expect
+chapters/06-appendices/translated-kk-qwen/F-kz.md chunk 2: REJECTED, 1 err, 0 warn, 146.3s | appendix letters ['F'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expect
+chapters/06-appendices/translated-kk-qwen/F-kz.md chunk 3: applied, 0 err, 1 warn, 52.6s
+chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md chunk 1: applied, 0 err, 0 warn, 144.6s
+chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md chunk 2: applied, 0 err, 1 warn, 136.7s
+chapters/06-appendices/drafts/A-draft.md -> chapters/06-appendices/translated-kk-qwen/A-kz.md: 3 chunks, 3 clean first try, NEEDS_REVIEW none, 4 warnings, 0.0 min
+chapters/06-appendices/drafts/B-draft.md -> chapters/06-appendices/translated-kk-qwen/B-kz.md: 5 chunks, 4 clean first try, NEEDS_REVIEW none, 2 warnings, 0.0 min
+chapters/06-appendices/drafts/C-draft.md -> chapters/06-appendices/translated-kk-qwen/C-kz.md: 7 chunks, 7 clean first try, NEEDS_REVIEW none, 7 warnings, 0.0 min
+chapters/06-appendices/drafts/D-draft.md -> chapters/06-appendices/translated-kk-qwen/D-kz.md: 3 chunks, 3 clean first try, NEEDS_REVIEW none, 8 warnings, 0.0 min
+chapters/06-appendices/drafts/E-draft.md -> chapters/06-appendices/translated-kk-qwen/E-kz.md: 5 chunks, 5 clean first try, NEEDS_REVIEW none, 4 warnings, 0.0 min
+chapters/06-appendices/drafts/F-draft.md -> chapters/06-appendices/translated-kk-qwen/F-kz.md: 3 chunks, 3 clean first try, NEEDS_REVIEW none, 1 warnings, 0.0 min
+chapters/05-conclusion/drafts/conclusion-draft.md -> chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md: 4 chunks, 4 clean first try, NEEDS_REVIEW none, 2 warnings, 0.0 min

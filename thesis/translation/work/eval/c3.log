@@ -1,0 +1,38 @@
+18:29:34   chunk 1/2 try 1: 444 w, 263.7s, pp 230/s tg 6.8/s, 0 err, 1 warn
+18:32:04   chunk 2/2 try 1: 264 w, 150.1s, pp 210/s tg 6.8/s, 0 err, 3 warn
+18:32:04 translation/work/eval/c3/council/src/gd01-ru-kz.ru.md -> translation/work/eval/c3/council/gd01-ru-kz.ru.kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 4 warnings, 6.9 min
+18:32:05   gd01-ru-kz: chrF++ 83.1, chrF_gold 88.0
+18:34:27   chunk 1/2 try 1: 441 w, 142.6s, pp 219/s tg 7.1/s, 0 err, 4 warn
+18:35:58   chunk 2/2 try 1: 257 w, 90.7s, pp 223/s tg 6.6/s, 0 err, 1 warn
+18:35:58 translation/work/eval/c3/council/src/gd01-kz-ru.kz.md -> translation/work/eval/c3/council/gd01-kz-ru.kz.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 5 warnings, 3.9 min
+18:35:58   gd01-kz-ru: chrF++ 84.7, chrF_gold 89.2
+18:40:32   chunk 1/2 try 1: 440 w, 273.6s, pp 213/s tg 6.4/s, 0 err, 2 warn
+18:43:42   chunk 2/2 try 1: 283 w, 190.7s, pp 210/s tg 6.2/s, 0 err, 1 warn
+18:43:42 translation/work/eval/c3/council/src/bazarbekov-ru-kz.ru.md -> translation/work/eval/c3/council/bazarbekov-ru-kz.ru.kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 3 warnings, 7.7 min
+18:43:43   bazarbekov-ru-kz: chrF++ 78.0, chrF_gold 78.5
+18:46:01   chunk 1/2 try 1: 423 w, 138.1s, pp 214/s tg 6.5/s, 0 err, 2 warn
+18:46:20   chunk 2/2 try 1: 41 w, 19.6s, pp 183/s tg 6.6/s, 0 err, 0 warn
+18:46:20 translation/work/eval/c3/council/src/toktarova-kz-ru.kz.md -> translation/work/eval/c3/council/toktarova-kz-ru.kz.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 2 warnings, 2.6 min
+18:46:20   toktarova-kz-ru: chrF++ 67.9, chrF_gold 82.5
+18:48:08   chunk 1/2 try 1: 442 w, 107.7s, pp 206/s tg 7.0/s, 0 err, 0 warn
+18:49:19   chunk 2/2 try 1: 271 w, 70.7s, pp 223/s tg 7.0/s, 0 err, 3 warn
+18:49:19 translation/work/eval/c3/council/src/bakirova-en-ru.en.md -> translation/work/eval/c3/council/bakirova-en-ru.en.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 3 warnings, 3.0 min
+18:49:19   bakirova-en-ru: chrF++ 81.7, chrF_gold 86.3
+18:51:12   chunk 1/2 try 1: 441 w, 113.1s, pp 226/s tg 7.5/s, 0 err, 1 warn
+18:52:24   chunk 2/2 try 1: 292 w, 72.2s, pp 224/s tg 7.3/s, 0 err, 2 warn
+18:52:24 translation/work/eval/c3/council/src/bazarbekov-ru-en.ru.md -> translation/work/eval/c3/council/bazarbekov-ru-en.ru.en.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 3 warnings, 3.1 min
+18:52:24   bazarbekov-ru-en: chrF++ 81.7, chrF_gold 86.0
+18:55:19   chunk 1/2 try 1: 397 w, 174.7s, pp 206/s tg 6.8/s, 0 err, 2 warn
+18:58:29   chunk 2/2 try 1: 377 w, 189.6s, pp 201/s tg 6.3/s, 0 err, 0 warn
+18:58:29 translation/work/eval/c3/council/src/bakirova-en-kz.en.md -> translation/work/eval/c3/council/bakirova-en-kz.en.kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 2 warnings, 6.1 min
+18:58:29   bakirova-en-kz: chrF++ 72.9, chrF_gold 81.4
+19:00:08   chunk 1/2 try 1: 424 w, 99.2s, pp 196/s tg 7.1/s, 0 err, 3 warn
+19:01:28   chunk 2/2 try 1: 302 w, 79.6s, pp 215/s tg 7.1/s, 0 err, 3 warn
+19:01:28 translation/work/eval/c3/council/src/bakirova-kz-en.kz.md -> translation/work/eval/c3/council/bakirova-kz-en.kz.en.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 6 warnings, 3.0 min
+19:01:28   bakirova-kz-en: chrF++ 78.2, chrF_gold 78.9
+19:01:28 c3 council ru>kz: chrF++ 81.3, chrF_gold 83.6, chunks 4, first-try 4, clean 4, 14.6 min, errors {}
+19:01:28 c3 council kz>ru: chrF++ 79.0, chrF_gold 87.2, chunks 4, first-try 4, clean 4, 6.5 min, errors {}
+19:01:28 c3 council en>ru: chrF++ 81.7, chrF_gold 86.3, chunks 2, first-try 2, clean 2, 3.0 min, errors {}
+19:01:28 c3 council ru>en: chrF++ 81.7, chrF_gold 86.0, chunks 2, first-try 2, clean 2, 3.1 min, errors {}
+19:01:28 c3 council en>kz: chrF++ 72.9, chrF_gold 81.4, chunks 2, first-try 2, clean 2, 6.1 min, errors {}
+19:01:28 c3 council kz>en: chrF++ 78.2, chrF_gold 78.9, chunks 2, first-try 2, clean 2, 3.0 min, errors {}

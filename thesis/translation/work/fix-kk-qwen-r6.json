@@ -1,0 +1,190 @@
+[
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING ERROR: the heading «**Зерттеу нысаны мен объектісі.**» and «Объект – алдын ала өңдеуді...» mislabel the SUBJECT of research as «объект». Source: 'Object and subject of research. The object is ... The subject is ...'. Write «**Зерттеу объектісі мен пәні.**», «Объект – ...» for the object and «Пән – ...» for the subject.",
+   "«3. Аппаратты эксперименттік жолмен...» - 'framework' here is «шеңбер»: «3. Шеңберді эксперименттік жолмен...».",
+   "«алдын ала оқытылған, мұздатылған белгілеуші детектормен нормаланған» - 'a pre-trained, frozen landmark detector' is «алдын ала оқытылған, қатырылған бағдарлық нүкте детекторымен қалыпқа келтіріледі» (present tense, like the rest of the sentence).",
+   "«...деңгейленген корпуста.» - grammar: the definition «Эмпирикалық материал – ... корпус» needs the nominative: «...деңгейлі корпус.»",
+   "«bootstrap интервалдары» -> «bootstrap аралықтары»; «fold-деңгейдегі модельдеу» -> «фолд деңгейіндегі модельдеу»; «Focal Loss» -> «focal loss» (lower case, as in the approved text).",
+   "'framework' (the research framework) is «шеңбер» (шеңберді, шеңбердің), not «аппарат»/«негіз»/«құрылым»",
+   "'landmark detector' is «бағдарлық нүкте детекторы» (детекторымен...)",
+   "'bootstrap interval(s)' is «bootstrap аралығы/аралықтары», not «интервал»",
+   "'fold-level' is «фолд деңгейіндегі», not «fold-деңгейдегі»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING: «Сапалық бақылау кезінде қолданылмайтын кескіндердің алдын ала тасталуы дұрыс деп қабылдануы мүмкін.» loses the point. Source: 'A reasonable objection is that quality gating at capture already discards unusable images.' - e.g. «Орынды қарсылық бар: түсіру кезіндегі сапа сүзгісі жарамсыз кескіндерді онсыз да алып тастайды.»",
+   "«ол кескіндерді қалпына келтіру емес, оларды тастайды» - source: 'it discards images rather than recovering their signal' - «ол кескіндердің сигналын қалпына келтірмей, кескіндерді тастайды».",
+   "«иілу астындағы ауданды» (twice) is wrong: 'area under the curve' is «қисық астындағы аудан».",
+   "MEANING: «Мұнда бірінші корпустың шамамен толығымен бағалануы мүмкіндігі екіншісінің шамамен төрттен үш бөлігіне тең.» says the two are equal. Source: 'roughly all of the first corpus being gradable against about three-quarters of the second' - «бірінші корпустың кескіндері түгелге жуық бағалауға жарамды болса, екіншісінде бұл үлес шамамен төрттен үш ғана».",
+   "«архитектурмен» -> «архитектурамен» (typo).",
+   "«асыра күшті оқуды болдырмайтын» (calque of 'over-strong reading') -> «тым күшті түсіндіруге жол бермейтін».",
+   "«бағаланбайтыны деп бағалаған» -> «бағалауға жарамсыз деп таныған» ('judged ungradable').",
+   "MEANING: «қатынастың қасиетті қосымша қамту емес, ұсақ сигналды сақтау деңгейінде» is garbled. Source: 'the relationship operates at the level of fine signal preservation rather than coarse inclusion' - «байланыс кескінді іріктеуге қосу-қоспау сияқты дөрекі деңгейде емес, ұсақ сигналды сақтау деңгейінде әрекет етеді».",
+   "«кездейсоқ, кеңейтілмеген кездесулер» (calque) - 'opportunistic undilated encounters' = «қарашығы кеңейтілмеген кездейсоқ тексерулер».",
+   "'area under the curve' is «қисық астындағы аудан» (inflect: ауданы, аудандағы) - never «қисым астындағы» or «иілу астындағы»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING REVERSED: «Тізбек клип-лимитті қалай анықтау керектігін көрсететін ережені ашып қояды.» says the lineage reveals the rule. Source: 'What that lineage leaves open is the rule by which the clip limit is set' - the rule is NOT given: «Бұл тізбектің ашық қалдыратын нәрсесі – клип-лимиттің қандай ережемен белгіленетіні.»",
+   "«Үш формулирлеу өзекті» -> «Үш тұжырымдама өзекті».",
+   "«соңғы түрдің жалпы басқарушы параметрін» - 'the final form's SINGLE governing parameter' - «түпкі пішіннің жалғыз басқарушы параметрін».",
+   "«клип-лимит әдістің басқарушы реті болып табылады» (garbled) -> «клип-лимит – әдістің басқарушы тетігі».",
+   "HEDGE SHIFT: «олардың көшірілетіндігі дәлелденбейді» ('not proven') - source: 'are not asserted to be portable' (the work does not claim it) - «олардың тасымалданатыны бекітілмейді».",
+   "«басқа да ерекшеліксіз аймақтағы» is wrong for 'in an otherwise featureless region' - «басқа белгісі жоқ біртекті аймақтағы».",
+   "«кішігірім айырмашылықтарды бөлінбей күшейтеді» -> «ұсақ айырмашылықтарды талғаусыз күшейтеді» ('indiscriminately').",
+   "«жеткізілетін еңісті» -> «қол жеткізуге болатын еңісті» ('the attainable slope').",
+   "«бұл сипаттық құнға тұрады» -> «бұл өзіне тән бағамен келеді» ('at a characteristic cost')."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«жасуша/жасушалар» (biological cell) is wrong for the cells of the 2x2 design: use «ұяшық» everywhere in this chunk («Төрт ұяшықтың барлығы», «Интеграцияланған ұяшықтар», «базалық ұяшықтар»).",
+   "«сеткалық шекараны» is a Russian calque (сетчатка): 'the retinal boundary' = «торқабық шекарасын».",
+   "'reading' (interpretation) is not «оқу»: «екі оқудың бірге заңды болуын» -> «екі оқылымның бірге заңды болуын»; «Оқуды анықтайтын нәрсе» -> «Оқылымды айқындайтын нәрсе»; «соңғы күйлерді қалай оқуға болатынын» -> «соңғы күйлерді қалай түсіндіруге болатынын».",
+   "«оқыту корпусына аз оқытылды» is ambiguous; source 'fitted the training corpus less closely' - «оқыту корпусына азырақ бейімделді». Likewise 'fitting the corpus more closely or by fitting a narrower hypothesis space' - «корпусқа тығызырақ бейімделу арқылы немесе тарырақ гипотеза кеңістігіне бейімделу арқылы».",
+   "«Осы анықтама тасталмады» - 'That identification is not abandoned' (isolating the preprocessing effect) - «Алдын ала өңдеудің әсерін бөліп анықтаудан бас тартылмады».",
+   "«Нормалданған ауытқуларды оқытуға болмайды» - 'Variation normalised away cannot be fitted' - «Нормалау арқылы жойылған ауытқуға модель бейімделе алмайды».",
+   "'criterion' is «өлшем» (өлшемі, өлшемдер), not «критерий»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Орналастыру анықтайтыны архитектуралық және ұсақ.» - «ұсақ» means small objects/tiny, wrong for 'modest'; and 'does establish' is emphatic. Write «Орналастыру шынымен орнататын нәрсе – архитектуралық әрі қарапайым.»",
+   "«жеткізілуге мүмкін» is ungrammatical -> «жеткізуге болады» (or «жеткізілуі мүмкін»).",
+   "«бұл пішін тиісті болып табылады» - 'that shape is the relevant one' - «өзекті пішін – осы» (no «болып табылады»)."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'Referable DR' is «жолдама берілуге тиіс DR», not «сілтеме DR» («сілтеме» = a link/citation): heading «### Г.4 Топтар бойынша жолдама берілуге тиіс DR AUC», table title «екілік жолдама берілуге тиіс DR ROC-AUC», column headers «Жолдама AUC (C)», «Жолдама AUC (D)».",
+   "MEANING: «ешқандай айырмашылықсыз» means 'without any difference' - source 'without exception' = «ешбір ерекшеліксіз».",
+   "«ең әлсіз класты болып қалады» -> «ең әлсіз класс болып қалады».",
+   "«Кесте жұбынан екі бақылау оқуға болады» -> «Кестелер жұбынан екі байқау анық көрінеді»; «3.5-бөлімде орнатылғанынан» -> «3.5-бөлімде анықталғаннан».",
+   "'referable DR' is «жолдама берілуге тиіс DR», not «сілтеме DR»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'framework' (the research framework) is «шеңбер» (шеңберді, шеңбердің), not «аппарат»/«негіз»/«құрылым»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "issues": [
+   "'area under the curve' is «қисық астындағы аудан» (inflect: ауданы, аудандағы) - never «қисым астындағы» or «иілу астындағы»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'area under the curve' is «қисық астындағы аудан» (inflect: ауданы, аудандағы) - never «қисым астындағы» or «иілу астындағы»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'framework' (the research framework) is «шеңбер» (шеңберді, шеңбердің), not «аппарат»/«негіз»/«құрылым»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'framework' (the research framework) is «шеңбер» (шеңберді, шеңбердің), not «аппарат»/«негіз»/«құрылым»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'framework' (the research framework) is «шеңбер» (шеңберді, шеңбердің), not «аппарат»/«негіз»/«құрылым»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'framework' (the research framework) is «шеңбер» (шеңберді, шеңбердің), not «аппарат»/«негіз»/«құрылым»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'area under the curve' is «қисық астындағы аудан» (inflect: ауданы, аудандағы) - never «қисым астындағы» or «иілу астындағы»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'landmark detector' is «бағдарлық нүкте детекторы» (детекторымен...)",
+   "'fold-level' is «фолд деңгейіндегі», not «fold-деңгейдегі»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'area under the curve' is «қисық астындағы аудан» (inflect: ауданы, аудандағы) - never «қисым астындағы» or «иілу астындағы»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 4,
+  "issues": [
+   "'area under the curve' is «қисық астындағы аудан» (inflect: ауданы, аудандағы) - never «қисым астындағы» or «иілу астындағы»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'area under the curve' is «қисық астындағы аудан» (inflect: ауданы, аудандағы) - never «қисым астындағы» or «иілу астындағы»",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'landmark detector' is «бағдарлық нүкте детекторы» (детекторымен...)",
+   "Change only these terms (with correct case endings); keep everything else exactly as it is."
+  ]
+ }
+]

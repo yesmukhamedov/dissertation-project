@@ -1,0 +1,51 @@
+{
+ "file": "chapters/03-experiments/drafts/3.4-draft.md",
+ "genre": "thesis",
+ "out": "translation/work/eval/reg2/kz/3.4-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 7,
+ "minutes": 14.3,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 397,
+   "errors": [],
+   "warnings": [
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+    "term «interval excluding zero» not rendered as «нөлді қамтымайтын аралық»"
+   ],
+   "attempts": 2,
+   "sec": 208.9,
+   "src_head": "## 3.4 Domain distance in feature space\n\nThe two preceding sections established "
+  },
+  {
+   "chunk": 2,
+   "words": 445,
+   "errors": [],
+   "warnings": [
+    "numbers added: 6, 6",
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+    "term «interval excluding zero» not rendered as «нөлді қамтымайтын аралық»",
+    "term «Convergence» not rendered as «жинақталу»"
+   ],
+   "attempts": 1,
+   "sec": 240.7,
+   "src_head": "A second property forecloses the objection that would otherwise be decisive. If "
+  },
+  {
+   "chunk": 3,
+   "words": 353,
+   "errors": [],
+   "warnings": [
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+   ],
+   "attempts": 1,
+   "sec": 186.4,
+   "src_head": "The pixel-level reduction is proportional rather than levelling. It fell within "
+  }
+ ]
+}

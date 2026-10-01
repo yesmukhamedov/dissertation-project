@@ -1,0 +1,31 @@
+[
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 188.0
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 181.9
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «five grades» not rendered as «бес дәреже»"
+  ],
+  "sec": 141.4
+ }
+]

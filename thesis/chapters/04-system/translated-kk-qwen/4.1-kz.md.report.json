@@ -1,0 +1,32 @@
+{
+ "file": "chapters/04-system/drafts/4.1-draft.md",
+ "genre": "thesis",
+ "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 432,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 211.9,
+   "src_head": "## 4.1 System architecture and modules\n\nThe preceding chapters treated the model"
+  },
+  {
+   "chunk": 2,
+   "words": 426,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 200.1,
+   "src_head": "That correspondence was a design decision rather than an accident of implementat"
+  }
+ ]
+}

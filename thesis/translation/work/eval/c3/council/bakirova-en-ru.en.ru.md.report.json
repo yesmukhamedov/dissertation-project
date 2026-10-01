@@ -1,0 +1,36 @@
+{
+ "file": "translation/work/eval/c3/council/src/bakirova-en-ru.en.md",
+ "genre": "council",
+ "out": "translation/work/eval/c3/council/bakirova-en-ru.en.ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 3.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 442,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 107.7,
+   "src_head": "3. Ensemble and federated machine learning methods based on the aggregation of s"
+  },
+  {
+   "chunk": 2,
+   "words": 271,
+   "errors": [],
+   "warnings": [
+    "term «Benchmarking» not rendered as «бенчмаркинг»",
+    "term «practical significance» not rendered as «практическая значимость»",
+    "term «educational environment» not rendered as «образовательная среда»"
+   ],
+   "attempts": 1,
+   "sec": 70.7,
+   "src_head": "The FedAvg, FedOpt, and FedProx federated learning algorithms were adapted to th"
+  }
+ ]
+}

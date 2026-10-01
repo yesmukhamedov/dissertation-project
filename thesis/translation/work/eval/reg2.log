@@ -1,0 +1,20 @@
+17:56:40   chunk 1/3 try 1: 397 w, 219.2s, pp 227/s tg 5.6/s, 1 err, 3 warn | numbers missing: 1000
+18:00:09   chunk 1/3 try 2: 397 w, 208.9s, pp 217/s tg 5.7/s, 0 err, 2 warn
+18:04:10   chunk 2/3 try 1: 445 w, 240.7s, pp 228/s tg 6.1/s, 0 err, 4 warn
+18:07:17   chunk 3/3 try 1: 353 w, 186.4s, pp 212/s tg 5.5/s, 0 err, 1 warn
+18:07:17 chapters/03-experiments/drafts/3.4-draft.md -> translation/work/eval/reg2/kz/3.4-kz.md: 3 chunks, 2 clean first try, NEEDS_REVIEW none, 7 warnings, 14.3 min
+18:07:17   3.4: chrF++ 66.8
+18:10:23   chunk 1/2 try 1: 416 w, 186.2s, pp 209/s tg 5.7/s, 0 err, 1 warn
+18:13:22   chunk 2/2 try 1: 384 w, 179.4s, pp 204/s tg 5.7/s, 0 err, 0 warn
+18:13:22 chapters/04-system/drafts/4.2-draft.md -> translation/work/eval/reg2/kz/4.2-kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 1 warnings, 6.1 min
+18:13:22   4.2: chrF++ 63.6
+18:16:56   chunk 1/3 try 1: 410 w, 213.9s, pp 212/s tg 6.0/s, 0 err, 1 warn
+18:20:30   chunk 2/3 try 1: 420 w, 213.3s, pp 212/s tg 5.9/s, 0 err, 0 warn
+18:21:08   chunk 3/3 try 1: 77 w, 38.0s, pp 214/s tg 5.6/s, 0 err, 0 warn
+18:21:08 chapters/01-review/drafts/1.3-draft.md -> translation/work/eval/reg2/kz/1.3-kz.md: 3 chunks, 3 clean first try, NEEDS_REVIEW none, 1 warnings, 7.8 min
+18:21:08   1.3: chrF++ 68.2
+18:23:02   chunk 1/1 try 1: 368 w, 113.6s, pp 224/s tg 6.6/s, 1 err, 2 warn | list markers differ: [] vs ['1.', '2.', '3.', '4.']
+18:24:46   chunk 1/1 try 2: 368 w, 104.3s, pp 124/s tg 6.3/s, 0 err, 2 warn
+18:24:46 translation/work/eval/reg2/abstract_en_sample.md -> translation/work/eval/reg2/ru/abstract_en_sample.ru.md: 1 chunks, 0 clean first try, NEEDS_REVIEW none, 2 warnings, 3.6 min
+18:24:46 reg2 en>kz: chrF++ 69.3, chunks 8, first-try 7, clean 8, 28.2 min, errors {}
+18:24:46 reg2 en>ru: chrF++ 67.7, chunks 1, first-try 0, clean 1, 3.6 min, errors {}

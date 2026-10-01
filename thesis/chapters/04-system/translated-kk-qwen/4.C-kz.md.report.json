@@ -1,0 +1,23 @@
+{
+ "file": "chapters/04-system/drafts/4.C-draft.md",
+ "genre": "thesis",
+ "out": "chapters/04-system/translated-kk-qwen/4.C-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 1,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 341,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 178.4,
+   "src_head": "## Conclusions on section 4\n\nThis chapter described the screening system built a"
+  }
+ ]
+}

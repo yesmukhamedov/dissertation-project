@@ -1,0 +1,1044 @@
+[
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Модельді қоршап, ... скрининг жүйесін құрып» - 'build a screening system around the model' means built on the basis of the model: write «Модель негізінде ... скрининг жүйесін құру және сипаттау»",
+   "«әртүрлі отбасына жататын екі конволюциялық негіз» - 'family' of architectures is «тұқымдас»: write «әртүрлі тұқымдасқа жататын екі конволюциялық backbone»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«алдыңғы соңғы қабатта» is wrong for 'penultimate layer' - write «соңғының алдындағы қабатта»",
+   "«Демек, жинақталу» - 'convergence' of distributions here is «жақындасу»: write «Демек, бұл жақындасу»",
+   "«өлшемдер отбасы» - write «өлшемдер тобы»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Кросс-корпус жиынында» - 'cross-corpus set' is «корпусаралық жиында»",
+   "«Бес камералық топтама арасында» - «топтама» means batch; 'five camera groupings' is «бес камералық топтастыруда»"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«бұрынғыша ресми емес болған таңдауларды» - 'previously informal choices' means choices not formalised before: write «бұрын формалды түрде анықталмаған таңдауларды»",
+   "«орнықтылық өлшемдері отбасының» - write «орнықтылық өлшемдері тобының»",
+   "«Модельді орталыққа алып салынған скрининг жүйесі» - 'built around the model' is «Модель негізінде құрылған скрининг жүйесі»",
+   "«қосымшаларда қайта жасалған» - 'reproduced in the appendices' means given in full: write «қосымшаларда толық келтірілген»",
+   "«Сондықтан дәлелдер базасы тұтас алғанда ешқандай қателік деңгейі бақыланбайды» is ungrammatical - write «Сондықтан дәлелдер базасы тұтас алғанда ешбір қателік деңгейі бақыланбайды» with «дәлелдер базасы бойынша тұтас алғанда»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 6,
+  "issues": [
+   "«трансфер дәлелдері» - 'transfer evidence' is «тасымалдау дәлелдері»",
+   "«2-тарау (...) негізделген, 4-тарау (...) негізделген, ал ... лазер моделі (...) негізделген» lacks the object - write «2-тарау мына жұмыстарға негізделген: (...)», «4-тарау (...) жұмысына», «1.1-бөлімдегі лазер моделі (...) жұмысына негізделген»"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 7,
+  "issues": [
+   "«аурудың деңгейлендіруін» - 'grading of the disease' is «аурудың дәрежеленуін»",
+   "«параметрлерді сканерлеуі бар кезеңдерді жіктеуді» - 'stage decomposition with its parameter sweeps' is «параметрлерді сканерлеуі бар кезеңдік декомпозицияны»",
+   "«жиынаралық және сыртқы клиникалық тасымалдауды» - 'cross-corpus' is «корпусаралық»",
+   "«4-тарау модельді қоршап тұрған скрининг жүйесін» - write «4-тарау модель негізінде құрылған скрининг жүйесін»",
+   "«саяси мақсатқа қол жеткізілгені туралы да талап емес» - 'not a claim' is «тұжырым емес»: write «...қол жеткізілгені туралы тұжырым да емес»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«торқабықтың капиллярлық қабаттағы зақымдануды» is ungrammatical for 'injury in the retinal capillary bed' - write «торқабықтың капиллярлық арнасында зақымдануды»",
+   "«оның авторлары» - the authors of the reviews (plural): write «олардың авторлары»",
+   "«ауру шамамен реттелген прогрессия арқылы анықталады» - 'the disease declares through' means it shows itself: write «ауру шамамен реттелген прогрессия арқылы көрініс береді»",
+   "«венозды түйінділік» is wrong for 'venous beading' - write «веналардың моншақ тәрізді өзгерісі»",
+   "«анти-VEGF терапиясының негізгі көрсеткіші» - 'indication' for therapy is «көрсетілім»: write «негізгі көрсетілімі»",
+   "«қызметті кескін белгілері» is wrong for 'the operative image features' - write «шешуші кескін белгілері»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«көршілес дәрежелерді шатастыру ауруы жоқ адамды пролиферативті аурумен шатастырудан әлдеқайда аз салдары бар» is ungrammatical - write «көршілес дәрежелерді шатастырудың салдары ауруы жоқ адамды пролиферативті аурумен шатастырудан әлдеқайда аз»",
+   "«ауру әлі әлсіз кезеңде анықталған» - 'identified while still subtle' means while its signs are still barely visible: write «белгілері әлі білінбей тұрған кезеңде анықталған»",
+   "«ұсынылған жыл сайынғы тексеруге пациенттердің үштен бір бөлігінен жартысына дейін қол жеткізу деңгейін көрсетті» - 'put compliance at between a third and a half of patients' means only a third to a half of patients attend: write «Morya т.б. (2024) деректері бойынша ұсынылған жыл сайынғы тексеруден пациенттердің үштен бірінен жартысына дейінгісі ғана өтеді»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«өлшеулерге қарсы валидацияланбағандықтан» - 'validated against measurement' is «өлшеулермен салыстырылып валидацияланбағандықтан»",
+   "«Дәлелдер базасы – кандидаттың бірлесіп жазған жалғыз жарияланымнан тұрады» is ungrammatical - write «Дәлелдер базасы кандидат бірлесіп жазған жалғыз жарияланымнан тұрады»",
+   "«жоғары беткей сіңіру арқылы» - write «беткі қабаттағы жоғары сіңіру арқылы»",
+   "«Зиян келтіру шектері немесе қателік шектері» - 'damage thresholds or error margins' is «Зақымдану табалдырықтары немесе қателік шектері»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«жоғары жиілікті мазмұнды дәл сол жерден әлсіретеді» - 'attenuating precisely the high-frequency content' means exactly that content, not 'that place': write «дәл сол жоғары жиілікті мазмұнды әлсіретеді»",
+   "«скрининг мақсаттағы популяцияда» - 'the population screening targets' is «скрининг бағытталған популяцияда»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Бақылау бар және құнды, бірақ ол мәселені жою емес, оны қайта анықтайды» - 'gating' is the quality filter and 'reframes' means changes the form of the problem: write «Сапа сүзгісі бар әрі пайдалы, бірақ ол мәселені жоймай, оны басқа түрге келтіреді»; also «бақылаудан өтетін» - write «сүзгіден өтетін»",
+   "«архитектурмен» is a typo - write «архитектурамен»",
+   "«Бұл көмектеспегендігі байланыс ... ұсақ сигналды сақтау деңгейінде әрекет етеді» is ungrammatical - write «Оның көмектеспегені байланыстың ... ұсақ сигналды сақтау деңгейінде әрекет ететінін көрсетеді»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«енгізу жағынан бақылаудың құнын нығайтады» - 'reinforce the cost of gating from the deployment side' means confirm the cost of quality filtering: write «орналастыру тұрғысынан сапа сүзгісінің құнын растайды»",
+   "«әрбір корпусқа өнімділікті жақсартатыны» - write «әрбір корпуста өнімділікті жақсартатыны»",
+   "«бірдей ретинаны суреттейтін екі камера» - 'the same retina' is «бір торқабықты түсіретін екі камера»",
+   "«деректердің бірдей таралған деген» - 'identically distributed' is «бірдей үлестірілген»",
+   "«қайта құруға негізделген отбасыларға бөледі» - write «қайта құруға негізделген топтарға бөледі»",
+   "«екінші камераға қатысты дәл сол үйренетін модель болып табылады» - 'is exactly that learner' refers to the learner trained only on source data: write «екінші камераға қатысты дәл сондай, тек бастапқы деректерде оқытылған модель болып табылады»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«бұл бөлім оны алдын ала шешімсіз мотивтейді» - 'which this section motivates without pre-judging' is «бұл бөлім оның қажеттігін нәтижесін алдын ала болжамай негіздейді»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING: «бұл көрсеткіштер архитектура класының қабілетті екенін, ешқандай конфигурацияның ең жақсы екенін дәлелдемейді» says the class is NOT shown capable; the source: 'these figures establish that the architecture class is capable, not that any configuration is best' - write «бұл көрсеткіштер архитектура класының қабілетті екенін дәлелдейді, бірақ қандай да бір конфигурацияның ең үздік екенін дәлелдемейді»",
+   "«Автоматтандырылған торқабық бағалаудың оқыту механизмі» - write «Торқабық кескіндерін автоматты дәрежелеудің оқыту аппараты»",
+   "«бірегейлік қысқа жолдар арқылы» is wrong for 'identity shortcuts' - write «тепе-тең (identity) қысқа байланыстар арқылы»",
+   "«әрқайсысы торқабық жұмысының сөздігін қалыптастырды» - 'established the vocabulary from which retinal work draws' - write «әрқайсысы торқабық зерттеулері сүйенетін негізгі құралдарды қалыптастырды»",
+   "«алғашқы конволюциялық белгілері» - write «алғашқы конволюциялық белгілер»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Басым тұқымдастық класс дәлелдерін» - write «Басым тұқымдас класс дәлелдерін»",
+   "«Назар картасы мен сарапшы аннотациясының үйлесуі жиі модель патологияны тапты деп көрсетіледі» - 'is regularly presented as though it demonstrated that a model had located pathology' - write «Назар картасы мен сарапшы аннотациясының үйлесуі жиі модельдің патологияны тапқанын дәлелдейтіндей етіп ұсынылады»",
+   "«Дегенмен, микроаневризмаларды әлсіз сегментациялады» has no subject - write «Дегенмен бұл желі микроаневризмаларды бәрібір әлсіз сегментациялады»",
+   "'backbone' stays Latin in this thesis: «Торқабық дәлдері трансформер негізінде алынды» / «домен ішінде алдын ала оқытылған конволюциялық негізді бағаламайды» - write «трансформер backbone-ымен алынды», «домен ішінде алдын ала оқытылған конволюциялық backbone-ды бағаламайды»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Сабақ – архитектуралық күрделілікті арттыру өзінен-өзі ... шешпейді» is ungrammatical - write «Сабақ мынада: архитектуралық күрделілікті арттыру өзінен-өзі ... шешпейді»",
+   "«оқыту машинасы» - 'learning machinery' is «оқыту аппараты»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Скрининг халық масштабында» - 'at population scale' is «популяция ауқымында»",
+   "«негізгі мәтінінде бұл мәселе толық ашылмаған, бірнеше енгізу есептерінен мүлдем түсірілген» - the subject is preprocessing, not 'the problem': write «негізгі мәтінінде алдын ала өңдеу толық сипатталмаған, бірнеше енгізу есептерінде мүлдем көрсетілмеген»",
+   "«осы қайта пайымдаудың болжам емес, тексерілуі мүмкін зерттеу дизайнын» is garbled for 'a study design in which that reframing can be tested rather than assumed' - write «осы қайта пайымдауды жай болжап қана қоймай, тексеруге мүмкіндік беретін зерттеу дизайнын»",
+   "«сәйкес келетін жағдайларда» - 'under matched conditions' is «теңестірілген жағдайларда»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«жұмысты неге міндеттейтінін және неге міндеттемейтінін» - 'what it commits the work to' is «жұмысты нені істеуге міндеттейтінін және нені міндеттемейтінін»",
+   "«көрсетілген корпус отбасына» - write «көрсетілген корпустар тобына»; «ресурстық шектелген есептеу шарттарына» - write «ресурстары шектеулі есептеу шарттарына»",
+   "«Шеңберді орналастыру контексінде орналастыратын жүйелік жұмыс» is a tautology - 'situates the framework in a deployment context' is «Шеңберді орналастыру контексіне қоятын жүйелік жұмыс»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«белгілерді төрт ось бойынша басым түрде шабуылдайды» - write «белгілерді төрт ось бойынша басым түрде бұзады»",
+   "«келесі тараулар осы олқылықты қарайды» - 'the gap the following chapters address' - write «келесі тараулар дәл осы олқылықты жоюға арналған»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Бұл тараудың ұйымдастырушылық міндеттемесі – диагностикалық модель ... екі кезеңді жүйе екенін айқындайды» is ungrammatical - write «Бұл тараудың негізгі ұстанымы – диагностикалық модель алдын ала өңдеу қосалқы деректер дайындығы емес, ажырамас компонент болып табылатын екі кезеңді жүйе екендігі»",
+   "«Канондық аудару белгілі геометриялық симметрияны жоюды қамтиды» - write «Канондық аудару белгілі геометриялық симметрияны жояды»",
+   "«желінің қуатын ауруға тән өзгерістерге жұмсауға» - network 'capacity' is «сыйымдылық»: write «желінің сыйымдылығын ауруға қатысты өзгерістерге жұмсауға»",
+   "table: «Төменде сипатталған үш отбасы» - write «Төменде сипатталған үш тұқымдас»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Көру дискісін орнына қоюдың медианалық ығысуы» and «Фовеаны орнына қою» - 'localisation' is «локализациялау»: write «Көру дискісін локализациялаудың медианалық ығысуы», «Фовеаны локализациялау»",
+   "«шынайы ретина пикселдерімен» - write «шынайы торқабық пикселдерімен»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Түс ауытқусыз контраст өседі» - 'contrast rises without hue shifting' - write «Реңк ығыспай, контраст артады»",
+   "«үш бұрмалау отбасынан», «Геометриялық отбасы», «Фотометриялық отбасы», «Үшінші отбасы» - 'family' is «тұқымдас»: «үш бұрмалау тұқымдасынан», «Геометриялық тұқымдас», «Фотометриялық тұқымдас», «Үшінші тұқымдас»",
+   "«Гигиена себептерінен» - write «Деректер гигиенасы себебінен»",
+   "«қисықтандыру мен созу» - 'shear and stretch' is «ығысу (shear) мен созу»",
+   "«жоғалту бетіне әсер етеді» - 'loss surface' is «шығын бетіне әсер етеді» (loss = «шығын»)",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«кескін созылып масштабталып, жалпы статистикалар арқылы нормалануы арқылы үш арна мен маскасыз нәтиже беріледі» is garbled - write «кескін созылып масштабталады және жалпы статистикалармен нормаланады, нәтижесінде маскасыз үш арна алынады»",
+   "«Бұл – ішкі құрылым» - 'internal construct' is «ішкі конструкт»",
+   "«Қабылдау хаттамасы мұндай кескіндердің кіруіне шарт қояды» - 'conditions such images for entry' means prepares them: write «Қабылдау хаттамасы мұндай кескіндерді конвейерге кіруге дайындайды»",
+   "«флипке қажетті сигналды» - write «аударуға (0-кезең) қажетті сигналды»",
+   "«60 клиникалық кескінге қарсы жасалды» - 'designed against' means on the basis of: write «60 клиникалық кескін негізінде жасалды»",
+   "«Бір төмен деңгейлі операция қасақана жоқ» - write «Бір төмен деңгейлі операция әдейі енгізілмеген»; «Контрастты күшейту мен шу азайту қарсы тұрады» - write «Контрастты күшейту мен шуды азайту бір-біріне қайшы келеді»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«қарқындылық шекарасы арқылы пикселдер бір-біріне араласпайды» - write «қарқындылық шекарасының екі жағындағы пикселдер бір-біріне араласпайды»",
+   "«тек шығару және сапалық мысалдар арқылы» - 'through derivation' is «тек теориялық қорытып шығару және сапалық мысалдар арқылы»",
+   "«арнайы шу азайтқыш оның бар болуына себеп болған қауіптің өзіне ие, ал бұл қауіп скрининг мәні ең жоғары жерде ең төмен қабылданатын қауіп» is garbled - write «арнайы шу азайтқыш өзі азайтуға тиіс қауіпті өзі тудырады, ал бұл қауіп скринингтік құндылық ең жоғары жерде ең аз қолайлы»",
+   "«жоғарғы ағындағы жарықтандыруды түзету» - 'upstream' means the earlier stage: write «алдыңғы кезеңдегі жарықтандыруды түзету»",
+   "«ретиналық дерекқорда», «ретиналық дереккөздер» - write «торқабық дерекқорында», «көз түбі дереккөздері»; «ресмиленген» - write «формалданған»",
+   "«Корпустар арасындағы зерттеулер» - 'cross-corpus studies' is «Корпусаралық зерттеулер»",
+   "«Конвейер қызмет ететін мақсат, яғни ... сақтау. Осылайша, бұл мұнда ... тұжырымдалады.» is split into an incomplete sentence - write one sentence: «Конвейер қызмет ететін мақсат – диагностикалық маңызды белгілерді сақтай отырып, құрылғылар мен түсіру жағдайлары арасындағы ауытқуды азайту – сондықтан мұнда дәлелденген нәтиже емес, жобалау мақсаты ретінде тұжырымдалады»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "heading «Клип-лимитті формализация» - write «Клип-лимитті формализациялау»",
+   "«қараңғы аймақтан басымдық алады» - 'is dominated by' - write «қараңғы аймақ басым болады»; «көріну өрісінің сыртындағы» - write «көру алаңының сыртындағы»",
+   "«сурет алу режимдері мен жағдайларына» - 'imaging modalities and acquisition conditions' - write «бейнелеу модальдылықтары мен түсіру жағдайларына»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Дәстүрлі формулирлеуде» - write «Дәстүрлі тұжырымдамада»",
+   "«ол дерек ретінде емес, жарияланған ізашар ретінде» - 'not as independent evidence' - write «ол тәуелсіз дәлел ретінде емес, жарияланған ізашар ретінде»",
+   "«жобалауды ынталандыратын құрылымдық әлсіздікті көтереді» - 'carries a structural weakness that motivates the design' - write «жобалау шешімін негіздейтін құрылымдық әлсіздігі бар»",
+   "«Екі форма да толықтырушы түрде сәтсіздікке ұшырайды» - 'fail in complementary ways' - write «Екі форманың кемшіліктері бірін-бірі толықтырады»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "the figure caption «[FIG-2.6: Global equalisation, adaptive equalisation and the contrast-limited form – ...]» is left in English - translate it: «[FIG-2.6: Жаһандық теңестіру, адаптивті теңестіру және контрасты шектелген түрі – defense/figures/figures_mine/fig2_1_clahe_lineage.png]»",
+   "«өлшенетін төменгі ағын артықшылығын» and «төменгі ағын әсері» - 'downstream' here means on the final classification result: write «жіктеу нәтижесінде өлшенетін артықшылық» and «жіктеуге соңғы әсері»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«кіріске үйренуге қабілетті сүзгілер банкімен жүріп» is garbled for 'sweeps a bank of learnable filters across the input' - write «кіріс бойымен оқытылатын сүзгілер жиынын жүргізеді»",
+   "«оқытуды орынды етеді» - 'tractable' is «іс жүзінде мүмкін етеді»",
+   "«ал пуллинг төмендетеді» - 'pooling then downsamples' - write «ал пулинг өлшемді кішірейтеді»",
+   "«блоқты» is a typo - «блокты»; «бірегейлік қысқа жолдар» and «бірегейлік қысқа жол» are wrong for 'identity shortcuts' - write «тепе-тең (identity) қысқа байланыстар», «тепе-тең қысқа байланыс»",
+   "«ең осал ерекшеліктері», «кіші зақымдану ерекшеліктерін», «терең ерекшелік анықтағышын» - 'features' are «белгілер»: «ең осал белгілері», «кіші зақымдану белгілерін», «терең белгі анықтағышын»; «скрининг маңызды дәрежелерді» - write «скрининг үшін маңызды дәрежелерді»",
+   "«сенімділік аралықсыз немесе корпусаралық тасымалдану қабілетсіз кішігірім корпустарда» is a hanging fragment - write «бұл нәтиже сенімділік аралықтарынсыз және корпусаралық тасымалдаусыз, шағын корпустарда алынған»",
+   "«бұл алдын ала өңдеу кезеңдерінің бөлісу үшін жобаланған жүктеме» - write «дәл осы жүктемені алдын ала өңдеу кезеңдері бөлісуге арналған»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«архитектура арасындағы қайталанушылықтың» (twice) - 'cross-architecture replication' is «архитектуралар арасындағы қайталанымдылық»",
+   "«Осылайша, контраст шатаспайды» - 'the contrast is not confounded' means the comparison is not mixed with another factor: write «Осылайша, салыстыру басқа фактормен шатастырылмайды»",
+   "«ішкі жағдайда жүргізілгендіктен» - 'performed in house' - write «жұмыстың өз ішінде жүргізілгендіктен»",
+   "«конволюциялық ерекшелік анықтағышы» - write «конволюциялық белгі анықтағышы»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«batch normalisation (...) ... batch статистикасының шуы» - write «топтамалық нормалау (batch normalisation) (...) ... топтама статистикасының шуы»",
+   "«оқыту мен бөлінген өнімділік арасындағы айырмашылықты» - 'held-out performance' - write «оқыту деректеріндегі және бөлек ұсталған деректердегі өнімділік арасындағы алшақтықты»",
+   "«жарты дәлдік сандық асып кетуді тудырды» - write «жартылай дәлдік сандық толып кетуді (overflow) тудырды»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«ретиналық корпустың», «ретиналық бейнелердің» - write «торқабық корпусының», «торқабық кескіндерінің»",
+   "«бағалау белгілерін қолданбайды» - 'grading labels' - write «дәрежелеу белгілерін қолданбайды»",
+   "«53 576 кескіннен тұратын бөлінген тілім» - 'held-out split' - write «53 576 кескіннен тұратын бөлек ұсталған бөлік»",
+   "«нақты assertion арқылы» - write «айқын тексеру (assertion) арқылы»",
+   "«Оның оқитын белгілері тек қақпа ғана оқиды, алдын ала оқыту мақсаты ешқашан оқымайды» is ungrammatical - write «Бұл белгілерді тек қақпа пайдаланады, алдын ала оқыту мақсаты оларды ешқашан пайдаланбайды»",
+   "«осы отбасын осы ауруға қолданады» - write «осы тұқымдасты осы ауруға қолданады»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Конволюцияға табиғи домен ішіндегі инициализацияның негізгі идеясы» is garbled for 'The rationale for a convolution-native in-domain initialisation' - write «Конволюциялық архитектураның өзінде жүргізілетін домен ішіндегі инициализацияның негіздемесі»",
+   "«табиғи кескіндерден көшіруден» - 'transfer' is «тасымалдау»: write «табиғи кескіндерден тасымалдаудан»",
+   "«осы бағыттың отбасын шолып көреді» - write «осы тұқымдасқа шолу жасайды»",
+   "'backbone' stays Latin in this thesis: «Сол бірдей конволюциялық негізді алдын ала оқыту» - write «Сол бірдей конволюциялық backbone-ды алдын ала оқыту»; «Торқабыққа қатысты дәлелдер трансформер негізінде алынған» - write «трансформер backbone-ымен алынған»; «Бұл жұмыста конволюциялық негіз бекітілген» - write «Бұл жұмыста конволюциялық backbone бекітілген»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«Бұл бақылау нақты осы тапсырмаға» - 'observation' here is «байқау»: write «Бұл байқау нақты осы тапсырмаға»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«осы мақсатта қолданылатын әдістер отбасын ресімдейді» - write «осы мақсатта қолданылатын әдістер тұқымдасын формалдайды»",
+   "«Соңғы сипаттама карталары», «сипаттама карталарының», «тек оң әсер ететін сипаттамаларды», «Соңғы қабат сипаттама карталарының» - 'feature maps' / 'features' are «белгілер карталары» / «белгілер»",
+   "«сол картаның активацияларына қайта жобалануы мүмкін» - 'projected back onto' - write «сол картаның активацияларына кері проекциялануы мүмкін»",
+   "«карта шынайылық туралы пікірді қолдайды» - 'a judgment of plausibility' - write «карта негізділік туралы пікірге сүйеніш береді»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«себептік емес себептермен» is a tautology for 'for non-causal reasons' - write «себеп-салдарлық байланысы жоқ негіздермен»",
+   "«Шынайылықты шамаға айналдыру үшін» - 'turning plausibility into a quantity' - write «Негізділікті сандық шамаға айналдыру үшін»",
+   "«Біріншісі, біріншілік, тек ...» and «Бірінші өлшемі біріншілік ретінде таңдалуы» - 'the first, primary' - write «Біріншісі – негізгі өлшем – тек ...» and «Бірінші өлшемнің негізгі өлшем ретінде таңдалуы»",
+   "«объектіні анықтаудан екінші өлшемі алу анықтау тұрғысындағы түсіндіруді енгізбеуі тиіс» is ungrammatical - write «екінші өлшемді объектіні анықтау саласынан алу оған анықтау тұрғысындағы түсіндіруді енгізбеуі тиіс»",
+   "«тек төменгі ағындағы дәлдіктен ғана болжам жасалуы мүмкін емес» - 'not only inferred from downstream accuracy' - write «тек соңғы жіктеу дәлдігінен жанама түрде ғана бағаланбауы тиіс»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Үшіншісі басқа да қажетті функцияны атқарады» - 'performs a different and necessary function' - write «Үшіншісі басқа, бірақ қажетті қызмет атқарады»",
+   "«өз фоннан» is a typo - write «өз фонынан»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«себебі бұл деректерден туындайтын себепке негізделген» is a tautology - write «бұл деректердің өзінен туындайтын себепке байланысты»",
+   "table: «15 пункттен жоғары айырмашылықта» - percentage points are «тармақ»: write «алшақтық 15 тармақтан асқанда»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Екінші реттік өлшемдер толықтық үшін келтіріледі» - 'for completeness' here means for a full picture (not recall): write «Қосалқы өлшемдер толық көрініс үшін келтіріледі»",
+   "«Жалғыз өлшеммен қанағаттандырылатын өлшемді» - 'a criterion satisfiable by a single measure' - write «Бір ғана көрсеткішпен орындалатын өлшемді»",
+   "«өлшемдердің бөлімдер бойынша қалай есептелетінін» - 'across partitions' - write «өлшемдердің фолдтар бойынша қалай есептелетінін»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«көру өрісінің диаметріне» - write «көру алаңының диаметріне»",
+   "«Жобаның бір салдары төмендегі барлық нәрсеге міндетті» - 'binding on everything downstream' - write «Жобаның бір салдары кейінгі барлық талдау үшін міндетті»",
+   "«себебі теңгерімсіздік дәлдікті жасанды көтереді және ол кез келген бір жақсартуды емес, үш жақсартудың бірігуін талап етеді» - «ол» wrongly refers to imbalance; the evaluation requires it: write «себебі теңгерімсіздік дәлдікті жасанды көтереді; сонымен бірге бағалау кез келген бір жақсартуды емес, үш жақсартудың бір мезгілде орындалуын талап етеді»",
+   "«шектеу ережесінің негіздемесі» - 'the clip rule's rationale' - write «клип ережесінің негіздемесі»",
+   "'backbone' stays Latin in this thesis: «бөлек архитектура тұқымдастарынан алынған екі негізгі желіден» - write «екі backbone-нан»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«бөлінген тест корпусы» (text and table) - 'held-out test corpus' - write «бөлек ұсталған тест корпусы»",
+   "table camera cell «Ведомстволық» - 'Institutional' means the clinic's own camera - write «Мекеме камерасы»",
+   "«Canon немидриатикалық алуын бекітеді» - write «Canon камерасымен қарашықты кеңейтпей түсіруді бекітеді»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«өзінмен бірге алып жүреді» is a typo - «өзімен бірге алып жүреді»",
+   "«Бір корпус екіншісімен салыстырылмайтынша, дәрежелендіру схемалары ... үйлестірілуі тиіс» - 'before any corpus can be compared with another' - write «Кез келген корпусты басқасымен салыстырмас бұрын, дәрежелеу схемалары ... үйлестірілуі тиіс»",
+   "«қайталанатын алулар ашқан» - 'repeat acquisitions' - write «қайталап түсірілген кескіндер ашқан»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«сәйкестік нүктесісіз» - 'without an external distributional reference' - write «сыртқы үлестірімдік эталонсыз»",
+   "«ведомстволық келісім бойынша ұсталады» - 'held under an institutional agreement' - write «мекемемен жасалған келісім бойынша сақталады»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'backbone' stays Latin in this thesis: «тірек желі» (text and table header) - write «backbone» with Kazakh suffixes after a hyphen (backbone-да, backbone-тар)",
+   "«екі архитектуралық отбасын білдіреді» - write «екі архитектуралық тұқымдасты білдіреді»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)",
+   "CHECKER: 'backbone' stays Latin - replace every «тірек желі...» with «backbone» plus a hyphenated Kazakh suffix (backbone-да, backbone-тар)"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«екі де backbone-да» - write «екі backbone-да да»",
+   "«екі архитектурда» is a typo - write «екі архитектурада»",
+   "«Калибрлеу реттеуден ерекшеленеді» - 'ranking' - write «Калибрлеу рангтаудан өзгеше»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«ерте әрі жіңішке белгілер» - 'early subtle signs' - write «ерте, әлі анық білінбейтін белгілер»",
+   "«Қате құрылымы дәлдіктен келісімнің неге одан әрі жылжығанын түсіндіреді» is garbled for 'why agreement moved further than accuracy' - write «Қате құрылымы келісімнің дәлдікке қарағанда неге көбірек өзгергенін түсіндіреді»",
+   "«κ-ны пропорционалдан тыс көп ығыстырады, бұл бақыланған 0.11» - write «каппаны пропорционалдан тыс көп өзгертеді; байқалған 0.11 өсім осыдан»",
+   "«Жұмыс істейтін шекті деңгейдегі мінез-құлық» and the table title «Жолдама берілуге тиіс ауру шекті деңгейіндегі өнімділік» - 'operative threshold' is «жұмыс табалдырығы»: write «Жұмыс табалдырығындағы мінез-құлық» and «Жолдама берілуге тиіс ауру табалдырығындағы өнімділік»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«ал спецификалық осы уақытта өсті» - write «ал спецификалық та бір мезгілде өсті»",
+   "«жіберіп алған ауру мен қажетсіз жолдама» - write «жіберіп алынған ауру жағдайлары мен қажетсіз жолдамалар»",
+   "«Оның көшу мүмкіндігі ... көшу туралы» - 'transfer' is «тасымалдану»: write «Оның тасымалдануы ... тасымалдану туралы»",
+   "«ішкі домендік нәтиже» - write «домен ішіндегі нәтиже»",
+   "«автономды диагностикалық құрылғы ретінде емес, орналастырылған» - 'positioned' - write «...шешім қабылдауды қолдау құралы ретінде қарастырылады, автономды диагностикалық құрылғы ретінде емес»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'backbone' stays Latin in this thesis: «Корпус, фолдар, негізгі желі, оптимизатор» - write «Корпус, фолдтар, backbone, оптимизатор»; «осы негізгі желідегі екі ұяшығы» - write «осы backbone-дағы екі ұяшығы»",
+   "«ол өлшенген нәрсе интеграцияланған конфигурацияға тұтастай тиесілі» - write «оның өлшегені тұтас интеграцияланған конфигурацияға тиесілі»",
+   "«сегіз кезең бірінші тәжірибе өлшенген айырмашылықтың толығын» - write «сегіз кезең бірінші тәжірибе өлшеген айырмашылықтың толығын»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«соңғы нүктедегі сәйкестіктің» - 'endpoint agreement' here means agreement of the two end values of the ablation (lowest and full level): write «шеткі нүктелердегі сәйкестіктің»; likewise «өзгермеген соңғы нүктеде» - write «өзгермеген соңғы нәтижеде»",
+   "«бұл бірінші тәжірибе көрсеткен және сол себепті болатын реттілік» - write «бұл бірінші тәжірибеде байқалған дәл сондай реттілік, себебі де сол»",
+   "«өз енгізілген деңгейде» - write «өзі енгізілген деңгейде»",
+   "«ол рейтингтің үстінен төменін ажыратады» - write «бұл рейтингтің жоғарғы бөлігін төменгі бөлігінен ажыратады»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Бұл монотонды басымдық болған жағдайда жоққа шығарылатын нәрсе» is muddled for 'which a monotone preference would have refuted' - write «Монотонды басымдық болса, максимум аймақтың шетінде орналасар еді»",
+   "«қолға түскен нәтиже ретінде» - write «қол жеткізілген нәтиже ретінде»",
+   "«Бұл ашық бақылау ретінде тіркеледі» - 'recorded as an open observation' - write «Бұл түсіндірілмеген байқау ретінде тіркеледі»",
+   "«көру өрісінің диаметрінің үлесі» - write «көру алаңы диаметрінің үлесі»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«жіктеу сапасының адал проксиі» - 'a faithful proxy' - write «жіктеу сапасының сенімді жанама көрсеткіші»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«контрастың бір бөлігін құрбан етіп, ұсақ мәліметтерді алады» - «контрастың» is misspelt and 'buys fine detail' means gains fine detail: write «контрасттың бір бөлігін құрбан етіп, ұсақ бөлшектерді айқындайды»",
+   "«олардың жазық болған немесе қате бағытта қозғалған жерінен» - 'where they are flat' means where the metrics do not change: write «метрикалар өзгермеген немесе қате бағытта өзгерген жерде»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Алдыңғы соңғы қабаттың белгілері» (twice) is wrong for 'penultimate-layer features' - write «Соңғының алдындағы қабаттың белгілері»",
+   "«біріншілік өлшем әрі өлшемді (критерийді) жалғыз өзі алып жүреді» - write «негізгі өлшем болып табылады және критерийді жалғыз өзі анықтайды»",
+   "«кеңістіктегі жинақталуды өлшейді» - 'convergence' of distributions is «жақындасу»: write «кеңістіктегі жақындасуды өлшейді»",
+   "«табыстың жартысынан» - 'gain' is «ұтыс»: write «ұтыстың жартысынан»",
+   "«модель оқытылмаған корпус арасындағы» - write «модель оқытылмаған корпустар арасындағы»; «Егер корпус арасындағы айырмашылық» - write «Егер корпустар арасындағы айырмашылық»",
+   "«екі модель де бұрыннан бейімделген» - 'already fitted' - write «екі модель де бұрыннан оқытылған»",
+   "«контрастты теңестіру құрайтын конвейерден» - write «контрастты теңестіруді қамтитын конвейерден»",
+   "«кез келген бірліктерде» - 'arbitrary units' - write «шартты бірліктерде»",
+   "«бір ортақ өлшем кеңістігіндегі» - 'one shared metric space' - write «бір ортақ метрикалық кеңістіктегі»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«кез келген жинақталу осы түрлендіруді» and «Бұл жинақталудың қайдан басталатынын» - 'convergence' of corpora is «жақындасу»: write «кез келген жақындасу», «Бұл жақындасудың қайдан туындайтынын»",
+   "«Гипотезаны жалғанға шығаруға болатын ететін дәл осы» - 'falsifiable' - write «Гипотезаны теріске шығаруға болатын ететін де дәл осы»",
+   "«Ең кіші айырма да, талап етілетін саны да» - write «Ең кіші айырма да, талап етілетін корпустар саны да»",
+   "«ереженің қарсы корпусқа деген төзімділігі» - 'tolerance for a dissenting corpus' - write «ереженің нәтижесі қарама-қайшы корпусқа жол беруі»",
+   "«Бұл кері бағыт мүмкіндігін теріс жақтан шешеді» - 'settles the reversal possibility in the negative' - write «Бұл кері бағыт мүмкіндігін жоққа шығарады»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Конвейер корпус арасындағы айырманы тарылтады» - write «Конвейер корпустар арасындағы айырманы тарылтады»",
+   "«Нәтиженің қанағаттандырмайтын бір күтілімі» - 'one expectation the result does not meet' - write «Нәтиже ақтамаған бір күтілім»",
+   "«Егер жинақталу (convergence) корпусаралық өнімділіктің басым драйвері болса» - write «Егер жақындасу корпусаралық өнімділіктің басты қозғаушы факторы болса»",
+   "«аралық енінің қайталануына қатысты» - 'reproducibility of the interval widths' - write «аралық енінің қайта жаңғыртылымдылығына қатысты»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«конвейер нысаналы корпус әрқайсысын классификатор пайдаланатын репрезентацияда оқыту үлестіріміне жақындайтынын» is ungrammatical - write «конвейердің әрбір нысаналы корпусты классификатор пайдаланатын репрезентацияда оқыту үлестіріміне жақындататынын»",
+   "«күтім барысында алынған деректер» - 'acquired in the course of care' - write «емдеу барысында алынған деректер»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«артықшылық көпшілік дәрежемен тасымалданбайды» - 'is not carried by the majority grade' means it does not come from the majority grade: write «артықшылық көпшілік дәреже есебінен қамтамасыз етілмейді»",
+   "«мақсатты балдың жетуі тиіс деңгейді» - 'target score' is «нысаналы балл»: write «нысаналы балдың жетуі тиіс деңгейді»",
+   "«төменгі базистегі жақсарулар» - 'improvements on a low base' - write «төмен бастапқы деңгейдегі жақсарулар»",
+   "«ал пролиферативті аурудан алтыдан ешқайсысына дейін төмендейді» - write «ал пролиферативті ауру кескіндерінде алтыдан нөлге дейін төмендейді»",
+   "«жұмыс істейтін табалдырықтағы» - 'operative threshold' - write «жұмыс табалдырығындағы»",
+   "«Екінші бағалау клиникалық корпусқа көшеді» - write «клиникалық корпустарға көшеді»; «кемінде 0.050 минималды клиникалық маңызды айырмаға дейін асып түсуін» - write «кемінде 0.050-ге, яғни ең аз клиникалық маңызды айырмаға, асып түсуін»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«ал сол тұжырымдама қайталанатын ақау түрінде кемшілік болып шықты» is garbled for 'that formulation proved defective in a way worth setting out, because the defect recurs' - write «ал сол тұжырымдаманың кемшілігі болып шықты; оны толық түсіндірген жөн, себебі бұл кемшілік қайта кездеседі»",
+   "«бақыланған әсер мен шекті мән арасында» - write «байқалған әсер мен табалдырық арасында»",
+   "«тұрақты домен ішіндегі артықшылықтан гипотеза тексеруге ниет еткен өзі сол шаманы шегеру» is garbled - write «тұрақты домен ішіндегі артықшылықтан гипотеза тексермек болған шаманың өзін шегеру»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 4,
+  "issues": [
+   "MEANING: «Интеграцияланған тармақ дәл оның домен ішіндегі сәттілігі үшін жазаланады» loses the subject: 'It [the degradation criterion] penalises the integrated arm' - write «Бұл өлшем интеграцияланған тармақты дәл домен ішіндегі сәттілігі үшін жазалайды»",
+   "«топтардың екеуі – жақында хабарланған екі клиникалық корпус» - 'just reported' - write «топтардың екеуі – жоғарыда ғана баяндалған екі клиникалық корпус»",
+   "«Гетерогенді аппараттарда орналасқан скрининг жүйесі» - 'deployed' - write «Әртүрлі аппараттарда орналастырылған скрининг жүйесі»",
+   "«Бұл – алдыңғы бөлімнің ... түрлендірудің болжамындағы мінез-құлық» is garbled - write «Алдыңғы бөлімнің нәтижелері бойынша корпустар арасындағы фотометриялық өзгергіштікті шамамен тұрақты үлеске азайтатын түрлендіруден дәл осындай мінез-құлық күтілетін еді»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«аралықтар сәйкестендірілген модельдегі емес» - 'variability in the fitted model' - write «аралықтар оқытылған модельдің өзгергіштігін емес»",
+   "«Екі тармақ ... толығымен ерекшеленеді» - 'throughout' means in all three evaluations: write «Екі тармақ барлық бағалауда алдын ала өңдеумен қатар инициализация бойынша да ерекшеленеді»",
+   "«бұл жұмыс шығармайтын дәлелдерді талап ететін» - write «бұл жұмыс ұсынбайтын дәлелдерді талап ететін»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«соңғы конволюциялық блогындағы кескіндер бойынша карталар есептелді» loses 'on the same images' - write «екі тармақ үшін де бірдей кескіндерде ... соңғы конволюциялық блогында карталар есептелді»",
+   "«54-і пайдалы маскаларды қамтиды» - 'usable masks' - write «54-інде жарамды маскалар бар»",
+   "«Корпус бір орталықты және бір камераға ие» - write «Корпус бір орталықтан және бір камерадан алынған»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 2,
+  "issues": [
+   "table header «Бірігу айырмашылығы» - 'Union difference' is the IoU difference: write «IoU айырмашылығы»",
+   "«жіктеу нәтижелері көрсеткен осы қалыптылықпен сәйкес келеді» - write «жіктеу нәтижелері көрсеткен сол заңдылықпен сәйкес келеді»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«корпус 5-тен 8-ге дейінгі кескіндерді топтастырып талдау үшін тым кіші» - 'too small for a subgroup analysis of five to eight images' - write «корпус 5–8 кескіннен тұратын кіші топты талдау үшін тым кіші»",
+   "«бақыланған қозғалыс» - write «байқалған қозғалыс»; «көру өрісінің шекараларын» - write «көру алаңының шекараларын»",
+   "«бір түсіндірмелер класын ыңғайсыз ете отырып» - 'by making one class of explanation less comfortable' - write «түсіндірмелердің бір тобын әлсірету арқылы»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«зақымдануларды анықтамайды, шекараламайды» - 'delineates' - write «зақымдануларды анықтамайды, шекарасын белгілемейді»",
+   "«Екі жоқтық» (twice) - 'two absences' means two analyses that were not done: write «Жүргізілмеген екі талдау» and «Екі олқылық та теріс нәтиже емес»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'fitted' / 'fitting' of models is training, not tuning: «кескіндерде баптады» - write «кескіндерде оқытты»; «жиынтығында ... бапталды» - write «жиынтығында ... оқытылды»; «баптауға қатысуы жоқ» - write «оқытуға қатыспаған»; «баптау режимі» - write «оқыту режимі»",
+   "«жалғыз кері айналу 0.0057 мөлшерінде шекті болды» - 'the single inversion being marginal at 0.0057' - write «жалғыз кері нәтиже шамалы ғана болды (0.0057)»",
+   "the last sentence «кедергі келтіретін ауытқуларды нормализациялау арқылы желінің көптеген мысалдарды оқып, елемеуіне тура келетін нәрсені жоққа шығаратындықтан» is garbled - write «желі басқаша көп мысал арқылы елемеуді үйренуге тиіс болатын кедергі ауытқуларды нормалау арқылы жойғандықтан, ол мысалдар ең аз жерде ең көп көмектесуі және деректер молайған сайын әлсіреуі тиіс»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«бұл орташа көпшілік» - 'a modest majority' - write «бұл шамалы ғана көпшілік»",
+   "«ведомстволық келісім бойынша ұсталады» - write «мекемемен жасалған келісім бойынша сақталады»",
+   "«жүйенің бағытталған орналастыру контексінен алынған деректерде» - write «жүйе арналған орналастыру контексінен алынған деректерде»",
+   "«оның орнатылған режимінен екі ретке кіші» - 'two orders of magnitude smaller than the one in which it was established' - write «ол дәлелденген режимнен екі ретке (шамамен жүз есе) кіші»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'refitting' / 'fitted' is training: «Конфигурацияны басқа бөліністе қайта баптау» - write «қайта оқыту»; «тармаққа бір бапталған модельді» - write «тармаққа бір оқытылған модельді»",
+   "«олардың келіспеген жағдайлардың үлгісі» is ungrammatical - write «олар келіспеген жағдайлардың құрылымы»",
+   "«Инстанс бойынша қайта үлгілеу бағалау үлгілеуін шешеді» - write «Жекелеген кескіндер бойынша қайта іріктеу бағалау іріктемесінің өзгергіштігін ескереді»",
+   "«тест орташа өзара әрекеттесуге қарсы шектеулі қуатқа ие» - 'limited power against a modest interaction' - write «тесттің шамалы өзара әрекеттесуді анықтау қуаты шектеулі»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'fitted' / 'refitted' is training: «бір ғана бапталған модель», «модельдер қайта бапталған жағдайда», «бапталған модельдер арасындағы» - write «оқытылған», «қайта оқытылған», «оқытылған»",
+   "«жалпы қателік деңгейінің нақты сипаттамасы болмаған болар еді» - 'would have no clear referent' - write «жалпы қателік деңгейінің нақты мағынасы болмас еді»",
+   "«кез келген пайданың өлшемін болжай алмайды» - write «кез келген ұтыстың шамасын болжамайды»",
+   "«өлшенгеннің бәрі жоғары деңгейге көтерілмеді» - 'not everything measured was promoted' - write «өлшенгеннің бәрі негізгі тұжырымға айналдырылмады»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 3,
+  "issues": [
+   "table: 'referable' is «жолдама берілуге тиіс» throughout the thesis, not «жіберу үшін»: «Екі класты, жіберу үшін» - write «Екі класты, жолдама берілуге тиіс»; «автономды жіберу» - write «автономды жолдама»; «Оптикалық когерентті томографиядан жіберу» - write «Оптикалық когерентті томография бойынша жолдама»; «Жіберу консенсусы» - write «Жолдама бойынша консенсус»",
+   "«Маскаланған ретина маманы» is wrong for 'Masked retinal specialist' (a blinded grader) - write «Соқыр әдіспен бағалаған торқабық маманы»; «Оқу орталығының дәрежелендіруі» - 'Reading-centre grading' - write «Бағалау орталығының (reading centre) дәрежелеуі»",
+   "«Екі класты, көруді қауіптеуші» - write «Екі класты, көруге қауіп төндіретін»",
+   "«бұл модельдердің нәтижелері шынайы шама ретінде екенін» - 'whether these models are of a plausible order' - write «бұл модельдердің нәтижелері ақылға қонымды деңгейде ме екенін»",
+   "«трансфер жағдайында» - write «тасымалдау кезінде»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«ол ниеттің жеткізілуі ретінде емес, бақыланатын тәжірибе ретінде айтылады» - 'stated as observable practice and not as an attribution of intent' - write «ол авторларға ниет таңу ретінде емес, байқалатын тәжірибе ретінде айтылады»; also «Бұл бір қосымша бақылауды қолдайды» - write «Бұл тағы бір байқауға негіз береді»",
+   "«оны толықтыруға ауыстырады» - 'deferring it to a supplement' - write «оны қосымша материалға шығарады»",
+   "«Айтуға болатын нәрсе бұдан да ұсақ» - 'more modest' - write «Айтуға болатын нәрсе бұдан қарапайымырақ»",
+   "table title «бір нақтылықтағы инференс» - 'single-precision inference' - write «бірлік дәлдіктегі (fp32) инференс»",
+   "«өте арзан алдын ала болжам» - 'a very cheap prior' - write «өте арзан априорлық білім»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Тиімді архитектура суретіне» - write «Тиімді архитектура әр кескінге»",
+   "«бұл жеделдеткіште», «бір жеделдеткіштегі» - 'accelerator' is «үдеткіш»: «бұл үдеткіште», «бір үдеткіштегі»",
+   "«екеуі де шамасы мен таңбасы бойынша келіспейді» - write «екеуі шамасы бойынша да, таңбасы бойынша да сәйкес келмейді»",
+   "«Бұл – құн туралы тұжырым және қолдануға жарамдылықтың дәлелі емес» - write «Бұл – құн туралы тұжырым, орналастыруға жарамдылықтың дәлелі емес»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Олардың бірі жеңілдік ретінде емес, нәтиже ретінде хабарланады» - 'reported as a finding rather than as a concession' - write «Олардың бірі мойындалған кемшілік ретінде емес, зерттеу нәтижесі ретінде баяндалады»",
+   "«назардың корпустараралық бірізділігі» is a typo - write «назардың корпусаралық бірізділігі»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Қайталану қабілеті мен салыстыру да шектелген» - write «Қайта жаңғыртылымдылық пен салыстыру да шектелген»; «нәтижелер тәуелсіз түрде қайталанбайды» - write «нәтижелерді тәуелсіз түрде қайта жаңғыртуға болмайды»",
+   "«авторларды, деректерді және орнату рәсімдерін бөліседі» - 'setup' - write «авторларды, деректерді және эксперименттік баптауды бөліседі»",
+   "«осы жұмысты пайдаланып жүрген жүйелермен салыстыруға» - 'deployed systems' - write «осы жұмысты орналастырылған жүйелермен салыстыруға»",
+   "«Осы шекаралардан өтетін нәрсе» - 'what survives these boundaries' - write «Осы шектеулерден кейін сақталатын нәрсе»; «бес фолдтың пациент деңгейіндегі кросс-валидациямен» - write «пациент деңгейіндегі бес фолдты кросс-валидациямен»",
+   "the last sentence ends in a fragment «ал үйлесуді өлшеуге болатын бір корпуста сарапшы аннотациясымен жақсырақ үйлесетін назармен бірге» - write «Артықшылық тексерілген әрбір сыртқы корпуста, әрбір камералық топта және екі оқыту режимінде байқалады, ал үйлесімді өлшеуге болатын жалғыз корпуста назар сарапшы аннотациясымен жақсырақ үйлеседі»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'backbone' stays Latin: «алдын ала өңдеу тармақтары мен негізгі желілердің» - write «алдын ала өңдеу тармақтары мен backbone-дардың»",
+   "«екі параметрлерді сканерлеумен бірге» - write «екі параметрлік сканерлеумен бірге»",
+   "«алыс қателердің жоюына түсті» - write «алыс қателердің жойылуына түсті»",
+   "«әр камералық топтамада» - «топтама» means batch; 'camera grouping' is «камералық топтастыру»: write «әр камералық топтастыруда»",
+   "«мұнда мойындалмады» - 'rather than conceded here' - write «мұнда жаңадан мойындалған жоқ»",
+   "«минималды айырмадан асқан қор төрт мыңдық» - write «минималды айырмадан асатын қор небәрі 0.004»",
+   "«Бір әдіснамалық бақылау» - 'observation' - write «Бір әдіснамалық байқау»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«оның айналасында құрылған скрининг жүйесін» - 'built around it' means built on it: write «оның негізінде құрылған скрининг жүйесін»",
+   "«жеделдеткіш қол жетімді жерде» - 'accelerator' is «үдеткіш»: write «үдеткіш қолжетімді жерде»",
+   "«Денсаулықты тексеру және аутентификация шақыруларынан бөлек» - 'health check' is a service status call: write «Жұмыс күйін тексеру (health check) және аутентификация шақыруларынан бөлек»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Сондықтан жүйе файлдық жүйеден басқа ешқандай серверлік тәуелділігі жоқ» is ungrammatical - write «Сондықтан жүйенің файлдық жүйеден басқа ешқандай серверлік тәуелділігі жоқ»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Сондықтан оператор жіберілген кескінге қолданылатын нәрсені көреді, яғни корпусқа қолданылған сол нәрсе» - write «Сондықтан оператор жіберілген кескінге қолданылғанын көреді – бұл корпустарға қолданылғанның дәл өзі»",
+   "«Бір орындалған нұсқаны сақтау» - 'keeping one implementation' - write «Бір ғана іске асыруды сақтау»; «бөлек орындалған нұсқа» - write «бөлек іске асыру»",
+   "«қолайлы бюджет аясында» - 'within a modest budget' - write «шағын ресурс аясында»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«көру өрісі қалпына келтірілмейтін кескіндер» - write «көру алаңы қалпына келтірілмейтін кескіндер»",
+   "«Оның қызметі – тыныш ауытқуды дауыстау» - 'to make a silent divergence loud' - write «Оның қызметі – байқалмай қалатын ауытқуды айқын ету»",
+   "«сенімділігі төмен жақтылық анықтауы» - 'laterality' is «латеральдылық» as in chapter 2: write «сенімділігі төмен латеральдылық анықтамасы»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Бұл міндеттілік интерфейстің қол жеткізетін мүмкіндіктерінде» - write «Бұл ұстаным интерфейс ұсынатын мүмкіндіктерде»",
+   "«Қабаттама 2-тарауда белгіленген тіркесте ... көрсету ретінде, ал патологияны шекаралау ретінде ұсынылмайды» is ungrammatical - write «Қабаттама 2-тарауда белгіленген шеңберде модельдің дәлелдері қай жерде шоғырланғанын көрсету ретінде ұсынылады, патологияның шекарасын белгілеу ретінде емес»",
+   "«...оператордың вердиктін файлдар каталогында, ішін көруге болмайтын қоймада емес, ұстайды» - write «...оператордың вердиктін ішін көруге болмайтын қоймада емес, файлдар каталогында сақтайды»",
+   "«оператор кез келгенін дұрыс орнына тартып» - 'drag' - write «оператор кез келгенін дұрыс орнына сүйреп апарып»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«бөлінген бөлікте қабылдау шарттарын өткен» - 'held-out split' - write «бөлек ұсталған бөлікте қабылдау шарттарынан өткен»",
+   "«бекітілген тарату режимдері» - 'established modes of delivery' - write «қалыптасқан қызмет көрсету тәсілдері»; «бөлінген телемедицина сервисі» - 'distributed' - write «таратылған телемедицина сервисі»",
+   "«сервис жеделдеткіш бар кез келген жерде» - write «сервис үдеткіш бар кез келген жерде»",
+   "«шектелген тілде түсіндіріледі» - 'explained in a bounded register' - write «шектеулі шеңберде түсіндіріледі»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Сервис кезінде пациент деректерін өңдейтін жүйеге» and «Сервис кезінде мұндай қоймаға» - 'in service' means in real clinical use: write «Нақты пайдалануда пациент деректерін өңдейтін жүйеге», «Нақты пайдалануда мұндай қоймаға»",
+   "«пайдаланушыға арналған тұлға жоқ» and «тұлға, авторизация» - 'identity' is user identification: write «пайдаланушыны жеке сәйкестендіру жоқ», «пайдаланушыны сәйкестендіру, авторизация»",
+   "«деректерді қорғау шеңберлеуі» - write «деректерді қорғау тұжырымдамасы»",
+   "«Бұл айырмашылық бұл бөлімдегі әрбір тұжырымға байланады» - write «Бұл айырмашылық осы бөлімдегі әрбір тұжырым үшін міндетті»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Орналастыру шынымен орнататын нәрсе» - 'what the deployment does establish' - write «Орналастыру шын мәнінде дәлелдейтін нәрсе»",
+   "«Скрининг клиенті ... жеткізуге болады» - write «Скрининг клиентін ... жеткізуге болады»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«модельді қоршап тұрған скрининг жүйесін» - write «модель негізінде құрылған скрининг жүйесін»",
+   "«Интерфейс офтальмологтың әр болжам бойынша өз пікірін тіркейді, болжамға бір шешім, ал пациентке арналған жазбаны ашады» is garbled - write «Интерфейс әр болжам бойынша офтальмологтың өз пікірін тіркейді (бір болжамға бір вердикт) және пациентке арналған жазба ашады»",
+   "«алмастырылған орындаудан алынған» - 'a superseded run' - write «ескірген іске қосудан (run) алынған»",
+   "«тұлға мен қолжетімділік бақылауы» - write «пайдаланушыны сәйкестендіру және қолжетімділікті бақылау»; «бөлінген телемедицина сервисі» - write «таратылған телемедицина сервисі»",
+   "«Сондықтан тараудың тұжырымдауы тар. Жоба іске асырылатын, сипатталған бөлігі іске асырылды» - write «Сондықтан тараудың тұжырымы тар. Жобаны іске асыруға болады және ол сипатталған бөлігінде іске асырылды»"
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Осы нәтижелер бірге қаралғанда, оның ерекше қасиеті оның шамасы емес, әсер сипатталады» is garbled - write «Бірге қарағанда, бұл нәтижелер басты ерекшелігі шамасында емес болатын әсерді сипаттайды»",
+   "«әр камералық топтамада» - «топтама» means batch: write «әр камералық топтастыруда»",
+   "«...белгілер кеңістігінің қасиеті болуы кез келген бір бағалаудың артефактісі болуынан ықтимал» - write «...қасиеті болуы кез келген бір бағалаудың артефактісі болуынан гөрі ықтималырақ»",
+   "«Тұрақтылық неге рұқсат бермейтіні тең тікелей айтылуы керек» is garbled - write «Тұрақтылық нені дәлелдемейтіні де дәл солай тікелей айтылуы керек»; «бақылаусыз енгізуге дайындықтың» - write «бақылаусыз орналастыруға дайындықтың»",
+   "«Концептуалды үлес – қайта бағалау өзі» - 'the reframing itself' - write «Концептуалды үлес – қайта пайымдаудың өзі»",
+   "«Оның параметр мәндері белгілі корпус таңдалып бекітілген» - write «Оның параметр мәндері белгілі бір корпустарда бекітілген»",
+   "«статикалары жағайында» - typo: write «статистикалары жағдайында»; «тізбектің соңғы нүктелерінен» - write «тізбектің шеткі буындарынан»"
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«белгісіз деректерге негізделген өздігінен бақыланатын инициализация» - 'label-free' - write «белгіленбеген деректерге негізделген өздігінен бақыланатын инициализация»",
+   "«Тек сәтті болған тармақты ғана» - 'branch' here is the path that succeeded, not an experimental arm: write «Тек сәтті болған жолды ғана»",
+   "«назар корпус арасында тұрақты ма» - write «назар корпустар арасында тұрақты ма»",
+   "«Сәйкестендірілген жағдайларда» - 'under matched conditions' - write «Теңестірілген жағдайларда»; «конвейерсіз тең конфигурациядан» - write «конвейерсіз баламалы конфигурациядан»",
+   "«механизм болжам жасалмай, тікелей өлшенді» - 'measured rather than inferred' - write «механизм жанама тұжырымдалмай, тікелей өлшенді»"
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«енгізілуге қабілетті» - 'deployable' - write «орналастыруға дайын»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'reproduce the code here' means give it in full, not re-create it: «кодын осы жерде қайта жасау міндеттелді» - write «кодын осы жерде толық келтіру міндеттелді»; «Оны қайта жасау сол тезисті» - write «Оны толық келтіру сол тезисті»",
+   "table: «Көру өрісінің маскасын генерациялау» - write «Көру алаңының маскасын генерациялау»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«нұсқаланған бастапқы кодта қолданыста және каталогтағыдай қайта жасалған» - write «нұсқаланған бастапқы кодта бар және каталогтағыдай толық келтірілген»",
+   "«файлынан сөзбе-сөз қайта жасалған» - write «файлынан сөзбе-сөз келтірілген»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«бұрын жарияланған жұмысынан (бұрынғы өз жұмысы) тарап, бүкіл мәтінде осылай цитата ретінде келтіріледі» is jumbled - write «Конвейердің шығу тегі кандидаттың контрастты күшейту және алдын ала өңдеу мен жіктеуді интеграциялау бойынша бұрын жарияланған жұмыстарынан бастау алады; олар бүкіл мәтінде бұрынғы өз жұмысы ретінде сілтеме жасалады»",
+   "«баламалы жабдықта қайта өндірілуі мүмкін» - write «баламалы жабдықта қайта жаңғыртылуы мүмкін»; «енгізуге дайындық» - write «орналастыруға дайындық»",
+   "«бір модуль нақты дисктегі орындалуы екені көрсетілгендіктен» - write «бір модульдің дискідегі нақты іске асыру екені көрсетілгендіктен»",
+   "«3.1-бөлімде ашылған қайта жасалу шеңбері жабылады» - 'the reproducibility loop' - write «3.1-бөлімде басталған қайта жаңғыртылымдылық циклі аяқталады»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 1,
+  "issues": [
+   "table header «Топ» - 'Arm' is «Тармақ»; «Интегралды, қалдық», «Интегралды, тиімді» - write «Интеграцияланған, қалдық», «Интеграцияланған, тиімді» as in chapter 3",
+   "«Бірлескен валидациялық фолдтардағы» - 'pooled validation folds' - write «Жинақталған валидациялық фолдтардағы»",
+   "«сол жерде жасалған бақылаудың» - 'observation' - write «сол жерде жасалған байқаудың»; «оның класс өлшеміне қатысты» - write «оның класс көлеміне қатысты»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 2,
+  "issues": [
+   "the four table headers in the first cell are left in English (true / pred) - write «нақты / болжам» in Kazakh as in the later tables of this appendix, keeping the same separator character as the source",
+   "«диагональ әр деңгейде өседі» - write «диагональ әр дәрежеде өседі»",
+   "«шамамен мың мысалға азаяды» - write «шамамен мың жағдайға азаяды»",
+   "MEANING: «алыс ұяшықтардың босауы қатысқан кескін санына қарағанда κ өсуіне ықпал етеді» drops 'out of proportion' - write «алыс ұяшықтардың босауы κ өсуіне қатысқан кескін санына қарағанда пропорционалдан тыс көп үлес қосады»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 3,
+  "issues": [
+   "table header «Топ» - write «Тармақ»",
+   "«трансфер кезінде қайталанады» - write «тасымалдау кезінде қайталанады»",
+   "'loss' is «шығын» in this thesis: «жоғалтулар – үздік эпохадағы мәндер» - write «шығындар – үздік эпохадағы мәндер»; table headers «Оқыту жоғалтуы», «Валидация жоғалтуы» - write «Оқыту шығыны», «Валидация шығыны»; «жоғалту айырмашылығын», «валидация жоғалтуымен», «оқыту жоғалтуына» - write «шығын айырмашылығын», «валидация шығынымен», «оқыту шығынына»",
+   "«біріктірілген белгі» - 'the joint signature' - write «бірлескен белгі»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«қайта баптау құбылмалылығын қамтиды» - 'variability of refitting' - write «қайта оқыту өзгергіштігін қамтиды»; «бекітілген бапталған модель аясында» - write «бекітілген оқытылған модель аясында»",
+   "table cells «Базалық, эффективті», «Интеграцияланған, эффективті» - write «Базалық, тиімді», «Интеграцияланған, тиімді» as in chapter 3",
+   "«хабарланған бақылау» - 'observation' - write «хабарланған байқау»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Камералық топтамалар арасындағы» - «топтама» means batch: write «Камералық топтастырулар арасындағы»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«кіріс үнсіз қатесіз өңделуі тиіс» - 'handled without silent failure' - write «кіріс үнсіз сәтсіздікке ұшырамай өңделуі тиіс»",
+   "table: «Тұлға және қатынас бақылауы» and «Пайдаланушыға тән тұлға, рөлдер, қатынас журналы» - write «Пайдаланушыны сәйкестендіру және қолжетімділікті бақылау» and «Әр пайдаланушыны сәйкестендіру, рөлдер, қолжетімділік журналы»",
+   "table: «жазылған шешім» - 'recorded verdict' - write «тіркелген вердикт»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Сақта-да-жөнелт орналастыру топологиясы» - 'store-and-forward' - write «Сақтау және жіберу (store-and-forward) орналастыру топологиясы»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«онда тек алу және кезекке қою орын алады» - 'capture' is «түсіру»: write «онда тек түсіру және кезекке қою орын алады»",
+   "«бірақ ол мұнда белгіленген реттілік емес» - 'arrangement' - write «бірақ ол мұнда спецификацияланған құрылым емес»",
+   "«сақтау-және-жолдау пішіні» - write «сақтау және жіберу (store-and-forward) схемасы»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«Сақталатын мәндер моделі» - 'entity' is not «мән» (value): write «Сақталатын нысандар (entity) моделі»",
+   "«түсініктілік артефактісі» - 'interpretability artefact' - write «интерпретацияланушылық артефактісі»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 6,
+  "issues": [
+   "'entities' are «нысандар», not «мәндер» (values): «деректерін жеткізетін мәндер белгіленген», «шекараның иесі болған мәндерде», «бірінші деңгейлі мән ретінде», «Осы мәндер білдіретін» - write «нысандар», «нысандарда», «нысан ретінде», «Осы нысандар білдіретін»",
+   "«Пациент немесе клиник тұлғалық деректерін» - write «Пациенттің немесе дәрігердің жеке басын анықтайтын деректерді»",
+   "«кім нені басқарғаны туралы тұрақты жазбасы жоқ override арнасы» - 'who overrode what' - write «кім нені өзгерткені туралы тұрақты жазбасы жоқ өзгерту (override) арнасы»",
+   "«түсініктілік дәлелдері» - write «интерпретацияланушылық дәлелдері»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 7,
+  "issues": [
+   "«Шешім сервердегі іс бойынша сақталады» - 'a verdict' - write «Вердикт сервердегі іс бойынша сақталады»",
+   "«өндірістік қолданудан емес» - 'rather than from use' - write «нақты пайдаланудан емес»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«пост-хок түсініктілік құралы» - 'post-hoc interpretability instrument' - write «post hoc интерпретацияланушылық құралы»",
+   "«сарапшы пиксель деңгейіндегі аннотацияға қарсы қойып көрсетеді» - 'against the expert annotation' - write «сарапшының пиксель деңгейіндегі аннотациясымен салыстырып көрсетеді»",
+   "«Төртеуі – таңдау және олай жарияланады» - 'the four are a selection, and are declared as one' - write «Бұл төртеуі іріктеп алынған және бұл ашық айтылады»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«төрт тақтаннан» is a typo - write «төрт тақтадан»",
+   "«түсіндірілу қабілетін өлшеу» and «Түсіндірілу қабілетін талдау» - 'explainability' is «интерпретацияланушылық»: write «интерпретацияланушылықты өлшеу», «Интерпретацияланушылықты талдау»",
+   "«Әрбір астындағы мәтін» - 'each caption' - write «Әр тақтаның жазуы»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«түсіндірілу мүмкіндігіне қатысты дәлелдер» - write «интерпретацияланушылыққа қатысты дәлелдер»",
+   "«теріс нәтиже емес, жоқтық» - 'an absence rather than a negative result' - write «теріс нәтиже емес, жүргізілмеген талдау»",
+   "«ешқандай бағытта да инференс жасалу мүмкін емес» - 'inference' here is a logical conclusion: write «ешқандай бағытта да қорытынды жасауға болмайды»",
+   "«осы тақталарға сүйенетін тұжырым» - 'the claim these plates accompany' - write «осы тақталар сүйемелдейтін тұжырым»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«құрылғылар отбасын және алу контекстін» - write «құрылғылар тұқымдасын және түсіру контекстін»",
+   "«бес жол бес тәуелсіз бақылау ретінде оқылады» and «өнімділік өзгергіштігінің тәжірибелік бақылаулары» - 'observations' - write «бес тәуелсіз байқау ретінде», «өнімділік өзгергіштігінің эмпирикалық байқаулары»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 3,
+  "issues": [
+   "table titles «базалық efficient» and «интеграцияланған efficient» - write «базалық, тиімді» and «интеграцияланған, тиімді» as in chapter 3"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 4,
+  "issues": [
+   "headings «Г.6 Кластар арасындағы таралу», «Г.7 Топтар арасындағы таралу» and the table title «өнімділіктің таралуы» - 'dispersion' is «шашырау» (as in table 3.11; «таралу» reads as prevalence): write «Г.6 Кластар арасындағы шашырау», «Г.7 Топтар арасындағы шашырау», «өнімділіктің шашырауы», and in the text «өнімділіктің шашырауы»",
+   "«маргинал түрде *төмен*» - 'marginally lower' - write «сәл *төмен*»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«камералық топтамалар арасында» and «Топтамалар арасында» - «топтама» means batch: write «камералық топтастырулар арасында», «Топтастырулар арасында»",
+   "«оны Г.5-бөлім қайталайды» - 'which section E.5 reproduces' - write «оны Г.5-бөлім келтіреді»",
+   "«құрылғылардың сәйкестігін» - 'device compatibility' - write «құрылғылармен үйлесімділікті»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«қойылған материалдар» - 'deposited materials' - write «тапсырылған материалдар»",
+   "«**декларациялық және тіркелген авторлықты**» - 'authorship as declared and registered' - write «**мәлімделген және тіркелген авторлықты**»",
+   "«бағдарламалық кешен кандидаттың жалғыз авторы ретінде тіркелген» says the complex is the author - write «бағдарламалық кешен кандидаттың атына, оның жалғыз авторы ретінде тіркелген»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«А қосымшасында көшірілген» - 'reproduced' - write «А қосымшасында келтірілген»",
+   "«Б қосымшасында бекітілген инференс қызметі» - 'captured in Appendix C' means shown in screenshots: write «Б қосымшасында суреттері берілген инференс қызметі»",
+   "«түсіндірілу құралдары» - write «интерпретацияланушылық құралдары»; «сол іске асырудың айналасында құрылған жүйе» - write «сол іске асыру негізінде құрылған жүйе»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«құжаттың ақиқаттылығын» - 'authenticity' - write «құжаттың түпнұсқалығын»"
+  ]
+ }
+]

@@ -63,7 +63,7 @@ The aim is to develop an integrated model in which the preprocessing pipeline is
 *75 с · 102 слов*
 
 The scientific novelty: for the first time, fundus image preprocessing is formalised as a model component and studied in a controlled factorial experiment.
-Four provisions are submitted for defence. First, the eight-stage preprocessing pipeline as a model component; it provides independence from orientation, geometry, illumination and camera, as the ablation and the experiments on external corpora show. Second, the integrated model with a four-channel input; its advantage over the baseline does not depend on the network architecture. Third, the ALO measure, which compares model attention with expert annotation. Fourth, the screening system, for which a copyright certificate has been obtained.
+Four provisions are submitted for defence. First, the eight-stage preprocessing pipeline as a model component; it reduces differences between images in orientation, geometry, illumination and camera, as the ablation and the experiments on external corpora show. Second, the integrated model with a four-channel input; its advantage over the baseline holds on both architectures studied. Third, the ALO measure, which compares model attention with expert annotation. Fourth, the screening system, for which a copyright certificate has been obtained.
 
 ## 05. Analysis of existing approaches
 
@@ -248,3 +248,9 @@ This concludes my presentation. Thank you for your attention! I am ready to answ
 *61 слов*
 
 Limitations: in the minority classes, especially the mild stage, F1 stays low; the model sometimes attends where there is no lesion, so an ophthalmologist checks the decision. External evaluations rely on single-fold models, the Kazakhstan corpus is closed, and the mask channel's isolated contribution was not measured. The results do not prove clinical validity and are not a certification.
+
+## R2. Web application: dr-classification.pages.dev
+
+*54 слов*
+
+The system's web application runs at dr-classification.pages.dev. The doctor uploads images of both eyes of a patient, sees the preprocessing stages, the grade and the attention map, and then confirms or corrects the result. Corrections are collected for retraining the model. It is a research prototype, not a medical device.

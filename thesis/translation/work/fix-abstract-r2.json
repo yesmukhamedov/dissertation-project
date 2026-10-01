@@ -1,0 +1,23 @@
+[
+ {"out": "output/translated-qwen/abstract_en.ru.md", "chunk": 2, "issues": [
+  "NAME ERROR: «Есмухамедова Нурганбета Сейткалиулы» - the author is Нурмаганбет: write «Есмухамедова Нурмаганбета Сейткалиулы»",
+  "The official thesis title and programme must be used exactly. Replace the whole block with these five bold lines (each line ends with two spaces except the last): «**к диссертационной работе Есмухамедова Нурмаганбета Сейткалиулы на тему**» / «**«Информационная система автоматического обнаружения заболеваний сетчатки**» / «**на основе глубокого обучения с использованием изображений оптической когерентной томографии»,**» / «**представленной на соискание степени доктора философии (PhD) по**» / «**образовательной программе 8D06102 – Компьютерная и программная инженерия**»"]},
+ {"out": "output/translated-qwen/abstract_en.ru.md", "chunk": 4, "issues": [
+  "«Методологической основой служит контролируемое экспериментальное сравнение» - 'controlled comparison' is «контролируемое сопоставление» (termbase) - write «контролируемое экспериментальное сопоставление»"]},
+ {"out": "output/translated-qwen/abstract_en.ru.md", "chunk": 8, "issues": [
+  "Double brackets «(Workshop on Digital Society) (DS 2025, Стамбул, ...)» - write one bracket: «на 3-м Международном семинаре «Цифровое общество» (Workshop on Digital Society, DS 2025, Стамбул, Турция, 28–30 октября 2025 г.)»",
+  "Main content: «значимость, надёжность и апробация» - the section is called «Достоверность результатов» - write «значимость, достоверность и апробация»",
+  "Main content: «факторный контраст» - write «факторное сопоставление»; «выравнивание внимания» - 'attention alignment' is «согласованность внимания» elsewhere in this text - write «согласованность внимания»"]},
+ {"out": "output/translated-qwen/abstract_en.kz.md", "chunk": 2, "issues": [
+  "NAME ERROR: «Есмұхамедов Нұрмағамбет Сейітқалиұлының» - the official spelling is «Есмухамедов Нұрмағанбет Сейтқалиұлы»",
+  "The official Kazakh title of the thesis and the programme name must be used exactly. Replace the whole block with these five bold lines (each line ends with two spaces except the last): «**Есмухамедов Нұрмағанбет Сейтқалиұлының**» / «**«Оптикалық когерентті томографиялық кескіндерді пайдалана отырып, тереңдетіп оқыту негізінде**» / «**көз торының ауруларын автоматты түрде анықтаудың ақпараттық жүйесі» тақырыбындағы,**» / «**философия докторы (PhD) дәрежесін алуға ұсынылған диссертациялық жұмысына,**» / «**8D06102 – Компьютерлік және программалық инженерия білім беру бағдарламасы бойынша**»"]},
+ {"out": "output/translated-qwen/abstract_en.kz.md", "chunk": 3, "issues": [
+  "Heading «**Зерттеудің өзектілігі.**» - the standard formula is «**Зерттеу тақырыбының өзектілігі.**»"]},
+ {"out": "output/translated-qwen/abstract_en.kz.md", "chunk": 4, "issues": [
+  "'field of view' is «көру өрісі» (termbase FOV Mask = «көру өрісінің маскасы»): «төртінші кіріс арнасы ретінде берілетін көру алаңының маскасы» - write «төртінші кіріс арнасы ретінде берілетін көру өрісінің маскасы»"]},
+ {"out": "output/translated-qwen/abstract_en.kz.md", "chunk": 6, "issues": [
+  "'field diameter' - «түзету масштабы көру алаңы диаметрінің 0.07-сі» - write «түзету масштабы көру өрісі диаметрінің 0.07-сі»",
+  "«бұл тұжырым патологияны локализациялау ретінде емес, үйлесімділік ретінде қорғалады» - write «...патологияны локализациялау ретінде емес, назардың үйлесімі ретінде қорғалады»"]},
+ {"out": "output/translated-qwen/abstract_en.kz.md", "chunk": 9, "issues": [
+  "«эксперименттік дизайн және статистикалық валидация шеңбері» - 'the experimental design' - write «эксперимент жоспары және статистикалық валидация шеңбері»"]}
+]

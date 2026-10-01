@@ -1,0 +1,13 @@
+11:14:17 1 file(s) -> Kazakh; termbase 276 rows, TM 547 rows
+11:18:22   chunk 1/5 try 1: 438 w, 244.4s, pp 217/s tg 6.0/s, 1 err, 1 warn | forbidden «отбасы»: family (of architectures, methods, perturbations) is «тұқымдас»
+11:22:17   chunk 1/5 try 2: 438 w, 235.0s, pp 208/s tg 6.0/s, 0 err, 1 warn
+11:22:17 chapters/02-methodology/drafts/2.1-draft.md -> chapters/02-methodology/translated-kk-qwen/2.1-kz.md: 5 chunks, 4 clean first try, NEEDS_REVIEW none, 3 warnings, 8.0 min
+11:22:17 DONE 1 files, 5 chunks, 4 clean first try, 0 need review, 8 min
+11:22:17 1 file(s) -> Kazakh; termbase 276 rows, TM 547 rows
+11:26:02   chunk 3/3 try 1: 429 w, 225.0s, pp 225/s tg 6.0/s, 0 err, 0 warn
+11:26:02 chapters/02-methodology/drafts/2.2-draft.md -> chapters/02-methodology/translated-kk-qwen/2.2-kz.md: 3 chunks, 3 clean first try, NEEDS_REVIEW none, 0 warnings, 3.8 min
+11:26:02 DONE 1 files, 3 chunks, 3 clean first try, 0 need review, 4 min
+11:26:02 1 file(s) -> Kazakh; termbase 276 rows, TM 547 rows
+11:29:07   chunk 1/2 try 1: 422 w, 184.4s, pp 213/s tg 5.9/s, 0 err, 2 warn
+11:29:07 chapters/04-system/drafts/4.2-draft.md -> chapters/04-system/translated-kk-qwen/4.2-kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 2 warnings, 3.1 min
+11:29:07 DONE 1 files, 2 chunks, 2 clean first try, 0 need review, 3 min

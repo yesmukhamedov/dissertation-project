@@ -23,3 +23,9 @@ TARGET LANGUAGE: RUSSIAN (научный стиль диссертации, ка
   "Reported at the strength X supports" = изложен с той степенью уверенности, которую допускает X.
 - Use ё where it is standard (обучённой, её). Numbers of stages: "8-этапный конвейер".
 - No Kazakh letters (ә ғ қ ң ө ұ ү һ і) in the output.
+- Kazakh names and words in Russian text are written with Russian letters: ә->а, ғ->г, қ->к, ң->н, ө->о, ұ->у,
+  ү->у, һ->х, і->и (Сұлтанұлы -> Султанулы, Тоқтарова -> Токтарова). A Kazakh common word is translated, never
+  left: ізденуші -> соискатель, рәсім -> процедура.
+- Academic titles are kept exactly: қауымдастырылған профессор / associate professor -> ассоциированный профессор
+  (not «профессор»); доцент -> доцент.
+- "The study developed X" / «Зерттеу X әзірледі» -> «в исследовании разработан X», never «исследование разработало».

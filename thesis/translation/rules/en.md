@@ -12,3 +12,6 @@ TARGET LANGUAGE: ENGLISH (formal academic British-leaning English, as in the app
 - Use the terminology list: e.g. "конвейер предобработки" / "алдын ала өңдеу конвейері" -> "preprocessing pipeline",
   "ветвь"/"тармақ" -> "arm", "корпус" -> "corpus".
 - No Cyrillic letters in the output except inside quoted Kazakh/Russian titles.
+- «В заключении» / «Қорытындыда» names the chapter: "In the Conclusion", never "In conclusion" (= to conclude).
+  «Во введении» = "In the Introduction".
+- Kazakh орта = environment, орталық = centre: «білім беру ортасы / орталарында» = educational environment(s).

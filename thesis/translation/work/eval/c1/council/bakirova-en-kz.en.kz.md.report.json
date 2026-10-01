@@ -1,0 +1,34 @@
+{
+ "file": "translation/work/eval/c1/council/src/bakirova-en-kz.en.md",
+ "genre": "council",
+ "out": "translation/work/eval/c1/council/bakirova-en-kz.en.kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 6.1,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 397,
+   "errors": [],
+   "warnings": [
+    "term «form» not rendered as «нысан»"
+   ],
+   "attempts": 1,
+   "sec": 177.1,
+   "src_head": "2. Methods for preliminary data processing and transformation: cleaning, validat"
+  },
+  {
+   "chunk": 2,
+   "words": 377,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 185.9,
+   "src_head": "Data collection was carried out via a web platform sent to all clients over a tw"
+  }
+ ]
+}

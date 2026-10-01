@@ -1,0 +1,149 @@
+[
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 167.0
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 7,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 167.9
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 80.9
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 8, 8"
+  ],
+  "sec": 177.6
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 16"
+  ],
+  "sec": 97.1
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 158.0
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 173"
+  ],
+  "sec": 50.6
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 169.7
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 158.5
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 94.7
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 159.5
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 127.9
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 154.8
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 129.5
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 0.9",
+   "term «Precision» not rendered as «дәлдік»"
+  ],
+  "sec": 151.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Intersection-over-Union"
+  ],
+  "sec": 141.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 150.9
+ }
+]

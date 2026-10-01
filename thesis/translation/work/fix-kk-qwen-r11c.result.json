@@ -1,0 +1,78 @@
+[
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 144.6
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «Inference» not rendered as «инференс»"
+  ],
+  "sec": 64.9
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 141.6
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 158.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 138.7
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 97.0
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 122.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 149.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Kazakh"
+  ],
+  "sec": 52.4
+ }
+]

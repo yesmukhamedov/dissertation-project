@@ -1,0 +1,90 @@
+{
+ "file": "chapters/00-introduction/drafts/introduction-draft.md",
+ "genre": "thesis",
+ "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 8,
+ "clean_first_try": 7,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 427,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 225.4,
+   "src_head": "**Relevance of the research.** Diabetic retinopathy is a microvascular complicat"
+  },
+  {
+   "chunk": 2,
+   "words": 376,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 178.8,
+   "src_head": "1. To analyse the problem domain and formulate the research problem: the clinica"
+  },
+  {
+   "chunk": 3,
+   "words": 434,
+   "errors": [],
+   "warnings": [
+    "term «Convergence» not rendered as «жинақталу»"
+   ],
+   "attempts": 1,
+   "sec": 199.9,
+   "src_head": "**Scientific novelty.** The principal contribution is conceptual: the reframing "
+  },
+  {
+   "chunk": 4,
+   "words": 419,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 209.3,
+   "src_head": "The integrated configuration exceeds the baseline on the training corpus of 35,1"
+  },
+  {
+   "chunk": 5,
+   "words": 351,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 169.2,
+   "src_head": "**Theoretical and practical significance.** The theoretical significance lies in"
+  },
+  {
+   "chunk": 6,
+   "words": 435,
+   "errors": [],
+   "warnings": [
+    "hyphenated names translated (verify): Physico-Mathematical, Kazakh-British"
+   ],
+   "attempts": 2,
+   "sec": 208.0,
+   "src_head": "Four bounds attach to particular provisions. The stage ranking holds at the reso"
+  },
+  {
+   "chunk": 7,
+   "words": 428,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 212.3,
+   "src_head": "The software complex is entered in the state register of copyright objects, cert"
+  },
+  {
+   "chunk": 8,
+   "words": 61,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 31.6,
+   "src_head": "Six appendices follow: the source code of the preprocessing pipeline, supplement"
+  }
+ ]
+}

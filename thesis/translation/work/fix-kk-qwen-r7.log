@@ -1,0 +1,21 @@
+chapters/00-introduction/translated-kk-qwen/introduction-kz.md chunk 1: applied, 0 err, 0 warn, 182.3s
+chapters/01-review/translated-kk-qwen/1.1-kz.md chunk 1: applied, 0 err, 0 warn, 185.6s
+chapters/03-experiments/translated-kk-qwen/3.3-kz.md chunk 1: applied, 0 err, 2 warn, 200.7s
+chapters/01-review/translated-kk-qwen/1.3-kz.md chunk 1: applied, 0 err, 1 warn, 175.8s
+chapters/02-methodology/translated-kk-qwen/2.4-kz.md chunk 1: applied, 0 err, 0 warn, 164.6s
+chapters/03-experiments/translated-kk-qwen/3.6-kz.md chunk 2: applied, 0 err, 0 warn, 180.0s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 1: applied, 0 err, 0 warn, 86.7s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 3: applied, 0 err, 0 warn, 6.7s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 4: applied, 0 err, 0 warn, 52.9s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 6: applied, 1 err, 2 warn, 164.5s | forbidden «еден»: floor (lower bound) is «төменгі шек»
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 7: applied, 0 err, 2 warn, 77.0s
+chapters/06-appendices/translated-kk-qwen/C-kz.md chunk 5: applied, 1 err, 0 warn, 59.4s | forbidden «еден»: floor (lower bound) is «төменгі шек»
+chapters/01-review/translated-kk-qwen/1.5-kz.md chunk 1: applied, 0 err, 0 warn, 159.8s
+chapters/02-methodology/translated-kk-qwen/2.1-kz.md chunk 1: applied, 0 err, 0 warn, 187.5s
+chapters/02-methodology/translated-kk-qwen/2.3-kz.md chunk 1: applied, 2 err, 0 warn, 175.6s | forbidden «корпусар»: plural of корпус is «корпустар»
+chapters/02-methodology/translated-kk-qwen/2.5-kz.md chunk 1: applied, 0 err, 0 warn, 162.2s
+chapters/03-experiments/translated-kk-qwen/3.1-kz.md chunk 1: applied, 1 err, 0 warn, 184.9s | forbidden «еден»: floor (lower bound) is «төменгі шек»
+chapters/03-experiments/translated-kk-qwen/3.4-kz.md chunk 1: applied, 0 err, 0 warn, 153.6s
+chapters/03-experiments/translated-kk-qwen/3.7-kz.md chunk 1: applied, 0 err, 0 warn, 161.3s
+chapters/03-experiments/translated-kk-qwen/3.9-kz.md chunk 1: applied, 1 err, 0 warn, 164.0s | forbidden «еден»: floor (lower bound) is «төменгі шек»
+chapters/04-system/translated-kk-qwen/4.1-kz.md chunk 1: applied, 0 err, 0 warn, 170.9s

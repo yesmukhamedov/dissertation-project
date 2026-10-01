@@ -1,0 +1,41 @@
+{
+ "file": "translation/work/eval/v3/council-valid/src/olzhayev-kz-en.kz.md",
+ "genre": "council",
+ "out": "translation/work/eval/v3/council-valid/olzhayev-kz-en.kz.en.md",
+ "src": "kz",
+ "tgt": "en",
+ "chunks": 2,
+ "clean_first_try": 1,
+ "needs_review": [
+  1
+ ],
+ "warnings": 3,
+ "minutes": 4.1,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 389,
+   "errors": [
+    "numbers missing: 4"
+   ],
+   "warnings": [
+    "term «конвейер» not rendered as «Pipeline»",
+    "term «трансформер» not rendered as «transformer model»"
+   ],
+   "attempts": 1,
+   "sec": 105.3,
+   "src_head": "Ағымдағы күндерде компьютерлік көруді қолдана отырып, жол ақауларын автоматтанды"
+  },
+  {
+   "chunk": 2,
+   "words": 110,
+   "errors": [],
+   "warnings": [
+    "term «трансформер» not rendered as «transformer model»"
+   ],
+   "attempts": 1,
+   "sec": 33.1,
+   "src_head": "Үшінші бөлімде зерттеу материалдары мен әдістері егжей-тегжейлі сипатталған. Нақ"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+[
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«төрт тақтаннан» is a typo - write «төрт тақтадан»",
+   "«түсіндірілу қабілетін өлшеу» and «Түсіндірілу қабілетін талдау» - 'explainability' is «интерпретацияланушылық»: write «интерпретацияланушылықты өлшеу», «Интерпретацияланушылықты талдау»",
+   "«Әрбір астындағы мәтін» - 'each caption' - write «Әр тақтаның жазуы»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«түсіндірілу мүмкіндігіне қатысты дәлелдер» - write «интерпретацияланушылыққа қатысты дәлелдер»",
+   "«теріс нәтиже емес, жоқтық» - 'an absence rather than a negative result' - write «теріс нәтиже емес, жүргізілмеген талдау»",
+   "«ешқандай бағытта да инференс жасалу мүмкін емес» - 'inference' here is a logical conclusion: write «ешқандай бағытта да қорытынды жасауға болмайды»",
+   "«осы тақталарға сүйенетін тұжырым» - 'the claim these plates accompany' - write «осы тақталар сүйемелдейтін тұжырым»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«құрылғылар отбасын және алу контекстін» - write «құрылғылар тұқымдасын және түсіру контекстін»",
+   "«бес жол бес тәуелсіз бақылау ретінде оқылады» and «өнімділік өзгергіштігінің тәжірибелік бақылаулары» - 'observations' - write «бес тәуелсіз байқау ретінде», «өнімділік өзгергіштігінің эмпирикалық байқаулары»",
+   "CHECKER: every «отбасы» / «отбасын» / «отбасылар...» used for 'family' (of architectures, methods, measures, perturbations, devices) is wrong - use «тұқымдас» with the same case ending (for 'family of measures' «өлшемдер тобы» is also fine)"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 3,
+  "issues": [
+   "table titles «базалық efficient» and «интеграцияланған efficient» - write «базалық, тиімді» and «интеграцияланған, тиімді» as in chapter 3"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 4,
+  "issues": [
+   "headings «Г.6 Кластар арасындағы таралу», «Г.7 Топтар арасындағы таралу» and the table title «өнімділіктің таралуы» - 'dispersion' is «шашырау» (as in table 3.11; «таралу» reads as prevalence): write «Г.6 Кластар арасындағы шашырау», «Г.7 Топтар арасындағы шашырау», «өнімділіктің шашырауы», and in the text «өнімділіктің шашырауы»",
+   "«маргинал түрде *төмен*» - 'marginally lower' - write «сәл *төмен*»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«камералық топтамалар арасында» and «Топтамалар арасында» - «топтама» means batch: write «камералық топтастырулар арасында», «Топтастырулар арасында»",
+   "«оны Г.5-бөлім қайталайды» - 'which section E.5 reproduces' - write «оны Г.5-бөлім келтіреді»",
+   "«құрылғылардың сәйкестігін» - 'device compatibility' - write «құрылғылармен үйлесімділікті»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«қойылған материалдар» - 'deposited materials' - write «тапсырылған материалдар»",
+   "«**декларациялық және тіркелген авторлықты**» - 'authorship as declared and registered' - write «**мәлімделген және тіркелген авторлықты**»",
+   "«бағдарламалық кешен кандидаттың жалғыз авторы ретінде тіркелген» says the complex is the author - write «бағдарламалық кешен кандидаттың атына, оның жалғыз авторы ретінде тіркелген»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«А қосымшасында көшірілген» - 'reproduced' - write «А қосымшасында келтірілген»",
+   "«Б қосымшасында бекітілген инференс қызметі» - 'captured in Appendix C' means shown in screenshots: write «Б қосымшасында суреттері берілген инференс қызметі»",
+   "«түсіндірілу құралдары» - write «интерпретацияланушылық құралдары»; «сол іске асырудың айналасында құрылған жүйе» - write «сол іске асыру негізінде құрылған жүйе»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«құжаттың ақиқаттылығын» - 'authenticity' - write «құжаттың түпнұсқалығын»"
+  ]
+ }
+]

@@ -1,0 +1,34 @@
+{
+ "file": "chapters/03-experiments/drafts/3.C-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.C-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 440,
+   "errors": [],
+   "warnings": [
+    "numbers added: 0.004"
+   ],
+   "attempts": 1,
+   "sec": 218.3,
+   "src_head": "## Conclusions on section 3\n\nThis chapter reported eight investigations on a com"
+  },
+  {
+   "chunk": 2,
+   "words": 69,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 34.7,
+   "src_head": "Several matters remain open. The clinical attention overlays were not produced a"
+  }
+ ]
+}

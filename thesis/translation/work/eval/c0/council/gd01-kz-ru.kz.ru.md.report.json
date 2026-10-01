@@ -1,0 +1,38 @@
+{
+ "file": "translation/work/eval/c0/council/src/gd01-kz-ru.kz.md",
+ "genre": "council",
+ "out": "translation/work/eval/c0/council/gd01-kz-ru.kz.ru.md",
+ "src": "kz",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 1,
+ "needs_review": [
+  2
+ ],
+ "warnings": 1,
+ "minutes": 5.6,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 441,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 157.0,
+   "src_head": "«Халықаралық ақпараттық технологиялар университеті» АҚ – да (бұдан әрі – Универс"
+  },
+  {
+   "chunk": 2,
+   "words": 257,
+   "errors": [
+    "Kazakh letters in Russian text: і"
+   ],
+   "warnings": [
+    "term «тармақ» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 90.5,
+   "src_head": "жұмыс орны бойынша куәландырылған отандық және шетелдік ғылыми консультанттардың"
+  }
+ ]
+}

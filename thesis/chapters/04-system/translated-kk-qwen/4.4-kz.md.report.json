@@ -1,0 +1,32 @@
+{
+ "file": "chapters/04-system/drafts/4.4-draft.md",
+ "genre": "thesis",
+ "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 438,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 217.7,
+   "src_head": "## 4.4 Deployment and data protection\n\nThe system is deployed as a static client"
+  },
+  {
+   "chunk": 2,
+   "words": 83,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 39.0,
+   "src_head": "What the deployment does establish is architectural and modest. A screening clie"
+  }
+ ]
+}

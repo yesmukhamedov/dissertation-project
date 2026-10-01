@@ -1,0 +1,34 @@
+{
+ "file": "translation/work/eval/c0/council/src/gd01-ru-kz.ru.md",
+ "genre": "council",
+ "out": "translation/work/eval/c0/council/gd01-ru-kz.ru.kz.md",
+ "src": "ru",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 11.1,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 444,
+   "errors": [],
+   "warnings": [
+    "numbers added: 2026"
+   ],
+   "attempts": 2,
+   "sec": 248.7,
+   "src_head": "Настоящий путеводитель соискателя степени доктора философии (PhD) по защите дисс"
+  },
+  {
+   "chunk": 2,
+   "words": 264,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 157.2,
+   "src_head": "список научных трудов по форме 2.3, заверенный ученым секретарем университета (П"
+  }
+ ]
+}

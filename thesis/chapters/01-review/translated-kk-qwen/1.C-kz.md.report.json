@@ -1,0 +1,23 @@
+{
+ "file": "chapters/01-review/drafts/1.C-draft.md",
+ "genre": "thesis",
+ "out": "chapters/01-review/translated-kk-qwen/1.C-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 1,
+ "clean_first_try": 1,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 308,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 167.2,
+   "src_head": "## Conclusions on section 1\n\nThis chapter established the problem the work addre"
+  }
+ ]
+}

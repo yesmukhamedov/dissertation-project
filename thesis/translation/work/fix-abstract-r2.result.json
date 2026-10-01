@@ -1,0 +1,88 @@
+[
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Computer"
+  ],
+  "sec": 16.3
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Lesion Overlap",
+   "term «arm» not rendered as «ветвь»",
+   "term «external performance» not rendered as «качество на внешних корпусах»",
+   "term «Cross-Validation» not rendered as «кросс-валидация»",
+   "term «framework» not rendered as «система»",
+   "term «source-to-target distance» not rendered as «расстояние источник-цель»",
+   "term «tile» not rendered as «тайл»"
+  ],
+  "sec": 108.0
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 8,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Science"
+  ],
+  "sec": 86.5
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Computer"
+  ],
+  "sec": 24.5
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 168.3
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Lesion Overlap",
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «field-of-view mask» not rendered as «көру алаңының маскасы»"
+  ],
+  "sec": 163.2
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 6,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «criterion» not rendered as «өлшем»"
+  ],
+  "sec": 147.5
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 9,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «lesion» not rendered as «зақымдану»"
+  ],
+  "sec": 45.2
+ }
+]

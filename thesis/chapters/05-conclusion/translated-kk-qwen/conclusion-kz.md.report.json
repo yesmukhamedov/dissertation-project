@@ -1,0 +1,54 @@
+{
+ "file": "chapters/05-conclusion/drafts/conclusion-draft.md",
+ "genre": "thesis",
+ "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 4,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 402,
+   "errors": [],
+   "warnings": [
+    "numbers added: 0.004"
+   ],
+   "attempts": 1,
+   "sec": 205.0,
+   "src_head": "This dissertation set out to establish whether the preparation of a fundus image"
+  },
+  {
+   "chunk": 2,
+   "words": 404,
+   "errors": [],
+   "warnings": [
+    "term «endpoint» not rendered as «соңғы нүкте»"
+   ],
+   "attempts": 1,
+   "sec": 196.2,
+   "src_head": "Attention overlapped expert-annotated lesions more under the integrated configur"
+  },
+  {
+   "chunk": 3,
+   "words": 410,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 220.7,
+   "src_head": "The methodological contribution is analytic. Three measures in common use for ex"
+  },
+  {
+   "chunk": 4,
+   "words": 65,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 35.6,
+   "src_head": "The work does not show that this configuration is clinically valid, deployable, "
+  }
+ ]
+}

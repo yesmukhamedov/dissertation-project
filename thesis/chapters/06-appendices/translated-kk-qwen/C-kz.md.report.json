@@ -1,0 +1,85 @@
+{
+ "file": "chapters/06-appendices/drafts/C-draft.md",
+ "genre": "thesis",
+ "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 7,
+ "clean_first_try": 7,
+ "needs_review": [],
+ "warnings": 5,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 238,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 115.5,
+   "src_head": "This appendix has two halves. The first gives the formal structural views of the"
+  },
+  {
+   "chunk": 2,
+   "words": 273,
+   "errors": [],
+   "warnings": [
+    "hyphenated names translated (verify): Decision-Support, Data-Management, Error-Handling"
+   ],
+   "attempts": 1,
+   "sec": 144.1,
+   "src_head": "The view is to be read against Table C.1 rather than on its own. The table names"
+  },
+  {
+   "chunk": 3,
+   "words": 12,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 11.8,
+   "src_head": "### C.2 Deployment view\n\n**Diagram C.2 – Store-and-forward deployment topology.*"
+  },
+  {
+   "chunk": 4,
+   "words": 154,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 71.5,
+   "src_head": "This is the view in which the deployment envelope prunes the design. The periphe"
+  },
+  {
+   "chunk": 5,
+   "words": 158,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 85.3,
+   "src_head": "Two properties of the ordering are the point of the diagram. The clinician's dis"
+  },
+  {
+   "chunk": 6,
+   "words": 437,
+   "errors": [],
+   "warnings": [
+    "hyphenated names translated (verify): Decision-Support",
+    "authors not found in Latin: Ingestion, Inference"
+   ],
+   "attempts": 1,
+   "sec": 205.4,
+   "src_head": "The entities that carry patient or clinician identity are marked, because that i"
+  },
+  {
+   "chunk": 7,
+   "words": 220,
+   "errors": [],
+   "warnings": [
+    "hyphenated names translated (verify): Data-Management",
+    "authors not found in Latin: Clinician Interface"
+   ],
+   "attempts": 1,
+   "sec": 99.6,
+   "src_head": "**[FIG-C.3: The view after a recorded verdict, with the persisted case, the rela"
+  }
+ ]
+}

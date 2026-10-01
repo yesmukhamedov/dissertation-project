@@ -42,7 +42,7 @@ referral threshold	порог направления	жолдама табалд
 predictive values	прогностические ценности	болжамдық мән	translate	КЗ: болжамдық мән
 percentage points	процентные пункты	пайыздық тармақ	translate	КЗ: пайыздық тармақ
 confidence interval	доверительный интервал	сенімділік аралығы	translate	КЗ: сенімділік аралығы
-interval excluding zero	интервал, исключающий ноль	нөлді қамтымайтын аралық	translate	KZ form not seen in the approved text; КЗ: нөлді қамтымайтын аралық
+interval excluding zero	интервал, исключающий ноль	нөлді қамтымайтын аралық;нөлді қамтымай	translate	approved: «әр аралық нөлді қамтымайды» (predicate) or «нөлді қамтымайтын аралық»
 bootstrap	бутстрап	bootstrap	translate	КЗ: bootstrap
 minimal clinically important difference	минимальная клинически значимая разница	минималды клиникалық маңызды айырма	translate	КЗ: минималды клиникалық маңызды айырма
 criterion	критерий	өлшем	translate	КЗ: өлшем
@@ -110,7 +110,7 @@ Progressive Fine-Tuning	поэтапное дообучение	бірте-бі�
 EfficientNet-B3	EfficientNet-B3	EfficientNet-B3	keep	Model name kept in Latin.
 EfficientNet-B4	EfficientNet-B4	EfficientNet-B4	keep	Model name kept in Latin.
 ResNet-50	ResNet-50	ResNet-50	keep	Model name kept in Latin.
-Transformer	трансформер	vision transformer	translate	KZ uses 'vision transformer'; RU uses 'трансформер'.
+vision transformer	vision transformer	vision transformer	keep	keep Latin only when the source says 'vision transformer'; a plain 'transformer' is «трансформер»	thesis
 CLAHE	CLAHE	CLAHE	keep	Acronym kept in Latin.
 Loss Function	функция потерь	шығын функциясы	translate	KZ 'шығын' means loss/cost.
 ROC-AUC	ROC-AUC	ROC-AUC	keep	Metric acronym kept in Latin.
@@ -162,9 +162,117 @@ Class Activation Mapping	карты активации классов (CAM)	кл
 Vessel Visibility Index	индекс видимости сосудов	тамырлардың көрінімділік индексі	translate	Not used in the study.
 FOV Mask	маска поля зрения	көру өрісінің маскасы	translate	Used as fourth input channel.
 DR	ДР	DR	translate	RU: Cyrillic ДР; the KZ edition keeps Latin DR
-performance	качество	өнімділік	translate	RU: diagnostic performance = качество диагностики; never «производительность» (that is speed)
+performance	качество	өнімділік	translate	RU: diagnostic performance = качество диагностики; never «производительность» (that is speed); RU качество -> KZ сапа in other texts	thesis
 grading	градация	?	translate	grading of DR severity; RU not «оценка»
 controlled comparison	контролируемое сопоставление	?	translate	
-framework	система	?	translate	RU: not «фреймворк» unless software
+framework	система	шеңбер	translate	RU: not «фреймворк» unless software
 parameter sweep	перебор параметров	параметрлерді сканерлеу	translate	not «обход»
 re-implementation	повторная реализация	қайта іске асыру	translate	not «переосуществление»
+# ---- council / official documents (domain=council; 6th column) - added 2026-09-27, KZ forms checked against corpus/ (GD_01, 16 abstracts)
+dissertation council	диссертационный совет	диссертациялық кеңес	translate		council
+applicant	соискатель	ізденуші	translate	the person seeking the degree; EN also "candidate"	council
+official reviewer	официальный рецензент	ресми рецензент	translate		council
+scientific consultant	научный консультант	ғылыми консультант	translate	KZ also ғылыми кеңесші	council
+foreign scientific consultant	зарубежный научный консультант	шетелдік ғылыми консультант	translate		council
+scientific supervisor	научный руководитель	ғылыми жетекші	translate		council
+educational program	образовательная программа	білім беру бағдарламасы	translate	8D06102 etc. stay as codes	council
+Doctor of Philosophy (PhD)	доктор философии (PhD)	философия докторы (PhD)	translate		council
+relevance of the research topic	актуальность темы исследования	зерттеу тақырыбының өзектілігі	translate	abstract rubric	council
+aim of the research	цель исследования	зерттеудің мақсаты	translate	abstract rubric	council
+research objectives	задачи исследования	зерттеудің міндеттері	translate	abstract rubric	council
+object of the research	объект исследования	зерттеу нысаны	translate	abstract rubric	council
+subject of the research	предмет исследования	зерттеу пәні	translate	abstract rubric	council
+scientific novelty	научная новизна	ғылыми жаңалығы	translate	abstract rubric	council
+theoretical significance	теоретическая значимость	теориялық маңыздылығы	translate	abstract rubric	council
+practical significance	практическая значимость	практикалық маңыздылығы	translate	abstract rubric	council
+provisions submitted for defense	положения, выносимые на защиту	қорғауға ұсынылатын қағидалар	translate	abstract rubric	council
+approbation	апробация	апробация	translate	апробация результатов = нәтижелерін апробациялау	council
+personal contribution of the author	личный вклад автора	автордың жеке үлесі	translate	abstract rubric	council
+reliability of the results	достоверность результатов	нәтижелердің сенімділігі	translate	abstract rubric	council
+structure and scope of the dissertation	структура и объем диссертации	диссертацияның құрылымы мен көлемі	translate	abstract rubric	council
+extended meeting of the department	расширенное заседание кафедры	кафедраның кеңейтілген отырысы	translate		council
+graduating department	выпускающая кафедра	бітіруші кафедра	translate		council
+Academic Council	Ученый совет	Ғылыми кеңес	translate	of the University	council
+Scientific and Technical Council	научно-технический совет	ғылыми-техникалық кеңес	translate		council
+extract from the minutes	выписка из протокола	хаттамадан үзінді	translate		council
+minutes	протокол	хаттама	translate	of a meeting	council
+Office of Postgraduate Education	Офис послевузовского образования	Жоғары оқу орнынан кейінгі білім беру офисі	translate	then "(hereinafter – the Office)"	council
+Research Proposal	исследовательское предложение (Research Proposal)	зерттеу ұсынысы (Research Proposal)	translate	keep the Latin name in brackets	council
+re-approval	переутверждение	қайта бекіту	translate		council
+Vice-Rector for Research	проректор по научно-исследовательской деятельности	ғылыми-зерттеу қызметі жөніндегі проректор	translate		council
+Scientific Secretary	ученый секретарь	ғалым хатшы	translate		council
+reviewer	рецензент	рецензент	translate	рецензия (review by a reviewer) = рецензия	council
+review	отзыв	пікір	translate	of a supervisor/consultant; a reviewer's report is рецензия	council
+simple majority of votes	простое большинство голосов	жай көпшілік дауыс	translate		council
+notarized translation	нотариально заверенный перевод	нотариат куәландырған аударма	translate		council
+Rules for Awarding Degrees	Правила присуждения степеней	Дәрежелер беру қағидалары	translate		council
+Standard Regulations on the Dissertation Council	Типовое положение о диссертационном совете	Диссертациялық кеңес туралы үлгілік ереже	translate		council
+hereinafter	далее –	бұдан әрі –	translate	(hereinafter – X) = (далее – X) = (бұдан әрі – X)	council
+list of scientific works	список научных трудов	ғылыми еңбектер тізімі	translate		council
+list of references	список использованных источников	пайдаланылған әдебиеттер тізімі	translate		council
+International University of Information Technologies	Международный университет информационных технологий	Халықаралық ақпараттық технологиялар университеті	translate	JSC IITU = АО «МУИТ» = «ХАТУ» АҚ	council
+Ministry of Science and Higher Education of the Republic of Kazakhstan	Министерство науки и высшего образования Республики Казахстан	Қазақстан Республикасы Ғылым және жоғары білім министрлігі	translate		council
+machine learning	машинное обучение	машиналық оқыту	translate	never «машинамен оқыту»	council
+federated learning	федеративное обучение	федеративті оқыту	translate	one form throughout; not федерацияланған/федерациялық	council
+sample	выборка	іріктеме	translate	statistical/experimental sample	council
+Rules	Правила	Қағидалар	translate	legal act title; Правила = Қағидалар, never Ережелер	council
+Standard Regulations	Типовое положение	Үлгілік ереже	translate	legal act; Положение = Ереже, Типовое = Үлгілік (not типтік)	council
+procedure	процедура	рәсім	translate	not «процедура» in Kazakh	council
+form	форма; форме; форму; формы	нысан	translate	of a document: по форме 2.3 = 2.3-нысан бойынша	council
+abstract	аннотация	аңдатпа	translate	of a dissertation; not «аннотация» in Kazakh	council
+domestic	отечественный	отандық	translate		council
+official seal	гербовая печать	елтаңбалы мөр	translate		council
+registry office	канцелярия	кеңсе	translate		council
+teaching staff	профессорско-преподавательский состав	профессор-оқытушылар құрамы	translate		council
+Management Board	Правление	Басқарма	translate	of a JSC	council
+practitioners	специалисты-практики	практик-мамандар	translate		council
+related departments	смежные кафедры	сабақтас кафедралар	translate		council
+recommendation for defense	рекомендация к защите; рекомендовать к защите	қорғауға ұсыну	translate	рекомендована к защите = қорғауға ұсынылған; not «представление на защиту»	council
+object of study vs subject	объект исследования	зерттеу нысаны	translate	объект = нысан, предмет = пән; never swap them	council
+degrees of freedom	степени свободы	еркіндік дәрежелері	translate		all
+jerk	рывок	жерк	translate	derivative of acceleration	all
+handwriting	почерк	жазу; қолжазба	translate	кинематика почерка = жазу кинематикасы	all
+healthy volunteers	здоровые добровольцы	сау еріктілер	translate		all
+quality	качество	сапа	translate	метрики качества = сапа метрикалары	council
+code-switching	переключение кодов	кодты ауыстыру	translate	linguistics; not «замена символов»	all
+associate professor	ассоциированный профессор	қауымдастырылған профессор	translate	academic title, never shortened to «профессор»	council
+hate speech	язык вражды	ғадауат тілі; ғадауат тілді сөздер	translate		all
+stability	устойчивость	тұрақтылық	translate	of a model, training, convergence; not «стабильность»	council
+benchmark	эталон; базовый уровень	эталон; базалық деңгей	translate	used as a benchmark = используется как эталон; never «бенчмаркинг»	council
+global model	глобальная модель	жаһандық модель	translate	global = жаһандық, never «глобалды»	all
+distributed data	распределенные данные	таратылған деректер	translate	federated/distributed setting; not «бөлінген»	council
+optimization	оптимизация	оңтайландыру	translate	server optimization = серверлік оңтайландыру	all
+educational environment	образовательная среда	білім беру ортасы	translate	орта (environment), NOT орталық (centre)	council
+burnout	выгорание	күйіп-жану	translate	psycho-emotional burnout = психоэмоционалдық күйіп-жану	council
+psycho-emotional	психоэмоциональный	психоэмоционалдық	translate		council
+statistical representations	статистические представления	статистикалық бейнелеулер	translate		council
+reinstatement as a doctoral student	восстановление в число докторантов; после восстановления	докторанттар қатарына қайта қабылдау; қайта қабылданғаннан кейін	translate	not «қайта оралу»	council
+doctor in the field	доктор по профилю	бейіні бойынша доктор	translate	not «профиль бойынша»	council
+transformer model	трансформер; модели на основе трансформеров	трансформер; трансформерлік модельдер	translate	never «трансформатор» (electrical); never «vision transformer» unless the source says so	council
+decentralized	децентрализованный	орталықтандырылмаған	translate	not «таратылмаған» (= not distributed)	all
+consistency	согласованность	келісімділік	translate	of a feature space; not тұрақтылық (stability)	council
+Kazakh sign alphabet	казахский жестовый алфавит; дактильная азбука	қазақ таңба әліпбиі; қазақ ымдау тілінің әліпбиі	translate	таңба here = sign (gesture); never «тюркский алфавит»	all
+supervised learning	обучение с учителем	жетекшілік ететін оқыту; бақыланатын оқыту	translate	never «супервизорное обучение»	all
+representative	репрезентативный	репрезентативті	translate	of a sample/dataset; not «өкілдік» (= representation office)	all
+video stream	видеопоток	бейнеағын	translate	Kazakh: бейне-, not видео- (бейнедеректер, бейнеағын)	all
+Object and subject of research	Объект и предмет исследования	Зерттеу объектісі мен пәні	translate	subject = пән, never объект	thesis
+landmark detector	детектор анатомических ориентиров	бағдарлық нүкте детекторы	translate	approved intro	thesis
+bootstrap interval	бутстреп-интервал	bootstrap аралығы	translate	not интервал	thesis
+fold-level	на уровне фолдов	фолд деңгейіндегі	translate	approved intro	thesis
+area under the curve	площадь под кривой	қисық астындағы аудан	translate	never «қисым/иілу астындағы»	
+referable DR	DR, требующая направления	жолдама берілуге тиіс DR	translate	never «сілтеме DR»	thesis
+transformer	трансформер	трансформер	translate	do not add «vision» unless the source says vision transformer	thesis
+identity shortcut	тождественное соединение	бірегейлік қысқа жол	translate	never «тождествендік»	thesis
+lesion	поражение	зақымдану	translate	never «жарақат», «лезия»	thesis
+representation	репрезентация	репрезентация	translate	learned representations; never «көрініс»	thesis
+endpoint	эндпоинт	соңғы нүкте	translate	API endpoint; never «түйін»	thesis
+case module	модуль случаев	пациент ісінің модулі	translate	case = пациент ісі, not «жағдай»	thesis
+source-to-target distance	расстояние источник-цель	бастапқы доменнен нысаналы доменге дейінгі қашықтық	translate	never «көз–нысана» (көз = eye)	thesis
+source statistics	статистики источника	бастапқы доменнің статистикалары	translate	never «көз статистикалары»	thesis
+prospectively validated	проспективно валидированный	проспективті түрде валидацияланған	translate	never «алдын ала расталған»	thesis
+prospective	проспективный	проспективті	translate	never «перспективалық»	thesis
+tile	тайл	торкөз	translate	CLAHE tile; never «тақта», «тайл», «плитка»	thesis
+bin	бин	себет	translate	histogram bin; never «саңылау»	thesis
+precursor	предшественник	ізашар	translate		thesis
+distribution	распределение	үлестірім	translate	statistical/data distribution (training, target, class, intensity distribution) is «үлестірім», never «таралу» (таралу = prevalence or spread)	thesis
+backbone	backbone	backbone	keep	keep Latin with Kazakh suffix after a hyphen (backbone-да, backbone-тар); never «тірек желі» or «негізгі желі»	thesis

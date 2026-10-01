@@ -1,0 +1,35 @@
+{
+ "file": "chapters/04-system/drafts/4.2-draft.md",
+ "genre": "thesis",
+ "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 422,
+   "errors": [],
+   "warnings": [
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+    "term «five grades» not rendered as «бес дәреже»"
+   ],
+   "attempts": 1,
+   "sec": 184.4,
+   "src_head": "## 4.2 Preprocessing and inference services\n\nThe preprocessing module runs the e"
+  },
+  {
+   "chunk": 2,
+   "words": 384,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 184.0,
+   "src_head": "One divergence must be recorded here rather than left to be discovered. The chec"
+  }
+ ]
+}

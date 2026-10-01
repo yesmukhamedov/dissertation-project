@@ -1,0 +1,39 @@
+{
+ "file": "translation/work/eval/v3/council-valid/src/mukhanov-kz-ru.kz.md",
+ "genre": "council",
+ "out": "translation/work/eval/v3/council-valid/mukhanov-kz-ru.kz.ru.md",
+ "src": "kz",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 5,
+ "minutes": 3.8,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 422,
+   "errors": [],
+   "warnings": [
+    "term «конволюциялық нейрондық желі» not rendered as «свёрточная нейронная сеть»",
+    "term «дәлдік» not rendered as «прецизионность»",
+    "term «конволюциялық нейрондық желі» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 1,
+   "sec": 126.5,
+   "src_head": "Зерттеу мақсаты. Жоғары дәлдіктегі кескінді тану әдістерін әзірлеу және қолдану."
+  },
+  {
+   "chunk": 2,
+   "words": 318,
+   "errors": [],
+   "warnings": [
+    "term «жинақталу» not rendered as «сходимость»",
+    "term «зерттеудің мақсаты» not rendered as «цель исследования»"
+   ],
+   "attempts": 1,
+   "sec": 98.6,
+   "src_head": "Жұмыстың теориялық маңыздылығы. Зерттеудің теориялық маңыздылығы машиналық оқыту"
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+16:36:06   chunk 1/2 try 1: 444 w, 263.0s, pp 227/s tg 6.8/s, 0 err, 1 warn
+16:38:38   chunk 2/2 try 1: 264 w, 152.4s, pp 213/s tg 6.7/s, 0 err, 3 warn
+16:38:38 translation/work/eval/c1/council/src/gd01-ru-kz.ru.md -> translation/work/eval/c1/council/gd01-ru-kz.ru.kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 4 warnings, 6.9 min
+16:38:38   gd01-ru-kz: chrF++ 82.7, chrF_gold 87.0
+16:41:09   chunk 1/2 try 1: 441 w, 150.9s, pp 227/s tg 7.3/s, 0 err, 2 warn
+16:42:40   chunk 2/2 try 1: 257 w, 90.1s, pp 226/s tg 6.8/s, 0 err, 1 warn
+16:42:40 translation/work/eval/c1/council/src/gd01-kz-ru.kz.md -> translation/work/eval/c1/council/gd01-kz-ru.kz.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 3 warnings, 4.0 min
+16:42:40   gd01-kz-ru: chrF++ 85.6, chrF_gold 90.1
+16:47:12   chunk 1/2 try 1: 440 w, 272.0s, pp 220/s tg 6.2/s, 1 err, 2 warn | Russian calque/abbreviation in Kazakh: ба, иму (see rules: нейрондық желі, конволюциялық, 
+16:51:54   chunk 1/2 try 2: 440 w, 282.5s, pp 213/s tg 6.2/s, 1 err, 3 warn | Russian calque/abbreviation in Kazakh: ба, нейросет (see rules: нейрондық желі, конволюция
+16:55:02   chunk 2/2 try 1: 283 w, 187.9s, pp 214/s tg 6.2/s, 0 err, 1 warn
+16:55:02 translation/work/eval/c1/council/src/bazarbekov-ru-kz.ru.md -> translation/work/eval/c1/council/bazarbekov-ru-kz.ru.kz.md: 2 chunks, 1 clean first try, NEEDS_REVIEW [1], 3 warnings, 12.4 min
+16:55:02   bazarbekov-ru-kz: chrF++ 75.9, chrF_gold 76.2
+16:57:21   chunk 1/2 try 1: 423 w, 138.3s, pp 220/s tg 6.7/s, 0 err, 2 warn
+16:57:40   chunk 2/2 try 1: 41 w, 19.6s, pp 185/s tg 6.9/s, 0 err, 0 warn
+16:57:40 translation/work/eval/c1/council/src/toktarova-kz-ru.kz.md -> translation/work/eval/c1/council/toktarova-kz-ru.kz.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 2 warnings, 2.6 min
+16:57:40   toktarova-kz-ru: chrF++ 67.1, chrF_gold 81.5
+16:59:24   chunk 1/2 try 1: 442 w, 103.8s, pp 207/s tg 7.2/s, 0 err, 0 warn
+17:00:33   chunk 2/2 try 1: 271 w, 69.2s, pp 208/s tg 7.1/s, 0 err, 3 warn
+17:00:33 translation/work/eval/c1/council/src/bakirova-en-ru.en.md -> translation/work/eval/c1/council/bakirova-en-ru.en.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 3 warnings, 2.9 min
+17:00:34   bakirova-en-ru: chrF++ 82.8, chrF_gold 88.6
+17:02:26   chunk 1/2 try 1: 441 w, 112.3s, pp 223/s tg 7.3/s, 0 err, 1 warn
+17:03:36   chunk 2/2 try 1: 292 w, 70.2s, pp 188/s tg 7.3/s, 0 err, 2 warn
+17:03:36 translation/work/eval/c1/council/src/bazarbekov-ru-en.ru.md -> translation/work/eval/c1/council/bazarbekov-ru-en.ru.en.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 3 warnings, 3.0 min
+17:03:36   bazarbekov-ru-en: chrF++ 81.3, chrF_gold 85.6
+17:06:33   chunk 1/2 try 1: 397 w, 177.1s, pp 207/s tg 6.8/s, 0 err, 1 warn
+17:09:39   chunk 2/2 try 1: 377 w, 185.9s, pp 216/s tg 6.4/s, 0 err, 0 warn
+17:09:39 translation/work/eval/c1/council/src/bakirova-en-kz.en.md -> translation/work/eval/c1/council/bakirova-en-kz.en.kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 1 warnings, 6.1 min
+17:09:39   bakirova-en-kz: chrF++ 74.5, chrF_gold 81.9
+17:11:22   chunk 1/2 try 1: 424 w, 102.2s, pp 223/s tg 6.9/s, 0 err, 3 warn
+17:12:38   chunk 2/2 try 1: 302 w, 76.5s, pp 211/s tg 7.5/s, 0 err, 3 warn
+17:12:38 translation/work/eval/c1/council/src/bakirova-kz-en.kz.md -> translation/work/eval/c1/council/bakirova-kz-en.kz.en.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 6 warnings, 3.0 min
+17:12:38   bakirova-kz-en: chrF++ 77.6, chrF_gold 78.3
+17:12:39 c1 council ru>kz: chrF++ 80.2, chrF_gold 82.1, chunks 4, first-try 3, clean 3, 19.3 min, errors {'Russian calque/abbreviation in Kazakh': 1}
+17:12:39 c1 council kz>ru: chrF++ 79.2, chrF_gold 87.3, chunks 4, first-try 4, clean 4, 6.6 min, errors {}
+17:12:39 c1 council en>ru: chrF++ 82.8, chrF_gold 88.6, chunks 2, first-try 2, clean 2, 2.9 min, errors {}
+17:12:39 c1 council ru>en: chrF++ 81.3, chrF_gold 85.6, chunks 2, first-try 2, clean 2, 3.0 min, errors {}
+17:12:39 c1 council en>kz: chrF++ 74.5, chrF_gold 81.9, chunks 2, first-try 2, clean 2, 6.1 min, errors {}
+17:12:39 c1 council kz>en: chrF++ 77.6, chrF_gold 78.3, chunks 2, first-try 2, clean 2, 3.0 min, errors {}

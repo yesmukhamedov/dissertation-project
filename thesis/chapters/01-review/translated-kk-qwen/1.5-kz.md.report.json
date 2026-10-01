@@ -1,0 +1,34 @@
+{
+ "file": "chapters/01-review/drafts/1.5-draft.md",
+ "genre": "thesis",
+ "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 408,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 210.6,
+   "src_head": "## 1.5 Problem statement and research direction\n\nThe preceding sections converge"
+  },
+  {
+   "chunk": 2,
+   "words": 205,
+   "errors": [],
+   "warnings": [
+    "term «five grades» not rendered as «бес дәреже»"
+   ],
+   "attempts": 1,
+   "sec": 116.9,
+   "src_head": "The remaining hypotheses probe distinct properties: component ablation and param"
+  }
+ ]
+}

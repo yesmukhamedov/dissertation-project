@@ -1,0 +1,18 @@
+{
+ "out": "**Research methods.** The methodological foundation is controlled experimental comparison, in which all factors, except the one being varied, remain constant. The toolkit includes: optic disc and fovea localisation using a frozen detector; isotropic resize with padding, explicitly passed to the network as a mask channel; adaptive illumination correction and CLAHE with dual clipping in the LAB colour space; ResNet-50 and EfficientNet-B3 models with a weighted focal loss Loss Function; Grad-CAM with attention–lesion overlap and IoU metrics; maximum mean discrepancy on penultimate-layer features; and 5-fold cross-validation with patient-level stratified sampling.\n\n**Empirical base of the research** comprises eight public and clinical fundus data corpora, acquired using cameras from four manufacturers (Canon, Topcon, Kowa, Zeiss): EyePACS (approximately 35,126 graded images, for training and ablation) and its unlabelled subset (approximately 53,576), which does not intersect with the training sample, for in-domain pretraining; APTOS 2019 (approximately 3,662, for cross-corpus transfer); IDRiD (516, of which 81 have lesion masks) and Messidor-2 (approximately 1,748) for external clinical evaluation; DDR (approximately 13,673), ODIR-5K (approximately 5,000) and RFMiD (approximately 3,200) for device shift evaluation; and a Kazakh clinical corpus (60 images, 30 patients × 2 eyes) for the data-scarce regime. Results are reported for each corpus separately and are never aggregated.\n\n**Scientific novelty** of the research consists of the following: 1. The main contribution is conceptual: preprocessing is formalised as a mandatory part of the model specification and placed in a controlled comparison, so the novelty lies not in the existence of the Pipeline, but in its treatment as an experimental object. 2. Five elements of engineering implementation are described in forms not previously combined: isotropic resize with centred padding; FOV Mask as the fourth input channel; illumination correction, scalable to the geometry of each image and applied only within the mask; channel statistics, computed over valid fundus pixels; and Canonical Orientation, the augmentation variance of which is derived from the uncertainty of landmark localisation. 3. The clip limit of the contrast stage is the minimum of two constraints – relative to the histogram and relative to the tile – and is applied stochastically, allowing the stage to perform both enhancement and regularisation functions. 4. Attention consistency is measured by the proportion of labelled lesion covered by model attention. 5. The postulated mechanism is measured directly: the “source – target” distance is computed on the penultimate layer for both configurations on six external corpora. 6. A defect common to metrics usually used for evaluating external robustness has been identified: each normalises the arm’s performance on external corpora relative to the in-domain performance of the same arm.",
+ "errors": [],
+ "warnings": [
+  "term «внешний корпус» not rendered as «external corpus»",
+  "term «маска поля зрения» not rendered as «field-of-view mask»",
+  "term «EfficientNet-B4» not rendered as «EfficientNet-B4»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 89.5,
+  "finish": "stop",
+  "p_tok": 2763,
+  "c_tok": 644,
+  "pp_tps": 222,
+  "tg_tps": 7.8
+ }
+}

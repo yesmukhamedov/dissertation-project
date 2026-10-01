@@ -1,0 +1,79 @@
+[
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [
+   "names/codes lost: ABSTRACT"
+  ],
+  "warnings": [],
+  "sec": 3.0
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 173.2
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Lesion Overlap",
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 167.9
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 37.1
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 6,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «criterion» not rendered as «өлшем»"
+  ],
+  "sec": 150.7
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 7,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "numbers added: 0.004"
+  ],
+  "sec": 149.9
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 8,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Scopus, Science"
+  ],
+  "sec": 145.3
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.kz.md",
+  "chunk": 9,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «lesion» not rendered as «зақымдану»"
+  ],
+  "sec": 46.3
+ }
+]

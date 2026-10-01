@@ -1,0 +1,32 @@
+[
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [
+   "appendix letters ['Б'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expected ['В', 'Ә']): «Ә қосымшасы», «Б.1-кесте»"
+  ],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «attention overlay» not rendered as «назар қабаттамасы»",
+   "term «expert annotation» not rendered as «сарапшы аннотациясы»"
+  ],
+  "sec": 132.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 113.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 142.7
+ }
+]

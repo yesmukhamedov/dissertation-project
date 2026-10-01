@@ -12,7 +12,7 @@ terms: [publications, approbation]
 
 ## На слайде
 
-Slide text as in the kk version (references are not translated); category labels: "Scopus (Q3) journal — 1", "CQAES (KOKSNVO) journals — 3", "Scopus conference — 1", "Total publications: 5".
+Slide text as in the kk version (references are not translated); category labels: "Scopus journal (Q3, CiteScore 2.5, 42nd percentile) — 1", "CQAES (KOKSNVO) journals — 3", "Scopus conference — 1", "Total publications: 5".
 
 ## Речь
 

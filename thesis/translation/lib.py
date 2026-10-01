@@ -99,15 +99,22 @@ NUM_RE = re.compile(r"\d+(?:[.,]\d+)*")
 DEC = {"en": ".", "ru": ",", "kz": "."}
 
 
-def numbers(text, lang):
+DATE_RE = re.compile(r"\b(\d{1,2})\.(\d{2})\.((?:19|20)\d\d)\b")
+
+
+def numbers(text, lang, genre="thesis"):
     """Multiset of numbers as canonical strings, independent of the language's separators.
-    Digits glued to letters (EfficientNet-B3, H-1, 8D06102) count too - they must survive as well."""
-    t = re.sub(r"(?<=\d)[\u00a0\u202f\u2009 ](?=\d{3}(?!\d))", "", text)
+    Digits glued to letters (EfficientNet-B3, H-1, 8D06102) count too - they must survive as well.
+    A numeric date 25.05.2026 counts as day and year only (the month may be written as a word).
+    Official documents (genre council) use the decimal comma in Kazakh as well."""
+    t = DATE_RE.sub(lambda m: f"{int(m.group(1))} {m.group(3)}", text)
+    t = re.sub(r"(?<=\d)[\u00a0\u202f\u2009 ](?=\d{3}(?!\d))", "", t)
+    dec = "," if genre == "council" and lang == "kz" else DEC[lang]
     out = []
     for n in NUM_RE.findall(t):
         if lang == "en":
             n = re.sub(r",(?=\d{3}(?!\d))", "", n)
-        elif DEC[lang] == ",":
+        elif dec == ",":
             n = n.replace(",", ".") if n.count(",") == 1 else n
         n = n.rstrip(".,")
         out.append(n)
@@ -185,16 +192,17 @@ def section_pairs():
 
 
 # ---------- termbase ----------
-def load_termbase():
+def load_termbase(genre=None):
+    """termbase.tsv rows; with genre, only rows of that domain (6th column) or of all domains."""
     rows = []
     path = os.path.join(HERE, "termbase.tsv")
     if not os.path.exists(path):
         return rows
     for line in read(path).split("\n")[1:]:
         if line.strip() and not line.startswith("#"):
-            c = (line.split("\t") + [""] * 5)[:5]
-            rows.append(dict(en=c[0], ru=c[1], kz=c[2], rule=c[3], note=c[4]))
-    return rows
+            c = (line.split("\t") + [""] * 6)[:6]
+            rows.append(dict(en=c[0], ru=c[1], kz=c[2], rule=c[3], note=c[4], domain=c[5].strip() or "all"))
+    return [r for r in rows if not genre or r["domain"] in ("all", genre)]
 
 
 def _stem(word, lang):
@@ -209,20 +217,22 @@ def term_hits(text, termbase, lang):
     low = text.lower()
     hits = []
     for r in termbase:
-        form = r.get(lang, "").split(";")[0].strip()
-        if not form or form == "?":
-            continue
-        words = re.findall(r"[\wӘәҒғҚқҢңӨөҰұҮүҺһІі\-]+", form)
-        if not words:
-            continue
-        if len(form) <= 5 or re.fullmatch(r"[A-Z0-9\-]+", form):     # abbreviations: whole word, exact case
-            if re.search(r"(?<![\w\-])" + re.escape(form) + (r"(?:s|es)?" if form.islower() else "") + r"(?![\w])", text):
-                hits.append(r)
-            continue
-        pat = r"\b" + r"\W+".join(re.escape(_stem(w, lang)) + r"[\wӘәҒғҚқҢңӨөҰұҮүҺһІі\-]*" for w in words)
-        if re.search(pat, low):
+        forms = [f.strip() for f in r.get(lang, "").split(";") if f.strip() and f.strip() != "?"]
+        if any(_form_hit(f, text, low, lang) for f in forms):   # extra ";" variants: inflected short forms
             hits.append(r)
     return hits
+
+
+def _form_hit(form, text, low, lang):
+    words = re.findall(r"[\wӘәҒғҚқҢңӨөҰұҮүҺһІі\-]+", form)
+    if not words:
+        return False
+    if len(form) <= 5 or re.fullmatch(r"[A-Z0-9\-]+", form):     # abbreviations/short words: whole word, exact case
+        suffix = r"[\wӘәҒғҚқҢңӨөҰұҮүҺһІі]*" if lang == "kz" and form.islower() else r"(?:s|es)?" if form.islower() else ""
+        return bool(re.search(r"(?<![\w\-])" + re.escape(form) + suffix
+                              + r"(?![\w])", text))
+    pat = r"\b" + r"\W+".join(re.escape(_stem(w, lang)) + r"[\wӘәҒғҚқҢңӨөҰұҮүҺһІі\-]*" for w in words)
+    return bool(re.search(pat, low))
 
 
 # ---------- Qwen ----------

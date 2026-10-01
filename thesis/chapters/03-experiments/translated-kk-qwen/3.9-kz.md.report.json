@@ -1,0 +1,32 @@
+{
+ "file": "chapters/03-experiments/drafts/3.9-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 435,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 210.5,
+   "src_head": "## 3.9 Limitations and boundary conditions\n\nThe preceding sections priced the ev"
+  },
+  {
+   "chunk": 2,
+   "words": 337,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 187.8,
+   "src_head": "Every performance claim is bounded to the corpora used here, and extension to ot"
+  }
+ ]
+}

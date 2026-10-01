@@ -1,0 +1,232 @@
+[
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «preprocessing pipeline» not rendered as «алдын ала өңдеу конвейері»",
+   "term «FOV Mask» not rendered as «көру өрісінің маскасы»"
+  ],
+  "sec": 169.9
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 207.9
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 227.7
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 201.6
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 89.8
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 83.4
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Decision-Support, Data-Management, Error-Handling",
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 110.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 56.4
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 6,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Decision-Support",
+   "authors not found in Latin: Ingestion, Inference"
+  ],
+  "sec": 152.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 7,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Data-Management",
+   "authors not found in Latin: Clinician Interface"
+  ],
+  "sec": 74.7
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "hyphenated names translated (verify): Intersection-over-Union",
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «lesion type» not rendered as «зақымдану түрі»"
+  ],
+  "sec": 142.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "applied": false,
+  "errors": [
+   "appendix letters ['D'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expected ['В', 'Ә']): «Ә қосымшасы», «Б.1-кесте»"
+  ],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «attention overlay» not rendered as «назар қабаттамасы»",
+   "term «expert annotation» not rendered as «сарапшы аннотациясы»"
+  ],
+  "sec": 131.7
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «Inference» not rendered as «инференс»"
+  ],
+  "sec": 62.2
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 136.9
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+   "term «interval excluding zero» not rendered as «нөлді қамтымайтын аралық»"
+  ],
+  "sec": 151.0
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 153.1
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «interval excluding zero» not rendered as «нөлді қамтымайтын аралық»"
+  ],
+  "sec": 136.6
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 96.7
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "applied": false,
+  "errors": [
+   "appendix letters ['F'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expected ['Б', 'Ғ']): «Ә қосымшасы», «Б.1-кесте»"
+  ],
+  "warnings": [],
+  "sec": 119.0
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "applied": false,
+  "errors": [
+   "appendix letters ['F'] do not match the source (A->А, B->Ә, C->Б, D->В, E->Г, F->Ғ; expected ['А', 'Б', 'Ғ']): «Ә қосымшасы», «Б.1-кесте»"
+  ],
+  "warnings": [],
+  "sec": 146.3
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Kazakh"
+  ],
+  "sec": 52.6
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 1,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 144.6
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 2,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence"
+  ],
+  "sec": 136.7
+ }
+]

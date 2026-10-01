@@ -1,0 +1,59 @@
+{
+ "file": "chapters/06-appendices/drafts/B-draft.md",
+ "genre": "thesis",
+ "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 5,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 405,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 211.0,
+   "src_head": "This appendix records the decomposition behind the aggregate figures reported in"
+  },
+  {
+   "chunk": 2,
+   "words": 300,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 168.9,
+   "src_head": "### B.2 Confusion matrices on the training corpus\n\nRows are the reference grade,"
+  },
+  {
+   "chunk": 3,
+   "words": 443,
+   "errors": [],
+   "warnings": [],
+   "attempts": 2,
+   "sec": 229.7,
+   "src_head": "### B.3 Confusion matrices on the external public corpus\n\n**Table B.6 – Confusio"
+  },
+  {
+   "chunk": 4,
+   "words": 377,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 212.0,
+   "src_head": "### B.6 Interval estimates\n\nTwo intervals are reported and they quantify differe"
+  },
+  {
+   "chunk": 5,
+   "words": 247,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 115.3,
+   "src_head": "### B.8 What this appendix does not contain\n\nThree sets of material that an appe"
+  }
+ ]
+}

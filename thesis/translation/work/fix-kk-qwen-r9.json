@@ -1,0 +1,95 @@
+[
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«диагностикалық модельдің сипаттамасына немесе оның бөлек тұратын бөлігіне жататынын» is wrong: 'belongs to the specification of the diagnostic model or beside it' means inside the model's specification or outside it - write «диагностикалық модельдің сипаттамасына жата ма, әлде одан тыс тұра ма, соны анықтауға»",
+   "«оны жоқ теңдестірілген конфигурациямен» is ungrammatical for 'an equivalent configuration lacking it' - write «онсыз баламалы конфигурациямен»",
+   "«осы құраманы ыдыратпастан ыдыратты» is self-contradictory for 'decomposing that composite without dissolving it' - write «осы құрама әсерді жоққа шығармай, оны құрамдас бөліктерге жіктеді»",
+   "«Оқыту таралуы мен алты мақсаттық таралудың» - write «Оқыту үлестірімі мен алты нысаналы үлестірімнің»; «мақсаттық статистика» - write «нысаналы статистика» ('target' is «нысаналы»)",
+   "«жіктеуге, көшіруге» and «Компетенттілік ... көшірілді» - 'transfer' here is «тасымалдау»: «жіктеуге, тасымалдауға», «Құзыреттілік зерттелген әрбір сыртқы корпусқа тасымалданды»",
+   "«Екі өлшем екі конфигурациямен де өтті» is garbled for 'Two of the criteria were cleared by both configurations' - write «Екі өлшемді екі конфигурация да орындады»",
+   "«Екіншідегі айырмашылық – төрт мыңдық» is unclear for 'the margin on the second is four thousandths' - write «екінші корпустағы айырмашылық небәрі 0.004 құрайды»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«Мұздатылған және бірте-бірте дәлдеп баптаудың» - 'frozen' is «қатырылған» everywhere in this thesis (as in the first paragraph) - write «Қатырылған және бірте-бірте дәлдеп баптаудың»",
+   "«бас белгіленген белгілерді дәрежелерге» - 'established features' means already formed features - write «бас қалыптасқан белгілерді дәрежелерге»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«таралым ауытқулығын» is wrong for 'distributional variability' - write «үлестірімдік вариативтілігін»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "table cell «Корпустар арасындағы» for 'Cross-corpus' - write «Корпусаралық»",
+   "«басқа таралу үлгісіндегі өнімділік» - 'a different distribution' is «басқа үлестірімдегі өнімділік»",
+   "«төрт класты дәрежелеуге» - spell as in the table: «төрт классты дәрежелеуге»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): «бір камераның таралуында оқытылған модель» - write «бір камераның үлестірімінде оқытылған модель»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): «таралу айырмашылығы» ('distribution gap') - write «үлестірім алшақтығы»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): «интенсивтілік таралуынан» ('intensity distribution') - write «интенсивтілік үлестірімінен»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): «Оқыту таралуы» - write «Оқыту үлестірімі»; «бұрмаланған таралу жағдайында» ('skewed distribution') - write «ығысқан үлестірім жағдайында»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): «олардың таралуы мен бөлінуін» ('their distribution and partitioning') - write «олардың үлестірімі мен бөлінуін»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): figure caption «Корпустардың дәрежелері бойынша таралуы» ('class distribution across DR grades') - write «... дәрежелері бойынша класс үлестірімі»; and 'cross-corpus comparison' «корпустар арасындағы салыстыру» - write «корпусаралық салыстыру»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): «нысаналы таралу туралы ақпарат» ('target distribution') - write «нысаналы үлестірім туралы ақпарат»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'distribution' (statistical/data distribution) is «үлестірім», not «таралу» (таралу means prevalence or spread): «оқыту таралуына жақындайтынын» - write «оқыту үлестіріміне жақындайтынын»; «нысаналы таралу қасиеті» - write «нысаналы үлестірім қасиеті»"
+  ]
+ }
+]

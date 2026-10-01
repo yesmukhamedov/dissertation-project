@@ -1,0 +1,103 @@
+{
+ "file": "output/translated-qwen/abstract_en.ru.md",
+ "genre": "thesis",
+ "out": "output/translated-qwen/abstract_en.ru.en.md",
+ "src": "ru",
+ "tgt": "en",
+ "chunks": 6,
+ "clean_first_try": 3,
+ "needs_review": [
+  2,
+  4,
+  6
+ ],
+ "warnings": 19,
+ "minutes": 11.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 1,
+   "errors": [],
+   "warnings": [
+    "heading numbers differ"
+   ],
+   "attempts": 1,
+   "sec": 8.5,
+   "src_head": "# АННОТАЦИЯ"
+  },
+  {
+   "chunk": 2,
+   "words": 395,
+   "errors": [
+    "numbers missing: 8"
+   ],
+   "warnings": [
+    "term «8-этапный конвейер» not rendered as «eight-stage pipeline»",
+    "term «внешний корпус» not rendered as «external corpus»",
+    "term «система скрининга» not rendered as «screening system»",
+    "term «полнота» not rendered as «Recall»"
+   ],
+   "attempts": 1,
+   "sec": 89.3,
+   "src_head": "**к диссертационной работе Есмухамедова Нурмаганбета Сейткалиулы на тему**  \n**«"
+  },
+  {
+   "chunk": 3,
+   "words": 390,
+   "errors": [],
+   "warnings": [
+    "term «внешний корпус» not rendered as «external corpus»",
+    "term «маска поля зрения» not rendered as «field-of-view mask»",
+    "term «EfficientNet-B4» not rendered as «EfficientNet-B4»"
+   ],
+   "attempts": 1,
+   "sec": 89.5,
+   "src_head": "**Методы исследования.** Методологической основой служит контролируемое эксперим"
+  },
+  {
+   "chunk": 4,
+   "words": 416,
+   "errors": [
+    "numbers missing: 8"
+   ],
+   "warnings": [
+    "term «8-этапный конвейер» not rendered as «eight-stage pipeline»",
+    "term «клинический корпус» not rendered as «clinical corpus»",
+    "term «внешний корпус» not rendered as «external corpus»",
+    "term «специфичность» not rendered as «specificity»",
+    "term «маска поля зрения» not rendered as «field-of-view mask»",
+    "term «система скрининга» not rendered as «screening system»"
+   ],
+   "attempts": 1,
+   "sec": 100.1,
+   "src_head": "**Основные результаты исследования.** 1. Спроектирован и формализован 8-этапный "
+  },
+  {
+   "chunk": 5,
+   "words": 437,
+   "errors": [],
+   "warnings": [
+    "term «система скрининга» not rendered as «screening system»",
+    "term «полнота» not rendered as «Recall»"
+   ],
+   "attempts": 1,
+   "sec": 93.7,
+   "src_head": "**Теоретическая значимость** заключается в постановке и измерении задачи: перефо"
+  },
+  {
+   "chunk": 6,
+   "words": 323,
+   "errors": [
+    "numbers missing: 8"
+   ],
+   "warnings": [
+    "term «полнота» not rendered as «Recall»",
+    "term «качество» not rendered as «performance»",
+    "term «система» not rendered as «framework»"
+   ],
+   "attempts": 1,
+   "sec": 75.8,
+   "src_head": "**Публикации.** Основные результаты диссертации опубликованы в 5 научных работах"
+  }
+ ]
+}

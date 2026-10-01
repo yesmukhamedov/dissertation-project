@@ -1,0 +1,26 @@
+{
+ "file": "translation/work/eval/reg2/abstract_en_sample.md",
+ "genre": "council",
+ "out": "translation/work/eval/reg2/ru/abstract_en_sample.ru.md",
+ "src": "en",
+ "tgt": "ru",
+ "chunks": 1,
+ "clean_first_try": 0,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 3.6,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 368,
+   "errors": [],
+   "warnings": [
+    "term «convolutional network» not rendered as «свёрточная нейронная сеть»",
+    "term «Convolutional Neural Network» not rendered as «свёрточная нейронная сеть»"
+   ],
+   "attempts": 2,
+   "sec": 104.3,
+   "src_head": "**General characteristics of the work.** The dissertation investigates the integ"
+  }
+ ]
+}

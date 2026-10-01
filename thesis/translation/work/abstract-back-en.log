@@ -1,0 +1,12 @@
+13:35:17 1 file(s) -> English; termbase 276 rows, TM 547 rows
+13:35:25   chunk 1/6 try 1: 1 w, 8.5s, pp 171/s tg 6.7/s, 0 err, 1 warn
+13:36:54   chunk 2/6 try 1: 395 w, 89.3s, pp 197/s tg 7.4/s, 1 err, 4 warn | numbers missing: 8
+13:38:24   chunk 2/6 try 2: 395 w, 89.6s, pp 200/s tg 7.4/s, 1 err, 4 warn | numbers missing: 8
+13:39:54   chunk 3/6 try 1: 390 w, 89.5s, pp 222/s tg 7.8/s, 0 err, 3 warn
+13:41:34   chunk 4/6 try 1: 416 w, 100.1s, pp 223/s tg 7.7/s, 1 err, 6 warn | numbers missing: 8
+13:43:10   chunk 4/6 try 2: 416 w, 96.6s, pp 226/s tg 7.8/s, 1 err, 6 warn | numbers missing: 8
+13:44:44   chunk 5/6 try 1: 437 w, 93.7s, pp 205/s tg 7.5/s, 0 err, 2 warn
+13:46:00   chunk 6/6 try 1: 323 w, 75.8s, pp 214/s tg 7.7/s, 1 err, 3 warn | numbers missing: 8
+13:47:13   chunk 6/6 try 2: 323 w, 72.9s, pp 218/s tg 7.8/s, 1 err, 3 warn | numbers missing: 8
+13:47:13 output/translated-qwen/abstract_en.ru.md -> output/translated-qwen/abstract_en.ru.en.md: 6 chunks, 3 clean first try, NEEDS_REVIEW [2, 4, 6], 19 warnings, 11.9 min
+13:47:13 DONE 1 files, 6 chunks, 3 clean first try, 3 need review, 12 min

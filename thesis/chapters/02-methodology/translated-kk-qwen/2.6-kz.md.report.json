@@ -1,0 +1,41 @@
+{
+ "file": "chapters/02-methodology/drafts/2.6-draft.md",
+ "genre": "thesis",
+ "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 443,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 252.5,
+   "src_head": "## 2.6 Evaluation and statistical protocol\n\nDiagnostic effectiveness is read fro"
+  },
+  {
+   "chunk": 2,
+   "words": 428,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 233.6,
+   "src_head": "The secondary measures are reported for completeness and cannot independently es"
+  },
+  {
+   "chunk": 3,
+   "words": 250,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 136.3,
+   "src_head": "Patient-level grouping removes that path, and it composes with the train-only st"
+  }
+ ]
+}

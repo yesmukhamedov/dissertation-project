@@ -1,0 +1,39 @@
+17:18:05   chunk 1/2 try 1: 444 w, 253.0s, pp 211/s tg 6.8/s, 0 err, 1 warn
+17:20:36   chunk 2/2 try 1: 264 w, 150.6s, pp 211/s tg 6.8/s, 0 err, 3 warn
+17:20:36 translation/work/eval/c2/council/src/gd01-ru-kz.ru.md -> translation/work/eval/c2/council/gd01-ru-kz.ru.kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 4 warnings, 6.7 min
+17:20:36   gd01-ru-kz: chrF++ 82.0, chrF_gold 85.8
+17:23:01   chunk 1/2 try 1: 441 w, 145.1s, pp 220/s tg 7.0/s, 0 err, 4 warn
+17:24:29   chunk 2/2 try 1: 257 w, 88.1s, pp 224/s tg 6.9/s, 0 err, 1 warn
+17:24:29 translation/work/eval/c2/council/src/gd01-kz-ru.kz.md -> translation/work/eval/c2/council/gd01-kz-ru.kz.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 5 warnings, 3.9 min
+17:24:29   gd01-kz-ru: chrF++ 84.6, chrF_gold 88.9
+17:29:12   chunk 1/2 try 1: 440 w, 282.5s, pp 234/s tg 6.3/s, 0 err, 2 warn
+17:32:17   chunk 2/2 try 1: 283 w, 184.9s, pp 210/s tg 6.3/s, 1 err, 1 warn | Latin words not in the source: vision (added or invented?)
+17:35:26   chunk 2/2 try 2: 283 w, 189.5s, pp 212/s tg 6.2/s, 1 err, 1 warn | Latin words not in the source: vision (added or invented?)
+17:35:26 translation/work/eval/c2/council/src/bazarbekov-ru-kz.ru.md -> translation/work/eval/c2/council/bazarbekov-ru-kz.ru.kz.md: 2 chunks, 1 clean first try, NEEDS_REVIEW [2], 3 warnings, 11.0 min
+17:35:26   bazarbekov-ru-kz: chrF++ 77.1, chrF_gold 77.6
+17:37:41   chunk 1/2 try 1: 423 w, 134.9s, pp 212/s tg 6.4/s, 0 err, 2 warn
+17:37:59   chunk 2/2 try 1: 41 w, 17.9s, pp 179/s tg 7.1/s, 0 err, 0 warn
+17:37:59 translation/work/eval/c2/council/src/toktarova-kz-ru.kz.md -> translation/work/eval/c2/council/toktarova-kz-ru.kz.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 2 warnings, 2.5 min
+17:38:00   toktarova-kz-ru: chrF++ 66.9, chrF_gold 81.0
+17:39:48   chunk 1/2 try 1: 442 w, 108.4s, pp 202/s tg 6.9/s, 0 err, 0 warn
+17:40:57   chunk 2/2 try 1: 271 w, 69.3s, pp 212/s tg 7.1/s, 0 err, 3 warn
+17:40:57 translation/work/eval/c2/council/src/bakirova-en-ru.en.md -> translation/work/eval/c2/council/bakirova-en-ru.en.ru.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 3 warnings, 3.0 min
+17:40:57   bakirova-en-ru: chrF++ 81.6, chrF_gold 87.8
+17:42:43   chunk 1/2 try 1: 441 w, 105.4s, pp 206/s tg 7.4/s, 0 err, 1 warn
+17:43:55   chunk 2/2 try 1: 292 w, 71.9s, pp 218/s tg 7.3/s, 0 err, 1 warn
+17:43:55 translation/work/eval/c2/council/src/bazarbekov-ru-en.ru.md -> translation/work/eval/c2/council/bazarbekov-ru-en.ru.en.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 2 warnings, 3.0 min
+17:43:55   bazarbekov-ru-en: chrF++ 82.2, chrF_gold 86.3
+17:46:51   chunk 1/2 try 1: 397 w, 175.9s, pp 201/s tg 6.8/s, 0 err, 1 warn
+17:50:02   chunk 2/2 try 1: 377 w, 190.5s, pp 183/s tg 6.3/s, 0 err, 0 warn
+17:50:02 translation/work/eval/c2/council/src/bakirova-en-kz.en.md -> translation/work/eval/c2/council/bakirova-en-kz.en.kz.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 1 warnings, 6.1 min
+17:50:02   bakirova-en-kz: chrF++ 72.9, chrF_gold 81.0
+17:51:40   chunk 1/2 try 1: 424 w, 98.6s, pp 208/s tg 7.1/s, 0 err, 2 warn
+17:53:01   chunk 2/2 try 1: 302 w, 80.1s, pp 215/s tg 7.1/s, 0 err, 3 warn
+17:53:01 translation/work/eval/c2/council/src/bakirova-kz-en.kz.md -> translation/work/eval/c2/council/bakirova-kz-en.kz.en.md: 2 chunks, 2 clean first try, NEEDS_REVIEW none, 5 warnings, 3.0 min
+17:53:01   bakirova-kz-en: chrF++ 78.7, chrF_gold 79.3
+17:53:01 c2 council ru>kz: chrF++ 80.5, chrF_gold 82.3, chunks 4, first-try 3, clean 3, 17.7 min, errors {'Latin words not in the source': 1}
+17:53:01 c2 council kz>ru: chrF++ 78.5, chrF_gold 86.4, chunks 4, first-try 4, clean 4, 6.4 min, errors {}
+17:53:01 c2 council en>ru: chrF++ 81.6, chrF_gold 87.8, chunks 2, first-try 2, clean 2, 3.0 min, errors {}
+17:53:01 c2 council ru>en: chrF++ 82.2, chrF_gold 86.3, chunks 2, first-try 2, clean 2, 3.0 min, errors {}
+17:53:01 c2 council en>kz: chrF++ 72.9, chrF_gold 81.0, chunks 2, first-try 2, clean 2, 6.1 min, errors {}
+17:53:01 c2 council kz>en: chrF++ 78.7, chrF_gold 79.3, chunks 2, first-try 2, clean 2, 3.0 min, errors {}

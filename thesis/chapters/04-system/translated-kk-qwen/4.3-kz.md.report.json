@@ -1,0 +1,32 @@
+{
+ "file": "chapters/04-system/drafts/4.3-draft.md",
+ "genre": "thesis",
+ "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 430,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 194.8,
+   "src_head": "## 4.3 Clinical workflow and operator interface\n\nThe system is decision support,"
+  },
+  {
+   "chunk": 2,
+   "words": 348,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 187.1,
+   "src_head": "Those corrections feed an offline loop rather than the running model. They are e"
+  }
+ ]
+}

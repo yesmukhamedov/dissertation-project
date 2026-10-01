@@ -1,0 +1,32 @@
+{
+ "file": "chapters/03-experiments/drafts/3.7-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 384,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 208.4,
+   "src_head": "## 3.7 Training on small clinical samples\n\nEvery experiment so far fitted its mo"
+  },
+  {
+   "chunk": 2,
+   "words": 397,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 181.6,
+   "src_head": "The measured gains do not show that pattern. An advantage of similar magnitude i"
+  }
+ ]
+}

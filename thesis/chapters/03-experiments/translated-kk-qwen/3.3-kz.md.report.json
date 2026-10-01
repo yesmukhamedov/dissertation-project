@@ -1,0 +1,62 @@
+{
+ "file": "chapters/03-experiments/drafts/3.3-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 5,
+ "clean_first_try": 5,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 438,
+   "errors": [],
+   "warnings": [
+    "term «Inference» not rendered as «инференс»",
+    "term «endpoint» not rendered as «соңғы нүкте»"
+   ],
+   "attempts": 1,
+   "sec": 236.5,
+   "src_head": "## 3.3 Stage ablation and parameter sensitivity\n\nThe first experiment left one q"
+  },
+  {
+   "chunk": 2,
+   "words": 422,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 211.1,
+   "src_head": "Two features make the endpoint agreement hard to read as coincidence. The orderi"
+  },
+  {
+   "chunk": 3,
+   "words": 423,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 196.2,
+   "src_head": "The response is non-monotone in both dimensions. Along the clip factor the score"
+  },
+  {
+   "chunk": 4,
+   "words": 402,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 202.1,
+   "src_head": "The sweep ran from 0.05 to 0.10 in steps of 0.01. The profile is strictly unimod"
+  },
+  {
+   "chunk": 5,
+   "words": 351,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 183.0,
+   "src_head": "Flat-field correction is the only stage that raised the contrast-to-noise ratio "
+  }
+ ]
+}

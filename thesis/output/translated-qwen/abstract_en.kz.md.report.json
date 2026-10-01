@@ -1,0 +1,113 @@
+{
+ "file": "output/abstract_en.md",
+ "genre": "thesis",
+ "out": "output/translated-qwen/abstract_en.kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 9,
+ "clean_first_try": 6,
+ "needs_review": [
+  1
+ ],
+ "warnings": 8,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 1,
+   "errors": [
+    "names/codes lost: ABSTRACT"
+   ],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 5.7,
+   "src_head": "# ABSTRACT"
+  },
+  {
+   "chunk": 2,
+   "words": 44,
+   "errors": [],
+   "warnings": [
+    "authors not found in Latin: Computer"
+   ],
+   "attempts": 1,
+   "sec": 31.7,
+   "src_head": "**of the PhD thesis by Yesmukhamedov Nurmaganbet Seitkaliuly on**  \n**«Informati"
+  },
+  {
+   "chunk": 3,
+   "words": 441,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 202.5,
+   "src_head": "**General characteristics of the work.** The dissertation investigates the integ"
+  },
+  {
+   "chunk": 4,
+   "words": 408,
+   "errors": [],
+   "warnings": [
+    "authors not found in Latin: Lesion Overlap",
+    "«, сондықтан»: «сондықтан» after a comma; prefer -дықтан/-діктен or a new sentence",
+    "term «field-of-view mask» not rendered as «көру алаңының маскасы»"
+   ],
+   "attempts": 2,
+   "sec": 192.1,
+   "src_head": "**Research methods.** The methodological framework is controlled experimental co"
+  },
+  {
+   "chunk": 5,
+   "words": 84,
+   "errors": [],
+   "warnings": [],
+   "attempts": 2,
+   "sec": 43.0,
+   "src_head": "**The main results of the research.** 1. An 8-stage preprocessing pipeline was d"
+  },
+  {
+   "chunk": 6,
+   "words": 401,
+   "errors": [],
+   "warnings": [
+    "term «criterion» not rendered as «өлшем»"
+   ],
+   "attempts": 1,
+   "sec": 181.9,
+   "src_head": "**Main provisions put forward for defence:** 1. Preprocessing of fundus images i"
+  },
+  {
+   "chunk": 7,
+   "words": 384,
+   "errors": [],
+   "warnings": [
+    "numbers added: 0.004"
+   ],
+   "attempts": 1,
+   "sec": 196.5,
+   "src_head": "**Theoretical significance** lies in how the problem is posed and measured: the "
+  },
+  {
+   "chunk": 8,
+   "words": 402,
+   "errors": [],
+   "warnings": [
+    "authors not found in Latin: Scopus, Science"
+   ],
+   "attempts": 1,
+   "sec": 178.4,
+   "src_head": "**Approbation of the results and connection with scientific programmes.** The re"
+  },
+  {
+   "chunk": 9,
+   "words": 128,
+   "errors": [],
+   "warnings": [
+    "term «lesion» not rendered as «зақымдану»"
+   ],
+   "attempts": 1,
+   "sec": 61.3,
+   "src_head": "**Author's personal contribution.** The principal results were obtained by the a"
+  }
+ ]
+}

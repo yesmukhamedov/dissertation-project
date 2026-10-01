@@ -12,11 +12,19 @@ stages, in which microaneurysms and small haemorrhages appear without affecting 
 asymptomatic, so a patient has no reason to seek care during the interval in which intervention is
 most effective.
 
-Detection therefore cannot depend on presentation. It depends on scheduled imaging of a cohort
-defined by a systemic diagnosis, most of whom will be found to have nothing requiring treatment.
+Detection therefore cannot depend on presentation. It depends on scheduled imaging of every
+patient with diabetes, most of whom will be found to have nothing requiring treatment, and that
+cohort is growing: in Kazakhstan the number of registered patients doubled in a decade, from 261
+thousand in 2014 to 517 thousand in 2024 (Ministry of Health of the Republic of Kazakhstan, 2024),
+and worldwide the disease affected an estimated 103 million people in 2020, a number projected to
+reach 161 million by 2045 (Teo et al., 2021).
+
 Screening is, before it is a diagnostic problem, a problem of volume, and volume is what makes the
 capacity constraint binding: manual grading scales linearly with specialist time, which is finite
-and geographically concentrated.
+and geographically concentrated. About 1,500 ophthalmologists practise in the country (Ministry of
+Health of the Republic of Kazakhstan, 2026), roughly 340 registered patients to each, and while 36
+per cent of residents live in rural areas (Bureau of National Statistics, 2026), only about one
+ophthalmologist in ten works there (Semenova et al., 2026).
 
 That automation is technically feasible has been established for a decade, so the relevance of this
 work cannot rest on a claim that automated screening remains undemonstrated, but on the conditions
@@ -37,33 +45,24 @@ camera provenance, independent grading protocols and, in one case, pixel-level l
 Their joint availability permits the two treatments to be placed in controlled contrast under the
 constraints of a setting where screening is scarce.
 
-**Research aim and objectives.** The aim is to develop and experimentally validate an integrated
-fundus image enhancement and convolutional classification framework for automated five-class
-diabetic retinopathy diagnosis, in which an eight-stage preprocessing pipeline is specified as an
-integral component of the model rather than as preparation of the data, and to establish, under
-controlled contrast against an equivalent configuration trained without that pipeline, what
-difference the specification makes to performance, transferability and interpretability under
-constrained computational conditions.
+**Research aim and objectives.** The aim is to develop and experimentally substantiate an
+integrated model for automated diagnosis of diabetic retinopathy from colour fundus images in which
+the preprocessing pipeline is a component of the model.
 
 Four objectives decompose that aim, each discharged in a named chapter.
 
-1. To analyse the problem domain and formulate the research problem: the clinical grading of the
-   disease, the screening requirements of resource-limited settings, the sources of image-quality
-   loss and the methodological practice of existing automated systems (Chapter 1).
-2. To specify the integrated methodology: the pipeline, the classification architectures, the
-   pretraining strategy, the explainability formalism and the evaluation protocol (Chapter 2).
-3. To evaluate the framework experimentally, in domain and on seven external corpora, and to validate
-   the results statistically (Chapter 3).
-4. To build and describe a screening system around the model, suited to settings without inference
-   acceleration and with intermittent connectivity (Chapter 4).
+1. To analyse methods of automated diabetic retinopathy diagnosis and formulate the research
+   problem (Chapter 1).
+2. To develop the preprocessing pipeline and the integrated methodology: architectures,
+   pretraining, interpretability and the evaluation protocol (Chapter 2).
+3. To evaluate the model experimentally on the source corpus and on seven external corpora, and to
+   validate the results statistically (Chapter 3).
+4. To develop a screening system for settings without an inference accelerator and with
+   intermittent connectivity (Chapter 4).
 
-**Object and subject of research.** The object is the process of automated multi-stage diagnosis of
-diabetic retinopathy from colour fundus photographs by means of convolutional networks, studied in
-its entirety from the image as it leaves the camera to the grade the model assigns rather than in
-the classification step alone. The subject is the set of methods by which preprocessing is
-integrated with classification, together with the properties the configuration exhibits: its
-diagnostic performance, its transferability, the alignment of its attention with annotated
-pathology, and its behaviour across camera domains.
+**Object and subject of research.** The object of research is the process of automated diagnosis
+of diabetic retinopathy from colour fundus images. The subject of research is the methods of fundus
+image preprocessing and of their integration with convolutional neural networks.
 
 **Theoretical and methodological framework.** The framework is controlled experimental comparison.
 Configurations are contrasted with everything outside the manipulated factor held fixed, so a
@@ -84,77 +83,35 @@ The empirical material is a tiered corpus of eight public and clinical fundus da
 of four manufacturers and several independent grading protocols, of which one supplies training and
 the remaining seven external, clinical and device-shift evaluation.
 
-**Scientific novelty.** The principal contribution is conceptual: the reframing of preprocessing
-from ancillary preparation to an integral component of the diagnostic model, formalised as a binding
-part of the model specification and placed under controlled experimental contrast. What is new is
-not the existence of a pipeline but the treatment of one as an object of experiment rather than of
-description. Each item below is at once an engineering result and evidence bearing on that stance.
-
-Five elements of its engineering realisation are specified in forms not previously combined:
-isotropic resize with centred padding; a field-of-view mask supplied as a fourth input channel;
-illumination correction scaled to per-image geometry and applied inside the mask only; channel
-statistics computed from valid fundus pixels; and canonical orientation whose augmentation
-dispersion derives from the uncertainty of the landmark localisation.
-
-The clip limit of the contrast stage is the minimum of a histogram-relative and a tile-relative
-constraint, applied stochastically at training time so the stage serves as both enhancement and
-regularisation. Attention alignment is measured by the fraction of an annotated lesion that model
-attention covers, on the reasoning that lesion coverage is the clinically meaningful direction.
+**Scientific novelty.** For the first time, fundus image preprocessing is formalised as a
+component of the diagnostic model, which is read as the composition of the preprocessing transform
+and the network, and is studied in a controlled factorial experiment. An eight-stage pipeline is
+proposed in which the field-of-view mask enters as a fourth input channel and the clip limit of the
+contrast stage is the minimum of two constraints, together with an asymmetric measure of agreement
+between model attention and expert lesion annotation. The integrated model raises weighted F1 by 6.5
+percentage points on both architectures studied.
 
 The postulated mechanism is measured rather than inferred. Work asserting that preprocessing
-improves cross-domain robustness ordinarily demonstrates it through its consequence, external
-accuracy, and leaves the mechanism unmeasured; here source-to-target distance is computed at the
-penultimate layer under both configurations across six external corpora, and falls on all six by
-0.070 to 0.093 with every interval excluding zero. Normalisation uses source statistics and is never
-recomputed on the target, so the convergence is a property of the preprocessing rather than of a
-procedure fitted to it.
+improves cross-domain robustness ordinarily demonstrates it through external accuracy alone; here
+source-to-target distance at the penultimate layer falls on all six external corpora, with
+normalisation fixed on source statistics and never recomputed on the target. A final contribution is
+analytic: a family of measures in common use for external robustness normalises an arm's external
+performance against its own in-domain performance, and so penalises a configuration for its
+in-domain strength.
 
-A final contribution is analytic. A family of measures in common use for external robustness
-normalises an arm's external performance against its own in-domain performance, and so penalises a
-configuration for its in-domain strength wherever it is used.
+**Provisions submitted for defence.** The conditions bounding each provision are set out under
+the reliability of the results, and a provision read without its bound is not the one defended.
 
-**Provisions submitted for defence.** Each proposition is submitted at the strength the evidence
-supports, against a condition fixed before the experiment that tested it. The conditions bounding
-each of them are set out under the reliability of the results, and they are not detachable: a
-provision read without its bound is a stronger proposition than the evidence supports and is not the
-one defended.
-
-Preprocessing of fundus images is a formalisable and experimentally testable component of the
-diagnostic model rather than ancillary preparation. This provision is methodological: no experiment
-promotes or refutes it, and the results are consistent with it under the conditions tested.
-
-The integrated configuration exceeds the baseline on the training corpus of 35,126 images, on both
-architectures, in all three components of the conjunctive criterion: weighted F1 by 6.54 and 6.55
-percentage points, area under the curve by 0.032 and 0.036, and quadratic kappa by 0.11. Every
-interval excludes zero, every comparison survives correction for multiplicity, and there is no
-interaction between arm and architecture. The provision concerns the configuration: the arms differ
-in initialisation as well as preprocessing, so no part of the effect is attributed to preprocessing
-alone. The ablation decomposes that composite under a single initialisation and recovers the whole
-in-domain gain of 0.0655, but decomposition is not dissolution.
-
-The contributions of the individual stages are separable. Cumulative ablation over eight levels
-under one initialisation raises weighted F1 from 0.7538 to 0.8193, monotonically and without a
-single inversion in any of the five folds, each of the seven transitions contributing between 0.0065
-and 0.0143 against a between-fold dispersion of 0.0042 to 0.0060. The two photometric stages lead
-and together carry 41% of the total. Both parameters exhibit an interior optimum confirmed on
-held-out data, at a clip factor of 2.5 with a histogram threshold of 0.03 and at a correction scale
-of 0.07 of the field diameter.
-
-Distance from the training distribution falls on every one of six external corpora, by 0.070 to
-0.093 at the penultimate layer with every interval excluding zero and by 34% to 38% at the pixel
-level, achieved without the transform observing any target corpus.
-
-Competence transfers to corpora not seen in training. On the cross-corpus set it reaches a
-generalisation ratio of 0.898 against 0.858 and a weighted F1 higher by 0.089; across five camera
-groupings it is higher on every one, and the spread between them contracts by a factor of 2.4 in
-weighted F1 and 3.1 in area under the curve, both intervals excluding zero. On two external clinical
-corpora it exceeds the baseline by 0.069 and 0.054 in weighted F1, both above the minimal clinically
-important difference of 0.050.
-
-Model attention overlaps expert-annotated lesions more under the integrated configuration on all
-four annotated lesion types, by 0.099 to 0.129 in the overlap measure at p ≤ 0.0148, and the
-direction holds at every binarisation threshold tested. This is defended as alignment and not as
-localisation.
+1. An eight-stage preprocessing pipeline for colour fundus images, formalised as a component of the
+   diagnostic model, which reduces differences between images in orientation, geometry,
+   illumination and camera.
+2. An integrated model, the preprocessing pipeline together with a convolutional neural network,
+   with a four-channel input of the colour channels and the field-of-view mask, for five-class
+   diagnosis of diabetic retinopathy, which improves accuracy on both architectures studied.
+3. An asymmetric measure of agreement between model attention and expert lesion annotation for the
+   quantitative assessment of interpretability, defended as alignment and not as localisation.
+4. A software system for diabetic retinopathy screening that reproduces the experimental pipeline
+   and displays the processing stages and the attention maps.
 
 **Theoretical and practical significance.** The theoretical significance lies in how the problem is
 posed and measured: the reframing changes what counts as a complete description of a diagnostic
@@ -187,7 +144,7 @@ evidence base as a whole. Several evaluations rest on the models of one fitted f
 intervals understate total uncertainty in a known direction. And one experiment depends on a
 clinical corpus that cannot be redistributed.
 
-Four bounds attach to particular provisions. The stage ranking holds at the resolution of groupings
+Four bounds attach to particular results. The stage ranking holds at the resolution of groupings
 only, since adjacent ranks lie within noise and the mask channel was not isolated, and the two
 parameter optima are properties of this corpus rather than portable constants. The reduction in
 distance holds in direction only: its size predicts no gain, and each arm is measured within its own
@@ -271,7 +228,7 @@ confusion matrices, the system architecture with the working demonstrator, the a
 gallery, supplementary tables for the device evaluation, and the registration certificate.
 
 The dissertation is set out on 102 pages, excluding the appendices, and contains 19 tables and 16
-figures. The list of references comprises 102 sources.
+figures. The list of references comprises 107 sources.
 
 ---
 
@@ -289,20 +246,29 @@ binding.
 
 **The empirical-basis rubric is dissolved** — folded into the framework rubric, as the corpus does.
 
-**Every empirical provision states its effect size** — ✅ The corpus writes the provisions rubric with
-figures in it (median 5.0 digits per 1,000 characters, up to 70.1); the rubric had none. Each
-provision now carries the quantity its criterion was fixed on, taken from `results/`.
+**Provisions aligned to the defence slides (2026-09-30)** — ✅ Aim, objectives, object, subject,
+novelty and the four provisions are worded as on slides 03–04, at the candidate's instruction that
+the volume follows the council's template: four provisions, no figures in them (0 figures in 8 of 12
+introductions and on all six provision slides of the council's defences). The single effect size
+kept is in the novelty rubric. Superseded: the 2026-08-22 rule "every empirical provision states its
+effect size".
 
-**CFC-2.8 in the provisions** — ✅ *"The provision concerns the configuration … decomposition is not
-dissolution."* The dominance provision is worded in the permissible form of the clause: the
-configuration exceeds the baseline by a stated margin on a stated metric.
+**Relevance carries national figures** — ✅ The numbers of slide 02 (registry growth, global burden,
+ophthalmologists, rural share) with their sources; the ratio of about 340 patients per
+ophthalmologist is the candidate's calculation.
 
-**NC-14 in the provisions** — ✅ *"defended as alignment and not as localisation"*, stated where the
-attention claim is made rather than deferred.
+**CFC-2.8 in the provisions** — ✅ Provision 2 and the novelty speak of the integrated model as a
+configuration; nothing is attributed to preprocessing alone.
 
-**Every empirical provision keeps its bound** — ✅ The bounds are stated under the reliability rubric
-and the provisions rubric says so at its head, so the provisions read as assertions while nothing is
-dropped: grouping resolution, non-portable optima, direction only, non-discriminating thresholds, the
+**NC-16 and NC-17 in the provisions** — ✅ Provision 1 claims a reduction of differences, not
+independence from the camera; provision 2 and the novelty are bounded to the two architectures
+studied.
+
+**NC-14 in the provisions** — ✅ *"defended as alignment and not as localisation"*, stated in
+provision 3.
+
+**Every result keeps its bound** — ✅ The bounds are stated under the reliability rubric and the
+provisions rubric says so at its head, so nothing is dropped: grouping resolution, non-portable optima, direction only, non-discriminating thresholds, the
 four thousandths, one annotated corpus, the unevaluated qualitative half.
 
 **Personal contribution is stated** — ✅ All five publications are co-authored and the candidate is not

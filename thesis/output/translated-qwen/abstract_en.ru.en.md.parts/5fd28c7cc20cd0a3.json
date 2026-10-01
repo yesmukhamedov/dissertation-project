@@ -1,0 +1,21 @@
+{
+ "out": "**to the dissertation of Ysmukhamedov Nurmaganbet Seitkaliuly on the topic**  \n**“Information system for automatic detection of retinal diseases**  \n**based on deep learning using optical coherence tomography images,”**  \n**submitted for the degree of Doctor of Philosophy (PhD) in**  \n**educational program 8D06102 – Computer and Software Engineering**\n\n**General characteristics of the work.** The dissertation investigates the integration of fundus image enhancement (preprocessing) with classification using convolutional neural networks (CNN) for automated diabetic retinopathy (DR) diagnosis. Preprocessing is considered an integral component of the diagnostic model, rather than ancillary data preparation, as it determines the feature space available to the network.\n\n**Relevance of the research topic.** Diabetic retinopathy is a microvascular complication of diabetes and one of the leading causes of preventable vision loss among working-age adults. Early stages of the disease are asymptomatic; therefore, detection relies on scheduled cohort screening defined by systemic diagnosis, rather than patient referral. Screening is primarily a volume problem, while manual grading depends linearly on limited and geographically concentrated specialist time. Automation has been technically feasible for a decade; thus, the issue lies in the conditions under which demonstrative results were obtained. Images captured by different cameras, operators, and under varying mydriasis states vary systematically. Where screening capabilities are most limited, image acquisition conditions are least controlled. The transformation applied before the first convolution defines the network’s feature space. Consequently, a model described without specifying preprocessing is incompletely described, and comparisons between such models represent comparisons of partially unknown frameworks.\n\n**Research objective** – development and experimental validation of a fundus image enhancement and CNN classification framework for automated five-class DR diagnosis, in which the eight-stage preprocessing pipeline is specified as an integral model component. It is also necessary to determine the impact of this specification on performance, transferability, and interpretability, in a controlled comparison with a configuration trained without it.\n\n**Research tasks:** 1. Domain analysis – disease grading, screening requirements in resource-limited settings, sources of image quality loss – and formulation of the research problem (Chapter 1). 2. Methodology specification: pipeline, classification architectures, pretraining and fine-tuning strategy, explainability formalism, and evaluation protocol (Chapter 2). 3. Evaluation of the integrated configuration in-domain and on seven external data corpora, with statistical validation of results (Chapter 3). 4. Construction of a screening framework suitable for environments without Inference accelerators and with intermittent connectivity (Chapter 4).\n\n**Research object** – the process of automated multi-stage diabetic retinopathy diagnosis from colour fundus photographs using convolutional neural networks.\n\n**Research subject** – the set of methods for integrating preprocessing with CNN classification, as well as the properties of the resulting configuration: five-class diagnostic performance, transferability to unseen data corpora, attention consistency with expert annotation, and behaviour across various camera domains.",
+ "errors": [
+  "numbers missing: 8"
+ ],
+ "warnings": [
+  "term «8-этапный конвейер» not rendered as «eight-stage pipeline»",
+  "term «внешний корпус» not rendered as «external corpus»",
+  "term «система скрининга» not rendered as «screening system»",
+  "term «полнота» not rendered as «Recall»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 89.3,
+  "finish": "stop",
+  "p_tok": 2466,
+  "c_tok": 621,
+  "pp_tps": 197,
+  "tg_tps": 7.4
+ }
+}

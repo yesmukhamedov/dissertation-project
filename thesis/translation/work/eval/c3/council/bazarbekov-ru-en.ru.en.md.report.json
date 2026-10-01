@@ -1,0 +1,37 @@
+{
+ "file": "translation/work/eval/c3/council/src/bazarbekov-ru-en.ru.md",
+ "genre": "council",
+ "out": "translation/work/eval/c3/council/bazarbekov-ru-en.ru.en.md",
+ "src": "ru",
+ "tgt": "en",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 3,
+ "minutes": 3.1,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 441,
+   "errors": [],
+   "warnings": [
+    "term «протокол» not rendered as «minutes»"
+   ],
+   "attempts": 1,
+   "sec": 113.1,
+   "src_head": "2) Разработать архитектуру и прототип сенсорного устройства для фиксации кинемат"
+  },
+  {
+   "chunk": 2,
+   "words": 292,
+   "errors": [],
+   "warnings": [
+    "numbers added: 4",
+    "term «полнота» not rendered as «Recall»"
+   ],
+   "attempts": 1,
+   "sec": 72.2,
+   "src_head": "6) Выявлен комплекс кинематических показателей, состоящий из параметров рывка, т"
+  }
+ ]
+}

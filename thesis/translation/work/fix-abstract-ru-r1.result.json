@@ -1,0 +1,82 @@
+[
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 3,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «convolutional network» not rendered as «свёрточная нейронная сеть»",
+   "term «Convolutional Neural Network» not rendered as «свёрточная нейронная сеть»"
+  ],
+  "sec": 99.3
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 4,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Lesion Overlap",
+   "term «arm» not rendered as «ветвь»",
+   "term «external performance» not rendered as «качество на внешних корпусах»",
+   "term «Cross-Validation» not rendered as «кросс-валидация»",
+   "term «framework» not rendered as «система»",
+   "term «source-to-target distance» not rendered as «расстояние источник-цель»",
+   "term «tile» not rendered as «тайл»"
+  ],
+  "sec": 109.5
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [
+   "names/codes lost: OD-fovea, FOV"
+  ],
+  "warnings": [
+   "term «FOV» not rendered as «FOV»"
+  ],
+  "sec": 23.5
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 6,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «arm» not rendered as «ветвь»",
+   "term «five folds» not rendered as «пять фолдов»",
+   "term «photometric stages» not rendered as «фотометрические этапы»"
+  ],
+  "sec": 94.8
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 7,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «arm» not rendered as «ветвь»",
+   "term «Physician-in-the-Loop» not rendered as «врач в контуре принятия решений»"
+  ],
+  "sec": 85.0
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 8,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "authors not found in Latin: Science"
+  ],
+  "sec": 84.8
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 9,
+  "applied": true,
+  "errors": [],
+  "warnings": [],
+  "sec": 27.7
+ }
+]

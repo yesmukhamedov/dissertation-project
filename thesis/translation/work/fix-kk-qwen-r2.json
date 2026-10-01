@@ -1,0 +1,31 @@
+[
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "issues": [
+   "replace «### D.3» with «### В.3»",
+   "replace «### D.4» with «### В.4»",
+   "These are appendix letters: the Kazakh edition uses D->В, F->Ғ, C->Б. Change only these letters; no Latin D/F/C and no Cyrillic С before a dot-number or before «қосымша»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "issues": [
+   "replace «### F.1» with «### Ғ.1»",
+   "These are appendix letters: the Kazakh edition uses D->В, F->Ғ, C->Б. Change only these letters; no Latin D/F/C and no Cyrillic С before a dot-number or before «қосымша»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "issues": [
+   "replace «### F.2» with «### Ғ.2»",
+   "replace «F.1-кесте» with «Ғ.1-кесте»",
+   "replace «### F.3» with «### Ғ.3»",
+   "replace «С қосымшасында» with «Б қосымшасында»",
+   "replace «бөліктері. С қосымшасы» with «бөліктері. Б қосымшасы»",
+   "These are appendix letters: the Kazakh edition uses D->В, F->Ғ, C->Б. Change only these letters; no Latin D/F/C and no Cyrillic С before a dot-number or before «қосымша»."
+  ]
+ }
+]

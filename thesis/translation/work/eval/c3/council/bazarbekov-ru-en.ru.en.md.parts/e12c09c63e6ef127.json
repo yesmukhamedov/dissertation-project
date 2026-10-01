@@ -1,0 +1,17 @@
+{
+ "out": "6) A complex of kinematic indicators, consisting of jerk, tremor, and acceleration parameters, has been identified, which allows for the diagnosis of early stages of cognitive disorders with a sensitivity of 93.4 percent, outperforming standard clinical tests in terms of effectiveness.\n\nThe scientific novelty of the research lies in the development of a hybrid neural network architecture (CNN-BiLSTM) for the analysis of dynamic time series of handwriting kinematics, as well as a method for generating synthetic samples based on mathematical modeling of pathological symptoms (tremor and bradykinesia). These samples supplemented the unique experimental database of labeled fine motor signals, which was formed for the first time during network training. This approach allows compensating for the deficit of clinical data and achieving high predictive Accuracy (AUC 0.96) compared to classical machine learning methods.\n\nFirst, a sensor device based on inertial measurement units has been developed. This device represents a cost-effective and mobile solution that enables non-invasive mass screening of the population in primary healthcare settings, without requiring special technical training from medical staff.\n\nIn all the listed publications, the applicant played a leading role in formulating the research problems, conducting the studies, and preparing the main text of the articles.\n\nIn Chapter 4, classical and deep machine learning methods were implemented and experimentally investigated. The configuration and comparative analysis of SVM, Random Forest, k-NN, and logistic regression algorithms were performed. A comparative study of neural network architectures based on recurrent and transformer models was conducted: the basic LSTM, LSTM with a soft attention mechanism, and Transformer Encoder. A hybrid CNN-BiLSTM architecture for the analysis of spatiotemporal patterns of biomechanical time series of IMU signals was justified and developed, demonstrating the best results among all investigated approaches. Hyperparameter optimization and model performance evaluation using standardized quality metrics were carried out.\n\nIn the Conclusion, the main results of the research are formulated, scientific and practical conclusions are generalized, and promising directions for further research in the field of applying artificial intelligence methods for the diagnosis of cognitive disorders are defined.\n\nThe total volume of the dissertation is 101 pages, including 21 illustrations, 12 tables, and 2 appendices. The list of references consists of 132 publications.",
+ "errors": [],
+ "warnings": [
+  "numbers added: 4",
+  "term «полнота» not rendered as «Recall»"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 72.2,
+  "finish": "stop",
+  "p_tok": 3807,
+  "c_tok": 474,
+  "pp_tps": 224,
+  "tg_tps": 7.3
+ }
+}

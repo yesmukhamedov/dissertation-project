@@ -1,0 +1,7 @@
+output/translated-qwen/abstract_en.ru.md chunk 3: applied, 0 err, 2 warn, 99.3s
+output/translated-qwen/abstract_en.ru.md chunk 4: applied, 0 err, 7 warn, 109.5s
+output/translated-qwen/abstract_en.ru.md chunk 5: applied, 1 err, 1 warn, 23.5s | names/codes lost: OD-fovea, FOV
+output/translated-qwen/abstract_en.ru.md chunk 6: applied, 0 err, 3 warn, 94.8s
+output/translated-qwen/abstract_en.ru.md chunk 7: applied, 0 err, 2 warn, 85.0s
+output/translated-qwen/abstract_en.ru.md chunk 8: applied, 0 err, 1 warn, 84.8s
+output/translated-qwen/abstract_en.ru.md chunk 9: applied, 0 err, 0 warn, 27.7s

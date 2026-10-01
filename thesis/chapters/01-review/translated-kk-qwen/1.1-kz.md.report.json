@@ -1,0 +1,41 @@
+{
+ "file": "chapters/01-review/drafts/1.1-draft.md",
+ "genre": "thesis",
+ "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 0,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 411,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 253.7,
+   "src_head": "## 1.1 Diabetic retinopathy and screening demand\n\nDiabetic retinopathy is a chro"
+  },
+  {
+   "chunk": 2,
+   "words": 399,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 221.4,
+   "src_head": "The clinical scale partitions this burden into severity classes. As summarised b"
+  },
+  {
+   "chunk": 3,
+   "words": 422,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 223.7,
+   "src_head": "Deployed automated systems, relayed by Morya et al. (2024), and the national scr"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "file": "chapters/06-appendices/drafts/F-draft.md",
+ "genre": "thesis",
+ "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 1,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 366,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 174.1,
+   "src_head": "### F.1 What this document is, and what it is not\n\nThe reading rule comes before"
+  },
+  {
+   "chunk": 2,
+   "words": 413,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 187.8,
+   "src_head": "### F.2 Particulars of the registration\n\nTable F.1 gives the particulars as they"
+  },
+  {
+   "chunk": 3,
+   "words": 155,
+   "errors": [],
+   "warnings": [
+    "authors not found in Latin: Kazakh"
+   ],
+   "attempts": 1,
+   "sec": 72.3,
+   "src_head": "The eight-stage pipeline specified in chapter 2 is the method the registered com"
+  }
+ ]
+}

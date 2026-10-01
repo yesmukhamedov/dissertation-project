@@ -1,0 +1,45 @@
+{
+ "file": "chapters/06-appendices/drafts/D-draft.md",
+ "genre": "thesis",
+ "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 3,
+ "needs_review": [],
+ "warnings": 2,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 432,
+   "errors": [],
+   "warnings": [
+    "hyphenated names translated (verify): Intersection-over-Union"
+   ],
+   "attempts": 1,
+   "sec": 190.3,
+   "src_head": "### D.1 What this gallery is, and how it must be read\n\nThe reading rule comes be"
+  },
+  {
+   "chunk": 2,
+   "words": 350,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 164.4,
+   "src_head": "No property of the aggregate may be read off four plates, and none is asserted f"
+  },
+  {
+   "chunk": 3,
+   "words": 190,
+   "errors": [],
+   "warnings": [
+    "term «Inference» not rendered as «инференс»"
+   ],
+   "attempts": 1,
+   "sec": 90.7,
+   "src_head": "### D.5 What is absent, and what follows from it\n\nThe hypothesis under which the"
+  }
+ ]
+}

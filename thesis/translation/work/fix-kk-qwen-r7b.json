@@ -1,0 +1,1112 @@
+[
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING: «Кескіндерді тәуелсіз бағалайтын жүйе клиникке екі нәтижені және оларды біріктіру ережесін бермейтін болар еді.» says it would give neither. Source: 'would present a clinician with two results and NO rule for combining them' - «Кескіндерді тәуелсіз дәрежелейтін жүйе дәрігерге екі нәтиже ұсынар еді, бірақ оларды біріктіру ережесін бермес еді.»",
+   "MEANING: «Түрлендіру анықталған, өйткені ықтимал элементтер тек оқытуға ғана шектелген.» - 'deterministic' is not «анықталған», 'stochastic' is not «ықтимал»: «Түрлендіру детерминирленген, өйткені стохастикалық элементтер тек оқытумен шектелген.»",
+   "«жады аяғын бір модельге дейін азайтады» is a calque of 'memory footprint' - «жадқа түсетін жүктемені бір модельмен шектейді».",
+   "«клиникке» (twice) means 'clinic' - 'the clinician' is «дәрігер» («дәрігерге»).",
+   "«бес дәрежелі баға береді» -> «бес класты дәреже береді»; «Бағыттау шешімі» -> «Жолдама беру туралы шешім» ('referral decision').",
+   "«Визуализация нүктесі» -> «Визуализацияның соңғы нүктесі» ('visualisation endpoint'); «әрқайсы нәтиже» -> «әрбір нәтиже»; «іске қосылған жүйеге қарсы тексеруге» -> «іске қосылған жүйе арқылы тексеруге».",
+   "TERM: term «endpoint» not rendered as «соңғы нүкте» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING garbled: «Құрылған жүйенің тікелей емес, тек архитектуралық тұрғыдан ықпал ететін бөлігі осының біріншісіне қатысты.» - source: 'What the built system does bear on is the first of them, indirectly and only architecturally.' - «Құрылған жүйе шын мәнінде олардың біріншісіне ғана қатысты, онда да жанама түрде және тек архитектуралық тұрғыдан.»",
+   "«жүгіріп алатындықтан» ('jogs') - the service RUNS: «жұмыс істей алатындықтан».",
+   "«детекторды мұздатқан негізгі салмақтарынан» -> «детекторды оның қатырылған негізгі салмақтарынан».",
+   "«қабылдау есігі» -> «қабылдау қақпасы» ('acceptance gate', as in chapter 2).",
+   "«бағаланады, ... клиник тарапынан бағаланады» - 'graded ... judged by a clinician': «дәрежеленеді, ... пікірі тіркелетін дәрігер тарапынан бағаланады».",
+   "«айқындама деңгейінде қалады» -> «спецификация күйінде қалады»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'the source' here is SOURCE CODE, not a reference source: «Мұнда қайта жасалған дереккөз», «Дереккөз тең дәрежелі...», «Дереккөз каталогталып» -> «бастапқы код» («Мұнда келтірілген бастапқы код», «Бастапқы код баламалы жабдықта қайта өндірілуі мүмкін», «Бастапқы код каталогқа енгізіліп»).",
+   "«айқыналған» -> «айқындалған» (typo).",
+   "«Олар сол пакеттен толық қайта жасалды» - 'They are reproduced in full' (printed in full) - «Олар сол пакеттен толық көлемде келтірілген»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING: «Жолдар – сипаттама деңгейі, бағандар – болжам деңгейі.» - source 'Rows are the reference grade, columns the predicted grade' - «Жолдар – эталондық дәреже, бағандар – болжанған дәреже.»",
+   "'cells' of a matrix are «ұяшық», not «жасуша» (biological cell): «диагональдан алыс ұяшықтар босайды», «DR0-ден DR4-ке дейінгі ұяшық», «алыс ұяшықтардың босауы».",
+   "«Қалдық негізінде ... құрама масштабталған негізде» - these are the two backbones: «қалдық (residual) backbone-да ... құрама масштабталған backbone-да».",
+   "CHECKER ERROR - fix it: «жасуша» is a biological cell: a table/matrix/design cell is «ұяшық»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'class' is «класс», not «сынып» (school class): «Градиентпен салмақталған класс активациясы картасы», «болжанған класқа қатысты».",
+   "'measurement' (the act/result of measuring) is «өлшеу», not «өлшем» (a measure/criterion): «ешқандай өлшеу нәтижесін бермейді», «Өлшеу 3.6-бөлімде баяндалған», «өлшеудің қандай материалда жүргізілгенін», «өлшеуді көзбен қайта жасау үшін емес», «3.6-бөлімде баяндалған өлшеу», «өлшеудің сүйенетін материалы».",
+   "«дәрестерін» -> «дәрежелерін» (typo).",
+   "«табалдырықтарды тарау арқылы» -> «табалдырықтарды сканерлеу арқылы» ('threshold sweep').",
+   "«қиылысу бөлінген бірігу» is a word-for-word calque - «Intersection-over-Union (қиылыстың бірігуге қатынасы)».",
+   "CHECKER ERROR - fix it: forbidden «сынып»: a class (of DR) is «класс», «сынып» is a school class",
+   "TERM: term «lesion type» not rendered as «зақымдану түрі» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING garbled: «мемлекеттік елтаңбамен мөрленген куәлік оның шыдамайтын күшті оқуды шақырады» - source: 'a certificate bearing a state emblem invites a stronger reading than it will bear' - «мемлекеттік елтаңбасы бар куәлік өзі көтере алатыннан күштірек түсіндіруге итермелейді».",
+   "NEGATION: «...4-тарауда және Б қосымшасында, басқа ешқайда анықталған» - source 'is established in chapters 3 and 4 and in Appendix C, and NOWHERE ELSE' - «...3-тарау мен 4-тарауда және Б қосымшасында анықталған, басқа ешбір жерде емес».",
+   "HEDGE: «бұл диссертация оның негізінде ештеңе дәлелдемейді» - 'asserts nothing on the strength of it' - «бұл диссертация оған сүйеніп ештеңе мәлімдемейді».",
+   "«белгіленген сәйкестік келісімі мен сертификатталған келісім» - 'a specified compliance posture and a certified one' - «спецификацияланған сәйкестік ұстанымы мен сертификатталған ұстаным».",
+   "«Объекті 2026 жылғы...» -> «Объект 2026 жылғы...»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«Жұптық астындағы қисық аумағы статистикасы» is garbled - 'the paired area-under-curve statistic' - «Қисық астындағы ауданның жұптық статистикасы».",
+   "«аралықтардың ажырауы ... жұптауды жоққа шығарады» ('denies') - source: 'interval separation DISCARDS the pairing' - «аралықтардың ажырауына сүйену ортақ бөлініс беретін жұптауды пайдаланбай тастайды».",
+   "«шеткі аралықтар» -> «маргиналды аралықтар» ('marginal intervals').",
+   "'significant' is statistical: «маңызды айырмашылықты» -> «статистикалық маңызды айырмашылықты»; «өзара әрекеттесу маңызды болмады» -> «өзара әрекеттесу статистикалық маңызды болмады»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«бір annotацияланған ашық корпустағы» mixes Latin and Cyrillic - «бір аннотацияланған ашық корпустағы».",
+   "MEANING: «екі реттік тәртіптен кіші оқыту режимінде» is garbled for 'two orders of magnitude smaller' - «екі ретке кіші оқыту режимінде».",
+   "MEANING: «ұтыс мол деректегі ұтыстан үлкен емес, оған тең» - source 'COMPARABLE to rather than larger than' - «ұтыс мол деректегі ұтыспен шамалас, одан үлкен емес».",
+   "«Қолдау табалдырықтарының екеуін» - 'acceptance thresholds' - «Қабылдау табалдырықтарының екеуін».",
+   "«базалық нүктеден үстемдік етті» -> «базалық конфигурациядан басым түсті» ('dominated the baseline').",
+   "«Бұрынғы бөлімдерде тек болжана алынған механизм» -> «Бұрынғы бөлімдер тек жанама түрде тұжырымдай алған механизм» ('could only infer').",
+   "«Барлық аралық нөлді қамтымайтын аралық болды.» -> «Барлық аралық нөлді қамтымады.»",
+   "MEANING: «Бұл беттердегі бәрі құрылған емес, тек спецификацияланған.» says NOTHING is built. Source: 'Everything ELSE on these pages is specified rather than built' - «Бұл беттердегі қалғанының бәрі құрылмаған, тек спецификацияланған.»",
+   "'view' (architecture view) is «көрініс», not «көзқарас»: «формальды құрылымдық көріністерін», «компоненттік көрініс, орналастыру көрінісі, ... реттілік көрінісі», heading «### Б.1 Компоненттік көрініс».",
+   "«сол жерде қорытып қалдырылған жүйе архитектурасының сызбасын» -> «сол жерде уәде етілген жүйе архитектурасының сызбасын» ('reserved there'); «сызба дереккөзі ретінде ... Дереккөз – сызбаның анықтамасы» -> «сызбаның бастапқы коды ретінде ... Бастапқы код – сызбаның анықтамасы».",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»",
+   "CHECKER ERROR - fix it: Latin and Cyrillic letters mixed in one word: annotацияланған"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«орталық теzisіне» mixes Latin and Cyrillic letters - «орталық тезисіне».",
+   "WRONG WORD: «үстел рендерлеуді» («үстел» = a desk) - 'overlay rendering' - «қабаттаманы рендерлеуді».",
+   "'utility' (software) is «утилита», not «пайдалылық»: «екі кезеңді дәлдеп баптау утилитасын», «қайталанымдылыққа арналған seed утилитасын».",
+   "'source' is SOURCE CODE: «дереккөз ретінде қалпына келтірілетін» -> «бастапқы код ретінде қалпына келтірілетін»; «алдын ала өңдеудің дереккөзі» -> «алдын ала өңдеудің бастапқы коды»; «нұсқалы дереккөз ағашында» -> «нұсқаланған бастапқы код ағашында».",
+   "«дерекқор жүктегіштерін» ('database') -> «деректер жиындарының жүктегіштерін» ('dataset loaders'); «екі негізгі фабрика» -> «екі backbone фабрикасы»; «Алдын ала өңдеу стеки» -> «Алдын ала өңдеу стегі».",
+   "«кеңірек ағаш толық қайта жасалатын болуы үшін тек аталып өтілді» -> «кеңірек ағаш тек келтірілген кодтың толық құрылымдағы орнын табуға болатындай етіп аталды».",
+   "CHECKER ERROR - fix it: Latin and Cyrillic letters mixed in one word: теzisіне"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "«офтальмологтың әр болжамға өз оқытынын тіркейді» is garbled - 'records the ophthalmologist's own reading of each prediction' - «офтальмологтың әр болжам бойынша өз пікірін тіркейді».",
+   "«белгілеу түзетулерін» - 'landmark corrections' - «бағдарлық нүкте түзетулерін»; the sentence: «Ол бөлек ұсталған деректердегі қабылдаумен шектелген офлайн дәлдеп баптау цикліне берілетін бағдарлық нүкте түзетулерін қабылдайды.»",
+   "'grade' is «дәреже»: «пациент деңгейінде бағалау жасайды» -> «пациент деңгейінде дәрежелейді»; «назар картасы, баға және сол шешім» -> «назар картасы, дәреже және сол шешім».",
+   "«жіктелуді ... тексеріледі» - 'the decomposition can be checked' - «ыдыратуды тек сызбамен емес, жұмыс істейтін жүйемен салыстырып тексеруге болады».",
+   "«Оның көрсетілетін істері сақталған жылулық карталарды қызмет көрсетеді» -> «Оның демонстрациялық істері сақталған жылулық карталарды көрсетеді».",
+   "«Жоба іске асатын» -> «Жоба іске асырылатын».",
+   "MEANING: «Бұл беттердегі бәрі құрылған емес, тек спецификацияланған.» says NOTHING is built. Source: 'Everything ELSE on these pages is specified rather than built' - «Бұл беттердегі қалғанының бәрі құрылмаған, тек спецификацияланған.»",
+   "'view' (architecture view) is «көрініс», not «көзқарас»: «формальды құрылымдық көріністерін», «компоненттік көрініс, орналастыру көрінісі, ... реттілік көрінісі», heading «### Б.1 Компоненттік көрініс».",
+   "«сол жерде қорытып қалдырылған жүйе архитектурасының сызбасын» -> «сол жерде уәде етілген жүйе архитектурасының сызбасын» ('reserved there'); «сызба дереккөзі ретінде ... Дереккөз – сызбаның анықтамасы» -> «сызбаның бастапқы коды ретінде ... Бастапқы код – сызбаның анықтамасы»."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 3,
+  "issues": [
+   "AMBIGUOUS/WRONG: «көз–нысана қашықтығы» and «көз статистикаларын» - in an eye-disease thesis «көз» reads as 'eye'. Source: 'source-to-target distance', 'source statistics' - «бастапқы доменнен нысаналы доменге дейінгі қашықтық», «бастапқы доменнің статистикаларын».",
+   "INVENTED: «нөлді қамтымайтын аралықтардың барлығы осы шектеулерге сәйкес келеді» - source: 'with every interval excluding zero' - «...0.070-тен 0.093-ке дейін төмендейді, мұнда әр аралық нөлді қамтымайды».",
+   "MEANING: «ешқандай эксперимент оны мойындамайды да, жоққа шығармайды да» - 'no experiment PROVES or refutes it' - «ешқандай эксперимент оны дәлелдемейді де, жоққа шығармайды да».",
+   "«модель спецификациясының байланыстырушы бөлігі» - 'binding' = obligatory: «модель спецификациясының міндетті бөлігі»; «бақыланатын эксперименттік қарсы қоюға қойылды» -> «бақыланатын эксперименттік салыстыруға қойылды».",
+   "«тірек нүктелерін локализациялаудың» -> «бағдарлық нүктелерді локализациялаудың» ('landmark').",
+   "Heading: «**Қорғауға ұсынылған тұжырымдамалар.**» -> «**Қорғауға ұсынылатын тұжырымдар.**» (as in the approved edition).",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form",
+   "TERM: term «source-to-target distance» not rendered as «бастапқы доменнен нысаналы доменге дейінгі қашықтық» - use the required Kazakh form",
+   "TERM: term «source statistics» not rendered as «бастапқы доменнің статистикалары» - use the required Kazakh form",
+   "TERM: term «tile» not rendered as «торкөз» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 5,
+  "issues": [
+   "MEANING: «олардың аралықтары белгілі бір бағытта толық белгісіздікті төмендетеді» ('reduce the uncertainty') - source: 'their intervals UNDERSTATE total uncertainty in a known direction' - «олардың аралықтары толық белгісіздікті белгілі бағытта кем көрсетеді».",
+   "«көз» means 'eye' here: «Сыртқы көздерден кескін қабылдау хаттамасы, ол тек өзі жасалған клиникалық көзде валидацияланған» -> «Сыртқы дереккөздерден кескін қабылдау хаттамасы, ол тек өзі құрылған клиникалық дереккөзде валидацияланған».",
+   "«осы таптың диагностикалық моделінің» («тап» = social class) -> «осы кластағы диагностикалық модельдің».",
+   "«бір рет сәйкестендірілген фолдтың модельдеріне» -> «бір оқытылған фолдтың модельдеріне» ('one fitted fold').",
+   "Word order: «Салыстырулар жоспарланған сол жалғыз экспериментпен шектелгендіктен, көптікке түзету ... бақыламайды.» -> «Көптікке түзету салыстырулар жоспарланған жалғыз эксперимент аясымен шектелген, сондықтан дәлелдер базасы тұтас алғанда ешқандай қателік деңгейі бақыланбайды.» (no «, сондықтан»: make it two sentences).",
+   "«беріктік өлшемдер отбасының» -> «орнықтылық өлшемдері отбасының» ('robustness'); «тестілер» -> «тесттер».",
+   "Headings as in the approved edition: «**Теориялық және практикалық маңыздылық.**» -> «**Теориялық және практикалық маңыздылығы.**»; «**Нәтижелердің дұрыстығы.** Дұрыстық эффект шамасына...» -> «**Нәтижелердің сенімділігі.** Сенімділік эффект шамасына...»."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 6,
+  "issues": [
+   "NUMBER/MEANING: «сол айырмадан асатын қор төрт мыңнан тұрады» says 'four thousand'. Source: 'the margin over that difference is four THOUSANDTHS' (0.004) - «сол айырмадан асатын қор мыңнан төрт қана».",
+   "MEANING: «оның шамасы пайданы болдырмайды» ('prevents the gain') - source: 'its size PREDICTS no gain' - «оның шамасы ешқандай ұтысты болжамайды».",
+   "«өз өкілдік кеңістігінде» («өкілдік» = a representative office) - 'representation space' - «өз репрезентация кеңістігінде».",
+   "«камера топтары бойынша ұстап қалу шегі» - 'the camera-group floor' - «камера топтары бойынша төменгі шек».",
+   "Heading as in the approved edition: «**Нәтижелер мен жарияланымдарды бекіту.**» -> «**Нәтижелердің апробациясы және жарияланымдар.**»",
+   "«шуыл аясында» -> «шу аясында»; «оқшауланылмаған» -> «оқшауланбаған».",
+   "TERM: term «representation» not rendered as «репрезентация» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 7,
+  "issues": [
+   "MEANING: «бастаушыдан мақсатқа дейінгі қашықтықты» ('from the leader to the goal') - 'source-to-target distance' - «бастапқы доменнен нысаналы доменге дейінгі қашықтықты».",
+   "«параметрлерді сканерлеуі бар кезеңдерді жіктеуді» - «жіктеу» is classification; 'the stage decomposition with its parameter sweeps' - «параметрлерді сканерлеуі бар кезеңдік декомпозицияны».",
+   "«кескін сапасының төмендеуінің көздерін» - «көз» reads as 'eye' - «кескін сапасы жоғалуының себептерін».",
+   "«аурудың деңгейлендіруін» -> «аурудың дәрежеленуін» ('grading of the disease'); «аспапқа тән компонентін» -> «құрылғыға тән компонентін».",
+   "«жиынаралық және сыртқы клиникалық тасымалдауды» -> «корпусаралық және сыртқы клиникалық тасымалдауды»; «жылдамдату аспаптарысыз» -> «үдеткіш жабдықсыз».",
+   "«...қол жеткізілгені туралы да талап емес» ('a demand') - 'not a claim' - «...қол жеткізілгені туралы мәлімдеме де емес».",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»",
+   "TERM: term «source-to-target distance» not rendered as «бастапқы доменнен нысаналы доменге дейінгі қашықтық» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 8,
+  "issues": [
+   "Consistency with the appendices: «шатастыру матрицалары» -> «шатасу матрицалары»; «тіркеу сертификаты» -> «тіркеу куәлігі» (Appendix F calls it «куәлік»).",
+   "«Пайдаланылған дереккөздер тізімі 102 атауды қамтиды.» -> «Пайдаланылған әдебиеттер тізімі 102 дереккөзді қамтиды.» (as in the approved edition). Change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Дәрілік терезе» ('medicinal window') - 'the therapeutic window' - «Емдік терезе».",
+   "«Қажетті скринингтің орындалмағаны байқалатын сәттегі бақылаулардан көрінеді.» is garbled - source: 'is visible in observed compliance' - «Қажетті скринингтің жүргізілмей отырғаны нақты тексерілу үлесінен көрінеді.»",
+   "«олардың бағалануы бойынша 70 пайызының» - 'an ESTIMATED 70 per cent of those' - «бағалау бойынша олардың 70 пайызының».",
+   "«мамандық инфрақұрылым ең жұқа жерде ең өткір» -> «мамандандырылған инфрақұрылым ең тапшы жерде ең өткір».",
+   "«кез келген бес жолды категориялық емес» -> «еркін бес класты категориялық мәселе емес» ('not an arbitrary five-way categorical one').",
+   "«Шешімді сұрақ» -> «Түйінді сұрақ» ('The binding question').",
+   "«лезияларға» -> «зақымдануларға»; «әлдеқайт» -> «әлдеқайда»; «контекстіні» -> «контекстін».",
+   "CHECKER ERROR - fix it: forbidden «лезия»: lesion is «зақымдану»",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "GRAMMAR/MEANING: «Ол дәрежелеу жіберуді қызмет етеді, ал жіберу терапияны қызмет етеді деп қосылды.» is broken. Source: 'It is included because grading serves referral and referral serves therapy' - «Ол дәрежелеу жолдама беруге, ал жолдама беру емдеуге қызмет ететіндіктен енгізілген.»",
+   "'referral' is «жолдама беру», not «жіберу»: «Дәрежелеу жолдама беруді анықтайды, ал жолдама беру емдеуді анықтайды.»",
+   "«осы ыдыстық тінде» («ыдыс» = a dish/vessel for food) - 'in this vascular tissue' - «осы тамырлы тінде».",
+   "Citation: «Emberdieva and Kaldybaeva, 2025» -> «Emberdieva мен Kaldybaeva, 2025» (never English 'and').",
+   "«клиниктік маман сақтайды» -> «дәрігер сақтайды»; «инференс үшін жеделдету жоқ» -> «инференс үшін үдеткіш жоқ»; «қателік маржалары» -> «қателік шектері».",
+   "CHECKER ERROR - fix it: forbidden «ыдыс»: «ыдыс» = dish; a blood vessel is «тамыр»",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "WRONG WORD: «шәкіл» is not the pupil of the eye. 'pupil' = «қарашық»: «кішкентай қарашық арқылы», «жеткілікті кеңейтілген қарашық».",
+   "«капиллярлық жаттыдан» -> «капиллярлық тордан» ('capillary bed').",
+   "«әлсіз жарықтандыру қатесі мен төмен жалпы контрастпен күшейеді» - source 'compounded by exposure error and low global contrast' - «экспозиция қатесі мен төмен жалпы контраст мұны күшейте түседі».",
+   "«желісін қозғау үшін» ('to push/move the network') - 'to drive a dedicated fundus-enhancement network' - «желісін оқыту үшін».",
+   "«табиғи белгілер» -> «табиғи бағдарлық нүктелер» ('natural landmarks').",
+   "Typos/grammar: «өзгертемейді» -> «өзгертпейді»; «екеуін де қауіптейді» -> «екеуіне де қауіп төндіреді».",
+   "Heading as in the approved edition: «## 1.2 Көз түбі кескінінің сапасы мен айырмашылығы» -> «## 1.2 Көз түбі кескінінің сапасы мен вариабельділігі».",
+   "CHECKER ERROR - fix it: forbidden «шәкіл»: pupil is «қарашық»"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "CONTRADICTION: «минималды алдын ала өңдеуге сүйеніп, оның орнына оқыту стратегиясына таянып жеңді» - source: 'did so with minimal preprocessing, relying on training strategy instead' - «алдын ала өңдеуді барынша аз қолданып, оның орнына оқыту стратегиясына сүйеніп жеңді».",
+   "MEANING: 'learner' (a learning model) is «оқытушы» (teacher) in two places - «үйренетін модель»: «тек бастапқы деректерде оқытылған модель», «дәл сол үйренетін модель болып табылады».",
+   "«асыра жөнелтілген болжамға» is garbled - 'an over-simplified assumption' - «тым оңайлатылған болжамға».",
+   "«өзінің авторы ... сипаттаған» -> «оның авторлары ... сипаттаған» ('its authors').",
+   "«қосымша нүктені қосады» (a dot) -> «тағы бір дәлел қосады» ('adds a further point'); «Күшейтудік алдын ала өңдеу» -> «Кескінді жақсартатын алдын ала өңдеу».",
+   "«қайталана алатын осі бойынша» -> «қайталанатын осьтер бойынша»; «бөліктік байланыста болады» -> «ішінара байланысты болады»; «алаңда түсірілген» -> «далалық жағдайда түсірілген»; «тапсырымға» -> «тапсырмаға».",
+   "«қарсы тұратын ... отбасыларға» -> «адверсариалды (жарыспалы) ... отбасыларға» ('adversarial')."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 4,
+  "issues": [
+   "BROKEN SENTENCE: «Мұндай бағалау орнатады – шектелген.» - source: 'What such an evaluation establishes is bounded.' - «Мұндай бағалаудың дәлелдейтіні шектеулі.»",
+   "«осылай қадаға қою» - 'Framing device variability this way' - «Құрылғы вариабельділігін осылай тұжырымдау».",
+   "«мәселені босқа шығаруы мүмкін» - 'render the problem moot' - «мәселені мәнсіз етуі мүмкін».",
+   "«Қалдық әлі де классификацияны төмендететіні – ...» - 'whether the residual still degrades classification' - «Қалған ығысу классификацияны әлі де нашарлата ма, жоқ па – бұл тұжырыммен шешілмейтін эмпирикалық сұрақ»."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "INVENTED: «vision transformer негізінде» - the source says only 'a transformer backbone' - «трансформер backbone негізінде».",
+   "MEANING: «клиниктік шешімге жауапкершілік жүктейтін жұмыс ағынына» - source: 'a workflow where a clinician RETAINS responsibility for the decision' - «шешім үшін жауапкершілікті дәрігер өзінде сақтайтын жұмыс ағынына».",
+   "«Шығармасын тексеруге болмайтын» («шығарма» = a literary work) - 'whose output cannot be inspected' - «Шығысын тексеруге болмайтын».",
+   "«белгі анықтағышты тоңдырып» ('chilling') - 'freezing the feature extractor' - «белгі анықтағышты қатырып».",
+   "«оқыту әдісіне қатысты табыс» -> «оқыту әдісіне қатысты тұжырым» ('finding').",
+   "'lesion' is «зақымдану», not «лезия»: «зақымдану сегментациясын», «кіші зақымдану белгілерін».",
+   "«әлсіз оқылымға басады» -> «әлсіз оқылымды ұстанады» ('holds to the weaker reading').",
+   "CHECKER ERROR - fix it: forbidden «лезия»: lesion is «зақымдану»",
+   "TERM: term «transformer» not rendered as «трансформер» - use the required Kazakh form",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«лезияларды» -> «зақымдануларды»; «құрылымдық күрделілікті» -> «архитектуралық күрделілікті» ('architectural sophistication').",
+   "«бұл жүктемені осы жұмыс алдын ала өңдеуден бөлісуін сұрайды» -> «осы жұмыс бұл жүктемені алдын ала өңдеумен бөлісуді ұсынады» ('the burden this work asks preprocessing to share').",
+   "CHECKER ERROR - fix it: forbidden «лезия»: lesion is «зақымдану»",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "NUMBER AMBIGUITY: «он бірінші деңгейдегі» reads as 'eleven ... level'. Source 'ten primary-care sites' / 'Ten primary-care studies' - «алғашқы медициналық-санитариялық көмектің 10 орталығы» and «алғашқы медициналық-санитариялық көмек бойынша 10 зерттеу».",
+   "«Перспективалық» ('perspective') is wrong for 'Prospective' (twice): «Проспективті негізгі (pivotal)», «Проспективті, ұлттық бағдарлама».",
+   "«сәйкестік стандарттары» -> «эталондық стандарттар» ('reference standards').",
+   "«реттеу ретінде қатарға тізеу мүмкін емес» -> «рейтинг ретінде қатарға қою мүмкін емес»; «төрт классты бағалауға» -> «төрт класты дәрежелеуге».",
+   "Keep all numbers and names exactly as they are.",
+   "TERM: term «endpoint» not rendered as «соңғы нүкте» - use the required Kazakh form",
+   "TERM: term «prospective» not rendered as «проспективті» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 3,
+  "issues": [
+   "HEDGE: «Бұл жұмыс олардан жоғары нәтиже көрсетуді талап етпейді» ('does not demand') - source 'makes no CLAIM to outperform them' - «Бұл жұмыс олардан жоғары нәтиже көрсетеді деп мәлімдемейді».",
+   "«кейбір жағдайда алдын ала расталған» - 'prospectively validated' - «кейбір жағдайда проспективті түрде валидацияланған»; also «Бар жүйелердің көпшілігі көп жағдайда» -> «Бар жүйелер көп жағдайда».",
+   "Garbled last sentence: «Бұл олқылықтың тағы бір жоғары көрсеткішті бір корпус нәтижесіне деген қажеттілік емес екендігі осы жұмыстың пішінін қалыптастырады.» - «Олқылық дәл осы екені, яғни бір корпуста тағы бір жоғары көрсеткіш алу қажеттілігі емес екені, осы жұмыстың құрылымын айқындайды.»",
+   "«қымбат көрініс жабдықтарын» -> «күрделі бейнелеу жабдықтарын» ('advanced imaging equipment').",
+   "CHECKER ERROR - fix it: forbidden «корпусар»: plural of корпус is «корпустар»",
+   "TERM: term «prospectively validated» not rendered as «проспективті түрде валидацияланған» - use the required Kazakh form",
+   "TERM: term «prospective» not rendered as «проспективті» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING: «саяси стандарттары» ('political standards') - 'reference standards' - «эталондық стандарттары».",
+   "MEANING: «кейбіреулері перспективалық түрде жарияланған» ('perspectively published') - 'some are prospectively validated' - «кейбіреулері проспективті түрде валидацияланған».",
+   "Garbled: «Скрининг сондықтан жүйелі және қайталанатын болуы тиіс, бірақ оны қанағаттандыру үшін масштабталмайтын маман қамтамасыз етуіне қарамастан.» - «Демек, скрининг жүйелі әрі қайталанатын болуы тиіс, ал мамандар саны бұл қажеттілікті өтеу үшін масштабтала алмайды.»",
+   "'referral' is «жолдама беру»: «Дәрежелеу жолдама беруге, ал жолдама беру емдеуге қызмет етеді».",
+   "«шешім үшін жауапкершілікті сақтайтын клиник астында» -> «шешім үшін жауапкершілікті өзінде сақтайтын дәрігердің бақылауында».",
+   "«лезияларға» -> «зақымдануларға»; «корпусары» -> «корпустары».",
+   "MEANING: «Бұл беттердегі бәрі құрылған емес, тек спецификацияланған.» says NOTHING is built. Source: 'Everything ELSE on these pages is specified rather than built' - «Бұл беттердегі қалғанының бәрі құрылмаған, тек спецификацияланған.»",
+   "'view' (architecture view) is «көрініс», not «көзқарас»: «формальды құрылымдық көріністерін», «компоненттік көрініс, орналастыру көрінісі, ... реттілік көрінісі», heading «### Б.1 Компоненттік көрініс».",
+   "«сол жерде қорытып қалдырылған жүйе архитектурасының сызбасын» -> «сол жерде уәде етілген жүйе архитектурасының сызбасын» ('reserved there'); «сызба дереккөзі ретінде ... Дереккөз – сызбаның анықтамасы» -> «сызбаның бастапқы коды ретінде ... Бастапқы код – сызбаның анықтамасы».",
+   "CHECKER ERROR - fix it: forbidden «корпусар»: plural of корпус is «корпустар»",
+   "CHECKER ERROR - fix it: forbidden «лезия»: lesion is «зақымдану»",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form",
+   "TERM: term «prospectively validated» not rendered as «проспективті түрде валидацияланған» - use the required Kazakh form",
+   "TERM: term «prospective» not rendered as «проспективті» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "WRONG WORD: «айқындалатын кеңістік-сандық бастықтан» - «бастық» means 'boss'. Source: 'a differentiable spatial-to-numerical head' - «дифференциалданатын кеңістік-сандық бастан (DSNT head)».",
+   "MEANING + FRAGMENT: «Сигнал ажыратқандықтан, кезең дәл тиісті кескіндерде жұмыс сапасын төмендетеді. Айналдыруды өткізбей, аугментация дисперсиясын кеңейтеді. Мүмкін қате бағытталған теңестіруді дәлелдеудің орнына.» - source: 'because the signal discriminates, the stage can degrade gracefully on exactly the images where it should, skipping the rotation and widening the augmentation dispersion instead of asserting a possibly misaligned alignment' - «Сигнал ажырата алатындықтан, кезең дәл қажетті кескіндерде жұмсақ шегінеді: ықтимал қате туралауды бекітудің орнына айналдыруды өткізіп жіберіп, аугментация шашырауын кеңейтеді.»",
+   "«микрососудық» is a Russian calque (сосуд) - «микротамырлық».",
+   "«фонның күшті бұлдыратылған бағасын азайтады» -> «...бағасын шегереді» ('subtracts').",
+   "«Оның сенімділігі болжамға емес, өлшенді.» -> «Оның сенімділігі болжанбай, өлшенді.»; «0.066 дискі радиусын» -> «0.066 диск радиусын».",
+   "CHECKER ERROR - fix it: forbidden «бастық»: «бастық» = boss; a network head is «бас»",
+   "CHECKER ERROR - fix it: forbidden «микрососуд»: microvascular is «микротамырлық»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "GARBLED: «Ешқандай да теті теңсіздікті шешетінін талап етілмейді.» - source 'Neither lever is claimed to resolve the imbalance' - «Екі тетіктің ешқайсысы да теңсіздікті шешеді деп мәлімделмейді.»; also «екі тетінің бірі» -> «екі тетіктің бірі».",
+   "GARBLED/REPEATED: «Бағдары сенімді түрде нормаланған кескіннің айналу шашырауы тарырақ аралықта болғандықтан, ол тарырақ аралықта айналдырылады.» -> «Сондықтан бағдары сенімді нормаланған кескін тарырақ аралықта айналдырылады.»",
+   "HEDGE: «Аугментация детектор қол жеткізбеген үйлесім дәлдігін талап етпейді» - 'does not ASSERT a precision of alignment' - «Аугментация детектор қол жеткізбеген туралау дәлдігін мәлімдемейді».",
+   "«жинақталу» is wrong for 'acquisition/capture': «ықтимал жинақталу ауытқуларының шеңберінде» -> «түсіру кезіндегі ықтимал ауытқулар шеңберінде»; «жинақталу мен сақтау арасында» -> «түсіру мен сақтау арасында».",
+   "Marker caption typo: «Диск-фокеа осіндегі» -> «Диск-фовеа осіндегі».",
+   "«екі шектеулі қысу ережесі» -> «екі шектеулі клиптеу ережесі» ('clip rule'); «қабылдаушылық түс кеңістігінің» -> «перцептивті түс кеңістігінің»; «кездейсоқ төменделген үлгілерді» -> «сапасы анда-санда төмендетілген үлгілерді»."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 4,
+  "issues": [
+   "'grade' is «дәреже», not «деңгей»; 'class' is «класс», not «сынып»: «жарамды дәреже», «таксономиядан тыс дәрежелер класқа мәжбүрлеп жатқызылмай», «ерте дәрежелерді шешетін».",
+   "«Факторлық манипуляция осы контрастты құрылымды өзгертеді» - 'That contrast is the construct the factorial manipulates' - «Факторлық жоба басқаратын конструкт – дәл осы қарама-қарсылық».",
+   "HEDGE: «...ешқандай талап қоймайды» - 'makes no compliance CLAIM' - «сәйкестік туралы ешқандай мәлімдеме жасамайды»; «оны дәлелдемейді» - 'rather than asserting it' - «оны бекітпейді».",
+   "«Ингестия протоколы» -> «Қабылдау хаттамасы» ('ingestion protocol', as in chapter 4); «Жалпы зерттеу корпусы» -> «Ашық зерттеу корпустары» ('Public research corpora').",
+   "«тек олар үшін ғана жарамдылығы дәлелденді» -> «тек солар үшін ғана валидацияланған»; «деректерді жеке еместіруді» -> «деректерді деперсонализациялауды».",
+   "CHECKER ERROR - fix it: forbidden «сынып»: a class (of DR) is «класс», «сынып» is a school class"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 5,
+  "issues": [
+   "MEANING: «Сол бұрынғы жұмыстан алынған суреттер» - here 'Figures' means NUMBERS (results), not pictures: «Сол бұрынғы жұмыстағы сандық көрсеткіштер қазіргі контекстке тасымалданбайды және мұнда келтірілмейді.»",
+   "Citations: the last two names are joined with пен/мен/бен, never «және»: «(Sapakova, Yesmukhamedov пен Sapakov, 2025; Sapakova, Yesmukhamedov, Sapakov, Yemberdiyeva мен Kozhamkulova, 2025; Yesmukhamedov, Sapakova, Kozhamkulova, Daniyarova мен Armankyzy, 2025)».",
+   "Garbled: «Шетті сақтаушы сүзгілеу әдебиеті тартысты теориялық тұрғыдан шешеді, өйткені оны тегіс ету мазмұнына бейімделгіш етіледі.» - «Жиекті сақтайтын сүзгілеу әдебиеті бұл қайшылықты тегістеуді мазмұнға бейімделгіш ету арқылы принцип жүзінде шешеді.»",
+   "«Білатеральды» -> «Билатеральды»; «жеткізілетін сәйкестік еңісті» -> «сәйкестендірудің қол жеткізуге болатын еңісін»; «жіктеуді көмектесетінін» -> «жіктеуге көмектесетінін».",
+   "CHECKER ERROR - fix it: citation joins the last two authors with «және»: use пен/мен/бен (Sapakov мен Kozhamkulova, 2025)"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "TERMS of the approved edition: 'tile' = «торкөз» (not «сурет тақтасы (tile)», «тақта», «тақталар»); histogram 'bin' = «себет» (not «саңылау» = a slit). Replace everywhere in the chunk: «торкөз гистограммасы», «әр себетті», «себет биіктігін», «біркелкі себет санағына», «толтырылған себеттер», «барлық торкөздерге».",
+   "«ұсақ ыдыстардың айқындылығын» («ыдыс» = a dish) - 'fine vessels' - «ұсақ тамырлардың айқындылығын».",
+   "«жарияланған алдашыл ретінде» -> «жарияланған ізашар ретінде»; «Сол деректе баспаға түскен» -> «Сол дереккөзде жарияланған».",
+   "«стандартты анықтаманыңнан» -> «стандартты анықтамадан»; «шағын толықтырылған корпусты алынғандықтан» -> «шағын аугментацияланған корпуста алынғандықтан»; «қатаңырақсын алады» -> «қатаңырағын алады».",
+   "«Үлкен, дегенмен біркелкі фон тақтасында» - 'a large NEAR-uniform background tile' - «Үлкен, біркелкіге жуық фондық торкөзде».",
+   "CHECKER ERROR - fix it: forbidden «ыдыс»: «ыдыс» = dish; a blood vessel is «тамыр»",
+   "TERM: term «tile» not rendered as «торкөз» - use the required Kazakh form",
+   "TERM: term «bin» not rendered as «себет» - use the required Kazakh form",
+   "TERM: term «precursor» not rendered as «ізашар» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "INVENTED: the source says 'A transformer' and 'transformer architectures', not 'vision transformer': «Трансформер қолданылса...», «Конволюциялық және трансформер архитектураларын салыстыру мәселесі...».",
+   "MEANING: «бір-біріне қарама-қарсы бес ретті деңгей» ('opposite') - 'five mutually exclusive ordinal grades' - «бір-бірін жоққа шығаратын бес реттік дәреже».",
+   "'grade' = «дәреже»: «бес дәреже бойынша үлестірім беретін баспен»; 'binary referable formulation' - «жолдама берілуге тиіс / тиіс емес деген екілік тұжырым» (not «екілік сипаттама»).",
+   "HEDGE: «толық ізденіс жүргізілгені немесе талап етілгені жоқ» - 'is performed or CLAIMED' - «толық ізденіс жүргізілмеді және жүргізілді деп мәлімделмейді».",
+   "«кодлағышты» -> «кодтағышты»; «кеңірек ая» -> «кеңірек зерттеу ландшафты».",
+   "TERM: term «transformer» not rendered as «трансформер» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "MEANING: «Ешқайсысы артық үйренуді толық болдырмайтыны туралы айтылмайды» says 'it is not said that none fully prevents'. Source: 'None is claimed to prevent overfitting' - «Олардың ешқайсысы артық үйренуді болдырмайды деп мәлімделмейді».",
+   "«әсері тәжірибелік болған салмақтаушы реттеуші» -> «әсері эмпирикалық түрде анықталатын қосалқы бақылау құралы» ('a contributing control whose effect is empirical').",
+   "«Спецификацияны екі қолдау шарты жауып тұрады» - 'Two scope conditions close the specification' - «Спецификацияны қолданылу аясының екі шарты аяқтайды».",
+   "English left: «compound-scaled backbone» -> «құрама масштабталған backbone»; «compound-scaling тұқымдасының» -> «құрама масштабтау тұқымдасының»; «early stopping» -> «ерте тоқтату»; «augmentation» -> «аугментация».",
+   "«орналасқан тереңірек backbone-дарға» ('placed') - 'established deeper backbones' - «қалыптасқан, тереңірек backbone-дарға»; «он алтылық топтама өлшемі» -> «16-ға тең батч өлшемі»."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING REVERSED: «Бейбітшілікке негізделген теңестіру» ('peace-based') - source 'adversarial alignment' - «адверсариалды (жарыспалы) туралау».",
+   "WRONG TERM: «көз қарны» (3 times) is not a word for 'retinal' - use «торқабық»: «торқабықтың іргелі моделі (foundation model)», «торқабық кескіндеріндегі», «Торқабыққа қатысты дәлелдер».",
+   "'representations' is «репрезентациялар», not «көрсеткіштер»: «таралу айырмашылығы бойынша репрезентацияларды бейімдеу», «жалпыланатын репрезентациялар береді».",
+   "«жаңа инициализацияланған бастықпен» («бастық» = boss) - 'a freshly initialised head' - «жаңадан инициализацияланған баспен».",
+   "English left: «fundus емес модальдылықтарда» -> «көз түбінен басқа модальдылықтарда»; «transformer негізінде» -> «трансформер негізінде».",
+   "«белгілі бір шекпен үстемдік көрсетеді» -> «белгілі бір айырмамен асып түседі» ('by a given margin').",
+   "CHECKER ERROR - fix it: forbidden «бастық»: «бастық» = boss; a network head is «бас»",
+   "CHECKER ERROR - fix it: forbidden «көз қарн»: retinal is «торқабық»",
+   "CHECKER ERROR - fix it: forbidden «Бейбітшілік»: adversarial is «адверсариалды»",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»",
+   "TERM: term «transformer» not rendered as «трансформер» - use the required Kazakh form",
+   "TERM: term «representation» not rendered as «репрезентация» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«бастық» means 'boss' - a network head is «бас» everywhere in the chunk: «тек жаңа бас оқытылады», «бас ... үйренеді», «оқытылмаған бастың», «баспен бірге», «басты бірыңғай бекітумен».",
+   "MEANING: «ешқандай гипотеза қайта қаралмады» ('reconsidered') - 'none is reinstated' - «ешбір гипотеза қайта енгізілмейді»; and «гипотеза қайтарылды» -> «гипотеза алынып тасталды» ('was withdrawn').",
+   "«жоғарғы қабаттар бірте-бірте алынып» - 'progressively UNFROZEN' - «жоғарғы қабаттар бірте-бірте босатылып (unfreeze)»; «backbone мұздатылады» -> «backbone қатырылады»; «мұздатылған белгі конфигурациясы» -> «белгілері қатырылған конфигурация».",
+   "Garbled: «Ал төменгі, жалпылама қабаттар сақтанып немесе бекітілген күйінде қалдырылып, сақтықпен бейімделеді.» - «Ал төменгі, жалпылама қабаттар сақтықпен бейімделеді немесе өзгеріссіз қалдырылады.»",
+   "«басымдыққа енгізілмейді» - 'rather than being swamped' - «көпшілік дәреже ішінде жұтылып кетпейді».",
+   "«transfer learning жұмысына» -> «тасымалдап оқыту бойынша жұмысына».",
+   "CHECKER ERROR - fix it: forbidden «бастық»: «бастық» = boss; a network head is «бас»",
+   "TERM: term «pretraining» not rendered as «алдын ала оқыту» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+  "chunk": 4,
+  "issues": [
+   "NUMBER: «жүз жеті үш мақаланың тек еуі ғана» is wrong - source 'only two of one hundred and SEVENTY-three surveyed papers' - «зерттелген жүз жетпіс үш (173) мақаланың тек екеуі ғана».",
+   "MEANING: «бағдарламалық оқыту бағыты» ('software learning') - source 'cost-sensitive learning' - «құнға сезімтал оқыту (cost-sensitive learning) бағыты».",
+   "«әдебиетке қарсы жасалды» - 'is made against a literature in which...' means 'in the context of' - «...әдебиет аясында жасалды»."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING (3 places): 'coarse' is «дөрекі», not «қатаң» ('strict'): «Карта дөрекі және класты ажырататын болғандықтан», «Назар зақымданудан дөрекірек болғандықтан (ол табиғатынан солай)». This reversal breaks the argument.",
+   "«Ықтималдықты шамаға айналдыру үшін» - 'plausibility' is not probability - «Шынайылықты шамаға айналдыру үшін».",
+   "«клиниканың аннотациялаған зақымдануымен» ('the clinic's') -> «дәрігер аннотациялаған зақымданумен».",
+   "«модельдің абсолютті оқымасы емес» -> «модельдің абсолютті көрсеткіші емес» ('readout'); «анықтау оқымауын енгізбеуі тиіс» -> «анықтау тұрғысындағы түсіндіруді енгізбеуі тиіс».",
+   "«олар олардың пайдалы болатын тілдік деңгейді бекітеді» -> «олар карталар пайдалы болатын шеңберді белгілейді» ('fix the register').",
+   "Garbled: «егер ол модельдің бөлігі болса да, кездейсоқ дайындық емес болса» -> «егер ол кездейсоқ дайындық емес, модельдің бөлігі болса».",
+   "«өзгертеетінін» -> «өзгертетінін»; «себептік емес себептермен дәрежеге корреляциялаған» -> «себептік емес себептермен дәрежемен корреляцияланатын»; «Екінші түрлі өлшемдер» -> «Екінші түрдегі метрикалар»."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.5-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«көз» reads as 'eye': 'source' is «дереккөз»: «оның бастапқы дереккөзінде торқабыққа қолдану жоқ», «контраст өлшеміне арналған бастапқы дереккөз жоқ», «демек есептеу дереккөзі де жоқ».",
+   "«көз қарнына қолдану» -> «торқабыққа қолдану» ('retinal application').",
+   "MEANING: «мұндай зақымдануды анықтамайды» - «зақымдану» is a lesion; 'such damage' (to the image) - «мұндай бүлінуді анықтай алмайды».",
+   "«Бірінші екеуі күшейтуді бағалағанда» -> «Бірінші екеуі күшейтуді жоғары бағаласа» ('reward enhancement').",
+   "«бұл тапсырма үшін жарамдалған өлшемдер» -> «бұл тапсырма үшін валидацияланған өлшемдер».",
+   "CHECKER ERROR - fix it: forbidden «көз қарн»: retinal is «торқабық»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 3,
+  "issues": [
+   "MEANING: 'augmentation' is «аугментация», not «өңдеу» (processing): «бұл аугментацияның тек оқытуға ғана қатысты мәртебесімен үйлеседі», «ешқандай аугментацияланған сурет тест бөлігіне кірмейді», «бекітілген аугментация параметрлерімен».",
+   "«корреляцияланған иілулерге арналған» -> «корреляцияланған қисықтарға арналған» ('correlated curves').",
+   "«Интервалдар ... белгісіздік интервалын» -> «Аралықтар ... белгісіздік аралығын»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'referable' is «жолдама берілуге тиіс», not «сілтеуге болатын»: «Messidor-2 өз дәрежесімен қатар жолдама берілуге тиіс / тиіс емес деген ажыратуды қосады», «Жолдама осі қолданылған жағдайда».",
+   "MEANING: «ретинопатия белгілері қосымша жиынтық құрайтын» - 'whose retinopathy labels form a SUBSET' - «ретинопатия белгілері ішкі жиын құрайтын».",
+   "«тікелей төмендейді» -> «күрт төмендейді» ('falls away steeply').",
+   "Grammar: «өйткені классификатор көпшілік дәрежені басым тұтыру арқылы оны қарапайым түрде көтеруге болады» -> «өйткені классификатор оны жай ғана көпшілік дәрежеге басымдық беру арқылы көтере алады».",
+   "Reference placement: «мақсат – 2.4-бөлімдегі салмақсыз кросс-энтропия емес, кері жиілікпен салмақталған focal loss» - section 2.4 defines the focal loss: «мақсат функциясы салмақсыз кросс-энтропия емес, 2.4-бөлімдегі кері жиілікпен салмақталған focal loss».",
+   "«ағым жолын жабады» -> «ақпарат ағу жолын жабады» ('leakage path'); «корпусар арасындағы» -> «корпустар арасындағы».",
+   "CHECKER ERROR - fix it: forbidden «корпусар»: plural of корпус is «корпустар»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.1-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'augmentation' is «аугментация», not «өсу» (growth) or «өңделген»: «Протокол аугментацияның тек оқыту кезеңінде қолданылатын талабымен үйлеседі. Демек, аугментацияланған кескіндер тест бөлігіне түспейді.»; «Аугментация параметрлері мен оқыту қарқыны кестесі...».",
+   "MEANING: table row «Зиян функциясы» ('harm function') - 'Loss' - «Шығын функциясы».",
+   "«прогонаралық» is a Russian calque - «іске қосулар арасындағы»; «детерминацияланбағандықты» -> «детерминистік еместікті»; «деректер ретінде» (ambiguous 'as data') -> «деректердің ретіндегі».",
+   "Table: «интегралды» -> «интеграцияланған»; «Максимум эпохтар» -> «Эпохтардың ең көп саны»; «сабыр 5 кезінде ерте тоқтату» -> «ерте тоқтату, шыдамдылық (patience) = 5».",
+   "«қазақ клиникалық жиынына» -> «қазақстандық клиникалық жиынға»; «Қайта жаңғыртылымдылық болжамға емес, жобаланған» -> «Қайта жаңғыртылымдылық болжанбайды, инженерлік жолмен қамтамасыз етіледі».",
+   "CHECKER ERROR - fix it: forbidden «прогон»: run is «іске қосу»",
+   "TERM: term «degrees of freedom» not rendered as «еркіндік дәрежелері» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING: table «Аймақ ішінде» ('inside a region') - 'In-domain' - «Домен ішіндегі»; column «Бастапқы бастау» -> «Инициализация».",
+   "Citations: the last two authors are joined with мен/пен, never «және»: «Yemberdiyeva мен Kozhamkulova, 2025», «Daniyarova мен Armankyzy, 2025».",
+   "«кемінде бес пайыздық тармаққа» -> «кемінде бес пайыздық пунктке» ('percentage points').",
+   "«табыс кемінде екі архитектурда қайталануы керек» -> «нәтиже кемінде екі архитектурада қайталануы керек» ('a finding').",
+   "«аяқтан-аяқ жіктеу тәсілін» -> «end-to-end (ұштан-ұшқа) жіктеу тәсілін».",
+   "CHECKER ERROR - fix it: citation joins the last two authors with «және»: use пен/мен/бен (Sapakov мен Kozhamkulova, 2025)"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "NUMBER MEANING: «Brier ұпайы 0.011-ден 0.012-ге дейін өзгерді» says it changed FROM 0.011 TO 0.012. Source: 'and the Brier score [fell] by 0.011 to 0.012' - «ал Brier ұпайы 0.011–0.012-ге төмендеді».",
+   "WRONG WORD: «сынық» means 'a broken piece' - 'class' is «класс»: «Ұтыстың класс құрылымында қай жерге түсетіні», «салмақталған орташа мәнді осы класс ғана ығыстыра алады».",
+   "«архитектурда» (4 times) -> «архитектурада»; «негізгі архитектурды факторлар ретінде» -> «backbone-ды факторлар ретінде»; «екі де негізгі архитектурда» -> «екі backbone-да да».",
+   "«базалық қатені түзеді» -> «базалық қатені түзетті»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 4,
+  "issues": [
+   "MEANING: «κ-ны салмақсыз ығыстырады» ('weightlessly') - source 'moves kappa DISPROPORTIONATELY' - «κ-ны пропорционалдан тыс көп ығыстырады».",
+   "MEANING: «Конвейер шешілмейтін қиындықты жеңілдетеді» ('an unsolvable difficulty') - source 'The pipeline mitigates a difficulty it does not resolve' - «Конвейер өзі шешпейтін қиындықты жеңілдетеді».",
+   "'folds' is «фолдтар», not «қаттар» (layers): table titles «Жинақталған валидациялық фолдтар бойынша...», «...жинақталған валидациялық фолдтар».",
+   "«тарыдайды» -> «тарылады»; «ауыр деп бағаланды» -> «ауыр деп дәрежеленді»; table headers «Базалық, efficient», «Интеграцияланған, efficient» -> «Базалық, тиімді», «Интеграцияланған, тиімді» (as in Table 3.4).",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 5,
+  "issues": [
+   "«екі де негізгі архитектурда 11.2 пайыздық тармаққа өсті» -> «екі backbone-да да 11.2 пайыздық пунктке өсті».",
+   "«Бұл шешімге үшеуі шектеулер қойылады» (ungrammatical) -> «Бұл үкімге үш шектеу тіркеледі».",
+   "«Сондықтан калибрлеуді жақсарту – бұл табалдырық артефактысы емес» -> «Сондықтан калибрлеудің жақсаруы табалдырық артефактысы емес»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 2,
+  "issues": [
+   "Russian word left: «прирост», «Приросттардың» (3 places) -> «өсім», «Өсімдердің» ('increment').",
+   "'ordering' is «реттілік», not «тәртіп» (discipline): «Реттілік бес фолдтың әрқайсысында...», «бірінші тәжірибе көрсеткен реттілік», «біріншіден жетіншіге дейінгі қатаң реттілік емес».",
+   "«Абляцияны үшеу шектейді» -> «Абляцияны үш шектеу шектейді».",
+   "«тайлаға арналған шекті» -> «торкөзге арналған шекті» ('per-tile'); «орныналасқанын» -> «орналасқанын»; «жақсы мінез-құлық көрсететіні ме» -> «жақсы мінез-құлық көрсете ме».",
+   "CHECKER ERROR - fix it: forbidden «прирост»: increment is «өсім»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 3,
+  "issues": [
+   "NON-WORD: «оқыту жиырыларында» - 'on training folds' - «оқыту фолдтарында».",
+   "«Беттің сәйкестендіру деректерінде есептелетін жерде» - 'where the surface is computed on the fitting data' - «Бет оқыту деректерінде есептелетін жағдайда».",
+   "«кадрдың үлестіру ажыратымдылығына емес» -> «кадрдың дискреттеу ажыратымдылығына емес» ('sampling resolution').",
+   "«орташа ауру 2.0-де шыңдалады» -> «орташа ауру 2.0-де шыңына жетеді».",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 4,
+  "issues": [
+   "HEDGE: «Әділ аралық ішіндегі нашар таңдау конвейерді мүлдем елемегенмен бірдей шығынға әкеледі» - source: 'A poor choice within an otherwise reasonable interval costs ALMOST as much as omitting the pipeline altogether' - «Басқа жағынан орынды аралық ішіндегі нашар таңдау конвейерден мүлдем бас тартумен дерлік бірдей шығынға әкеледі».",
+   "«Скандау» (3 times) -> «Сканерлеу»; «виньеттінді» -> «виньеттеуді»; «бір реттілікте» -> «бір шамалас ретте» ('of the same order').",
+   "«Тым тар баға торқабық құрылымын қайталап» -> «Тым тар баға торқабық құрылымына еріп» ('follows retinal structure').",
+   "«сол бағаны растайды» -> «сол мәнді растайды»; «алты бағаның реттелуі» -> «алты мәннің реттелуі» ('settings').",
+   "«2.21 пайыздық тармаққа» -> «2.21 пайыздық пунктке»; «шектік нүктелерінен» -> «шеткі нүктелерінен».",
+   "TERM: term «endpoint» not rendered as «соңғы нүкте» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.3-kz.md",
+  "chunk": 5,
+  "issues": [
+   "MEANING: «әрі ол қазіргі уақытта екінші орындағы үлес қосушы» ('currently') - source 'and it is NONETHELESS the second-largest contributor' - «соған қарамастан ол үлесі жағынан екінші орында».",
+   "WRONG WORD: «жара-фон контрастының» («жара» = wound) - 'lesion-against-background contrast' - «зақымдану мен фон арасындағы контрастың».",
+   "WRONG WORD: «қаталар бойынша таралуы жоқ» ('errors') - 'without a fold-wise spread' - «фолдтар бойынша шашырауы жоқ».",
+   "Broken sentence: «Құрылымдық ұқсастық монотон түрде төмендегенде, ал балл монотон түрде өсті. Бастапқы кадрдан қашықтық...» -> «Құрылымдық ұқсастық монотонды түрде төмендеді, ал балл монотонды түрде өсті. Демек, бастапқы кадрдан алшақтау мұнда деградацияның бір түрі емес.»",
+   "«қатынсты» -> «қатынасты»; «ешқайда жерінде» -> «ешбір жерінде»; «есептеу көзі жоқ» -> «есептеу дереккөзі жоқ».",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING: «Кейіннен тағайындалған өлшем нәтижеге сәйкес таңдалды деген қарсылыққа шабуылға ұшырайды.» - source: 'a criterion assigned afterwards INVITES the objection that it was chosen to fit the outcome' - «Кейіннен тағайындалған өлшем оның нәтижеге қарай таңдалғаны туралы қарсылық тудырады.»",
+   "MEANING: «Екі кезең құрылымы бойынша бастапқы корпусты байланыстырады» ('they bind the corpus') - source 'Two stages are bound TO the source corpus by construction' - «Екі кезең құрылымы бойынша бастапқы корпусқа байланған».",
+   "Missing subject: «Сонымен, дәл осы гипотезаның жалғанға шығарылуына мүмкіндік береді.» -> «Гипотезаны жалғанға шығаруға болатын ететін дәл осы.»",
+   "«бастапқы кезеңдердің әсерінен» -> «алдыңғы кезеңдердің әсерінен» ('the earlier stages'); «нысаналы таралудың туралы» -> «нысаналы таралу туралы»; «айнымалылықты» (2 times) -> «вариабельділікті»; «бағалау хаттамасы» -> «дәрежелеу хаттамасы».",
+   "TERM: term «Convergence» not rendered as «жинақталу» - use the required Kazakh form",
+   "TERM: term «source statistics» not rendered as «бастапқы доменнің статистикалары» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+  "chunk": 3,
+  "issues": [
+   "HEDGE: «Себеп-салдарлық байланыс немесе шамалардың сәйкестігі талап етілмейді» ('not demanded') - 'Neither causation nor magnitude correspondence is CLAIMED' - «...мәлімделмейді».",
+   "«шамасы туралы ешқандай инференс қолдамайды» - logical inference: «шамасы туралы ешқандай қорытындыны қолдамайды».",
+   "«Шекті мәндерден төмен олар сәйкес келмейді» - 'Below the extremes they are not' - «Шеткі мәндерді есепке алмағанда, бұлай емес».",
+   "«офтальмоскопиялық суреттер туралы» -> «көз түбін бейнелеу туралы» ('fundus imaging'); «интервал енінің» -> «аралық енінің»; «корпусар» (twice) -> «корпустар».",
+   "CHECKER ERROR - fix it: forbidden «корпусар»: plural of корпус is «корпустар»"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 1,
+  "issues": [
+   "WRONG WORD: 'threshold' is «табалдырық», not «есік» (door): «табалдырығы 0.85», «Екі тармақ та табалдырықтан өтеді», «табалдырықтан өтуді нәтиже ретінде ұсыну».",
+   "WRONG WORD: «салыстырудан азық ақпараттық» («азық» = food) - 'less informative than the comparison' - «салыстыруға қарағанда аз ақпаратты».",
+   "Heading «## 3.5 Жиынаралық және сыртқы тасымалдау» -> «## 3.5 Корпусаралық және сыртқы тасымалдау» ('Cross-dataset').",
+   "«классификатор пайдаланатын көріністе» -> «классификатор пайдаланатын репрезентацияда»; table title «домен ішіндегі сәйкестік 0.7538» -> «домен ішіндегі эталондық мән 0.7538».",
+   "CHECKER ERROR - fix it: forbidden «есік»: threshold is «табалдырық», gate is «қақпа»",
+   "TERM: term «representation» not rendered as «репрезентация» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 3,
+  "issues": [
+   "GARBLED: «дегенімізбен бірдей пропорцияда» - 'in ALMOST the same proportion' - «дерлік бірдей пропорцияда».",
+   "MEANING: «Осы пропорциялар дәл осылай есептелген, сондықтан мұндай оқылым мүмкін болмайды.» ('calculated this way') - source: 'those proportions are reported precisely so that such a reading is foreclosed' - «Бұл пропорциялар дәл осындай оқылымға жол бермеу үшін келтірілген.»",
+   "HEDGE: «Ол сыртқы клиникалық өнімділікті, деградацияға төзімділікті емес, дәлелдейді» - 'It CLAIMS external clinical performance' - «Ол деградацияға төзімділікті емес, сыртқы клиникалық өнімділікті мәлімдейді».",
+   "«тек төрт мыңдық бар» -> «тек мыңнан төрт бар» ('four thousandths'); «Өту нақты, бірақ оңай емес» -> «Өту нақты, бірақ сенімді емес» ('not comfortable').",
+   "«Бұл бағалау не орнатпағаны да соншалықты маңызды» -> «Бұл бағалаудың нені дәлелдемейтіні де соншалықты маңызды»; «интервалдың», «интервалының» -> «аралықтың», «аралығының»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 5,
+  "issues": [
+   "'fold' is «фолд», not «қат» (layer): «кросс-валидацияның бір фолдының модельдерін», «фолдтар арасындағы дисперсия».",
+   "'denominator' is «бөлгіш», not «бөлім»: «интеграцияланған тармақтың бөлгіші үлкенірек», «бөлгіштің артефактісі».",
+   "HEDGE: «сәйкестік талап етілмеді» - 'no correspondence CLAIMED' - «сәйкестік мәлімделмеді».",
+   "«сәйкестендірілген модельдегі» -> «оқытылған модельдегі» ('the fitted model'); «аппараттық ауытқудың таңбасына» -> «аппараттық вариацияның жанама көрсеткішіне» ('a proxy'); «әртүрлі баптаулардың тиімді саны» -> «әртүрлі жағдайлардың тиімді саны» ('distinct settings'); «камера аппараттығы» -> «камера жабдығы»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING: «кескіндердің қиындық деңгейі арасындағы айырмашылықтар ескерілмейді» ('are ignored') - source 'per-image difficulty differences OUT' (cancel out in the paired design) - «кескіндер арасындағы қиындық айырмашылықтары өзара жойылады».",
+   "'clinician' is «дәрігер», not «клиник»: «жауапкершілікті сақтайтын дәрігер», «дәрігер белгілегені».",
+   "'outputs' is «шығыстар», not «шығымдар»: «Шығыстарын тексеру мүмкін болмайтын құралды», «шығысты қалыптастыратын дәлелдердің».",
+   "«екі де operand» -> «екі операнд та»; «EfficientNet-B4 тірегінің» -> «EfficientNet-B4 backbone-ының»; «Қиылысу бөлінген бірігу» -> «Intersection over Union (қиылыстың бірігуге қатынасы)»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 3,
+  "issues": [
+   "Garbled: «Сол себепті салыстыру декоративті деп қарастырылуы мүмкін, жіктеу нәтижелері орнатқанның бәрін ештеңе қоспай.» - 'so the comparison could be thought decorative, adding nothing the classification results established' - «Сол себепті салыстыру жіктеу нәтижелері анықтағанға ештеңе қоспайтын безендіру сияқты көрінуі мүмкін.»",
+   "«Бұл дәлелдің іс үшін қаншалықты құнды екенін өлшем жауап бермейді.» -> «Бұл дәлелдің іс үшін қаншалықты құнды екені – өлшеу жауап бермейтін сұрақ.»",
+   "«жоғалту қуаттың азаюымен сәйкес келеді, керісінше емес» - 'the loss is consistent with reduced power rather than a reversal' - «маңыздылықтың жоғалуы кері бағытқа ауысумен емес, тест қуатының азаюымен үйлеседі».",
+   "«Табалдырық бақылауы» -> «Төменгі шек (floor) бақылауы»; «екі тармақта да үйлесім нөл болды» -> «екі тармақта да беттесу нөлге тең болды»; «Осы тірек астында» -> «Осы backbone-да».",
+   "«алу айырмашылығын жоюымен» -> «түсіру вариабельділігін жоюымен» ('acquisition variability'); «аймақ шекараларын» -> «көру өрісінің шекараларын» ('field boundaries'); «үлгіге артық сәйкестендіру» -> «үлгіге артық бейімделу» ('over-fitting')."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.6-kz.md",
+  "chunk": 4,
+  "issues": [
+   "WRONG WORDS: «басқа бекетті, бір қатты» («бекет» = station, «қат» = layer) - 'a different backbone, a single fold' - «басқа backbone-ды, бір фолдты».",
+   "«Оның жіктеу қоры мен факторлықтың қоры» -> «Оның жіктеу айырмасы мен факторлық тәжірибенің айырмасы» ('classification margin ... of the factorial'); «Бекіту бағыттық» -> «Растау бағыттық» ('corroboration').",
+   "HEDGE: «дәлелденбеген, талап етілмеген немесе жасырын түрде айтылмаған» - 'demonstrated, CLAIMED or IMPLIED' - «дәлелденбеген, мәлімделмеген және меңзелмеген».",
+   "«ол жабу ескертуі емес, шектеу» -> «ол қорытынды ескерту емес, жоғарғы шек» ('a ceiling rather than a closing caveat').",
+   "«қазақ клиникалық корпустағы» -> «қазақстандық клиникалық корпустағы»; «өлшеу жүргізбейтін иллюстрация» -> «ешқандай өлшеу нәтижесін бермейтін иллюстрация»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.7-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING: «Ондағы мөлшері мол деректердегідей үлкен емес» says it is SMALLER. Source: 'Its magnitude there is COMPARABLE TO rather than greater than on abundant data' - «Ондағы шамасы мол деректердегімен шамалас, одан үлкен емес».",
+   "Garbled comparison in the first paragraph: «...салыстырғанда тұрақтырақ» - source: 'is more consistent with the pipeline changing the feature space ..., than with its compensating for missing examples' - «Екі режимде де шамалас артықшылық конвейердің жетіспейтін мысалдардың орнын толтыруынан гөрі, классификатор жұмыс істейтін белгілер кеңістігін өзгертуімен көбірек үйлеседі; бұл өзгеріс деректердің көлеміне қарамастан сақталады.»",
+   "«екі реттік тәртіпте кішірек» -> «екі ретке кіші» ('two orders of magnitude smaller').",
+   "«интервалдары», «интервалдардың» -> «аралықтары», «аралықтардың»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING REVERSED: «Расталуға ыңғайлы болу үшін тар аяқталған тұжырым, оның расталуы кеңірек тұжырымнан аз ақпарат береді дегенді білдірмейді.» Source: 'A claim narrow enough to be confirmed is not thereby one that was easy to confirm, BUT its confirmation SAYS LESS than a broader one would.' - «Расталатындай тар тұжырым сол себепті оңай расталған тұжырым болып шықпайды, бірақ оның расталуы кеңірек тұжырымның расталуынан азырақ мағына береді.»",
+   "HEDGE: «бақыланатын қателік деңгейін талап етпейді» - 'does not CLAIM a controlled error rate' - «...бақыланатын қателік деңгейін мәлімдемейді».",
+   "«өлшеушінің корпус үлгілері бойынша қалай өзгеруі» ('the measurer') -> «өлшеудің корпус үлгілері бойынша қалай өзгеретінін».",
+   "«Нәтижелер де тар аяқта айтылады» -> «Нәтижелер де тар шеңберде тұжырымдалады»; «кезеңдер иерархиясы – реттеу емес, топтастыру» -> «кезеңдер иерархиясы – реттілік емес, топтастыру».",
+   "«фолд деңгейіндегі шуылдан көп ажыратын үлесі қажет етті, егер олар салыстырмалы болса» -> «бір-бірінен фолд деңгейіндегі шудан көп ажырайтын үлестерді талап етті; егер олар шамалас болса»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 4,
+  "issues": [
+   "NUMBER: table title «он жылыту өткізуінен кейін қырық бес итерация бойынша орташа» - source 'averaged over FIFTY iterations after ten warm-up passes' - «он жылыту өтуінен кейін елу итерация бойынша орташаланған».",
+   "NUMBER: «операцияларға шамамен бір пайыздың тоқсанын» ('ninety of one per cent') - source 'about nine-tenths of one per cent' - «операцияларға шамамен 0.9 пайыз (бір пайыздың оннан тоғызы)».",
+   "MEANING: «соттаушылар тобы емес» ('judges') - 'rather than adjudicated panels' - «сарапшылар кеңесі бекіткен белгілерге емес»; «есік мәнінде» -> «табалдырық мәнінде» ('threshold').",
+   "«ешқандай екі қатар төртіншісінің барлығын бөліспейді» -> «ешбір екі жолда осы төртеуі толық ортақ емес» ('no two rows share all four'); «сәйкестендіру стандартын» -> «эталондық стандартты».",
+   "HEDGE: «үстемдік те, теңдік те талап етілмейді» -> «...мәлімделмейді»; «ниеттің жеткізілуі ретінде емес» -> «ешкімге ниет телу ретінде емес».",
+   "«кіріс сабағында» («сабақ» = lesson) -> «кіріс бөлігінде (stem)»; «Аумақ ішіндегі өсіммен» -> «Домен ішіндегі өсіммен»; «орталық теорияға» -> «орталық тезиске»; «көріністі», «көрініс» -> «репрезентацияны», «репрезентация».",
+   "CHECKER ERROR - fix it: forbidden «есік»: threshold is «табалдырық», gate is «қақпа»",
+   "TERM: term «Precision» not rendered as «дәлдік» - use the required Kazakh form",
+   "TERM: term «representation» not rendered as «репрезентация» - use the required Kazakh form",
+   "TERM: term «endpoint» not rendered as «соңғы нүкте» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 5,
+  "issues": [
+   "WRONG WORD: «қожайын жадына беттеу арқылы» («қожайын» = owner/master) - 'paging into host memory' - «хост жадына беттеу (paging) арқылы».",
+   "Garbled: «параметр жадысынан бір реттік реттік айырмашылықпен басым» - 'dominates parameter memory by an order of magnitude' - «параметр жадынан бір ретке басым»; «айтарлықтай үлкен оқу ізін» -> «оқыту кезінде айтарлықтай көп жадты».",
+   "Garbled: «бұл өлшеу шарты болып табылады және ретінде есептеледі» - 'which is a condition of the measurement and is reported as one' - «бұл – өлшеу шарты және солай деп көрсетіледі».",
+   "«инференс жағындағы мәнді емес шығынмен» -> «инференс жағынан дерлік шығынсыз» ('at essentially no inference-side cost').",
+   "«көрініс аймағында сегіз кезеңді есептеу» -> «кескін доменінде сегіз кезеңді есептеу» ('image-domain computation'); «нәтижелі ядролар» -> «пайда болатын ядролар» ('the resulting kernels').",
+   "«тиімді архитектуралар сыныбы туралы табыс емес» -> «тиімді архитектуралар класы туралы тұжырым емес»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.9-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING REVERSED: «абляция осы күрделі құрамды ыдыратпай, оны жіктейді» ('without decomposing it, classifies it') - source: 'the ablation decomposes that composite without dissolving it' - «абляция бұл құраманы жоймай, оны құрамдас бөліктерге ыдыратады».",
+   "«Жақсару конвейердің кезеңдері бойынша ... жіктеледі» («жіктеу» = classification) - 'The gain decomposes across the pipeline's stages' - «Ұтыс конвейер кезеңдері бойынша ... ыдыратылады».",
+   "«сандық стандарт» -> «эталондық стандарт» ('reference standard').",
+   "HEDGE: «олардың тасымалдану қабілеті туралы айтылмады» - 'are not ASSERTED to be portable' - «олар тасымалданады деп бекітілмейді».",
+   "«Назар үйлесуі үйлесімділікті өлшейді» -> «Назардың беттесуі үйлесімді өлшейді» ('Attention overlap measures alignment')."
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.1-kz.md",
+  "chunk": 2,
+  "issues": [
+   "MEANING: 'state/stateless' is «күй», and 'case' is «пациент ісі» - «Сервис сұраныстар арасында жағдай сақтаушысынан басқа жағдайсыз. Жағдай сақтаушысы – ...» -> «Сервис сұраныстар арасында пациент істерінің қоймасынан басқа ешқандай күй сақтамайды. Бұл қойма – дерекқор емес, дискідегі каталог.»",
+   "«файлдық жүйеден басқа серверлік тәуелділікті жүрмейді» -> «файлдық жүйеден басқа ешқандай серверлік тәуелділігі жоқ».",
+   "«компоненттерді жіктеу» -> «компоненттік ыдырату» ('component decomposition'); «сипаттама деңгейінде қалады» -> «спецификация күйінде қалады».",
+   "«кэштен сақтауға болады» -> «кэштеуге болады»; «инференс үшін жеделдету жоқ» -> «инференс үшін үдеткіш жоқ»; «жеделдеткіш» -> «үдеткіш» (accelerator) throughout.",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«ертеректегі прогоннан» (Russian calque) -> «ертеректегі іске қосудан (run)».",
+   "«сақталған ауыстырмалы жылу карталарын» -> «сақталған алмастырушы (proxy) жылулық карталарды».",
+   "HEDGE: «сенімділігі төмен жақтылық анықтауы дәлелденбей, солай жазып қойылады» - 'recorded as such rather than ASSERTED' - «...бекітілмей, сенімділігі төмен деп тіркеледі».",
+   "«клиникалық кескіндерге қарсы жобаланған және тек солар үшін ғана расталған» -> «клиникалық кескіндер негізінде жобаланған және тек солар үшін ғана валидацияланған»; «аннотацияланған маскаларға қарсы» -> «аннотацияланған маскалармен салыстырылып».",
+   "«Осы жерде ашық жазып қалуы тиіс бір ауытқу бар» -> «Осы жерде ашық тіркелуге тиіс бір ауытқу бар»; «чекпойнт» -> «чекпоинт» (as in 4.1).",
+   "CHECKER ERROR - fix it: forbidden «прогон»: run is «іске қосу»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "CHINESE CHARACTERS in the text: «...жоба нұсқалық басқаруынан дәл осы себепті除外 етілген» - write it in Kazakh: «...қойма клиникалық кескіндерді қамтитындықтан, дәл осы себепті жобаның нұсқаларды басқару жүйесінен шығарылған».",
+   "«Есік – есептік жүйе емес, ортақ құпия» ('door') - 'The gate is a shared secret rather than an account system' - «Қол жеткізу қақпасы – тіркелгі жүйесі емес, ортақ құпия код».",
+   "«үдегішті» -> «үдеткішті»; «өрістік тестілеудің» -> «далалық сынақтың» ('field testing'); «жобалық айқындалма» -> «жобалық спецификация»; «жобалық айқындама» -> «жобалық спецификация».",
+   "«оған қарсы бағаланғанмен бірдей емес» -> «оған сәйкестігі бағаланғанмен бірдей емес» ('assessed against it'); «іс анықтамашысы – пациент анықтамашысы емес» -> «іс идентификаторы – пациент идентификаторы емес»; «қол жеткізуді жазу» -> «қол жеткізуді журналға тіркеу».",
+   "CHECKER ERROR - fix it: foreign-script characters in Kazakh text: 除外"
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 3,
+  "issues": [
+   "MEANING REVERSED + WRONG WORDS: «Домен ішіндегі корпусқа негізделіп, бастапқыдан оқытылған белгісіз өзін-өзі оқыту бастауы бірнеше протокол бойынша қатысусыз сүйек қаңқа қабылдау есігін өтпей алмады.» - «өтпей алмады» (double negative) means it PASSED; «сүйек қаңқа» = bone skeleton; «есік» = door. Source: 'Label-free self-supervised initialisation trained from scratch on the in-domain corpus FAILED the frozen-backbone acceptance gate, across several protocols of the same family' - «Домен ішіндегі корпуста нөлден оқытылған, белгісіз деректерге негізделген өздігінен бақыланатын инициализация бір тұқымдастың бірнеше хаттамасында backbone қатырылған қабылдау қақпасынан өте алмады.»",
+   "'initialisation' is «инициализация», not «бастау»; 'gate' is «қақпа», not «есік»: «Соңында қолданылған инициализация сол қақпа арқылы таңдалды», «Қақпа дәл осы мақсатта жасалған: инициализация одан өте алмауы мүмкін».",
+   "«Ол дәйекпен ғана немесе мүлдем жауап таппайды» -> «Оған тек дәйектеме арқылы жауап беруге болады, әйтпесе мүлдем жауап жоқ» ('It is answered by argument or not at all').",
+   "«Сәйкестік жағдайларда» -> «Сәйкестендірілген жағдайларда» ('Under matched conditions'); «алдын ала өңдеу-сыныптау» -> «алдын ала өңдеу мен жіктеудің»; «көшіру өлшемдерінің» -> «тасымалдау өлшемдерінің»; «клиникалық корпус та» -> «клиникалық корпуста»; «кезеңдері бойынша бөлінеді» -> «кезеңдері бойынша ыдыратылады».",
+   "CHECKER ERROR - fix it: forbidden «сынып»: a class (of DR) is «класс», «сынып» is a school class",
+   "CHECKER ERROR - fix it: forbidden «есік»: threshold is «табалдырық», gate is «қақпа»"
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 4,
+  "issues": [
+   "Garbled double negative: «және олар оған ешқандай қатысы жоқ емес» - source 'and they are not incidental to it' - «әрі олар үлеске кездейсоқ қосылған нәрсе емес».",
+   "«тексеруге мүмкін болатын деңгейде тар мәлімдеме ғана қорғауға тұрарлық» -> «тексеруге болатындай тар тұжырым ғана қорғауға тұрарлық».",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/A-kz.md",
+  "chunk": 2,
+  "issues": [
+   "AMBIGUOUS: «0-ден 5-ке және 7-ке дейінгі кезеңдер» reads as 'from 0 to 7'. Source 'Stages 0 to 5 and 7' - «0–5-кезеңдер мен 7-кезең».",
+   "Garbled order: «Базалық тармақ 0-ден 6-ға дейінгі кезеңдерді айналып өтіп, үш арнада жалпы нормализацияға дейін 512x512 өлшеміне созып масштабтауды таңдайды» - «Базалық тармақ 0–6-кезеңдерді айналып өтеді: оның орнына кескін 512x512 өлшеміне созылып масштабталады, содан кейін үш арнада жалпы нормалау жасалады; бұл нұсқа конвейерді өзгерту арқылы емес, конфигурация пресеті арқылы таңдалады».",
+   "'source' here is SOURCE CODE: «нұсқалы дереккөзде» -> «нұсқаланған бастапқы кодта»; «нақты дереккөздің парафразы емес» -> «нақты бастапқы кодтың парафразы емес».",
+   "«қазіргі негізгі реттеу ретінде» -> «әдепкі нұсқа ретінде» ('current default'); «тегіс алаң модулі» -> «flat-field модулі» (as elsewhere in the volume).",
+   "TERM: term «tile» not rendered as «торкөз» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING REVERSED: «артықшылық азшылық дәрежелерге бәсең түрде түседі» ('weakly') - source 'the advantage falls DISPROPORTIONATELY on the minority grades' - «артықшылық азшылық дәрежелерге пропорционалдан тыс көп түседі».",
+   "«жиынтық көрсеткіштердің астындағы жіктеуді тіркейді» («жіктеу» = classification) - 'the decomposition behind the aggregate figures' - «жиынтық көрсеткіштердің астындағы декомпозицияны тіркейді».",
+   "«интервалдық бағалаулар», «интервалдарды» -> «аралықтық бағалаулар», «аралықтарды»; «аудитке қол жетімділік» -> «аудиттелетіндік»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 3,
+  "issues": [
+   "Table B.8 title: «Сыртқы ашық корпус бойынша тапсыма бойынша F1» ('per task') - 'Per-class F1' - «Сыртқы ашық корпус бойынша класс бойынша F1».",
+   "«базалық эффективті», «интеграцияланған эффективті» -> «базалық тиімді», «интеграцияланған тиімді» (as in Tables Ә.4–Ә.5).",
+   "«алыс жасушалар босайды» -> «алыс ұяшықтар босайды» (matrix cells); «диагональ әр деңгейде өседі» -> «диагональ әр дәрежеде өседі».",
+   "«мұндай талдау ұсынылмайды» -> «мұндай түсіндіру ұсынылмайды» ('no such reading is offered'); «бір-бір жарым эпоха» -> «бірден бір жарымға дейінгі эпоха».",
+   "CHECKER ERROR - fix it: «жасуша» is a biological cell: a table/matrix/design cell is «ұяшық»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«аралықтардың шеткі ажырауы» -> «маргиналды аралықтардың ажырауы» ('the marginal separation of intervals', as in section 3.8); «жұптық тестерге» -> «жұптық тесттерге». Change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/B-kz.md",
+  "chunk": 5,
+  "issues": [
+   "WRONG WORD: «болжамдардың дамбалары» («дамба» = a dam) - 'prediction dumps' - «үлгі бойынша болжамдардың жазбалары (dump)».",
+   "'referable' is not «сілтемелі»: «жиынтық және сілтемелі ROC-AUC көрсеткіштерімен» -> «жиынтық ROC-AUC және жолдама берілуге тиіс ауру бойынша ROC-AUC көрсеткіштерімен».",
+   "«сол айырмашылықты қарау мүмкіндігін шектейді» - 'limits the RESOLUTION at which that difference can be inspected' - «сол айырмашылықты қаншалықты егжей-тегжейлі қарауға болатынын шектейді».",
+   "«интервалына» -> «аралығына»; «үш деректер жиынтығы жоқ» -> «үш материал жиынтығы жоқ» ('Three sets of material')."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/C-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«Тіркелген кескінді тексеріп» ('registered') - 'Validates a SUBMITTED image' - «Жіберілген кескінді тексеріп».",
+   "'Ingestion' is «Қабылдау» (as in chapter 4), not «Ингестия»: table row and «Қабылдаудан Есеп беруге дейінгі...».",
+   "«Клиниктік интерфейс» -> «Дәрігер интерфейсі»; «жазба жүйелеріне сілтемелер» ('links') -> «жазба жүйелерімен байланыстар».",
+   "«Бұл көзқарас Б.1-кестеге сүйене оқу керек» -> «Бұл көріністі Б.1-кестемен бірге оқу керек»; «Бөлінудің екі ерекшелігі» -> «Ыдыратудың екі ерекшелігі»; «Чекпойнтты» -> «Чекпоинтты»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 2,
+  "issues": [
+   "NUMBER MEANING: «басқаларының шамамен жартысынан аз кескінге сүйенеді» ('less than half') - source 'rests on ROUGHLY HALF the images of the others' - «басқаларының шамамен жартысындай кескінге сүйенеді».",
+   "'threshold' is «табалдырық», not «есік» (door): «табалдырық мәндерін сканерлеу нәтижелерімен», «жұмыс табалдырығында».",
+   "«тақтаны жүріс нәтижелерімен салыстыруға болады» -> «тақтаны іске қосу (run) нәтижелерімен салыстыруға болады»; «ешқандай жерде нақтылау корпусы да, фолд та» -> «ешбір жерде корпус та, фолд та»; «интервалдық бағалауларымен» -> «аралықтық бағалауларымен».",
+   "CHECKER ERROR - fix it: forbidden «есік»: threshold is «табалдырық», gate is «қақпа»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/D-kz.md",
+  "chunk": 3,
+  "issues": [
+   "MEANING: «бір иірім шегінде» («иірім» = a whirlpool) - 'one fold' - «бір фолд шегінде»; «реттеуді локализациядан ажырататын шекара» ('regulation') - 'the boundary that separates ALIGNMENT from localisation' - «үйлесімді локализациядан ажырататын шекара».",
+   "MISLEADING: «клиникалық корпустық зерттеу жүргізілмеді, ешқандай кемшілік табылмады» can read as 'it was examined and no problem was found'. Source: 'nothing was examined on the clinical corpus and found wanting; the examination was not performed' - «клиникалық корпуста ештеңе зерттеліп, кемшілігі анықталған жоқ: зерттеудің өзі жүргізілмеді».",
+   "«пиксель деңгейіндегі аннотацияға қарсы сандық салыстыру» -> «пиксель деңгейіндегі аннотациямен сандық салыстыру».",
+   "TERM: term «Inference» not rendered as «инференс» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'fold' is «фолд», not «қатты»/«қаттылар»: «Бағалау бір кросс-валидация фолдының модельдерін қолданады», «фолдтар арасындағы емес», «фолдтар арасындағы дисперсия».",
+   "Garbled: «сыртқы клиникалық бағалаумен құрылысы бойынша қайталау емес, таңбасына дейін сәйкес келеді» - source: 'coincide with the external clinical evaluation character for character, by construction rather than by replication' - «сыртқы клиникалық бағалаумен таңбасына дейін сәйкес келеді; бұл – қайталау нәтижесі емес, құрылымның салдары».",
+   "First sentence: «класс-бойынша жіктеу қосалқысымен қоса, орындаудың деректері қолдайтын шешімділіктегі» -> «3.5-бөлімде қорытындыланған, бірақ көрсетілмеген класс бойынша декомпозицияны қоса алғанда, іске қосу деректері мүмкіндік беретін егжей-тегжей деңгейінде...».",
+   "'device' is «құрылғы», not «құрал»: «құрылғы сертификаты», «құрылғыға тәуелсіз орналастыруға дайындық», «құрылғылар арасындағы», «құрылғы бойынша көрсеткіш», «құрылғылар отбасын»; HEDGE: «дайындық туралы талапты» -> «дайындық туралы мәлімдемені»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 2,
+  "issues": [
+   "WRONG WORD: «еден» is the floor of a room - 'the floor' here is a lower bound: «оны бағалау үшін қолданылған төменгі шек – 0.7», «Төменгі шекті екі конфигурация да бес топтың барлығында асып түседі».",
+   "«Топтар бойынша шекті тәуелсіз өнімділік» -> «Топтар бойынша табалдырыққа тәуелсіз өнімділік» ('Threshold-independent').",
+   "Table headers «95 % ШҚ (Δ)» -> «95 % СА (Δ)» (сенімділік аралығы) in both tables.",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 4,
+  "issues": [
+   "WRONG WORD: «болжамсыздық» ('unpredictability') - 'an apparent inconsistency' - «Г.2-кестеде ашық айтуға тұрарлық сырттай қайшылық бар».",
+   "Table Г.8 headers: «95 % СІ (Δ)», «СІ нөлді қамтымайды» -> «95 % СА (Δ)», «СА нөлді қамтымайды» (сенімділік аралығы).",
+   "«тек патологиялық емес, бес дәреженің әрқайсысында» -> «тек патологиялық дәрежелерде ғана емес, бес дәреженің әрқайсысында»; «кластар бойынша нақтыланған осылай теңестіру» -> «кластар бойынша ашып көрсетілген сол теңестіру»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/E-kz.md",
+  "chunk": 5,
+  "issues": [
+   "MEANING: 'levels' here means EVENS OUT: «Топтамалар арасындағы жалпы өнімділік деңгейінің орнағаны анықталды; ал қателер құрылымының онымен бірге орнағаны анықталмады.» -> «Топтамалар арасында жиынтық өнімділіктің теңесетіні анықталды; ал қателер құрылымы да онымен бірге теңесетіні анықталған жоқ.»",
+   "«көршілес дәрежемен әлсіздікпен немесе алыс дәрежемен шатасудан» -> «көршілес дәрежемен немесе алыс дәрежемен шатасудан».",
+   "HEDGE: «ешқандай талап оның арқасында нығаймайды» -> «ешқандай тұжырым оның арқасында күшеймейді»; «нормативтік сәйкестікті талап етуді қолдамайды» -> «нормативтік сәйкестік туралы мәлімдемені қолдамайды»; «ешқандай нәтижені қайта қалпына келтірмейді» -> «ешқандай нәтижені ақтамайды» ('rehabilitate').",
+   "«корпусаларда» -> «корпустарда».",
+   "CHECKER ERROR - fix it: forbidden «корпусал»: plural of корпус is «корпустар»"
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 2,
+  "issues": [
+   "'source text' / 'source' (of a program) is «бастапқы мәтін/код», not «басты мәтін» (main text): «негізгі модульдердің бастапқы мәтіндерінің тізімі», «алдын ала өңдеу стекінің бастапқы коды».",
+   "Garbled: «Құжатты дәлелдеу жанында таңданышпен қарауға емес, оны ішінде орналастыру үшін көлемге үш сәйкестікті айту қажет.» - source: 'Three correspondences to the volume should be stated so the document can be located in the argument rather than admired beside it.' - «Құжат дәйектеменің жанында таңдана қаралатын нәрсе болмай, оның ішінде өз орнын табуы үшін томмен үш сәйкестікті атап өту қажет.»",
+   "«бес шығыс деңгейі» -> «бес шығыс дәрежесі»; «бағдарламалық кешеннің бүкілдігі» -> «тұтас бағдарламалық кешен».",
+   "Heading «### Ғ.2 Тіркеудің ерекшеліктері» -> «### Ғ.2 Тіркеу деректері» ('Particulars of the registration'); «айқындама ретінде қалғанын» -> «спецификация күйінде қалғанын»."
+  ]
+ },
+ {
+  "out": "chapters/06-appendices/translated-kk-qwen/F-kz.md",
+  "chunk": 3,
+  "issues": [
+   "MEANING: «Ол әдістің өзіне қол жеткізбейді» ('does not reach') - source 'It does not PROTECT the method itself' - «Ол әдістің өзін қорғамайды».",
+   "«әдіс – бұл көлемнің нысаны және ол осы көлем арқылы қоғамдық тіркеуге енгізіледі» - 'volume' is the book (том), and 'placed in the public record' means made public: «әдіс – осы томның зерттеу нысаны, және ол осы том арқылы жария етіледі».",
+   "«сенімді электронды қолтаңбамен» -> «электрондық цифрлық қолтаңбамен (ЭЦҚ)» ('qualified electronic signature'); «берілуші орган» -> «берген орган»."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "«архитектурмен» -> «архитектурамен» (typo). Change nothing else."
+  ]
+ },
+ {
+  "out": "chapters/00-introduction/translated-kk-qwen/introduction-kz.md",
+  "chunk": 4,
+  "issues": [
+   "MEANING: «соңғыдан бірінші қабатта» reads as 'the last layer'. Source 'at the penultimate layer' - «соңғының алдындағы қабатта».",
+   "'threshold' is «табалдырық», not «есік»: «гистограмма табалдырығы 0.03», «әрбір бинарлау табалдырығында».",
+   "«Жетіктік оқытуда көрінбеген корпустарға көшеді» -> «Құзыреттілік оқытуда көрінбеген корпустарға тасымалданады» ('Competence transfers').",
+   "«бірде-бір кері айнымалылық болмайды» -> «бірде-бір инверсия болмайды»; «6.54 және 6.55 пайыздық тармаққа» -> «6.54 және 6.55 пайыздық пунктке».",
+   "«Абляция сол құрамдас бөлікті ... ыдыратады ... бірақ ыдырау – еріту емес» -> «Абляция бұл құраманы ... ыдыратады ... алайда ыдырату – жоққа шығару емес» (as in the approved edition); «ішкі домендегі 0.0655 ұтыстың» -> «домен ішіндегі 0.0655 ұтыстың»."
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.4-kz.md",
+  "chunk": 1,
+  "issues": [
+   "NUMBER AMBIGUITY: «он бірінші деңгейдегі медициналық көмек зерттеулерін» reads as 'eleven...'. Source 'pool ten primary-care studies' - «алғашқы медициналық-санитариялық көмек бойынша 10 зерттеуді біріктіреді».",
+   "«перспективалық» (twice) ('perspective') -> «проспективті» ('prospective'): «проспективті көп орталықты зерттеу», «проспективті бағалау».",
+   "«реттестік рұқсатқа» -> «реттеуші органның рұқсатына» ('regulatory clearance'); «Бар болған» -> «Қолданыстағы» (heading: «## 1.4 Қолданыстағы автоматтандырылған скрининг жүйелері»).",
+   "TERM: term «prospective» not rendered as «проспективті» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/01-review/translated-kk-qwen/1.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "HEDGE: «Осыдан тыс ешқандай жалпылау талап етілмейді» ('demanded') - 'No generalisation beyond that is CLAIMED' - «Осыдан тыс ешқандай жалпылау мәлімделмейді».",
+   "«бес дәрежелі бағалауға» -> «бес класты дәрежелеуге» ('five-class grading'); «клиникалық тұрғыдан расталған жүйе» -> «клиникалық тұрғыдан валидацияланған жүйе».",
+   "«зақымдар» -> «зақымданулар»; «корпусардағы» -> «корпустардағы»; «оқыту корпусы мен мақсатты корпус» -> «оқыту корпусы мен нысаналы корпустар».",
+   "CHECKER ERROR - fix it: forbidden «корпусар»: plural of корпус is «корпустар»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "'tile' is «торкөз» (approved edition), not «тақта»: «Жақсы таралған торкөзде», «Күшті шыңдалған торкөзде», «Барлық торкөзге», «8×8 торкөз торы», «торкөз шекаралары», «торкөзге қатысты».",
+   "'binds' (becomes the active constraint) is not «орындалады»: «...мүше кішірек болады және шешуші шектеуге айналады» (both places).",
+   "Table: «Бірқалыпты арнаға шамаға сәйкес еселік» is garbled - 'A multiple of the uniform per-bin count' - «Біркелкі себет-санағының еселігі»; «шектің тарлауы» -> «шектердің қатаңырағы» ('The tighter of'); «Басқа корпустың бұрынғы өз жұмысы» -> «Басқа корпустағы бұрынғы өз жұмысы»; «Жалғыз шек», «Жалпы шек» -> «Жалғыз табалдырық», «Жаһандық табалдырық».",
+   "«он екі пайыздық тармаққа» -> «он екі пайыздық пунктке»; «алдыңғы буынды» -> «ізашарды»; «жіктелуді біркелкі жақсартатыны туралы ешқандай тұжырым қабылданбайды» -> «жіктеуді біркелкі жақсартады деген тұжырымға жол берілмейді».",
+   "TERM: term «tile» not rendered as «торкөз» - use the required Kazakh form",
+   "TERM: term «precursor» not rendered as «ізашар» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING: 'inflated' is not «іріктеледі» (is selected): «жалпы дәлдік көпшілік кластың өнімділігі есебінен жасанды түрде жоғарылайды»; table «теңгерімсіздікте жасанды түрде жоғарылайды».",
+   "NON-WORD: «Ұқымдардың эмпирикалық сенімділігі» - 'probabilities' - «Ықтималдықтардың эмпирикалық сенімділігі».",
+   "«соттау арқылы анықталған сәйкестік стандарттары» ('by a court') - 'adjudicated reference standards' - «сарапшылар кеңесі бекіткен эталондық стандарттар»; «сәйкестік дәрежелеріне» -> «эталондық дәрежелерге»; «сәйкестік стандарттарының шектеулерін» -> «эталондық стандарттарының шектеулерін».",
+   "«Бағалаушылар арасындағы айырмашылық» -> «Дәрежелеушілер арасындағы вариабельділік» ('Grader variability'); «15 ұпайдан жоғары» -> «15 пункттен жоғары».",
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.6-kz.md",
+  "chunk": 2,
+  "issues": [
+   "NUMBER (critical): «салмақталған F1-де кемінде он бес пайыздық тармаққа» says FIFTEEN. Source: 'a simultaneous improvement of at least FIVE percentage points in weighted F1' - «салмақталған F1-де кемінде бес пайыздық пунктке».",
+   "MEANING: «Сандық түрде анықталмаған белгісіздік осы типтегі құрама өлшемдерді қолдауға қабілетті емес.» - source 'An ESTIMATE without a quantified uncertainty cannot support compound criteria' - «Белгісіздігі сандық бағаланбаған баға мұндай құрама өлшемдерге негіз бола алмайды.»",
+   "«бейімделетін сәт әдісі» -> «адаптивті момент әдісі (Adam)»; «Бұл көзқарастық таңдау емес» -> «Бұл сырттай ғана маңызды таңдау емес» ('not a cosmetic choice').",
+   "«Сынып бойынша» -> «Класс бойынша»; «сыртқы корпус та» -> «сыртқы корпуста»; «Фундус корпусында» -> «Көз түбі корпустарында»; «он бес пайыздық тармақтан асатын» (overfitting gap, correctly 15) -> «он бес пайыздық пункттен асатын»."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.C-kz.md",
+  "chunk": 1,
+  "issues": [
+   "NON-WORDS: «Донатылған бағдарлық нүкте детекторы» - 'A frozen landmark detector' - «Қатырылған бағдарлық нүкте детекторы»; «бүркіту ені» («бүркіт» = eagle) - 'the blur width' - «бұлдырату ені».",
+   "MEANING: «Тармақтар алдын ала өңдеуден гөрі инициализацияда да ерекшеленеді» ('rather than') - 'differ in initialisation AS WELL AS preprocessing' - «Тармақтар алдын ала өңдеумен қатар инициализацияда да ерекшеленеді».",
+   "Garbled: «ал ағымды бейімдеу кескін емес, науқас деңгейінде бөлу арқылы жабылады» - 'leakage is closed by partitioning at the patient rather than the image' - «ал ақпарат ағуы кескін деңгейінде емес, пациент деңгейінде бөлу арқылы жабылады».",
+   "«плиткаға салыстырмалы» -> «торкөзге қатысты» ('tile-relative'); «қайта үлестіру» -> «қайта іріктеу» ('resampling'); «Сыныптау құрамдас бөлігі» -> «Жіктеу құрамдас бөлігі»; «теңсіздік дәлдікті» -> «теңгерімсіздік дәлдікті».",
+   "«Екі жетіспеушілік қасақтан жасалған» -> «Екі жетіспеушілік әдейі жасалған»; «есептеу көзі де жоқ» -> «есептеу дереккөзі де жоқ».",
+   "TERM: term «lesion» not rendered as «зақымдану» - use the required Kazakh form",
+   "TERM: term «tile» not rendered as «торкөз» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 2,
+  "issues": [
+   "WRONG WORD: «кейіпкерлерді» (characters in a story) - 'referring more cases' - «жағдайларды (пациенттерді) талғаусыз көбірек жолдау арқылы».",
+   "WRONG WORD: «сақтандырылған» ('insured') - 'is by construction more conservative than' - «құрылымы бойынша ... ұтысынан консервативтірек (кішірек)».",
+   "«Ауыр төмен дәрежелену дегенде жойылды» -> «Ауыр ауруды төмен дәрежелеу дерлік жойылды» ('nearly eliminated').",
+   "Lost causal link: «Келісім өлшемі тасымалдау кезінде 0.7887-ден 0.8874-ке дейін өседі.» - source 'which is WHY the agreement measure rises' - «Сол себепті келісім өлшемі тасымалдау кезінде 0.7887-ден 0.8874-ке дейін өседі.»",
+   "«Көрілмеген зерттеу корпусындағы» -> «Бұрын көрілмеген зерттеу корпусындағы»; «абсолютті деңгейі әлі де ұсақ» -> «абсолютті деңгейі әлі де қарапайым»; «Триаждар» -> «Триаж»; «осы айырманың интервалы» -> «осы айырманың аралығы»; «кері айналдыратындей» -> «кері айналдыратындай».",
+   "CHECKER ERROR - fix it: «дегенде» used for 'almost': write «дерлік» (дерлік барлығы, дерлік бірдей)"
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.5-kz.md",
+  "chunk": 4,
+  "issues": [
+   "«тармақ барлық корпуста жақсарып, қайта да жеңіліске ұшырауы мүмкін» -> «тармақ барлық корпуста жақсарса да, өлшемнен бәрібір өтпей қалуы мүмкін» ('and still fail').",
+   "«пропорционалды емес түрде көтереді» -> «пропорционалдан тыс көбірек көтереді» ('disproportionately'); «сығып тұрады» -> «тарылтады».",
+   "«мазмұндық табыс» -> «мазмұндық нәтиже» ('finding'); «ажыратымды нәтиже» -> «ажырататын нәтиже»; «топтараралық» -> «топаралық»."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.8-kz.md",
+  "chunk": 3,
+  "issues": [
+   "MEANING: «Эталондық стандарт оңай ескерілмейді» ('is not easily taken into account') - source 'The reference standard is easily OVERLOOKED' - «Эталондық стандарт оңай назардан тыс қалады».",
+   "«төрелікпен келісілген мамандар алқаларына қарсы жүргізілді» -> «мамандар кеңесі бекіткен белгілермен салыстырылып жүргізілді» ('against adjudicated specialist panels'); «таратылған таңбаларға қарсы бағаланады» -> «таратылған белгілермен салыстырылып бағаланады»; table «Ашық деректер жиынының таңбалары» -> «Ашық деректер жиынының белгілері».",
+   "«перспективті жеке когорталар» -> «проспективті жеке когорталар»; «аумақ ішінде» -> «домен ішінде»; «жіберуге арналған жұмыс сипаттамасын» -> «жолдама беру бойынша жұмыс сипаттамасын».",
+   "«бұл модельдердің ықтимал ретіне жататынын» -> «бұл модельдердің нәтижелері шынайы шама ретінде екенін» ('of a plausible order'); «Бес классты», «екі классты» -> «Бес класты», «екі класты»; «теңсіздікке» -> «теңгерімсіздікке».",
+   "TERM: term «endpoint» not rendered as «соңғы нүкте» - use the required Kazakh form",
+   "TERM: term «prospective» not rendered as «проспективті» - use the required Kazakh form"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.3-kz.md",
+  "chunk": 1,
+  "issues": [
+   "MEANING: «жауапкершілікті жүктейтін клиниканың айналасында құрылған» ('a clinic that imposes responsibility') - source 'built around a clinician who interprets, audits and RETAINS responsibility' - «диагнозды түсіндіретін, тексеретін және жауапкершілікті өзінде сақтайтын дәрігердің айналасында құрылған».",
+   "MEANING: «Біреуін сақтау сәтсіз болғандықтан, болжам сәтсіз болмайды.» ('because saving failed') - 'a failure to persist one does not fail the prediction' - «Жазбаны сақтау сәтсіз болса да, болжам сәтсіз болмайды.»",
+   "Grammar: «ал болдырмау оны жоюымен, жазба бір болжамның бірнеше оқылымын жинақтауына ... жол бермейді» -> «ал болдырмау оны жояды. Сондықтан жазбада бір болжамның бірнеше оқылымы жиналмайды және бұрынғысы үнсіз қайта жазылмайды».",
+   "«Дәрежені бағалап отырған клиник» -> «Дәрежені бағалап отырған дәрігер»; «әр жағдайды кейіннен қалпына келтіруге» -> «әр істі кейіннен қалпына келтіруге»; «жиынтық статистика ... оқылды» -> «...оқылады»; «түсініксіз қоймада» -> «ішін көруге болмайтын қоймада»."
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "TERM: term «tile» not rendered as «торкөз» - use the required Kazakh form",
+   "Change only what these errors require."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.2-kz.md",
+  "chunk": 2,
+  "issues": [
+   "TERM: term «criterion» not rendered as «өлшем» - use the required Kazakh form",
+   "Change only what these errors require."
+  ]
+ },
+ {
+  "out": "chapters/03-experiments/translated-kk-qwen/3.C-kz.md",
+  "chunk": 2,
+  "issues": [
+   "CHECKER ERROR - fix it: forbidden «корпусар»: plural of корпус is «корпустар»",
+   "Change only what these errors require."
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 1,
+  "issues": [
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»",
+   "Change only what these errors require."
+  ]
+ },
+ {
+  "out": "chapters/05-conclusion/translated-kk-qwen/conclusion-kz.md",
+  "chunk": 2,
+  "issues": [
+   "CHECKER ERROR - fix it: forbidden «еден»: floor (lower bound) is «төменгі шек»",
+   "TERM: term «endpoint» not rendered as «соңғы нүкте» - use the required Kazakh form",
+   "TERM: term «source-to-target distance» not rendered as «бастапқы доменнен нысаналы доменге дейінгі қашықтық» - use the required Kazakh form",
+   "TERM: term «source statistics» not rendered as «бастапқы доменнің статистикалары» - use the required Kazakh form",
+   "Change only what these errors require."
+  ]
+ }
+]

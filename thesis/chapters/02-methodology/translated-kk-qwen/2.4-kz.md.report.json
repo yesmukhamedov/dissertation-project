@@ -1,0 +1,56 @@
+{
+ "file": "chapters/02-methodology/drafts/2.4-draft.md",
+ "genre": "thesis",
+ "out": "chapters/02-methodology/translated-kk-qwen/2.4-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 4,
+ "clean_first_try": 4,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 414,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 223.2,
+   "src_head": "## 2.4 Pretraining and fine-tuning strategy\n\nWhat distinguishes the two arms of "
+  },
+  {
+   "chunk": 2,
+   "words": 411,
+   "errors": [],
+   "warnings": [],
+   "attempts": 1,
+   "sec": 211.4,
+   "src_head": "The rationale for a convolution-native in-domain initialisation is to obtain dom"
+  },
+  {
+   "chunk": 3,
+   "words": 401,
+   "errors": [],
+   "warnings": [
+    "authors not found in Latin: As Yosinski",
+    "term «pretraining» not rendered as «алдын ала оқыту»",
+    "term «Transfer Learning» not rendered as «transfer learning»"
+   ],
+   "attempts": 1,
+   "sec": 200.6,
+   "src_head": "In the first stage the backbone is frozen and only the new head is trained. With"
+  },
+  {
+   "chunk": 4,
+   "words": 126,
+   "errors": [],
+   "warnings": [
+    "numbers added: 173"
+   ],
+   "attempts": 1,
+   "sec": 74.3,
+   "src_head": "The focal term therefore addresses the imbalance between easy and hard examples,"
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+[
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.1-kz.md",
+  "chunk": 1,
+  "issues": [
+   "GARBLED first sentence «Бұл тараудың ұйымдастырушылық міндеттемесі – диагностикалық модель алдын ала өңдеу ... екі кезеңді жүйе екенін айқындайды». Source: 'The organising commitment of this chapter is that the diagnostic model is a two-stage system in which preprocessing is an integral component rather than ancillary data preparation.' Write «Бұл тараудың негізгі ұстанымы – диагностикалық модель екі кезеңді жүйе, онда алдын ала өңдеу қосалқы деректер дайындығы емес, ажырамас компонент болып табылады.»",
+   "GARBLED «Бұл міндеттеме оның ажыраған тәжірибеге қарама-қарсы ең анық көрінеді» - 'That commitment is most clearly seen against the practice it departs from' - write «Бұл ұстаным ол бас тартатын тәжірибемен салыстырғанда айқын көрінеді.»",
+   "«Түп-тұсынан ақырынға дейінгі (end-to-end) тәсілде» - write «Басынан аяғына дейінгі (end-to-end) тәсілде»",
+   "MEANING - NEGATION DROPPED: «ешқандай авторға теориялық позицияны жатқызады» says it DOES attribute. Source: 'attributes no theoretical position to any author'. Write «Бұл байқалатын тәжірибені сипаттайды және ешбір авторға теориялық ұстанымды телімейді.» ('observable practice' = «байқалатын тәжірибе», not «бақыланатын»)",
+   "«оны бақыланатын эксперименттік контрастқа бейімдейді» - 'places it under controlled experimental contrast' - write «оны бақыланатын эксперименттік салыстыруға қояды»",
+   "«Әр кезеңнің өз орнын қалай тапқаны» - 'whether each stage earns its place' - write «Әр кезең өз орнын ақтай ма, жоқ па – бұл сол эксперименттерге қалдырылған эмпирикалық сұрақ»",
+   "«ал реттілікті өзгерту нәтижені өзгертіп, қайта реттеуге мүмкіндік бермейді» - 'the sequence cannot be reordered without changing the result' - write «ал реттілікті нәтижені өзгертпей қайта ретке келтіру мүмкін емес»",
+   "Table 2.1: «Метадан немесе эвристикадан» - write «Метадеректерден немесе эвристикадан»; «резервтік таралу 13.0°» - 'fallback dispersion' - write «резервтік шашырау 13.0°»",
+   "«ал оны нормалау желінің қуатын ауруға қатысты өзгерістерге жұмсайды» - 'normalising that away spends the network's capacity on disease-relevant variation instead' - write «ал оны нормалау желінің қуатын оның орнына ауруға қатысты өзгерістерге жұмсауға мүмкіндік береді»"
+  ]
+ },
+ {
+  "out": "chapters/02-methodology/translated-kk-qwen/2.2-kz.md",
+  "chunk": 3,
+  "issues": [
+   "«абсолютті төбе кішірек болады» - 'the absolute ceiling' - write «абсолютті жоғарғы шек кішірек болады»",
+   "«өлшенетін төменгі ағын артықшылығын береді ме» and «клип конфигурациясының төменгі ағын әсері» - 'downstream' is not a river: write «кейінгі жіктеуде өлшенетін артықшылық бере ме» and «клип конфигурациясының кейінгі жіктеуге әсері»",
+   "Table 2.2: «Бірқалыпты арна санының еселігі» - арна = channel, wrong. Source: 'A multiple of the uniform per-bin count' (bin = себет) - write «Бір себетке келетін бірқалыпты санның еселігі»",
+   "Table 2.2: «Гистограммаға қатысты және торкөзге қатысты шектің тарлауы» - 'the tighter of' - write «Гистограммаға қатысты және торкөзге қатысты шектердің қатаңырағы»; header «Түпкілігі» - 'Origin' - write «Шығу тегі»",
+   "GARBLED «ол сканерлеудің дәл сипаттауға құрылған бірлескен орналасуын ашатын екі параметрді көрсетеді» - source: 'it exposes two parameters whose joint setting is exactly what the sweep is built to characterise' - write «ол екі параметрді ашық көрсетеді, ал олардың бірлескен мәндерін сипаттау – дәл сканерлеудің міндеті»",
+   "«архитектураға қатысты реттеудің болмауымен» - 'the absence of per-architecture tuning' - write «әр архитектура үшін жеке баптаудың болмауымен»"
+  ]
+ },
+ {
+  "out": "chapters/04-system/translated-kk-qwen/4.2-kz.md",
+  "chunk": 1,
+  "issues": [
+   "'deployed' is «орналастырылған» (termbase deployment = орналастыру): «Егер іске асырылған конвейер бөлек іске асыру болса» - write «Егер орналастырылған конвейер бөлек іске асыру болса»; «Іске асырылған конфигурацияда» - write «Орналастырылған конфигурацияда». Keep «бөлек іске асыру» and «Бір іске асыруды сақтау» (implementation).",
+   "«Бір іске асыруды сақтау екеуін бір объекті етеді» - write «Бір іске асыруды сақтау екеуін бір объектіге айналдырады»",
+   "WRONG WORD: «түрлендіруді шығынды бағалауы тиіс дәрігер» - шығын = loss; 'the clinician who has to weigh the output' - write «шығысты бағалауы тиіс дәрігер»",
+   "«іске асырылған жүйеге қарсы тексеруге» - 'checkable against the running system' - write «жұмыс істеп тұрған жүйенің өзінде тексеруге»",
+   "GARBLED: «Корпус нақты пациент кескіндері корреляцияланғандықтан, пациент деңгейінде бөлінді» - write «Корпустар пациент деңгейінде бөлінді, себебі бір пациенттің кескіндері өзара корреляцияланған.»",
+   "MEANING: «дәрігерге екі нәтижені және оларды біріктіру ережесін бермейтін болар еді» says it gives neither. Source: 'would present a clinician with two results and no rule for combining them' - write «Кескіндерді тәуелсіз бағалайтын жүйе дәрігерге екі нәтиже беріп, оларды біріктірудің ешқандай ережесін бермес еді.»",
+   "«Модельді таңдау – іске асыру кезеңіндегі емес, конфигурация шешімі» - 'runtime' - write «Модельді таңдау – орындау уақытындағы емес, конфигурация шешімі»; «жады аяғын бір модельмен шектейді» - 'memory footprint' - write «жадқа түсетін жүктемені бір модельмен шектейді»"
+  ]
+ }
+]

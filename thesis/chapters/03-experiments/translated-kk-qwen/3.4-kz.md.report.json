@@ -1,0 +1,48 @@
+{
+ "file": "chapters/03-experiments/drafts/3.4-draft.md",
+ "genre": "thesis",
+ "out": "chapters/03-experiments/translated-kk-qwen/3.4-kz.md",
+ "src": "en",
+ "tgt": "kz",
+ "chunks": 3,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 4,
+ "minutes": 0.0,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 397,
+   "errors": [],
+   "warnings": [
+    "term «penultimate-layer features» not rendered as «алдыңғы соңғы қабаттың белгілері»"
+   ],
+   "attempts": 2,
+   "sec": 202.2,
+   "src_head": "## 3.4 Domain distance in feature space\n\nThe two preceding sections established "
+  },
+  {
+   "chunk": 2,
+   "words": 445,
+   "errors": [],
+   "warnings": [
+    "term «Convergence» not rendered as «жинақталу»"
+   ],
+   "attempts": 1,
+   "sec": 246.9,
+   "src_head": "A second property forecloses the objection that would otherwise be decisive. If "
+  },
+  {
+   "chunk": 3,
+   "words": 353,
+   "errors": [],
+   "warnings": [
+    "term «Inference» not rendered as «инференс»",
+    "term «Convergence» not rendered as «жинақталу»"
+   ],
+   "attempts": 1,
+   "sec": 189.5,
+   "src_head": "The pixel-level reduction is proportional rather than levelling. It fell within "
+  }
+ ]
+}

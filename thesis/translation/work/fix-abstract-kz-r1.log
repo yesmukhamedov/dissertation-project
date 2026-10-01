@@ -1,0 +1,8 @@
+output/translated-qwen/abstract_en.kz.md chunk 1: applied, 1 err, 0 warn, 3.0s | names/codes lost: ABSTRACT
+output/translated-qwen/abstract_en.kz.md chunk 3: applied, 0 err, 0 warn, 173.2s
+output/translated-qwen/abstract_en.kz.md chunk 4: applied, 0 err, 2 warn, 167.9s
+output/translated-qwen/abstract_en.kz.md chunk 5: applied, 0 err, 0 warn, 37.1s
+output/translated-qwen/abstract_en.kz.md chunk 6: applied, 0 err, 1 warn, 150.7s
+output/translated-qwen/abstract_en.kz.md chunk 7: applied, 0 err, 1 warn, 149.9s
+output/translated-qwen/abstract_en.kz.md chunk 8: applied, 0 err, 1 warn, 145.3s
+output/translated-qwen/abstract_en.kz.md chunk 9: applied, 0 err, 1 warn, 46.3s

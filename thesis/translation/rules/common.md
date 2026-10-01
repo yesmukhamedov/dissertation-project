@@ -33,3 +33,6 @@ FORM
 OUTPUT
 13. Output only the translation of the SOURCE chunk, in the same markdown layout. No preface, no notes, no
     "Here is the translation", no original text, no code fences around the answer.
+14. Numbers written with digits stay digits ("4 жарияланым" -> "4 publications", not "Four publications").
+15. Never add qualifiers the source does not have (no «тюркский», «vision», «данный алгоритм» where the source says
+    only «алфавит», «transformer», «it»). If the source is garbled, translate it as closely as the grammar allows.

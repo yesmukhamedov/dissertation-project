@@ -1,0 +1,25 @@
+[
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 5,
+  "applied": true,
+  "errors": [
+   "names/codes lost: OD-fovea, FOV"
+  ],
+  "warnings": [
+   "term «FOV» not rendered as «FOV»"
+  ],
+  "sec": 24.1
+ },
+ {
+  "out": "output/translated-qwen/abstract_en.ru.md",
+  "chunk": 7,
+  "applied": true,
+  "errors": [],
+  "warnings": [
+   "term «arm» not rendered as «ветвь»",
+   "term «Physician-in-the-Loop» not rendered as «врач в контуре принятия решений»"
+  ],
+  "sec": 84.9
+ }
+]

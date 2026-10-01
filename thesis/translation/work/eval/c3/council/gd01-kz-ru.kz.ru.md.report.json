@@ -1,0 +1,39 @@
+{
+ "file": "translation/work/eval/c3/council/src/gd01-kz-ru.kz.md",
+ "genre": "council",
+ "out": "translation/work/eval/c3/council/gd01-kz-ru.kz.ru.md",
+ "src": "kz",
+ "tgt": "ru",
+ "chunks": 2,
+ "clean_first_try": 2,
+ "needs_review": [],
+ "warnings": 5,
+ "minutes": 3.9,
+ "detail": [
+  {
+   "chunk": 1,
+   "words": 441,
+   "errors": [],
+   "warnings": [
+    "term «зерттеу тақырыбының өзектілігі» not rendered as «актуальность темы исследования»",
+    "term «Ғылыми кеңес» not rendered as «Ученый совет»",
+    "term «ғалым хатшы» not rendered as «ученый секретарь»",
+    "term «Қазақстан Республикасы Ғылым және жоғары білім министрлігі» not rendered as «Министерство науки и высшего образования Республики Казахстан»"
+   ],
+   "attempts": 1,
+   "sec": 142.6,
+   "src_head": "«Халықаралық ақпараттық технологиялар университеті» АҚ – да (бұдан әрі – Универс"
+  },
+  {
+   "chunk": 2,
+   "words": 257,
+   "errors": [],
+   "warnings": [
+    "term «тармақ» not rendered as «ветвь»"
+   ],
+   "attempts": 1,
+   "sec": 90.7,
+   "src_head": "жұмыс орны бойынша куәландырылған отандық және шетелдік ғылыми консультанттардың"
+  }
+ ]
+}

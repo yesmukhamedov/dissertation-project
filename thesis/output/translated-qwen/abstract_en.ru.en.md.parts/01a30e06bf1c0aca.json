@@ -1,0 +1,16 @@
+{
+ "out": "# ABSTRACT",
+ "errors": [],
+ "warnings": [
+  "heading numbers differ"
+ ],
+ "attempts": 1,
+ "info": {
+  "sec": 8.5,
+  "finish": "stop",
+  "p_tok": 1335,
+  "c_tok": 4,
+  "pp_tps": 171,
+  "tg_tps": 6.7
+ }
+}
